@@ -25,9 +25,8 @@ def call(target: Any, op: str, action: str = None, **args) -> dict:
 
 
 def from_request(target: Any, request: dict) -> dict:
-    """接收 MCP 形态的请求体 {"op":..., "action":..., <参数>...}。"""
+    """接收 MCP 形态的请求体 {"op":..., "action":..., <参数>...}，参数平铺。"""
     a = dict(request or {})
     op = str(a.pop("op", "") or "").strip().lower()
     action = a.pop("action", None)
-    params = a.pop("params", None)
-    return _registry(target).call(op, action, params if isinstance(params, dict) else a)
+    return _registry(target).call(op, action, a)   # 参数平铺：params 是普通参数名，不当包装层

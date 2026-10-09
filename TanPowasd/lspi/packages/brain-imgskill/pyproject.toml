@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "brain-imgskill"
+version = "0.1.0"
+description = "大脑库第一个拆出的插件（任务书 M2）：图像 Skill 13 op，经 LSPI 挂 dsh-memory 认知图的 cg(op=imgskill)"
+license = { text = "imgskill.py/test_imgskill.py: MIT (upstream dsh-memory); __init__.py: LicenseRef-TanPowasd-Proprietary" }
+requires-python = ">=3.10"
+dependencies = ["lspi-core>=0.2,<0.3"]
+
+[project.optional-dependencies]
+pillow = ["Pillow>=10"]          # 无 ImageMagick 时的兜底后端
+
+[project.entry-points."lingshu.plugins"]
+imgskill = "brain_imgskill:ImgSkillPlugin"
+
+[tool.setuptools.packages.find]
+include = ["brain_imgskill*"]

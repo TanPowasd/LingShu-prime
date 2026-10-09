@@ -123,8 +123,7 @@ def dispatch(cg: Any, request: Dict) -> Dict:
     if reg is not None and op and op not in HOST_OPS:
         a.pop("op", None)
         action = a.pop("action", None)
-        params = a.pop("params", None)
-        out = reg.call(op, action, params if isinstance(params, dict) else a)
+        out = reg.call(op, action, a)          # 参数平铺，与 cg 一致（不拆 params 包装）
         out.setdefault("op", op)
         return out
     return _M()._cg_call(cg, request)

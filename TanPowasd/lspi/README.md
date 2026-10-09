@@ -10,6 +10,7 @@
 | `packages/lspi-voxel/` | 插件：把引擎的 `voxel_world` 搬成独立 pip 包（entry point `lingshu.plugins: voxel`），另加 `commit` 经写入闸沉淀轨迹 |
 | `packages/lspi-brain-host/` | **P1** 大脑宿主：同一协议挂到 dsh-memory 认知图（`attach_brain` / `dispatch` / `install_mcp`），写入走 writepipe、权限走 `require_op`，不改 dsh-memory |
 | `packages/lspi-credibility/` | **P1** 插件（world-verify 试点 B1）：通道可信度 + 锚定分级验证；**同一个包挂两个宿主** |
+| `packages/brain-imgskill/` | **M2** 大脑库第一个拆出的插件：图像 Skill 13 op（上游原件逐字节迁入，MIT，见 NOTICE.md）+ `kernel_shim/imgskill.py` 内核兼容薄壳 |
 | `packages/lspi-trail/` | 插件：只按**能力名** `voxel` 依赖，不 import 任何插件包；订阅事件、跨插件调用、写推理结果 |
 | `tests/test_conformance.py` | 一致性测试 19 项（身体宿主） |
 | `tests/test_unified_hosts.py` | **P1** 统一接口一致性 19 项（身体、大脑两宿主参数化） |
@@ -60,6 +61,34 @@ bash verify/run_verify.sh <上游 lingshu 仓路径> [dsh-memory 仓路径]   # 
 | 一致性测试 | 全绿 | **19 passed** |
 
 一致性测试覆盖：发现与拓扑激活、写入闸（未声明种类拒、条件不全拒、只读视图拒写）、溯源打标、另一插件经统一认知图读回、事件总线、`capability` 须先声明、插件异常隔离、依赖下线降级、清单校验 5 例、版本不兼容与能力名冲突上报、**薄壳与上游原方法逐步等价**（同随机种子，build→spawn→simulate→state→trail 输出一致）。
+
+## M2 · 拆出大脑库第一个内核插件：brain-imgskill（2026-10-09）
+选它的理由：`md_cg` 里没有任何非测试模块 import `imgskill`（AST 实扫），零内核依赖，是最干净的叶子。
+
+- 包内 `imgskill.py`、`test_imgskill.py` 与 dsh-memory `baab3a1` **逐字节相同**；自写部分只有 `__init__.py`（清单 + 适配），挂大脑宿主后经 `cg(op="imgskill", action=<13 op 之一>, ...)` 调用；
+- 内核侧只留 `kernel_shim/imgskill.py`（替换原文件）：`from md_cg import imgskill` 解析到同一模块对象，`python -m md_cg.imgskill` CLI 照旧；
+- 清单：`hosts=("brain",)`、不写认知图（`writes=()`）、`permission="write"`（会在沙箱根落产物与台账，按写类授权，保守取值）；不替调用方补沙箱根（契约 §九-#8）。
+- 统一信封顺带修正：参数**平铺**，`params` 不再被当成包装层（imgskill 本身有 `params` 参数，旧写法会吞掉它）。
+
+| 检查（`verify/brain_split_m2.py`，读数 `verify/out/M2.json`） | 期望 | 实测 |
+|---|---|---|
+| 经 cg 调插件 vs 直接调上游 `md_cg.imgskill.run`，15 例（13 op + 越窗 + 范围外 mask） | 语义面逐项相等（ok/错误码/meta/产物 sha/后端） | **15/15 相等** |
+| 包自带上游守卫，内核留薄壳 | 与上游原位一致 | **43 passed / 0 failed**（上游原位 43/0） |
+| 包自带上游守卫，内核不留薄壳 | — | 40/3：Y1/Y2 三腿写死 `-m md_cg.imgskill`——CLI 路径是公开面，**薄壳必须留** |
+| 薄壳公开面 | 同一模块对象；CLI 可用 | `S is B` 为真；`--help` rc=0 |
+| 内核抽样测试拆前 → 拆后（action_derive / tasks / auditview / hot_cold / cg help） | 不变 | 全部不变 |
+| `test_issue84_portability` | — | 拆后红：它按路径读 `md_cg/test_imgskill.py`，其 G1/G2/G5 三腿须随包迁走 |
+| 只读令牌调 imgskill | 拒 | `denied` |
+| 挂到身体宿主 | 拒 | `wrong_host` |
+| 未装插件 | 与旧兜底同形 | `imgskill_not_ready` |
+| 一致性测试总数 | 全绿 | **58 passed**（P0 19 + P1 19 + M2 20） |
+
+**真拆进上游时的迁移账本**（内核需改的全部位置）：
+1. `md_cg/imgskill.py` → 换成薄壳（本包 `kernel_shim/imgskill.py`）；
+2. `md_cg/test_imgskill.py` → 删除（随包）；
+3. `md_cg/test_issue84_portability.py` 的 G1/G2/G5 三腿 → 改读包内守卫或迁入包；
+4. `config_registry_bulk.py` 6 行、`config_validate.py` 4 行以 `md_cg/imgskill.py` 为键的配置登记 → 改键或迁到插件自己的配置登记；
+5. npm 包把 brain-imgskill 列入默认插件集合（M11），保证用户安装命令不变。
 
 ## 原型取的默认值（待拍板，可改）
 1. 能力命名：二段式 `能力名 + action`，沿用现有 `call(action, params)` 签名；

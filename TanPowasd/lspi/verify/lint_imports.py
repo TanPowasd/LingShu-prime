@@ -3,7 +3,7 @@
 import ast, json, pathlib, sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1] / "packages"
-PLUGINS = {"lspi_voxel", "lspi_trail", "lspi_credibility"}
+PLUGINS = {"lspi_voxel", "lspi_trail", "lspi_credibility", "brain_imgskill"}
 HOST_INTERNALS = {"lingshu.core", "md_cg", "lspi_brain"}
 rules = {
     "lspi-core/lspi": PLUGINS | {"lingshu", "md_cg", "lspi_brain"},
@@ -11,6 +11,8 @@ rules = {
     "lspi-voxel/lspi_voxel": (PLUGINS - {"lspi_voxel"}) | HOST_INTERNALS,
     "lspi-trail/lspi_trail": (PLUGINS - {"lspi_trail"}) | {"lingshu", "md_cg", "lspi_brain"},
     "lspi-credibility/lspi_credibility": (PLUGINS - {"lspi_credibility"}) | HOST_INTERNALS,
+    # 拆出的大脑插件：不得回头 import 内核 md_cg（G5 同口径），也不得 import 宿主适配
+    "brain-imgskill/brain_imgskill": (PLUGINS - {"brain_imgskill"}) | HOST_INTERNALS | {"lingshu"},
 }
 violations, scanned = [], 0
 for sub, banned in rules.items():

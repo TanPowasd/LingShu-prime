@@ -1,0 +1,125 @@
+{
+ "kernel_modules_importing_imgskill": [
+  "md_cg/test_imgskill.py"
+ ],
+ "kernel_files_mentioning_imgskill": [
+  "md_cg/config_registry_bulk.py",
+  "md_cg/config_validate.py",
+  "md_cg/imgskill.py",
+  "md_cg/test_imgskill.py",
+  "md_cg/test_issue84_portability.py"
+ ],
+ "package_guard_without_shim": {
+  "rc": 1,
+  "pass": 40,
+  "fail": 3,
+  "fail_names": []
+ },
+ "package_guard_with_shim": {
+  "rc": 0,
+  "pass": 43,
+  "fail": 0,
+  "fail_names": []
+ },
+ "upstream_guard_in_place": {
+  "rc": 0,
+  "pass": 43,
+  "fail": 0,
+  "fail_names": []
+ },
+ "kernel": {
+  "test_action_derive": {
+   "before": {
+    "rc": 0,
+    "pass": 46,
+    "fail": 0,
+    "fail_names": []
+   },
+   "after": {
+    "rc": 0,
+    "pass": 46,
+    "fail": 0,
+    "fail_names": []
+   }
+  },
+  "test_tasks": {
+   "before": {
+    "rc": 0,
+    "pass": 0,
+    "fail": 0,
+    "fail_names": []
+   },
+   "after": {
+    "rc": 0,
+    "pass": 0,
+    "fail": 0,
+    "fail_names": []
+   }
+  },
+  "test_auditview": {
+   "before": {
+    "rc": 0,
+    "pass": 0,
+    "fail": 0,
+    "fail_names": []
+   },
+   "after": {
+    "rc": 0,
+    "pass": 0,
+    "fail": 0,
+    "fail_names": []
+   }
+  },
+  "test_hot_cold": {
+   "before": {
+    "rc": 0,
+    "pass": 1,
+    "fail": 1,
+    "fail_names": []
+   },
+   "after": {
+    "rc": 0,
+    "pass": 1,
+    "fail": 1,
+    "fail_names": []
+   }
+  },
+  "test_issue84_portability": {
+   "before": {
+    "rc": 0,
+    "pass": 5,
+    "fail": 0,
+    "fail_names": []
+   },
+   "after": {
+    "rc": 1,
+    "pass": 0,
+    "fail": 0,
+    "fail_names": []
+   }
+  },
+  "<cg help probe>": {
+   "before": {
+    "rc": 0,
+    "pass": 1,
+    "fail": 0,
+    "fail_names": []
+   },
+   "after": {
+    "rc": 0,
+    "pass": 1,
+    "fail": 0,
+    "fail_names": []
+   }
+  }
+ },
+ "shim_surface": {
+  "rc": 0,
+  "pass": 1,
+  "fail": 0,
+  "fail_names": []
+ },
+ "shim_cli_help": {
+  "rc": 0
+ }
+}
