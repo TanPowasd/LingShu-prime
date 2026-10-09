@@ -1,0 +1,1 @@
+{"scenario": "B_plus_voxel", "numpy_installed": false, "plugins_active": ["voxel"], "report": {"voxel": "active"}, "engine.voxel_world(state)": "ok", "cap(voxel) is None": false, "commit": "ok", "commit_tags": ["kind:world.trail", "provenance:plugin://voxel@0.1.0"], "trail_reason.displacement": "trail_reason_not_ready", "gate_log": [["voxel", "world.trail", true]]}

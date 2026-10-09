@@ -1,0 +1,1 @@
+{"scenario": "A_core_only", "numpy_installed": false, "plugins_active": [], "report": {}, "engine.voxel_world(state)": "voxel_not_ready", "cap(voxel) is None": true, "trail_reason.displacement": "trail_reason_not_ready", "gate_log": []}

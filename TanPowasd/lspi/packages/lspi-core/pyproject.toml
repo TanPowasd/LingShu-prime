@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lspi-core"
+version = "0.1.0"
+description = "枢接口（LSPI）原型：灵枢插件协议、注册表与写入闸（纯标准库）"
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.setuptools.packages.find]
+include = ["lspi*"]

@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lspi-trail"
+version = "0.1.0"
+description = "LSPI 插件：轨迹推理（只依赖能力 voxel，不 import 任何插件包）"
+requires-python = ">=3.10"
+dependencies = ["lspi-core>=0.1,<0.2"]
+
+[project.entry-points."lingshu.plugins"]
+trail_reason = "lspi_trail:TrailReasonPlugin"
+
+[tool.setuptools.packages.find]
+include = ["lspi_trail*"]

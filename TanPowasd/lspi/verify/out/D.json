@@ -1,0 +1,1 @@
+{"scenario": "D_trail_without_voxel", "numpy_installed": false, "plugins_active": [], "report": {"trail_reason": "unresolved"}, "engine.voxel_world(state)": "voxel_not_ready", "cap(voxel) is None": true, "trail_reason.displacement": "trail_reason_not_ready", "gate_log": []}
