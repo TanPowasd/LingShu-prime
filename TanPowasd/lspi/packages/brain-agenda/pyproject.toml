@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "brain-agenda"
+version = "0.1.0"
+description = "大脑库拆出的第二个插件（任务书 M3·task 半）：结构层任务台账 cg(op=task)，接管内核纯委托 op"
+license = { text = "tasks.py & ported _task_call: MIT (upstream dsh-memory); rest: LicenseRef-TanPowasd-Proprietary" }
+requires-python = ">=3.10"
+dependencies = ["lspi-core>=0.2,<0.3"]   # 运行时还需 dsh-memory 的 md_cg（内核公开模块 nodefile）
+
+[project.entry-points."lingshu.plugins"]
+task = "brain_agenda:TaskPlugin"
+
+[tool.setuptools.packages.find]
+include = ["brain_agenda*"]

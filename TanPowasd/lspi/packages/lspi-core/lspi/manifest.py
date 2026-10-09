@@ -28,6 +28,8 @@ class PluginManifest:
     default_action: str = ""           # action 缺省时用哪个（空＝actions[0]）
     permission: str = ""               # 宿主侧权限名（大脑：require_op 的 op；空＝有 writes 则 write，否则 read）
     hosts: Tuple[str, ...] = ("body", "brain")   # 可挂的宿主
+    open_actions: bool = False         # True＝未知 action 交插件自己回（接管内核 op 时保留内核原报错）
+    action_sigs: Tuple[Tuple[str, str], ...] = ()  # action 缺省时按参数签名推导：((键, action), …) 按序取首个在场者
 
     def validate(self) -> None:
         if not _NAME.match(self.name):
@@ -42,6 +44,9 @@ class PluginManifest:
                 raise ManifestError(f"{self.name}: 写入种类须为 '域.种类'，得 {k!r}")
         if self.default_action and self.default_action not in self.actions:
             raise ManifestError(f"{self.name}: default_action {self.default_action!r} 不在 actions 中")
+        for sig in self.action_sigs:
+            if not (isinstance(sig, tuple) and len(sig) == 2 and sig[1] in self.actions):
+                raise ManifestError(f"{self.name}: action_sigs 项须为 (键, 已声明 action)，得 {sig!r}")
         if not self.hosts or any(h not in ("body", "brain") for h in self.hosts):
             raise ManifestError(f"{self.name}: hosts 只能取 body/brain，得 {self.hosts!r}")
         if self.name in self.requires:

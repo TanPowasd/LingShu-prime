@@ -8,7 +8,7 @@ from .gate import WriteGate, GateRejected, WriteRecord, check_write, COND_FIELDS
 from .hosts import BodyHost, as_host
 from .envelope import call, from_request
 from .context import CognitionContext
-from .registry import Registry, ENTRY_POINT_GROUP
+from .registry import Registry, ENTRY_POINT_GROUP, derive_action, outcome
 from .host import attach, install_shims
 
 __all__ = [
@@ -16,5 +16,5 @@ __all__ = [
     "WriteGate", "GateRejected", "WriteRecord",
     "CognitionContext", "Registry", "ENTRY_POINT_GROUP",
     "attach", "install_shims",
-    "check_write", "COND_FIELDS", "BodyHost", "as_host", "call", "from_request",
+    "check_write", "COND_FIELDS", "BodyHost", "as_host", "call", "from_request", "derive_action", "outcome",
 ]

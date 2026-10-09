@@ -13,6 +13,32 @@ from .manifest import LSPI_VERSION, ManifestError
 ENTRY_POINT_GROUP = "lingshu.plugins"
 
 
+_REG_CODES = ("denied", "rejected")
+
+
+def outcome(out: dict) -> str:
+    """统一读结果。两库返回体约定不同：身体库用 status 字串；大脑库用 ok 布尔，
+    其 status 常是业务字段（如任务状态 active）。故 ok 在场以 ok 为准，失败时
+    保留注册表自己的码（<op>_not_ready / denied / rejected），其余归 error。"""
+    if not isinstance(out, dict):
+        return "error"
+    st = str(out.get("status", ""))
+    if "ok" in out:
+        if out["ok"]:
+            return "ok"
+        return st if (st.endswith("_not_ready") or st in _REG_CODES) else "error"
+    return st or "error"
+
+
+def derive_action(manifest, params: dict):
+    """action 缺省：先按 action_sigs 签名推导（键在场且非 None），再落 default_action / actions[0]。
+    与大脑库 _action_sig 同口径；返回 (action, 来源 sig|default)。"""
+    for key, act in manifest.action_sigs:
+        if key in params and params.get(key) is not None:
+            return act, "sig"
+    return (manifest.default_action or manifest.actions[0]), "default"
+
+
 class _Handle:
     def __init__(self, reg: "Registry", name: str):
         self._reg, self.name = reg, name
@@ -33,9 +59,12 @@ class Registry:
         self._origin: Dict[str, str] = {}
 
     # ---------- 发现 ----------
-    def discover(self) -> List[str]:
+    def discover(self, names=None) -> List[str]:
+        """按 entry point 发现插件；names 给定时只装这些名字（宿主按需装，避免拉起无关插件）。"""
         found = []
         for ep in entry_points(group=ENTRY_POINT_GROUP):
+            if names is not None and ep.name not in names:
+                continue
             try:
                 obj = ep.load()
                 plugin = obj() if isinstance(obj, type) else obj
@@ -117,24 +146,33 @@ class Registry:
         p = self._active.get(name)
         if p is None:
             st = self._status.get(name, {"state": "absent"})
-            return {"status": f"{name}_not_ready", "plugin_state": st.get("state"),
+            return {"status": f"{name}_not_ready", "ok": False, "plugin_state": st.get("state"),
                     "error": st.get("reason", "插件未安装"), "via": "lspi"}
+        params = dict(params or {})
+        if action is not None and not str(action).strip():
+            action = None
+        action_source = "explicit"
         if action is None:
-            action = p.manifest.default_action or p.manifest.actions[0]
-        if action not in p.manifest.actions:
-            return {"status": "error", "error": f"未知动作 {action}（可用: {'/'.join(p.manifest.actions)}）"}
+            action, action_source = derive_action(p.manifest, params)
+        action = str(action).strip().lower()
+        if action not in p.manifest.actions and not p.manifest.open_actions:
+            return {"status": "error", "ok": False, "error": f"未知动作 {action}（可用: {'/'.join(p.manifest.actions)}）"}
         try:
             self.host.authorize(p.manifest)
         except PermissionError as e:
-            return {"status": "denied", "error": str(e), "op": name, "action": action}
+            return {"status": "denied", "ok": False, "error": str(e), "op": name, "action": action}
         try:
-            out = p.call(action, dict(params or {}))
+            out = p.call(action, params)
         except GateRejected as e:
-            return {"status": "rejected", "error": str(e)}
+            return {"status": "rejected", "ok": False, "error": str(e)}
         except Exception as e:  # 插件异常隔离
-            return {"status": "error", "error": repr(e), "trace": traceback.format_exc(limit=3)}
-        if not isinstance(out, dict) or "status" not in out:
-            return {"status": "error", "error": f"{name}.{action} 返回体缺 status（违反协议）"}
+            return {"status": "error", "ok": False, "error": repr(e), "trace": traceback.format_exc(limit=3)}
+        if not isinstance(out, dict) or not ("status" in out or "ok" in out):
+            return {"status": "error", "ok": False,
+                    "error": f"{name}.{action} 返回体既无 status 也无 ok（违反协议）"}
+        if action_source != "explicit":
+            out.setdefault("action", action)
+            out.setdefault("action_source", action_source)
         return out
 
     # ---------- 事件 ----------

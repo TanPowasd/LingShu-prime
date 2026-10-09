@@ -1,0 +1,120 @@
+{
+ "patch_applied": true,
+ "patch_out": [],
+ "tests": {
+  "test_tasks": {
+   "before": {
+    "rc": 0,
+    "summary": "ALL GREEN  75 项断言，0 失败"
+   },
+   "after_with_plugin": {
+    "rc": 0,
+    "summary": "ALL GREEN  75 项断言，0 失败"
+   },
+   "after_without_plugin": {
+    "rc": 1,
+    "summary": "ImportError: 任务台账已拆为独立包：pip install brain-agenda（或 npm 默认插件集合）"
+   }
+  },
+  "test_blindspot_tickets": {
+   "before": {
+    "rc": 0,
+    "summary": "[test_blindspot_tickets] PASS=18 FAIL=0"
+   },
+   "after_with_plugin": {
+    "rc": 0,
+    "summary": "[test_blindspot_tickets] PASS=18 FAIL=0"
+   },
+   "after_without_plugin": {
+    "rc": 1,
+    "summary": "ImportError: 任务台账已拆为独立包：pip install brain-agenda（或 npm 默认插件集合）"
+   }
+  },
+  "test_lifecycle_retire_leak": {
+   "before": {
+    "rc": 0,
+    "summary": "test_lifecycle_retire_leak: 46 通过 / 0 失败"
+   },
+   "after_with_plugin": {
+    "rc": 0,
+    "summary": "test_lifecycle_retire_leak: 46 通过 / 0 失败"
+   },
+   "after_without_plugin": {
+    "rc": 1,
+    "summary": "ImportError: 任务台账已拆为独立包：pip install brain-agenda（或 npm 默认插件集合）"
+   }
+  },
+  "test_recall_face_guards": {
+   "before": {
+    "rc": 0,
+    "summary": "==== 召回面守卫（H10/H7/H11/M3 呼叫点）：41 通过 / 0 失败 ===="
+   },
+   "after_with_plugin": {
+    "rc": 0,
+    "summary": "==== 召回面守卫（H10/H7/H11/M3 呼叫点）：41 通过 / 0 失败 ===="
+   },
+   "after_without_plugin": {
+    "rc": 1,
+    "summary": "FAIL F2 真冲突 REJECT 仍建单（收窄不得把飞轮一起关掉）  REJECT / None / []"
+   }
+  },
+  "test_read_face_input_gates": {
+   "before": {
+    "rc": 0,
+    "summary": "read_face_input_gates：77 通过 / 0 失败"
+   },
+   "after_with_plugin": {
+    "rc": 0,
+    "summary": "read_face_input_gates：77 通过 / 0 失败"
+   },
+   "after_without_plugin": {
+    "rc": 1,
+    "summary": "ImportError: 任务台账已拆为独立包：pip install brain-agenda（或 npm 默认插件集合）"
+   }
+  },
+  "test_security_audit_v21": {
+   "before": {
+    "rc": 0,
+    "summary": "test_security_audit_v21: 49 通过 / 0 失败"
+   },
+   "after_with_plugin": {
+    "rc": 0,
+    "summary": "test_security_audit_v21: 49 通过 / 0 失败"
+   },
+   "after_without_plugin": {
+    "rc": 0,
+    "summary": "test_security_audit_v21: 49 通过 / 0 失败"
+   }
+  },
+  "test_ccg_form_parity": {
+   "before": {
+    "rc": 0,
+    "summary": "ccg_form_parity: PASS=108 FAIL=0 SKIP=1"
+   },
+   "after_with_plugin": {
+    "rc": 0,
+    "summary": "ccg_form_parity: PASS=108 FAIL=0 SKIP=1"
+   },
+   "after_without_plugin": {
+    "rc": 1,
+    "summary": "ImportError: 任务台账已拆为独立包：pip install brain-agenda（或 npm 默认插件集合）"
+   }
+  },
+  "test_action_derive": {
+   "before": {
+    "rc": 0,
+    "summary": "action_derive：46 通过 / 0 失败"
+   },
+   "after_with_plugin": {
+    "rc": 0,
+    "summary": "action_derive：46 通过 / 0 失败"
+   },
+   "after_without_plugin": {
+    "rc": 0,
+    "summary": "action_derive：46 通过 / 0 失败"
+   }
+  }
+ },
+ "probe_with_plugin": "{\"task_ok\": true, \"task_status\": \"active\", \"pack_degraded\": []}",
+ "probe_without_plugin": "{\"task_ok\": false, \"task_status\": \"task_not_ready\", \"pack_degraded\": [\"tasks\"]}"
+}

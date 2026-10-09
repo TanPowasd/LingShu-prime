@@ -1,6 +1,6 @@
 """统一调用信封：身体库与大脑库同一形状。
 
-    call(target, op, action=None, **args) -> {"status": ...}
+    call(target, op, action=None, **args) -> dict（含 status 或 ok；用 lspi.outcome() 统一读）
 
 target 可以是 Registry，或挂过注册表的宿主对象（身体引擎 / 大脑认知图，`.plugins` 属性）。
 形状与大脑库 cg(op=..., action=...) 一致：op＝能力名，action＝能力内动作，其余为参数。

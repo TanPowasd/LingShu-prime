@@ -11,6 +11,7 @@
 | `packages/lspi-brain-host/` | **P1** 大脑宿主：同一协议挂到 dsh-memory 认知图（`attach_brain` / `dispatch` / `install_mcp`），写入走 writepipe、权限走 `require_op`，不改 dsh-memory |
 | `packages/lspi-credibility/` | **P1** 插件（world-verify 试点 B1）：通道可信度 + 锚定分级验证；**同一个包挂两个宿主** |
 | `packages/brain-imgskill/` | **M2** 大脑库第一个拆出的插件：图像 Skill 13 op（上游原件逐字节迁入，MIT，见 NOTICE.md）+ `kernel_shim/imgskill.py` 内核兼容薄壳 |
+| `packages/brain-agenda/` | **M3** 大脑库第二个插件：接管内核 op `task`（`tasks.py` 迁入，仅改一行 import）+ `kernel_shim/tasks.py` + `kernel_patch/M3_task.patch`（内核分派改由 LSPI 登记处转交） |
 | `packages/lspi-trail/` | 插件：只按**能力名** `voxel` 依赖，不 import 任何插件包；订阅事件、跨插件调用、写推理结果 |
 | `tests/test_conformance.py` | 一致性测试 19 项（身体宿主） |
 | `tests/test_unified_hosts.py` | **P1** 统一接口一致性 19 项（身体、大脑两宿主参数化） |
@@ -89,6 +90,43 @@ bash verify/run_verify.sh <上游 lingshu 仓路径> [dsh-memory 仓路径]   # 
 3. `md_cg/test_issue84_portability.py` 的 G1/G2/G5 三腿 → 改读包内守卫或迁入包；
 4. `config_registry_bulk.py` 6 行、`config_validate.py` 4 行以 `md_cg/imgskill.py` 为键的配置登记 → 改键或迁到插件自己的配置登记；
 5. npm 包把 brain-imgskill 列入默认插件集合（M11），保证用户安装命令不变。
+
+## M3 · 接管第一个内核 op：brain-agenda 的 task 半（2026-10-09）
+M2 拆的是没人调用的叶子；M3 拆的是**内核正在用的 op**：`cg(op=task)`。内核 `_cg_dispatch` 里它是纯委托（`return _task_call(cg, a)`），按 M0 校准属于可直接交出的 23 个 op 之一。
+
+**做法**
+- 插件 `brain-agenda`：`tasks.py` 迁入（与上游仅差第 52 行 `from . import nodefile` → `from md_cg import nodefile`，依赖方向变为插件→内核公开模块）；分支逻辑从 `_task_call` 移植；
+- 内核补丁 `kernel_patch/M3_task.patch`（对 dsh-memory `baab3a1`，`git apply -p1`）：`task` 分支改为 `lspi_brain.kernel_route(cg, a, "task")`，`md_cg/tasks.py` 换成兼容薄壳（内核里 mdcos 上下文装配、mdcg slugify、blindspot_tickets 三处库内调用不改）；
+- 这是任务书 **M1「分派表改登记」的最小形**：内核在 `require_op` 与 action 推导之后，把 op 交给登记处；只有 `DELEGATED_OPS`（23 个纯委托）可被接管，内联 op 先要在内核抽成 `_x_call`。
+
+**统一接口为此补的三处**（U1）
+1. 清单新增 `action_sigs`：action 缺省时按参数签名推导，与内核 `_ACTION_SIGS` 同口径，由注册表统一执行；
+2. 清单新增 `open_actions`：未知 action 交插件自己回，保留内核原报错；
+3. **返回体约定**：身体库用 `status` 字串，大脑库用 `ok` 布尔，且大脑返回体里的 `status` 常是业务字段（任务状态 `active`）。信封不再改写返回体，统一用 `lspi.outcome(out)` 读结果（`ok` 在场以 `ok` 为准）；注册表自己的错误同时带 `status` 与 `ok: False`。
+
+**读数**（`verify/brain_split_m3.py`，`verify/out/M3.json`）
+
+| 检查 | 拆前（原样） | 拆后 + 插件 | 拆后、未装插件 |
+|---|---|---|---|
+| 上游 `test_tasks` | 75 项 0 失败 | **75 项 0 失败** | ImportError（带安装提示） |
+| `test_blindspot_tickets` | 18/0 | **18/0** | ImportError |
+| `test_lifecycle_retire_leak` | 46/0 | **46/0** | ImportError |
+| `test_recall_face_guards` | 41/0 | **41/0** | 红（F2） |
+| `test_read_face_input_gates` | 77/0 | **77/0** | ImportError |
+| `test_ccg_form_parity` | 108/0/1 skip | **108/0/1 skip** | ImportError |
+| `test_security_audit_v21` | 49/0 | **49/0** | 49/0 |
+| `test_action_derive` | 46/0 | **46/0** | 46/0 |
+| `cg(op=task)` 探针 | — | ok，status=active | `task_not_ready`（ok=False） |
+| 上下文装配 `session_recall` | — | degraded=[] | degraded=["tasks"]（降级不崩） |
+
+pytest 侧（`tests/test_brain_agenda.py`）：14 步 MCP 序列（含签名推导、缺 result 拒收、空白归一、未知状态、未知 action）插件与内核**逐步逐字一致**；只读令牌两边抛同一个 `AccessDenied`；只能放 `DELEGATED_OPS`。全套 **64 passed**。
+
+**迁移账本**（结论：task 半能拆，但 brain-agenda 必须进 npm 默认插件集合）
+1. 拆后未装插件时，op 面和上下文装配都按预期降级；但 6 个内核测试直接用 `tasks`（blindspot 落任务卡、mdcg 问题身份 slugify 等），说明 `tasks` 目前仍是内核功能的依赖，不是纯可选；
+2. 要真正可选：把 `tasks.slugify` 收回内核（它服务的是问题身份，与任务无关），blindspot_tickets 改为经能力调用并在缺席时降级；
+3. 补丁后内核 `_task_call` 成为死代码，上游合入时一并删除（本补丁为保最小 diff 未删）；
+4. `_ACTION_SIGS["task"]` 仍留在内核表里供 `_cg_call` 推导；插件清单里有同表，二者须同源守卫（可沿用 `test_action_derive` B 段思路）；
+5. goal 半未拆：`goal_gen` 依赖 6 个内核模块，`add_goal` 等是 MdCGOS 方法，需先完成 M1 的 mixin 登记。
 
 ## 原型取的默认值（待拍板，可改）
 1. 能力命名：二段式 `能力名 + action`，沿用现有 `call(action, params)` 签名；
