@@ -1,18 +1,3 @@
-灵枢 TanPowasd 目录授权协议（需授权使用）
-Copyright (c) 2026 Powasd Tan (GitHub: TanPowasd). 保留所有权利 / All rights reserved.
-
-适用范围：本协议适用于 LingShu-prime 仓库 TanPowasd/ 目录下的全部文件（以下称“本作品”），不适用于仓库内其他目录。
-
-1. 允许：在 GitHub 上浏览、阅读本作品的源代码与文档。
-2. 需事先书面授权：除第 1 条外，任何使用、复制、修改、合并、发布、分发、再许可、销售、部署，或将本作品（含其部分或衍生作品）纳入其他项目，均须事先获得版权人的书面授权（含电子邮件或 GitHub 上的明确书面答复）。授权可附条件，可撤回，未经授权不得转授。
-3. 申请方式：在 https://github.com/TanPowasd/LingShu-prime 提交 issue。
-4. 第三方代码：本作品引用或包装的上游 FuRongJun-1999/lingshu 代码仍按其原 MIT 协议授权，本协议不改变其条款，相关部分保留原版权与许可声明。
-5. 免责：本作品按“现状”提供，不附任何明示或默示担保。版权人不对因使用本作品产生的任何损失承担责任。
-
-----------------------------------------------------------------
-English summary (the Chinese text above prevails):
-You may view the source on GitHub. Any other use, copying, modification,
-distribution, sublicensing, sale, deployment, or inclusion in other works,
-in whole or in part, requires prior written permission from the copyright
-holder. Upstream FuRongJun-1999/lingshu code remains under its MIT license.
-Provided "AS IS", without warranty of any kind.
+本目录适用仓库根目录的全局授权声明（需授权使用）：../LICENSE
+This directory is governed by the repository-wide license notice: ../LICENSE
+Copyright (c) 2026 Powasd Tan (GitHub: TanPowasd). All rights reserved.

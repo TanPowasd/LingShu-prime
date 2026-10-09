@@ -1,0 +1,99 @@
+LingShu-prime 全局授权声明（需授权使用）
+LingShu-prime Global License Notice (Permission Required)
+
+版本：v1.0　　生效日期：2026-10-09
+Copyright (c) 2026 Powasd Tan (GitHub: TanPowasd). 保留所有权利 / All rights reserved.
+
+本仓库是公开可见的，但这不代表它是开源软件。除本声明明确允许的情形外，
+未经版权人事先书面授权，不得以任何方式使用本仓库的内容。
+
+一、定义
+1. “版权人”：Powasd Tan（GitHub 账号 TanPowasd）。
+2. “本仓库”：GitHub 仓库 https://github.com/TanPowasd/LingShu-prime 及其全部分支、
+   提交历史、发布版本与附带文件。
+3. “本作品”：本仓库中适用本声明的全部内容（范围见第二条），包括但不限于源代码、
+   目标代码、文档、设计方案、接口规范、测试、脚本、数据、图片及其任何部分。
+4. “衍生作品”：基于本作品进行修改、翻译、改编、重构、移植、汇编或以其他方式
+   派生的任何作品，包括复现本作品原创设计与接口的再实现。
+5. “使用”：复制、修改、合并、发布、分发、再许可、销售、出租、部署、提供网络服务、
+   用于训练或评测机器学习模型、或将本作品纳入其他项目等任何利用行为。
+
+二、适用范围
+1. 本声明作为全局声明，默认适用于本仓库的全部内容。
+2. 例外一：子目录中另附 LICENSE 文件的，该子目录内容以其自带的许可文件为准
+   （例如 Liyang/ 目录由其贡献者维护，适用其目录内的 LICENSE）。
+3. 例外二：本作品中引用、包装或复制的第三方代码（包括上游 FuRongJun-1999/lingshu，
+   MIT 协议）仍按其原协议授权，本声明不改变其条款，相关部分保留原版权与许可声明。
+   本声明仅约束版权人原创的部分。
+
+三、无需授权即可进行的行为
+1. 在 GitHub 网站上浏览、阅读本作品。
+2. 在 GitHub 服务条款允许的范围内，通过 GitHub 平台功能查看与 fork 本仓库；
+   fork 本身不授予第四条所列的任何权利。
+3. 法律明确规定无需许可的合理使用，例如在评论、研究讨论中适当引用少量片段并注明出处。
+
+四、须事先取得书面授权的行为
+除第三条外，以下行为均须事先取得版权人的书面授权：
+1. 复制、下载后在本地或服务器上运行、部署本作品或其任何部分；
+2. 修改本作品或制作、发布、分发衍生作品；
+3. 将本作品的全部或部分纳入其他项目、产品或服务（无论开源或闭源、商业或非商业）；
+4. 再许可、销售、出租、转让本作品或其副本；
+5. 以本作品提供网络服务或 SaaS；
+6. 将本作品用于训练、微调或评测人工智能/机器学习模型；
+7. 向上游或其他仓库提交包含本作品原创内容的代码、文档或设计。
+
+五、授权的申请与效力
+1. 申请方式：在本仓库提交 issue，写明申请人、用途、范围与期限。
+2. 书面授权须由版权人以本仓库 issue 中的明确答复或其他可留存的书面形式作出；
+   沉默、点赞、未拒绝均不构成授权。
+3. 授权仅在所载明的用途、范围与期限内有效，非排他、不可转让、不可转授，
+   除非授权中另有明确约定。
+4. 版权人可对授权附加条件（例如署名、不得商用、须回馈修改）。
+5. 被授权人违反授权条件或本声明的，授权自动终止；终止后须停止使用并删除副本。
+
+六、署名与名称
+1. 经授权使用的，须保留本声明及原有版权说明，并注明来源
+   “TanPowasd/LingShu-prime”。
+2. 未经书面同意，不得使用版权人的名称或账号暗示其认可、背书衍生作品或相关产品。
+
+七、贡献
+1. 向本仓库提交的贡献（不含自带 LICENSE 的子目录），视为贡献者确认其有权提交，
+   并同意该贡献按本声明管理；贡献者保留其贡献的著作权。
+2. 已按其他许可证提交的既有内容，继续按原许可证管理。
+
+八、免责声明
+本作品按“现状”提供，不附任何明示或默示担保，包括但不限于适销性、
+特定用途适用性及不侵权的担保。
+
+九、责任限制
+在适用法律允许的最大范围内，版权人不对因使用或无法使用本作品而产生的任何直接、
+间接、附带、特殊或后果性损失承担责任，即使已被告知该等损失的可能性。
+
+十、其他
+1. 本声明未明确授予的一切权利，均由版权人保留。
+2. 本声明任一条款被认定无效或不可执行的，不影响其余条款的效力。
+3. 版权人可更新本声明；更新后的版本自提交至本仓库之日起对之后的使用生效，
+   已作出的书面授权按其原约定执行。
+4. 中英文版本如有不一致，以中文版本为准。
+
+----------------------------------------------------------------
+English summary (the Chinese text above prevails)
+
+This repository is publicly visible but is NOT open source. Copyright (c) 2026
+Powasd Tan (TanPowasd). All rights reserved.
+
+- Scope: applies to the whole repository by default. Subdirectories with their own
+  LICENSE (e.g. Liyang/) follow that file. Third-party code, including upstream
+  FuRongJun-1999/lingshu (MIT), stays under its original license.
+- Allowed without permission: viewing on GitHub; viewing and forking through GitHub's
+  platform as its Terms of Service allow (a fork grants no further rights); fair use
+  permitted by law.
+- Requires prior written permission: copying, running or deploying, modifying,
+  creating or distributing derivative works, including in other projects, sublicensing,
+  selling, offering as a service, using for AI/ML training or evaluation, and submitting
+  original content from this repository elsewhere.
+- Requests: open an issue in this repository. Only an explicit written grant counts.
+  Grants are limited to their stated scope, non-exclusive, non-transferable, and end
+  automatically on breach.
+- Provided "AS IS", without warranty of any kind; no liability to the extent permitted
+  by law. All rights not expressly granted are reserved.
