@@ -2865,8 +2865,8 @@
   "notes": "integrated-v2 提交引用 #1"
  },
  "_meta": {
-  "upstream_main": "e18562f",
-  "last_check": "2026-10-09 11:55",
+  "upstream_main": "83cce59",
+  "last_check": "2026-10-09 12:55",
   "notes": [
    "2026-10-09 00:55 首次巡检：上游 main 2bb8291→92a46a3 新增 2 提交（212d469、92a46a3，issue #156 组件发现面收口，新增 lingshu/_pathguard.py、core/component_resolver.py）",
    "2026-10-09 01:05 merge-tree integrated-v2 × upstream main(92a46a3)：lingshu/core/core.py 内容冲突（#156 组件发现面改动）",
@@ -2889,7 +2889,9 @@
    "07:55 新增 #290–#315（Liyang1145，26 条，全部同题于我方草稿）；上游 main 2bd832e→88fd741（仅 docs 三提交）；merge-tree 对 v3 冲突：.github/workflows/gate.yml、pyproject.toml。#297 修于 watch-297",
    "2026-10-09 08:25 上游 main 88fd741→62ed100（5提交：coggraph、gen、core 新奇度、world 写入告警），未做冲突检查",
    "09:25 无新编号（最大仍 #318）；上游 main 仍 62ed100；merge-tree 对 v3 冲突：pyproject.toml、tools/coggraph/build_viewer.py（其余自动合并）",
-   "10:55 新增 #319（STARDUSTLC666，test_pruning_effective 15/53，由 PR #70 引入）；上游 main 62ed100→e18562f（16提交：#17/#67/#70 采纳、#105/#111/#123 等 fix、PR #260 采纳）；merge-tree 对 v3 冲突：pyproject.toml、tests/test_track_identity_collision.py(add/add)、tools/coggraph/build_viewer.py"
+   "10:55 新增 #319（STARDUSTLC666，test_pruning_effective 15/53，由 PR #70 引入）；上游 main 62ed100→e18562f（16提交：#17/#67/#70 采纳、#105/#111/#123 等 fix、PR #260 采纳）；merge-tree 对 v3 冲突：pyproject.toml、tests/test_track_identity_collision.py(add/add)、tools/coggraph/build_viewer.py",
+   "12:40 新增 #322(PR,仅 tools/测试)、#323–#325(cyd471)；上游 main 仍 e18562f。#323/#324/#325 已修于 watch-323/324/325（待门禁与合并进 v3）；#324 动 test_core_world_facade_split 哈希。",
+   "12:55 上游 main→83cce59（含 PR#128/#97/#116 采纳）；新入账 #326–#329 todo，未做冲突检查"
   ],
   "integrated_v2_head": "1ac0891",
   "integrated_v3_head": "667e84a",
@@ -3418,5 +3420,57 @@
   "type": "issue",
   "state": "open",
   "our_status": "covered-n/a (proposal)"
+ },
+ "322": {
+  "kind": "pr",
+  "title": "feat(tools): 增加 Hex 活动稀疏度可复算测量入口（Refs #321）",
+  "author": "segujushi-lang",
+  "state": "open",
+  "seen": "2026-10-09 12:40",
+  "our_status": "covered",
+  "notes": "仅新增 scripts/measure_hex_activity.py + tests + docs，不改 lingshu/ 生产代码；草稿提案 needs-owner-decision，无需我方动作"
+ },
+ "323": {
+  "kind": "issue",
+  "title": "[world/wm_simloop × world_model] 假设节点摘除后以它为源的推断边永久残留，WAL/内存二次增长",
+  "author": "cyd471",
+  "state": "open",
+  "seen": "2026-10-09 12:40",
+  "our_status": "fixed@watch-323:c295804 (门禁绿，待合并)",
+  "notes": "根因：_grow re-grow/_revert 只按 target 清边；新增 _drop_node_edges 同时清 source。回归 tests/test_issue323_dangling_hyp_edges.py（改前 3 红）。ng 无 world，无需查"
+ },
+ "324": {
+  "kind": "issue",
+  "title": "[core/wm_simloop 门面][安全] flush 的 out_path 无约束覆写，可覆写记忆库/写 shell 启动脚本",
+  "author": "cyd471",
+  "state": "open",
+  "seen": "2026-10-09 12:40",
+  "our_status": "fixed@watch-324:a663aa9 (门禁绿，待合并)",
+  "notes": "仿 #277：LINGSHU_FLUSH_ROOT（缺省 cwd）+ realpath/commonpath + .md 白名单 + 不覆盖非产物文件；needs-owner-decision（环境变量名/缺省根自拟）。已更新 test_core_world_facade_split 的 wm_simloop 哈希"
+ },
+ "325": {
+  "kind": "issue",
+  "title": "[core/世界门面][资源耗尽] 8 个世界门面 size 无上限，size²建 dict 可 OOM",
+  "author": "cyd471",
+  "state": "open",
+  "seen": "2026-10-09 12:40",
+  "our_status": "fixed@watch-325:e532ea4 (门禁绿，待合并)",
+  "notes": "VoxelWorld.__init__ 设上限 MAX_WORLD_SIZE=512（LINGSHU_MAX_WORLD_SIZE 可调），超限 ValueError；needs-owner-decision（512 自拟）。注意：改前复现会 OOM 杀进程，回归测试无法安全演示红"
+ },
+ "326": {
+  "title": "ingest_scene 写入不带 skip_d",
+  "our_status": "todo"
+ },
+ "327": {
+  "title": "add_edge 不合并平行边",
+  "our_status": "todo"
+ },
+ "328": {
+  "title": "PR: end_id 因果截断/seed 透传",
+  "our_status": "todo"
+ },
+ "329": {
+  "title": "版本迭代记录无写入入口",
+  "our_status": "todo"
  }
 }
