@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lspi-credibility"
+version = "0.1.0"
+description = "LSPI 插件（world-verify 试点）：通道可信度 + 锚定分级验证；同一包可挂身体库或大脑库"
+license = { text = "LicenseRef-TanPowasd-Proprietary; see LICENSE at the LingShu-prime repository root" }
+requires-python = ">=3.10"
+dependencies = ["lspi-core>=0.2,<0.3"]   # 运行时还需 lingshu（只用 world 里两个纯标准库模块）
+
+[project.entry-points."lingshu.plugins"]
+credibility = "lspi_credibility:CredibilityPlugin"
+
+[tool.setuptools.packages.find]
+include = ["lspi_credibility*"]

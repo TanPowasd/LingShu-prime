@@ -1,0 +1,1 @@
+{"body": {"credibility": 0.6122, "a": 60.0, "b": 38.0, "commit_status": "ok", "node_written": true}, "brain": {"credibility": 0.6122, "a": 60.0, "b": 38.0, "commit_status": "ok", "node_written": true}, "brain_node": {"layer": "knowledge", "tags": ["kind:world.credibility", "provenance:plugin://credibility@0.1.0"]}, "brain_readonly_commit": "denied", "same_readings": true}

@@ -25,6 +25,9 @@ class PluginManifest:
     writes: Tuple[str, ...] = ()       # 写入的记录种类（写入闸按此授权）
     extras: Tuple[str, ...] = ()       # 声明的重依赖（审计/安装提示用）
     summary: str = ""
+    default_action: str = ""           # action 缺省时用哪个（空＝actions[0]）
+    permission: str = ""               # 宿主侧权限名（大脑：require_op 的 op；空＝有 writes 则 write，否则 read）
+    hosts: Tuple[str, ...] = ("body", "brain")   # 可挂的宿主
 
     def validate(self) -> None:
         if not _NAME.match(self.name):
@@ -37,12 +40,20 @@ class PluginManifest:
         for k in self.writes:
             if not re.match(r"^[a-z]+\.[a-z_]+$", k):
                 raise ManifestError(f"{self.name}: 写入种类须为 '域.种类'，得 {k!r}")
+        if self.default_action and self.default_action not in self.actions:
+            raise ManifestError(f"{self.name}: default_action {self.default_action!r} 不在 actions 中")
+        if not self.hosts or any(h not in ("body", "brain") for h in self.hosts):
+            raise ManifestError(f"{self.name}: hosts 只能取 body/brain，得 {self.hosts!r}")
         if self.name in self.requires:
             raise ManifestError(f"{self.name}: 不能依赖自身")
 
     def compatible(self, host=LSPI_VERSION) -> bool:
         lo, hi = (int(x) for x in _RANGE.match(self.lspi).groups())
         return lo <= host[0] < hi
+
+    @property
+    def required_permission(self) -> str:
+        return self.permission or ("write" if self.writes else "read")
 
     @property
     def provenance(self) -> str:

@@ -25,14 +25,15 @@ def _strip_ids(o):
 # ---------- 1 发现与激活 ----------
 def test_discover_and_topological_activation(engine):
     reg = attach(engine)
-    assert reg.list() == ["trail_reason", "voxel"]
+    assert {"trail_reason", "voxel"} <= set(reg.list())
     rep = reg.report()
     assert rep["voxel"]["state"] == rep["trail_reason"]["state"] == "active"
 
 
 def test_activation_order_respects_requires(engine):
     reg = Registry(engine); reg.discover()
-    assert reg.activate_all() == ["voxel", "trail_reason"]
+    order = reg.activate_all()
+    assert order.index("voxel") < order.index("trail_reason")
 
 
 # ---------- 2 统一认知：写入闸 + 溯源 + 跨插件读回 ----------

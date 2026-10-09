@@ -1,12 +1,16 @@
-"""门禁：lspi 底座不得 import 任何插件包或 lingshu.world/nn/gen；插件之间不得互相 import。"""
+"""门禁：底座不得 import 插件、宿主实现（lingshu / md_cg）或宿主适配包；插件之间不得互相 import；
+插件不得 import 任何宿主内部（lingshu.core、md_cg、lspi_brain）——只认 lspi 协议。"""
 import ast, json, pathlib, sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1] / "packages"
-PLUGINS = {"lspi_voxel", "lspi_trail"}
+PLUGINS = {"lspi_voxel", "lspi_trail", "lspi_credibility"}
+HOST_INTERNALS = {"lingshu.core", "md_cg", "lspi_brain"}
 rules = {
-    "lspi-core/lspi": PLUGINS | {"lingshu.world", "lingshu.nn", "lingshu.gen", "lingshu"},
-    "lspi-voxel/lspi_voxel": PLUGINS - {"lspi_voxel"},
-    "lspi-trail/lspi_trail": (PLUGINS - {"lspi_trail"}) | {"lingshu"},
+    "lspi-core/lspi": PLUGINS | {"lingshu", "md_cg", "lspi_brain"},
+    "lspi-brain-host/lspi_brain": PLUGINS | {"lingshu"},
+    "lspi-voxel/lspi_voxel": (PLUGINS - {"lspi_voxel"}) | HOST_INTERNALS,
+    "lspi-trail/lspi_trail": (PLUGINS - {"lspi_trail"}) | {"lingshu", "md_cg", "lspi_brain"},
+    "lspi-credibility/lspi_credibility": (PLUGINS - {"lspi_credibility"}) | HOST_INTERNALS,
 }
 violations, scanned = [], 0
 for sub, banned in rules.items():

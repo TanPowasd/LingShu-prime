@@ -30,6 +30,28 @@ class WriteRecord:
     ts: float = field(default_factory=time.time)
 
 
+def check_write(manifest, kind: str, content: str, condition: Dict, importance: float) -> None:
+    """宿主无关的写入前校验（身体宿主、大脑宿主共用同一口径）。"""
+    if kind not in manifest.writes:
+        raise GateRejected(f"{manifest.name} 未声明写入种类 {kind!r}（已声明 {list(manifest.writes)}）")
+    if not isinstance(content, str) or not content.strip():
+        raise GateRejected("content 须为非空原文字符串")
+    try:
+        imp = float(importance)
+    except (TypeError, ValueError):
+        raise GateRejected("importance 须为数值")
+    if not (0.0 <= imp <= 1.0):          # NaN 比较恒假，同样落入此拒绝
+        raise GateRejected("importance 须在 [0,1]")
+    if not isinstance(condition, dict):
+        raise GateRejected("condition 必须是 dict（条件显式）")
+    missing = [f for f in COND_FIELDS if f not in condition]
+    if missing:
+        raise GateRejected(f"条件不完整，缺 {missing}（闸不代补默认）")
+    tw = condition["time_window"]
+    if not (isinstance(tw, (list, tuple)) and len(tw) == 2):
+        raise GateRejected("time_window 须为二元组")
+
+
 class WriteGate:
     def __init__(self, engine: Any):
         self._engine = engine
@@ -55,12 +77,7 @@ class WriteGate:
     def write(self, manifest, kind: str, content: str, condition: Dict,
               importance: float = 0.5, tags=None) -> str:
         try:
-            if kind not in manifest.writes:
-                raise GateRejected(f"{manifest.name} 未声明写入种类 {kind!r}（已声明 {list(manifest.writes)}）")
-            if not isinstance(content, str) or not content.strip():
-                raise GateRejected("content 须为非空原文字符串")
-            if not (0.0 <= float(importance) <= 1.0):
-                raise GateRejected("importance 须在 [0,1]")
+            check_write(manifest, kind, content, condition, importance)
             cs = self._cond(condition)
         except GateRejected as e:
             self.log.append(WriteRecord(manifest.name, kind, None, False, str(e)))

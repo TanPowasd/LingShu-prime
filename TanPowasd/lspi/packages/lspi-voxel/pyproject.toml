@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "LSPI 插件：小型体素世界（包装 lingshu.world.voxel_world，纯标准库）"
 license = { text = "LicenseRef-TanPowasd-Proprietary; see LICENSE at the LingShu-prime repository root" }
 requires-python = ">=3.10"
-dependencies = ["lspi-core>=0.1,<0.2"]   # 运行时还需 lingshu（不在此声明，避免拉起上游重依赖）
+dependencies = ["lspi-core>=0.1,<0.3"]   # 运行时还需 lingshu（不在此声明，避免拉起上游重依赖）
 
 [project.entry-points."lingshu.plugins"]
 voxel = "lspi_voxel:VoxelPlugin"

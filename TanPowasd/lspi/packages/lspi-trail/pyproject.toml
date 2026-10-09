@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "LSPI 插件：轨迹推理（只依赖能力 voxel，不 import 任何插件包）"
 license = { text = "LicenseRef-TanPowasd-Proprietary; see LICENSE at the LingShu-prime repository root" }
 requires-python = ">=3.10"
-dependencies = ["lspi-core>=0.1,<0.2"]
+dependencies = ["lspi-core>=0.1,<0.3"]
 
 [project.entry-points."lingshu.plugins"]
 trail_reason = "lspi_trail:TrailReasonPlugin"

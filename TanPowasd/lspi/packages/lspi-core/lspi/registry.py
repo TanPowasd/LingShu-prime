@@ -6,7 +6,8 @@ from importlib.metadata import entry_points
 from typing import Any, Callable, Dict, List, Optional
 
 from .context import CognitionContext
-from .gate import GateRejected, WriteGate
+from .gate import GateRejected
+from .hosts import as_host
 from .manifest import LSPI_VERSION, ManifestError
 
 ENTRY_POINT_GROUP = "lingshu.plugins"
@@ -16,14 +17,15 @@ class _Handle:
     def __init__(self, reg: "Registry", name: str):
         self._reg, self.name = reg, name
 
-    def call(self, action: str, params: Optional[dict] = None) -> dict:
+    def call(self, action: Optional[str] = None, params: Optional[dict] = None) -> dict:
         return self._reg.call(self.name, action, params)
 
 
 class Registry:
-    def __init__(self, engine: Any):
-        self.engine = engine
-        self.gate = WriteGate(engine)
+    def __init__(self, target: Any):
+        self.host = as_host(target)
+        self.engine = getattr(self.host, "engine", None)   # 身体宿主才有
+        self.gate = getattr(self.host, "gate", None)       # 身体宿主的写入闸（含 log）
         self._candidates: Dict[str, Any] = {}   # name -> plugin 实例（未激活）
         self._active: Dict[str, Any] = {}
         self._status: Dict[str, Dict] = {}
@@ -54,6 +56,15 @@ class Registry:
             self._status[m.name] = {"state": "incompatible",
                                     "reason": f"插件要求 lspi {m.lspi}，底座为 {LSPI_VERSION[0]}.{LSPI_VERSION[1]}"}
             return
+        hk = getattr(self.host, "kind", "body")
+        if hk not in m.hosts:
+            self._status[m.name] = {"state": "wrong_host",
+                                    "reason": f"插件只声明可挂 {list(m.hosts)}，当前宿主为 {hk}"}
+            return
+        if m.name in getattr(self.host, "reserved", ()):
+            self._status[m.name] = {"state": "conflict",
+                                    "reason": f"op 名 {m.name!r} 是宿主自有 op，插件不得占用"}
+            return
         if m.name in self._candidates:
             self._status[m.name] = {"state": "conflict",
                                     "reason": f"能力名重复：{self._origin[m.name]} 与 {origin}"}
@@ -73,7 +84,7 @@ class Registry:
                 if pending[n] <= set(self._active):
                     p = self._candidates[n]
                     try:
-                        p.activate(CognitionContext(p.manifest, self.engine, self.gate, self))
+                        p.activate(CognitionContext(p.manifest, self.host, self))
                         self._active[n] = p
                         self._status[n] = {"state": "active", "version": p.manifest.version}
                         order.append(n)
@@ -101,14 +112,21 @@ class Registry:
     def capability(self, name: str) -> Optional[_Handle]:
         return _Handle(self, name) if name in self._active else None
 
-    def call(self, name: str, action: str, params: Optional[dict] = None) -> dict:
+    def call(self, name: str, action: Optional[str] = None, params: Optional[dict] = None) -> dict:
+        """统一调用信封：call(op, action, params) -> {"status": ...}。两个宿主同一形状。"""
         p = self._active.get(name)
         if p is None:
             st = self._status.get(name, {"state": "absent"})
             return {"status": f"{name}_not_ready", "plugin_state": st.get("state"),
                     "error": st.get("reason", "插件未安装"), "via": "lspi"}
+        if action is None:
+            action = p.manifest.default_action or p.manifest.actions[0]
         if action not in p.manifest.actions:
             return {"status": "error", "error": f"未知动作 {action}（可用: {'/'.join(p.manifest.actions)}）"}
+        try:
+            self.host.authorize(p.manifest)
+        except PermissionError as e:
+            return {"status": "denied", "error": str(e), "op": name, "action": action}
         try:
             out = p.call(action, dict(params or {}))
         except GateRejected as e:

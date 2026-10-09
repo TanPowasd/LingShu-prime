@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lspi-brain-host"
+version = "0.1.0"
+description = "LSPI 大脑宿主：把同一插件协议挂到 dsh-memory 认知图（md_cg），写入走 writepipe、权限走 require_op"
+license = { text = "LicenseRef-TanPowasd-Proprietary; see LICENSE at the LingShu-prime repository root" }
+requires-python = ">=3.10"
+dependencies = ["lspi-core>=0.2,<0.3"]   # 运行时还需 dsh-memory 的 md_cg（不在此声明：它随 npm 包分发）
+
+[tool.setuptools.packages.find]
+include = ["lspi_brain*"]

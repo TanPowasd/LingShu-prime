@@ -1,4 +1,4 @@
-# 枢接口（LSPI）P0 原型与验证
+# 枢接口（LSPI）原型与验证：P0 身体库 + P1 统一接口（身体库 × 大脑库）
 
 对应待办第 9 项「统一认知 × 解耦 × 标准接口 × 可选插件包」，设计见 `../proposals/09_枢接口_统一认知与插件解耦_草案v0.1.md`。
 **不改上游一行代码**：底座以 `attach(engine)` 挂到现有 `SpacetimeMemoryEngine` 实例上。基线：上游 `83cce59`，Python 3.12.15。
@@ -8,15 +8,45 @@
 |---|---|
 | `packages/lspi-core/` | 底座（纯标准库）：`PluginManifest` / `WriteGate` / `CognitionContext` / `Registry` / `attach` / `install_shims` |
 | `packages/lspi-voxel/` | 插件：把引擎的 `voxel_world` 搬成独立 pip 包（entry point `lingshu.plugins: voxel`），另加 `commit` 经写入闸沉淀轨迹 |
+| `packages/lspi-brain-host/` | **P1** 大脑宿主：同一协议挂到 dsh-memory 认知图（`attach_brain` / `dispatch` / `install_mcp`），写入走 writepipe、权限走 `require_op`，不改 dsh-memory |
+| `packages/lspi-credibility/` | **P1** 插件（world-verify 试点 B1）：通道可信度 + 锚定分级验证；**同一个包挂两个宿主** |
 | `packages/lspi-trail/` | 插件：只按**能力名** `voxel` 依赖，不 import 任何插件包；订阅事件、跨插件调用、写推理结果 |
-| `tests/test_conformance.py` | 一致性测试 19 项 |
+| `tests/test_conformance.py` | 一致性测试 19 项（身体宿主） |
+| `tests/test_unified_hosts.py` | **P1** 统一接口一致性 19 项（身体、大脑两宿主参数化） |
 | `verify/run_verify.sh` | 一键复跑：import 门禁 + 反证 + 四个干净 venv 场景 + 一致性测试 |
 | `verify/out/` | 本次实测读数 |
 
 ## 复跑
 ```bash
-bash verify/run_verify.sh <上游 lingshu 仓路径>
+bash verify/run_verify.sh <上游 lingshu 仓路径> [dsh-memory 仓路径]   # 给第二个参数时另跑 E 场景
 ```
+
+## P1 · 统一接口（任务书 v0.3 的 U1 + B1 试点，2026-10-09）
+基线：lingshu `83cce59`，dsh-memory `baab3a1`，Python 3.12.15。两个上游都**零改动**。
+
+**信封**：`lspi.call(target, op, action=None, **args) -> {"status": ...}`；`lspi.from_request(target, {"op":..., "action":..., ...})` 收 MCP 形态请求。`target` 可以是身体引擎或大脑认知图，形状与大脑库 `cg(op, action)` 一致。
+**宿主适配**：`BodyHost`（lspi-core 内置）/ `BrainHost`（lspi-brain-host）。插件只认 `CognitionContext`，宿主差异（写到哪、怎么授权）全在适配层：
+
+| | 身体宿主 | 大脑宿主 |
+|---|---|---|
+| 写入 | 写入闸 → `add_perception`，知识层 | 共用校验 `check_write` → 渲染六要素条目 → `cg(op=write, content_kind=text)`，经 writepipe 准入；未 ACCEPT 即拒 |
+| 权限 | 无额外角色（只写知识层） | 每次调用前 `principal.require_op(manifest.required_permission)` |
+| 宿主自有 op | — | 42 个 `cg` op 名保留，插件占用即报 conflict |
+| MCP | — | `install_mcp()` 进程内包一层 `_cg_dispatch`，cg 工具即认插件 op |
+
+**清单新增字段**：`default_action`、`permission`、`hosts`（可挂 body/brain）。
+
+| 检查（E 场景） | 期望 | 实测 |
+|---|---|---|
+| 同一序列（hit 1.0 → 强 miss 0.6 → 强 hit 0.8）两宿主读数 | 逐位一致 | 两边均 credibility **0.6122**、a=60.0、b=38.0 |
+| 大脑宿主 commit 落库 | 经准入落知识层，带溯源 | layer=`knowledge`，tags 含 `kind:world.credibility`、`provenance:plugin://credibility@0.1.0` |
+| 只读令牌（ops_allow=read）调 commit | 被拒 | `denied` |
+| 统一接口一致性测试（装齐两宿主） | 全绿 | **38 passed**（P0 19 + P1 19） |
+| 未装 lspi-credibility / 无 dsh-memory（C 场景） | 跳过而非报错 | 20 passed / 18 skipped |
+| import 门禁（新增：插件不得 import `lingshu.core` / `md_cg` / `lspi_brain`） | 0 违规；反证变红 | 12 文件 0 违规；注入 `import md_cg` 即被捕获 |
+| P0 的 A–D 场景 | 与 P0 读数一致 | 一致（`verify/out/A–D.json` 未变） |
+
+**插件首个独立小迭代**：`credibility` 在入口拒绝 NaN/inf/越界 `conf`（上游 #402 记录 NaN 经钳位成满分支持）；4 例参数化测试，被拒后状态不变。上游模块不动。
 
 ## 本次读数（2026-10-09）
 | 检查 | 期望 | 实测 |
@@ -38,7 +68,9 @@ bash verify/run_verify.sh <上游 lingshu 仓路径>
 4. 先在 LingShu-prime 做原型，验证稳定后再考虑向上游立项。
 
 ## 已知局限
-- P0 只迁了 voxel 一项能力；其余 12 个 world 能力、nn/gen 未迁；
+- 身体侧已迁 voxel、credibility 两项；其余 world 能力、nn/gen 未迁；大脑侧尚未把内核 op 拆成插件（M1 起）；
+- 大脑宿主的读视图只给 `search` / `get`；事件不写入认知图（避免绕过写入闸）；
+- 层名 / provenance 两库对照（U3、U4）未做：大脑侧溯源目前落在 tags；
 - 写入闸复用引擎 `add_perception(skip_dedup=True)`，尚未接入上游 `LongTermMemoryGate`；
 - 测量中另见：引擎构造时 8 个组件（entity_registry、semantic_space 等）以裸模块名从受控解析面外导入并告警（issue #156 面），它们同样是插件化的候选。
 
