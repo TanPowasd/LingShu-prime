@@ -1,0 +1,54 @@
+{
+ "opposite_edges": {
+  "|v(树→糕)|": 0.9,
+  "|v(糕→树)|": 0.3,
+  "cos(两者方向)": -1.0
+ },
+ "resultant_points_to_end": {
+  "cos(合位移, 起→终)": 1.0,
+  "残差|合位移−(p终−p起)|": 0.0,
+  "路径强度(各步相乘)": 0.648
+ },
+ "path_kept": [
+  {
+   "from": "家",
+   "to": "院子",
+   "w": 0.9,
+   "|v|": 0.9
+  },
+  {
+   "from": "院子",
+   "to": "桂花树",
+   "w": 0.8,
+   "|v|": 0.8
+  },
+  {
+   "from": "桂花树",
+   "to": "桂花糕",
+   "w": 0.9,
+   "|v|": 0.9
+  }
+ ],
+ "navigate(家→桂花糕)": [
+  "家",
+  "院子",
+  "桂花树",
+  "桂花糕"
+ ],
+ "navigate(家→公司)": [
+  "家",
+  "地铁",
+  "公司"
+ ],
+ "shortcut": {
+  "exists": true,
+  "w": 0.648,
+  "via_path": "家→院子→桂花树→桂花糕",
+  "path_still_stored": true,
+  "uses": 3
+ },
+ "after_mid_edge_change": {
+  "shortcut_stale": true,
+  "path_steps": 3
+ }
+}
