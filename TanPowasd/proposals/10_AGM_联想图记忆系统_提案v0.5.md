@@ -1,7 +1,7 @@
 # AGM 联想图记忆系统 · 提案 v0.5
 
 > Associative Graph Memory —— 一套从零设计、独立于大脑库（dsh-memory）的记忆系统。
-> 作者：TanPowasd　日期：2026-10-09　状态：提案（附可运行参考原型 `TanPowasd/agm/agm_proto.py`、`agm_vector.py` 与读数）
+> 作者：TanPowasd　日期：2026-10-09　状态：提案（附可运行参考原型 `TanPowasd/agm/agm_proto.py`、`agm_vector.py`、`agm_brain.py`、`agm_anneal.py` 与读数）
 >
 > **v0.5 变更**：借模拟退火加入**随机探索**——游走按温度随机选边、随机跳变，成功的跳变结晶成新边，睡眠期随机长试探边、用不上就剪（新增 §4C）；原型 `agm/agm_anneal.py` 与读数 §10C。
 >
