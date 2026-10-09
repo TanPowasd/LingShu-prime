@@ -1,0 +1,214 @@
+790b6dd fix(core/longterm_gate): 写入回执补实际落库层，hint<0.4 落情境层、判为知识/长期的情境节点同步提层（issue 草稿 core-rest-01）
+fe161db fix(core/longterm_gate): prefeed 新奇输入写入补 skip_dedup，不再被 M5 去重并入旧节点（issue 草稿 core-rest-02）
+6b4f281 refactor(gen,world): hex_composite / time_core 副本改为单一来源 + 薄重导出 shim（issue #176/#178 去重）
+eb51520 fix(core): decay_cycle 不再跳过 importance≤阈值的情境节点，forget_advisor 归档只降不升（issue 草稿 core-py-01）
+44a2ca2 fix(world/world_model): 推断出新关系时取代同源旧推断边并留痕，generate 不再用过期 seek 边（issue 草稿 world-01）
+2711e11 fix(core): add_perception 命中 M5 去重时并入本次 tags/entities，不再静默丢弃（issue 草稿 core-py-02）
+83f9d08 fix(tools/coggraph): export_coggraph 数字 id/标题统一为 str、created_at 日期归一为时间戳、graph.json 原子写出、--bucket 不再放行根目录节点（issue 草稿 core-rest-03）
+5c550d3 fix(nn/hex_gen): 形状词匹配前扣除方位词与花纹词，「中心」「下方」「实心」不再被判成心形/方块（issue 草稿 nn-02）
+17880b2 fix(core/verdict): occlusion=__UNASSERTED__ 与缺键同义不再判遮挡，零面积部件判 REJECT（issue 草稿 core-rest-05）
+967fbfd fix(core): start/stop_auto_decay 改用每代独立停止事件，restart 不再叠加衰减线程（issue 草稿 core-py-06）
+bd7896a fix(world/world3d): 画家排序与球半径改用相机坐标系深度，相机移位/转向后遮挡与尺寸正确（issue 草稿 world-02）
+4724143 fix(core/activation): ActivationEngine 支持 conn/store 共享连接、':memory:' 无共享连接时显式报错、默认库父目录缺失时创建（issue 草稿 core-rest-08）
+094f37c fix(core): insight_report 的 pressure 按取值分组、pending 不再包含 refuted（issue 草稿 core-py-07）
+78596f7 fix(world/world3d): add_vprim 反投影计入相机位姿（相机系求点后逆变换到世界系）（issue 草稿 world-03）
+22a4fe5 fix(core): _note_reuse 只落库本轮新增节点，flywheel_reuse 同轮同节点不再重复（issue 草稿 core-py-08）
+858ac3d fix(world/wm_simloop): load_priors 显式 mdcg_root 优先于环境变量，limit 在单文件内也生效（issue 草稿 world-04）
+2440cfc fix(tools/coggraph): naming_report Q4 规范标识正则去掉汉字间失效的 \b、GB/T 编号可命中（issue 草稿 core2-new-01）
+45e317e fix(world/vprim): _overlap 去掉分母 1.0 钳位，重叠率与坐标量纲无关（issue 草稿 world-05）
+121a988 fix(tools/coggraph): export_coggraph 的 derived_from 为 YAML 列表时逐项取目标，不再被 str(list) 拼成悬空边剔除（issue 草稿 core2-new-02）
+9517cd2 fix(tools/coggraph): export_coggraph 兼容标量 doc_ref/code_ref，不再 AttributeError 中断整次导出（issue 草稿 core2-new-03）
+8a65ee4 fix(tools/coggraph): session_chains 无会话 id 的节点不再并入伪 unknown 会话串成 sequential 链（issue 草稿 core2-new-04）
+f433690 fix(world/world3d): 金字塔塔尖改为 3D 顶点投影并补齐四个侧面（issue 草稿 world-06）
+85064b5 fix(core/activation): 工作态落表区分 seed/propagate 并写入首次激活跳数，hop 列不再恒 0（issue 草稿 core2-new-05）
+1034a3a fix(world/silhouette3d): fatfish_skeleton 髋部阴影改名 hip_shade_l/r，joint('hip_l'/'hip_r') 恢复驱动大腿（issue 草稿 world-07）
+c52f886 bench: 新增 bench/bench_perf.py——记忆引擎各 op 与 nn 前向在 N=200/1000/3000 的中位耗时（JSON）+ --profile 出 cProfile
+ea4fd48 fix(core): visual_check 预期取最近屏幕状态，screen_state 回写不再被 M5 去重吞掉（issue 草稿 core-py-09）
+3b2a6e9 fix(world/prediction): D-006 死代码动态项如实收敛为固定基线、所报阈值即判据边界；动态口径 needs-owner-decision（issue 草稿 world-08）
+8dac692 perf(core): find_cycles 只对入环的边做 STEdge.from_row（self_check 热点，N=3000 约 -45%）
+f3e1c92 fix(core): insight_verify 重写标签时剥掉上一轮级别与 insight_event，不再残留 REFUTED/叠加标签（issue 草稿 core-py-10）
+2875383 fix(core): recalc_structural_importance 以已施加的结构提升为基准重算，重复调用不再累加（issue 草稿 core-py-11）
+96edea8 perf(core): decay_cycle 边衰减只取 id/confidence 两列，不再逐边 STEdge.from_row（N=1000–3000 约 -60%）
+e97b3a5 fix(world/world3d): _draw_box 背面剔除，被遮的面不再盖住可见面（issue 草稿 world-n1）
+2184761 fix(nn/hex_gen): verify_constructive 改为从渲染像素读回落格/颜色/花纹，渲染器失效不再报 100% 兑现（issue 草稿 nn-04）
+3015c7f fix(nn/hex_recon): reconstruct 按包围盒面积降序绘制，占住 (0,0) 的物体不再被背景整块盖掉（issue 草稿 nn-05）
+7d17f23 fix(nn/rust_bridge): make_plan 采样空间随网络参数数，调用方传 n_params 与 k1/k2，越界 plan 明确报错（issue 草稿 nn-07）
+be652ad fix(nn/stcnn): verify_consistency 对照 remember 写入日志并做回忆往返，不再恒为 True（issue 草稿 nn-08）
+fcc4c90 fix(world/world3d): 组合形状部件按到相机最近点距离画家排序，远侧部件不再盖住近侧部件（issue 草稿 world-n2）
+3d26ed7 fix(nn/stcnn): 帧差改在归一化体素上计算，时空原语不再随亮度缩放/位深变化（issue 草稿 NEW-nn-01）
+6790669 refactor(core): 世界模型外观 13 个方法逐字迁出为 core/world_facade.py 的 WorldFacadeMixin（issue #178 拆分第一阶段，纯搬移）
+acc5887 fix(world/spacetime_consistency): 自洽判定计入最近窗口内的世界状态不变量破坏（issue 草稿 world-n3）
+b34f974 fix(nn/hex_gen): 背景词色字不再计入部件颜色，只含背景词的子句不再生成幻影部件（issue 草稿 NEW-nn-02）
+3fbdded fix(nn/stcnn): remember 的时间锚点改用运动实际发生的帧区间（issue 草稿 NEW-nn-03）
+10d758f fix(world/scene_model): present=skeleton 实体走骨架通道渲染，不再以占位盒柱代替且状态姿态生效（issue 草稿 world-n4）
+653fde9 docs(world/scene_simulator): seek 到达后越过目标永久振荡——report-only（issue 草稿 world-n5）
+caf9080 Merge branch 'fix-core2' into integrated
+18ba30a Merge branch 'fix-nn' into integrated
+21d9720 Merge branch 'fix-world' into integrated
+1555ea1 Merge branch 'refactor' into integrated
+8bad9f7 test(perf): 等价性基线的情境层衰减对齐 core-py-01 修复（合并 fix-core×refactor 后）
+cb1663f bench: 缺陷探针榜单 leaderboard.py + 40 个探针
+039eb90 Merge branch 'bench' into integrated
+6cb0f98 fix(gen/hexgen_self_source): _anchor 按 legal_win 的 (x0,x1,y0,y1) 解包、spread 档排序后再分配格子（issue #218）
+1e8f480 fix(core/self): SelfModel.history 加 HISTORY_MAX=200 上界、append 后钳制（issue #122）
+070c20e fix(core/self): recall 不再召回 SELF 层快照，update_self 快照不再内嵌全量 history（issue #201）
+2e75475 fix(gen/hexgen_subject_split): n_clusters 只数参与求解的簇，不确定带不再被跳过的碎屑簇打破（issue #219）
+5cedcc3 fix(world/anchored_verification): cognitive_baseline 的 baseline_ok 同时判稳定轮数与命中率两条判据（issue #220）
+e5c8912 fix(core): decay_cycle 边衰减豁免层改由 IMMUTABLE_LAYERS 生成，自我→经历因果边不再被衰减删除（issue #205）
+c39be37 fix(core/self): record_value_change 改为局部修正（replaces 原位替换/新增/同值 no-op），引擎入口落 SELF 快照，value_evolution 设上界（issue #212）
+2f31c1d fix(core/world_facade): world3d build 只用真实相机位姿做多视角三角化，objects 改报世界物体数（issue #211）
+fe85b65 test(core): 情境层低重要度死区回归测试与探针，已由 eb51520 覆盖（issue #207）
+d1e2d8e test(core/longterm_gate): 快照回执层与落库层一致性回归测试与探针，已由 790b6dd 覆盖（issue #224）
+e902d5a fix(core): D-007 设计者密钥下沉到 store.resolve_blindspot / update_blindspot_status，status 加白名单（issue #222）
+9542606 fix(core): forget_advisor 删除 if False 死代码与未用变量，补三处错误的回归测试（issue #210）
+16d695e fix(world/world3d): add_vprim 天空物体按屏幕地平线像素钳制，地平线以上的物体正反投影自洽（issue #221）
+99dea98 fix(core): _reuse_tracker 只保留最近 64 轮，常驻进程内存不再随轮次无限增长（issue #208）
+b28b6a0 fix(gen/hexgen_multi_seed): load_multi 的条目 id 改用 sha256 稳定散列，跨进程可复现（issue #198）
+7dc0e65 fix(core): M5 去重命中时 importance 取较大值、不同模态不参与去重，返回合并后的节点（issue #223）
+a62887d fix(core/skill): record_action_sequence 按精确名绑定技能、失败计入置信度、程序追加去重，search_skills 转义 LIKE 通配符（issue #200）
+194865b fix(core): self_check 的 self_ok / self_model_exists 改为纯持久化 SELF 层判据，删 in-memory 兜底（issue #107）
+622ccf2 fix(core/longterm_gate): 新奇检测覆盖全部文字并识别只换数字/标识符的变更（issue #213）
+20cc816 fix(nn/hex_train): 参数向量提供原子读改写 update_vec/apply_delta，get_vec/set_vec 在每实例锁内执行（issue #197）
+c74f9fd fix(core/longterm_gate): 快照「已存在」只在知识/情境层查找，不再改写共享层节点；合并不追加来源标签；SUB 不能给共享层登记保护（issue #217）
+c9ea27e fix(nn/hex_composite,world/stable_lease): 非有限数值不再越过阈值链落到兜底成功态（issue #196）
+0aed83c fix(core): update_trust_state 拒绝 NaN/inf，长期门控把信任钳到 [0,1] 且 NaN 不再经 min() 变满分（issue #206）
+299f792 fix(core): self_check 环存在性与计数一致、有环图只做有界枚举（issue #215）
+07c7df6 fix(core): M5 去重要求成败极性一致，失败经验不再并进成功节点并为其增信（issue #225）
+4f6e9e8 fix(ci): #145 因果链守卫纳入 gate 脚本清单并补 pytest 入口（issue #203）
+cdada54 docs: core-self 线修复报告 REPORT_core-self.md
+7160394 fix(core): 睡眠巩固接通情境层→知识层提升，提升评估不再和自身比较新奇度（issue #214）
+01c29a0 fix(core): propose_promotion 读取被拒路径表，终裁否决过的内容原文重提即拒（issue #216 最小闭环）
+b9721a7 fix(packaging): requires-python 提到 >=3.11 与 numpy>=2.3.5 下界对齐，CI 增「3.11+依赖下界」阻断档（issue #209）
+802187b fix(core/activation): 空/纯空白查询显式 0 种子，不再全图满分命中（issue #199）
+0b72b44 fix(core): LayeredStore 连接按线程分配，进程内多线程共享连接不再抛异常（PR #202 / issue #81）
+4307a4a fix(core/activation): 激活引擎每轮重读认知图，SciPy CSR 缓存不再遗漏已提交变更（PR #128 / issue #126）
+9d275b0 fix(core/activation): 空图激活返回空工作态并保留零激活审计，不再因 act.max() 空数组抛错（PR #96 / issue #95）
+fbdcc28 fix(core): spatiotemporal_query 支持 time_radius=0 的严格同刻查询，不再归一化除零（PR #91 / issue #89）
+30f2e0d fix(core): get_layer_nodes 整层枚举不再被 query_nodes 默认分页截断到 50 条（PR #90）
+2eaf969 docs: core-mem 线修复报告（issue #206/#207/#208/#210/#213/#214/#216/#217/#223/#224/#225）
+fb1eb45 fix(core): consolidate_cycle 演练提权按增量后的访问计数判定，首提权落在第 10 次演练（PR #104）
+c2e0fa8 fix(core): import_all 导入后当场做外键体检，恢复含悬挂边的备份不再静默（PR #113）
+b106dc3 docs: core-causal 线报告 REPORT_core-causal.md（#215 #203 #209 #199 · PR #202 #128 #96 #91 #90 #104 #113 · #105 不采纳）
+7f050fe Merge branch 'fix2-core-mem' into integrated-v2
+ca81ad5 Merge branch 'fix2-core-causal' into integrated-v2
+787a754 fix(nn/hex_cnn): image_to_grid 晶格横向越出画幅 √3 倍及其遮住的 hex_text/hex_search 缺陷（采纳自 PR #116，作者 AnctyEnly453）
+66efb38 fix(world/skeleton3d): world_pos 父链旋转按「父→根」累积，深度≥2 的世界坐标不再随祖先旋转漂移（采纳自 PR #72，作者 ganzhe12138）
+c83633e fix(nn/hex_query): _match_score 改增广路最大二部匹配，消除 detections 顺序依赖（采纳自 PR #158，作者 Yinfeng818）
+fed9ca7 fix(world/scene_model): left_of/right_of 空间约束按违反条件触发（采纳自 PR #14，作者 shenA2024）
+eb2aca8 fix(world/scene_simulator): SceneSimulator 接受并透传 seed，物理世界不再恒为 Random(42)（采纳自 PR #12，作者 hawkongz）
+0a74037 fix(world/world_model): _track_identity 生成 eid 后查重 self.nodes，碰撞重生成（采纳自 PR #141，作者 Yinfeng818）
+76ed7e8 fix(nn/hex_hier): train_hier 形状辅助损失按 OBJ 布局连续分组（采纳自 PR #70，作者 STARDUSTLC666）
+731d6b3 docs(report): gen/world/nn 线第二轮修复与上游 PR 评审报告
+7e3ba17 Merge branch 'fix2-gen-world' into integrated-v2
+26027ff fix(nn/hex_text): parse_description 分句字符类补全角分号「；」（issue #236）
+8d2923f fix(gen/hexgen_c1_real): radial_profile 改在越界点 idx→idx+1 间插值，剖面恢复亚像素且不再偏小（issue #255）
+4eb6126 Merge watch-236 into integrated-v2
+ac8c8ea fix(gen/hexgen_c1_real): gap_plain 不再被成对门循环覆写，成对 d′ 分母改为合并标准差（issue #232 A1/A2）
+007092b Merge watch-255 into integrated-v2
+51bbf9d Merge watch-232 into integrated-v2
+2d4eb10 fix(world/brain_store): MCPClient 握手加超时，对端不回包时杀进程并抛 BrainError（issue #278）
+2ecce81 fix(coggraph): viewer_serve 的 node_detail 限定在 MDCG_ROOT 内，拒绝 ../ 与绝对路径逃逸（issue #276）
+16fb8a9 Merge upstream main (e749aaf) into integrated-v3 — #156 组件发现面收口 + 上游采纳 PR 7 件
+15bbb93 Merge watch-278 into integrated-v2
+1ac0891 Merge watch-276 into integrated-v2
+ab027d8 fix(core): 保护名单改库内子查询、登记随节点删除、衰减线程异常不再永久死亡（issue #261 #257）
+d8a21b4 fix(core): 边/标签/冲突登记补共享层角色守卫，SUB 不得写锚点/结构/SELF 层的边（issue #244 #234）
+1cddcd2 fix(tools/coggraph): 查看器层名/边类型/计数进 innerHTML 前转义，esc() 补引号（issue #245）
+c9bd923 fix(packaging): world extra 补 Pillow，新增 accel/data/diffusion extras 覆盖 scipy/pyarrow/torch/diffusers（issue #253）
+1171a27 fix(world/scene_simulator): seek 步长按剩余距离封顶，到达即停驻；三个影子模型同步（issue #249，我方草稿 world-n5）
+df5ab6d fix(world/brain_store): MCPClient 持续消费 stderr 并为握手/工具调用设请求期限（采纳自 PR #260，作者 STARDUSTLC666；issue #143）
+88ffddf fix(world/brain_store): 脑侧 MCP 子进程与 rust 可执行文件不再继承 AEIS_DESIGNER_KEY（issue #227）
+9fdb79c fix(tools/coggraph): 本地查看器 serve.py 校验 Host 头，非回环名+本端口一律 403（issue #240）
+60ecf19 fix(core): spatiotemporal_query 候选面改全库，不再被 importance 前 200 截断（issue #264）
+aa40931 fix(core): consolidate_cycle 巩固面改全库，不再被 importance 前 1000 截断（issue #258）
+e77a9d7 fix(core): 情境层 FIFO 与 get_recent_context 按写入顺序（rowid）而非墙钟 created_at（issue #259）
+1c998cf fix(core): 情境层容量上限随库持久（engine_meta.context_cap）并在配置点校验类型（issue #246）
+8c1d8e3 fix(nn/hex_train): 校准集缺类给保守卡（永不 ACCEPT、标 missing），max_steps=0 不再索引空 history（issue #254）
+f339756 fix(world/wm_simloop): 落盘 WAL 接着文件末条 seq 编号，多次 setup 追加写仍严格单调（issue #248）
+cac420f fix(core): 迁移遇非 dict 坐标跳过，引擎重启不再崩溃（issue #279）
+b233f9b fix(activation): 激活钳制到 [0,1] 并过滤非有限回注，自条件不再跨轮发散（issue #280）
+795b8f6 fix(core): CER 报告 tone 按取值分组，证伪后重要度回落（issue #281）
+6db63e0 fix(world): 重建世界按写入时间从旧到新，同名实体停在最新一帧（issue #282）
+fc76c36 fix(world/seven_layer_loop): run(n) 报实际推进 tick 数（n≤0 不推进），未知 L7 策略显式报错（issue #233）
+b22a20e Merge integrated-v2 (1ac0891: #278 MCP 握手超时、#276 viewer_serve 路径限定) into integrated-v3
+eff43b8 fix(pathguard): 不再永久改写宿主 sys.path，改由 meta_path finder 只对标准库名与 lingshu 发起的导入中和 cwd 条目（issue #273）
+b9b1d6d fix(core/component_resolver): 组件 finder 只接管 lingshu 发起的组件导入，宿主同名自有模块不再被拦截（issue #275）
+bcb954f fix(core/world3d): render 的 path 限定在渲染根内（LINGSHU_RENDER_ROOT，缺省 cwd）并设图像扩展名白名单（issue #277）
+3b90562 fix(packaging): project.license 改 SPDX 字符串 "MIT" + license-files，build-system 要求 setuptools>=77（issue #237）
+df1c8d0 fix(core): STNode.from_row / ConditionSpace.from_json 容错坏行，单条外部卡不再毒化整个知识层（issue #267）
+3a645d1 fix(core): search_content 跳过超出 SQLite LIKE 模式上限的检索词，长查询改走全表二元组兜底（issue #266）
+1b37f39 fix(core): search_skills 全表取候选后按相关度排序，二元组模糊召回并纳入步骤字段（issue #272）
+928daff fix(core): M13 全库备份补 action_logs/engine_meta/gap_history，恢复时升级点按 code 去重（issue #270）
+b6a6a85 fix(core): 结构上游度只走已验证因果边、排除悬空边与归档/驳回节点，结构自动保护不再达标即撤销（issue #269 #274）
+149d21f fix(core): M5 去重判同纳入条件空间，异条件同文本各自成节点、不再给旧条件知识增信（issue #268）
+a604189 fix(core): 巩固统计改写 action_logs 不再进知识层，未复核概念不参与演练提权，系统日志不参与归纳（issue #263）
+4760a7b fix(world/world3d): 锚点 id 跟物体身份走、重建保留验证记录，verify 拒绝不存在的 anchor_id（issue #262）
+f93a94a fix(scripts/repro-bot): 抽取器跳过 CommonMark HTML 注释块，网页不可见的 python 块不再被执行（issue #235）
+8b42ae4 fix(docs/ci): 已落仓的 4 个 workflow 与 repro-bot 文档去掉「工作区草稿（尚未落仓）」头注，仓外引用标明出处（issue #238）
+19ec3ba fix(world/world_model): 同帧无 eid 观测与节点按距离升序贪心一一匹配，配对期不改写节点位置（issue #226）
+04cd0e0 fix(core/world_facade): 五个 world 门面补 init 分支——按参数重建对象并返回状态（issue #243）
+e8e3ca7 fix(core/activation): OPPOSITE（矛盾）边不再作兴奋传导，被反驳结论不再被点亮（issue #229）
+4171265 fix(world/shapes): get_shape/register_shape 返回与存储部件拷贝，修全局形状库被调用方污染（issue #231）
+64bccd4 Merge branch 'watch-279' into integrated-v3
+98798fd Merge branch 'watch-280' into integrated-v3
+53b8016 Merge branch 'watch-281' into integrated-v3
+5b9624d Merge branch 'watch-282' into integrated-v3
+839b5d1 merge: 合并上游 main a1b8bc7（#163 coggraph 卫生、#109/#130 治理面最小闸、公开面陈述订正）进 integrated-v3；workflow/文档注释冲突取上游措辞
+43fc308 fix(ci): 上游订正措辞与 #238 守卫对齐——gate.yml 头注改“报告”指代，保留上游语义
+d17b0a0 test(gen/hexgen_c1_real): 引入上游 PR #285（acrot0）的 gap_plain 回归测试（issue #232 A1）
+a8c705f test(gen): 引入上游 PR #284（acrot0）的导入纯净测试——改前失败（hexgen_* 导入期写 sys.path）
+b7c0243 test(nn/stcnn): 引入上游 PR #283（acrot0）的导入纯净测试——改前失败（导入期 sys.stdout.reconfigure）
+c5f7dea fix(nn/stcnn): 顶层 sys.stdout.reconfigure 移入 __main__ 演示入口并做 hasattr 保护（上游 PR #283，acrot0；issue #147）
+3c629a5 fix(gen): 删除 hexgen_* 五个模块导入期的 sys.path 写入（上游 PR #284，acrot0；issue #108）
+1d9f05e Merge branch 'watch-283' into integrated-v3（上游 PR #283，acrot0）
+4376da5 Merge branch 'watch-284' into integrated-v3（上游 PR #284，acrot0）
+c7e685d Merge branch 'watch-285' into integrated-v3（上游 PR #285，acrot0）
+31c7e98 merge: 合并上游 main 96c6f42（#113 指标口径 docstring + test_core_dangling_metric_parity）进 integrated-v3
+89f4ac4 fix(core): what_happened_at/session_summary 按时间取数（issue #179）——SQL 时间窗过滤+距离排序；session_summary 按时间倒序流式分窗，不再只看 importance 前 500 条
+8800a99 fix(core/time_core): cred_factor 返回 Retention(float 子类)，cred_step 对其按保持率相乘（issue #180）——普通 float 仍为遗忘比例，decay_cycle 语义不变
+ea7ba99 fix(core/存储): 标签精确匹配+中文原文写入+LIKE 转义（issue #181 #183）——get_nodes_by_tag 走 json_each 精确匹配（兼容历史 \uXXXX 行）；tags 列 json.dumps 统一 ensure_ascii=False；search_content 预筛转义 \ % _ 并丢弃零分项
+e2fc127 fix(ci): dev extra 声明 PyYAML——gate 的 pytest 腿因 export_coggraph 硬依赖 yaml 必红（issue #286）
+35f4acb fix(core/self): SelfModel.update 字段白名单+先校验后生效，update_self 快照失败回滚内存（issue #182）——values/value_evolution/trust_state/history/方法/类常量经 update 写入抛 PermissionError，非 str 值抛 ValueError
+20c12eb fix(core/事务): LayeredStore 公开方法统一包事务守卫（issue #184）——本线程最外层调用异常即 rollback，不再停在未提交事务持写锁、半截改动不被后续 commit 顺手提交；内层异常被外层捕获时不回滚
+5bbee33 fix(core/数值): importance/confidence 写库前有限性校验+钳制 [0,1]，delta/weight 拒 NaN/inf；decay_cycle 对历史 NULL/inf 坏值不抛异常不永生（issue #185，顺带 #164 越界）
+df0d0eb fix(world/wm_simloop): _ray_intersect_2d 同时检查射线 2 参数，身后交点无效（issue #186）——模块自测输出不变
+a5a2ebe fix(tools/coggraph): synonym_merge L2 序数守卫按全部差异位判定（issue #187）——仅序数互换的标题不再归并为 synonym，真语序变体照旧
+fa6a70b fix(gen/hexgen_pack_certify): 无标定缺省切点改为画幅比例 1/3、2/3，与 _cell_of_pt 同口径（issue #188）
+61d4f33 fix(nn/hex_text): multimodal_check 对齐率与 fuse_consistency 异位分支改为物卡精确比较，缺词子句不再以 None 做子串判断抛 TypeError（issue #189）
+a098db2 fix(nn/hex_text): make_multimodal_scene 入口校验 n_objects∈[0,9]，>9 立即 ValueError 不再死循环（issue #194）
+c8f6746 fix(world/scene_simulator): step() 的 actions 改报真实行动数（实体数另给 entities）、velocity 写入每 tick 位移、goal 不可解析时告警并原地不动而非静默 wander（issue #193）
+190a1dc fix(core/self/权限): 拆出 SHARED_LAYERS={ANCHOR,STRUCTURE} 作角色写权限判据，SELF 仍不可遗忘但属本地层——SUB 可写自身自我/信任快照；update_trust_state 快照失败回滚内存（issue #191）
+01c1db8 fix(world/wm_simloop): 固化时回写假设节点 attrs.phase；run() 的 rolling_hit_rate 改为本次窗口均值、全程均值另给 lifetime_hit_rate（issue #192 F3/F4；F1 阈值口径待裁定）
+f11b7a6 fix(core/longterm_gate): 关联边传 EdgeType.SIMILAR 并按实际建边计 links、失败告警（issue #195 / #44）；engine.add_edge 接受 EdgeType 值字符串、未知值 ValueError
+8d45fed merge: 合并 watch-179（issue #179：what_happened_at/session_summary 按时间取数）进 v3-merge-r5
+4398ba7 merge: 合并 watch-180（issue #180：cred_factor 保持率语义）进 v3-merge-r5
+1d5e888 merge: 合并 watch-181（issue #181：标签精确匹配+中文原文写入+LIKE 转义（含 #183））进 v3-merge-r5
+c20821d merge: 合并 watch-182（issue #182：SelfModel.update 字段白名单+快照失败回滚）进 v3-merge-r5
+1c38488 merge: 合并 watch-184（issue #184：LayeredStore 事务守卫）进 v3-merge-r5
+a6c3bc0 merge: 合并 watch-185（issue #185：importance/confidence 有限性校验+钳制，顺带 #164）进 v3-merge-r5——与 #181/#183 冲突：保留 _like_escape 与 _unit_float/_finite_float，to_row 同时保留钳制与 ensure_ascii=False
+12e063f merge: 合并 watch-186（issue #186：_ray_intersect_2d 身后交点无效）进 v3-merge-r5
+d1ebf60 merge: 合并 watch-187（issue #187：synonym_merge 序数守卫）进 v3-merge-r5
+36c5a07 merge: 合并 watch-188（issue #188：hexgen_pack_certify 缺省切点 1/3、2/3）进 v3-merge-r5
+28f415d merge: 合并 watch-189（issue #189：multimodal_check 物卡精确比较）进 v3-merge-r5
+3635901 merge: 合并 watch-191（issue #191：SHARED_LAYERS 拆分，SUB 可写自身 SELF）进 v3-merge-r5
+12604cd merge: 合并 watch-192（issue #192：wm_simloop phase 回写+rolling_hit_rate 窗口均值（F3/F4））进 v3-merge-r5
+f15b041 merge: 合并 watch-193（issue #193：scene_simulator actions/velocity/goal 修正）进 v3-merge-r5
+348e591 merge: 合并 watch-194（issue #194：make_multimodal_scene n_objects 校验）进 v3-merge-r5
+5993127 merge: 合并 watch-195（issue #195：longterm_gate 关联边 EdgeType.SIMILAR（同修 #44））进 v3-merge-r5
+aeaa2f0 merge: 合并 watch-286（issue #286：dev extra 声明 PyYAML）进 v3-merge-r5
+5086c9b fix(core/self): SELF 快照改为单一当前节点原地更新（issue #201）——update_self/record_value_change 写固定 id self_current、update_trust_state 写 trust_current，不再每次新增不可删节点；保留 created_at 与自我→经历边（#205），有界 trust_history 随信任当前态保存；#182/#191 计数断言改为当前节点内容断言
+a0443c0 merge: 合并 watch-201（issue #201：SELF 快照单一当前节点原地更新，SELF 层不再随 update_self 无界增长）进 integrated-v3
+611891b fix(core/verdict): assess 入口拒收非有限 part_fg_px/part_area，NaN/inf 不再落到末尾 ACCEPT（issue #196 ①）
+21c8919 fix(core/负记忆): rejected_paths 同 (path_type,description) 去重计数 hit_count/last_seen、操作序列成败同价 0.5、新技能按同序列此前失败记账并在 recall_skill 返回 failure_count、预测负记忆存两端内容可检索（issue #216 ①②③⑤）
+8c1e660 merge: 合并 watch-196（issue #196 ①：verdict.assess 入口拒收非有限 part_fg_px/part_area，NaN/inf 不再落到 ACCEPT）进 integrated-v3
+4bda26a merge: 合并 watch-216（issue #216 ①②③⑤：rejected_paths 去重计数、操作序列成败同价、技能失败记账、预测负记忆可检索）进 integrated-v3
+50bddc2 fix(world/shapes): 鸟喙移到头前 +z、猫尾改沿 -z 贴身、人头/臂与椅腿贴合，部件不再脱离（issue #231 次要①）；接地约定主缺陷仍 needs-owner-decision
+c65f327 fix(scripts/repro-bot): 报告环境行记录被测 HEAD（--head-sha，缺省 git rev-parse）与 numpy/Pillow 版本；stdout/stderr 中临时目录/工作区/RUNNER_TEMP/HOME 中性化为占位符；执行核 --selftest 接入 pr-lint（issue #239）
+a145776 fix(scripts/repro-bot): 执行核快照并回滚 $GITHUB_ENV/PATH/OUTPUT/STATE/STEP_SUMMARY、subreaper 回收全部残留后代后才写报告、报告 sha256 写 $GITHUB_OUTPUT 由回贴步骤比对；订正「拿不到注入面」表述与残余风险登记（issue #241；拆 job 待决策）
+2666504 fix(tools/coggraph,ci): cytoscape 复用与下载均校验固定 sha256、<script> 加 SRI；workflow uses: 固定到完整提交 SHA（checkout v4.4.0 / setup-python v5.6.0）；dsh-memory 按 DSH_MEMORY_SHA 固定提交拉取并打印（issue #251）
+171b59b merge: 合并 watch-231（issue #231）进 integrated-v3
+7b2690b merge: 合并 watch-239（issue #239）进 integrated-v3
+4e1617e merge: 合并 watch-241（issue #241）进 integrated-v3
+25dc765 merge: 合并 watch-251（issue #251）进 integrated-v3
+528d5e3 fix(world/scene_simulator): wander 决策向量归一化，单 tick 位移不再突破 speed 上限（PR #27，issue #289 存档件四）
+667e84a merge: 合并 watch-27（PR #27 / issue #289 存档件四，wander 归一化）进 integrated-v3

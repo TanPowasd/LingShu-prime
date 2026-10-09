@@ -1,0 +1,118 @@
+From c295804094b35ca65bcb37b2a887ad895ef0be10 Mon Sep 17 00:00:00 2001
+From: lingshu-integrator <lingshu-bot@users.noreply.github.com>
+Date: Fri, 9 Oct 2026 04:27:30 +0000
+Subject: [PATCH] =?UTF-8?q?fix(world/wm=5Fsimloop):=20=E6=91=98=E9=99=A4?=
+ =?UTF-8?q?=E5=81=87=E8=AE=BE=E8=8A=82=E7=82=B9=E6=97=B6=E4=B8=80=E5=B9=B6?=
+ =?UTF-8?q?=E6=B8=85=E6=8E=89=E4=BB=A5=E5=AE=83=E4=B8=BA=E6=BA=90=E7=9A=84?=
+ =?UTF-8?q?=E6=8E=A8=E6=96=AD=E8=BE=B9=EF=BC=8C=E6=82=AC=E7=A9=BA=E8=BE=B9?=
+ =?UTF-8?q?=E4=B8=8D=E5=86=8D=E7=B4=AF=E7=A7=AF=E8=BF=9B=20WAL=EF=BC=88iss?=
+ =?UTF-8?q?ue=20#323=EF=BC=89?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ lingshu/world/wm_simloop.py               | 13 ++++--
+ tests/test_issue323_dangling_hyp_edges.py | 52 +++++++++++++++++++++++
+ 2 files changed, 62 insertions(+), 3 deletions(-)
+ create mode 100644 tests/test_issue323_dangling_hyp_edges.py
+
+diff --git a/lingshu/world/wm_simloop.py b/lingshu/world/wm_simloop.py
+index 452d6d6..dfef34f 100644
+--- a/lingshu/world/wm_simloop.py
++++ b/lingshu/world/wm_simloop.py
+@@ -388,6 +388,14 @@ class SimulationLoop:
+             pos, quality = est
+             self._grow(eid, pos, quality, trigger=trig)
+ 
++    def _drop_node_edges(self, nid: str) -> None:
++        """摘除节点时一并摘掉以它为源或靶的全部边（issue #323）。
++
++        假设节点在世界里也会作为"源"被 world_model 推断出 seek/flee 边；只按 target 清会让
++        源为已删假设的边永久悬空，且每 tick 被全量快照进 WAL（内存与 WAL 随 tick 二次增长）。"""
++        self.wm.edges = [e for e in self.wm.edges
++                         if e.target != nid and e.source != nid]
++
+     def _grow(self, subject: str, pos: Tuple[float, float, float],
+               quality: float, trigger: str = "") -> None:
+         """生长假设实体 H + seek(subject→H) 关系边（拓扑事件，WAL 留痕）。
+@@ -402,8 +410,7 @@ class SimulationLoop:
+         if old is not None:                     # re-grow：摘除旧假设
+             self.wm.nodes.pop(old["node"], None)
+             self.wm._conditions.pop(old["node"], None)
+-            self.wm.edges = [e for e in self.wm.edges
+-                             if e.target != old["node"]]
++            self._drop_node_edges(old["node"])
+         superseded = [e.to_dict() for e in self.wm.edges if e.source == subject]
+         self.wm.nodes[hid] = WMNode(
+             eid=hid, category="hidden_target", pos=pos, confidence=0.3,
+@@ -445,7 +452,7 @@ class SimulationLoop:
+               "reason": reason}
+         self.wm.nodes.pop(hid, None)
+         self.wm._conditions.pop(hid, None)
+-        self.wm.edges = [e for e in self.wm.edges if e.target != hid]
++        self._drop_node_edges(hid)
+         self._hypotheses.pop(h.get("_subject", ""), None)
+         self._growth_log.append(ev)
+         self._wal("revert", ev)
+diff --git a/tests/test_issue323_dangling_hyp_edges.py b/tests/test_issue323_dangling_hyp_edges.py
+new file mode 100644
+index 0000000..64c3016
+--- /dev/null
++++ b/tests/test_issue323_dangling_hyp_edges.py
+@@ -0,0 +1,52 @@
++# -*- coding: utf-8 -*-
++"""回归（issue #323）：假设节点摘除（回退/重生长）后，以它为源的推断边一并摘除，不再悬空累积。"""
++import os
++import tempfile
++import warnings
++
++warnings.filterwarnings("ignore")
++from lingshu.world.wm_simloop import SimulationLoop
++
++
++def _loop():
++    wal = os.path.join(tempfile.mkdtemp(), "wal.jsonl")
++    L = SimulationLoop(seed=42, wal_path=wal, clock=lambda: 0.0)
++    L.scene.create_scene(trees=4, water=False)
++    for i in range(6):
++        L.scene.add_entity("rabbit", behavior="wander", pos=(4 + i * 2, 1.5, 10 + i), speed=0.6)
++    for i in range(3):
++        L.scene.add_entity("wolf", behavior="wander", pos=(2 + i * 3, 1.5, 6), speed=0.8)
++    L.wm.perceive(observations=L._observe())
++    return L
++
++
++def _dangling(L):
++    live = set(L.wm.nodes)
++    return [e for e in L.wm.edges if e.source not in live or e.target not in live]
++
++
++def test_no_dangling_edges_after_long_run():
++    L = _loop()
++    L.step(500)                      # 改前：338 条边中 270 条悬空（源为已删假设）
++    assert _dangling(L) == []
++
++
++def test_edge_count_stays_proportional_to_nodes():
++    L = _loop()
++    L.step(800)                      # 改前：节点 ~16、边数随 tick 线性增长（500 tick 已 338 条）
++    assert len(L.wm.edges) <= 3 * len(L.wm.nodes)
++
++
++def test_revert_drops_edges_sourced_at_hypothesis():
++    from lingshu.world.world_model import WMEdge
++    L = _loop()
++    L.step(120)
++    subj = next(iter(L._hypotheses), None)
++    if subj is None:
++        return
++    h = L._hypotheses[subj]
++    other = next(k for k in L.wm.nodes if k != h["node"])
++    L.wm.edges.append(WMEdge(source=h["node"], relation="seek", target=other,
++                             confidence=0.5, evidence="inferred"))
++    L._revert(h, "test")
++    assert [e for e in L.wm.edges if e.source == h["node"]] == []
+-- 
+2.47.3
+

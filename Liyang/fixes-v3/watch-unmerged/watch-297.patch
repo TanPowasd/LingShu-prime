@@ -1,0 +1,116 @@
+From 32bc25f0d5a27102a0c718fd7c81e4589e0fee6d Mon Sep 17 00:00:00 2001
+From: lingshu-integrator <lingshu-bot@users.noreply.github.com>
+Date: Thu, 8 Oct 2026 23:54:40 +0000
+Subject: [PATCH] =?UTF-8?q?fix(core):=20M5=20=E5=8E=BB=E9=87=8D=E5=80=99?=
+ =?UTF-8?q?=E9=80=89=E5=B9=B6=E4=B8=8A=E5=86=85=E5=AE=B9=E9=A2=84=E7=AD=9B?=
+ =?UTF-8?q?=E5=91=BD=E4=B8=AD=EF=BC=8C=E7=9F=A5=E8=AF=86=E5=B1=82=E8=BF=87?=
+ =?UTF-8?q?=20200=20=E6=9D=A1=E5=90=8E=E8=BE=83=E6=97=A9=E5=86=99=E5=85=A5?=
+ =?UTF-8?q?=E7=9A=84=E9=80=90=E5=AD=97=E9=87=8D=E5=A4=8D=E4=BB=8D=E5=8F=AF?=
+ =?UTF-8?q?=E8=A7=81=EF=BC=88issue=20#297=EF=BC=89?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ lingshu/core/core.py                       | 41 ++++++++++++++++++++--
+ tests/test_issue297_dedup_beyond_top200.py | 29 +++++++++++++++
+ 2 files changed, 68 insertions(+), 2 deletions(-)
+ create mode 100644 tests/test_issue297_dedup_beyond_top200.py
+
+diff --git a/lingshu/core/core.py b/lingshu/core/core.py
+index 5a25102..e480f3d 100644
+--- a/lingshu/core/core.py
++++ b/lingshu/core/core.py
+@@ -952,6 +952,42 @@ class LayeredStore:
+         c.execute(f"SELECT * FROM nodes WHERE {where} ORDER BY importance DESC, last_access DESC LIMIT ?", params + [limit])
+         return [STNode.from_row(tuple(row)) for row in c.fetchall()]
+ 
++    def dedup_candidates(self, content: str, modality: str = "text",
++                         limit: int = 200, probe: int = 12) -> List[STNode]:
++        """M5 去重候选（issue #297）：知识层按活跃度取前 limit 条，再并上与 content
++        共享均匀抽样二元组的节点（SQL LIKE 预筛），使较早写入的逐字重复也可见。
++        Jaccard 阈值 ≥0.85 时，真重复必共享绝大多数二元组，抽样 probe 个即稳命中。"""
++        nodes = self.query_nodes(layer=MemoryLayer.KNOWLEDGE, modality=modality, limit=limit)
++        seen = {n.id for n in nodes}
++        s = "".join(content.split())
++        grams = sorted({s[i:i + 2] for i in range(len(s) - 1)}) if len(s) > 1 else [s]
++        if not grams:
++            return nodes
++        step = max(1, len(grams) // probe)
++        picked = grams[::step][:probe]
++        try:
++            like_max = self.conn.getlimit(sqlite3.SQLITE_LIMIT_LIKE_PATTERN_LENGTH)
++        except Exception:
++            like_max = 50000
++        parts, params = [], []
++        for g in picked:
++            pat = "%" + _like_escape(g) + "%"
++            if len(pat.encode("utf-8")) > like_max:
++                continue
++            parts.append("content LIKE ? ESCAPE '\\'")
++            params.append(pat)
++        if not parts:
++            return nodes
++        c = self.conn.cursor()
++        c.execute(f"SELECT * FROM nodes WHERE layer=? AND modality=? AND ({' OR '.join(parts)})",
++                  [MemoryLayer.KNOWLEDGE.value, modality] + params)
++        for row in c.fetchall():
++            n = STNode.from_row(tuple(row))
++            if n.id not in seen:
++                seen.add(n.id)
++                nodes.append(n)
++        return nodes
++
+     def get_layer_nodes(self, layer: MemoryLayer) -> List[STNode]:
+         """取指定记忆层的全部节点（query_nodes 的层过滤快捷入口）。"""
+         # 整层枚举不继承 query_nodes 的默认分页（50）；SQLite LIMIT -1 表示不限条数（PR #90）。
+@@ -2804,8 +2840,9 @@ class SpacetimeMemoryEngine(WorldFacadeMixin):
+         if not skip_dedup and isinstance(content, str) and content.strip():
+             threshold = self._effective_dedup_threshold()
+             # 模态不同的输入不参与去重（audio 不并入 text 节点；issue #223）
+-            candidates = self.store.query_nodes(layer=MemoryLayer.KNOWLEDGE,
+-                                                modality=modality, limit=200)
++            # issue #297：候选 = 活跃前 200 条 ∪ 内容预筛命中（与新内容共享二元组），
++            # 去重视野不随知识层规模退化为「最近活跃 200 条」。
++            candidates = self.store.dedup_candidates(content, modality=modality, limit=200)
+             best, best_sim = None, 0.0
+             pol_new = self._polarity_tags(tags)
+             cs_new = condition_space or ConditionSpace(
+diff --git a/tests/test_issue297_dedup_beyond_top200.py b/tests/test_issue297_dedup_beyond_top200.py
+new file mode 100644
+index 0000000..e238d52
+--- /dev/null
++++ b/tests/test_issue297_dedup_beyond_top200.py
+@@ -0,0 +1,29 @@
++"""issue #297：M5 去重视野不得只限于 importance/last_access 前 200 条知识节点。"""
++from lingshu.core.core import SpacetimeMemoryEngine, MemoryLayer
++
++TEXT = "用户对青霉素过敏，处方时须避开"
++
++
++def _copies(e):
++    return sum(1 for n in e.store.query_nodes(layer=MemoryLayer.KNOWLEDGE, limit=-1)
++               if n.content == TEXT)
++
++
++def test_dedup_sees_nodes_beyond_top200():
++    e = SpacetimeMemoryEngine()
++    target = e.add_perception(TEXT)
++    for i in range(210):
++        e.add_perception(f"第{i}条日常观测记录：编号{i*7919}，主题{i%13}", skip_dedup=True)
++    d = e.add_perception(TEXT)
++    assert d.id == target.id
++    assert _copies(e) == 1
++
++
++def test_dedup_beyond_top200_still_distinguishes_unrelated():
++    e = SpacetimeMemoryEngine()
++    e.add_perception(TEXT)
++    for i in range(210):
++        e.add_perception(f"第{i}条日常观测记录：编号{i*7919}，主题{i%13}", skip_dedup=True)
++    other = e.add_perception("明天下午三点在三号会议室评审预算方案")
++    assert other.content != TEXT
++    assert _copies(e) == 1
+-- 
+2.47.3
+

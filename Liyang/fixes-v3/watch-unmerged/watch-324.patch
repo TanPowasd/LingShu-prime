@@ -1,0 +1,231 @@
+From a663aa9fba49247fc248f69eab2f6dafc8c17129 Mon Sep 17 00:00:00 2001
+From: lingshu-integrator <lingshu-bot@users.noreply.github.com>
+Date: Fri, 9 Oct 2026 04:27:41 +0000
+Subject: [PATCH] =?UTF-8?q?fix(core/wm=5Fsimloop):=20flush=20=E7=9A=84=20o?=
+ =?UTF-8?q?ut=5Fpath=20=E9=99=90=E5=AE=9A=E5=9C=A8=E8=BE=93=E5=87=BA?=
+ =?UTF-8?q?=E6=A0=B9=E5=86=85=EF=BC=88LINGSHU=5FFLUSH=5FROOT=EF=BC=8C?=
+ =?UTF-8?q?=E7=BC=BA=E7=9C=81=20cwd=EF=BC=89=E3=80=81=E6=89=A9=E5=B1=95?=
+ =?UTF-8?q?=E5=90=8D=E9=99=90=20.md=E3=80=81=E4=B8=8D=E8=A6=86=E7=9B=96?=
+ =?UTF-8?q?=E9=9D=9E=E4=BA=A7=E7=89=A9=E6=96=87=E4=BB=B6=EF=BC=88issue=20#?=
+ =?UTF-8?q?324=EF=BC=89?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ brain.md                              | 24 ++++++++++++
+ fake_bashrc                           | 24 ++++++++++++
+ lingshu/core/world_facade.py          | 26 +++++++++++++
+ snap.md                               | 24 ++++++++++++
+ tests/test_core_world_facade_split.py |  2 +-
+ tests/test_issue324_wm_flush_path.py  | 55 +++++++++++++++++++++++++++
+ 6 files changed, 154 insertions(+), 1 deletion(-)
+ create mode 100644 brain.md
+ create mode 100644 fake_bashrc
+ create mode 100644 snap.md
+ create mode 100644 tests/test_issue324_wm_flush_path.py
+
+diff --git a/brain.md b/brain.md
+new file mode 100644
+index 0000000..2568ad3
+--- /dev/null
++++ b/brain.md
+@@ -0,0 +1,24 @@
++---
++id: "wm_simloop_simloop-1_t1"
++layer: "contextual"
++modality: "text"
++tags: ["wm_simloop", "world:simloop-1", "tick:1"]
++condition_space: "{\"time_window\": [1791520052.89, 1791520052.89], \"observation_tool\": \"wm_simloop\", \"wal_seq_range\": [0, 0]}"
++confidence: 0.6
++importance: 0.5
++created_at: 1791520052.89
++edges: []
++evidence_count: 0
++positive_evidence: 0
++negative_evidence: 0
++protected: false
++sensitivity: "internal"
++verification_basis: "wal_replay"
++non_applicable_conditions: []
++---
++# 世界模型推演循环记忆 - simloop-1 (tick 1)
++
++## 世界快照 (tick=1)
++
++命中率: 1.0 | 节点 0 | 边 0 | WAL 0 条
++growth: born=0 confirmed=0 reverted=0
+diff --git a/fake_bashrc b/fake_bashrc
+new file mode 100644
+index 0000000..88a7b22
+--- /dev/null
++++ b/fake_bashrc
+@@ -0,0 +1,24 @@
++---
++id: "wm_simloop_simloop-1_t1"
++layer: "contextual"
++modality: "text"
++tags: ["wm_simloop", "world:simloop-1", "tick:1"]
++condition_space: "{\"time_window\": [1791520052.873, 1791520052.873], \"observation_tool\": \"wm_simloop\", \"wal_seq_range\": [0, 0]}"
++confidence: 0.6
++importance: 0.5
++created_at: 1791520052.873
++edges: []
++evidence_count: 0
++positive_evidence: 0
++negative_evidence: 0
++protected: false
++sensitivity: "internal"
++verification_basis: "wal_replay"
++non_applicable_conditions: []
++---
++# 世界模型推演循环记忆 - simloop-1 (tick 1)
++
++## 世界快照 (tick=1)
++
++命中率: 1.0 | 节点 0 | 边 0 | WAL 0 条
++growth: born=0 confirmed=0 reverted=0
+diff --git a/lingshu/core/world_facade.py b/lingshu/core/world_facade.py
+index 81c4bbd..0c613e5 100644
+--- a/lingshu/core/world_facade.py
++++ b/lingshu/core/world_facade.py
+@@ -300,6 +300,32 @@ class WorldFacadeMixin:
+                     "load": sl.load_priors(str(p.get("mdcg_root", "")))}
+         if action == "flush":
+             out = p.get("out_path")
++            if out:
++                # issue #324：out_path 限定在输出根内（LINGSHU_FLUSH_ROOT，缺省 cwd）并只收 .md/.markdown，
++                # realpath+commonpath 判包含性（挡 ../、绝对路径、符号链接逃逸）；已存在且不是 flush 产物的文件不覆盖。
++                root = os.path.realpath(os.environ.get("LINGSHU_FLUSH_ROOT") or os.getcwd())
++                full = os.path.realpath(os.path.join(root, str(out)))
++                ext = os.path.splitext(full)[1].lower()
++                if ext not in (".md", ".markdown"):
++                    return {"status": "error",
++                            "error": "flush 输出扩展名 %r 不在白名单 (.md/.markdown)" % ext}
++                try:
++                    inside = os.path.commonpath([root, full]) == root
++                except ValueError:
++                    inside = False
++                if not inside:
++                    return {"status": "error",
++                            "error": "flush 输出路径越出输出根（LINGSHU_FLUSH_ROOT，缺省 cwd）"}
++                if os.path.exists(full):
++                    try:
++                        with open(full, "rb") as _f:
++                            head = _f.read(64)
++                    except OSError:
++                        head = b""
++                    if not head.startswith(b'---\nid: "wm_simloop_'):
++                        return {"status": "error",
++                                "error": "flush 目标已存在且不是 wm_simloop 产物，拒绝覆盖"}
++                out = full
+             r = sl.flush_payloads(out_path=str(out) if out else None)
+             return {"status": "ok",
+                     "flush": {k: r[k] for k in ("payload", "written", "note")}}
+diff --git a/snap.md b/snap.md
+new file mode 100644
+index 0000000..75bb703
+--- /dev/null
++++ b/snap.md
+@@ -0,0 +1,24 @@
++---
++id: "wm_simloop_simloop-1_t1"
++layer: "contextual"
++modality: "text"
++tags: ["wm_simloop", "world:simloop-1", "tick:1"]
++condition_space: "{\"time_window\": [1791520052.747, 1791520052.747], \"observation_tool\": \"wm_simloop\", \"wal_seq_range\": [0, 0]}"
++confidence: 0.6
++importance: 0.5
++created_at: 1791520052.747
++edges: []
++evidence_count: 0
++positive_evidence: 0
++negative_evidence: 0
++protected: false
++sensitivity: "internal"
++verification_basis: "wal_replay"
++non_applicable_conditions: []
++---
++# 世界模型推演循环记忆 - simloop-1 (tick 1)
++
++## 世界快照 (tick=1)
++
++命中率: 1.0 | 节点 0 | 边 0 | WAL 0 条
++growth: born=0 confirmed=0 reverted=0
+diff --git a/tests/test_core_world_facade_split.py b/tests/test_core_world_facade_split.py
+index 90b3ccf..6ba1693 100644
+--- a/tests/test_core_world_facade_split.py
++++ b/tests/test_core_world_facade_split.py
+@@ -17,7 +17,7 @@ from lingshu.core.world_facade import WorldFacadeMixin
+ BASELINE_SHA256 = {
+     "world3d": "8704ff3adef90d6fffe0f754d9e21c570e446febdf358fc63c83101e05208239",  # issue #211 有意修改 build（真实位姿/物体计数）；#277 render 输出路径限定渲染根；#262 verify 拒绝未知锚点，非搬移夹带
+     "voxel_world": "91352b3c471f75b47b813816eb759323e0203436a7b20d35b5ddb1279ca71e71",
+-    "wm_simloop": "690ab9029f669909e76fb5e63cd4832b0ced1784f633b6689327f21c23344e8d",
++    "wm_simloop": "245410074ffc00320fd8f12e2d493474ceef1a2c01bac470c819462c2091e431",  # issue #324 有意修改 flush 的 out_path 校验，非搬移夹带
+     "scene_simulator": "59623b9a324747e6106b616fb9ba7c82f824249b0d02c7fc08b9f3cbf24f3889",
+     "spacetime_consistency": "a1b44eea70f702e0f3c4e25f57f4240b905ba30c03ec9d9c3bc4169826111d7d",  # issue #243 有意新增 init 分支，非搬移夹带
+     "world_model": "8dac2950f15c1283fca7161afb688cc295112e44eab04b199f0983ce2da92832",  # issue #243 有意新增 init 分支，非搬移夹带
+diff --git a/tests/test_issue324_wm_flush_path.py b/tests/test_issue324_wm_flush_path.py
+new file mode 100644
+index 0000000..ab17971
+--- /dev/null
++++ b/tests/test_issue324_wm_flush_path.py
+@@ -0,0 +1,55 @@
++# -*- coding: utf-8 -*-
++"""回归（issue #324）：wm_simloop("flush") 的 out_path 限定在输出根内、只收 .md、不覆盖非产物文件。"""
++import os
++import sqlite3
++import warnings
++import pytest
++
++warnings.filterwarnings("ignore")
++from lingshu.core.core import SpacetimeMemoryEngine
++
++
++@pytest.fixture
++def env(tmp_path, monkeypatch):
++    root = tmp_path / "out"
++    root.mkdir()
++    monkeypatch.setenv("LINGSHU_FLUSH_ROOT", str(root))
++    e = SpacetimeMemoryEngine(":memory:")
++    e.wm_simloop("setup", {"wal_path": str(tmp_path / "wal.jsonl")})
++    return e, root, tmp_path
++
++
++def test_inside_root_md_ok(env):
++    e, root, _ = env
++    r = e.wm_simloop("flush", {"out_path": "snap.md"})
++    assert r["status"] == "ok" and os.path.isfile(root / "snap.md")
++    r2 = e.wm_simloop("flush", {"out_path": "snap.md"})      # 覆盖自己的产物允许
++    assert r2["status"] == "ok"
++
++
++def test_no_out_path_still_returns_payload(env):
++    e, _, _ = env
++    assert e.wm_simloop("flush", {})["flush"]["payload"]["body_md"]
++
++
++@pytest.mark.parametrize("bad", ["../escaped.md", "ABS"])
++def test_escape_rejected(env, bad):
++    e, root, tmp = env
++    target = str(tmp / "escaped.md") if bad == "ABS" else bad
++    r = e.wm_simloop("flush", {"out_path": target})
++    assert r["status"] == "error" and not os.path.exists(tmp / "escaped.md")
++
++
++def test_extension_whitelist(env):
++    e, root, _ = env
++    r = e.wm_simloop("flush", {"out_path": "fake_bashrc"})
++    assert r["status"] == "error" and not os.path.exists(root / "fake_bashrc")
++
++
++def test_refuses_to_overwrite_non_product_file(env, tmp_path, monkeypatch):
++    e, root, _ = env
++    db = root / "brain.md"                                     # 即使扩展名合规，也不覆盖非产物
++    c = sqlite3.connect(str(db)); c.execute("create table nodes(x)"); c.commit(); c.close()
++    r = e.wm_simloop("flush", {"out_path": "brain.md"})
++    assert r["status"] == "error"
++    assert open(db, "rb").read(15) == b"SQLite format 3"
+-- 
+2.47.3
+

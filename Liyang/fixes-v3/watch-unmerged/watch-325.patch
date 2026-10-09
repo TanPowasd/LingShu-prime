@@ -1,0 +1,100 @@
+From e532ea4c0f69f28ded200348ef5c78f7038bce79 Mon Sep 17 00:00:00 2001
+From: lingshu-integrator <lingshu-bot@users.noreply.github.com>
+Date: Fri, 9 Oct 2026 04:26:21 +0000
+Subject: [PATCH] =?UTF-8?q?fix(world/voxel=5Fworld):=20=E4=B8=96=E7=95=8C?=
+ =?UTF-8?q?=E8=BE=B9=E9=95=BF=E8=AE=BE=E4=B8=8A=E9=99=90=20512=EF=BC=88LIN?=
+ =?UTF-8?q?GSHU=5FMAX=5FWORLD=5FSIZE=20=E5=8F=AF=E8=B0=83=EF=BC=89?=
+ =?UTF-8?q?=EF=BC=8C8=20=E4=B8=AA=E9=97=A8=E9=9D=A2=E7=9A=84=20size=20?=
+ =?UTF-8?q?=E4=B8=8D=E5=86=8D=E6=8C=89=20size=C2=B2=20=E6=97=A0=E9=99=90?=
+ =?UTF-8?q?=E5=90=83=E5=86=85=E5=AD=98=EF=BC=88issue=20#325=EF=BC=89?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ lingshu/world/voxel_world.py          | 17 ++++++++++++
+ tests/test_issue325_world_size_cap.py | 37 +++++++++++++++++++++++++++
+ 2 files changed, 54 insertions(+)
+ create mode 100644 tests/test_issue325_world_size_cap.py
+
+diff --git a/lingshu/world/voxel_world.py b/lingshu/world/voxel_world.py
+index 9f55e6d..72ca189 100644
+--- a/lingshu/world/voxel_world.py
++++ b/lingshu/world/voxel_world.py
+@@ -59,6 +59,20 @@ class VoxelEntity:
+         return asdict(self)
+ 
+ 
++# issue #325：build_flatland 按 size² 建 dict（size=1000 约 2.5 s / 236 MB，size=10000 约 24 GB），
++# 8 个世界门面都把 params["size"] 原样传到这里；上限在构造处统一设一道，超限直接 ValueError，不建世界。
++# needs-owner-decision：512（约 57 MB）为本提交自拟；可用环境变量 LINGSHU_MAX_WORLD_SIZE 调整。
++MAX_WORLD_SIZE = 512
++
++
++def _max_world_size() -> int:
++    import os as _os
++    try:
++        return max(1, int(_os.environ.get("LINGSHU_MAX_WORLD_SIZE", MAX_WORLD_SIZE)))
++    except ValueError:
++        return MAX_WORLD_SIZE
++
++
+ class VoxelWorld:
+     """体素世界：区块 + 方块 + 动态实体 + 时空轨迹。
+ 
+@@ -72,6 +86,9 @@ class VoxelWorld:
+     """
+ 
+     def __init__(self, size: int = 16, ground_level: int = 1, seed: int = 0):
++        if int(size) > _max_world_size():
++            raise ValueError("size=%d 超过世界边长上限 %d（issue #325：内存/耗时按 size² 增长；"
++                             "可用 LINGSHU_MAX_WORLD_SIZE 调整）" % (int(size), _max_world_size()))
+         self.size = size                  # 区块边长
+         self.ground_level = ground_level  # 地面高度
+         self.blocks: Dict[Tuple[int, int, int], int] = {}  # (x,y,z) -> block
+diff --git a/tests/test_issue325_world_size_cap.py b/tests/test_issue325_world_size_cap.py
+new file mode 100644
+index 0000000..971f61c
+--- /dev/null
++++ b/tests/test_issue325_world_size_cap.py
+@@ -0,0 +1,37 @@
++# -*- coding: utf-8 -*-
++"""回归（issue #325）：世界门面的 size 有上限，超限在建世界前被拒，不再按 size² 吃内存。"""
++import warnings
++import pytest
++
++warnings.filterwarnings("ignore")
++from lingshu.core.core import SpacetimeMemoryEngine
++from lingshu.world.voxel_world import VoxelWorld, MAX_WORLD_SIZE
++
++
++@pytest.mark.parametrize("call", [
++    lambda e, n: e.scene_simulator("create", {"size": n, "trees": 0}),
++    lambda e, n: e.voxel_world("build", {"size": n}),
++    lambda e, n: e.wm_simloop("setup", {"size": n}),
++])
++def test_oversize_rejected_before_allocation(call):
++    e = SpacetimeMemoryEngine(":memory:")
++    with pytest.raises(ValueError, match="上限"):
++        call(e, 100000)          # 改前：按 size² 建 dict，直接 OOM 杀进程
++
++
++def test_world_class_rejects_oversize():
++    with pytest.raises(ValueError):
++        VoxelWorld(size=MAX_WORLD_SIZE + 1)
++
++
++def test_normal_sizes_still_work():
++    e = SpacetimeMemoryEngine(":memory:")
++    assert e.scene_simulator("create", {"size": 64, "trees": 0})["status"] == "ok"
++    assert VoxelWorld(size=MAX_WORLD_SIZE).size == MAX_WORLD_SIZE
++
++
++def test_env_override(monkeypatch):
++    monkeypatch.setenv("LINGSHU_MAX_WORLD_SIZE", "32")
++    with pytest.raises(ValueError):
++        VoxelWorld(size=33)
++    assert VoxelWorld(size=32).size == 32
+-- 
+2.47.3
+
