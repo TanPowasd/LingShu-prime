@@ -1,0 +1,20 @@
+{
+ "data": {
+  "legacy": {
+   "train_vec": 1,
+   "image": 1,
+   "ids": 4,
+   "runs": 4
+  },
+  "ng": {
+   "train_vec": 1,
+   "image": 1,
+   "ids": 1,
+   "runs": 4
+  }
+ },
+ "env": {
+  "OPENBLAS_NUM_THREADS": "1"
+ },
+ "when": "2026-10-08 18:21:54"
+}

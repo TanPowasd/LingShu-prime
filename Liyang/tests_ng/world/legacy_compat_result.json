@@ -1,0 +1,375 @@
+{
+ "main": {
+  "files": [
+   {
+    "file": "test_world3d_add_vprim_pose.py",
+    "legacy": {
+     "kind": "pytest",
+     "total": 8,
+     "passed": 8,
+     "failed_cases": []
+    },
+    "ng": {
+     "kind": "pytest",
+     "total": 8,
+     "passed": 8,
+     "failed_cases": []
+    }
+   },
+   {
+    "file": "test_world3d_box_backface.py",
+    "legacy": {
+     "kind": "pytest",
+     "total": 3,
+     "passed": 3,
+     "failed_cases": []
+    },
+    "ng": {
+     "kind": "pytest",
+     "total": 3,
+     "passed": 3,
+     "failed_cases": []
+    }
+   },
+   {
+    "file": "test_world3d_camera_depth.py",
+    "legacy": {
+     "kind": "pytest",
+     "total": 3,
+     "passed": 3,
+     "failed_cases": []
+    },
+    "ng": {
+     "kind": "pytest",
+     "total": 3,
+     "passed": 3,
+     "failed_cases": []
+    }
+   },
+   {
+    "file": "test_world3d_part_order.py",
+    "legacy": {
+     "kind": "pytest",
+     "total": 2,
+     "passed": 2,
+     "failed_cases": []
+    },
+    "ng": {
+     "kind": "pytest",
+     "total": 2,
+     "passed": 2,
+     "failed_cases": []
+    }
+   },
+   {
+    "file": "test_world3d_pyramid_apex.py",
+    "legacy": {
+     "kind": "pytest",
+     "total": 2,
+     "passed": 2,
+     "failed_cases": []
+    },
+    "ng": {
+     "kind": "pytest",
+     "total": 2,
+     "passed": 2,
+     "failed_cases": []
+    }
+   },
+   {
+    "file": "test_vprim_overlap_scale.py",
+    "legacy": {
+     "kind": "pytest",
+     "total": 3,
+     "passed": 3,
+     "failed_cases": []
+    },
+    "ng": {
+     "kind": "pytest",
+     "total": 3,
+     "passed": 3,
+     "failed_cases": []
+    }
+   },
+   {
+    "file": "test_scene_model_skeleton_channel.py",
+    "legacy": {
+     "kind": "pytest",
+     "total": 3,
+     "passed": 3,
+     "failed_cases": []
+    },
+    "ng": {
+     "kind": "pytest",
+     "total": 3,
+     "passed": 3,
+     "failed_cases": []
+    }
+   },
+   {
+    "file": "test_silhouette_joint_names.py",
+    "legacy": {
+     "kind": "pytest",
+     "total": 4,
+     "passed": 4,
+     "failed_cases": []
+    },
+    "ng": {
+     "kind": "pytest",
+     "total": 4,
+     "passed": 4,
+     "failed_cases": []
+    }
+   },
+   {
+    "file": "test_scene_follow_patrol.py",
+    "legacy": {
+     "kind": "script",
+     "total": 1,
+     "passed": 1,
+     "subchecks": [
+      15,
+      15
+     ],
+     "failed_cases": []
+    },
+    "ng": {
+     "kind": "script",
+     "total": 1,
+     "passed": 1,
+     "subchecks": [
+      15,
+      15
+     ],
+     "failed_cases": []
+    }
+   },
+   {
+    "file": "test_spacetime_invariant_verdict.py",
+    "legacy": {
+     "kind": "pytest",
+     "total": 3,
+     "passed": 3,
+     "failed_cases": []
+    },
+    "ng": {
+     "kind": "pytest",
+     "total": 3,
+     "passed": 3,
+     "failed_cases": []
+    }
+   },
+   {
+    "file": "test_world_model_edge_supersede.py",
+    "legacy": {
+     "kind": "pytest",
+     "total": 2,
+     "passed": 2,
+     "failed_cases": []
+    },
+    "ng": {
+     "kind": "pytest",
+     "total": 2,
+     "passed": 2,
+     "failed_cases": []
+    }
+   },
+   {
+    "file": "test_world_learner_oracle_rate.py",
+    "legacy": {
+     "kind": "pytest",
+     "total": 1,
+     "passed": 1,
+     "failed_cases": []
+    },
+    "ng": {
+     "kind": "pytest",
+     "total": 1,
+     "passed": 1,
+     "failed_cases": []
+    }
+   },
+   {
+    "file": "test_wm_simloop_load_priors.py",
+    "legacy": {
+     "kind": "pytest",
+     "total": 3,
+     "passed": 3,
+     "failed_cases": []
+    },
+    "ng": {
+     "kind": "pytest",
+     "total": 3,
+     "passed": 3,
+     "failed_cases": []
+    }
+   },
+   {
+    "file": "test_wm_verify_unobserved.py",
+    "legacy": {
+     "kind": "script",
+     "total": 1,
+     "passed": 1,
+     "subchecks": [
+      17,
+      17
+     ],
+     "failed_cases": []
+    },
+    "ng": {
+     "kind": "script",
+     "total": 1,
+     "passed": 1,
+     "subchecks": [
+      17,
+      17
+     ],
+     "failed_cases": []
+    }
+   },
+   {
+    "file": "test_prediction_d006_threshold.py",
+    "legacy": {
+     "kind": "pytest",
+     "total": 2,
+     "passed": 2,
+     "failed_cases": []
+    },
+    "ng": {
+     "kind": "pytest",
+     "total": 2,
+     "passed": 2,
+     "failed_cases": []
+    }
+   },
+   {
+    "file": "test_brain_store.py",
+    "legacy": {
+     "kind": "script",
+     "total": 1,
+     "passed": 1,
+     "subchecks": null,
+     "failed_cases": []
+    },
+    "ng": {
+     "kind": "script",
+     "total": 1,
+     "passed": 1,
+     "subchecks": null,
+     "failed_cases": []
+    }
+   },
+   {
+    "file": "test_dedup_shims.py",
+    "legacy": {
+     "kind": "pytest",
+     "total": 3,
+     "passed": 3,
+     "failed_cases": []
+    },
+    "ng": {
+     "kind": "pytest",
+     "total": 3,
+     "passed": 3,
+     "failed_cases": []
+    }
+   }
+  ],
+  "legacy": {
+   "passed": 45,
+   "total": 45,
+   "rate": 1.0
+  },
+  "ng": {
+   "passed": 45,
+   "total": 45,
+   "rate": 1.0
+  }
+ },
+ "extra_wt_gen_world": {
+  "files": [
+   {
+    "file": "test_skeleton_fk_order_guard.py",
+    "legacy": {
+     "kind": "script",
+     "total": 1,
+     "passed": 0,
+     "subchecks": [
+      8,
+      12
+     ],
+     "failed_cases": [
+      "[FAIL] A2 深度 2 的世界坐标与参照 A_parent·R_child 一致   偏差=0.089486315007",
+      "[FAIL] B1 根关节扫 0..2π 时父骨/子骨夹角恒定   极差=63.507403 度",
+      "[FAIL] B4 fatfish 骨架：hip 旋转时上臂/前臂夹角恒定   极差=21.199069 度",
+      "[FAIL] C1 47 关节混合轴姿态与参照一致   max=5.404e-01 m @ middle_tip_l"
+     ]
+    },
+    "ng": {
+     "kind": "script",
+     "total": 1,
+     "passed": 1,
+     "subchecks": [
+      12,
+      12
+     ],
+     "failed_cases": []
+    }
+   },
+   {
+    "file": "test_world_seed.py",
+    "legacy": {
+     "kind": "pytest",
+     "total": 8,
+     "passed": 0,
+     "failed_cases": [
+      "test_same_seed_is_reproducible",
+      "test_different_seeds_diverge",
+      "test_seed_actually_reaches_world",
+      "test_default_seed_matches_legacy_hardcoded_42",
+      "test_default_wander_trace_unchanged",
+      "test_seven_layer_loop_passes_seed_to_world",
+      "test_unified_world_model_passes_seed_to_world",
+      "test_world_learner_passes_seed_to_world"
+     ]
+    },
+    "ng": {
+     "kind": "pytest",
+     "total": 8,
+     "passed": 8,
+     "failed_cases": []
+    }
+   },
+   {
+    "file": "test_scene_relations.py",
+    "legacy": {
+     "kind": "pytest",
+     "total": 8,
+     "passed": 4,
+     "failed_cases": [
+      "test_build_enforces_horizontal_relation_and_preserves_valid_position[left_of-2]",
+      "test_build_enforces_horizontal_relation_and_preserves_valid_position[left_of--2]",
+      "test_build_enforces_horizontal_relation_and_preserves_valid_position[right_of--2]",
+      "test_build_enforces_horizontal_relation_and_preserves_valid_position[right_of-2]"
+     ]
+    },
+    "ng": {
+     "kind": "pytest",
+     "total": 8,
+     "passed": 8,
+     "failed_cases": []
+    }
+   }
+  ],
+  "legacy": {
+   "passed": 4,
+   "total": 17,
+   "rate": 0.2353
+  },
+  "ng": {
+   "passed": 17,
+   "total": 17,
+   "rate": 1.0
+  }
+ }
+}

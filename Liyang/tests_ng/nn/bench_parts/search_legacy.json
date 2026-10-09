@@ -1,0 +1,19 @@
+{
+ "data": {
+  "train_s": 458.7,
+  "single_detected": 9,
+  "single_mean_depth": 1.111,
+  "two_obj_both": 0.583,
+  "search_ms_per_image": 26.9,
+  "report": {
+   "pos_hit_rate": 0.5,
+   "obj_match_rate": 0.125,
+   "avg_visited": 34.8,
+   "prune_rate": 0.845
+  }
+ },
+ "env": {
+  "OPENBLAS_NUM_THREADS": "1"
+ },
+ "when": "2026-10-08 18:33:13"
+}

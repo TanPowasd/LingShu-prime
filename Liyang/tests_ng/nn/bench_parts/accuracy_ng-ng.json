@@ -1,0 +1,77 @@
+{
+ "data": [
+  {
+   "impl": "ng",
+   "lattice": "ng",
+   "seed": 7,
+   "steps": 150,
+   "train_s": 7.1,
+   "train": {
+    "acc_shape": 0.9948,
+    "acc_color": 0.5625,
+    "acc_obj": 0.5573,
+    "acc_pos": 0.9896,
+    "obj_margin_mean": 0.462,
+    "obj_conf_mean": 0.4451
+   },
+   "test": {
+    "acc_shape": 0.9583,
+    "acc_color": 0.5938,
+    "acc_obj": 0.5729,
+    "acc_pos": 1.0,
+    "obj_margin_mean": 0.569,
+    "obj_conf_mean": 0.4769
+   }
+  },
+  {
+   "impl": "ng",
+   "lattice": "ng",
+   "seed": 8,
+   "steps": 150,
+   "train_s": 6.3,
+   "train": {
+    "acc_shape": 0.9844,
+    "acc_color": 0.6719,
+    "acc_obj": 0.6667,
+    "acc_pos": 0.9948,
+    "obj_margin_mean": 0.51,
+    "obj_conf_mean": 0.4306
+   },
+   "test": {
+    "acc_shape": 0.9896,
+    "acc_color": 0.4583,
+    "acc_obj": 0.4583,
+    "acc_pos": 0.9792,
+    "obj_margin_mean": 0.392,
+    "obj_conf_mean": 0.4045
+   }
+  },
+  {
+   "impl": "ng",
+   "lattice": "ng",
+   "seed": 9,
+   "steps": 150,
+   "train_s": 6.0,
+   "train": {
+    "acc_shape": 0.9896,
+    "acc_color": 0.5625,
+    "acc_obj": 0.5521,
+    "acc_pos": 0.9948,
+    "obj_margin_mean": 0.824,
+    "obj_conf_mean": 0.5081
+   },
+   "test": {
+    "acc_shape": 0.9896,
+    "acc_color": 0.5521,
+    "acc_obj": 0.5417,
+    "acc_pos": 1.0,
+    "obj_margin_mean": 0.678,
+    "obj_conf_mean": 0.4743
+   }
+  }
+ ],
+ "env": {
+  "OPENBLAS_NUM_THREADS": "1"
+ },
+ "when": "2026-10-08 18:33:32"
+}

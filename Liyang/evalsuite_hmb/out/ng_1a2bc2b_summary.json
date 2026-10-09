@@ -1,0 +1,130 @@
+{
+ "rev": "rewrite/ng@1a2bc2b（含 77c1c27，早于 19551ef 召回重排）",
+ "note": "中间臂：r2 期间以当时 HEAD 跑的 ng_head；之后 ng HEAD 又前进（19551ef 召回第二阶段 idf 重排），ng_head 改用 r2 完成时的 HEAD。本件留存 1a2bc2b 读数。",
+ "r1": {
+  "cid_recall": 0.6541,
+  "cid_full_rate": 0.337,
+  "quote_recall": 0.2522,
+  "point_keyword_cov": 0.5496,
+  "must_exclude_mix": 0.2703,
+  "ctx_chars_mean": 3346.3,
+  "frag_verbatim_strict": 1.0,
+  "frag_L1_20": 1.0,
+  "n_frags": 920,
+  "tri.L1": 100.0,
+  "tri.L2": 18.7,
+  "tri.L2p": 42.6,
+  "tri.L2_frac": "68/364",
+  "pairs_all.b_side_n8": 16,
+  "pairs_all.both_n8": 5,
+  "pairs_all.total": 72,
+  "pairs_all.both_n20": 5,
+  "pairs_hard9.both_n8": 0,
+  "pairs_hard9.b_side_n8": 0,
+  "pairs_hard9.both_n20": 0,
+  "search.cid_recall": 0.6541,
+  "search.cid_full_rate": 0.337,
+  "search.quote_recall": 0.2522,
+  "search.point_keyword_cov": 0.5518,
+  "search.must_exclude_mix": 0.2703,
+  "search.ctx_chars_mean": 3346.6,
+  "search.frag_verbatim_strict": 1.0,
+  "search.frag_L1_20": 1.0,
+  "search.n_frags": 920,
+  "store_verbatim_strict": 1.0,
+  "store_records": 178,
+  "store_merged": 0,
+  "write_sec_novel": 0.449,
+  "write_ms_per_chunk_novel": 2.522,
+  "query_ms_median_novel": 7.875,
+  "retire.leak_base_path": "6/6",
+  "retire.leak_prod_path": "0/6",
+  "retire.archived_applied": "6/6"
+ },
+ "main": {
+  "J1": {
+   "fail": 85,
+   "pass": 7
+  },
+  "J2": {
+   "fail": 85,
+   "pass": 7
+  },
+  "merged_mean": {
+   "J1": 0.2694,
+   "J2": 0.2677
+  },
+  "evidence": {
+   "main": {
+    "quotes": 253,
+    "verbatim_rate": 1.0,
+    "cid_correct_rate": 1.0,
+    "unknown_conf": 6,
+    "parse_err": 0,
+    "answered": 92
+   },
+   "interv": {
+    "quotes": 267,
+    "verbatim_rate": 0.9963,
+    "cid_correct_rate": 0.9963,
+    "unknown_conf": 2,
+    "parse_err": 0,
+    "answered": 92
+   }
+  }
+ },
+ "e2e": {
+  "J1": {
+   "miss": 61,
+   "paraphrase": 23,
+   "strict": 5,
+   "n": 89,
+   "weighted": 0.1854
+  },
+  "J2": {
+   "miss": 64,
+   "paraphrase": 20,
+   "strict": 5,
+   "n": 89,
+   "weighted": 0.1685
+  },
+  "lenient": {
+   "miss": 58,
+   "paraphrase": 26,
+   "strict": 5,
+   "n": 89,
+   "weighted": 0.2022
+  },
+  "strict": {
+   "miss": 67,
+   "paraphrase": 17,
+   "strict": 5,
+   "n": 89,
+   "weighted": 0.1517
+  },
+  "lenient31": {
+   "paraphrase": 13,
+   "miss": 18,
+   "n": 31,
+   "weighted": 0.2097
+  },
+  "strict31": {
+   "paraphrase": 7,
+   "miss": 24,
+   "n": 31,
+   "weighted": 0.1129
+  },
+  "basis": {
+   "n": 144,
+   "verbatim": 143,
+   "rate": 0.9931,
+   "cards_with_basis": 88
+  },
+  "basis31": {
+   "n": 49,
+   "verbatim": 49,
+   "rate": 1.0,
+   "cards_with_basis": 31
+  }
+ }
+}

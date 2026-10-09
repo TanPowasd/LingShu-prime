@@ -1,0 +1,13 @@
+{
+ "data": {
+  "train_s": 1.6,
+  "single_pos_hit": 1.0,
+  "two_obj_split": 0.917,
+  "clean_not_reject": 1.0,
+  "corrupt_reject": 0.833
+ },
+ "env": {
+  "OPENBLAS_NUM_THREADS": "1"
+ },
+ "when": "2026-10-08 18:24:51"
+}

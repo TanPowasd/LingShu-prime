@@ -1,0 +1,27 @@
+{
+  "impl": "legacy",
+  "pytest": {
+    "passed": 172,
+    "failed": 0,
+    "failures": []
+  },
+  "scripts": {
+    "tests/test_core_export_all.py": {
+      "passed": 26,
+      "failed": 0,
+      "failures": [],
+      "errors": []
+    },
+    "tests/test_issue145_causal_depth_cycles.py": {
+      "passed": 23,
+      "failed": 0,
+      "failures": [],
+      "errors": []
+    }
+  },
+  "total": {
+    "passed": 221,
+    "failed": 0,
+    "rate": 1.0
+  }
+}

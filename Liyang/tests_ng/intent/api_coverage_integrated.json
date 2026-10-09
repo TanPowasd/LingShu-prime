@@ -1,0 +1,1434 @@
+{
+ "lingshu": {
+  "api_source": "top-level public def/class",
+  "names": [],
+  "lines": 7,
+  "resolved": "lingshu",
+  "ng_names": [],
+  "legacy_names": [],
+  "missing": [],
+  "status": "no-public-api"
+ },
+ "lingshu._pathguard": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "CwdImportsAllowed",
+   "scrub",
+   "guard_active",
+   "ensure_scrubbed",
+   "main_script_dir",
+   "is_script_dir_entry",
+   "pathguard_report"
+  ],
+  "lines": 322,
+  "resolved": "lingshu._pathguard",
+  "ng_names": [],
+  "legacy_names": [
+   "CwdImportsAllowed",
+   "scrub",
+   "guard_active",
+   "ensure_scrubbed",
+   "main_script_dir",
+   "is_script_dir_entry",
+   "pathguard_report"
+  ],
+  "missing": [],
+  "status": "legacy"
+ },
+ "lingshu.core": {
+  "api_source": "top-level public def/class",
+  "names": [],
+  "lines": 2,
+  "resolved": "lingshu.core",
+  "ng_names": [],
+  "legacy_names": [],
+  "missing": [],
+  "status": "no-public-api"
+ },
+ "lingshu.core.activation": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "cond_match",
+   "ActivationEngine"
+  ],
+  "lines": 416,
+  "resolved": "lingshu_ng.compat_activation",
+  "ng_names": [
+   "cond_match",
+   "ActivationEngine"
+  ],
+  "legacy_names": [],
+  "missing": [],
+  "status": "ng"
+ },
+ "lingshu.core.component_resolver": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "ComponentDiscoveryWarning",
+   "configured_roots",
+   "safe_search_path",
+   "install",
+   "is_installed",
+   "discovery_report"
+  ],
+  "lines": 248,
+  "resolved": "lingshu.core.component_resolver",
+  "ng_names": [],
+  "legacy_names": [
+   "ComponentDiscoveryWarning",
+   "configured_roots",
+   "safe_search_path",
+   "install",
+   "is_installed",
+   "discovery_report"
+  ],
+  "missing": [],
+  "status": "legacy"
+ },
+ "lingshu.core.condition_normalize": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "canonical_condition",
+   "canonical_sourced",
+   "validate_edges",
+   "cond_hash",
+   "part_cond_hash",
+   "img0_domains"
+  ],
+  "lines": 154,
+  "resolved": "lingshu_ng.perception.conditions",
+  "ng_names": [
+   "canonical_condition",
+   "canonical_sourced",
+   "validate_edges",
+   "cond_hash",
+   "part_cond_hash",
+   "img0_domains"
+  ],
+  "legacy_names": [],
+  "missing": [],
+  "status": "ng"
+ },
+ "lingshu.core.core": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "designer_key_configured",
+   "verify_designer",
+   "ConditionSpace",
+   "NodeType",
+   "EdgeType",
+   "MemoryLayer",
+   "STNode",
+   "STEdge",
+   "CausalChain",
+   "SelfModel",
+   "Role",
+   "LayeredStore",
+   "SpacetimeMemoryEngine"
+  ],
+  "lines": 5493,
+  "resolved": "lingshu_ng.compat",
+  "ng_names": [
+   "designer_key_configured",
+   "verify_designer",
+   "ConditionSpace",
+   "NodeType",
+   "EdgeType",
+   "MemoryLayer",
+   "STNode",
+   "STEdge",
+   "CausalChain",
+   "SelfModel",
+   "Role",
+   "LayeredStore",
+   "SpacetimeMemoryEngine"
+  ],
+  "legacy_names": [],
+  "missing": [],
+  "status": "ng"
+ },
+ "lingshu.core.longterm_gate": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "LongTermMemoryGate"
+  ],
+  "lines": 434,
+  "resolved": "lingshu_ng.compat_gate",
+  "ng_names": [
+   "LongTermMemoryGate"
+  ],
+  "legacy_names": [],
+  "missing": [],
+  "status": "ng"
+ },
+ "lingshu.core.provenance": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "Provenance",
+   "new_provenance",
+   "strip_source_tags",
+   "from_legacy",
+   "is_default_cs"
+  ],
+  "lines": 412,
+  "resolved": "lingshu_ng.provenance",
+  "ng_names": [
+   "Provenance",
+   "new_provenance",
+   "strip_source_tags",
+   "from_legacy",
+   "is_default_cs"
+  ],
+  "legacy_names": [],
+  "missing": [],
+  "status": "ng"
+ },
+ "lingshu.core.time_core": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "cred",
+   "Retention",
+   "cred_factor",
+   "cred_step",
+   "cred_blend"
+  ],
+  "lines": 58,
+  "resolved": "lingshu_ng.timecore",
+  "ng_names": [
+   "cred",
+   "Retention",
+   "cred_factor",
+   "cred_step",
+   "cred_blend"
+  ],
+  "legacy_names": [],
+  "missing": [],
+  "status": "ng"
+ },
+ "lingshu.core.verdict": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "assess"
+  ],
+  "lines": 73,
+  "resolved": "lingshu_ng.perception.verdict",
+  "ng_names": [
+   "assess"
+  ],
+  "legacy_names": [],
+  "missing": [],
+  "status": "ng"
+ },
+ "lingshu.core.world_facade": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "WorldFacadeMixin"
+  ],
+  "lines": 895,
+  "resolved": "lingshu.core.world_facade",
+  "ng_names": [],
+  "legacy_names": [
+   "WorldFacadeMixin"
+  ],
+  "missing": [],
+  "status": "legacy"
+ },
+ "lingshu.gen": {
+  "api_source": "top-level public def/class",
+  "names": [],
+  "lines": 2,
+  "resolved": "lingshu.gen",
+  "ng_names": [],
+  "legacy_names": [],
+  "missing": [],
+  "status": "no-public-api"
+ },
+ "lingshu.gen.hex_composite": {
+  "api_source": "__all__",
+  "names": [
+   "ALGO",
+   "SHAPES",
+   "COLORS",
+   "COMPOSITES",
+   "COMP_NAMES",
+   "_ZONES",
+   "make_composite_scene",
+   "make_composite_dataset",
+   "compose_match",
+   "evidence_density",
+   "PATTERNS",
+   "SIZES",
+   "_COLORS_RGB",
+   "COMPOSITES_V2",
+   "COMP_NAMES_V2",
+   "_paint",
+   "make_composite_scene_v2",
+   "make_composite_dataset_v2",
+   "extract_attributes",
+   "calibrate_attributes",
+   "compose_match_v2",
+   "evidence_density_v2",
+   "judge_density"
+  ],
+  "lines": 64,
+  "resolved": "lingshu_ng.nn.compat.hex_composite",
+  "ng_names": [
+   "ALGO",
+   "SHAPES",
+   "COLORS",
+   "COMPOSITES",
+   "COMP_NAMES",
+   "_ZONES",
+   "make_composite_scene",
+   "make_composite_dataset",
+   "compose_match",
+   "evidence_density",
+   "PATTERNS",
+   "SIZES",
+   "_COLORS_RGB",
+   "COMPOSITES_V2",
+   "COMP_NAMES_V2",
+   "_paint",
+   "make_composite_scene_v2",
+   "make_composite_dataset_v2",
+   "extract_attributes",
+   "calibrate_attributes",
+   "compose_match_v2",
+   "evidence_density_v2",
+   "judge_density"
+  ],
+  "legacy_names": [],
+  "missing": [],
+  "status": "ng"
+ },
+ "lingshu.gen.hexgen_align_probe": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "blackbox_reader",
+   "proto_report",
+   "distance_contrib",
+   "probe_self_shape",
+   "blackbox_own_distribution",
+   "cross_source_hits",
+   "head_to_head",
+   "main"
+  ],
+  "lines": 240,
+  "resolved": "lingshu.gen.hexgen_align_probe",
+  "ng_names": [],
+  "legacy_names": [
+   "blackbox_reader",
+   "proto_report",
+   "distance_contrib",
+   "probe_self_shape",
+   "blackbox_own_distribution",
+   "cross_source_hits",
+   "head_to_head",
+   "main"
+  ],
+  "missing": [],
+  "status": "legacy"
+ },
+ "lingshu.gen.hexgen_c1_real": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "parse_prompt",
+   "load_items",
+   "rgb_to_lab",
+   "bg_color",
+   "fg_mask",
+   "label_image",
+   "components",
+   "fill_holes",
+   "cluster_of_pixels",
+   "plausibly_object",
+   "count_objects",
+   "objects_of",
+   "erode",
+   "boundary",
+   "hull_points",
+   "hull_area",
+   "convexity_defects",
+   "radial_profile",
+   "harmonics",
+   "profile_peaks",
+   "shape_features",
+   "texture_features",
+   "split_ids",
+   "measure_item",
+   "zone_calib",
+   "rank_cells",
+   "fit",
+   "highpass_rel",
+   "predict",
+   "adjudicate",
+   "evaluate",
+   "main"
+  ],
+  "lines": 1281,
+  "resolved": "lingshu.gen.hexgen_c1_real",
+  "ng_names": [],
+  "legacy_names": [
+   "parse_prompt",
+   "load_items",
+   "rgb_to_lab",
+   "bg_color",
+   "fg_mask",
+   "label_image",
+   "components",
+   "fill_holes",
+   "cluster_of_pixels",
+   "plausibly_object",
+   "count_objects",
+   "objects_of",
+   "erode",
+   "boundary",
+   "hull_points",
+   "hull_area",
+   "convexity_defects",
+   "radial_profile",
+   "harmonics",
+   "profile_peaks",
+   "shape_features",
+   "texture_features",
+   "split_ids",
+   "measure_item",
+   "zone_calib",
+   "rank_cells",
+   "fit",
+   "highpass_rel",
+   "predict",
+   "adjudicate",
+   "evaluate",
+   "main"
+  ],
+  "missing": [],
+  "status": "legacy"
+ },
+ "lingshu.gen.hexgen_multi_seed": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "pick_prompts",
+   "gen",
+   "load_multi",
+   "measure",
+   "summarize",
+   "main"
+  ],
+  "lines": 278,
+  "resolved": "lingshu.gen.hexgen_multi_seed",
+  "ng_names": [],
+  "legacy_names": [
+   "pick_prompts",
+   "gen",
+   "load_multi",
+   "measure",
+   "summarize",
+   "main"
+  ],
+  "missing": [],
+  "status": "legacy"
+ },
+ "lingshu.gen.hexgen_pack_certify": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "legal_mask",
+   "support_vec",
+   "slack_vec",
+   "certify_radius",
+   "certify_p1",
+   "witness_at",
+   "check_witness",
+   "main"
+  ],
+  "lines": 290,
+  "resolved": "lingshu.gen.hexgen_pack_certify",
+  "ng_names": [],
+  "legacy_names": [
+   "legal_mask",
+   "support_vec",
+   "slack_vec",
+   "certify_radius",
+   "certify_p1",
+   "witness_at",
+   "check_witness",
+   "main"
+  ],
+  "missing": [],
+  "status": "legacy"
+ },
+ "lingshu.gen.hexgen_self_source": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "cell_center",
+   "paint_object_self",
+   "render_self",
+   "truth_of",
+   "build_items",
+   "vocab_gap",
+   "determinism_check",
+   "shape_mask",
+   "pattern_mask",
+   "paint_object_v2",
+   "shape_mask_v3",
+   "lighting_step",
+   "paint_object_v3",
+   "render_prompt_v3",
+   "self_prompt_items",
+   "lab_to_rgb",
+   "palette_from_calib",
+   "palette",
+   "palette_fallback_names",
+   "paint_extent",
+   "paint_support",
+   "cell_rect",
+   "zone_ok",
+   "judged_rect",
+   "legal_win",
+   "place_objects",
+   "enumerate_tuples",
+   "split_self",
+   "build_enum_items",
+   "closed_loop",
+   "main"
+  ],
+  "lines": 1256,
+  "resolved": "lingshu.gen.hexgen_self_source",
+  "ng_names": [],
+  "legacy_names": [
+   "cell_center",
+   "paint_object_self",
+   "render_self",
+   "truth_of",
+   "build_items",
+   "vocab_gap",
+   "determinism_check",
+   "shape_mask",
+   "pattern_mask",
+   "paint_object_v2",
+   "shape_mask_v3",
+   "lighting_step",
+   "paint_object_v3",
+   "render_prompt_v3",
+   "self_prompt_items",
+   "lab_to_rgb",
+   "palette_from_calib",
+   "palette",
+   "palette_fallback_names",
+   "paint_extent",
+   "paint_support",
+   "cell_rect",
+   "zone_ok",
+   "judged_rect",
+   "legal_win",
+   "place_objects",
+   "enumerate_tuples",
+   "split_self",
+   "build_enum_items",
+   "closed_loop",
+   "main"
+  ],
+  "missing": [],
+  "status": "legacy"
+ },
+ "lingshu.gen.hexgen_subject_split": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "proto_features",
+   "vocab_scale",
+   "vocab_residual",
+   "split_subjects",
+   "reference_masks",
+   "iou",
+   "match_instances"
+  ],
+  "lines": 618,
+  "resolved": "lingshu.gen.hexgen_subject_split",
+  "ng_names": [],
+  "legacy_names": [
+   "proto_features",
+   "vocab_scale",
+   "vocab_residual",
+   "split_subjects",
+   "reference_masks",
+   "iou",
+   "match_instances"
+  ],
+  "missing": [],
+  "status": "legacy"
+ },
+ "lingshu.nn": {
+  "api_source": "top-level public def/class",
+  "names": [],
+  "lines": 2,
+  "resolved": "lingshu.nn",
+  "ng_names": [],
+  "legacy_names": [],
+  "missing": [],
+  "status": "no-public-api"
+ },
+ "lingshu.nn._vec_atomic": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "AtomicVecMixin"
+  ],
+  "lines": 42,
+  "resolved": "lingshu.nn._vec_atomic",
+  "ng_names": [],
+  "legacy_names": [
+   "AtomicVecMixin"
+  ],
+  "missing": [],
+  "status": "legacy"
+ },
+ "lingshu.nn.hex_cnn": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "HexGrid",
+   "image_to_grid",
+   "grid_to_image",
+   "hex_conv",
+   "kernel_smooth",
+   "kernel_edge",
+   "kernel_laplacian",
+   "kernel_center_surround",
+   "extended_prior_family",
+   "selfsup_finetune",
+   "save_consolidated",
+   "load_consolidated",
+   "ConditionFilterCard",
+   "parallel_route"
+  ],
+  "lines": 346,
+  "resolved": "lingshu_ng.nn.compat.hex_cnn",
+  "ng_names": [
+   "HexGrid",
+   "image_to_grid",
+   "grid_to_image",
+   "hex_conv",
+   "kernel_smooth",
+   "kernel_edge",
+   "kernel_laplacian",
+   "kernel_center_surround",
+   "extended_prior_family",
+   "selfsup_finetune",
+   "save_consolidated",
+   "load_consolidated",
+   "ConditionFilterCard",
+   "parallel_route"
+  ],
+  "legacy_names": [],
+  "missing": [],
+  "status": "ng"
+ },
+ "lingshu.nn.hex_composite": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "make_composite_scene",
+   "make_composite_dataset",
+   "compose_match",
+   "evidence_density",
+   "make_composite_scene_v2",
+   "make_composite_dataset_v2",
+   "extract_attributes",
+   "calibrate_attributes",
+   "compose_match_v2",
+   "evidence_density_v2",
+   "judge_density"
+  ],
+  "lines": 434,
+  "resolved": "lingshu_ng.nn.compat.hex_composite",
+  "ng_names": [
+   "make_composite_scene",
+   "make_composite_dataset",
+   "compose_match",
+   "evidence_density",
+   "make_composite_scene_v2",
+   "make_composite_dataset_v2",
+   "extract_attributes",
+   "calibrate_attributes",
+   "compose_match_v2",
+   "evidence_density_v2",
+   "judge_density"
+  ],
+  "legacy_names": [],
+  "missing": [],
+  "status": "ng"
+ },
+ "lingshu.nn.hex_gen": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "zone_rc",
+   "rc_zone",
+   "ext_color_rgb",
+   "compile_description",
+   "render_relations",
+   "verify_constructive",
+   "verify_readback",
+   "transform_relations",
+   "shift_relations",
+   "generate_from_text"
+  ],
+  "lines": 470,
+  "resolved": "lingshu_ng.nn.compat.hex_gen",
+  "ng_names": [
+   "zone_rc",
+   "rc_zone",
+   "ext_color_rgb",
+   "compile_description",
+   "render_relations",
+   "verify_constructive",
+   "verify_readback",
+   "transform_relations",
+   "shift_relations",
+   "generate_from_text"
+  ],
+  "legacy_names": [],
+  "missing": [],
+  "status": "ng"
+ },
+ "lingshu.nn.hex_hier": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "make_scene",
+   "make_scene_dataset",
+   "HexHierNet",
+   "softmax",
+   "ce_loss",
+   "train_hier",
+   "calibrate_hier_cards",
+   "hier_report",
+   "save_report"
+  ],
+  "lines": 401,
+  "resolved": "lingshu_ng.nn.compat.hex_hier",
+  "ng_names": [
+   "make_scene",
+   "make_scene_dataset",
+   "HexHierNet",
+   "softmax",
+   "ce_loss",
+   "train_hier",
+   "calibrate_hier_cards",
+   "hier_report",
+   "save_report"
+  ],
+  "legacy_names": [],
+  "missing": [],
+  "status": "ng"
+ },
+ "lingshu.nn.hex_nn_preview": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "argmax3"
+  ],
+  "lines": 34,
+  "resolved": "lingshu.nn.hex_nn_preview",
+  "ng_names": [],
+  "legacy_names": [
+   "argmax3"
+  ],
+  "missing": [],
+  "status": "legacy"
+ },
+ "lingshu.nn.hex_ortho": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "kname",
+   "gram_schmidt_kernels",
+   "orthogonal_pool",
+   "residual_pyramid",
+   "pyramid_report"
+  ],
+  "lines": 237,
+  "resolved": "lingshu_ng.nn.compat.hex_ortho",
+  "ng_names": [
+   "kname",
+   "gram_schmidt_kernels",
+   "orthogonal_pool",
+   "residual_pyramid",
+   "pyramid_report"
+  ],
+  "legacy_names": [],
+  "missing": [],
+  "status": "ng"
+ },
+ "lingshu.nn.hex_query": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "ConnectionLibrary",
+   "build_default_library",
+   "extract_relations",
+   "query_match",
+   "save_report"
+  ],
+  "lines": 218,
+  "resolved": "lingshu.nn.hex_query",
+  "ng_names": [],
+  "legacy_names": [
+   "ConnectionLibrary",
+   "build_default_library",
+   "extract_relations",
+   "query_match",
+   "save_report"
+  ],
+  "missing": [],
+  "status": "legacy"
+ },
+ "lingshu.nn.hex_recon": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "extract_regions",
+   "regions_to_connections",
+   "reconstruct",
+   "pixel_accuracy",
+   "psnr"
+  ],
+  "lines": 152,
+  "resolved": "lingshu_ng.nn.compat.hex_recon",
+  "ng_names": [
+   "extract_regions",
+   "regions_to_connections",
+   "reconstruct",
+   "pixel_accuracy",
+   "psnr"
+  ],
+  "legacy_names": [],
+  "missing": [],
+  "status": "ng"
+ },
+ "lingshu.nn.hex_search": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "evaluate_node",
+   "calibrate_thresholds",
+   "recursive_search",
+   "search_report"
+  ],
+  "lines": 219,
+  "resolved": "lingshu_ng.nn.compat.hex_search",
+  "ng_names": [
+   "evaluate_node",
+   "calibrate_thresholds",
+   "recursive_search",
+   "search_report"
+  ],
+  "legacy_names": [],
+  "missing": [],
+  "status": "ng"
+ },
+ "lingshu.nn.hex_text": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "parse_description",
+   "render_clause",
+   "make_multimodal_scene",
+   "corrupt_description",
+   "spatial_detect",
+   "fuse_consistency",
+   "multimodal_check"
+  ],
+  "lines": 251,
+  "resolved": "lingshu_ng.nn.compat.hex_text",
+  "ng_names": [
+   "parse_description",
+   "render_clause",
+   "make_multimodal_scene",
+   "corrupt_description",
+   "spatial_detect",
+   "fuse_consistency",
+   "multimodal_check"
+  ],
+  "legacy_names": [],
+  "missing": [],
+  "status": "ng"
+ },
+ "lingshu.nn.hex_train": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "load_cifar10_parquet",
+   "images_to_lattices",
+   "normalize_lattices",
+   "hex_conv_batch",
+   "HexNet",
+   "train_infogap",
+   "pretrain_selfsup",
+   "four_state_classify",
+   "four_state_accuracy",
+   "calibrate_class_cards",
+   "save_report"
+  ],
+  "lines": 477,
+  "resolved": "lingshu_ng.nn.compat.hex_train",
+  "ng_names": [
+   "images_to_lattices",
+   "normalize_lattices",
+   "hex_conv_batch",
+   "HexNet",
+   "train_infogap",
+   "pretrain_selfsup",
+   "four_state_classify",
+   "four_state_accuracy",
+   "calibrate_class_cards",
+   "save_report"
+  ],
+  "legacy_names": [],
+  "missing": [
+   "load_cifar10_parquet"
+  ],
+  "status": "ng-partial"
+ },
+ "lingshu.nn.hex_unit": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "UnitHeadNet",
+   "finetune_units"
+  ],
+  "lines": 147,
+  "resolved": "lingshu.nn.hex_unit",
+  "ng_names": [],
+  "legacy_names": [
+   "UnitHeadNet",
+   "finetune_units"
+  ],
+  "missing": [],
+  "status": "legacy"
+ },
+ "lingshu.nn.rust_bridge": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "make_plan",
+   "pack_plan",
+   "pack_data",
+   "pack_vec",
+   "unpack_out",
+   "run_rust_train",
+   "py_executor",
+   "py_executor_par",
+   "equivalence_par",
+   "determinism_check",
+   "bench_threads",
+   "equivalence_check",
+   "bench_rust"
+  ],
+  "lines": 330,
+  "resolved": "lingshu_ng.nn.compat.rust_bridge",
+  "ng_names": [
+   "make_plan",
+   "py_executor",
+   "py_executor_par"
+  ],
+  "legacy_names": [],
+  "missing": [
+   "pack_plan",
+   "pack_data",
+   "pack_vec",
+   "unpack_out",
+   "run_rust_train",
+   "equivalence_par",
+   "determinism_check",
+   "bench_threads",
+   "equivalence_check",
+   "bench_rust"
+  ],
+  "status": "ng-partial"
+ },
+ "lingshu.nn.stcnn": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "frames_to_voxel",
+   "conv3d",
+   "max_pool3d",
+   "frame_diff",
+   "motion_direction",
+   "motion_speed",
+   "detect_period",
+   "extract_spatiotemporal_primitives",
+   "SpatiotemporalMemory",
+   "synth_ball_rolling",
+   "synth_static",
+   "synth_blinking"
+  ],
+  "lines": 311,
+  "resolved": "lingshu_ng.nn.compat.stcnn",
+  "ng_names": [
+   "frames_to_voxel",
+   "conv3d",
+   "max_pool3d",
+   "frame_diff",
+   "motion_direction",
+   "motion_speed",
+   "detect_period",
+   "extract_spatiotemporal_primitives",
+   "SpatiotemporalMemory",
+   "synth_ball_rolling",
+   "synth_static",
+   "synth_blinking"
+  ],
+  "legacy_names": [],
+  "missing": [],
+  "status": "ng"
+ },
+ "lingshu.world": {
+  "api_source": "top-level public def/class",
+  "names": [],
+  "lines": 2,
+  "resolved": "lingshu.world",
+  "ng_names": [],
+  "legacy_names": [],
+  "missing": [],
+  "status": "no-public-api"
+ },
+ "lingshu.world.anchor_verify": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "AnchorVerification"
+  ],
+  "lines": 186,
+  "resolved": "lingshu.world.anchor_verify",
+  "ng_names": [
+   "AnchorVerification"
+  ],
+  "legacy_names": [],
+  "missing": [],
+  "status": "ng"
+ },
+ "lingshu.world.anchored_verification": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "VerificationLevel",
+   "classify",
+   "AnchoredVerification"
+  ],
+  "lines": 119,
+  "resolved": "lingshu.world.anchored_verification",
+  "ng_names": [],
+  "legacy_names": [
+   "VerificationLevel",
+   "classify",
+   "AnchoredVerification"
+  ],
+  "missing": [],
+  "status": "legacy"
+ },
+ "lingshu.world.brain_store": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "BrainError",
+   "MCPClient",
+   "BrainNode",
+   "NodeRef",
+   "BrainStore",
+   "BrainEngine",
+   "BrainAgent",
+   "connect",
+   "load_world_from_brain",
+   "ingest_scene_to_brain"
+  ],
+  "lines": 500,
+  "resolved": "lingshu.world.brain_store",
+  "ng_names": [],
+  "legacy_names": [
+   "BrainError",
+   "MCPClient",
+   "BrainNode",
+   "NodeRef",
+   "BrainStore",
+   "BrainEngine",
+   "BrainAgent",
+   "connect",
+   "load_world_from_brain",
+   "ingest_scene_to_brain"
+  ],
+  "missing": [],
+  "status": "legacy"
+ },
+ "lingshu.world.channel_credibility": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "ChannelCredibilityRegistry"
+  ],
+  "lines": 156,
+  "resolved": "lingshu.world.channel_credibility",
+  "ng_names": [],
+  "legacy_names": [
+   "ChannelCredibilityRegistry"
+  ],
+  "missing": [],
+  "status": "legacy"
+ },
+ "lingshu.world.confirmation": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "kl_binary",
+   "gain_task",
+   "value",
+   "ConfirmationEvaluator"
+  ],
+  "lines": 129,
+  "resolved": "lingshu.world.confirmation",
+  "ng_names": [],
+  "legacy_names": [
+   "kl_binary",
+   "gain_task",
+   "value",
+   "ConfirmationEvaluator"
+  ],
+  "missing": [],
+  "status": "legacy"
+ },
+ "lingshu.world.curiosity_explorer": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "CuriosityExplorer"
+  ],
+  "lines": 310,
+  "resolved": "lingshu.world.curiosity_explorer",
+  "ng_names": [
+   "CuriosityExplorer"
+  ],
+  "legacy_names": [],
+  "missing": [],
+  "status": "ng"
+ },
+ "lingshu.world.gap_dual": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "GapDual"
+  ],
+  "lines": 117,
+  "resolved": "lingshu.world.gap_dual",
+  "ng_names": [],
+  "legacy_names": [
+   "GapDual"
+  ],
+  "missing": [],
+  "status": "legacy"
+ },
+ "lingshu.world.multiview": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "ViewObs",
+   "MultiViewFusion"
+  ],
+  "lines": 159,
+  "resolved": "lingshu.world.multiview",
+  "ng_names": [
+   "ViewObs",
+   "MultiViewFusion"
+  ],
+  "legacy_names": [],
+  "missing": [],
+  "status": "ng"
+ },
+ "lingshu.world.prediction": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "PredictionEngine"
+  ],
+  "lines": 453,
+  "resolved": "lingshu.world.prediction",
+  "ng_names": [
+   "PredictionEngine"
+  ],
+  "legacy_names": [],
+  "missing": [],
+  "status": "ng"
+ },
+ "lingshu.world.scene_model": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "SceneEntity",
+   "WorldModel",
+   "ingest_scene",
+   "load_world_from_memory"
+  ],
+  "lines": 413,
+  "resolved": "lingshu.world.scene_model",
+  "ng_names": [],
+  "legacy_names": [
+   "SceneEntity",
+   "WorldModel",
+   "ingest_scene",
+   "load_world_from_memory"
+  ],
+  "missing": [],
+  "status": "legacy"
+ },
+ "lingshu.world.scene_simulator": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "SceneEntity",
+   "SceneSimulator"
+  ],
+  "lines": 259,
+  "resolved": "lingshu.world.scene_simulator",
+  "ng_names": [
+   "SceneEntity",
+   "SceneSimulator"
+  ],
+  "legacy_names": [],
+  "missing": [],
+  "status": "ng"
+ },
+ "lingshu.world.semantic_anchor_graph": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "register_relation_type",
+   "SemanticAnchor",
+   "RelationEdge",
+   "SemanticAnchorGraph"
+  ],
+  "lines": 294,
+  "resolved": "lingshu.world.semantic_anchor_graph",
+  "ng_names": [
+   "register_relation_type",
+   "SemanticAnchor",
+   "RelationEdge",
+   "SemanticAnchorGraph"
+  ],
+  "legacy_names": [],
+  "missing": [],
+  "status": "ng"
+ },
+ "lingshu.world.seven_layer_loop": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "SevenLayerLoop"
+  ],
+  "lines": 234,
+  "resolved": "lingshu.world.seven_layer_loop",
+  "ng_names": [
+   "SevenLayerLoop"
+  ],
+  "legacy_names": [],
+  "missing": [],
+  "status": "ng"
+ },
+ "lingshu.world.shapes": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "register_shape",
+   "get_shape",
+   "has_shape"
+  ],
+  "lines": 136,
+  "resolved": "lingshu.world.shapes",
+  "ng_names": [
+   "register_shape",
+   "get_shape",
+   "has_shape"
+  ],
+  "legacy_names": [],
+  "missing": [],
+  "status": "ng"
+ },
+ "lingshu.world.silhouette3d": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "SilhouettePart",
+   "Silhouette3D",
+   "fatfish_skinned",
+   "fatfish_skeleton",
+   "set_expression",
+   "apply_pose"
+  ],
+  "lines": 922,
+  "resolved": "lingshu.world.silhouette3d",
+  "ng_names": [],
+  "legacy_names": [
+   "SilhouettePart",
+   "Silhouette3D",
+   "fatfish_skinned",
+   "fatfish_skeleton",
+   "set_expression",
+   "apply_pose"
+  ],
+  "missing": [],
+  "status": "legacy"
+ },
+ "lingshu.world.skeleton3d": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "Joint",
+   "Skeleton3D",
+   "human_skeleton",
+   "fatfish_bone_skeleton",
+   "cat_skeleton"
+  ],
+  "lines": 339,
+  "resolved": "lingshu.world.skeleton3d",
+  "ng_names": [
+   "Joint",
+   "Skeleton3D",
+   "human_skeleton",
+   "fatfish_bone_skeleton",
+   "cat_skeleton"
+  ],
+  "legacy_names": [],
+  "missing": [],
+  "status": "ng"
+ },
+ "lingshu.world.spacetime_consistency": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "SpacetimeConsistency"
+  ],
+  "lines": 455,
+  "resolved": "lingshu.world.spacetime_consistency",
+  "ng_names": [
+   "SpacetimeConsistency"
+  ],
+  "legacy_names": [],
+  "missing": [],
+  "status": "ng"
+ },
+ "lingshu.world.stable_lease": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "StableLease"
+  ],
+  "lines": 126,
+  "resolved": "lingshu.world.stable_lease",
+  "ng_names": [],
+  "legacy_names": [
+   "StableLease"
+  ],
+  "missing": [],
+  "status": "legacy"
+ },
+ "lingshu.world.time_core": {
+  "api_source": "__all__",
+  "names": [
+   "cred",
+   "cred_factor",
+   "cred_step",
+   "cred_blend",
+   "Retention"
+  ],
+  "lines": 17,
+  "resolved": "lingshu.world.time_core",
+  "ng_names": [
+   "cred",
+   "cred_factor",
+   "cred_step",
+   "cred_blend",
+   "Retention"
+  ],
+  "legacy_names": [],
+  "missing": [],
+  "status": "ng"
+ },
+ "lingshu.world.voxel_world": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "VoxelEntity",
+   "VoxelWorld"
+  ],
+  "lines": 191,
+  "resolved": "lingshu.world.voxel_world",
+  "ng_names": [],
+  "legacy_names": [
+   "VoxelEntity",
+   "VoxelWorld"
+  ],
+  "missing": [],
+  "status": "legacy"
+ },
+ "lingshu.world.vprim": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "VPrim",
+   "spatial_relation",
+   "count_vprims",
+   "parse_anchor",
+   "bbox_from_xywh",
+   "vprims_to_scene_text"
+  ],
+  "lines": 169,
+  "resolved": "lingshu.world.vprim",
+  "ng_names": [
+   "VPrim",
+   "spatial_relation",
+   "count_vprims",
+   "parse_anchor",
+   "bbox_from_xywh",
+   "vprims_to_scene_text"
+  ],
+  "legacy_names": [],
+  "missing": [],
+  "status": "ng"
+ },
+ "lingshu.world.wm_simloop": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "estimate_hidden_target",
+   "SimulationLoop"
+  ],
+  "lines": 669,
+  "resolved": "lingshu.world.wm_simloop",
+  "ng_names": [],
+  "legacy_names": [
+   "estimate_hidden_target",
+   "SimulationLoop"
+  ],
+  "missing": [],
+  "status": "legacy"
+ },
+ "lingshu.world.world3d": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "VisualSpec",
+   "default_spec",
+   "Camera3D",
+   "Object3D",
+   "World3D"
+  ],
+  "lines": 641,
+  "resolved": "lingshu.world.world3d",
+  "ng_names": [
+   "VisualSpec",
+   "default_spec",
+   "Camera3D",
+   "Object3D",
+   "World3D"
+  ],
+  "legacy_names": [],
+  "missing": [],
+  "status": "ng"
+ },
+ "lingshu.world.world_learner": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "LNNode",
+   "WorldLearner"
+  ],
+  "lines": 448,
+  "resolved": "lingshu.world.world_learner",
+  "ng_names": [
+   "LNNode",
+   "WorldLearner"
+  ],
+  "legacy_names": [],
+  "missing": [],
+  "status": "ng"
+ },
+ "lingshu.world.world_model": {
+  "api_source": "top-level public def/class",
+  "names": [
+   "WMNode",
+   "WMEdge",
+   "UnifiedWorldModel"
+  ],
+  "lines": 562,
+  "resolved": "lingshu.world.world_model",
+  "ng_names": [
+   "WMNode",
+   "WMEdge",
+   "UnifiedWorldModel"
+  ],
+  "legacy_names": [],
+  "missing": [],
+  "status": "ng"
+ }
+}

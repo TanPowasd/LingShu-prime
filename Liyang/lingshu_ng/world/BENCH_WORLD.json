@@ -1,0 +1,384 @@
+{
+ "config": {
+  "W": 320,
+  "H": 240,
+  "n_camera_poses": 24,
+  "seed": 20261009,
+  "repeat": 3,
+  "boxes_per_scene": 6,
+  "boxes": "6 boxes, interpenetrating allowed",
+  "boxes_disjoint": "6 pairwise-disjoint AABBs",
+  "composite": "2 tables + 1 chair"
+ },
+ "impls": {
+  "upstream_2bb8291": {
+   "boxes": {
+    "err_all": 0.04382975260416667,
+    "err_interior": 0.03772456068029796,
+    "wrong_object_all": 0.040623372395833336,
+    "wrong_object_interior": 0.03772456068029796,
+    "wrong_object_of_overlap_px": 0.2597215593596833,
+    "ambiguous_px_excluded": 0.0,
+    "worst_scene_err_interior": 0.13115665821136446,
+    "scenes_with_interior_errors": 23,
+    "render_ms_median": 0.25590900001759564,
+    "render_ms_mean": 0.27295925000103693
+   },
+   "boxes_disjoint": {
+    "err_all": 0.010622829861111112,
+    "err_interior": 0.00551328119880293,
+    "wrong_object_all": 0.006272786458333333,
+    "wrong_object_interior": 0.00551328119880293,
+    "wrong_object_of_overlap_px": 0.06303435057654366,
+    "ambiguous_px_excluded": 0.0,
+    "worst_scene_err_interior": 0.027001338688085675,
+    "scenes_with_interior_errors": 14,
+    "render_ms_median": 0.23074949999113414,
+    "render_ms_mean": 0.241762333332692
+   },
+   "composite": {
+    "err_all": 0.022751736111111115,
+    "err_interior": 0.015866749342159064,
+    "wrong_object_all": 0.01755642361111111,
+    "wrong_object_interior": 0.015864494103239053,
+    "wrong_object_of_overlap_px": 0.1591010408918917,
+    "ambiguous_px_excluded": 292.6666666666667,
+    "worst_scene_err_interior": 0.05914747436942777,
+    "scenes_with_interior_errors": 24,
+    "render_ms_median": 0.5487569999900188,
+    "render_ms_mean": 0.556245583333966
+   },
+   "backproj": {
+    "all": {
+     "n": 240,
+     "err3d_median_m": 21.182126511784187,
+     "err3d_max_m": 50.40612052605835,
+     "reproj_median_px": 364.1037720780688,
+     "reproj_p95_px": 4672.322396585483,
+     "behind_camera": 55,
+     "within_1px_rate": 0.0
+    },
+    "above_horizon": {
+     "n": 107,
+     "err3d_median_m": 21.03870760783892,
+     "err3d_max_m": 48.16681440075292,
+     "reproj_median_px": 415.4525954497143,
+     "reproj_p95_px": 4466.720967787491,
+     "behind_camera": 21,
+     "within_1px_rate": 0.0
+    },
+    "below_horizon": {
+     "n": 133,
+     "err3d_median_m": 21.217483560918264,
+     "err3d_max_m": 50.40612052605835,
+     "reproj_median_px": 295.1709861693316,
+     "reproj_p95_px": 4685.918300661562,
+     "behind_camera": 34,
+     "within_1px_rate": 0.0
+    }
+   }
+  },
+  "repo_lingshu": {
+   "boxes": {
+    "err_all": 0.013685980902777777,
+    "err_interior": 0.008342015795238253,
+    "wrong_object_all": 0.010508897569444444,
+    "wrong_object_interior": 0.008342015795238253,
+    "wrong_object_of_overlap_px": 0.0746969416085087,
+    "ambiguous_px_excluded": 0.0,
+    "worst_scene_err_interior": 0.04439442425557303,
+    "scenes_with_interior_errors": 21,
+    "render_ms_median": 0.21748649999153713,
+    "render_ms_mean": 0.3023346249963292
+   },
+   "boxes_disjoint": {
+    "err_all": 0.004749348958333333,
+    "err_interior": 3.901122612756631e-06,
+    "wrong_object_all": 0.0004714626736111111,
+    "wrong_object_interior": 3.901122612756631e-06,
+    "wrong_object_of_overlap_px": 0.004774791882689919,
+    "ambiguous_px_excluded": 0.0,
+    "worst_scene_err_interior": 8.032128514056225e-05,
+    "scenes_with_interior_errors": 2,
+    "render_ms_median": 0.21495599999354909,
+    "render_ms_mean": 0.22246337499846427
+   },
+   "composite": {
+    "err_all": 0.007906901041666666,
+    "err_interior": 0.0015517068765082802,
+    "wrong_object_all": 0.0027951388888888887,
+    "wrong_object_interior": 0.001549451637588269,
+    "wrong_object_of_overlap_px": 0.03063184242201895,
+    "ambiguous_px_excluded": 292.6666666666667,
+    "worst_scene_err_interior": 0.017461605092739,
+    "scenes_with_interior_errors": 15,
+    "render_ms_median": 0.5169975000001159,
+    "render_ms_mean": 0.5331770833336691
+   },
+   "backproj": {
+    "all": {
+     "n": 240,
+     "err3d_median_m": 3.0350868016591157,
+     "err3d_max_m": 22.597081382703433,
+     "reproj_median_px": 66.02961722116234,
+     "reproj_p95_px": 171.82422944437758,
+     "behind_camera": 0,
+     "within_1px_rate": 0.24583333333333332
+    },
+    "above_horizon": {
+     "n": 107,
+     "err3d_median_m": 0.006989069837039962,
+     "err3d_max_m": 7.447925893069358,
+     "reproj_median_px": 0.21318861656837004,
+     "reproj_p95_px": 43.96056219043945,
+     "behind_camera": 0,
+     "within_1px_rate": 0.5514018691588785
+    },
+    "below_horizon": {
+     "n": 133,
+     "err3d_median_m": 6.490950789685513,
+     "err3d_max_m": 22.597081382703433,
+     "reproj_median_px": 113.95109538515692,
+     "reproj_p95_px": 175.58209636316982,
+     "behind_camera": 0,
+     "within_1px_rate": 0.0
+    }
+   }
+  },
+  "integrated_v2": {
+   "boxes": {
+    "err_all": 0.013685980902777777,
+    "err_interior": 0.008342015795238253,
+    "wrong_object_all": 0.010508897569444444,
+    "wrong_object_interior": 0.008342015795238253,
+    "wrong_object_of_overlap_px": 0.0746969416085087,
+    "ambiguous_px_excluded": 0.0,
+    "worst_scene_err_interior": 0.04439442425557303,
+    "scenes_with_interior_errors": 21,
+    "render_ms_median": 0.216715000007639,
+    "render_ms_mean": 0.2253703333347327
+   },
+   "boxes_disjoint": {
+    "err_all": 0.004749348958333333,
+    "err_interior": 3.901122612756631e-06,
+    "wrong_object_all": 0.0004714626736111111,
+    "wrong_object_interior": 3.901122612756631e-06,
+    "wrong_object_of_overlap_px": 0.004774791882689919,
+    "ambiguous_px_excluded": 0.0,
+    "worst_scene_err_interior": 8.032128514056225e-05,
+    "scenes_with_interior_errors": 2,
+    "render_ms_median": 0.21734899999614754,
+    "render_ms_mean": 0.2242101666685888
+   },
+   "composite": {
+    "err_all": 0.007906901041666666,
+    "err_interior": 0.0015517068765082802,
+    "wrong_object_all": 0.0027951388888888887,
+    "wrong_object_interior": 0.001549451637588269,
+    "wrong_object_of_overlap_px": 0.03063184242201895,
+    "ambiguous_px_excluded": 292.6666666666667,
+    "worst_scene_err_interior": 0.017461605092739,
+    "scenes_with_interior_errors": 15,
+    "render_ms_median": 0.515034999992281,
+    "render_ms_mean": 0.5390369166669018
+   },
+   "backproj": {
+    "all": {
+     "n": 240,
+     "err3d_median_m": 0.5732293536017633,
+     "err3d_max_m": 15.616620909349974,
+     "reproj_median_px": 12.06619529495522,
+     "reproj_p95_px": 117.84032992106356,
+     "behind_camera": 0,
+     "within_1px_rate": 0.45416666666666666
+    },
+    "above_horizon": {
+     "n": 107,
+     "err3d_median_m": 0.004690713626035878,
+     "err3d_max_m": 0.008340054464618631,
+     "reproj_median_px": 0.0666574098271731,
+     "reproj_p95_px": 0.2158524825954327,
+     "behind_camera": 0,
+     "within_1px_rate": 1.0
+    },
+    "below_horizon": {
+     "n": 133,
+     "err3d_median_m": 2.9133123702297907,
+     "err3d_max_m": 15.616620909349974,
+     "reproj_median_px": 59.89787449630116,
+     "reproj_p95_px": 121.4949802842488,
+     "behind_camera": 0,
+     "within_1px_rate": 0.015037593984962405
+    }
+   }
+  },
+  "ng": {
+   "boxes": {
+    "err_all": 0.0,
+    "err_interior": 0.0,
+    "wrong_object_all": 0.0,
+    "wrong_object_interior": 0.0,
+    "wrong_object_of_overlap_px": 0.0,
+    "ambiguous_px_excluded": 0.0,
+    "worst_scene_err_interior": 0.0,
+    "scenes_with_interior_errors": 0,
+    "render_ms_median": 1.1827455000030795,
+    "render_ms_mean": 2.060913583334193
+   },
+   "boxes_disjoint": {
+    "err_all": 0.0,
+    "err_interior": 0.0,
+    "wrong_object_all": 0.0,
+    "wrong_object_interior": 0.0,
+    "wrong_object_of_overlap_px": 0.0,
+    "ambiguous_px_excluded": 0.0,
+    "worst_scene_err_interior": 0.0,
+    "scenes_with_interior_errors": 0,
+    "render_ms_median": 0.8757224999982327,
+    "render_ms_mean": 0.9382608749983016
+   },
+   "composite": {
+    "err_all": 0.0,
+    "err_interior": 0.0,
+    "wrong_object_all": 0.0,
+    "wrong_object_interior": 0.0,
+    "wrong_object_of_overlap_px": 0.0,
+    "ambiguous_px_excluded": 292.6666666666667,
+    "worst_scene_err_interior": 0.0,
+    "scenes_with_interior_errors": 0,
+    "render_ms_median": 0.9844240000091986,
+    "render_ms_mean": 1.012452916664112
+   },
+   "backproj": {
+    "all": {
+     "n": 240,
+     "err3d_median_m": 0.004969679812476353,
+     "err3d_max_m": 0.008340054464618631,
+     "reproj_median_px": 0.06746631444582141,
+     "reproj_p95_px": 0.23767236786535403,
+     "behind_camera": 0,
+     "within_1px_rate": 1.0
+    },
+    "above_horizon": {
+     "n": 107,
+     "err3d_median_m": 0.004690713626035878,
+     "err3d_max_m": 0.008340054464618631,
+     "reproj_median_px": 0.0666574098271731,
+     "reproj_p95_px": 0.2158524825954327,
+     "behind_camera": 0,
+     "within_1px_rate": 1.0
+    },
+    "below_horizon": {
+     "n": 133,
+     "err3d_median_m": 0.00513101081064075,
+     "err3d_max_m": 0.007627659548080638,
+     "reproj_median_px": 0.06749473262432755,
+     "reproj_p95_px": 0.2623273902098208,
+     "behind_camera": 0,
+     "within_1px_rate": 1.0
+    }
+   }
+  }
+ },
+ "ng_raw_bbox_to_world": {
+  "all": {
+   "n": 240,
+   "err3d_median_m": 1.9732846392291674e-14,
+   "err3d_max_m": 3.0146298566338365e-13,
+   "reproj_median_px": 1.7763568394002505e-14,
+   "reproj_p95_px": 5.684341886080802e-14,
+   "behind_camera": 0,
+   "within_1px_rate": 1.0
+  },
+  "above_horizon": {
+   "n": 107,
+   "err3d_median_m": 1.9075169528294937e-14,
+   "err3d_max_m": 2.4629301282796255e-13,
+   "reproj_median_px": 2.0097183471152322e-14,
+   "reproj_p95_px": 5.783398860650275e-14,
+   "behind_camera": 0,
+   "within_1px_rate": 1.0
+  },
+  "below_horizon": {
+   "n": 133,
+   "err3d_median_m": 2.0734733982992197e-14,
+   "err3d_max_m": 3.0146298566338365e-13,
+   "reproj_median_px": 1.4210854715202004e-14,
+   "reproj_p95_px": 5.684341886080802e-14,
+   "behind_camera": 0,
+   "within_1px_rate": 1.0
+  }
+ },
+ "sim": {
+  "legacy": {
+   "shadow": {
+    "scenes": 40,
+    "exact_outcomes": 12000,
+    "max_distance": 0.0,
+    "exact_misses": 0
+   },
+   "seek": {
+    "scenes": 40,
+    "distance_reversals": 7453,
+    "not_arrived_after_200": 40
+   },
+   "seed": {
+    "sl_seed_changes_world": false,
+    "wm_seed_changes_world": false,
+    "wl_seed_changes_world": false
+   },
+   "multiview": {
+    "scenes": 40,
+    "truth_objects_per_scene": 2,
+    "fused_objects_mean": 1.0,
+    "err_median_m": 2.6636,
+    "err_max_m": 5.0619
+   },
+   "support": {
+    "pairs": 80,
+    "accuracy": 0.0
+   },
+   "timing": {
+    "entities": 10,
+    "step_verified_ms": 0.077,
+    "wm_verify_run_ms": 0.516,
+    "seven_layer_step_ms": 0.098
+   }
+  },
+  "ng": {
+   "shadow": {
+    "scenes": 40,
+    "exact_outcomes": 12000,
+    "max_distance": 0.0,
+    "exact_misses": 0
+   },
+   "seek": {
+    "scenes": 40,
+    "distance_reversals": 0,
+    "not_arrived_after_200": 0
+   },
+   "seed": {
+    "sl_seed_changes_world": true,
+    "wm_seed_changes_world": true,
+    "wl_seed_changes_world": true
+   },
+   "multiview": {
+    "scenes": 40,
+    "truth_objects_per_scene": 2,
+    "fused_objects_mean": 2.0,
+    "err_median_m": 0.0048,
+    "err_max_m": 0.0077
+   },
+   "support": {
+    "pairs": 80,
+    "accuracy": 1.0
+   },
+   "timing": {
+    "entities": 10,
+    "step_verified_ms": 0.212,
+    "wm_verify_run_ms": 0.704,
+    "seven_layer_step_ms": 0.228
+   }
+  }
+ }
+}

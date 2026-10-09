@@ -1,0 +1,58 @@
+{
+ "data": {
+  "legacy": {
+   "P1@48": 0.9605,
+   "P1@96": 0.9873,
+   "R2@48": 0.9219,
+   "R2@96": 1.0,
+   "R2@48_200": 0.9655,
+   "R2@96_200": 0.9974,
+   "rot/flip rot90cw": 1.0,
+   "rot/flip rot90ccw": 1.0,
+   "rot/flip rot180": 1.0,
+   "rot/flip fliph": 1.0,
+   "rot/flip flipv": 1.0,
+   "faulty_painter_rate": {
+    "noop": 0.0,
+    "mirror": 0.0,
+    "wrong_color": 0.0,
+    "wrong_pattern": 0.5,
+    "wrong_shape": 1.0,
+    "wrong_size": 1.0
+   },
+   "parse_acc": 0.875,
+   "n": 16,
+   "phantom_parts": 0,
+   "render_ms@96": 1.64
+  },
+  "ng": {
+   "P1@48": 1.0,
+   "P1@96": 0.9873,
+   "R2@48": 0.9844,
+   "R2@96": 0.9818,
+   "R2@48_200": 0.9852,
+   "R2@96_200": 0.9635,
+   "rot/flip rot90cw": 1.0,
+   "rot/flip rot90ccw": 1.0,
+   "rot/flip rot180": 1.0,
+   "rot/flip fliph": 1.0,
+   "rot/flip flipv": 1.0,
+   "faulty_painter_rate": {
+    "noop": 0.0,
+    "mirror": 0.0,
+    "wrong_color": 0.0,
+    "wrong_pattern": 0.5,
+    "wrong_shape": 0.0,
+    "wrong_size": 0.0
+   },
+   "parse_acc": 1.0,
+   "n": 16,
+   "phantom_parts": 0,
+   "render_ms@96": 7.22
+  }
+ },
+ "env": {
+  "OPENBLAS_NUM_THREADS": "1"
+ },
+ "when": "2026-10-08 18:08:52"
+}

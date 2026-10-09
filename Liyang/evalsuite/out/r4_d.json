@@ -1,0 +1,3861 @@
+{
+ "meta": {
+  "generated": "2026-10-09 03:31",
+  "rules": "evalsuite-rules-v1（2026-10-09 固定，先于 ng 首次读数提交）",
+  "weights": {
+   "probes": 0.4,
+   "props": 0.3,
+   "perf": 0.15,
+   "quality": 0.15
+  },
+  "seeds": 200,
+  "sizes": [
+   1000,
+   10000,
+   50000
+  ],
+  "python": "3.12.15",
+  "elapsed_s": 275.7,
+  "reused": [
+   "legacy",
+   "probes",
+   "props",
+   "quality"
+  ]
+ },
+ "snapshots": [
+  {
+   "name": "base",
+   "src": "/workspace/work/ls/upstream",
+   "impl": "legacy",
+   "rev": "2bb8291",
+   "root": "/workspace/work/ls/rewrite/evalsuite/out/_snapcache/base-2bb8291",
+   "commit": "2bb82910ff86817ee96b8fd13cfdbbcb62777251",
+   "dirty": false,
+   "importable": true,
+   "import_detail": "/workspace/work/ls/rewrite/evalsuite/out/_snapcache/base-2bb8291/lingshu/core/core.py"
+  },
+  {
+   "name": "integrated",
+   "src": "/workspace/work/ls/integrated",
+   "impl": "legacy",
+   "rev": "43fc308",
+   "root": "/workspace/work/ls/rewrite/evalsuite/out/_snapcache/integrated-43fc308",
+   "commit": "43fc308006e8acf8bf1d98f52e83be0e044a25dc",
+   "dirty": false,
+   "importable": true,
+   "import_detail": "/workspace/work/ls/rewrite/evalsuite/out/_snapcache/integrated-43fc308/lingshu/core/core.py"
+  },
+  {
+   "name": "ng",
+   "src": "/workspace/work/ls/rewrite",
+   "impl": "ng",
+   "rev": "7d75416",
+   "root": "/workspace/work/ls/rewrite/evalsuite/out/_snapcache/ng-7d75416",
+   "commit": "7d75416c9e5dcfc5739765d80d06e16551a7f49c",
+   "dirty": false,
+   "importable": true,
+   "import_detail": "/workspace/work/ls/rewrite/evalsuite/out/_snapcache/ng-7d75416/lingshu_ng/compat.py"
+  }
+ ],
+ "scores": {
+  "base": {
+   "probes": 10.687022900763358,
+   "props": 59.86666666666667,
+   "perf": 57.08685881798264,
+   "quality": 0.0,
+   "total": 30.797837983002744
+  },
+  "integrated": {
+   "probes": 51.14503816793893,
+   "props": 77.7,
+   "perf": 42.55551031101191,
+   "quality": 0.0,
+   "total": 50.15134181382736
+  },
+  "ng": {
+   "probes": 99.23664122137404,
+   "props": 100.0,
+   "perf": 87.39624951758259,
+   "quality": 0.0,
+   "total": 82.804093916187
+  }
+ },
+ "items": {
+  "probes": {
+   "i29-repeat-boost": {
+    "issue": 29,
+    "title": "重复写入同一错误陈述即增信到 ~1.0"
+   },
+   "i142-negation": {
+    "issue": 142,
+    "title": "M5 去重把否定命题当重复吞掉"
+   },
+   "i142-number": {
+    "issue": 142,
+    "title": "M5 去重对数值改动不敏感（2.5 毫克→7.5 毫克）"
+   },
+   "i142-correction-boost": {
+    "issue": 142,
+    "title": "对同一命题反复更正，原命题反而增信"
+   },
+   "i223-dedup-tags": {
+    "issue": 223,
+    "title": "去重命中时丢弃新输入的 tags/entities"
+   },
+   "i223-dedup-importance": {
+    "issue": 223,
+    "title": "去重命中时丢弃更高的 importance"
+   },
+   "i223-dedup-modality": {
+    "issue": 223,
+    "title": "不同模态的同文内容被合并成一个节点"
+   },
+   "i225-polarity": {
+    "issue": 225,
+    "title": "失败经验并进成功节点并为其增信"
+   },
+   "i35-search-truncation": {
+    "issue": 35,
+    "title": "检索按插入序硬截断：600 条中第 550 条不可达"
+   },
+   "i82-score-saturation": {
+    "issue": 82,
+    "title": "search_content 分数饱和：长短文同分"
+   },
+   "i132-zero-score": {
+    "issue": 132,
+    "title": "零分节点仍作为检索结果返回 / 同义扩展子串误触发"
+   },
+   "i183-tag-like": {
+    "issue": 183,
+    "title": "标签检索 LIKE 子串误配（ent:car_1 命中 ent:car_12 / ent:carX1）"
+   },
+   "i183-search-wildcard": {
+    "issue": 183,
+    "title": "search_content('%') 返回全库（通配符注入）"
+   },
+   "i181-cjk-tag": {
+    "issue": 181,
+    "title": "中文标签写成 \\uXXXX，按中文标签检索 0 条"
+   },
+   "i88-anchors-50": {
+    "issue": 88,
+    "title": "get_anchors 静默截为 50 条"
+   },
+   "i88-layer-enum": {
+    "issue": 88,
+    "title": "get_layer_nodes 整层枚举截断（知识层 61 条）"
+   },
+   "i89-radius0": {
+    "issue": 89,
+    "title": "spatiotemporal_query(time_radius=0) 同刻候选 ZeroDivisionError"
+   },
+   "i179-what-happened-at": {
+    "issue": 179,
+    "title": "what_happened_at 只看 importance 前 500 条"
+   },
+   "i52-access-memory": {
+    "issue": 52,
+    "title": ":memory: 后端检索命中后 access_count 恒 0"
+   },
+   "i164-importance-range": {
+    "issue": 164,
+    "title": "importance 无值域校验：1e6 原样入库并霸占 recall"
+   },
+   "i164-negative-importance": {
+    "issue": 164,
+    "title": "负 importance 原样入库"
+   },
+   "i185-nan-importance": {
+    "issue": 185,
+    "title": "NaN importance 入库（NULL / NaN 永不遗忘）"
+   },
+   "i185-inf-importance": {
+    "issue": 185,
+    "title": "+inf importance 永生并排第一"
+   },
+   "i185-nan-edge": {
+    "issue": 185,
+    "title": "NaN 边置信度入库，边衰减每轮抛 TypeError"
+   },
+   "i117-verify-edge-range": {
+    "issue": 117,
+    "title": "verify_edge 不校验置信度范围（5.0 照单写入）"
+   },
+   "i207-low-imp-context": {
+    "issue": 207,
+    "title": "importance ≤ 阈值的情境记忆永不衰减、永不删除"
+   },
+   "i36-protect-decay": {
+    "issue": 36,
+    "title": "被 protect 的情境节点被衰减删除"
+   },
+   "i36-protect-fifo": {
+    "issue": 36,
+    "title": "被 protect 的情境节点被 FIFO 上限淘汰"
+   },
+   "i210-forget-zero": {
+    "issue": 210,
+    "title": "forget_advisor：0.0 不归档 / 降权反把 0.05 抬到 0.1"
+   },
+   "i210-archive-immortal": {
+    "issue": 210,
+    "title": "归档值落在衰减死区：归档节点永久驻留"
+   },
+   "i115-conflict-edge-decay": {
+    "issue": 115,
+    "title": "矛盾 OPPOSITE 边被普通衰减删除，conflict 标签残留"
+   },
+   "i168-structure-edge": {
+    "issue": 168,
+    "title": "结构层节点的关联边随对端知识节点删除被剥光"
+   },
+   "i176-time-based": {
+    "issue": 176,
+    "title": "遗忘按调用次数而非流逝时间（0.1s 内 50 次 decay 等于 50 分钟）"
+   },
+   "i94-consolidate-round": {
+    "issue": 94,
+    "title": "consolidate_cycle 演练提权第 1 轮误触发"
+   },
+   "i258-consolidate-1000": {
+    "issue": 258,
+    "title": "consolidate_cycle 只处理 importance 前 1000 条"
+   },
+   "i246-cap-restart": {
+    "issue": 246,
+    "title": "情境层容量不持久：重启后第一条 add_context 删掉几百条"
+   },
+   "i246-cap-float": {
+    "issue": 246,
+    "title": "容量传 200.0 后每次写入抛 TypeError"
+   },
+   "i257-protect-many": {
+    "issue": 257,
+    "title": "保护名单 >16383 条后 decay_cycle 抛 too many SQL variables"
+   },
+   "i257-protect-ghost": {
+    "issue": 257,
+    "title": "不存在的 id 也能进保护名单"
+   },
+   "i166-induce-majority": {
+    "issue": 166,
+    "title": "某主题占候选池过半时 induce_concepts 归纳为 0"
+   },
+   "i81-threads": {
+    "issue": 81,
+    "title": "多线程共享连接：并发读写抛异常"
+   },
+   "i37-close-thread": {
+    "issue": 37,
+    "title": "close() 不 join 衰减线程，后台线程访问已关闭连接"
+   },
+   "i184-autodecay-dies": {
+    "issue": 184,
+    "title": "auto-decay 线程首次异常即静默退出"
+   },
+   "i54-consume-paused": {
+    "issue": 54,
+    "title": "paused 期间 consume_events 静默丢弃排队事件"
+   },
+   "i127-sub-demote": {
+    "issue": 127,
+    "title": "SUB 以同 id 写知识层节点即可把结构层节点降级并删除"
+   },
+   "i127-sub-importance": {
+    "issue": 127,
+    "title": "SUB 可改写结构层节点 importance/confidence"
+   },
+   "i127-primary-delete-structure": {
+    "issue": 127,
+    "title": "PRIMARY 以同 id 改写为知识层后可删除结构层"
+   },
+   "i234-sub-edge-structure": {
+    "issue": 234,
+    "title": "SUB 可在结构层节点间新增并自证『已验证』边"
+   },
+   "i244-sub-edge-overwrite": {
+    "issue": 244,
+    "title": "SUB 以同 id 覆盖 PRIMARY 的结构层因果边"
+   },
+   "i234-sub-tag-structure": {
+    "issue": 234,
+    "title": "SUB 可对结构层节点打标签"
+   },
+   "i234-sub-protect": {
+    "issue": 234,
+    "title": "SUB 可为结构层节点登记保护"
+   },
+   "i191-sub-self": {
+    "issue": 191,
+    "title": "SUB 实例 update_self 抛 PermissionError（SELF 被当作共享层）"
+   },
+   "i217-sub-snapshot": {
+    "issue": 217,
+    "title": "SUB 经快照『已存在→更新』分支改写结构层节点"
+   },
+   "i109-external-anchor": {
+    "issue": 109,
+    "title": "register_external_anchor 无密钥直写结构层"
+   },
+   "i118-same-identity": {
+    "issue": 118,
+    "title": "同一身份可走完提案→复核→终裁全程"
+   },
+   "i118-rejected-revive": {
+    "issue": 118,
+    "title": "已否决的提案可被『复核』复活后改判通过"
+   },
+   "i118-unverified-adjudicate": {
+    "issue": 118,
+    "title": "未复核的提案可直接终裁通过"
+   },
+   "i140-content-swap": {
+    "issue": 140,
+    "title": "复核后同 id 改写内容，终裁把未经复核的内容写进结构层"
+   },
+   "i167-pending-deleted": {
+    "issue": 167,
+    "title": "待终裁提案节点被 FIFO 删除后终裁仍返回成功"
+   },
+   "i216-rejected-resubmit": {
+    "issue": 216,
+    "title": "设计者否决过的提案原文重提即写入结构层"
+   },
+   "i51-nonascii-key": {
+    "issue": 51,
+    "title": "非 ASCII 设计者密钥让终裁从『拒绝』变成抛 TypeError"
+   },
+   "i222-blindspot-bypass": {
+    "issue": 222,
+    "title": "store.resolve_blindspot 无密钥即可关闭盲区"
+   },
+   "i153-verifier-restart": {
+    "issue": 153,
+    "title": "终裁通过的验证标准重启即失效"
+   },
+   "i153-dedup-bypass": {
+    "issue": 153,
+    "title": "set_dedup_config 无密钥旁路，get_verifier_config 报旧值"
+   },
+   "i118-standard-range": {
+    "issue": 118,
+    "title": "验证标准终裁参数不做值域校验（dedup_static=5.0）"
+   },
+   "i130-sub-escalation": {
+    "issue": 130,
+    "title": "SUB 无密钥即可关闭全部升级点"
+   },
+   "i57-escalation-value": {
+    "issue": 57,
+    "title": "check_escalation 的数值阈值门永不求值"
+   },
+   "i38-insight-v2": {
+    "issue": 38,
+    "title": "insight_verify V2 零证据即 verified 且 importance 直升 0.9"
+   },
+   "i125-import-structure": {
+    "issue": 125,
+    "title": "import_all 无密钥改写结构层原文"
+   },
+   "i125-import-escalation": {
+    "issue": 125,
+    "title": "import_all 可关闭全部升级点"
+   },
+   "i93-dangling-import": {
+    "issue": 93,
+    "title": "import_all 原样引入孤儿边且不报"
+   },
+   "i16-export": {
+    "issue": 16,
+    "title": "export_all 对缺失表抛 OperationalError"
+   },
+   "i165-shared-sync": {
+    "issue": 165,
+    "title": "共享层同步载荷不含结构层/锚点层"
+   },
+   "i33-self-restart": {
+    "issue": 33,
+    "title": "自我模型重启即失忆"
+   },
+   "i33-trust-restart": {
+    "issue": 33,
+    "title": "信任积累活不过一次重启"
+   },
+   "i107-selfcheck-blind": {
+    "issue": 107,
+    "title": "self_check 在全新/无自我库上仍报 self_ok=True"
+   },
+   "i122-history-bound": {
+    "issue": 122,
+    "title": "SelfModel.history 无界增长"
+   },
+   "i201-self-recall": {
+    "issue": 201,
+    "title": "自我快照以普通记忆参与 recall，挤掉真实记忆"
+   },
+   "i201-self-unbounded": {
+    "issue": 201,
+    "title": "每次 update_self 新增一个不可删除的 SELF 节点（无界）"
+   },
+   "i205-self-edge-decay": {
+    "issue": 205,
+    "title": "自我→经历因果边被衰减删除"
+   },
+   "i212-value-refine": {
+    "issue": 212,
+    "title": "record_value_change 细化一条价值观即抹掉整表"
+   },
+   "i212-evolution-bound": {
+    "issue": 212,
+    "title": "同值重复修正 value_evolution 仍无界追加"
+   },
+   "i182-self-overwrite": {
+    "issue": 182,
+    "title": "update_self 无门控 setattr：一次调用即改写价值观"
+   },
+   "i182-self-nonatomic": {
+    "issue": 182,
+    "title": "坏调用后内存已改、快照写不进（运行态与持久态分叉）"
+   },
+   "i206-trust-nan": {
+    "issue": 206,
+    "title": "update_trust_state 接受 NaN / 越界 t_total"
+   },
+   "i206-trust-gate": {
+    "issue": 206,
+    "title": "t_total 极大时任意快照都以 imp=1.0 写入长期层并加保护"
+   },
+   "i145-long-chain": {
+    "issue": 145,
+    "title": "reason_causal 链长超过 max_depth 时返回 0 条"
+   },
+   "i145-cycle-branch": {
+    "issue": 145,
+    "title": "reason_causal 遇环的分支整条丢弃"
+   },
+   "i145-two-cycle": {
+    "issue": 145,
+    "title": "find_cycles 漏报 2 环 A⇄B"
+   },
+   "i145-self-loop": {
+    "issue": 145,
+    "title": "find_cycles 漏报自环"
+   },
+   "i145-dup-report": {
+    "issue": 145,
+    "title": "同一个环被每个节点重复报告"
+   },
+   "i215-cycle-consistency": {
+    "issue": 215,
+    "title": "环长 > max_depth 时 has_cycle=True 而 self_check 报 0"
+   },
+   "i215-selfcheck-time": {
+    "issue": 215,
+    "title": "有环稠密图 self_check 仍整趟深搜（45 节点/211 边）"
+   },
+   "i252-dense-scc": {
+    "issue": 252,
+    "title": "11 节点互为因果：self_check 全枚举（14s/3GB）"
+   },
+   "i252-find-cycles-budget": {
+    "issue": 252,
+    "title": "find_cycles 在稠密 SCC 上无预算（9 节点完全图）"
+   },
+   "i95-activation-empty-graph": {
+    "issue": 95,
+    "title": "空认知图默认 hops=2 激活抛 ValueError"
+   },
+   "i199-activation-empty-query": {
+    "issue": 199,
+    "title": "空查询把全图节点当满分种子"
+   },
+   "i161-activation-space-query": {
+    "issue": 161,
+    "title": "纯空格查询命中全部节点"
+   },
+   "i126-activation-cache": {
+    "issue": 126,
+    "title": "激活引擎图缓存不刷新：新增节点被丢弃"
+   },
+   "i229-activation-opposite": {
+    "issue": 229,
+    "title": "OPPOSITE（矛盾）边按兴奋传导，被反驳结论激活"
+   },
+   "i139-replace-nonatomic": {
+    "issue": 139,
+    "title": "subgraph_replace 新子树缺键时旧子树已被删（非原子）"
+   },
+   "i139-replace-parent": {
+    "issue": 139,
+    "title": "old_sub_root_id==parent_id 时父节点自身被删"
+   },
+   "i139-replace-protected": {
+    "issue": 139,
+    "title": "subgraph_replace 级联删除受保护节点"
+   },
+   "i224-receipt-layer": {
+    "issue": 224,
+    "title": "write_snapshot 回执 layer 与实际落库层不一致"
+   },
+   "i224-context-hit": {
+    "issue": 224,
+    "title": "快照命中情境层旧节点报 long_term+protected，节点仍留在情境层被删"
+   },
+   "i114-gate-unreachable": {
+    "issue": 114,
+    "title": "默认 t_total=0 时全新内容快照一律 discarded / 长期层不可达"
+   },
+   "i44-gate-links": {
+    "issue": 44,
+    "title": "长期层关联边从未建成（links 恒 0）"
+   },
+   "i213-novelty-english": {
+    "issue": 213,
+    "title": "新奇检测对英文/代码/西里尔失明（恒 0.5）"
+   },
+   "i213-novelty-repeat-en": {
+    "issue": 213,
+    "title": "英文内容重复仍判 0.5（无法识别已知）"
+   },
+   "i213-novelty-identifier": {
+    "issue": 213,
+    "title": "只改数字/标识符（收款账号、IP）被判完全已知"
+   },
+   "i48-novelty-window": {
+    "issue": 48,
+    "title": "新奇度只看 top-80：较老的既有知识被判为新"
+   },
+   "i214-promote-context": {
+    "issue": 214,
+    "title": "情境层→知识层巩固通路不存在（维护周期从不提升）"
+   },
+   "i83-provenance-gate": {
+    "issue": 83,
+    "title": "显式来源被 gate/novel_prefeed 覆盖（user→fixture）"
+   },
+   "i146-provenance-roundtrip": {
+    "issue": 146,
+    "title": "to_tags 的 verify_methods / vref 凭证读不回（strong→weak）"
+   },
+   "i20-provenance-human-review": {
+    "issue": 20,
+    "title": "from_legacy 永远推不出 human_review"
+   },
+   "i138-cond-unasserted": {
+    "issue": 138,
+    "title": "非法/带空格的条件值静默折叠为 UNASSERTED，同 cond_hash"
+   },
+   "i180-cred-step": {
+    "issue": 180,
+    "title": "cred_step 与 cred_factor 语义反转，混用单步归零"
+   },
+   "i7-numpy-free": {
+    "issue": 7,
+    "title": "core 轻核承诺：屏蔽 numpy 后 activation 模块不可导入"
+   },
+   "i200-skill-substring": {
+    "issue": 200,
+    "title": "record_action_sequence 用子串把『备份』追加进『删除备份』"
+   },
+   "i200-skill-wildcard": {
+    "issue": 200,
+    "title": "技能检索 hint 含 _ / % 命中任意技能"
+   },
+   "i200-skill-failure": {
+    "issue": 200,
+    "title": "技能失败从不降信（50 败 10 胜置信度仍高）"
+   },
+   "i216-skill-from-failures": {
+    "issue": 216,
+    "title": "同一失败犯 21 次，技能照常提取 / 负记忆不参与"
+   },
+   "i216-failure-importance": {
+    "issue": 216,
+    "title": "失败经验 importance 低于成功（负记忆不同价）"
+   },
+   "i154-reflect-self-evidence": {
+    "issue": 154,
+    "title": "recursive_reflect 把自己的归档当证据：第二次起偏差恒 False"
+   },
+   "i154-reflect-negation": {
+    "issue": 154,
+    "title": "可逆性按子串判：『不删除』判为不可逆+需设计者"
+   },
+   "i130-reflect-escalation": {
+    "issue": 130,
+    "title": "反思判出需设计者后不调用升级点（check_escalation 零调用）"
+   },
+   "i184-tx-lock": {
+    "issue": 184,
+    "title": "写方法中途异常后连接停在未提交事务里，外部写入 database is locked"
+   },
+   "i92-old-schema": {
+    "issue": 92,
+    "title": "老库（缺后加列/表）打开即崩或永远补不上"
+   },
+   "i156-cwd-hijack": {
+    "issue": 156,
+    "title": "构造引擎时按裸模块名从 sys.path 导入：cwd 里同名 .py 被执行"
+   },
+   "i243-facade-init": {
+    "issue": 243,
+    "title": "world 门面声明 init 动作但没有 init 分支"
+   },
+   "i55-world-degenerate": {
+    "issue": 55,
+    "title": "world_model run(0) 等退化输入崩溃"
+   }
+  },
+  "props": {
+   "P01-layer-immutability": "锚点/结构层在任意维护操作序列后内容与层不变",
+   "P02-dedup-idempotent": "同一内容重复写入幂等：返回同一 id、库中只有一条",
+   "P03-dedup-polarity": "去重对否定/数值敏感：插入『不』或改一个数字的句子不被合并",
+   "P04-decay-monotone": "衰减单调：可衰减节点 importance 不增、被删节点不复活",
+   "P05-decay-termination": "衰减终止：未保护的情境节点在有限轮（factor=0.2，≤150 轮）内被遗忘",
+   "P06-export-import-roundtrip": "导出→导入往返：本地层（知识/情境）与其间的边逐项等价；共享层（锚点/结构）要么原样恢复、要么整条不导入（隔离），绝不被改写",
+   "P07-cycle-vs-brute": "环检测与暴力枚举一致：has_cycle 判定 + find_cycles 计数（n≤6）",
+   "P08-concurrent-no-loss": "并发写不丢：3 线程各写 8 条唯一内容，全部恰好落库一次",
+   "P09-nonfinite-rejected": "非有限数值（NaN/±inf）不进库：要么被拒，要么不以非有限值存储",
+   "P10-recall-no-self": "检索不返回 SELF 快照",
+   "P11-sub-no-protected-write": "SUB 角色不可改写受保护层（锚点/结构）的节点与边",
+   "P12-importance-range": "importance 写入后恒在 [0,1]（越界值被拒或钳制）",
+   "P13-tag-exact": "按标签检索精确匹配（含 _ % 中文 前缀相同的标签）",
+   "P14-gate-receipt": "门控回执层 = 实际落库层（任意 hint）",
+   "P15-protected-survive": "被 protect 的节点在衰减/容量淘汰/遗忘建议后仍存在"
+  }
+ },
+ "probes": {
+  "base": {
+   "i107-selfcheck-blind": {
+    "verdict": "BUG",
+    "reading": "全新引擎 self_ok=True",
+    "sec": 0.243
+   },
+   "i109-external-anchor": {
+    "verdict": "BUG",
+    "reading": "外部输入落层=structure",
+    "sec": 0.211
+   },
+   "i114-gate-unreachable": {
+    "verdict": "BUG",
+    "reading": "5 条全新快照状态=['discarded', 'discarded', 'discarded', 'discarded', 'discarded']",
+    "sec": 0.249
+   },
+   "i115-conflict-edge-decay": {
+    "verdict": "BUG",
+    "reading": "80 轮后 opposite 边=0，conflict 标签仍在=True",
+    "sec": 0.216
+   },
+   "i117-verify-edge-range": {
+    "verdict": "BUG",
+    "reading": "verify_edge(5.0) 后 conf=5.0",
+    "sec": 0.045
+   },
+   "i118-rejected-revive": {
+    "verdict": "BUG",
+    "reading": "复活改判结果=True，落层=structure",
+    "sec": 0.058
+   },
+   "i118-same-identity": {
+    "verdict": "BUG",
+    "reading": "同人三签结果=True，落层=structure",
+    "sec": 0.069
+   },
+   "i118-standard-range": {
+    "verdict": "BUG",
+    "reading": "生效值=5.0",
+    "sec": 0.072
+   },
+   "i118-unverified-adjudicate": {
+    "verdict": "OK",
+    "reading": "结果=False，落层=knowledge",
+    "sec": 0.066
+   },
+   "i122-history-bound": {
+    "verdict": "BUG",
+    "reading": "300 次 update_self 后 history 长度 300",
+    "sec": 0.378
+   },
+   "i125-import-escalation": {
+    "verdict": "BUG",
+    "reading": "启用升级点 6 → 导入后 0",
+    "sec": 0.067
+   },
+   "i125-import-structure": {
+    "verdict": "BUG",
+    "reading": "导入后结构层原文=P0: 可以自主生成目标",
+    "sec": 0.064
+   },
+   "i126-activation-cache": {
+    "verdict": "BUG",
+    "reading": "新增节点在激活结果=False，seeds=0",
+    "sec": 0.507
+   },
+   "i127-primary-delete-structure": {
+    "verdict": "BUG",
+    "reading": "结构层节点现状=None",
+    "sec": 0.046
+   },
+   "i127-sub-demote": {
+    "verdict": "BUG",
+    "reading": "结构层节点现状=None",
+    "sec": 0.066
+   },
+   "i127-sub-importance": {
+    "verdict": "BUG",
+    "reading": "importance 0.8→0.30000000000000004，confidence 1.0→0.5",
+    "sec": 0.073
+   },
+   "i130-reflect-escalation": {
+    "verdict": "BUG",
+    "reading": "check_escalation 调用次数=0",
+    "sec": 0.133
+   },
+   "i130-sub-escalation": {
+    "verdict": "BUG",
+    "reading": "升级点 6 → SUB 关闭后启用 0",
+    "sec": 0.038
+   },
+   "i132-zero-score": {
+    "verdict": "BUG",
+    "reading": "top1 是目标=True，零分结果=9，无关『灵枢智能体』结果=9",
+    "sec": 0.072
+   },
+   "i138-cond-unasserted": {
+    "verdict": "BUG",
+    "reading": "非法 style 与未声明同哈希=True",
+    "sec": 0.134
+   },
+   "i139-replace-nonatomic": {
+    "verdict": "BUG",
+    "reading": "失败后旧子树根仍在=False",
+    "sec": 0.059
+   },
+   "i139-replace-parent": {
+    "verdict": "BUG",
+    "reading": "父节点仍在=False",
+    "sec": 0.066
+   },
+   "i139-replace-protected": {
+    "verdict": "BUG",
+    "reading": "受保护叶子仍在=False",
+    "sec": 0.033
+   },
+   "i140-content-swap": {
+    "verdict": "BUG",
+    "reading": "结构层内容=所有用户输入一律可信无需校验 层=structure",
+    "sec": 0.067
+   },
+   "i142-correction-boost": {
+    "verdict": "OK",
+    "reading": "25 次更正后原命题置信度 0.50→0.50",
+    "sec": 0.067
+   },
+   "i142-negation": {
+    "verdict": "BUG",
+    "reading": "否定句返回旧节点=True，否定句入库=False",
+    "sec": 0.062
+   },
+   "i142-number": {
+    "verdict": "BUG",
+    "reading": "数值更正被合并=True",
+    "sec": 0.055
+   },
+   "i145-cycle-branch": {
+    "verdict": "OK",
+    "reading": "返回 2 条链，含到环上节点 c 的链=True",
+    "sec": 0.054
+   },
+   "i145-dup-report": {
+    "verdict": "OK",
+    "reading": "唯一 4 环报 1 个",
+    "sec": 0.06
+   },
+   "i145-long-chain": {
+    "verdict": "OK",
+    "reading": "7 步链 max_depth=5 → 1 条（应返回截断链而不是全丢）",
+    "sec": 0.041
+   },
+   "i145-self-loop": {
+    "verdict": "OK",
+    "reading": "自环报环 1 个",
+    "sec": 0.072
+   },
+   "i145-two-cycle": {
+    "verdict": "OK",
+    "reading": "A⇄B 报环 1 个",
+    "sec": 0.063
+   },
+   "i146-provenance-roundtrip": {
+    "verdict": "BUG",
+    "reading": "强度 strong→weak",
+    "sec": 0.124
+   },
+   "i153-dedup-bypass": {
+    "verdict": "BUG",
+    "reading": "set_dedup(0.5) 后 get_verifier_config 报 0.85→0.85（报数与生效值不一致）",
+    "sec": 0.06
+   },
+   "i153-verifier-restart": {
+    "verdict": "BUG",
+    "reading": "终裁后 0.95 → 重启后 0.85",
+    "sec": 0.057
+   },
+   "i154-reflect-negation": {
+    "verdict": "BUG",
+    "reading": "needs_designer=True",
+    "sec": 0.039
+   },
+   "i154-reflect-self-evidence": {
+    "verdict": "BUG",
+    "reading": "三次 deviation=[True, False, False]",
+    "sec": 0.073
+   },
+   "i156-cwd-hijack": {
+    "verdict": "BUG",
+    "reading": "cwd 中被执行的同名模块=['entity_registry', 'semantic_space', 'attention_policy', 'prediction_engine', 'lifecycle_engine', 'flywheel_engine', 'self_cognition_engine', 'body']",
+    "sec": 0.056
+   },
+   "i16-export": {
+    "verdict": "OK",
+    "reading": "导出成功",
+    "sec": 0.072
+   },
+   "i161-activation-space-query": {
+    "verdict": "BUG",
+    "reading": "空格查询 seeds=4",
+    "sec": 0.374
+   },
+   "i164-importance-range": {
+    "verdict": "BUG",
+    "reading": "importance=1e6 入库后读数 1000000.0",
+    "sec": 0.085
+   },
+   "i164-negative-importance": {
+    "verdict": "BUG",
+    "reading": "importance=-5 入库后 -5.0",
+    "sec": 0.063
+   },
+   "i165-shared-sync": {
+    "verdict": "BUG",
+    "reading": "载荷含结构=False，含锚点=False，共 1 条",
+    "sec": 0.058
+   },
+   "i166-induce-majority": {
+    "verdict": "BUG",
+    "reading": "10 条同主题 + 9 条噪声 → 归纳概念 0 个",
+    "sec": 0.066
+   },
+   "i167-pending-deleted": {
+    "verdict": "BUG",
+    "reading": "终裁返回=True，节点=None",
+    "sec": 0.064
+   },
+   "i168-structure-edge": {
+    "verdict": "BUG",
+    "reading": "情境端被遗忘=True，结构节点剩余边=0",
+    "sec": 0.072
+   },
+   "i176-time-based": {
+    "verdict": "BUG",
+    "reading": "0.00s 墙钟内 50 次 decay 后 importance 0.5→0.182",
+    "sec": 0.065
+   },
+   "i179-what-happened-at": {
+    "verdict": "BUG",
+    "reading": "what_happened_at(t) 命中目标=False",
+    "sec": 0.101
+   },
+   "i180-cred-step": {
+    "verdict": "BUG",
+    "reading": "cred_step(100, cred_factor(0.1,1)) = 9.516（期望 ≈90.48）",
+    "sec": 0.06
+   },
+   "i181-cjk-tag": {
+    "verdict": "BUG",
+    "reading": "by_tag('苹果')=0，by_tag('ent:猫')=0",
+    "sec": 0.063
+   },
+   "i182-self-nonatomic": {
+    "verdict": "BUG",
+    "reading": "坏调用失败=True，内存被污染=True，之后正常调用成功=False，SELF 节点 0→0",
+    "sec": 0.061
+   },
+   "i182-self-overwrite": {
+    "verdict": "BUG",
+    "reading": "values ['存在优先', '信任深化', '结构完整'] → ['被篡改的价值观']",
+    "sec": 0.06
+   },
+   "i183-search-wildcard": {
+    "verdict": "BUG",
+    "reading": "'%' 与 '_' 查询共命中 40 条（库中无字面 %/_）",
+    "sec": 0.07
+   },
+   "i183-tag-like": {
+    "verdict": "BUG",
+    "reading": "by_tag('ent:car_1') → ['frame of ent:carX1', 'frame of ent:car_1', 'frame of ent:car_12']",
+    "sec": 0.071
+   },
+   "i184-autodecay-dies": {
+    "verdict": "BUG",
+    "reading": "衰减线程存活=False，后续情境仍被衰减=False",
+    "sec": 0.855
+   },
+   "i184-tx-lock": {
+    "verdict": "BUG",
+    "reading": "decay 抛异常=True，外部写入被锁=True",
+    "sec": 0.548
+   },
+   "i185-inf-importance": {
+    "verdict": "BUG",
+    "reading": "50 轮衰减后 inf",
+    "sec": 0.04
+   },
+   "i185-nan-edge": {
+    "verdict": "BUG",
+    "reading": "decay 抛 TypeError: unsupported operand type(s) for *: 'NoneType' and 'float'",
+    "sec": 0.034
+   },
+   "i185-nan-importance": {
+    "verdict": "BUG",
+    "reading": "NaN 写入后读数 None",
+    "sec": 0.035
+   },
+   "i191-sub-self": {
+    "verdict": "BUG",
+    "reading": "PermissionError: role=sub 无权写入共享层（self），共享层由父节点主控",
+    "sec": 0.032
+   },
+   "i199-activation-empty-query": {
+    "verdict": "BUG",
+    "reading": "空查询 seeds=4",
+    "sec": 0.216
+   },
+   "i20-provenance-human-review": {
+    "verdict": "BUG",
+    "reading": "往返后 methods=['none']",
+    "sec": 0.042
+   },
+   "i200-skill-failure": {
+    "verdict": "BUG",
+    "reading": "50 败 10 胜 confidence=0.95",
+    "sec": 0.037
+   },
+   "i200-skill-substring": {
+    "verdict": "BUG",
+    "reading": "删除备份 程序='rm -rf /backup/old → tar czf db.tgz /dat' conf=0.55",
+    "sec": 0.029
+   },
+   "i200-skill-wildcard": {
+    "verdict": "BUG",
+    "reading": "'_'/'%' 命中 ['删除备份', '删除备份']",
+    "sec": 0.03
+   },
+   "i201-self-recall": {
+    "verdict": "BUG",
+    "reading": "recall top10 中 SELF=10，真实记忆在列=False",
+    "sec": 0.076
+   },
+   "i201-self-unbounded": {
+    "verdict": "BUG",
+    "reading": "100 次 update_self 后 SELF 层节点 100",
+    "sec": 0.049
+   },
+   "i205-self-edge-decay": {
+    "verdict": "BUG",
+    "reading": "自我→经历边 1 → 300 轮后 0",
+    "sec": 0.072
+   },
+   "i206-trust-gate": {
+    "verdict": "BUG",
+    "reading": "闲聊快照 layer=long_term imp=1.0 protected=True",
+    "sec": 0.052
+   },
+   "i206-trust-nan": {
+    "verdict": "BUG",
+    "reading": "被原样接受的非有限值=['nan', 'inf']",
+    "sec": 0.041
+   },
+   "i207-low-imp-context": {
+    "verdict": "BUG",
+    "reading": "1000 轮衰减后存活 3/3",
+    "sec": 0.058
+   },
+   "i210-archive-immortal": {
+    "verdict": "BUG",
+    "reading": "归档+500 轮衰减后仍在=True",
+    "sec": 0.067
+   },
+   "i210-forget-zero": {
+    "verdict": "BUG",
+    "reading": "0.05 节点→0.1，0.0 节点被归档/删除=False",
+    "sec": 0.032
+   },
+   "i212-evolution-bound": {
+    "verdict": "BUG",
+    "reading": "同值 500 次 evolution 增量 1002",
+    "sec": 0.06
+   },
+   "i212-value-refine": {
+    "verdict": "BUG",
+    "reading": "细化前 ['存在优先', '信任深化', '结构完整'] → 细化后 ['存在优先（细化）']",
+    "sec": 0.069
+   },
+   "i213-novelty-english": {
+    "verdict": "BUG",
+    "reading": "首见新奇度={'The production': 0.5, 'rm -rf /var/li': 0.5, 'Москва столица': 0.5}",
+    "sec": 0.08
+   },
+   "i213-novelty-identifier": {
+    "verdict": "BUG",
+    "reading": "新奇度={'999999': 0.0, '.0.0.5': 0.0}",
+    "sec": 0.072
+   },
+   "i213-novelty-repeat-en": {
+    "verdict": "BUG",
+    "reading": "重复英文新奇度=0.500",
+    "sec": 0.072
+   },
+   "i214-promote-context": {
+    "verdict": "BUG",
+    "reading": "3 次维护后层=context",
+    "sec": 0.061
+   },
+   "i215-cycle-consistency": {
+    "verdict": "BUG",
+    "reading": "has_cycle=True，self_check cycles_found=0",
+    "sec": 0.083
+   },
+   "i215-selfcheck-time": {
+    "verdict": "BUG",
+    "reading": "self_check 用时 1.14s 完成=True",
+    "sec": 1.219
+   },
+   "i216-failure-importance": {
+    "verdict": "BUG",
+    "reading": "成功 importance=0.6 失败=0.4",
+    "sec": 0.06
+   },
+   "i216-rejected-resubmit": {
+    "verdict": "BUG",
+    "reading": "重提落层=structure",
+    "sec": 0.078
+   },
+   "i216-skill-from-failures": {
+    "verdict": "BUG",
+    "reading": "技能存在=True conf=0.50",
+    "sec": 0.071
+   },
+   "i217-sub-snapshot": {
+    "verdict": "BUG",
+    "reading": "结构层 tags 变化=True，被登记保护=True",
+    "sec": 0.067
+   },
+   "i222-blindspot-bypass": {
+    "verdict": "BUG",
+    "reading": "无密钥绕过后盲区仍开放=False",
+    "sec": 0.062
+   },
+   "i223-dedup-importance": {
+    "verdict": "BUG",
+    "reading": "两次写入 importance 0.3/0.95 → 库中最大 0.30",
+    "sec": 0.054
+   },
+   "i223-dedup-modality": {
+    "verdict": "BUG",
+    "reading": "audio 并入 text 节点=True",
+    "sec": 0.054
+   },
+   "i223-dedup-tags": {
+    "verdict": "BUG",
+    "reading": "按 project:alpha 检索命中 0 条（应能找到合并或新建的节点）",
+    "sec": 0.068
+   },
+   "i224-context-hit": {
+    "verdict": "BUG",
+    "reading": "回执 long_term，旧情境节点现状=None",
+    "sec": 0.08
+   },
+   "i224-receipt-layer": {
+    "verdict": "BUG",
+    "reading": "hint=0.2: 回执 context/None 实际 knowledge",
+    "sec": 0.067
+   },
+   "i225-polarity": {
+    "verdict": "BUG",
+    "reading": "失败返回成功节点=True，成功节点置信度=0.600",
+    "sec": 0.06
+   },
+   "i229-activation-opposite": {
+    "verdict": "BUG",
+    "reading": "被三条证据反驳的旧结论激活值=1.5",
+    "sec": 0.448
+   },
+   "i234-sub-edge-structure": {
+    "verdict": "BUG",
+    "reading": "SUB 注入边存在=True，verified=True",
+    "sec": 0.071
+   },
+   "i234-sub-protect": {
+    "verdict": "BUG",
+    "reading": "结构层节点被 SUB 登记保护=True",
+    "sec": 0.058
+   },
+   "i234-sub-tag-structure": {
+    "verdict": "BUG",
+    "reading": "tags=['structure', 'promotion_pending']",
+    "sec": 0.072
+   },
+   "i243-facade-init": {
+    "verdict": "BUG",
+    "reading": "init 失败的门面=['spacetime_consistency', 'world_model', 'world_learner', 'curiosity_explorer', 'seven_layer_loop']",
+    "sec": 0.454
+   },
+   "i244-sub-edge-overwrite": {
+    "verdict": "BUG",
+    "reading": "边现状={'id': 'edge_cff860e2_1791487541437', 'src': 'struct_c94d038f_1791487541437', 'dst': 'struct_7d858fbc_1791487541437', 'rel': 'opposite', 'confidence': 1.0, 'verified': False}",
+    "sec": 0.064
+   },
+   "i246-cap-float": {
+    "verdict": "OK",
+    "reading": "float 容量可用",
+    "sec": 0.069
+   },
+   "i246-cap-restart": {
+    "verdict": "BUG",
+    "reading": "重启前 300 条 → 重启后写 1 条后 200 条",
+    "sec": 0.16
+   },
+   "i252-dense-scc": {
+    "verdict": "BUG",
+    "reading": "BUG self_check 8s 未完成",
+    "sec": 8.19
+   },
+   "i252-find-cycles-budget": {
+    "verdict": "OK",
+    "reading": "find_cycles 用时 0.97s，返回 125664",
+    "sec": 1.078
+   },
+   "i257-protect-ghost": {
+    "verdict": "BUG",
+    "reading": "幽灵 id 在保护名单=True",
+    "sec": 0.052
+   },
+   "i257-protect-many": {
+    "verdict": "OK",
+    "reading": "decay 正常",
+    "sec": 0.401
+   },
+   "i258-consolidate-1000": {
+    "verdict": "BUG",
+    "reading": "20 条低重要度中被降权 0",
+    "sec": 0.172
+   },
+   "i29-repeat-boost": {
+    "verdict": "BUG",
+    "reading": "30 次重复后置信度=1.000（同源重复不应被当作独立佐证）",
+    "sec": 0.067
+   },
+   "i33-self-restart": {
+    "verdict": "BUG",
+    "reading": "重启前 values=['诚实优先'] → 重启后 ['存在优先', '信任深化', '结构完整']",
+    "sec": 0.062
+   },
+   "i33-trust-restart": {
+    "verdict": "BUG",
+    "reading": "重启后 t_total=0.0",
+    "sec": 0.087
+   },
+   "i35-search-truncation": {
+    "verdict": "OK",
+    "reading": "search('TOK0550') 命中目标=True，返回 1 条",
+    "sec": 0.121
+   },
+   "i36-protect-decay": {
+    "verdict": "BUG",
+    "reading": "300 轮后仍存在=False",
+    "sec": 0.06
+   },
+   "i36-protect-fifo": {
+    "verdict": "BUG",
+    "reading": "FIFO 后仍存在=False",
+    "sec": 0.067
+   },
+   "i37-close-thread": {
+    "verdict": "BUG",
+    "reading": "线程异常=['ProgrammingError']，close 后残留线程=0",
+    "sec": 0.62
+   },
+   "i38-insight-v2": {
+    "verdict": "BUG",
+    "reading": "status=verified，importance=0.9",
+    "sec": 0.059
+   },
+   "i44-gate-links": {
+    "verdict": "BUG",
+    "reading": "links=0，实际边=0",
+    "sec": 0.068
+   },
+   "i48-novelty-window": {
+    "verdict": "BUG",
+    "reading": "已存在内容的新奇度=1.000",
+    "sec": 0.075
+   },
+   "i51-nonascii-key": {
+    "verdict": "BUG",
+    "reading": "TypeError: comparing strings with non-ASCII characters is not supported",
+    "sec": 0.063
+   },
+   "i52-access-memory": {
+    "verdict": "BUG",
+    "reading": "3 次命中后 access_count=0",
+    "sec": 0.055
+   },
+   "i54-consume-paused": {
+    "verdict": "BUG",
+    "reading": "暂停前排队 2 → 暂停期间 consume 后 0",
+    "sec": 0.052
+   },
+   "i55-world-degenerate": {
+    "verdict": "BUG",
+    "reading": "UnboundLocalError: cannot access local variable 'v' where it is not associated ",
+    "sec": 0.059
+   },
+   "i57-escalation-value": {
+    "verdict": "BUG",
+    "reading": "value=0.05 时命中 'value > 0.9' 升级点=True",
+    "sec": 0.076
+   },
+   "i7-numpy-free": {
+    "verdict": "BUG",
+    "reading": "激活模块: import:activation:import of numpy halted; None in sys.modules",
+    "sec": 0.061
+   },
+   "i81-threads": {
+    "verdict": "BUG",
+    "reading": "异常={'OperationalError': 101}，知识层条数=109/210",
+    "sec": 0.154
+   },
+   "i82-score-saturation": {
+    "verdict": "BUG",
+    "reading": "分数取值集合=[1.0]",
+    "sec": 0.076
+   },
+   "i83-provenance-gate": {
+    "verdict": "OK",
+    "reading": "往返后 source=user",
+    "sec": 0.082
+   },
+   "i88-anchors-50": {
+    "verdict": "BUG",
+    "reading": "存 60 个锚点，返回 50，缺 10",
+    "sec": 0.08
+   },
+   "i88-layer-enum": {
+    "verdict": "BUG",
+    "reading": "知识层 61 条，整层枚举返回 50",
+    "sec": 0.068
+   },
+   "i89-radius0": {
+    "verdict": "BUG",
+    "reading": "ZeroDivisionError",
+    "sec": 0.076
+   },
+   "i92-old-schema": {
+    "verdict": "OK",
+    "reading": "老库可用=True",
+    "sec": 0.077
+   },
+   "i93-dangling-import": {
+    "verdict": "BUG",
+    "reading": "孤儿边入库=True，导入回执报告悬挂=False",
+    "sec": 0.072
+   },
+   "i94-consolidate-round": {
+    "verdict": "BUG",
+    "reading": "提权轮次=[1, 11]（期望首提权在第 10 次演练）",
+    "sec": 0.071
+   },
+   "i95-activation-empty-graph": {
+    "verdict": "BUG",
+    "reading": "ValueError: zero-size array to reduction operation maximum which has no identity",
+    "sec": 0.346
+   }
+  },
+  "integrated": {
+   "i107-selfcheck-blind": {
+    "verdict": "OK",
+    "reading": "全新引擎 self_ok=False",
+    "sec": 0.275
+   },
+   "i109-external-anchor": {
+    "verdict": "OK",
+    "reading": "被拒",
+    "sec": 0.254
+   },
+   "i114-gate-unreachable": {
+    "verdict": "BUG",
+    "reading": "5 条全新快照状态=['discarded', 'discarded', 'discarded', 'discarded', 'discarded']",
+    "sec": 0.105
+   },
+   "i115-conflict-edge-decay": {
+    "verdict": "BUG",
+    "reading": "80 轮后 opposite 边=0，conflict 标签仍在=True",
+    "sec": 0.09
+   },
+   "i117-verify-edge-range": {
+    "verdict": "BUG",
+    "reading": "verify_edge(5.0) 后 conf=5.0",
+    "sec": 0.068
+   },
+   "i118-rejected-revive": {
+    "verdict": "BUG",
+    "reading": "复活改判结果=True，落层=structure",
+    "sec": 0.083
+   },
+   "i118-same-identity": {
+    "verdict": "BUG",
+    "reading": "同人三签结果=True，落层=structure",
+    "sec": 0.071
+   },
+   "i118-standard-range": {
+    "verdict": "BUG",
+    "reading": "生效值=5.0",
+    "sec": 0.069
+   },
+   "i118-unverified-adjudicate": {
+    "verdict": "OK",
+    "reading": "结果=False，落层=knowledge",
+    "sec": 0.068
+   },
+   "i122-history-bound": {
+    "verdict": "OK",
+    "reading": "300 次 update_self 后 history 长度 200",
+    "sec": 0.282
+   },
+   "i125-import-escalation": {
+    "verdict": "BUG",
+    "reading": "启用升级点 6 → 导入后 0",
+    "sec": 0.085
+   },
+   "i125-import-structure": {
+    "verdict": "BUG",
+    "reading": "导入后结构层原文=P0: 可以自主生成目标",
+    "sec": 0.072
+   },
+   "i126-activation-cache": {
+    "verdict": "OK",
+    "reading": "新增节点在激活结果=True，seeds=1",
+    "sec": 0.469
+   },
+   "i127-primary-delete-structure": {
+    "verdict": "BUG",
+    "reading": "结构层节点现状=None",
+    "sec": 0.107
+   },
+   "i127-sub-demote": {
+    "verdict": "BUG",
+    "reading": "结构层节点现状=None",
+    "sec": 0.096
+   },
+   "i127-sub-importance": {
+    "verdict": "BUG",
+    "reading": "importance 0.8→0.30000000000000004，confidence 1.0→0.5",
+    "sec": 0.082
+   },
+   "i130-reflect-escalation": {
+    "verdict": "BUG",
+    "reading": "check_escalation 调用次数=0",
+    "sec": 0.134
+   },
+   "i130-sub-escalation": {
+    "verdict": "OK",
+    "reading": "升级点 6 → SUB 关闭后启用 6",
+    "sec": 0.09
+   },
+   "i132-zero-score": {
+    "verdict": "BUG",
+    "reading": "top1 是目标=True，零分结果=9，无关『灵枢智能体』结果=9",
+    "sec": 0.081
+   },
+   "i138-cond-unasserted": {
+    "verdict": "BUG",
+    "reading": "非法 style 与未声明同哈希=True",
+    "sec": 0.068
+   },
+   "i139-replace-nonatomic": {
+    "verdict": "BUG",
+    "reading": "失败后旧子树根仍在=False",
+    "sec": 0.074
+   },
+   "i139-replace-parent": {
+    "verdict": "BUG",
+    "reading": "父节点仍在=False",
+    "sec": 0.08
+   },
+   "i139-replace-protected": {
+    "verdict": "BUG",
+    "reading": "受保护叶子仍在=False",
+    "sec": 0.096
+   },
+   "i140-content-swap": {
+    "verdict": "BUG",
+    "reading": "结构层内容=所有用户输入一律可信无需校验 层=structure",
+    "sec": 0.064
+   },
+   "i142-correction-boost": {
+    "verdict": "OK",
+    "reading": "25 次更正后原命题置信度 0.50→0.50",
+    "sec": 0.115
+   },
+   "i142-negation": {
+    "verdict": "BUG",
+    "reading": "否定句返回旧节点=True，否定句入库=False",
+    "sec": 0.1
+   },
+   "i142-number": {
+    "verdict": "BUG",
+    "reading": "数值更正被合并=True",
+    "sec": 0.065
+   },
+   "i145-cycle-branch": {
+    "verdict": "OK",
+    "reading": "返回 2 条链，含到环上节点 c 的链=True",
+    "sec": 0.069
+   },
+   "i145-dup-report": {
+    "verdict": "OK",
+    "reading": "唯一 4 环报 1 个",
+    "sec": 0.069
+   },
+   "i145-long-chain": {
+    "verdict": "OK",
+    "reading": "7 步链 max_depth=5 → 1 条（应返回截断链而不是全丢）",
+    "sec": 0.072
+   },
+   "i145-self-loop": {
+    "verdict": "OK",
+    "reading": "自环报环 1 个",
+    "sec": 0.079
+   },
+   "i145-two-cycle": {
+    "verdict": "OK",
+    "reading": "A⇄B 报环 1 个",
+    "sec": 0.07
+   },
+   "i146-provenance-roundtrip": {
+    "verdict": "BUG",
+    "reading": "强度 strong→weak",
+    "sec": 0.072
+   },
+   "i153-dedup-bypass": {
+    "verdict": "BUG",
+    "reading": "set_dedup(0.5) 后 get_verifier_config 报 0.85→0.85（报数与生效值不一致）",
+    "sec": 0.067
+   },
+   "i153-verifier-restart": {
+    "verdict": "BUG",
+    "reading": "终裁后 0.95 → 重启后 0.85",
+    "sec": 0.074
+   },
+   "i154-reflect-negation": {
+    "verdict": "BUG",
+    "reading": "needs_designer=True",
+    "sec": 0.091
+   },
+   "i154-reflect-self-evidence": {
+    "verdict": "BUG",
+    "reading": "三次 deviation=[True, False, False]",
+    "sec": 0.078
+   },
+   "i156-cwd-hijack": {
+    "verdict": "OK",
+    "reading": "cwd 中被执行的同名模块=[]",
+    "sec": 0.074
+   },
+   "i16-export": {
+    "verdict": "OK",
+    "reading": "导出成功",
+    "sec": 0.076
+   },
+   "i161-activation-space-query": {
+    "verdict": "OK",
+    "reading": "空格查询 seeds=0",
+    "sec": 0.463
+   },
+   "i164-importance-range": {
+    "verdict": "BUG",
+    "reading": "importance=1e6 入库后读数 1000000.0",
+    "sec": 0.071
+   },
+   "i164-negative-importance": {
+    "verdict": "BUG",
+    "reading": "importance=-5 入库后 -5.0",
+    "sec": 0.105
+   },
+   "i165-shared-sync": {
+    "verdict": "BUG",
+    "reading": "载荷含结构=False，含锚点=False，共 1 条",
+    "sec": 0.083
+   },
+   "i166-induce-majority": {
+    "verdict": "BUG",
+    "reading": "10 条同主题 + 9 条噪声 → 归纳概念 0 个",
+    "sec": 0.071
+   },
+   "i167-pending-deleted": {
+    "verdict": "BUG",
+    "reading": "终裁返回=True，节点=None",
+    "sec": 0.073
+   },
+   "i168-structure-edge": {
+    "verdict": "BUG",
+    "reading": "情境端被遗忘=True，结构节点剩余边=0",
+    "sec": 0.083
+   },
+   "i176-time-based": {
+    "verdict": "BUG",
+    "reading": "0.00s 墙钟内 50 次 decay 后 importance 0.5→0.182",
+    "sec": 0.061
+   },
+   "i179-what-happened-at": {
+    "verdict": "BUG",
+    "reading": "what_happened_at(t) 命中目标=False",
+    "sec": 0.117
+   },
+   "i180-cred-step": {
+    "verdict": "BUG",
+    "reading": "cred_step(100, cred_factor(0.1,1)) = 9.516（期望 ≈90.48）",
+    "sec": 0.074
+   },
+   "i181-cjk-tag": {
+    "verdict": "BUG",
+    "reading": "by_tag('苹果')=0，by_tag('ent:猫')=0",
+    "sec": 0.067
+   },
+   "i182-self-nonatomic": {
+    "verdict": "BUG",
+    "reading": "坏调用失败=True，内存被污染=True，之后正常调用成功=True，SELF 节点 0→1",
+    "sec": 0.07
+   },
+   "i182-self-overwrite": {
+    "verdict": "BUG",
+    "reading": "values ['存在优先', '信任深化', '结构完整'] → ['被篡改的价值观']",
+    "sec": 0.076
+   },
+   "i183-search-wildcard": {
+    "verdict": "BUG",
+    "reading": "'%' 与 '_' 查询共命中 40 条（库中无字面 %/_）",
+    "sec": 0.07
+   },
+   "i183-tag-like": {
+    "verdict": "BUG",
+    "reading": "by_tag('ent:car_1') → ['frame of ent:carX1', 'frame of ent:car_1', 'frame of ent:car_12']",
+    "sec": 0.068
+   },
+   "i184-autodecay-dies": {
+    "verdict": "BUG",
+    "reading": "衰减线程异常后主线程写入失败：database is locked（半截事务持锁）",
+    "sec": 30.519
+   },
+   "i184-tx-lock": {
+    "verdict": "BUG",
+    "reading": "decay 抛异常=True，外部写入被锁=True",
+    "sec": 0.567
+   },
+   "i185-inf-importance": {
+    "verdict": "BUG",
+    "reading": "50 轮衰减后 inf",
+    "sec": 0.032
+   },
+   "i185-nan-edge": {
+    "verdict": "BUG",
+    "reading": "decay 抛 TypeError: unsupported operand type(s) for *: 'NoneType' and 'float'",
+    "sec": 0.031
+   },
+   "i185-nan-importance": {
+    "verdict": "BUG",
+    "reading": "NaN 写入后读数 None",
+    "sec": 0.034
+   },
+   "i191-sub-self": {
+    "verdict": "BUG",
+    "reading": "PermissionError: role=sub 无权写入共享层（self），共享层由父节点主控",
+    "sec": 0.032
+   },
+   "i199-activation-empty-query": {
+    "verdict": "OK",
+    "reading": "空查询 seeds=0",
+    "sec": 0.297
+   },
+   "i20-provenance-human-review": {
+    "verdict": "BUG",
+    "reading": "往返后 methods=['none']",
+    "sec": 0.063
+   },
+   "i200-skill-failure": {
+    "verdict": "OK",
+    "reading": "50 败 10 胜 confidence=0.42",
+    "sec": 0.097
+   },
+   "i200-skill-substring": {
+    "verdict": "OK",
+    "reading": "删除备份 程序='rm -rf /backup/old' conf=0.50",
+    "sec": 0.057
+   },
+   "i200-skill-wildcard": {
+    "verdict": "OK",
+    "reading": "'_'/'%' 命中 []",
+    "sec": 0.068
+   },
+   "i201-self-recall": {
+    "verdict": "OK",
+    "reading": "recall top10 中 SELF=0，真实记忆在列=True",
+    "sec": 0.091
+   },
+   "i201-self-unbounded": {
+    "verdict": "BUG",
+    "reading": "100 次 update_self 后 SELF 层节点 100",
+    "sec": 0.092
+   },
+   "i205-self-edge-decay": {
+    "verdict": "OK",
+    "reading": "自我→经历边 1 → 300 轮后 1",
+    "sec": 0.087
+   },
+   "i206-trust-gate": {
+    "verdict": "OK",
+    "reading": "闲聊快照 layer=knowledge imp=0.561 protected=None",
+    "sec": 0.063
+   },
+   "i206-trust-nan": {
+    "verdict": "OK",
+    "reading": "被原样接受的非有限值=[]",
+    "sec": 0.062
+   },
+   "i207-low-imp-context": {
+    "verdict": "OK",
+    "reading": "1000 轮衰减后存活 0/3",
+    "sec": 0.068
+   },
+   "i210-archive-immortal": {
+    "verdict": "OK",
+    "reading": "归档+500 轮衰减后仍在=False",
+    "sec": 0.076
+   },
+   "i210-forget-zero": {
+    "verdict": "OK",
+    "reading": "0.05 节点→0.05，0.0 节点被归档/删除=True",
+    "sec": 0.076
+   },
+   "i212-evolution-bound": {
+    "verdict": "OK",
+    "reading": "同值 500 次 evolution 增量 0",
+    "sec": 0.073
+   },
+   "i212-value-refine": {
+    "verdict": "OK",
+    "reading": "细化前 ['存在优先', '信任深化', '结构完整'] → 细化后 ['存在优先（细化）', '信任深化', '结构完整']",
+    "sec": 0.064
+   },
+   "i213-novelty-english": {
+    "verdict": "OK",
+    "reading": "首见新奇度={'The production': 1.0, 'rm -rf /var/li': 1.0, 'Москва столица': 1.0}",
+    "sec": 0.08
+   },
+   "i213-novelty-identifier": {
+    "verdict": "OK",
+    "reading": "新奇度={'999999': 0.9, '.0.0.5': 0.9}",
+    "sec": 0.078
+   },
+   "i213-novelty-repeat-en": {
+    "verdict": "OK",
+    "reading": "重复英文新奇度=0.000",
+    "sec": 0.079
+   },
+   "i214-promote-context": {
+    "verdict": "BUG",
+    "reading": "3 次维护后层=context",
+    "sec": 0.047
+   },
+   "i215-cycle-consistency": {
+    "verdict": "OK",
+    "reading": "has_cycle=True，self_check cycles_found=1",
+    "sec": 0.063
+   },
+   "i215-selfcheck-time": {
+    "verdict": "OK",
+    "reading": "self_check 用时 0.03s 完成=True",
+    "sec": 0.115
+   },
+   "i216-failure-importance": {
+    "verdict": "BUG",
+    "reading": "成功 importance=0.6 失败=0.4",
+    "sec": 0.052
+   },
+   "i216-rejected-resubmit": {
+    "verdict": "OK",
+    "reading": "重提被拒",
+    "sec": 0.062
+   },
+   "i216-skill-from-failures": {
+    "verdict": "OK",
+    "reading": "技能存在=True conf=0.21",
+    "sec": 0.082
+   },
+   "i217-sub-snapshot": {
+    "verdict": "OK",
+    "reading": "结构层 tags 变化=False，被登记保护=False",
+    "sec": 0.089
+   },
+   "i222-blindspot-bypass": {
+    "verdict": "OK",
+    "reading": "无密钥绕过后盲区仍开放=True",
+    "sec": 0.036
+   },
+   "i223-dedup-importance": {
+    "verdict": "OK",
+    "reading": "两次写入 importance 0.3/0.95 → 库中最大 0.95",
+    "sec": 0.077
+   },
+   "i223-dedup-modality": {
+    "verdict": "OK",
+    "reading": "audio 并入 text 节点=False",
+    "sec": 0.064
+   },
+   "i223-dedup-tags": {
+    "verdict": "OK",
+    "reading": "按 project:alpha 检索命中 1 条（应能找到合并或新建的节点）",
+    "sec": 0.038
+   },
+   "i224-context-hit": {
+    "verdict": "OK",
+    "reading": "回执 long_term，旧情境节点现状=knowledge",
+    "sec": 0.074
+   },
+   "i224-receipt-layer": {
+    "verdict": "OK",
+    "reading": "回执与落库一致",
+    "sec": 0.073
+   },
+   "i225-polarity": {
+    "verdict": "OK",
+    "reading": "失败返回成功节点=False，成功节点置信度=0.500",
+    "sec": 0.049
+   },
+   "i229-activation-opposite": {
+    "verdict": "OK",
+    "reading": "被三条证据反驳的旧结论激活值=0",
+    "sec": 0.357
+   },
+   "i234-sub-edge-structure": {
+    "verdict": "OK",
+    "reading": "SUB 写共享层边被拒",
+    "sec": 0.041
+   },
+   "i234-sub-protect": {
+    "verdict": "OK",
+    "reading": "结构层节点被 SUB 登记保护=False",
+    "sec": 0.079
+   },
+   "i234-sub-tag-structure": {
+    "verdict": "OK",
+    "reading": "tags=['structure']",
+    "sec": 0.074
+   },
+   "i243-facade-init": {
+    "verdict": "OK",
+    "reading": "init 失败的门面=[]",
+    "sec": 0.116
+   },
+   "i244-sub-edge-overwrite": {
+    "verdict": "OK",
+    "reading": "边现状={'id': 'edge_7a614e06_1791487550311', 'src': 'struct_f14b28eb_1791487550310', 'dst': 'struct_4c248f75_1791487550310', 'rel': 'causal', 'confidence': 1.0, 'verified': True}",
+    "sec": 0.051
+   },
+   "i246-cap-float": {
+    "verdict": "OK",
+    "reading": "float 容量可用",
+    "sec": 0.064
+   },
+   "i246-cap-restart": {
+    "verdict": "OK",
+    "reading": "重启前 300 条 → 重启后写 1 条后 301 条",
+    "sec": 0.078
+   },
+   "i252-dense-scc": {
+    "verdict": "OK",
+    "reading": "self_check 用时 0.01s",
+    "sec": 0.086
+   },
+   "i252-find-cycles-budget": {
+    "verdict": "OK",
+    "reading": "find_cycles 用时 0.86s，返回 125664",
+    "sec": 0.925
+   },
+   "i257-protect-ghost": {
+    "verdict": "OK",
+    "reading": "幽灵 id 在保护名单=False",
+    "sec": 0.058
+   },
+   "i257-protect-many": {
+    "verdict": "OK",
+    "reading": "decay 正常",
+    "sec": 0.173
+   },
+   "i258-consolidate-1000": {
+    "verdict": "OK",
+    "reading": "20 条低重要度中被降权 20",
+    "sec": 0.156
+   },
+   "i29-repeat-boost": {
+    "verdict": "BUG",
+    "reading": "30 次重复后置信度=1.000（同源重复不应被当作独立佐证）",
+    "sec": 0.084
+   },
+   "i33-self-restart": {
+    "verdict": "BUG",
+    "reading": "重启前 values=['存在优先', '信任深化', '结构完整', '诚实优先'] → 重启后 ['存在优先', '信任深化', '结构完整']",
+    "sec": 0.051
+   },
+   "i33-trust-restart": {
+    "verdict": "BUG",
+    "reading": "重启后 t_total=0.0",
+    "sec": 0.077
+   },
+   "i35-search-truncation": {
+    "verdict": "OK",
+    "reading": "search('TOK0550') 命中目标=True，返回 1 条",
+    "sec": 0.101
+   },
+   "i36-protect-decay": {
+    "verdict": "BUG",
+    "reading": "300 轮后仍存在=False",
+    "sec": 0.082
+   },
+   "i36-protect-fifo": {
+    "verdict": "BUG",
+    "reading": "FIFO 后仍存在=False",
+    "sec": 0.046
+   },
+   "i37-close-thread": {
+    "verdict": "OK",
+    "reading": "线程异常=[]，close 后残留线程=0",
+    "sec": 0.616
+   },
+   "i38-insight-v2": {
+    "verdict": "BUG",
+    "reading": "status=verified，importance=0.9",
+    "sec": 0.045
+   },
+   "i44-gate-links": {
+    "verdict": "BUG",
+    "reading": "links=0，实际边=0",
+    "sec": 0.047
+   },
+   "i48-novelty-window": {
+    "verdict": "BUG",
+    "reading": "已存在内容的新奇度=1.000",
+    "sec": 0.055
+   },
+   "i51-nonascii-key": {
+    "verdict": "BUG",
+    "reading": "TypeError: comparing strings with non-ASCII characters is not supported",
+    "sec": 0.036
+   },
+   "i52-access-memory": {
+    "verdict": "BUG",
+    "reading": "3 次命中后 access_count=0",
+    "sec": 0.045
+   },
+   "i54-consume-paused": {
+    "verdict": "BUG",
+    "reading": "暂停前排队 2 → 暂停期间 consume 后 0",
+    "sec": 0.033
+   },
+   "i55-world-degenerate": {
+    "verdict": "BUG",
+    "reading": "UnboundLocalError: cannot access local variable 'v' where it is not associated ",
+    "sec": 0.042
+   },
+   "i57-escalation-value": {
+    "verdict": "BUG",
+    "reading": "value=0.05 时命中 'value > 0.9' 升级点=True",
+    "sec": 0.039
+   },
+   "i7-numpy-free": {
+    "verdict": "BUG",
+    "reading": "激活模块: import:activation:import of numpy halted; None in sys.modules",
+    "sec": 0.031
+   },
+   "i81-threads": {
+    "verdict": "OK",
+    "reading": "异常={}，知识层条数=210/210",
+    "sec": 0.186
+   },
+   "i82-score-saturation": {
+    "verdict": "BUG",
+    "reading": "分数取值集合=[1.0]",
+    "sec": 0.035
+   },
+   "i83-provenance-gate": {
+    "verdict": "OK",
+    "reading": "往返后 source=user",
+    "sec": 0.06
+   },
+   "i88-anchors-50": {
+    "verdict": "OK",
+    "reading": "存 60 个锚点，返回 60，缺 0",
+    "sec": 0.044
+   },
+   "i88-layer-enum": {
+    "verdict": "OK",
+    "reading": "知识层 61 条，整层枚举返回 61",
+    "sec": 0.058
+   },
+   "i89-radius0": {
+    "verdict": "OK",
+    "reading": "返回 [('b', 0.0)]",
+    "sec": 0.066
+   },
+   "i92-old-schema": {
+    "verdict": "OK",
+    "reading": "老库可用=True",
+    "sec": 0.037
+   },
+   "i93-dangling-import": {
+    "verdict": "OK",
+    "reading": "孤儿边入库=True，导入回执报告悬挂=True",
+    "sec": 0.073
+   },
+   "i94-consolidate-round": {
+    "verdict": "OK",
+    "reading": "提权轮次=[10]（期望首提权在第 10 次演练）",
+    "sec": 0.044
+   },
+   "i95-activation-empty-graph": {
+    "verdict": "OK",
+    "reading": "空图激活 size=0",
+    "sec": 0.308
+   }
+  },
+  "ng": {
+   "i107-selfcheck-blind": {
+    "verdict": "OK",
+    "reading": "全新引擎 self_ok=False",
+    "sec": 0.344
+   },
+   "i109-external-anchor": {
+    "verdict": "OK",
+    "reading": "外部输入落层=knowledge",
+    "sec": 0.357
+   },
+   "i114-gate-unreachable": {
+    "verdict": "OK",
+    "reading": "5 条全新快照状态=['ok', 'ok', 'ok', 'ok', 'ok']",
+    "sec": 0.115
+   },
+   "i115-conflict-edge-decay": {
+    "verdict": "OK",
+    "reading": "80 轮后 opposite 边=1，conflict 标签仍在=True",
+    "sec": 0.058
+   },
+   "i117-verify-edge-range": {
+    "verdict": "OK",
+    "reading": "verify_edge(5.0) 后 conf=1.0",
+    "sec": 0.088
+   },
+   "i118-rejected-revive": {
+    "verdict": "OK",
+    "reading": "复活改判结果=False，落层=knowledge",
+    "sec": 0.113
+   },
+   "i118-same-identity": {
+    "verdict": "OK",
+    "reading": "同人三签结果=False，落层=knowledge",
+    "sec": 0.053
+   },
+   "i118-standard-range": {
+    "verdict": "OK",
+    "reading": "生效值=0.95",
+    "sec": 0.052
+   },
+   "i118-unverified-adjudicate": {
+    "verdict": "OK",
+    "reading": "结果=False，落层=knowledge",
+    "sec": 0.096
+   },
+   "i122-history-bound": {
+    "verdict": "OK",
+    "reading": "300 次 update_self 后 history 长度 200",
+    "sec": 0.738
+   },
+   "i125-import-escalation": {
+    "verdict": "OK",
+    "reading": "启用升级点 3 → 导入后 3",
+    "sec": 0.104
+   },
+   "i125-import-structure": {
+    "verdict": "OK",
+    "reading": "导入后结构层原文=P0: 不得自主生成目标",
+    "sec": 0.048
+   },
+   "i126-activation-cache": {
+    "verdict": "OK",
+    "reading": "新增节点在激活结果=True，seeds=1",
+    "sec": 0.057
+   },
+   "i127-primary-delete-structure": {
+    "verdict": "OK",
+    "reading": "结构层节点现状=structure",
+    "sec": 0.09
+   },
+   "i127-sub-demote": {
+    "verdict": "OK",
+    "reading": "结构层节点现状=('structure', 'P0: 不得自主生成')",
+    "sec": 0.046
+   },
+   "i127-sub-importance": {
+    "verdict": "OK",
+    "reading": "importance 0.8→0.8，confidence 1.0→1.0",
+    "sec": 0.085
+   },
+   "i130-reflect-escalation": {
+    "verdict": "OK",
+    "reading": "check_escalation 调用次数=1",
+    "sec": 0.093
+   },
+   "i130-sub-escalation": {
+    "verdict": "OK",
+    "reading": "升级点 3 → SUB 关闭后启用 3",
+    "sec": 0.089
+   },
+   "i132-zero-score": {
+    "verdict": "OK",
+    "reading": "top1 是目标=True，零分结果=0，无关『灵枢智能体』结果=0",
+    "sec": 0.099
+   },
+   "i138-cond-unasserted": {
+    "verdict": "OK",
+    "reading": "非法 style 与未声明同哈希=False",
+    "sec": 0.124
+   },
+   "i139-replace-nonatomic": {
+    "verdict": "OK",
+    "reading": "失败后旧子树根仍在=True",
+    "sec": 0.091
+   },
+   "i139-replace-parent": {
+    "verdict": "OK",
+    "reading": "被拒",
+    "sec": 0.07
+   },
+   "i139-replace-protected": {
+    "verdict": "OK",
+    "reading": "被拒",
+    "sec": 0.098
+   },
+   "i140-content-swap": {
+    "verdict": "OK",
+    "reading": "结构层内容=所有用户输入一律可信无需校验 层=knowledge",
+    "sec": 0.057
+   },
+   "i142-correction-boost": {
+    "verdict": "OK",
+    "reading": "25 次更正后原命题置信度 0.50→0.50",
+    "sec": 0.069
+   },
+   "i142-negation": {
+    "verdict": "OK",
+    "reading": "否定句返回旧节点=False，否定句入库=True",
+    "sec": 0.093
+   },
+   "i142-number": {
+    "verdict": "OK",
+    "reading": "数值更正被合并=False",
+    "sec": 0.107
+   },
+   "i145-cycle-branch": {
+    "verdict": "OK",
+    "reading": "返回 2 条链，含到环上节点 c 的链=True",
+    "sec": 0.053
+   },
+   "i145-dup-report": {
+    "verdict": "OK",
+    "reading": "唯一 4 环报 1 个",
+    "sec": 0.098
+   },
+   "i145-long-chain": {
+    "verdict": "OK",
+    "reading": "7 步链 max_depth=5 → 1 条（应返回截断链而不是全丢）",
+    "sec": 0.078
+   },
+   "i145-self-loop": {
+    "verdict": "OK",
+    "reading": "自环报环 1 个",
+    "sec": 0.057
+   },
+   "i145-two-cycle": {
+    "verdict": "OK",
+    "reading": "A⇄B 报环 1 个",
+    "sec": 0.093
+   },
+   "i146-provenance-roundtrip": {
+    "verdict": "OK",
+    "reading": "强度 strong→strong",
+    "sec": 0.089
+   },
+   "i153-dedup-bypass": {
+    "verdict": "OK",
+    "reading": "set_dedup(0.5) 后 get_verifier_config 报 0.85→0.5（报数与生效值不一致）",
+    "sec": 0.055
+   },
+   "i153-verifier-restart": {
+    "verdict": "OK",
+    "reading": "终裁后 0.95 → 重启后 0.95",
+    "sec": 0.068
+   },
+   "i154-reflect-negation": {
+    "verdict": "OK",
+    "reading": "needs_designer=False",
+    "sec": 0.108
+   },
+   "i154-reflect-self-evidence": {
+    "verdict": "OK",
+    "reading": "三次 deviation=[True, True, True]",
+    "sec": 0.083
+   },
+   "i156-cwd-hijack": {
+    "verdict": "OK",
+    "reading": "cwd 中被执行的同名模块=[]",
+    "sec": 0.062
+   },
+   "i16-export": {
+    "verdict": "OK",
+    "reading": "导出成功",
+    "sec": 0.095
+   },
+   "i161-activation-space-query": {
+    "verdict": "OK",
+    "reading": "空格查询 seeds=0",
+    "sec": 0.099
+   },
+   "i164-importance-range": {
+    "verdict": "OK",
+    "reading": "importance=1e6 入库后读数 1.0",
+    "sec": 0.054
+   },
+   "i164-negative-importance": {
+    "verdict": "OK",
+    "reading": "importance=-5 入库后 0.0",
+    "sec": 0.057
+   },
+   "i165-shared-sync": {
+    "verdict": "OK",
+    "reading": "载荷含结构=True，含锚点=True，共 2 条",
+    "sec": 0.076
+   },
+   "i166-induce-majority": {
+    "verdict": "OK",
+    "reading": "10 条同主题 + 9 条噪声 → 归纳概念 1 个",
+    "sec": 0.116
+   },
+   "i167-pending-deleted": {
+    "verdict": "OK",
+    "reading": "终裁返回=True，节点=structure",
+    "sec": 0.088
+   },
+   "i168-structure-edge": {
+    "verdict": "OK",
+    "reading": "情境端被遗忘=False，结构节点剩余边=1",
+    "sec": 0.067
+   },
+   "i176-time-based": {
+    "verdict": "BUG",
+    "reading": "0.01s 墙钟内 50 次 decay 后 importance 0.5→0.182",
+    "sec": 0.1
+   },
+   "i179-what-happened-at": {
+    "verdict": "OK",
+    "reading": "what_happened_at(t) 命中目标=True",
+    "sec": 0.114
+   },
+   "i180-cred-step": {
+    "verdict": "OK",
+    "reading": "cred_step(100, cred_factor(0.1,1)) = 90.484（期望 ≈90.48）",
+    "sec": 0.089
+   },
+   "i181-cjk-tag": {
+    "verdict": "OK",
+    "reading": "by_tag('苹果')=1，by_tag('ent:猫')=1",
+    "sec": 0.07
+   },
+   "i182-self-nonatomic": {
+    "verdict": "OK",
+    "reading": "坏调用失败=True，内存被污染=False，之后正常调用成功=True，SELF 节点 0→1",
+    "sec": 0.097
+   },
+   "i182-self-overwrite": {
+    "verdict": "OK",
+    "reading": "拒绝: ValueError",
+    "sec": 0.047
+   },
+   "i183-search-wildcard": {
+    "verdict": "OK",
+    "reading": "'%' 与 '_' 查询共命中 0 条（库中无字面 %/_）",
+    "sec": 0.073
+   },
+   "i183-tag-like": {
+    "verdict": "OK",
+    "reading": "by_tag('ent:car_1') → ['frame of ent:car_1']",
+    "sec": 0.083
+   },
+   "i184-autodecay-dies": {
+    "verdict": "OK",
+    "reading": "NaN 边被拒，无法触发线程异常",
+    "sec": 0.095
+   },
+   "i184-tx-lock": {
+    "verdict": "OK",
+    "reading": "NaN 边被拒，无中途异常",
+    "sec": 0.064
+   },
+   "i185-inf-importance": {
+    "verdict": "OK",
+    "reading": "inf 被拒",
+    "sec": 0.093
+   },
+   "i185-nan-edge": {
+    "verdict": "OK",
+    "reading": "NaN 边被拒",
+    "sec": 0.051
+   },
+   "i185-nan-importance": {
+    "verdict": "OK",
+    "reading": "NaN 被拒（ValueError）",
+    "sec": 0.087
+   },
+   "i191-sub-self": {
+    "verdict": "OK",
+    "reading": "SUB 可写本地自我层",
+    "sec": 0.093
+   },
+   "i199-activation-empty-query": {
+    "verdict": "OK",
+    "reading": "空查询 seeds=0",
+    "sec": 0.053
+   },
+   "i20-provenance-human-review": {
+    "verdict": "OK",
+    "reading": "往返后 methods=['human_review']",
+    "sec": 0.083
+   },
+   "i200-skill-failure": {
+    "verdict": "OK",
+    "reading": "50 败 10 胜 confidence=0.18",
+    "sec": 0.07
+   },
+   "i200-skill-substring": {
+    "verdict": "OK",
+    "reading": "删除备份 程序='rm -rf /backup/old' conf=0.50",
+    "sec": 0.086
+   },
+   "i200-skill-wildcard": {
+    "verdict": "OK",
+    "reading": "'_'/'%' 命中 []",
+    "sec": 0.101
+   },
+   "i201-self-recall": {
+    "verdict": "OK",
+    "reading": "recall top10 中 SELF=0，真实记忆在列=True",
+    "sec": 0.34
+   },
+   "i201-self-unbounded": {
+    "verdict": "OK",
+    "reading": "100 次 update_self 后 SELF 层节点 1",
+    "sec": 0.29
+   },
+   "i205-self-edge-decay": {
+    "verdict": "OK",
+    "reading": "自我→经历边 1 → 300 轮后 1",
+    "sec": 0.061
+   },
+   "i206-trust-gate": {
+    "verdict": "OK",
+    "reading": "闲聊快照 layer=knowledge imp=0.55 protected=None",
+    "sec": 0.042
+   },
+   "i206-trust-nan": {
+    "verdict": "OK",
+    "reading": "被原样接受的非有限值=[]",
+    "sec": 0.063
+   },
+   "i207-low-imp-context": {
+    "verdict": "OK",
+    "reading": "1000 轮衰减后存活 0/3",
+    "sec": 0.119
+   },
+   "i210-archive-immortal": {
+    "verdict": "OK",
+    "reading": "归档+500 轮衰减后仍在=False",
+    "sec": 0.133
+   },
+   "i210-forget-zero": {
+    "verdict": "OK",
+    "reading": "0.05 节点→0.05，0.0 节点被归档/删除=True",
+    "sec": 0.051
+   },
+   "i212-evolution-bound": {
+    "verdict": "OK",
+    "reading": "同值 500 次 evolution 增量 0",
+    "sec": 0.096
+   },
+   "i212-value-refine": {
+    "verdict": "OK",
+    "reading": "细化前 ['存在优先', '信任深化', '结构完整'] → 细化后 ['存在优先（细化）', '信任深化', '结构完整']",
+    "sec": 0.056
+   },
+   "i213-novelty-english": {
+    "verdict": "OK",
+    "reading": "首见新奇度={'The production': 1.0, 'rm -rf /var/li': 1.0, 'Москва столица': 1.0}",
+    "sec": 0.078
+   },
+   "i213-novelty-identifier": {
+    "verdict": "OK",
+    "reading": "新奇度={'999999': 0.9, '.0.0.5': 0.9}",
+    "sec": 0.064
+   },
+   "i213-novelty-repeat-en": {
+    "verdict": "OK",
+    "reading": "重复英文新奇度=0.000",
+    "sec": 0.092
+   },
+   "i214-promote-context": {
+    "verdict": "OK",
+    "reading": "3 次维护后层=knowledge",
+    "sec": 0.058
+   },
+   "i215-cycle-consistency": {
+    "verdict": "OK",
+    "reading": "has_cycle=True，self_check cycles_found=1",
+    "sec": 0.091
+   },
+   "i215-selfcheck-time": {
+    "verdict": "OK",
+    "reading": "self_check 用时 0.00s 完成=True",
+    "sec": 0.125
+   },
+   "i216-failure-importance": {
+    "verdict": "OK",
+    "reading": "成功 importance=0.5 失败=0.5",
+    "sec": 0.056
+   },
+   "i216-rejected-resubmit": {
+    "verdict": "OK",
+    "reading": "重提被拒",
+    "sec": 0.103
+   },
+   "i216-skill-from-failures": {
+    "verdict": "OK",
+    "reading": "技能存在=True conf=0.08",
+    "sec": 0.059
+   },
+   "i217-sub-snapshot": {
+    "verdict": "OK",
+    "reading": "结构层 tags 变化=False，被登记保护=False",
+    "sec": 0.095
+   },
+   "i222-blindspot-bypass": {
+    "verdict": "OK",
+    "reading": "无密钥绕过后盲区仍开放=True",
+    "sec": 0.092
+   },
+   "i223-dedup-importance": {
+    "verdict": "OK",
+    "reading": "两次写入 importance 0.3/0.95 → 库中最大 0.95",
+    "sec": 0.053
+   },
+   "i223-dedup-modality": {
+    "verdict": "OK",
+    "reading": "audio 并入 text 节点=False",
+    "sec": 0.056
+   },
+   "i223-dedup-tags": {
+    "verdict": "OK",
+    "reading": "按 project:alpha 检索命中 1 条（应能找到合并或新建的节点）",
+    "sec": 0.104
+   },
+   "i224-context-hit": {
+    "verdict": "OK",
+    "reading": "回执 long_term，旧情境节点现状=knowledge",
+    "sec": 0.08
+   },
+   "i224-receipt-layer": {
+    "verdict": "OK",
+    "reading": "回执与落库一致",
+    "sec": 0.08
+   },
+   "i225-polarity": {
+    "verdict": "OK",
+    "reading": "失败返回成功节点=False，成功节点置信度=0.500",
+    "sec": 0.059
+   },
+   "i229-activation-opposite": {
+    "verdict": "OK",
+    "reading": "被三条证据反驳的旧结论激活值=0",
+    "sec": 0.105
+   },
+   "i234-sub-edge-structure": {
+    "verdict": "OK",
+    "reading": "SUB 写共享层边被拒",
+    "sec": 0.091
+   },
+   "i234-sub-protect": {
+    "verdict": "OK",
+    "reading": "结构层节点被 SUB 登记保护=False",
+    "sec": 0.069
+   },
+   "i234-sub-tag-structure": {
+    "verdict": "OK",
+    "reading": "tags=['structure']",
+    "sec": 0.096
+   },
+   "i243-facade-init": {
+    "verdict": "OK",
+    "reading": "init 失败的门面=[]",
+    "sec": 0.276
+   },
+   "i244-sub-edge-overwrite": {
+    "verdict": "OK",
+    "reading": "边现状={'id': 'edge_55e2de231f8a', 'src': 'struct_b111a79e2d35', 'dst': 'struct_992a695234b0', 'rel': 'causal', 'confidence': 1.0, 'verified': True}",
+    "sec": 0.053
+   },
+   "i246-cap-float": {
+    "verdict": "OK",
+    "reading": "float 容量可用",
+    "sec": 0.103
+   },
+   "i246-cap-restart": {
+    "verdict": "OK",
+    "reading": "重启前 300 条 → 重启后写 1 条后 301 条",
+    "sec": 0.268
+   },
+   "i252-dense-scc": {
+    "verdict": "OK",
+    "reading": "self_check 用时 0.01s",
+    "sec": 0.074
+   },
+   "i252-find-cycles-budget": {
+    "verdict": "OK",
+    "reading": "find_cycles 用时 0.42s，返回 100000",
+    "sec": 0.522
+   },
+   "i257-protect-ghost": {
+    "verdict": "OK",
+    "reading": "幽灵 id 在保护名单=False",
+    "sec": 0.047
+   },
+   "i257-protect-many": {
+    "verdict": "OK",
+    "reading": "decay 正常",
+    "sec": 0.205
+   },
+   "i258-consolidate-1000": {
+    "verdict": "OK",
+    "reading": "20 条低重要度中被降权 20",
+    "sec": 0.519
+   },
+   "i29-repeat-boost": {
+    "verdict": "OK",
+    "reading": "30 次重复后置信度=0.500（同源重复不应被当作独立佐证）",
+    "sec": 0.107
+   },
+   "i33-self-restart": {
+    "verdict": "OK",
+    "reading": "重启前 values=['存在优先', '信任深化', '结构完整', '诚实优先'] → 重启后 ['存在优先', '信任深化', '结构完整', '诚实优先']",
+    "sec": 0.111
+   },
+   "i33-trust-restart": {
+    "verdict": "OK",
+    "reading": "重启后 t_total=0.42",
+    "sec": 0.085
+   },
+   "i35-search-truncation": {
+    "verdict": "OK",
+    "reading": "search('TOK0550') 命中目标=True，返回 10 条",
+    "sec": 0.142
+   },
+   "i36-protect-decay": {
+    "verdict": "OK",
+    "reading": "300 轮后仍存在=True",
+    "sec": 0.119
+   },
+   "i36-protect-fifo": {
+    "verdict": "OK",
+    "reading": "FIFO 后仍存在=True",
+    "sec": 0.09
+   },
+   "i37-close-thread": {
+    "verdict": "OK",
+    "reading": "线程异常=[]，close 后残留线程=0",
+    "sec": 0.643
+   },
+   "i38-insight-v2": {
+    "verdict": "OK",
+    "reading": "status=pending，importance=0.7",
+    "sec": 0.065
+   },
+   "i44-gate-links": {
+    "verdict": "OK",
+    "reading": "links=2，实际边=2",
+    "sec": 0.082
+   },
+   "i48-novelty-window": {
+    "verdict": "OK",
+    "reading": "已存在内容的新奇度=0.000",
+    "sec": 0.089
+   },
+   "i51-nonascii-key": {
+    "verdict": "OK",
+    "reading": "错误密钥 → PermissionError",
+    "sec": 0.05
+   },
+   "i52-access-memory": {
+    "verdict": "OK",
+    "reading": "3 次命中后 access_count=3",
+    "sec": 0.052
+   },
+   "i54-consume-paused": {
+    "verdict": "OK",
+    "reading": "暂停前排队 2 → 暂停期间 consume 后 2",
+    "sec": 0.049
+   },
+   "i55-world-degenerate": {
+    "verdict": "OK",
+    "reading": "status=ok",
+    "sec": 0.105
+   },
+   "i57-escalation-value": {
+    "verdict": "OK",
+    "reading": "value=0.05 时命中 'value > 0.9' 升级点=False",
+    "sec": 0.069
+   },
+   "i7-numpy-free": {
+    "verdict": "OK",
+    "reading": "无 numpy 可用",
+    "sec": 0.055
+   },
+   "i81-threads": {
+    "verdict": "OK",
+    "reading": "异常={}，知识层条数=210/210",
+    "sec": 0.167
+   },
+   "i82-score-saturation": {
+    "verdict": "OK",
+    "reading": "分数取值集合=[0.517857, 1.0]",
+    "sec": 0.068
+   },
+   "i83-provenance-gate": {
+    "verdict": "OK",
+    "reading": "往返后 source=user",
+    "sec": 0.082
+   },
+   "i88-anchors-50": {
+    "verdict": "OK",
+    "reading": "存 60 个锚点，返回 60，缺 0",
+    "sec": 0.068
+   },
+   "i88-layer-enum": {
+    "verdict": "OK",
+    "reading": "知识层 61 条，整层枚举返回 61",
+    "sec": 0.092
+   },
+   "i89-radius0": {
+    "verdict": "OK",
+    "reading": "返回 [('b', 0.0)]",
+    "sec": 0.081
+   },
+   "i92-old-schema": {
+    "verdict": "OK",
+    "reading": "老库可用=True",
+    "sec": 0.088
+   },
+   "i93-dangling-import": {
+    "verdict": "OK",
+    "reading": "孤儿边入库=False，导入回执报告悬挂=False",
+    "sec": 0.067
+   },
+   "i94-consolidate-round": {
+    "verdict": "OK",
+    "reading": "提权轮次=[10]（期望首提权在第 10 次演练）",
+    "sec": 0.054
+   },
+   "i95-activation-empty-graph": {
+    "verdict": "OK",
+    "reading": "空图激活 size=0",
+    "sec": 0.055
+   }
+  }
+ },
+ "props": {
+  "base": {
+   "P01-layer-immutability": {
+    "verdict": "OK",
+    "violations": 0,
+    "seeds": 200,
+    "rate": 0.0,
+    "exceptions": {},
+    "first": null,
+    "reading": "0/200 违反",
+    "sec": 0.424
+   },
+   "P02-dedup-idempotent": {
+    "verdict": "OK",
+    "violations": 0,
+    "seeds": 200,
+    "rate": 0.0,
+    "exceptions": {},
+    "first": null,
+    "reading": "0/200 违反",
+    "sec": 0.404
+   },
+   "P03-dedup-polarity": {
+    "verdict": "VIOL",
+    "violations": 69,
+    "seeds": 200,
+    "rate": 0.345,
+    "exceptions": {},
+    "first": {
+     "seed": 0,
+     "detail": "『移告警剂量6毫克』与『移告警剂量7毫克』被合并"
+    },
+    "reading": "69/200 违反；首例 seed=0: 『移告警剂量6毫克』与『移告警剂量7毫克』被合并",
+    "sec": 0.272
+   },
+   "P04-decay-monotone": {
+    "verdict": "OK",
+    "violations": 0,
+    "seeds": 200,
+    "rate": 0.0,
+    "exceptions": {},
+    "first": null,
+    "reading": "0/200 违反",
+    "sec": 0.549
+   },
+   "P05-decay-termination": {
+    "verdict": "VIOL",
+    "violations": 196,
+    "seeds": 200,
+    "rate": 0.98,
+    "exceptions": {},
+    "first": {
+     "seed": 0,
+     "detail": "150 轮后仍存活 importance=[0.1, 0.01, 0.0, 0.05]"
+    },
+    "reading": "196/200 违反；首例 seed=0: 150 轮后仍存活 importance=[0.1, 0.01, 0.0, 0.05]",
+    "sec": 1.072
+   },
+   "P06-export-import-roundtrip": {
+    "verdict": "OK",
+    "violations": 0,
+    "seeds": 200,
+    "rate": 0.0,
+    "exceptions": {},
+    "first": null,
+    "reading": "0/200 违反",
+    "sec": 1.086
+   },
+   "P07-cycle-vs-brute": {
+    "verdict": "OK",
+    "violations": 0,
+    "seeds": 200,
+    "rate": 0.0,
+    "exceptions": {},
+    "first": null,
+    "reading": "0/200 违反",
+    "sec": 0.312
+   },
+   "P08-concurrent-no-loss": {
+    "verdict": "OK",
+    "violations": 0,
+    "seeds": 200,
+    "rate": 0.0,
+    "exceptions": {},
+    "first": null,
+    "reading": "0/200 违反",
+    "sec": 0.73
+   },
+   "P09-nonfinite-rejected": {
+    "verdict": "VIOL",
+    "violations": 200,
+    "seeds": 200,
+    "rate": 1.0,
+    "exceptions": {},
+    "first": {
+     "seed": 0,
+     "detail": "trust=-inf 存为 -inf"
+    },
+    "reading": "200/200 违反；首例 seed=0: trust=-inf 存为 -inf",
+    "sec": 0.258
+   },
+   "P10-recall-no-self": {
+    "verdict": "VIOL",
+    "violations": 200,
+    "seeds": 200,
+    "rate": 1.0,
+    "exceptions": {},
+    "first": {
+     "seed": 0,
+     "detail": "recall 返回 SELF 节点 2 个"
+    },
+    "reading": "200/200 违反；首例 seed=0: recall 返回 SELF 节点 2 个",
+    "sec": 0.482
+   },
+   "P11-sub-no-protected-write": {
+    "verdict": "VIOL",
+    "violations": 188,
+    "seeds": 200,
+    "rate": 0.94,
+    "exceptions": {},
+    "first": {
+     "seed": 0,
+     "detail": "SUB 操作 [6, 2, 4] 后共享层发生变化"
+    },
+    "reading": "188/200 违反；首例 seed=0: SUB 操作 [6, 2, 4] 后共享层发生变化",
+    "sec": 0.615
+   },
+   "P12-importance-range": {
+    "verdict": "VIOL",
+    "violations": 135,
+    "seeds": 200,
+    "rate": 0.675,
+    "exceptions": {},
+    "first": {
+     "seed": 0,
+     "detail": "knowledge importance=806690.970 存为 806690.970427902"
+    },
+    "reading": "135/200 违反；首例 seed=0: knowledge importance=806690.970 存为 806690.970427902",
+    "sec": 0.262
+   },
+   "P13-tag-exact": {
+    "verdict": "VIOL",
+    "violations": 92,
+    "seeds": 200,
+    "rate": 0.46,
+    "exceptions": {},
+    "first": {
+     "seed": 1,
+     "detail": "by_tag('苹果') 返回 0，真值 2"
+    },
+    "reading": "92/200 违反；首例 seed=1: by_tag('苹果') 返回 0，真值 2",
+    "sec": 0.305
+   },
+   "P14-gate-receipt": {
+    "verdict": "VIOL",
+    "violations": 43,
+    "seeds": 200,
+    "rate": 0.215,
+    "exceptions": {},
+    "first": {
+     "seed": 5,
+     "detail": "hint=0.13 回执 context 实际 knowledge"
+    },
+    "reading": "43/200 违反；首例 seed=5: hint=0.13 回执 context 实际 knowledge",
+    "sec": 0.346
+   },
+   "P15-protected-survive": {
+    "verdict": "VIOL",
+    "violations": 81,
+    "seeds": 200,
+    "rate": 0.405,
+    "exceptions": {},
+    "first": {
+     "seed": 0,
+     "detail": "受保护节点被删除"
+    },
+    "reading": "81/200 违反；首例 seed=0: 受保护节点被删除",
+    "sec": 0.501
+   }
+  },
+  "integrated": {
+   "P01-layer-immutability": {
+    "verdict": "OK",
+    "violations": 0,
+    "seeds": 200,
+    "rate": 0.0,
+    "exceptions": {},
+    "first": null,
+    "reading": "0/200 违反",
+    "sec": 0.555
+   },
+   "P02-dedup-idempotent": {
+    "verdict": "OK",
+    "violations": 0,
+    "seeds": 200,
+    "rate": 0.0,
+    "exceptions": {},
+    "first": null,
+    "reading": "0/200 违反",
+    "sec": 0.573
+   },
+   "P03-dedup-polarity": {
+    "verdict": "VIOL",
+    "violations": 69,
+    "seeds": 200,
+    "rate": 0.345,
+    "exceptions": {},
+    "first": {
+     "seed": 0,
+     "detail": "『移告警剂量6毫克』与『移告警剂量7毫克』被合并"
+    },
+    "reading": "69/200 违反；首例 seed=0: 『移告警剂量6毫克』与『移告警剂量7毫克』被合并",
+    "sec": 0.407
+   },
+   "P04-decay-monotone": {
+    "verdict": "OK",
+    "violations": 0,
+    "seeds": 200,
+    "rate": 0.0,
+    "exceptions": {},
+    "first": null,
+    "reading": "0/200 违反",
+    "sec": 0.712
+   },
+   "P05-decay-termination": {
+    "verdict": "OK",
+    "violations": 0,
+    "seeds": 200,
+    "rate": 0.0,
+    "exceptions": {},
+    "first": null,
+    "reading": "0/200 违反",
+    "sec": 0.469
+   },
+   "P06-export-import-roundtrip": {
+    "verdict": "OK",
+    "violations": 0,
+    "seeds": 200,
+    "rate": 0.0,
+    "exceptions": {},
+    "first": null,
+    "reading": "0/200 违反",
+    "sec": 1.37
+   },
+   "P07-cycle-vs-brute": {
+    "verdict": "OK",
+    "violations": 0,
+    "seeds": 200,
+    "rate": 0.0,
+    "exceptions": {},
+    "first": null,
+    "reading": "0/200 违反",
+    "sec": 0.441
+   },
+   "P08-concurrent-no-loss": {
+    "verdict": "OK",
+    "violations": 0,
+    "seeds": 200,
+    "rate": 0.0,
+    "exceptions": {},
+    "first": null,
+    "reading": "0/200 违反",
+    "sec": 1.055
+   },
+   "P09-nonfinite-rejected": {
+    "verdict": "VIOL",
+    "violations": 168,
+    "seeds": 200,
+    "rate": 0.84,
+    "exceptions": {},
+    "first": {
+     "seed": 1,
+     "detail": "edge=inf 存为 inf"
+    },
+    "reading": "168/200 违反；首例 seed=1: edge=inf 存为 inf",
+    "sec": 0.384
+   },
+   "P10-recall-no-self": {
+    "verdict": "OK",
+    "violations": 0,
+    "seeds": 200,
+    "rate": 0.0,
+    "exceptions": {},
+    "first": null,
+    "reading": "0/200 违反",
+    "sec": 0.58
+   },
+   "P11-sub-no-protected-write": {
+    "verdict": "VIOL",
+    "violations": 112,
+    "seeds": 200,
+    "rate": 0.56,
+    "exceptions": {},
+    "first": {
+     "seed": 0,
+     "detail": "SUB 操作 [6, 2, 4] 后共享层发生变化"
+    },
+    "reading": "112/200 违反；首例 seed=0: SUB 操作 [6, 2, 4] 后共享层发生变化",
+    "sec": 0.831
+   },
+   "P12-importance-range": {
+    "verdict": "VIOL",
+    "violations": 135,
+    "seeds": 200,
+    "rate": 0.675,
+    "exceptions": {},
+    "first": {
+     "seed": 0,
+     "detail": "knowledge importance=806690.970 存为 806690.970427902"
+    },
+    "reading": "135/200 违反；首例 seed=0: knowledge importance=806690.970 存为 806690.970427902",
+    "sec": 0.39
+   },
+   "P13-tag-exact": {
+    "verdict": "VIOL",
+    "violations": 92,
+    "seeds": 200,
+    "rate": 0.46,
+    "exceptions": {},
+    "first": {
+     "seed": 1,
+     "detail": "by_tag('苹果') 返回 0，真值 2"
+    },
+    "reading": "92/200 违反；首例 seed=1: by_tag('苹果') 返回 0，真值 2",
+    "sec": 0.432
+   },
+   "P14-gate-receipt": {
+    "verdict": "OK",
+    "violations": 0,
+    "seeds": 200,
+    "rate": 0.0,
+    "exceptions": {},
+    "first": null,
+    "reading": "0/200 违反",
+    "sec": 0.492
+   },
+   "P15-protected-survive": {
+    "verdict": "VIOL",
+    "violations": 93,
+    "seeds": 200,
+    "rate": 0.465,
+    "exceptions": {},
+    "first": {
+     "seed": 0,
+     "detail": "受保护节点被删除"
+    },
+    "reading": "93/200 违反；首例 seed=0: 受保护节点被删除",
+    "sec": 0.658
+   }
+  },
+  "ng": {
+   "P01-layer-immutability": {
+    "verdict": "OK",
+    "violations": 0,
+    "seeds": 200,
+    "rate": 0.0,
+    "exceptions": {},
+    "first": null,
+    "reading": "0/200 违反",
+    "sec": 1.055
+   },
+   "P02-dedup-idempotent": {
+    "verdict": "OK",
+    "violations": 0,
+    "seeds": 200,
+    "rate": 0.0,
+    "exceptions": {},
+    "first": null,
+    "reading": "0/200 违反",
+    "sec": 0.753
+   },
+   "P03-dedup-polarity": {
+    "verdict": "OK",
+    "violations": 0,
+    "seeds": 200,
+    "rate": 0.0,
+    "exceptions": {},
+    "first": null,
+    "reading": "0/200 违反",
+    "sec": 0.494
+   },
+   "P04-decay-monotone": {
+    "verdict": "OK",
+    "violations": 0,
+    "seeds": 200,
+    "rate": 0.0,
+    "exceptions": {},
+    "first": null,
+    "reading": "0/200 违反",
+    "sec": 1.099
+   },
+   "P05-decay-termination": {
+    "verdict": "OK",
+    "violations": 0,
+    "seeds": 200,
+    "rate": 0.0,
+    "exceptions": {},
+    "first": null,
+    "reading": "0/200 违反",
+    "sec": 0.768
+   },
+   "P06-export-import-roundtrip": {
+    "verdict": "OK",
+    "violations": 0,
+    "seeds": 200,
+    "rate": 0.0,
+    "exceptions": {},
+    "first": null,
+    "reading": "0/200 违反",
+    "sec": 1.638
+   },
+   "P07-cycle-vs-brute": {
+    "verdict": "OK",
+    "violations": 0,
+    "seeds": 200,
+    "rate": 0.0,
+    "exceptions": {},
+    "first": null,
+    "reading": "0/200 违反",
+    "sec": 0.546
+   },
+   "P08-concurrent-no-loss": {
+    "verdict": "OK",
+    "violations": 0,
+    "seeds": 200,
+    "rate": 0.0,
+    "exceptions": {},
+    "first": null,
+    "reading": "0/200 违反",
+    "sec": 2.024
+   },
+   "P09-nonfinite-rejected": {
+    "verdict": "OK",
+    "violations": 0,
+    "seeds": 200,
+    "rate": 0.0,
+    "exceptions": {},
+    "first": null,
+    "reading": "0/200 违反",
+    "sec": 0.428
+   },
+   "P10-recall-no-self": {
+    "verdict": "OK",
+    "violations": 0,
+    "seeds": 200,
+    "rate": 0.0,
+    "exceptions": {},
+    "first": null,
+    "reading": "0/200 违反",
+    "sec": 1.034
+   },
+   "P11-sub-no-protected-write": {
+    "verdict": "OK",
+    "violations": 0,
+    "seeds": 200,
+    "rate": 0.0,
+    "exceptions": {},
+    "first": null,
+    "reading": "0/200 违反",
+    "sec": 0.832
+   },
+   "P12-importance-range": {
+    "verdict": "OK",
+    "violations": 0,
+    "seeds": 200,
+    "rate": 0.0,
+    "exceptions": {},
+    "first": null,
+    "reading": "0/200 违反",
+    "sec": 0.429
+   },
+   "P13-tag-exact": {
+    "verdict": "OK",
+    "violations": 0,
+    "seeds": 200,
+    "rate": 0.0,
+    "exceptions": {},
+    "first": null,
+    "reading": "0/200 违反",
+    "sec": 0.646
+   },
+   "P14-gate-receipt": {
+    "verdict": "OK",
+    "violations": 0,
+    "seeds": 200,
+    "rate": 0.0,
+    "exceptions": {},
+    "first": null,
+    "reading": "0/200 违反",
+    "sec": 0.556
+   },
+   "P15-protected-survive": {
+    "verdict": "OK",
+    "violations": 0,
+    "seeds": 200,
+    "rate": 0.0,
+    "exceptions": {},
+    "first": null,
+    "reading": "0/200 违反",
+    "sec": 1.654
+   }
+  }
+ },
+ "perf": {
+  "base": {
+   "1000": {
+    "n": 1000,
+    "build_s": 0.06,
+    "add": 4.534,
+    "recall": 8.334,
+    "decay_cycle": 5.89,
+    "self_check": 0.929,
+    "activation": 4.122,
+    "maxrss_mb": 44.2,
+    "verdict": "OK",
+    "sec": 0.616,
+    "rounds": 2,
+    "py_peak_mb": 22.5
+   },
+   "10000": {
+    "n": 10000,
+    "build_s": 0.71,
+    "add": 7.561,
+    "recall": 12.659,
+    "decay_cycle": 61.506,
+    "self_check": 9.688,
+    "activation": 30.186,
+    "maxrss_mb": 60.9,
+    "verdict": "OK",
+    "sec": 1.788,
+    "rounds": 2,
+    "py_peak_mb": 33.0
+   },
+   "50000": {
+    "n": 50000,
+    "build_s": 3.71,
+    "add": 17.237,
+    "recall": 12.671,
+    "decay_cycle": 375.008,
+    "self_check": 57.449,
+    "activation": 144.318,
+    "maxrss_mb": 132.9,
+    "verdict": "OK",
+    "sec": 7.114,
+    "rounds": 2,
+    "py_peak_mb": 98.1
+   }
+  },
+  "integrated": {
+   "1000": {
+    "n": 1000,
+    "build_s": 0.06,
+    "add": 4.995,
+    "recall": 8.531,
+    "decay_cycle": 2.615,
+    "self_check": 1.214,
+    "activation": 11.357,
+    "maxrss_mb": 46.4,
+    "verdict": "OK",
+    "sec": 0.663,
+    "rounds": 2,
+    "py_peak_mb": 23.6
+   },
+   "10000": {
+    "n": 10000,
+    "build_s": 0.7,
+    "add": 8.114,
+    "recall": 13.168,
+    "decay_cycle": 28.815,
+    "self_check": 12.391,
+    "activation": 104.688,
+    "maxrss_mb": 71.2,
+    "verdict": "OK",
+    "sec": 1.887,
+    "rounds": 2,
+    "py_peak_mb": 41.9
+   },
+   "50000": {
+    "n": 50000,
+    "build_s": 3.6,
+    "add": 18.665,
+    "recall": 13.255,
+    "decay_cycle": 205.215,
+    "self_check": 73.428,
+    "activation": 503.497,
+    "maxrss_mb": 180.6,
+    "verdict": "OK",
+    "sec": 7.309,
+    "rounds": 2,
+    "py_peak_mb": 139.9
+   }
+  },
+  "ng": {
+   "1000": {
+    "n": 1000,
+    "build_s": 0.37,
+    "add": 0.944,
+    "recall": 0.925,
+    "decay_cycle": 0.974,
+    "self_check": 0.849,
+    "activation": 5.133,
+    "maxrss_mb": 18.8,
+    "verdict": "OK",
+    "sec": 0.507,
+    "rounds": 2,
+    "py_peak_mb": 3.4
+   },
+   "10000": {
+    "n": 10000,
+    "build_s": 4.76,
+    "add": 3.726,
+    "recall": 9.895,
+    "decay_cycle": 6.73,
+    "self_check": 8.297,
+    "activation": 91.984,
+    "maxrss_mb": 29.3,
+    "verdict": "OK",
+    "sec": 5.481,
+    "rounds": 2,
+    "py_peak_mb": 10.2
+   },
+   "50000": {
+    "n": 50000,
+    "build_s": 25.6,
+    "add": 14.93,
+    "recall": 44.33,
+    "decay_cycle": 34.842,
+    "self_check": 50.644,
+    "activation": 459.285,
+    "maxrss_mb": 58.1,
+    "verdict": "OK",
+    "sec": 28.57,
+    "rounds": 2,
+    "py_peak_mb": 32.9
+   }
+  }
+ },
+ "quality": {
+  "base": {
+   "available": false,
+   "scope": "-"
+  },
+  "integrated": {
+   "available": false,
+   "scope": "-"
+  },
+  "ng": {
+   "available": false,
+   "scope": "-"
+  }
+ },
+ "legacy_bench": {
+  "base": {
+   "NEW-nn-01": {
+    "verdict": "BUG",
+    "reading": "BUG",
+    "sec": 1.2
+   },
+   "NEW-nn-02": {
+    "verdict": "BUG",
+    "reading": "BUG",
+    "sec": 0.5
+   },
+   "NEW-nn-03": {
+    "verdict": "BUG",
+    "reading": "BUG",
+    "sec": 1.01
+   },
+   "core-py-01": {
+    "verdict": "BUG",
+    "reading": "BUG",
+    "sec": 0.38
+   },
+   "core-py-02": {
+    "verdict": "BUG",
+    "reading": "BUG",
+    "sec": 0.21
+   },
+   "core-py-06": {
+    "verdict": "BUG",
+    "reading": "BUG",
+    "sec": 2.43
+   },
+   "core-py-07": {
+    "verdict": "BUG",
+    "reading": "BUG",
+    "sec": 0.2
+   },
+   "core-py-08": {
+    "verdict": "BUG",
+    "reading": "BUG",
+    "sec": 0.23
+   },
+   "core-py-09": {
+    "verdict": "BUG",
+    "reading": "BUG",
+    "sec": 0.25
+   },
+   "core-py-10": {
+    "verdict": "BUG",
+    "reading": "BUG",
+    "sec": 0.25
+   },
+   "core-py-11": {
+    "verdict": "BUG",
+    "reading": "BUG",
+    "sec": 0.24
+   },
+   "core-py-12": {
+    "verdict": "BUG",
+    "reading": "BUG",
+    "sec": 0.34
+   },
+   "core-rest-01": {
+    "verdict": "BUG",
+    "reading": "BUG ['A', 'B', 'D']",
+    "sec": 0.23
+   },
+   "core-rest-02": {
+    "verdict": "BUG",
+    "reading": "BUG",
+    "sec": 0.23
+   },
+   "core-rest-03": {
+    "verdict": "BUG",
+    "reading": "BUG ['numeric-id', 'date-truncated', 'bucket-root-leak']",
+    "sec": 0.71
+   },
+   "core-rest-05": {
+    "verdict": "BUG",
+    "reading": "BUG {'不一致部件数': 4, '零面积': 'ACCEPT'}",
+    "sec": 0.11
+   },
+   "core-rest-08": {
+    "verdict": "BUG",
+    "reading": "BUG {'shared': False, 'memory': 'OperationalError', 'default': False}",
+    "sec": 0.42
+   },
+   "core2-new-01": {
+    "verdict": "BUG",
+    "reading": "BUG {'应命中而未命中': 6, '误命中': 0}",
+    "sec": 0.09
+   },
+   "core2-new-02": {
+    "verdict": "BUG",
+    "reading": "BUG",
+    "sec": 0.33
+   },
+   "core2-new-03": {
+    "verdict": "BUG",
+    "reading": "BUG",
+    "sec": 0.34
+   },
+   "core2-new-04": {
+    "verdict": "BUG",
+    "reading": "BUG",
+    "sec": 0.24
+   },
+   "core2-new-05": {
+    "verdict": "BUG",
+    "reading": "BUG",
+    "sec": 0.48
+   },
+   "nn-02": {
+    "verdict": "BUG",
+    "reading": "BUG ['中心有红色', '中心有蓝色菱形', '右下方有蓝色菱形', '下方有红色星', '中间有红色实心菱形', '中间有蓝色条纹菱形']",
+    "sec": 0.52
+   },
+   "nn-04": {
+    "verdict": "BUG",
+    "reading": "BUG {'B': 1.0, 'C': 1.0, 'D': 1.0}",
+    "sec": 0.84
+   },
+   "nn-05": {
+    "verdict": "BUG",
+    "reading": "BUG 左上角方块 acc = 0.9755859375",
+    "sec": 0.46
+   },
+   "nn-07": {
+    "verdict": "BUG",
+    "reading": "BUG",
+    "sec": 84.53
+   },
+   "nn-08": {
+    "verdict": "BUG",
+    "reading": "BUG",
+    "sec": 1.36
+   },
+   "world-01": {
+    "verdict": "BUG",
+    "reading": "BUG (旧边仍在=True, exact 未命中=11/15)",
+    "sec": 0.22
+   },
+   "world-02": {
+    "verdict": "BUG",
+    "reading": "BUG (遮挡颠倒=True, 球尺寸错=True)",
+    "sec": 0.3
+   },
+   "world-03": {
+    "verdict": "BUG",
+    "reading": "BUG (① 水平对齐 / ② 在相机前方 / ③ 天空物体纵向往返)",
+    "sec": 0.18
+   },
+   "world-04": {
+    "verdict": "BUG",
+    "reading": "BUG (seeded=25≤20? 显式参数生效=False)",
+    "sec": 0.23
+   },
+   "world-05": {
+    "verdict": "BUG",
+    "reading": "BUG (重叠率应与坐标缩放无关)",
+    "sec": 0.16
+   },
+   "world-06": {
+    "verdict": "BUG",
+    "reading": "BUG 金字塔屏幕高度: [37, 37, 37]",
+    "sec": 2.95
+   },
+   "world-07": {
+    "verdict": "BUG",
+    "reading": "BUG",
+    "sec": 0.86
+   },
+   "world-08": {
+    "verdict": "BUG",
+    "reading": "BUG (所报 threshold 是否为真实判据边界；动态退化检测本身 needs-owner-decision)",
+    "sec": 2.6
+   },
+   "world-n1": {
+    "verdict": "BUG",
+    "reading": "BUG",
+    "sec": 0.29
+   },
+   "world-n2": {
+    "verdict": "BUG",
+    "reading": "BUG (远侧腿盖在身体上)",
+    "sec": 0.27
+   },
+   "world-n3": {
+    "verdict": "BUG",
+    "reading": "BUG",
+    "sec": 0.23
+   },
+   "world-n4": {
+    "verdict": "BUG",
+    "reading": "BUG",
+    "sec": 56.0
+   },
+   "world-n5": {
+    "verdict": "BUG",
+    "reading": "BUG (追上后在目标两侧以 speed 步长来回越过)",
+    "sec": 0.2
+   }
+  },
+  "integrated": {
+   "NEW-nn-01": {
+    "verdict": "OK",
+    "reading": "OK",
+    "sec": 1.23
+   },
+   "NEW-nn-02": {
+    "verdict": "OK",
+    "reading": "OK",
+    "sec": 0.37
+   },
+   "NEW-nn-03": {
+    "verdict": "OK",
+    "reading": "OK",
+    "sec": 0.96
+   },
+   "core-py-01": {
+    "verdict": "OK",
+    "reading": "OK",
+    "sec": 0.31
+   },
+   "core-py-02": {
+    "verdict": "OK",
+    "reading": "OK",
+    "sec": 0.26
+   },
+   "core-py-06": {
+    "verdict": "OK",
+    "reading": "OK",
+    "sec": 2.46
+   },
+   "core-py-07": {
+    "verdict": "OK",
+    "reading": "OK",
+    "sec": 0.29
+   },
+   "core-py-08": {
+    "verdict": "OK",
+    "reading": "OK",
+    "sec": 0.26
+   },
+   "core-py-09": {
+    "verdict": "OK",
+    "reading": "OK",
+    "sec": 0.24
+   },
+   "core-py-10": {
+    "verdict": "OK",
+    "reading": "OK",
+    "sec": 0.25
+   },
+   "core-py-11": {
+    "verdict": "OK",
+    "reading": "OK",
+    "sec": 0.23
+   },
+   "core-py-12": {
+    "verdict": "BUG",
+    "reading": "BUG",
+    "sec": 0.33
+   },
+   "core-rest-01": {
+    "verdict": "OK",
+    "reading": "OK []",
+    "sec": 0.27
+   },
+   "core-rest-02": {
+    "verdict": "OK",
+    "reading": "OK",
+    "sec": 0.27
+   },
+   "core-rest-03": {
+    "verdict": "OK",
+    "reading": "OK []",
+    "sec": 0.67
+   },
+   "core-rest-05": {
+    "verdict": "OK",
+    "reading": "OK {'不一致部件数': 0, '零面积': 'REJECT'}",
+    "sec": 0.13
+   },
+   "core-rest-08": {
+    "verdict": "OK",
+    "reading": "OK {'shared': True, 'memory': 'ValueError', 'default': True}",
+    "sec": 0.49
+   },
+   "core2-new-01": {
+    "verdict": "OK",
+    "reading": "OK {'应命中而未命中': 0, '误命中': 0}",
+    "sec": 0.12
+   },
+   "core2-new-02": {
+    "verdict": "OK",
+    "reading": "OK",
+    "sec": 0.3
+   },
+   "core2-new-03": {
+    "verdict": "OK",
+    "reading": "OK",
+    "sec": 0.32
+   },
+   "core2-new-04": {
+    "verdict": "OK",
+    "reading": "OK",
+    "sec": 0.28
+   },
+   "core2-new-05": {
+    "verdict": "OK",
+    "reading": "OK",
+    "sec": 0.5
+   },
+   "nn-02": {
+    "verdict": "OK",
+    "reading": "OK []",
+    "sec": 0.6
+   },
+   "nn-04": {
+    "verdict": "OK",
+    "reading": "OK {'B': 0.0, 'C': 0.0, 'D': 0.0}",
+    "sec": 0.99
+   },
+   "nn-05": {
+    "verdict": "OK",
+    "reading": "OK 左上角方块 acc = 1.0",
+    "sec": 0.46
+   },
+   "nn-07": {
+    "verdict": "TIMEOUT",
+    "sec": 120.12,
+    "reading": "超时 120s"
+   },
+   "nn-08": {
+    "verdict": "OK",
+    "reading": "OK",
+    "sec": 1.15
+   },
+   "world-01": {
+    "verdict": "OK",
+    "reading": "OK (旧边仍在=False, exact 未命中=2/15)",
+    "sec": 0.22
+   },
+   "world-02": {
+    "verdict": "OK",
+    "reading": "OK (遮挡颠倒=False, 球尺寸错=False)",
+    "sec": 0.33
+   },
+   "world-03": {
+    "verdict": "OK",
+    "reading": "OK (① 水平对齐 / ② 在相机前方 / ③ 天空物体纵向往返)",
+    "sec": 0.16
+   },
+   "world-04": {
+    "verdict": "OK",
+    "reading": "OK (seeded=20≤20? 显式参数生效=True)",
+    "sec": 0.22
+   },
+   "world-05": {
+    "verdict": "OK",
+    "reading": "OK (重叠率应与坐标缩放无关)",
+    "sec": 0.13
+   },
+   "world-06": {
+    "verdict": "OK",
+    "reading": "OK 金字塔屏幕高度: [29, 94, 209]",
+    "sec": 2.73
+   },
+   "world-07": {
+    "verdict": "OK",
+    "reading": "OK",
+    "sec": 0.88
+   },
+   "world-08": {
+    "verdict": "OK",
+    "reading": "OK (所报 threshold 是否为真实判据边界；动态退化检测本身 needs-owner-decision)",
+    "sec": 1.65
+   },
+   "world-n1": {
+    "verdict": "OK",
+    "reading": "OK",
+    "sec": 0.31
+   },
+   "world-n2": {
+    "verdict": "OK",
+    "reading": "OK",
+    "sec": 0.36
+   },
+   "world-n3": {
+    "verdict": "OK",
+    "reading": "OK",
+    "sec": 0.26
+   },
+   "world-n4": {
+    "verdict": "OK",
+    "reading": "OK",
+    "sec": 53.8
+   },
+   "world-n5": {
+    "verdict": "OK",
+    "reading": "OK (追上后在目标两侧以 speed 步长来回越过)",
+    "sec": 0.23
+   }
+  },
+  "ng": {
+   "NEW-nn-01": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "NEW-nn-02": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "NEW-nn-03": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "core-py-01": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "core-py-02": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "core-py-06": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "core-py-07": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "core-py-08": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "core-py-09": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "core-py-10": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "core-py-11": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "core-py-12": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "core-rest-01": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "core-rest-02": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "core-rest-03": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "core-rest-05": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "core-rest-08": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "core2-new-01": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "core2-new-02": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "core2-new-03": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "core2-new-04": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "core2-new-05": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "nn-02": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "nn-04": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "nn-05": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "nn-07": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "nn-08": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "world-01": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "world-02": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "world-03": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "world-04": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "world-05": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "world-06": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "world-07": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "world-08": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "world-n1": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "world-n2": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "world-n3": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "world-n4": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   },
+   "world-n5": {
+    "verdict": "NA",
+    "reading": "旧 API 直连探针，不经适配层",
+    "sec": 0
+   }
+  }
+ }
+}

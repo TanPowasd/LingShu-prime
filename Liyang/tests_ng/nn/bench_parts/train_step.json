@@ -1,0 +1,38 @@
+{
+ "data": [
+  {
+   "lattice": [
+    18,
+    16
+   ],
+   "batch": 96,
+   "samples_per_step": 20,
+   "legacy_s_per_step": 6.529,
+   "ng_seq_s_per_step": 0.114,
+   "ng_par_s_per_step": 0.162,
+   "ng_analytic_s_per_step": 0.169,
+   "ng_analytic_all_params_s_per_step": 0.1802,
+   "speedup_seq": 57.3,
+   "speedup_par": 40.3
+  },
+  {
+   "lattice": [
+    37,
+    32
+   ],
+   "batch": 96,
+   "samples_per_step": 20,
+   "legacy_s_per_step": 33.078,
+   "ng_seq_s_per_step": 0.333,
+   "ng_par_s_per_step": 0.231,
+   "ng_analytic_s_per_step": 0.2191,
+   "ng_analytic_all_params_s_per_step": 0.2195,
+   "speedup_seq": 99.4,
+   "speedup_par": 143.3
+  }
+ ],
+ "env": {
+  "OPENBLAS_NUM_THREADS": "1"
+ },
+ "when": "2026-10-08 18:24:49"
+}

@@ -1,0 +1,64 @@
+{
+ "data": [
+  {
+   "batch": 16,
+   "lattice": [
+    18,
+    16
+   ],
+   "fwd_legacy_ms": 24.89,
+   "fwd_ng_ms": 6.19,
+   "fwd_speedup": 4.02,
+   "conv2_legacy_ms": 10.61,
+   "conv2_ng_ms": 2.71,
+   "conv2_speedup": 3.91,
+   "max_abs_logit_diff": 8.881784197001252e-16
+  },
+  {
+   "batch": 96,
+   "lattice": [
+    18,
+    16
+   ],
+   "fwd_legacy_ms": 143.76,
+   "fwd_ng_ms": 22.88,
+   "fwd_speedup": 6.28,
+   "conv2_legacy_ms": 99.61,
+   "conv2_ng_ms": 23.55,
+   "conv2_speedup": 4.23,
+   "max_abs_logit_diff": 9.992007221626409e-16
+  },
+  {
+   "batch": 96,
+   "lattice": [
+    37,
+    32
+   ],
+   "fwd_legacy_ms": 707.71,
+   "fwd_ng_ms": 128.72,
+   "fwd_speedup": 5.5,
+   "conv2_legacy_ms": 415.27,
+   "conv2_ng_ms": 73.3,
+   "conv2_speedup": 5.67,
+   "max_abs_logit_diff": 1.4432899320127035e-15
+  },
+  {
+   "batch": 32,
+   "lattice": [
+    74,
+    64
+   ],
+   "fwd_legacy_ms": 877.59,
+   "fwd_ng_ms": 180.53,
+   "fwd_speedup": 4.86,
+   "conv2_legacy_ms": 533.71,
+   "conv2_ng_ms": 101.06,
+   "conv2_speedup": 5.28,
+   "max_abs_logit_diff": 1.3322676295501878e-15
+  }
+ ],
+ "env": {
+  "OPENBLAS_NUM_THREADS": "1"
+ },
+ "when": "2026-10-08 18:06:59"
+}

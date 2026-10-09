@@ -1,0 +1,320 @@
+{
+ "audit_rc": 0,
+ "audit_stdout": "—— 轮次：HMB·e2e C 型（evalsuite_hmb r2）｜样本档位：机械构造锚 48（24正/12跨卡负/12无关负，seed 20261006）\n   锚集基线：50.0%（n=48）\n   ✅ J1                 正确率 100.0% − 基线 50.0% = +50.0%（覆盖 100%）\n   ✅ J2                 正确率 100.0% − 基线 50.0% = +50.0%（覆盖 100%）\n   一致率：同分 100.0%／kappa 1.000  ⇒ 可报值\n   ⇒ 状态 pass｜报告模式 可报值\n记录已写入 → /workspace/work/ls/rewrite/evalsuite_hmb/out/_e2e/audit_e2e_rec.json\n",
+ "arms": {
+  "base": {
+   "J1": {
+    "miss": 61,
+    "paraphrase": 26,
+    "strict": 2,
+    "n": 89,
+    "weighted": 0.1685
+   },
+   "J2": {
+    "miss": 61,
+    "paraphrase": 24,
+    "strict": 4,
+    "n": 89,
+    "weighted": 0.1798
+   },
+   "lenient": {
+    "miss": 57,
+    "paraphrase": 28,
+    "strict": 4,
+    "n": 89,
+    "weighted": 0.2022
+   },
+   "strict": {
+    "miss": 65,
+    "paraphrase": 22,
+    "strict": 2,
+    "n": 89,
+    "weighted": 0.1461
+   },
+   "lenient31": {
+    "paraphrase": 11,
+    "miss": 20,
+    "n": 31,
+    "weighted": 0.1774
+   },
+   "strict31": {
+    "paraphrase": 9,
+    "miss": 22,
+    "n": 31,
+    "weighted": 0.1452
+   },
+   "J1_31": {
+    "paraphrase": 10,
+    "miss": 21,
+    "n": 31,
+    "weighted": 0.1613
+   },
+   "basis": {
+    "n": 148,
+    "verbatim": 141,
+    "rate": 0.9527,
+    "cards_with_basis": 89
+   },
+   "basis31": {
+    "n": 52,
+    "verbatim": 50,
+    "rate": 0.9615,
+    "cards_with_basis": 31
+   },
+   "material_chars_mean": 11913.6
+  },
+  "integrated": {
+   "J1": {
+    "miss": 62,
+    "paraphrase": 25,
+    "strict": 2,
+    "n": 89,
+    "weighted": 0.1629
+   },
+   "J2": {
+    "miss": 61,
+    "paraphrase": 24,
+    "strict": 4,
+    "n": 89,
+    "weighted": 0.1798
+   },
+   "lenient": {
+    "miss": 58,
+    "paraphrase": 27,
+    "strict": 4,
+    "n": 89,
+    "weighted": 0.1966
+   },
+   "strict": {
+    "miss": 65,
+    "paraphrase": 22,
+    "strict": 2,
+    "n": 89,
+    "weighted": 0.1461
+   },
+   "lenient31": {
+    "paraphrase": 11,
+    "miss": 20,
+    "n": 31,
+    "weighted": 0.1774
+   },
+   "strict31": {
+    "paraphrase": 9,
+    "miss": 22,
+    "n": 31,
+    "weighted": 0.1452
+   },
+   "J1_31": {
+    "paraphrase": 10,
+    "miss": 21,
+    "n": 31,
+    "weighted": 0.1613
+   },
+   "basis": {
+    "n": 148,
+    "verbatim": 141,
+    "rate": 0.9527,
+    "cards_with_basis": 89
+   },
+   "basis31": {
+    "n": 52,
+    "verbatim": 50,
+    "rate": 0.9615,
+    "cards_with_basis": 31
+   },
+   "material_chars_mean": 11913.6
+  },
+  "ng": {
+   "J1": {
+    "paraphrase": 24,
+    "miss": 60,
+    "strict": 5,
+    "n": 89,
+    "weighted": 0.191
+   },
+   "J2": {
+    "paraphrase": 21,
+    "miss": 63,
+    "strict": 5,
+    "n": 89,
+    "weighted": 0.1742
+   },
+   "lenient": {
+    "paraphrase": 27,
+    "miss": 57,
+    "strict": 5,
+    "n": 89,
+    "weighted": 0.2079
+   },
+   "strict": {
+    "paraphrase": 18,
+    "miss": 66,
+    "strict": 5,
+    "n": 89,
+    "weighted": 0.1573
+   },
+   "lenient31": {
+    "paraphrase": 13,
+    "miss": 18,
+    "n": 31,
+    "weighted": 0.2097
+   },
+   "strict31": {
+    "paraphrase": 7,
+    "miss": 24,
+    "n": 31,
+    "weighted": 0.1129
+   },
+   "J1_31": {
+    "paraphrase": 11,
+    "miss": 20,
+    "n": 31,
+    "weighted": 0.1774
+   },
+   "basis": {
+    "n": 144,
+    "verbatim": 143,
+    "rate": 0.9931,
+    "cards_with_basis": 88
+   },
+   "basis31": {
+    "n": 49,
+    "verbatim": 49,
+    "rate": 1.0,
+    "cards_with_basis": 31
+   },
+   "material_chars_mean": 11865.2
+  },
+  "bm25": {
+   "J1": {
+    "paraphrase": 27,
+    "miss": 57,
+    "strict": 5,
+    "n": 89,
+    "weighted": 0.2079
+   },
+   "J2": {
+    "paraphrase": 27,
+    "miss": 57,
+    "strict": 5,
+    "n": 89,
+    "weighted": 0.2079
+   },
+   "lenient": {
+    "paraphrase": 34,
+    "miss": 50,
+    "strict": 5,
+    "n": 89,
+    "weighted": 0.2472
+   },
+   "strict": {
+    "paraphrase": 20,
+    "miss": 64,
+    "strict": 5,
+    "n": 89,
+    "weighted": 0.1685
+   },
+   "lenient31": {
+    "paraphrase": 14,
+    "miss": 17,
+    "n": 31,
+    "weighted": 0.2258
+   },
+   "strict31": {
+    "miss": 23,
+    "paraphrase": 8,
+    "n": 31,
+    "weighted": 0.129
+   },
+   "J1_31": {
+    "miss": 21,
+    "paraphrase": 10,
+    "n": 31,
+    "weighted": 0.1613
+   },
+   "basis": {
+    "n": 152,
+    "verbatim": 151,
+    "rate": 0.9934,
+    "cards_with_basis": 89
+   },
+   "basis31": {
+    "n": 56,
+    "verbatim": 56,
+    "rate": 1.0,
+    "cards_with_basis": 31
+   },
+   "material_chars_mean": 11977.6
+  },
+  "closed": {
+   "J1": {
+    "miss": 51,
+    "strict": 6,
+    "paraphrase": 32,
+    "n": 89,
+    "weighted": 0.2472
+   },
+   "J2": {
+    "miss": 53,
+    "strict": 9,
+    "paraphrase": 27,
+    "n": 89,
+    "weighted": 0.2528
+   },
+   "lenient": {
+    "miss": 47,
+    "strict": 9,
+    "paraphrase": 33,
+    "n": 89,
+    "weighted": 0.2865
+   },
+   "strict": {
+    "miss": 57,
+    "strict": 6,
+    "paraphrase": 26,
+    "n": 89,
+    "weighted": 0.2135
+   },
+   "lenient31": {
+    "miss": 14,
+    "paraphrase": 14,
+    "strict": 3,
+    "n": 31,
+    "weighted": 0.3226
+   },
+   "strict31": {
+    "miss": 20,
+    "paraphrase": 9,
+    "strict": 2,
+    "n": 31,
+    "weighted": 0.2097
+   },
+   "J1_31": {
+    "miss": 16,
+    "paraphrase": 13,
+    "strict": 2,
+    "n": 31,
+    "weighted": 0.2742
+   },
+   "basis": {
+    "n": 7,
+    "verbatim": 7,
+    "rate": 1.0,
+    "cards_with_basis": 5
+   },
+   "basis31": {
+    "n": 3,
+    "verbatim": 3,
+    "rate": 1.0,
+    "cards_with_basis": 2
+   },
+   "material_chars_mean": 0.0
+  }
+ },
+ "sub31_n": 31,
+ "real_agreement": {
+  "n": 445,
+  "identical": 0.8764,
+  "kappa": 0.7428
+ }
+}

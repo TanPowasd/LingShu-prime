@@ -1,0 +1,302 @@
+[
+ {
+  "probe": "../wt-core-mem/bench/probes/core-py-01.py",
+  "legacy": "OK",
+  "ng": "OK"
+ },
+ {
+  "probe": "../wt-core-mem/bench/probes/core-py-02.py",
+  "legacy": "OK",
+  "ng": "OK"
+ },
+ {
+  "probe": "../wt-core-mem/bench/probes/core-py-06.py",
+  "legacy": "OK",
+  "ng": "OK"
+ },
+ {
+  "probe": "../wt-core-mem/bench/probes/core-py-07.py",
+  "legacy": "OK",
+  "ng": "OK"
+ },
+ {
+  "probe": "../wt-core-mem/bench/probes/core-py-08.py",
+  "legacy": "OK",
+  "ng": "OK"
+ },
+ {
+  "probe": "../wt-core-mem/bench/probes/core-py-09.py",
+  "legacy": "OK",
+  "ng": "OK"
+ },
+ {
+  "probe": "../wt-core-mem/bench/probes/core-py-10.py",
+  "legacy": "OK",
+  "ng": "OK"
+ },
+ {
+  "probe": "../wt-core-mem/bench/probes/core-py-11.py",
+  "legacy": "OK",
+  "ng": "OK"
+ },
+ {
+  "probe": "../wt-core-mem/bench/probes/core-py-12.py",
+  "legacy": "BUG",
+  "ng": "OK"
+ },
+ {
+  "probe": "../wt-core-mem/bench/probes/core-rest-01.py",
+  "legacy": "OK []",
+  "ng": "OK []"
+ },
+ {
+  "probe": "../wt-core-mem/bench/probes/core-rest-02.py",
+  "legacy": "OK",
+  "ng": "OK"
+ },
+ {
+  "probe": "../wt-core-mem/bench/probes/core-rest-03.py",
+  "legacy": "OK []",
+  "ng": "OK []"
+ },
+ {
+  "probe": "../wt-core-mem/bench/probes/core-rest-05.py",
+  "legacy": "OK {'不一致部件数': 0, '零面积': 'REJECT'}",
+  "ng": "OK {'不一致部件数': 0, '零面积': 'REJECT'}"
+ },
+ {
+  "probe": "../wt-core-mem/bench/probes/core-rest-08.py",
+  "legacy": "OK {'shared': True, 'memory': 'ValueError', 'default': True}",
+  "ng": "OK {'shared': True, 'memory': 'ValueError', 'default': True}"
+ },
+ {
+  "probe": "../wt-core-mem/bench/probes/issue-206.py",
+  "legacy": "BUG ['2.0', '42.0', 'nan']",
+  "ng": "OK []"
+ },
+ {
+  "probe": "../wt-core-mem/bench/probes/issue-207.py",
+  "legacy": "OK []",
+  "ng": "OK []"
+ },
+ {
+  "probe": "../wt-core-mem/bench/probes/issue-208.py",
+  "legacy": "BUG ['unbounded']",
+  "ng": "OK []"
+ },
+ {
+  "probe": "../wt-core-mem/bench/probes/issue-210.py",
+  "legacy": "OK []",
+  "ng": "OK []"
+ },
+ {
+  "probe": "../wt-core-mem/bench/probes/issue-213.py",
+  "legacy": "BUG ['blind:The produc', 'blind:rm -rf /va', 'blind:Москва сто', 'repeat', 'id_change', 'id_change']",
+  "ng": "OK []"
+ },
+ {
+  "probe": "../wt-core-mem/bench/probes/issue-214.py",
+  "legacy": "BUG ['no_promotion']",
+  "ng": "OK []"
+ },
+ {
+  "probe": "../wt-core-mem/bench/probes/issue-216.py",
+  "legacy": "BUG structure",
+  "ng": "OK blocked: 同内容提案已被否决（r"
+ },
+ {
+  "probe": "../wt-core-mem/bench/probes/issue-217.py",
+  "legacy": "BUG ['structure_modified', 'laundered']",
+  "ng": "OK []"
+ },
+ {
+  "probe": "../wt-core-mem/bench/probes/issue-223.py",
+  "legacy": "BUG ['importance', 'modality']",
+  "ng": "OK []"
+ },
+ {
+  "probe": "../wt-core-mem/bench/probes/issue-224.py",
+  "legacy": "OK []",
+  "ng": "OK []"
+ },
+ {
+  "probe": "../wt-core-mem/bench/probes/issue-225.py",
+  "legacy": "BUG ['merged', 'boosted']",
+  "ng": "OK []"
+ },
+ {
+  "probe": "../wt-core-self/bench/probes/core-py-01.py",
+  "legacy": "OK",
+  "ng": "OK"
+ },
+ {
+  "probe": "../wt-core-self/bench/probes/core-py-02.py",
+  "legacy": "OK",
+  "ng": "OK"
+ },
+ {
+  "probe": "../wt-core-self/bench/probes/core-py-06.py",
+  "legacy": "OK",
+  "ng": "OK"
+ },
+ {
+  "probe": "../wt-core-self/bench/probes/core-py-07.py",
+  "legacy": "OK",
+  "ng": "OK"
+ },
+ {
+  "probe": "../wt-core-self/bench/probes/core-py-08.py",
+  "legacy": "OK",
+  "ng": "OK"
+ },
+ {
+  "probe": "../wt-core-self/bench/probes/core-py-09.py",
+  "legacy": "OK",
+  "ng": "OK"
+ },
+ {
+  "probe": "../wt-core-self/bench/probes/core-py-10.py",
+  "legacy": "OK",
+  "ng": "OK"
+ },
+ {
+  "probe": "../wt-core-self/bench/probes/core-py-11.py",
+  "legacy": "OK",
+  "ng": "OK"
+ },
+ {
+  "probe": "../wt-core-self/bench/probes/core-py-12.py",
+  "legacy": "BUG",
+  "ng": "OK"
+ },
+ {
+  "probe": "../wt-core-self/bench/probes/core-rest-01.py",
+  "legacy": "OK []",
+  "ng": "OK []"
+ },
+ {
+  "probe": "../wt-core-self/bench/probes/core-rest-02.py",
+  "legacy": "OK",
+  "ng": "OK"
+ },
+ {
+  "probe": "../wt-core-self/bench/probes/core-rest-03.py",
+  "legacy": "OK []",
+  "ng": "OK []"
+ },
+ {
+  "probe": "../wt-core-self/bench/probes/core-rest-05.py",
+  "legacy": "OK {'不一致部件数': 0, '零面积': 'REJECT'}",
+  "ng": "OK {'不一致部件数': 0, '零面积': 'REJECT'}"
+ },
+ {
+  "probe": "../wt-core-self/bench/probes/core-rest-08.py",
+  "legacy": "OK {'shared': True, 'memory': 'ValueError', 'default': True}",
+  "ng": "OK {'shared': True, 'memory': 'ValueError', 'default': True}"
+ },
+ {
+  "probe": "../wt-core-self/bench/probes/issue-107.py",
+  "legacy": "BUG 自检恒 True",
+  "ng": "OK"
+ },
+ {
+  "probe": "../wt-core-self/bench/probes/issue-122.py",
+  "legacy": "BUG history 无界",
+  "ng": "OK history 有界"
+ },
+ {
+  "probe": "../wt-core-self/bench/probes/issue-200.py",
+  "legacy": "BUG 技能误绑/通配/失败不降信",
+  "ng": "OK"
+ },
+ {
+  "probe": "../wt-core-self/bench/probes/issue-201.py",
+  "legacy": "BUG 自我快照挤占召回/快照内嵌 history",
+  "ng": "OK"
+ },
+ {
+  "probe": "../wt-core-self/bench/probes/issue-205.py",
+  "legacy": "BUG 自我边被衰减/删除",
+  "ng": "OK"
+ },
+ {
+  "probe": "../wt-core-self/bench/probes/issue-212.py",
+  "legacy": "BUG 价值观被整表替换/演化无界",
+  "ng": "OK"
+ },
+ {
+  "probe": "../wt-core-self/bench/probes/issue-222.py",
+  "legacy": "BUG store 层无密钥关闭盲区",
+  "ng": "OK"
+ },
+ {
+  "probe": "bench/probes/core-py-01.py",
+  "legacy": "OK",
+  "ng": "OK"
+ },
+ {
+  "probe": "bench/probes/core-py-02.py",
+  "legacy": "OK",
+  "ng": "OK"
+ },
+ {
+  "probe": "bench/probes/core-py-06.py",
+  "legacy": "OK",
+  "ng": "OK"
+ },
+ {
+  "probe": "bench/probes/core-py-07.py",
+  "legacy": "OK",
+  "ng": "OK"
+ },
+ {
+  "probe": "bench/probes/core-py-08.py",
+  "legacy": "OK",
+  "ng": "OK"
+ },
+ {
+  "probe": "bench/probes/core-py-09.py",
+  "legacy": "OK",
+  "ng": "OK"
+ },
+ {
+  "probe": "bench/probes/core-py-10.py",
+  "legacy": "OK",
+  "ng": "OK"
+ },
+ {
+  "probe": "bench/probes/core-py-11.py",
+  "legacy": "OK",
+  "ng": "OK"
+ },
+ {
+  "probe": "bench/probes/core-py-12.py",
+  "legacy": "BUG",
+  "ng": "OK"
+ },
+ {
+  "probe": "bench/probes/core-rest-01.py",
+  "legacy": "OK []",
+  "ng": "OK []"
+ },
+ {
+  "probe": "bench/probes/core-rest-02.py",
+  "legacy": "OK",
+  "ng": "OK"
+ },
+ {
+  "probe": "bench/probes/core-rest-03.py",
+  "legacy": "OK []",
+  "ng": "OK []"
+ },
+ {
+  "probe": "bench/probes/core-rest-05.py",
+  "legacy": "OK {'不一致部件数': 0, '零面积': 'REJECT'}",
+  "ng": "OK {'不一致部件数': 0, '零面积': 'REJECT'}"
+ },
+ {
+  "probe": "bench/probes/core-rest-08.py",
+  "legacy": "OK {'shared': True, 'memory': 'ValueError', 'default': True}",
+  "ng": "OK {'shared': True, 'memory': 'ValueError', 'default': True}"
+ }
+]

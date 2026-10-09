@@ -1,0 +1,5681 @@
+{
+ "boards": {
+  "base": {
+   "J1": {
+    "board": {
+     "fail": 86,
+     "pass": 6
+    },
+    "detail": [
+     {
+      "qid": "o001",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o002",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "作者相关"
+     },
+     {
+      "qid": "o003",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o004",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "作者相关"
+     },
+     {
+      "qid": "o005",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o006",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事结局"
+     },
+     {
+      "qid": "o007",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o008",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o009",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o010",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o011",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o012",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o013",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o014",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o015",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o016",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o017",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o018",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o019",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o020",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o021",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o022",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o023",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o024",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o025",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o026",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o027",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o028",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o029",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o030",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o031",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o032",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o033",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o034",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o035",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o036",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o037",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o038",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o039",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o040",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o041",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o042",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o043",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o044",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o045",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o046",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o047",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o048",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要地点"
+     },
+     {
+      "qid": "o049",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要地点"
+     },
+     {
+      "qid": "o050",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "主要地点"
+     },
+     {
+      "qid": "o051",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事时间"
+     },
+     {
+      "qid": "o052",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事时间"
+     },
+     {
+      "qid": "o053",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o054",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "作者相关"
+     },
+     {
+      "qid": "q001",
+      "verdict": "pass",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q002",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q003",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "conflict_resolution"
+     },
+     {
+      "qid": "q004",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "reference_binding"
+     },
+     {
+      "qid": "q005",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q006",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q007",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q008",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q009",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q010",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q011",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q012",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "conflict_resolution"
+     },
+     {
+      "qid": "q013",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q014",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q015",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q016",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "conflict_resolution"
+     },
+     {
+      "qid": "q017",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "reference_binding"
+     },
+     {
+      "qid": "q018",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q019",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q020",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q021",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q022",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q023",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q024",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q025",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q026",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q027",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q028",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q029",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q030",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "belief_correction"
+     },
+     {
+      "qid": "q031",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q032",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q033",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q034",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q035",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q036",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q037",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q038",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "negation_counterfactual"
+     }
+    ]
+   },
+   "J2": {
+    "board": {
+     "fail": 86,
+     "pass": 6
+    },
+    "detail": [
+     {
+      "qid": "o001",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o002",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "作者相关"
+     },
+     {
+      "qid": "o003",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o004",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "作者相关"
+     },
+     {
+      "qid": "o005",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o006",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事结局"
+     },
+     {
+      "qid": "o007",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o008",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o009",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o010",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o011",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o012",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o013",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o014",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o015",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o016",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o017",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o018",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o019",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o020",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o021",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o022",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o023",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o024",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o025",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o026",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o027",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o028",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o029",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o030",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o031",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o032",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o033",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o034",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o035",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o036",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o037",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o038",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o039",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o040",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o041",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o042",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o043",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o044",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o045",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o046",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o047",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o048",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要地点"
+     },
+     {
+      "qid": "o049",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要地点"
+     },
+     {
+      "qid": "o050",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "主要地点"
+     },
+     {
+      "qid": "o051",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事时间"
+     },
+     {
+      "qid": "o052",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事时间"
+     },
+     {
+      "qid": "o053",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o054",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "作者相关"
+     },
+     {
+      "qid": "q001",
+      "verdict": "pass",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q002",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q003",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "conflict_resolution"
+     },
+     {
+      "qid": "q004",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "reference_binding"
+     },
+     {
+      "qid": "q005",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q006",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q007",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q008",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q009",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q010",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q011",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q012",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "conflict_resolution"
+     },
+     {
+      "qid": "q013",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q014",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q015",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q016",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "conflict_resolution"
+     },
+     {
+      "qid": "q017",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "reference_binding"
+     },
+     {
+      "qid": "q018",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q019",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q020",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q021",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q022",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q023",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q024",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q025",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q026",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q027",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q028",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q029",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q030",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "belief_correction"
+     },
+     {
+      "qid": "q031",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q032",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q033",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q034",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q035",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q036",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q037",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q038",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "negation_counterfactual"
+     }
+    ]
+   }
+  },
+  "integrated": {
+   "J1": {
+    "board": {
+     "fail": 86,
+     "pass": 6
+    },
+    "detail": [
+     {
+      "qid": "o001",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o002",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "作者相关"
+     },
+     {
+      "qid": "o003",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o004",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "作者相关"
+     },
+     {
+      "qid": "o005",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o006",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事结局"
+     },
+     {
+      "qid": "o007",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o008",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o009",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o010",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o011",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o012",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o013",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o014",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o015",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o016",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o017",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o018",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o019",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o020",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o021",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o022",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o023",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o024",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o025",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o026",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o027",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o028",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o029",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o030",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o031",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o032",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o033",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o034",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o035",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o036",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o037",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o038",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o039",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o040",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o041",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o042",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o043",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o044",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o045",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o046",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o047",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o048",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要地点"
+     },
+     {
+      "qid": "o049",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要地点"
+     },
+     {
+      "qid": "o050",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "主要地点"
+     },
+     {
+      "qid": "o051",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事时间"
+     },
+     {
+      "qid": "o052",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事时间"
+     },
+     {
+      "qid": "o053",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o054",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "作者相关"
+     },
+     {
+      "qid": "q001",
+      "verdict": "pass",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q002",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q003",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "conflict_resolution"
+     },
+     {
+      "qid": "q004",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "reference_binding"
+     },
+     {
+      "qid": "q005",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q006",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q007",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q008",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q009",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q010",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q011",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q012",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "conflict_resolution"
+     },
+     {
+      "qid": "q013",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q014",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q015",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q016",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "conflict_resolution"
+     },
+     {
+      "qid": "q017",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "reference_binding"
+     },
+     {
+      "qid": "q018",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q019",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q020",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q021",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q022",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q023",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q024",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q025",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q026",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q027",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q028",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q029",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q030",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "belief_correction"
+     },
+     {
+      "qid": "q031",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q032",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q033",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q034",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q035",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q036",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q037",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q038",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "negation_counterfactual"
+     }
+    ]
+   },
+   "J2": {
+    "board": {
+     "fail": 86,
+     "pass": 6
+    },
+    "detail": [
+     {
+      "qid": "o001",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o002",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "作者相关"
+     },
+     {
+      "qid": "o003",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o004",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "作者相关"
+     },
+     {
+      "qid": "o005",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o006",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事结局"
+     },
+     {
+      "qid": "o007",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o008",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o009",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o010",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o011",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o012",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o013",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o014",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o015",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o016",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o017",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o018",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o019",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o020",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o021",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o022",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o023",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o024",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o025",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o026",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o027",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o028",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o029",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o030",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o031",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o032",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o033",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o034",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o035",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o036",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o037",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o038",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o039",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o040",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o041",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o042",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o043",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o044",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o045",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o046",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o047",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o048",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要地点"
+     },
+     {
+      "qid": "o049",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要地点"
+     },
+     {
+      "qid": "o050",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "主要地点"
+     },
+     {
+      "qid": "o051",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事时间"
+     },
+     {
+      "qid": "o052",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事时间"
+     },
+     {
+      "qid": "o053",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o054",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "作者相关"
+     },
+     {
+      "qid": "q001",
+      "verdict": "pass",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q002",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q003",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "conflict_resolution"
+     },
+     {
+      "qid": "q004",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "reference_binding"
+     },
+     {
+      "qid": "q005",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q006",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q007",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q008",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q009",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q010",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q011",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q012",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "conflict_resolution"
+     },
+     {
+      "qid": "q013",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q014",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q015",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q016",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "conflict_resolution"
+     },
+     {
+      "qid": "q017",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "reference_binding"
+     },
+     {
+      "qid": "q018",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q019",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q020",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q021",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q022",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q023",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q024",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q025",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q026",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q027",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q028",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q029",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q030",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "belief_correction"
+     },
+     {
+      "qid": "q031",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q032",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q033",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q034",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q035",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q036",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q037",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q038",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "negation_counterfactual"
+     }
+    ]
+   }
+  },
+  "ng": {
+   "J1": {
+    "board": {
+     "fail": 85,
+     "pass": 7
+    },
+    "detail": [
+     {
+      "qid": "o001",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o002",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "作者相关"
+     },
+     {
+      "qid": "o003",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o004",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "作者相关"
+     },
+     {
+      "qid": "o005",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o006",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事结局"
+     },
+     {
+      "qid": "o007",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o008",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o009",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o010",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o011",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o012",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o013",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o014",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o015",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o016",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o017",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o018",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o019",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o020",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o021",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o022",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o023",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o024",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o025",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o026",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o027",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o028",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o029",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o030",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o031",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o032",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o033",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o034",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o035",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o036",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o037",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o038",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o039",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o040",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o041",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o042",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o043",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o044",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o045",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o046",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o047",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o048",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要地点"
+     },
+     {
+      "qid": "o049",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要地点"
+     },
+     {
+      "qid": "o050",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "主要地点"
+     },
+     {
+      "qid": "o051",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事时间"
+     },
+     {
+      "qid": "o052",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事时间"
+     },
+     {
+      "qid": "o053",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o054",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "作者相关"
+     },
+     {
+      "qid": "q001",
+      "verdict": "pass",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q002",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q003",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "conflict_resolution"
+     },
+     {
+      "qid": "q004",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "reference_binding"
+     },
+     {
+      "qid": "q005",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q006",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q007",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q008",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q009",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q010",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q011",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q012",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "conflict_resolution"
+     },
+     {
+      "qid": "q013",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q014",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q015",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q016",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "conflict_resolution"
+     },
+     {
+      "qid": "q017",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "reference_binding"
+     },
+     {
+      "qid": "q018",
+      "verdict": "pass",
+      "by": "L2判官撤销降级（仅依据轴）",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q019",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q020",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q021",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q022",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q023",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q024",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q025",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q026",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q027",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q028",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q029",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q030",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "belief_correction"
+     },
+     {
+      "qid": "q031",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q032",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q033",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q034",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q035",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q036",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q037",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q038",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "negation_counterfactual"
+     }
+    ]
+   },
+   "J2": {
+    "board": {
+     "fail": 85,
+     "pass": 7
+    },
+    "detail": [
+     {
+      "qid": "o001",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o002",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "作者相关"
+     },
+     {
+      "qid": "o003",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o004",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "作者相关"
+     },
+     {
+      "qid": "o005",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o006",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事结局"
+     },
+     {
+      "qid": "o007",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o008",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o009",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o010",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o011",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o012",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o013",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o014",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o015",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o016",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o017",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o018",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o019",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o020",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o021",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o022",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o023",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o024",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o025",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o026",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o027",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o028",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o029",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o030",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o031",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o032",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o033",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o034",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o035",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o036",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o037",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o038",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o039",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o040",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o041",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o042",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o043",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o044",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o045",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o046",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o047",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o048",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要地点"
+     },
+     {
+      "qid": "o049",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要地点"
+     },
+     {
+      "qid": "o050",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "主要地点"
+     },
+     {
+      "qid": "o051",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事时间"
+     },
+     {
+      "qid": "o052",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事时间"
+     },
+     {
+      "qid": "o053",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o054",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "作者相关"
+     },
+     {
+      "qid": "q001",
+      "verdict": "pass",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q002",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q003",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "conflict_resolution"
+     },
+     {
+      "qid": "q004",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "reference_binding"
+     },
+     {
+      "qid": "q005",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q006",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q007",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q008",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q009",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q010",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q011",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q012",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "conflict_resolution"
+     },
+     {
+      "qid": "q013",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q014",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q015",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q016",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "conflict_resolution"
+     },
+     {
+      "qid": "q017",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "reference_binding"
+     },
+     {
+      "qid": "q018",
+      "verdict": "pass",
+      "by": "L2判官撤销降级（仅依据轴）",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q019",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q020",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q021",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q022",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q023",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q024",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q025",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q026",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q027",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q028",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q029",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q030",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "belief_correction"
+     },
+     {
+      "qid": "q031",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q032",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q033",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q034",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q035",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q036",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q037",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q038",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "negation_counterfactual"
+     }
+    ]
+   }
+  },
+  "bm25": {
+   "J1": {
+    "board": {
+     "fail": 79,
+     "pass": 13
+    },
+    "detail": [
+     {
+      "qid": "o001",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o002",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "作者相关"
+     },
+     {
+      "qid": "o003",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o004",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "作者相关"
+     },
+     {
+      "qid": "o005",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o006",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事结局"
+     },
+     {
+      "qid": "o007",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o008",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o009",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o010",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o011",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o012",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o013",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o014",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o015",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o016",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o017",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o018",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o019",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o020",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o021",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o022",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o023",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o024",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o025",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o026",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o027",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o028",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o029",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o030",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o031",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o032",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o033",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o034",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o035",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o036",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o037",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o038",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o039",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o040",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o041",
+      "verdict": "pass",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o042",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o043",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o044",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o045",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o046",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o047",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o048",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要地点"
+     },
+     {
+      "qid": "o049",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要地点"
+     },
+     {
+      "qid": "o050",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "主要地点"
+     },
+     {
+      "qid": "o051",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事时间"
+     },
+     {
+      "qid": "o052",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事时间"
+     },
+     {
+      "qid": "o053",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o054",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "作者相关"
+     },
+     {
+      "qid": "q001",
+      "verdict": "pass",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q002",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q003",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "conflict_resolution"
+     },
+     {
+      "qid": "q004",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "reference_binding"
+     },
+     {
+      "qid": "q005",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q006",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q007",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q008",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q009",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q010",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q011",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q012",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "conflict_resolution"
+     },
+     {
+      "qid": "q013",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q014",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q015",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q016",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "conflict_resolution"
+     },
+     {
+      "qid": "q017",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "reference_binding"
+     },
+     {
+      "qid": "q018",
+      "verdict": "pass",
+      "by": "L2判官撤销降级（仅依据轴）",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q019",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q020",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q021",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q022",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q023",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q024",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q025",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q026",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q027",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q028",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q029",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q030",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "belief_correction"
+     },
+     {
+      "qid": "q031",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q032",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q033",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q034",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q035",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q036",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q037",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q038",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "negation_counterfactual"
+     }
+    ]
+   },
+   "J2": {
+    "board": {
+     "fail": 78,
+     "pass": 14
+    },
+    "detail": [
+     {
+      "qid": "o001",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o002",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "作者相关"
+     },
+     {
+      "qid": "o003",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o004",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "作者相关"
+     },
+     {
+      "qid": "o005",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o006",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事结局"
+     },
+     {
+      "qid": "o007",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o008",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o009",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o010",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o011",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o012",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o013",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o014",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o015",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o016",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o017",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o018",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o019",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o020",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o021",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o022",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o023",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o024",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o025",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o026",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o027",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o028",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o029",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o030",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o031",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o032",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o033",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o034",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o035",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o036",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o037",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o038",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o039",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o040",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o041",
+      "verdict": "pass",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o042",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o043",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o044",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o045",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o046",
+      "verdict": "pass",
+      "by": "覆盖率判官",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o047",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o048",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "主要地点"
+     },
+     {
+      "qid": "o049",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要地点"
+     },
+     {
+      "qid": "o050",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "主要地点"
+     },
+     {
+      "qid": "o051",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事时间"
+     },
+     {
+      "qid": "o052",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事时间"
+     },
+     {
+      "qid": "o053",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o054",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "作者相关"
+     },
+     {
+      "qid": "q001",
+      "verdict": "pass",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q002",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q003",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "conflict_resolution"
+     },
+     {
+      "qid": "q004",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "reference_binding"
+     },
+     {
+      "qid": "q005",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q006",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q007",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q008",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q009",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q010",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q011",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q012",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "conflict_resolution"
+     },
+     {
+      "qid": "q013",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q014",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q015",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q016",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "conflict_resolution"
+     },
+     {
+      "qid": "q017",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "reference_binding"
+     },
+     {
+      "qid": "q018",
+      "verdict": "pass",
+      "by": "L2判官撤销降级（仅依据轴）",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q019",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q020",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q021",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q022",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q023",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q024",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q025",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q026",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q027",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q028",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q029",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q030",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "belief_correction"
+     },
+     {
+      "qid": "q031",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q032",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q033",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q034",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q035",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q036",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q037",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q038",
+      "verdict": "fail",
+      "by": "覆盖率判官",
+      "cat": "negation_counterfactual"
+     }
+    ]
+   }
+  },
+  "closed": {
+   "J1": {
+    "board": {
+     "fail": 91,
+     "pass": 1
+    },
+    "detail": [
+     {
+      "qid": "o001",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o002",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "作者相关"
+     },
+     {
+      "qid": "o003",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o004",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "作者相关"
+     },
+     {
+      "qid": "o005",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o006",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事结局"
+     },
+     {
+      "qid": "o007",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o008",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o009",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o010",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o011",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o012",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o013",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o014",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o015",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o016",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o017",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o018",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o019",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o020",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o021",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o022",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o023",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o024",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o025",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o026",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o027",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o028",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o029",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o030",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o031",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o032",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o033",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o034",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o035",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o036",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o037",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o038",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o039",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o040",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o041",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o042",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o043",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o044",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o045",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o046",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o047",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o048",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要地点"
+     },
+     {
+      "qid": "o049",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要地点"
+     },
+     {
+      "qid": "o050",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要地点"
+     },
+     {
+      "qid": "o051",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事时间"
+     },
+     {
+      "qid": "o052",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事时间"
+     },
+     {
+      "qid": "o053",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o054",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "作者相关"
+     },
+     {
+      "qid": "q001",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q002",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q003",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "conflict_resolution"
+     },
+     {
+      "qid": "q004",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "reference_binding"
+     },
+     {
+      "qid": "q005",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q006",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q007",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q008",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q009",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q010",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q011",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q012",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "conflict_resolution"
+     },
+     {
+      "qid": "q013",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q014",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q015",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q016",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "conflict_resolution"
+     },
+     {
+      "qid": "q017",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "reference_binding"
+     },
+     {
+      "qid": "q018",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q019",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q020",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q021",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q022",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q023",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q024",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q025",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q026",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q027",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q028",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q029",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q030",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "belief_correction"
+     },
+     {
+      "qid": "q031",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q032",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q033",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q034",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q035",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q036",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q037",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q038",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "negation_counterfactual"
+     }
+    ]
+   },
+   "J2": {
+    "board": {
+     "fail": 91,
+     "pass": 1
+    },
+    "detail": [
+     {
+      "qid": "o001",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o002",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "作者相关"
+     },
+     {
+      "qid": "o003",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o004",
+      "verdict": "pass",
+      "by": "规则层",
+      "cat": "作者相关"
+     },
+     {
+      "qid": "o005",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o006",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事结局"
+     },
+     {
+      "qid": "o007",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o008",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o009",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o010",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o011",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o012",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要人物"
+     },
+     {
+      "qid": "o013",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o014",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o015",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o016",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o017",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o018",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o019",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o020",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o021",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o022",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o023",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o024",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o025",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o026",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o027",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o028",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o029",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o030",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o031",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o032",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o033",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o034",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o035",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o036",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o037",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o038",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o039",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o040",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o041",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o042",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o043",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事线索"
+     },
+     {
+      "qid": "o044",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o045",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o046",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o047",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要事件"
+     },
+     {
+      "qid": "o048",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要地点"
+     },
+     {
+      "qid": "o049",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要地点"
+     },
+     {
+      "qid": "o050",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "主要地点"
+     },
+     {
+      "qid": "o051",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事时间"
+     },
+     {
+      "qid": "o052",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事时间"
+     },
+     {
+      "qid": "o053",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "故事含义"
+     },
+     {
+      "qid": "o054",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "作者相关"
+     },
+     {
+      "qid": "q001",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q002",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q003",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "conflict_resolution"
+     },
+     {
+      "qid": "q004",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "reference_binding"
+     },
+     {
+      "qid": "q005",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q006",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q007",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q008",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q009",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q010",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q011",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q012",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "conflict_resolution"
+     },
+     {
+      "qid": "q013",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q014",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q015",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q016",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "conflict_resolution"
+     },
+     {
+      "qid": "q017",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "reference_binding"
+     },
+     {
+      "qid": "q018",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q019",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q020",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q021",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q022",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q023",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q024",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q025",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q026",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q027",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q028",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q029",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q030",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "belief_correction"
+     },
+     {
+      "qid": "q031",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q032",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q033",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q034",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q035",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q036",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q037",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "fragment_synthesis"
+     },
+     {
+      "qid": "q038",
+      "verdict": "fail",
+      "by": "规则层",
+      "cat": "negation_counterfactual"
+     }
+    ]
+   }
+  }
+ },
+ "audit": {
+  "rc": 0,
+  "stdout": "—— 轮次：HMB主轮·语义层（evalsuite_hmb r2）｜样本档位：机械构造锚 48（24正/12跨卡负/12无关负）\n   锚集基线：50.0%（n=48）\n   ✅ J1                 正确率  97.9% − 基线 50.0% = +47.9%（覆盖 100%）\n   ✅ J2                 正确率  95.8% − 基线 50.0% = +45.8%（覆盖 100%）\n   一致率：同分 97.9%／kappa 0.958  ⇒ 可报值\n   ⇒ 状态 pass｜报告模式 可报值\n记录已写入 → /workspace/work/ls/rewrite/evalsuite_hmb/out/_work/audit_main_rec.json\n",
+  "record": {
+   "generated_by": "judge_audit.py v1",
+   "rounds": {
+    "HMB主轮·语义层（evalsuite_hmb r2）": {
+     "round": "HMB主轮·语义层（evalsuite_hmb r2）",
+     "stratum": "机械构造锚 48（24正/12跨卡负/12无关负）",
+     "provenance": null,
+     "policy": "void-all",
+     "min_delta": 0.15,
+     "panel_size": 1,
+     "thresholds": {
+      "same_min": 0.8,
+      "kappa_min": 0.6,
+      "same_floor": 0.5
+     },
+     "anchors": {
+      "n": 48,
+      "baseline": 0.5
+     },
+     "judges": {
+      "J1": {
+       "n": 48,
+       "coverage": 1.0,
+       "accuracy": 0.9791666666666666,
+       "baseline": 0.5,
+       "delta": 0.47916666666666663,
+       "qualified": true
+      },
+      "J2": {
+       "n": 48,
+       "coverage": 1.0,
+       "accuracy": 0.9583333333333334,
+       "baseline": 0.5,
+       "delta": 0.45833333333333337,
+       "qualified": true
+      }
+     },
+     "agreement": {
+      "source": "computed",
+      "pairs": [
+       {
+        "pair": [
+         "J1",
+         "J2"
+        ],
+        "n": 48,
+        "identical": 0.9791666666666666,
+        "kappa": 0.9581881533101044
+       }
+      ],
+      "mean_identical": 0.9791666666666666,
+      "mean_kappa": 0.9581881533101044
+     },
+     "report_mode": "可报值",
+     "status": "pass"
+    }
+   }
+  }
+ },
+ "real_agreement": {
+  "n": 460,
+  "identical": 0.9978260869565218,
+  "kappa": 0.9839025755879061
+ }
+}

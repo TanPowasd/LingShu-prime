@@ -1,0 +1,68 @@
+[
+ {
+  "impl": "legacy",
+  "N": 1000,
+  "build_ms": 230.6,
+  "recall": 6.028,
+  "decay": 4.748,
+  "self_check": 5.877,
+  "activation": 19.689,
+  "add": 5.513,
+  "maxrss_mb": 29.5
+ },
+ {
+  "impl": "ng",
+  "N": 1000,
+  "build_ms": 509.4,
+  "recall": 6.862,
+  "decay": 7.891,
+  "self_check": 2.501,
+  "activation": 4.733,
+  "add": 0.4,
+  "maxrss_mb": 21.5
+ },
+ {
+  "impl": "legacy",
+  "N": 10000,
+  "build_ms": 2009.0,
+  "recall": 9.584,
+  "decay": 83.172,
+  "self_check": 78.692,
+  "activation": 159.049,
+  "add": 12.316,
+  "maxrss_mb": 68.6
+ },
+ {
+  "impl": "ng",
+  "N": 10000,
+  "build_ms": 8863.3,
+  "recall": 13.476,
+  "decay": 85.608,
+  "self_check": 89.758,
+  "activation": 102.57,
+  "add": 0.76,
+  "maxrss_mb": 88.2
+ },
+ {
+  "impl": "legacy",
+  "N": 50000,
+  "build_ms": 13495.6,
+  "recall": 29.215,
+  "decay": 887.688,
+  "self_check": 1102.109,
+  "activation": 1650.641,
+  "add": 39.637,
+  "maxrss_mb": 220.5
+ },
+ {
+  "impl": "ng",
+  "N": 50000,
+  "build_ms": 92627.3,
+  "recall": 11.762,
+  "decay": 627.187,
+  "self_check": 765.817,
+  "activation": 564.252,
+  "add": 2.026,
+  "maxrss_mb": 380.8
+ }
+]

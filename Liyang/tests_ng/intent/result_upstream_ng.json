@@ -1,0 +1,388 @@
+{
+ "test_activation_empty_graph.py": {
+  "kind": "pytest",
+  "total": 6,
+  "passed": 6,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.7
+ },
+ "test_brain_store.py": {
+  "kind": "script",
+  "total": 1,
+  "passed": 1,
+  "failed_cases": [],
+  "sub": [
+   0,
+   0
+  ],
+  "sub_failed": [],
+  "tail": "",
+  "seconds": 0.5
+ },
+ "test_coggraph_determinism.py": {
+  "kind": "pytest",
+  "total": 7,
+  "passed": 7,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 2.2
+ },
+ "test_coggraph_generic_tag.py": {
+  "kind": "script",
+  "total": 1,
+  "passed": 1,
+  "failed_cases": [],
+  "sub": [
+   45,
+   45
+  ],
+  "sub_failed": [],
+  "tail": "",
+  "seconds": 0.5
+ },
+ "test_coggraph_public_paths.py": {
+  "kind": "pytest",
+  "total": 11,
+  "passed": 11,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 3.9
+ },
+ "test_coggraph_r4_and_viewer.py": {
+  "kind": "script",
+  "total": 1,
+  "passed": 1,
+  "failed_cases": [],
+  "sub": [
+   0,
+   0
+  ],
+  "sub_failed": [],
+  "tail": "",
+  "seconds": 1.0
+ },
+ "test_core_consolidate_rehearsal.py": {
+  "kind": "pytest",
+  "total": 1,
+  "passed": 1,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.6
+ },
+ "test_core_dangling_metric_parity.py": {
+  "kind": "pytest",
+  "total": 1,
+  "passed": 0,
+  "skipped": 0,
+  "failed_cases": [
+   "test_core_dangling_metric_parity"
+  ],
+  "messages": {
+   "test_core_dangling_metric_parity": "assert 1 == 0\n +  where 1 = main()\ndef test_core_dangling_metric_parity():\n        \"\"\"pytest 入口：与脚本式 main() 同一套断言。\"\"\"\n>       assert main() == 0\nE       assert 1 == 0\nE        +  where 1 = main()\n\ntests/test_core_dangling_metric_parity.py:165: AssertionError"
+  },
+  "seconds": 1.7
+ },
+ "test_core_export_all.py": {
+  "kind": "script",
+  "total": 1,
+  "passed": 1,
+  "failed_cases": [],
+  "sub": [
+   26,
+   26
+  ],
+  "sub_failed": [],
+  "tail": "",
+  "seconds": 0.5
+ },
+ "test_core_foreign_key_enforcement.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 1,
+  "skipped": 0,
+  "failed_cases": [
+   "test_import_of_dangling_reference_is_reported",
+   "test_dangling_reference_really_landed_in_db"
+  ],
+  "messages": {
+   "test_import_of_dangling_reference_is_reported": "apshots': 0, 'activation_nodes': 0}, 'skipped_tables': ['entities'], 'quarantined': {}, 'dropped_columns': [], 'orphan_edges_rejected': 1, 'dangling_rows': 1, 'integrity_ok': False}\nassert 0 == 1\ndef test_import_of_dangling_reference_is_reported():\n        \"\"\"悬挂引用 ⇒ 当场报不通过（改前返回值只有 imported，损坏看不出迹象）。\"\"\"\n        eng, ret = _import([_node(\"only_node\")],\n                           [_edge(\"e_dangling\", \"only_node\", \"MISSING_NODE\")])\n        assert ret.get(\"integrity_ok\") is False, \"未当场报不通过：%r\" % (ret,)\n        assert ret.get(\"dangling_rows\") == 1, ret\n>       assert ret[\"imported\"][\"edges\"] == 1, \"对照：边仍落库（不改写入行为）：%r\" % (ret,)\nE       AssertionError: 对照：边仍落库（不改写入行为）：{'imported': {'nodes': 1, 'edges': 0, 'blindspots': 0, 'skills': 0, 'promotion_proposals': 0, 'protections': 0, 'rejected_paths': 0, 'verifier_standards': 0, 'escalation_points': 0, 'gap_history': 0, 'action_logs': 0, 'engine_meta': 0, 'flywheel_reuse': 0, 'self_snapshots': 0, 'activation_nodes': 0}, 'skipped_tables': ['entities'], 'quarantined': {}, 'dropped_columns': [], 'orphan_edges_rejected': 1, 'dangling_rows': 1, 'integrity_ok': False}\nE       assert 0 == 1\n\ntests/test_core_foreign_key_enforcement.py:59: AssertionError",
+   "test_dangling_reference_really_landed_in_db": "AssertionError: 悬挂边未落库\nassert 0 == 1\ndef test_dangling_reference_really_landed_in_db():\n        \"\"\"库内事实支撑：边确实落库，且 foreign_key_check 非空。\"\"\"\n        eng, _ = _import([_node(\"only_node\")],\n                         [_edge(\"e_dangling\", \"only_node\", \"MISSING_NODE\")])\n        con = sqlite3.connect(eng.store.db_path)\n        try:\n            landed = con.execute(\n                \"SELECT COUNT(*) FROM edges WHERE target_id='MISSING_NODE'\").fetchone()[0]\n            fk = con.execute(\"PRAGMA foreign_key_check\").fetchall()\n        finally:\n            con.close()\n>       assert landed == 1, \"悬挂边未落库\"\nE       AssertionError: 悬挂边未落库\nE       assert 0 == 1\n\ntests/test_core_foreign_key_enforcement.py:74: AssertionError"
+  },
+  "seconds": 1.6
+ },
+ "test_core_legacy_schema_migration.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.7
+ },
+ "test_gate_coverage.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 3,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 30.8
+ },
+ "test_gate_dependency_closure.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 1,
+  "skipped": 0,
+  "failed_cases": [
+   "test_every_hard_third_party_import_is_declared"
+  ],
+  "messages": {
+   "test_every_hard_third_party_import_is_declared": "(mod.lower(), mod.lower()) not in declared:\n                undeclared[mod] = places\n>       assert not undeclared, (\n            \"以下第三方导入**没有被 pyproject 声明**——CI（`pip install -e \\\".[full,dev]\\\"`）不会装它们，\"\n            \"门禁跑到这些位置时必然 `ModuleNotFoundError`：\\n\"\n            + \"\\n\".join(\"  · %s   ← %s\" % (m, \", \".join(sorted(p))) for m, p in sorted(undeclared.items()))\n            + \"\\n\\n已声明 = \" + repr(sorted(declared))\n            + \"\\n原文 = \" + repr(raw)\n            + \"\\n修法：把发行名加进 pyproject 的 `dependencies`（运行时）或对应 extra（如 `dev`）。\"\n        )\nE       AssertionError: 以下第三方导入**没有被 pyproject 声明**——CI（`pip install -e \".[full,dev]\"`）不会装它们，门禁跑到这些位置时必然 `ModuleNotFoundError`：\nE           · derive_edges   ← tests/test_coggraph_generic_tag.py:39\nE         \nE         已声明 = ['numpy', 'pillow', 'pytest', 'pyyaml']\nE         原文 = ['numpy>=2.3.5,<2.6', 'numpy>=2.3.5,<2.6', 'Pillow>=12.2,<13', 'numpy>=2.3.5,<2.6', 'Pillow>=12.2,<13', 'numpy>=2.3.5,<2.6', 'Pillow>=12.2,<13', 'pytest', 'PyYAML>=6.0,<7']\nE         修法：把发行名加进 pyproject 的 `dependencies`（运行时）或对应 extra（如 `dev`）。\nE       assert not {'derive_edges': ['tests/test_coggraph_generic_tag.py:39']}\n\ntests/test_gate_dependency_closure.py:200: AssertionError"
+  },
+  "seconds": 3.2
+ },
+ "test_hex_cnn.py": {
+  "kind": "script",
+  "total": 1,
+  "passed": 0,
+  "failed_cases": [
+   "<script rc=1>"
+  ],
+  "sub": [
+   12,
+   13
+  ],
+  "sub_failed": [
+   "白块区域 cell 亮于角落 块内=0 角落=0"
+  ],
+  "tail": "\n[1] 蜂窝晶格(axial/pointy-top)\n  [PASS] 原点 cell 中心在原点 \n  [PASS] 同行相邻间距 = √3·size \n  [PASS] 像素→cell 往返 (1, 0)\n  [PASS] 六邻 6 个且互不相同 \n  [PASS] 6 邻等距(各向同性——蜂窝核心性质) spread=3.11e-15\n\n[2] HexConv 手写核性质\n  [PASS] 平滑核对常数场恒等(归一化核) \n  [PASS] Laplacian 对常数场零响应 \n  [PASS] center-surround 对常数场零响应(拮抗平衡) \n  [PASS] 纵向边缘核在阶跃处有响应 边缘响应 75.0\n  [PASS] HexConv 输出形状保持 \n\n[3] 图像↔晶格\n  [PASS] 晶格尺寸合理 (27, 32, 3)\n  [FAIL] 白块区域 cell 亮于角落 块内=0 角落=0\n  [PASS] 可视化画布非空且亮度合理 (701, 961, 3) mean=22.0\n\n[4-6] SKIP：上游素材 data/img/0.png 未随导出（构造性段①②③照跑）\n\n12 passed, 1 failed\n",
+  "seconds": 0.6
+ },
+ "test_hex_composite.py": {
+  "kind": "pytest",
+  "total": 1,
+  "passed": 1,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.6
+ },
+ "test_hex_gen.py": {
+  "kind": "pytest",
+  "total": 1,
+  "passed": 1,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.9
+ },
+ "test_hex_hier.py": {
+  "kind": "pytest",
+  "total": 7,
+  "passed": 7,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 35.4
+ },
+ "test_hex_ortho.py": {
+  "kind": "pytest",
+  "total": 11,
+  "passed": 11,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.4
+ },
+ "test_hex_query.py": {
+  "kind": "pytest",
+  "total": 6,
+  "passed": 6,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.3
+ },
+ "test_hex_search.py": {
+  "kind": "pytest",
+  "total": 7,
+  "passed": 7,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 27.4
+ },
+ "test_hex_text.py": {
+  "kind": "pytest",
+  "total": 6,
+  "passed": 6,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 3.8
+ },
+ "test_hex_train.py": {
+  "kind": "pytest",
+  "total": 9,
+  "passed": 9,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 7.0
+ },
+ "test_hexgen_multi_seed_metric.py": {
+  "kind": "script",
+  "total": 1,
+  "passed": 1,
+  "failed_cases": [],
+  "sub": [
+   29,
+   29
+  ],
+  "sub_failed": [],
+  "tail": "",
+  "seconds": 0.4
+ },
+ "test_issue109_external_anchor_gate.py": {
+  "kind": "pytest",
+  "total": 5,
+  "passed": 5,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.3
+ },
+ "test_issue130_escalation_gate.py": {
+  "kind": "pytest",
+  "total": 10,
+  "passed": 10,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.3
+ },
+ "test_issue145_causal_depth_cycles.py": {
+  "kind": "script",
+  "total": 1,
+  "passed": 1,
+  "failed_cases": [],
+  "sub": [
+   23,
+   23
+  ],
+  "sub_failed": [],
+  "tail": "",
+  "seconds": 0.4
+ },
+ "test_issue156_component_discovery.py": {
+  "kind": "pytest",
+  "total": 1,
+  "passed": 1,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 16.2
+ },
+ "test_layer_enumeration.py": {
+  "kind": "pytest",
+  "total": 11,
+  "passed": 11,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.3
+ },
+ "test_longterm_gate_novelty.py": {
+  "kind": "script",
+  "total": 1,
+  "passed": 1,
+  "failed_cases": [],
+  "sub": [
+   10,
+   10
+  ],
+  "sub_failed": [],
+  "tail": "",
+  "seconds": 1.0
+ },
+ "test_provenance.py": {
+  "kind": "pytest",
+  "total": 6,
+  "passed": 6,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.2
+ },
+ "test_provenance_sources.py": {
+  "kind": "pytest",
+  "total": 70,
+  "passed": 70,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.2
+ },
+ "test_scene_follow_patrol.py": {
+  "kind": "script",
+  "total": 1,
+  "passed": 1,
+  "failed_cases": [],
+  "sub": [
+   15,
+   15
+  ],
+  "sub_failed": [],
+  "tail": "",
+  "seconds": 0.4
+ },
+ "test_spatiotemporal_zero_radius.py": {
+  "kind": "pytest",
+  "total": 7,
+  "passed": 7,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.2
+ },
+ "test_state_write_observable.py": {
+  "kind": "script",
+  "total": 1,
+  "passed": 1,
+  "failed_cases": [],
+  "sub": [
+   0,
+   0
+  ],
+  "sub_failed": [],
+  "tail": "",
+  "seconds": 0.4
+ },
+ "test_wm_verify_unobserved.py": {
+  "kind": "script",
+  "total": 1,
+  "passed": 1,
+  "failed_cases": [],
+  "sub": [
+   17,
+   17
+  ],
+  "sub_failed": [],
+  "tail": "",
+  "seconds": 0.3
+ },
+ "test_world_learner_oracle_rate.py": {
+  "kind": "pytest",
+  "total": 1,
+  "passed": 1,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.6
+ }
+}

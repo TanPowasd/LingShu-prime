@@ -1,0 +1,489 @@
+{
+ "meta": {
+  "generator": "cline-pass/deepseek-v4.1-flash（ClinePass 包月；thinking 开，单次采样）",
+  "generator_legacy_note": "早期部分答卷由按量 deepseek/deepseek-v4.1-flash 生成（同一模型），沿用；份数见 legacy_answers",
+  "judges": {
+   "J1": "cline-pass/deepseek-v4.1-flash",
+   "J2": "cline-pass/deepseek-v4.1-flash"
+  },
+  "judge_params": {
+   "J1": {
+    "temperature": 0.0,
+    "seed": 11
+   },
+   "J2": {
+    "temperature": 0.6,
+    "seed": 29
+   }
+  },
+  "judge_note": "同模型双实例判官（thinking off；温度/种子不同；各自打乱题序；五臂+锚盲混，请求不含臂名/期望标签），独立性弱于异模型",
+  "cost_usd_total": 5.0398,
+  "cost_by_stage": {
+   "test": 0.0022,
+   "gen_main": 0.8425,
+   "gen_e2e": 1.582,
+   "gen_interv": 2.2894,
+   "judge_main": 0.2511,
+   "judge_e2e": 0.0726
+  },
+  "retrieval": "与 r1 同一批检索结果（recall 主路径，k=10）",
+  "interv_note": "干预轮答案键未公开（cards/ 无 intervention 子结构）⇒ 只报机械依据轴，不报通过率"
+ },
+ "results": {
+  "base": {
+   "main.rule_layer": {
+    "fail": 56,
+    "review": 31,
+    "pass": 5
+   },
+   "main.pass_J1": 6,
+   "main.pass_J2": 6,
+   "main.pass_both": 6,
+   "main.pass_either": 6,
+   "main.pass_mean": 6.0,
+   "main.n": 92,
+   "main.evidence.quotes": 230,
+   "main.evidence.verbatim_rate": 1.0,
+   "main.evidence.cid_correct_rate": 1.0,
+   "main.evidence.unknown_conf": 14,
+   "main.evidence.parse_err": 2,
+   "main.evidence.answered": 92,
+   "interv.evidence.quotes": 265,
+   "interv.evidence.verbatim_rate": 1.0,
+   "interv.evidence.cid_correct_rate": 1.0,
+   "interv.evidence.unknown_conf": 2,
+   "interv.evidence.parse_err": 0,
+   "interv.evidence.answered": 92,
+   "e2e.J1.weighted": 0.1685,
+   "e2e.J1.spm": "2/26/61",
+   "e2e.J2.weighted": 0.1798,
+   "e2e.J2.spm": "4/24/61",
+   "e2e.lenient.weighted": 0.2022,
+   "e2e.lenient.spm": "4/28/57",
+   "e2e.strict.weighted": 0.1461,
+   "e2e.strict.spm": "2/22/65",
+   "e2e.lenient31.weighted": 0.1774,
+   "e2e.lenient31.spm": "0/11/20",
+   "e2e.strict31.weighted": 0.1452,
+   "e2e.strict31.spm": "0/9/22",
+   "e2e.J1_31.weighted": 0.1613,
+   "e2e.J1_31.spm": "0/10/21",
+   "e2e.basis_verbatim_rate": 0.9527,
+   "e2e.basis_n": 148,
+   "e2e.cards_with_basis": 89,
+   "e2e.material_chars_mean": 11913.6,
+   "e2e31.basis_verbatim_rate": 0.9615,
+   "e2e31.basis_n": 52,
+   "e2e31.cards_with_basis": 31,
+   "main.merged_mean_J1": 0.2224,
+   "main.merged_mean_J2": 0.2332,
+   "main.merged_mean": 0.2278
+  },
+  "integrated": {
+   "main.rule_layer": {
+    "fail": 56,
+    "review": 31,
+    "pass": 5
+   },
+   "main.pass_J1": 6,
+   "main.pass_J2": 6,
+   "main.pass_both": 6,
+   "main.pass_either": 6,
+   "main.pass_mean": 6.0,
+   "main.n": 92,
+   "main.evidence.quotes": 231,
+   "main.evidence.verbatim_rate": 1.0,
+   "main.evidence.cid_correct_rate": 1.0,
+   "main.evidence.unknown_conf": 14,
+   "main.evidence.parse_err": 2,
+   "main.evidence.answered": 92,
+   "interv.evidence.quotes": 265,
+   "interv.evidence.verbatim_rate": 1.0,
+   "interv.evidence.cid_correct_rate": 1.0,
+   "interv.evidence.unknown_conf": 2,
+   "interv.evidence.parse_err": 0,
+   "interv.evidence.answered": 92,
+   "e2e.J1.weighted": 0.1629,
+   "e2e.J1.spm": "2/25/62",
+   "e2e.J2.weighted": 0.1798,
+   "e2e.J2.spm": "4/24/61",
+   "e2e.lenient.weighted": 0.1966,
+   "e2e.lenient.spm": "4/27/58",
+   "e2e.strict.weighted": 0.1461,
+   "e2e.strict.spm": "2/22/65",
+   "e2e.lenient31.weighted": 0.1774,
+   "e2e.lenient31.spm": "0/11/20",
+   "e2e.strict31.weighted": 0.1452,
+   "e2e.strict31.spm": "0/9/22",
+   "e2e.J1_31.weighted": 0.1613,
+   "e2e.J1_31.spm": "0/10/21",
+   "e2e.basis_verbatim_rate": 0.9527,
+   "e2e.basis_n": 148,
+   "e2e.cards_with_basis": 89,
+   "e2e.material_chars_mean": 11913.6,
+   "e2e31.basis_verbatim_rate": 0.9615,
+   "e2e31.basis_n": 52,
+   "e2e31.cards_with_basis": 31,
+   "main.merged_mean_J1": 0.2237,
+   "main.merged_mean_J2": 0.2314,
+   "main.merged_mean": 0.2276
+  },
+  "ng": {
+   "main.rule_layer": {
+    "fail": 43,
+    "review": 44,
+    "pass": 5
+   },
+   "main.pass_J1": 7,
+   "main.pass_J2": 7,
+   "main.pass_both": 7,
+   "main.pass_either": 7,
+   "main.pass_mean": 7.0,
+   "main.n": 92,
+   "main.evidence.quotes": 252,
+   "main.evidence.verbatim_rate": 1.0,
+   "main.evidence.cid_correct_rate": 1.0,
+   "main.evidence.unknown_conf": 6,
+   "main.evidence.parse_err": 0,
+   "main.evidence.answered": 92,
+   "interv.evidence.quotes": 267,
+   "interv.evidence.verbatim_rate": 0.9963,
+   "interv.evidence.cid_correct_rate": 0.9963,
+   "interv.evidence.unknown_conf": 2,
+   "interv.evidence.parse_err": 0,
+   "interv.evidence.answered": 92,
+   "e2e.J1.weighted": 0.191,
+   "e2e.J1.spm": "5/24/60",
+   "e2e.J2.weighted": 0.1742,
+   "e2e.J2.spm": "5/21/63",
+   "e2e.lenient.weighted": 0.2079,
+   "e2e.lenient.spm": "5/27/57",
+   "e2e.strict.weighted": 0.1573,
+   "e2e.strict.spm": "5/18/66",
+   "e2e.lenient31.weighted": 0.2097,
+   "e2e.lenient31.spm": "0/13/18",
+   "e2e.strict31.weighted": 0.1129,
+   "e2e.strict31.spm": "0/7/24",
+   "e2e.J1_31.weighted": 0.1774,
+   "e2e.J1_31.spm": "0/11/20",
+   "e2e.basis_verbatim_rate": 0.9931,
+   "e2e.basis_n": 144,
+   "e2e.cards_with_basis": 88,
+   "e2e.material_chars_mean": 11865.2,
+   "e2e31.basis_verbatim_rate": 1.0,
+   "e2e31.basis_n": 49,
+   "e2e31.cards_with_basis": 31,
+   "main.merged_mean_J1": 0.2693,
+   "main.merged_mean_J2": 0.2649,
+   "main.merged_mean": 0.2671
+  },
+  "bm25": {
+   "main.rule_layer": {
+    "fail": 45,
+    "review": 37,
+    "pass": 10
+   },
+   "main.pass_J1": 13,
+   "main.pass_J2": 14,
+   "main.pass_both": 13,
+   "main.pass_either": 14,
+   "main.pass_mean": 13.5,
+   "main.n": 92,
+   "main.evidence.quotes": 249,
+   "main.evidence.verbatim_rate": 0.996,
+   "main.evidence.cid_correct_rate": 0.996,
+   "main.evidence.unknown_conf": 3,
+   "main.evidence.parse_err": 0,
+   "main.evidence.answered": 92,
+   "interv.evidence.quotes": 271,
+   "interv.evidence.verbatim_rate": 1.0,
+   "interv.evidence.cid_correct_rate": 1.0,
+   "interv.evidence.unknown_conf": 0,
+   "interv.evidence.parse_err": 0,
+   "interv.evidence.answered": 92,
+   "e2e.J1.weighted": 0.2079,
+   "e2e.J1.spm": "5/27/57",
+   "e2e.J2.weighted": 0.2079,
+   "e2e.J2.spm": "5/27/57",
+   "e2e.lenient.weighted": 0.2472,
+   "e2e.lenient.spm": "5/34/50",
+   "e2e.strict.weighted": 0.1685,
+   "e2e.strict.spm": "5/20/64",
+   "e2e.lenient31.weighted": 0.2258,
+   "e2e.lenient31.spm": "0/14/17",
+   "e2e.strict31.weighted": 0.129,
+   "e2e.strict31.spm": "0/8/23",
+   "e2e.J1_31.weighted": 0.1613,
+   "e2e.J1_31.spm": "0/10/21",
+   "e2e.basis_verbatim_rate": 0.9934,
+   "e2e.basis_n": 152,
+   "e2e.cards_with_basis": 89,
+   "e2e.material_chars_mean": 11977.6,
+   "e2e31.basis_verbatim_rate": 1.0,
+   "e2e31.basis_n": 56,
+   "e2e31.cards_with_basis": 31,
+   "main.merged_mean_J1": 0.2813,
+   "main.merged_mean_J2": 0.2846,
+   "main.merged_mean": 0.283
+  },
+  "closed": {
+   "main.rule_layer": {
+    "fail": 91,
+    "pass": 1
+   },
+   "main.pass_J1": 1,
+   "main.pass_J2": 1,
+   "main.pass_both": 1,
+   "main.pass_either": 1,
+   "main.pass_mean": 1.0,
+   "main.n": 92,
+   "main.evidence.quotes": 0,
+   "main.evidence.verbatim_rate": 0.0,
+   "main.evidence.cid_correct_rate": 0.0,
+   "main.evidence.unknown_conf": 92,
+   "main.evidence.parse_err": 0,
+   "main.evidence.answered": 92,
+   "interv.evidence.quotes": 0,
+   "interv.evidence.verbatim_rate": 0.0,
+   "interv.evidence.cid_correct_rate": 0.0,
+   "interv.evidence.unknown_conf": 87,
+   "interv.evidence.parse_err": 0,
+   "interv.evidence.answered": 92,
+   "e2e.J1.weighted": 0.2472,
+   "e2e.J1.spm": "6/32/51",
+   "e2e.J2.weighted": 0.2528,
+   "e2e.J2.spm": "9/27/53",
+   "e2e.lenient.weighted": 0.2865,
+   "e2e.lenient.spm": "9/33/47",
+   "e2e.strict.weighted": 0.2135,
+   "e2e.strict.spm": "6/26/57",
+   "e2e.lenient31.weighted": 0.3226,
+   "e2e.lenient31.spm": "3/14/14",
+   "e2e.strict31.weighted": 0.2097,
+   "e2e.strict31.spm": "2/9/20",
+   "e2e.J1_31.weighted": 0.2742,
+   "e2e.J1_31.spm": "2/13/16",
+   "e2e.basis_verbatim_rate": 1.0,
+   "e2e.basis_n": 7,
+   "e2e.cards_with_basis": 5,
+   "e2e.material_chars_mean": 0.0,
+   "e2e31.basis_verbatim_rate": 1.0,
+   "e2e31.basis_n": 3,
+   "e2e31.cards_with_basis": 2,
+   "main.merged_mean_J1": 0.0893,
+   "main.merged_mean_J2": 0.0893,
+   "main.merged_mean": 0.0893
+  }
+ },
+ "reference": {
+  "main.pass (92 题主轮)": {
+   "author_DeepSeekV4.1Flash_fullbook_O": "43/92（results/成绩总表.md:19；同一生成器整本入提示）",
+   "author_reference_impl": "67/92",
+   "note": "作者未公布记忆系统在本 92 题上的读数（其 168 题《秤》题集未公开）"
+  },
+  "《秤》168 题（不同题集，仅作量级参照）": {
+   "灵枢": "81/168=48.2%",
+   "BM25": "64/168=38.1%",
+   "闭卷Z": "1/168",
+   "src": "docs/秤_对照测_v1.0.md:47-53"
+  },
+  "main.evidence.verbatim_rate（依据轴）": {
+   "author_BM25": 1.0,
+   "author_lingshu_v071": 0.86,
+   "src": "docs/压缩的代价就是因果丢失_v1.0.md §C"
+  },
+  "e2e.lenient.weighted (89 卡)": {
+   "author_BM25": 0.2022,
+   "author_lingshu": 0.1067,
+   "author_closed": 0.1011,
+   "author_OV": 0.1348,
+   "src": "docs/真实史端到端测评_初测_v1.0.md §3.1"
+  },
+  "e2e.basis_verbatim_rate": {
+   "author_BM25": 0.992,
+   "author_lingshu": 0.913,
+   "author_OV": 0.926,
+   "src": "docs/真实史端到端测评_初测_v1.0.md §3.3"
+  },
+  "e2e.lenient31.weighted (31 卡子集)": {
+   "author_BM25": 0.1935,
+   "author_lingshu": 0.129,
+   "author_closed": 0.1129,
+   "author_OV": 0.1452,
+   "author_Hindsight": 0.1452,
+   "author_strict31": {
+    "BM25": 0.1774,
+    "lingshu": 0.0968,
+    "closed": 0.1129
+   },
+   "src": "docs/真实史端到端测评_初测_v1.0.md §3.2 及 :89-90"
+  },
+  "e2e.strict.weighted (89 卡·取更严格档)": {
+   "author_BM25": 0.1966,
+   "src": "docs/真实史端到端测评_初测_v1.0.md:89"
+  },
+  "e2e31.basis_verbatim_rate": {
+   "author_BM25": 0.989,
+   "author_lingshu": 0.87,
+   "author_OV": 0.905,
+   "author_Hindsight": 0.548,
+   "src": "docs/真实史端到端测评_初测_v1.0.md §3.3 31 卡表"
+  },
+  "main.merged_mean（合并均，《秤》168 题口径，仅量级参照）": {
+   "灵枢": 0.669,
+   "BM25": 0.595,
+   "闭卷Z": 0.213,
+   "src": "docs/秤_对照测_v1.0.md:45-55"
+  },
+  "interv.pass (92 题干预轮)": {
+   "author_DeepSeekV4.1Flash_fullbook": "47/92",
+   "author_reference_impl": "55/92",
+   "src": "results/成绩总表.md §1.1；docs/干预轮对比_v1.0.md §2",
+   "note": "干预轮答案键不公开（docs/干预轮对比_v1.0.md §1）⇒ 本测无法判干预轮通过数"
+  },
+  "retire.leak (退役泄漏 6 例)": {
+   "author_lingshu_before_fix": "材料面 6/6",
+   "author_after_9d26266d": "生产路径 0/6；基类路径 6/6（修复自列边界）",
+   "src": "docs/秤_对照测_v1.0.md:137-143"
+  }
+ },
+ "audit": {
+  "main": {
+   "stdout": "—— 轮次：HMB主轮·语义层（evalsuite_hmb r2）｜样本档位：机械构造锚 48（24正/12跨卡负/12无关负）\n   锚集基线：50.0%（n=48）\n   ✅ J1                 正确率  97.9% − 基线 50.0% = +47.9%（覆盖 100%）\n   ✅ J2                 正确率  95.8% − 基线 50.0% = +45.8%（覆盖 100%）\n   一致率：同分 97.9%／kappa 0.958  ⇒ 可报值\n   ⇒ 状态 pass｜报告模式 可报值\n记录已写入 → /workspace/work/ls/rewrite/evalsuite_hmb/out/_work/audit_main_rec.json\n",
+   "record": {
+    "generated_by": "judge_audit.py v1",
+    "rounds": {
+     "HMB主轮·语义层（evalsuite_hmb r2）": {
+      "round": "HMB主轮·语义层（evalsuite_hmb r2）",
+      "stratum": "机械构造锚 48（24正/12跨卡负/12无关负）",
+      "provenance": null,
+      "policy": "void-all",
+      "min_delta": 0.15,
+      "panel_size": 1,
+      "thresholds": {
+       "same_min": 0.8,
+       "kappa_min": 0.6,
+       "same_floor": 0.5
+      },
+      "anchors": {
+       "n": 48,
+       "baseline": 0.5
+      },
+      "judges": {
+       "J1": {
+        "n": 48,
+        "coverage": 1.0,
+        "accuracy": 0.9791666666666666,
+        "baseline": 0.5,
+        "delta": 0.47916666666666663,
+        "qualified": true
+       },
+       "J2": {
+        "n": 48,
+        "coverage": 1.0,
+        "accuracy": 0.9583333333333334,
+        "baseline": 0.5,
+        "delta": 0.45833333333333337,
+        "qualified": true
+       }
+      },
+      "agreement": {
+       "source": "computed",
+       "pairs": [
+        {
+         "pair": [
+          "J1",
+          "J2"
+         ],
+         "n": 48,
+         "identical": 0.9791666666666666,
+         "kappa": 0.9581881533101044
+        }
+       ],
+       "mean_identical": 0.9791666666666666,
+       "mean_kappa": 0.9581881533101044
+      },
+      "report_mode": "可报值",
+      "status": "pass"
+     }
+    }
+   },
+   "real_agreement": {
+    "n": 460,
+    "identical": 0.9978260869565218,
+    "kappa": 0.9839025755879061
+   }
+  },
+  "e2e": {
+   "stdout": "—— 轮次：HMB·e2e C 型（evalsuite_hmb r2）｜样本档位：机械构造锚 48（24正/12跨卡负/12无关负，seed 20261006）\n   锚集基线：50.0%（n=48）\n   ✅ J1                 正确率 100.0% − 基线 50.0% = +50.0%（覆盖 100%）\n   ✅ J2                 正确率 100.0% − 基线 50.0% = +50.0%（覆盖 100%）\n   一致率：同分 100.0%／kappa 1.000  ⇒ 可报值\n   ⇒ 状态 pass｜报告模式 可报值\n记录已写入 → /workspace/work/ls/rewrite/evalsuite_hmb/out/_e2e/audit_e2e_rec.json\n",
+   "rc": 0,
+   "record": {
+    "generated_by": "judge_audit.py v1",
+    "rounds": {
+     "HMB·e2e C 型（evalsuite_hmb r2）": {
+      "round": "HMB·e2e C 型（evalsuite_hmb r2）",
+      "stratum": "机械构造锚 48（24正/12跨卡负/12无关负，seed 20261006）",
+      "provenance": null,
+      "policy": "void-all",
+      "min_delta": 0.15,
+      "panel_size": 1,
+      "thresholds": {
+       "same_min": 0.8,
+       "kappa_min": 0.6,
+       "same_floor": 0.5
+      },
+      "anchors": {
+       "n": 48,
+       "baseline": 0.5
+      },
+      "judges": {
+       "J1": {
+        "n": 48,
+        "coverage": 1.0,
+        "accuracy": 1.0,
+        "baseline": 0.5,
+        "delta": 0.5,
+        "qualified": true
+       },
+       "J2": {
+        "n": 48,
+        "coverage": 1.0,
+        "accuracy": 1.0,
+        "baseline": 0.5,
+        "delta": 0.5,
+        "qualified": true
+       }
+      },
+      "agreement": {
+       "source": "computed",
+       "pairs": [
+        {
+         "pair": [
+          "J1",
+          "J2"
+         ],
+         "n": 48,
+         "identical": 1.0,
+         "kappa": 1.0
+        }
+       ],
+       "mean_identical": 1.0,
+       "mean_kappa": 1.0
+      },
+      "report_mode": "可报值",
+      "status": "pass"
+     }
+    }
+   },
+   "real_agreement": {
+    "n": 445,
+    "identical": 0.8764,
+    "kappa": 0.7428
+   }
+  }
+ },
+ "legacy_answers": {
+  "gen_main:bm25": 91,
+  "gen_e2e:bm25": 16
+ }
+}

@@ -1,0 +1,383 @@
+{
+ "files": {
+  "test_hex_cnn.py": {
+   "legacy": {
+    "script": {
+     "rc": 0,
+     "sub_passed": 13,
+     "sub_total": 13,
+     "sub_failed": [],
+     "tail": [],
+     "seconds": 0.2
+    },
+    "cases": {
+     "total": 1,
+     "passed": 1,
+     "failed_cases": []
+    }
+   },
+   "ng": {
+    "script": {
+     "rc": 1,
+     "sub_passed": 12,
+     "sub_total": 13,
+     "sub_failed": [
+      "白块区域 cell 亮于角落 块内=0 角落=0"
+     ],
+     "tail": [
+      "[4-6] SKIP：上游素材 data/img/0.png 未随导出（构造性段①②③照跑）",
+      "",
+      "12 passed, 1 failed"
+     ],
+     "seconds": 0.2
+    },
+    "cases": {
+     "total": 1,
+     "passed": 0,
+     "failed_cases": [
+      "<script>"
+     ]
+    }
+   }
+  },
+  "test_hex_composite.py": {
+   "legacy": {
+    "cases": {
+     "total": 1,
+     "passed": 1,
+     "failed_cases": [],
+     "seconds": 1.1
+    },
+    "script": {
+     "rc": 0,
+     "sub_passed": 24,
+     "sub_total": 24,
+     "sub_failed": [],
+     "tail": [],
+     "seconds": 0.2
+    }
+   },
+   "ng": {
+    "cases": {
+     "total": 1,
+     "passed": 1,
+     "failed_cases": [],
+     "seconds": 0.6
+    },
+    "script": {
+     "rc": 0,
+     "sub_passed": 24,
+     "sub_total": 24,
+     "sub_failed": [],
+     "tail": [],
+     "seconds": 0.2
+    }
+   }
+  },
+  "test_hex_gen.py": {
+   "legacy": {
+    "cases": {
+     "total": 1,
+     "passed": 0,
+     "failed_cases": [
+      "test_hex_gen_p1"
+     ],
+     "seconds": 1.1
+    },
+    "script": {
+     "rc": 1,
+     "sub_passed": 29,
+     "sub_total": 30,
+     "sub_failed": [
+      "R2 带属性兑现率@48px ≥95% rate=0.922"
+     ],
+     "tail": [
+      "    [数字] 平移（入界部件）兑现率 = 100.0%；出界落账 21 条",
+      "",
+      "===== HEX-GEN P1 回归: 29/30 通过 ====="
+     ],
+     "seconds": 0.5
+    }
+   },
+   "ng": {
+    "cases": {
+     "total": 1,
+     "passed": 1,
+     "failed_cases": [],
+     "seconds": 1.6
+    },
+    "script": {
+     "rc": 0,
+     "sub_passed": 30,
+     "sub_total": 30,
+     "sub_failed": [],
+     "tail": [],
+     "seconds": 0.8
+    }
+   }
+  },
+  "test_hex_gen_background_words.py": {
+   "legacy": {
+    "cases": {
+     "total": 10,
+     "passed": 10,
+     "failed_cases": [],
+     "seconds": 0.8
+    }
+   },
+   "ng": {
+    "cases": {
+     "total": 10,
+     "passed": 10,
+     "failed_cases": [],
+     "seconds": 0.6
+    }
+   }
+  },
+  "test_hex_gen_constructive_pixels.py": {
+   "legacy": {
+    "cases": {
+     "total": 9,
+     "passed": 9,
+     "failed_cases": [],
+     "seconds": 1.0
+    }
+   },
+   "ng": {
+    "cases": {
+     "total": 9,
+     "passed": 9,
+     "failed_cases": [],
+     "seconds": 0.9
+    }
+   }
+  },
+  "test_hex_gen_shape_words.py": {
+   "legacy": {
+    "cases": {
+     "total": 31,
+     "passed": 31,
+     "failed_cases": [],
+     "seconds": 1.2
+    }
+   },
+   "ng": {
+    "cases": {
+     "total": 31,
+     "passed": 31,
+     "failed_cases": [],
+     "seconds": 0.6
+    }
+   }
+  },
+  "test_hex_hier.py": {
+   "legacy": {
+    "cases": {
+     "total": 7,
+     "passed": 7,
+     "failed_cases": [],
+     "seconds": 875.4
+    }
+   },
+   "ng": {
+    "cases": {
+     "total": 7,
+     "passed": 7,
+     "failed_cases": [],
+     "seconds": 15.8
+    }
+   }
+  },
+  "test_hex_ortho.py": {
+   "legacy": {
+    "cases": {
+     "total": 11,
+     "passed": 11,
+     "failed_cases": [],
+     "seconds": 1.2
+    }
+   },
+   "ng": {
+    "cases": {
+     "total": 11,
+     "passed": 11,
+     "failed_cases": [],
+     "seconds": 0.6
+    }
+   }
+  },
+  "test_hex_recon_zorder.py": {
+   "legacy": {
+    "cases": {
+     "total": 7,
+     "passed": 7,
+     "failed_cases": [],
+     "seconds": 0.8
+    }
+   },
+   "ng": {
+    "cases": {
+     "total": 7,
+     "passed": 7,
+     "failed_cases": [],
+     "seconds": 0.6
+    }
+   }
+  },
+  "test_hex_search.py": {
+   "legacy": {
+    "cases": {
+     "total": 7,
+     "passed": 7,
+     "failed_cases": [],
+     "seconds": 588.4
+    }
+   },
+   "ng": {
+    "cases": {
+     "total": 7,
+     "passed": 7,
+     "failed_cases": [],
+     "seconds": 14.7
+    }
+   }
+  },
+  "test_hex_text.py": {
+   "legacy": {
+    "cases": {
+     "total": 6,
+     "passed": 4,
+     "failed_cases": [
+      "test_spatial_detect_finds_single_object",
+      "test_multimodal_check_clean_vs_corrupt"
+     ],
+     "seconds": 27.3
+    }
+   },
+   "ng": {
+    "cases": {
+     "total": 6,
+     "passed": 6,
+     "failed_cases": [],
+     "seconds": 2.3
+    }
+   }
+  },
+  "test_hex_train.py": {
+   "legacy": {
+    "cases": {
+     "total": 9,
+     "passed": 9,
+     "failed_cases": [],
+     "seconds": 10.0
+    }
+   },
+   "ng": {
+    "cases": {
+     "total": 9,
+     "passed": 9,
+     "failed_cases": [],
+     "seconds": 4.2
+    }
+   }
+  },
+  "test_stcnn_memory_consistency.py": {
+   "legacy": {
+    "cases": {
+     "total": 5,
+     "passed": 5,
+     "failed_cases": [],
+     "seconds": 1.2
+    }
+   },
+   "ng": {
+    "cases": {
+     "total": 5,
+     "passed": 5,
+     "failed_cases": [],
+     "seconds": 0.5
+    }
+   }
+  },
+  "test_stcnn_scale_invariance.py": {
+   "legacy": {
+    "cases": {
+     "total": 6,
+     "passed": 6,
+     "failed_cases": [],
+     "seconds": 1.2
+    }
+   },
+   "ng": {
+    "cases": {
+     "total": 6,
+     "passed": 6,
+     "failed_cases": [],
+     "seconds": 0.5
+    }
+   }
+  },
+  "test_stcnn_time_anchor.py": {
+   "legacy": {
+    "cases": {
+     "total": 4,
+     "passed": 4,
+     "failed_cases": [],
+     "seconds": 1.0
+    }
+   },
+   "ng": {
+    "cases": {
+     "total": 4,
+     "passed": 4,
+     "failed_cases": [],
+     "seconds": 0.9
+    }
+   }
+  },
+  "test_rust_bridge_plan.py": {
+   "legacy": {
+    "cases": {
+     "total": 7,
+     "passed": 7,
+     "failed_cases": [],
+     "seconds": 10.3
+    }
+   },
+   "ng": {
+    "cases": {
+     "total": 7,
+     "passed": 7,
+     "failed_cases": [],
+     "seconds": 1.1
+    }
+   }
+  }
+ },
+ "summary": {
+  "legacy": {
+   "cases": [
+    119,
+    122,
+    0.9754
+   ],
+   "script_subchecks": [
+    66,
+    67,
+    0.9851
+   ]
+  },
+  "ng": {
+   "cases": [
+    121,
+    122,
+    0.9918
+   ],
+   "script_subchecks": [
+    66,
+    67,
+    0.9851
+   ]
+  }
+ }
+}

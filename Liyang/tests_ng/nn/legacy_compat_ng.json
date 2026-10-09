@@ -1,0 +1,161 @@
+{
+ "test_hex_cnn.py": {
+  "script": {
+   "rc": 1,
+   "sub_passed": 12,
+   "sub_total": 13,
+   "sub_failed": [
+    "白块区域 cell 亮于角落 块内=0 角落=0"
+   ],
+   "tail": [
+    "[4-6] SKIP：上游素材 data/img/0.png 未随导出（构造性段①②③照跑）",
+    "",
+    "12 passed, 1 failed"
+   ],
+   "seconds": 0.2
+  },
+  "cases": {
+   "total": 1,
+   "passed": 0,
+   "failed_cases": [
+    "<script>"
+   ]
+  }
+ },
+ "test_hex_composite.py": {
+  "cases": {
+   "total": 1,
+   "passed": 1,
+   "failed_cases": [],
+   "seconds": 0.6
+  },
+  "script": {
+   "rc": 0,
+   "sub_passed": 24,
+   "sub_total": 24,
+   "sub_failed": [],
+   "tail": [],
+   "seconds": 0.2
+  }
+ },
+ "test_hex_gen.py": {
+  "cases": {
+   "total": 1,
+   "passed": 1,
+   "failed_cases": [],
+   "seconds": 1.6
+  },
+  "script": {
+   "rc": 0,
+   "sub_passed": 30,
+   "sub_total": 30,
+   "sub_failed": [],
+   "tail": [],
+   "seconds": 0.8
+  }
+ },
+ "test_hex_gen_background_words.py": {
+  "cases": {
+   "total": 10,
+   "passed": 10,
+   "failed_cases": [],
+   "seconds": 0.6
+  }
+ },
+ "test_hex_gen_constructive_pixels.py": {
+  "cases": {
+   "total": 9,
+   "passed": 9,
+   "failed_cases": [],
+   "seconds": 0.9
+  }
+ },
+ "test_hex_gen_shape_words.py": {
+  "cases": {
+   "total": 31,
+   "passed": 31,
+   "failed_cases": [],
+   "seconds": 0.6
+  }
+ },
+ "test_hex_hier.py": {
+  "cases": {
+   "total": 7,
+   "passed": 7,
+   "failed_cases": [],
+   "seconds": 15.8
+  }
+ },
+ "test_hex_ortho.py": {
+  "cases": {
+   "total": 11,
+   "passed": 11,
+   "failed_cases": [],
+   "seconds": 0.6
+  }
+ },
+ "test_hex_recon_zorder.py": {
+  "cases": {
+   "total": 7,
+   "passed": 7,
+   "failed_cases": [],
+   "seconds": 0.6
+  }
+ },
+ "test_hex_search.py": {
+  "cases": {
+   "total": 7,
+   "passed": 7,
+   "failed_cases": [],
+   "seconds": 14.7
+  }
+ },
+ "test_hex_text.py": {
+  "cases": {
+   "total": 6,
+   "passed": 6,
+   "failed_cases": [],
+   "seconds": 2.3
+  }
+ },
+ "test_hex_train.py": {
+  "cases": {
+   "total": 9,
+   "passed": 9,
+   "failed_cases": [],
+   "seconds": 4.2
+  }
+ },
+ "test_stcnn_memory_consistency.py": {
+  "cases": {
+   "total": 5,
+   "passed": 5,
+   "failed_cases": [],
+   "seconds": 0.5
+  }
+ },
+ "test_stcnn_scale_invariance.py": {
+  "cases": {
+   "total": 6,
+   "passed": 6,
+   "failed_cases": [],
+   "seconds": 0.5
+  }
+ },
+ "test_stcnn_time_anchor.py": {
+  "cases": {
+   "total": 4,
+   "passed": 4,
+   "failed_cases": [],
+   "seconds": 0.9
+  }
+ },
+ "test_rust_bridge_plan.py": {
+  "cases": {
+   "total": 7,
+   "passed": 7,
+   "failed_cases": [],
+   "seconds": 1.1
+  }
+ }
+}

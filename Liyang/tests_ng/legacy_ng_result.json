@@ -1,0 +1,78 @@
+{
+  "impl": "ng",
+  "pytest": {
+    "passed": 122,
+    "failed": 50,
+    "failures": [
+      "tests/test_core_world_facade_split.py::test_engine_resolves_to_mixin_methods",
+      "tests/test_core_world_facade_split.py::test_facade_smoke_through_engine",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.02-0.1-0]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.02-0.1-1]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.02-0.1-2]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.02-0.1-3]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.02-0.1-4]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.02-0.1-5]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.02-0.1-6]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.02-0.1-7]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.02-0.1-8]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.02-0.1-9]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.02-0.1-10]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.02-0.1-11]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.5-0.1-0]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.5-0.1-1]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.5-0.1-2]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.5-0.1-3]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.5-0.1-4]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.5-0.1-5]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.5-0.1-6]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.5-0.1-7]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.5-0.1-8]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.5-0.1-9]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.5-0.1-10]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.5-0.1-11]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.02-0.35-0]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.02-0.35-1]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.02-0.35-2]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.02-0.35-3]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.02-0.35-4]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.02-0.35-5]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.02-0.35-6]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.02-0.35-7]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.02-0.35-8]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.02-0.35-9]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.02-0.35-10]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.02-0.35-11]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.0-0.1-0]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.0-0.1-1]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.0-0.1-2]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.0-0.1-3]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.0-0.1-4]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.0-0.1-5]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.0-0.1-6]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.0-0.1-7]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.0-0.1-8]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.0-0.1-9]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.0-0.1-10]",
+      "tests/test_perf_equivalence.py::test_decay_cycle_equivalent[0.0-0.1-11]"
+    ]
+  },
+  "scripts": {
+    "tests/test_core_export_all.py": {
+      "passed": 26,
+      "failed": 0,
+      "failures": [],
+      "errors": []
+    },
+    "tests/test_issue145_causal_depth_cycles.py": {
+      "passed": 23,
+      "failed": 0,
+      "failures": [],
+      "errors": []
+    }
+  },
+  "total": {
+    "passed": 171,
+    "failed": 50,
+    "rate": 0.7738
+  }
+}

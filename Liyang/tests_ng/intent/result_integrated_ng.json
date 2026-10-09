@@ -1,0 +1,1851 @@
+{
+ "test_activation_empty_graph.py": {
+  "kind": "pytest",
+  "total": 6,
+  "passed": 6,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.6
+ },
+ "test_activation_graph_refresh.py": {
+  "kind": "pytest",
+  "total": 6,
+  "passed": 6,
+  "skipped": 6,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.8
+ },
+ "test_activation_shared_store.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 3,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.7
+ },
+ "test_activation_workset_provenance.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.7
+ },
+ "test_brain_store.py": {
+  "kind": "script",
+  "total": 1,
+  "passed": 1,
+  "failed_cases": [],
+  "sub": [
+   0,
+   0
+  ],
+  "sub_failed": [],
+  "tail": "",
+  "seconds": 0.2
+ },
+ "test_coggraph_determinism.py": {
+  "kind": "pytest",
+  "total": 7,
+  "passed": 7,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.1
+ },
+ "test_coggraph_export.py": {
+  "kind": "pytest",
+  "total": 4,
+  "passed": 4,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.9
+ },
+ "test_coggraph_export_derived_from.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.7
+ },
+ "test_coggraph_export_ref_scalar.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.7
+ },
+ "test_coggraph_naming_q4.py": {
+  "kind": "pytest",
+  "total": 15,
+  "passed": 15,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.8
+ },
+ "test_coggraph_public_paths.py": {
+  "kind": "pytest",
+  "total": 11,
+  "passed": 11,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 2.2
+ },
+ "test_coggraph_session_chains.py": {
+  "kind": "pytest",
+  "total": 1,
+  "passed": 1,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.7
+ },
+ "test_core_auto_decay_restart.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 2.8
+ },
+ "test_core_consolidate_rehearsal.py": {
+  "kind": "pytest",
+  "total": 1,
+  "passed": 1,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.9
+ },
+ "test_core_dangling_metric_parity.py": {
+  "kind": "pytest",
+  "total": 1,
+  "passed": 0,
+  "skipped": 0,
+  "failed_cases": [
+   "test_core_dangling_metric_parity"
+  ],
+  "messages": {
+   "test_core_dangling_metric_parity": "assert 1 == 0\n +  where 1 = main()\ndef test_core_dangling_metric_parity():\n        \"\"\"pytest 入口：与脚本式 main() 同一套断言。\"\"\"\n>       assert main() == 0\nE       assert 1 == 0\nE        +  where 1 = main()\n\ntests/test_core_dangling_metric_parity.py:165: AssertionError"
+  },
+  "seconds": 0.9
+ },
+ "test_core_decay_low_importance.py": {
+  "kind": "pytest",
+  "total": 4,
+  "passed": 4,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.8
+ },
+ "test_core_dedup_merge_tags.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.7
+ },
+ "test_core_export_all.py": {
+  "kind": "script",
+  "total": 1,
+  "passed": 1,
+  "failed_cases": [],
+  "sub": [
+   26,
+   26
+  ],
+  "sub_failed": [],
+  "tail": "",
+  "seconds": 0.2
+ },
+ "test_core_flywheel_reuse_dedup.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.8
+ },
+ "test_core_foreign_key_enforcement.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 1,
+  "skipped": 0,
+  "failed_cases": [
+   "test_import_of_dangling_reference_is_reported",
+   "test_dangling_reference_really_landed_in_db"
+  ],
+  "messages": {
+   "test_import_of_dangling_reference_is_reported": "apshots': 0, 'activation_nodes': 0}, 'skipped_tables': ['entities'], 'quarantined': {}, 'dropped_columns': [], 'orphan_edges_rejected': 1, 'dangling_rows': 1, 'integrity_ok': False}\nassert 0 == 1\ndef test_import_of_dangling_reference_is_reported():\n        \"\"\"悬挂引用 ⇒ 当场报不通过（改前返回值只有 imported，损坏看不出迹象）。\"\"\"\n        eng, ret = _import([_node(\"only_node\")],\n                           [_edge(\"e_dangling\", \"only_node\", \"MISSING_NODE\")])\n        assert ret.get(\"integrity_ok\") is False, \"未当场报不通过：%r\" % (ret,)\n        assert ret.get(\"dangling_rows\") == 1, ret\n>       assert ret[\"imported\"][\"edges\"] == 1, \"对照：边仍落库（不改写入行为）：%r\" % (ret,)\nE       AssertionError: 对照：边仍落库（不改写入行为）：{'imported': {'nodes': 1, 'edges': 0, 'blindspots': 0, 'skills': 0, 'promotion_proposals': 0, 'protections': 0, 'rejected_paths': 0, 'verifier_standards': 0, 'escalation_points': 0, 'gap_history': 0, 'action_logs': 0, 'engine_meta': 0, 'flywheel_reuse': 0, 'self_snapshots': 0, 'activation_nodes': 0}, 'skipped_tables': ['entities'], 'quarantined': {}, 'dropped_columns': [], 'orphan_edges_rejected': 1, 'dangling_rows': 1, 'integrity_ok': False}\nE       assert 0 == 1\n\ntests/test_core_foreign_key_enforcement.py:59: AssertionError",
+   "test_dangling_reference_really_landed_in_db": "AssertionError: 悬挂边未落库\nassert 0 == 1\ndef test_dangling_reference_really_landed_in_db():\n        \"\"\"库内事实支撑：边确实落库，且 foreign_key_check 非空。\"\"\"\n        eng, _ = _import([_node(\"only_node\")],\n                         [_edge(\"e_dangling\", \"only_node\", \"MISSING_NODE\")])\n        con = sqlite3.connect(eng.store.db_path)\n        try:\n            landed = con.execute(\n                \"SELECT COUNT(*) FROM edges WHERE target_id='MISSING_NODE'\").fetchone()[0]\n            fk = con.execute(\"PRAGMA foreign_key_check\").fetchall()\n        finally:\n            con.close()\n>       assert landed == 1, \"悬挂边未落库\"\nE       AssertionError: 悬挂边未落库\nE       assert 0 == 1\n\ntests/test_core_foreign_key_enforcement.py:74: AssertionError"
+  },
+  "seconds": 0.8
+ },
+ "test_core_insight_report.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.8
+ },
+ "test_core_insight_verify_tags.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.7
+ },
+ "test_core_legacy_schema_migration.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.7
+ },
+ "test_core_structural_importance_idempotent.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.9
+ },
+ "test_core_thread_safety.py": {
+  "kind": "pytest",
+  "total": 6,
+  "passed": 4,
+  "skipped": 0,
+  "failed_cases": [
+   "test_memory_backend_shares_data_across_threads",
+   "test_connections_are_per_thread_but_stable_within_one"
+  ],
+  "messages": {
+   "test_memory_backend_shares_data_across_threads": "       except Exception as ex:\n                    seen[\"err\"] = \"%s: %s\" % (type(ex).__name__, ex)\n    \n            t = threading.Thread(target=other)\n            t.start()\n            t.join()\n            assert \"err\" not in seen, seen\n            assert seen[\"hits\"] == 1, \"子线程看不到主线程写入的记忆：%r\" % (seen,)\n>           assert len(engine.search_content(\"子线程写入\")) == 1, \"主线程看不到子线程写入的记忆\"\nE           AssertionError: 主线程看不到子线程写入的记忆\nE           assert 2 == 1\nE            +  where 2 = len([(Node(id='node_956ab3d4dcd3', content='子线程写入', modality='text', spatial_coordinates={}, temporal_coordinate=179150747...838786, created_at=1791507477.779974, tags=[], semantic_coordinates={}, state_attributes={}, entity_id=None), 0.65625)])\nE            +    where [(Node(id='node_956ab3d4dcd3', content='子线程写入', modality='text', spatial_coordinates={}, temporal_coordinate=179150747...838786, created_at=1791507477.779974, tags=[], semantic_coordinates={}, state_attributes={}, entity_id=None), 0.65625)] = search_content('子线程写入')\nE            +      where search_content = <lingshu_ng.compat_engine.SpacetimeMemoryEngine object at 0xffffae1f7b30>.search_content\n\ntests/test_core_thread_safety.py:91: AssertionError",
+   "test_connections_are_per_thread_but_stable_within_one": "AssertionError: 不同线程拿到了同一条连接（仍是共享连接）\nassert <sqlite3.Connection object at 0xffffae149030> is not <sqlite3.Connection object at 0xffffae149030>\ndef test_connections_are_per_thread_but_stable_within_one():\n        \"\"\"对照项：同线程重复取 conn 必须是同一条；不同线程不得是同一条。\"\"\"\n        engine = SpacetimeMemoryEngine(os.path.join(tempfile.mkdtemp(), \"c.db\"))\n        try:\n            first = engine.store.conn\n            assert engine.store.conn is first, \"同线程重复访问 conn 每次都在新建连接\"\n            other = {}\n            t = threading.Thread(target=lambda: other.update(conn=engine.store.conn))\n            t.start()\n            t.join()\n>           assert other[\"conn\"] is not first, \"不同线程拿到了同一条连接（仍是共享连接）\"\nE           AssertionError: 不同线程拿到了同一条连接（仍是共享连接）\nE           assert <sqlite3.Connection object at 0xffffae149030> is not <sqlite3.Connection object at 0xffffae149030>\n\ntests/test_core_thread_safety.py:106: AssertionError"
+  },
+  "seconds": 1.1
+ },
+ "test_core_visual_check_baseline.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.8
+ },
+ "test_core_world_facade_split.py": {
+  "kind": "pytest",
+  "total": 4,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [
+   "test_engine_resolves_to_mixin_methods",
+   "test_facade_smoke_through_engine"
+  ],
+  "messages": {
+   "test_engine_resolves_to_mixin_methods": "assert False\n +  where False = issubclass(SpacetimeMemoryEngine, WorldFacadeMixin)\ndef test_engine_resolves_to_mixin_methods():\n>       assert issubclass(SpacetimeMemoryEngine, WorldFacadeMixin)\nE       assert False\nE        +  where False = issubclass(SpacetimeMemoryEngine, WorldFacadeMixin)\n\ntests/test_core_world_facade_split.py:41: AssertionError",
+   "test_facade_smoke_through_engine": "NotImplementedError: wm_simloop 未迁移：ng 世界线 lingshu_ng.world 尚无对应组件（世界外观已与记忆引擎解耦，#178；不回落旧 lingshu.world）\ndef test_facade_smoke_through_engine():\n        eng = SpacetimeMemoryEngine()\n        try:\n            r = eng.voxel_world(\"build\", {\"size\": 12, \"trees\": 1})\n            assert r[\"status\"] == \"ok\" and r[\"blocks\"] > 0\n            assert eng.vprim_query(\"count\", {})[\"status\"] == \"ok\"\n            assert eng.world3d(\"status\", {})[\"status\"] == \"ok\"\n>           assert eng.wm_simloop(\"status\", {})[\"status\"] == \"error\"   # 未 setup（与搬移前一致）\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\ntests/test_core_world_facade_split.py:62: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\na = ('status', {}), k = {}\n\n    def _unsupported(*a: Any, **k: Any) -> Any:\n>       raise NotImplementedError(\n            f\"{name} 未迁移：ng 世界线 lingshu_ng.world 尚无对应组件（世界外观已与记忆引擎解耦，#178；\"\n            f\"不回落旧 lingshu.world）\")\nE       NotImplementedError: wm_simloop 未迁移：ng 世界线 lingshu_ng.world 尚无对应组件（世界外观已与记忆引擎解耦，#178；不回落旧 lingshu.world）\n\n../r6logs/ngsnap/lingshu_ng/compat_stubs.py:102: NotImplementedError"
+  },
+  "seconds": 0.7
+ },
+ "test_dedup_shims.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 3,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.8
+ },
+ "test_hex_cnn.py": {
+  "kind": "script",
+  "total": 1,
+  "passed": 1,
+  "failed_cases": [],
+  "sub": [
+   13,
+   13
+  ],
+  "sub_failed": [],
+  "tail": "",
+  "seconds": 0.4
+ },
+ "test_hex_composite.py": {
+  "kind": "pytest",
+  "total": 1,
+  "passed": 1,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.8
+ },
+ "test_hex_gen.py": {
+  "kind": "pytest",
+  "total": 1,
+  "passed": 1,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.0
+ },
+ "test_hex_gen_background_words.py": {
+  "kind": "pytest",
+  "total": 10,
+  "passed": 10,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.7
+ },
+ "test_hex_gen_constructive_pixels.py": {
+  "kind": "pytest",
+  "total": 9,
+  "passed": 7,
+  "skipped": 0,
+  "failed_cases": [
+   "test_fully_occluded_part_is_not_fulfilled",
+   "test_readback_tolerates_invisible_part"
+  ],
+  "messages": {
+   "test_fully_occluded_part_is_not_fulfilled": "assert (2 == 1)\ndef test_fully_occluded_part_is_not_fulfilled():\n        p = [{\"shape\": \"circle\", \"color\": \"red\", \"zone\": \"r4\", \"pattern\": \"solid\", \"size\": \"small\"},\n             {\"shape\": \"square\", \"color\": \"blue\", \"zone\": \"r4\", \"pattern\": \"solid\", \"size\": \"large\"}]\n        img, log = hg.render_relations(p, size=96, seed=3, noise=False)\n        v = hg.verify_constructive(p, log)\n>       assert v[\"matched\"] == 1 and v[\"misses\"][0][\"part\"] == 0\nE       assert (2 == 1)\n\ntests/test_hex_gen_constructive_pixels.py:62: AssertionError",
+   "test_readback_tolerates_invisible_part": "AssertionError: assert 'r4' is None\ndef test_readback_tolerates_invisible_part():\n        # 被完全遮挡的部件 zone_landed=None：verify_readback 计未命中，不得 TypeError\n        p = [{\"shape\": \"circle\", \"color\": \"red\", \"zone\": \"r4\", \"pattern\": \"solid\", \"size\": \"small\"},\n             {\"shape\": \"square\", \"color\": \"blue\", \"zone\": \"r4\", \"pattern\": \"solid\", \"size\": \"large\"}]\n        img, log = hg.render_relations(p, size=96, seed=0)\n>       assert log[0][\"zone_landed\"] is None\nE       AssertionError: assert 'r4' is None\n\ntests/test_hex_gen_constructive_pixels.py:70: AssertionError"
+  },
+  "seconds": 0.9
+ },
+ "test_hex_gen_shape_words.py": {
+  "kind": "pytest",
+  "total": 31,
+  "passed": 31,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.8
+ },
+ "test_hex_grid_extent.py": {
+  "kind": "script",
+  "total": 1,
+  "passed": 1,
+  "failed_cases": [],
+  "sub": [
+   23,
+   23
+  ],
+  "sub_failed": [],
+  "tail": "",
+  "seconds": 0.3
+ },
+ "test_hex_hier.py": {
+  "kind": "pytest",
+  "total": 8,
+  "passed": 8,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 15.5
+ },
+ "test_hex_hier_fd_cache.py": {
+  "kind": "script",
+  "total": 1,
+  "passed": 0,
+  "failed_cases": [
+   "<script rc=1>"
+  ],
+  "sub": [
+   0,
+   0
+  ],
+  "sub_failed": [],
+  "tail": "== A / C 组：逐位一致 + 省算量；B 组：作用域 ==\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"<frozen runpy>\", line 287, in run_path\n  File \"<frozen runpy>\", line 98, in _run_module_code\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/workspace/work/ls/integrated/tests/test_hex_hier_fd_cache.py\", line 128, in <module>\n    sys.exit(main())\n             ^^^^^^\n  File \"/workspace/work/ls/integrated/tests/test_hex_hier_fd_cache.py\", line 117, in main\n    group_a_b_c()\n  File \"/workspace/work/ls/integrated/tests/test_hex_hier_fd_cache.py\", line 90, in group_a_b_c\n    v1, r1, n1 = _train(kw, False, lat, labs)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/work/ls/integrated/tests/test_hex_hier_fd_cache.py\", line 82, in _train\n    with _Counter(bypass) as cnt:\n         ^^^^^^^^^^^^^^^^\n  File \"/workspace/work/ls/integrated/tests/test_hex_hier_fd_cache.py\", line 61, in __init__\n    self.bypass, self.n, self.orig = bypass, 0, HexHierNet._block\n                                                ^^^^^^^^^^^^^^^^^\nAttributeError: type object 'HexHierNet' has no attribute '_block'\n",
+  "seconds": 0.2
+ },
+ "test_hex_ortho.py": {
+  "kind": "pytest",
+  "total": 11,
+  "passed": 11,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.8
+ },
+ "test_hex_query.py": {
+  "kind": "pytest",
+  "total": 6,
+  "passed": 6,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.8
+ },
+ "test_hex_recon_zorder.py": {
+  "kind": "pytest",
+  "total": 7,
+  "passed": 7,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.7
+ },
+ "test_hex_search.py": {
+  "kind": "pytest",
+  "total": 7,
+  "passed": 7,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 13.5
+ },
+ "test_hex_search_root_screen.py": {
+  "kind": "script",
+  "total": 1,
+  "passed": 1,
+  "failed_cases": [],
+  "sub": [
+   3,
+   3
+  ],
+  "sub_failed": [],
+  "tail": "",
+  "seconds": 0.4
+ },
+ "test_hex_text.py": {
+  "kind": "pytest",
+  "total": 6,
+  "passed": 6,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.9
+ },
+ "test_hex_text_contracts.py": {
+  "kind": "script",
+  "total": 1,
+  "passed": 1,
+  "failed_cases": [],
+  "sub": [
+   14,
+   14
+  ],
+  "sub_failed": [],
+  "tail": "",
+  "seconds": 0.3
+ },
+ "test_hex_train.py": {
+  "kind": "pytest",
+  "total": 9,
+  "passed": 9,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 3.8
+ },
+ "test_hex_train_selfsup_eval.py": {
+  "kind": "script",
+  "total": 1,
+  "passed": 1,
+  "failed_cases": [],
+  "sub": [
+   4,
+   4
+  ],
+  "sub_failed": [],
+  "tail": "",
+  "seconds": 1.4
+ },
+ "test_issue107_self_check_persistent.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.8
+ },
+ "test_issue109_external_anchor_gate.py": {
+  "kind": "pytest",
+  "total": 5,
+  "passed": 5,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.8
+ },
+ "test_issue122_self_history_cap.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 3,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.3
+ },
+ "test_issue130_escalation_gate.py": {
+  "kind": "pytest",
+  "total": 10,
+  "passed": 10,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.8
+ },
+ "test_issue143_mcp_stderr_deadlock.py": {
+  "kind": "pytest",
+  "total": 1,
+  "passed": 1,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.9
+ },
+ "test_issue145_causal_depth_cycles.py": {
+  "kind": "pytest",
+  "total": 1,
+  "passed": 1,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.8
+ },
+ "test_issue156_component_discovery.py": {
+  "kind": "pytest",
+  "total": 1,
+  "passed": 1,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 8.8
+ },
+ "test_issue179_time_queries.py": {
+  "kind": "pytest",
+  "total": 4,
+  "passed": 4,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.9
+ },
+ "test_issue180_cred_step_retention.py": {
+  "kind": "pytest",
+  "total": 4,
+  "passed": 4,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.8
+ },
+ "test_issue181_183_tag_lookup.py": {
+  "kind": "pytest",
+  "total": 4,
+  "passed": 4,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.7
+ },
+ "test_issue182_self_update_gate.py": {
+  "kind": "pytest",
+  "total": 12,
+  "passed": 11,
+  "skipped": 0,
+  "failed_cases": [
+   "test_snapshot_failure_rolls_back_memory"
+  ],
+  "messages": {
+   "test_snapshot_failure_rolls_back_memory": "Failed: DID NOT RAISE RuntimeError\ne = <lingshu_ng.compat_engine.SpacetimeMemoryEngine object at 0xffff97ace690>\nmonkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xffff97a2cf80>\n\n    def test_snapshot_failure_rolls_back_memory(e, monkeypatch):\n        def boom(*a, **k):\n            raise RuntimeError(\"disk full\")\n        monkeypatch.setattr(e.store, \"add_node\", boom)\n        h0 = len(e.self_model.history)\n>       with pytest.raises(RuntimeError):\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       Failed: DID NOT RAISE RuntimeError\n\ntests/test_issue182_self_update_gate.py:66: Failed"
+  },
+  "seconds": 0.9
+ },
+ "test_issue184_store_tx_rollback.py": {
+  "kind": "pytest",
+  "total": 4,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [
+   "test_real_decay_cycle_exception_leaves_no_open_tx",
+   "test_every_public_store_method_guarded"
+  ],
+  "messages": {
+   "test_real_decay_cycle_exception_leaves_no_open_tx": "Failed: DID NOT RAISE TypeError\ntmp_path = PosixPath('/tmp/pytest-of-sandbox/pytest-18/test_real_decay_cycle_exceptio0')\nmonkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xffffb7cce000>\n\n    def test_real_decay_cycle_exception_leaves_no_open_tx(tmp_path, monkeypatch):\n        db, e, ea = _setup(tmp_path)\n        try:\n            st = e.store\n            # 第二条边的衰减时让 cred_step 抛异常（模拟坏值），第一条边已 UPDATE 未提交\n            from lingshu.core import core as C\n            n = {\"i\": 0}\n            real = C.cred_step\n    \n            def flaky(x, f):\n                n[\"i\"] += 1\n                if n[\"i\"] == 2:\n                    raise TypeError(\"坏值\")\n                return real(x, f)\n            monkeypatch.setattr(C, \"cred_step\", flaky)\n>           with pytest.raises(TypeError):\n                 ^^^^^^^^^^^^^^^^^^^^^^^^\nE           Failed: DID NOT RAISE TypeError\n\ntests/test_issue184_store_tx_rollback.py:67: Failed",
+   "test_every_public_store_method_guarded": "AssertionError: add_node\nassert False\n +  where False = getattr(<function LayeredStore.add_node at 0xffffbd68ede0>, '__lingshu_tx_guard__', False)\n +    where <function LayeredStore.add_node at 0xffffbd68ede0> = getattr(<class 'lingshu_ng.compat.LayeredStore'>, 'add_node')\ndef test_every_public_store_method_guarded():\n        from lingshu.core.core import LayeredStore\n        for name in (\"add_node\", \"add_edge\", \"delete_node\", \"decay_cycle\", \"tag_node\", \"search_content\"):\n>           assert getattr(getattr(LayeredStore, name), \"__lingshu_tx_guard__\", False), name\nE           AssertionError: add_node\nE           assert False\nE            +  where False = getattr(<function LayeredStore.add_node at 0xffffbd68ede0>, '__lingshu_tx_guard__', False)\nE            +    where <function LayeredStore.add_node at 0xffffbd68ede0> = getattr(<class 'lingshu_ng.compat.LayeredStore'>, 'add_node')\n\ntests/test_issue184_store_tx_rollback.py:84: AssertionError"
+  },
+  "seconds": 0.8
+ },
+ "test_issue185_numeric_inputs.py": {
+  "kind": "pytest",
+  "total": 6,
+  "passed": 6,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.8
+ },
+ "test_issue186_ray_intersect_behind.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 3,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.8
+ },
+ "test_issue187_synonym_ordinal_guard.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 3,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.9
+ },
+ "test_issue188_pack_certify_default_cuts.py": {
+  "kind": "pytest",
+  "total": 5,
+  "passed": 5,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.8
+ },
+ "test_issue189_partial_clause.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 3,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.8
+ },
+ "test_issue191_sub_self_layer.py": {
+  "kind": "pytest",
+  "total": 6,
+  "passed": 4,
+  "skipped": 0,
+  "failed_cases": [
+   "test_sub_can_write_own_self_layer",
+   "test_trust_snapshot_failure_rolls_back"
+  ],
+  "messages": {
+   "test_sub_can_write_own_self_layer": "gshu_ng.compat.LayeredStore object at 0xffffb62cc650>.count_layer\n +      where <lingshu_ng.compat.LayeredStore object at 0xffffb62cc650> = <lingshu_ng.compat_engine.SpacetimeMemoryEngine object at 0xffffb62cecc0>.store\n +    and   <MemoryLayer.SELF: 'self'> = MemoryLayer.SELF\nsub = <lingshu_ng.compat_engine.SpacetimeMemoryEngine object at 0xffffb62cecc0>\n\n    def test_sub_can_write_own_self_layer(sub):\n        n0 = sub.store.count_layer(MemoryLayer.SELF)\n        sub.update_self({\"current_goal\": \"子实例目标\"})\n        for i in range(5):\n            sub.update_trust_state(float(i * i), i)\n        # issue #201：自我/信任各一个当前节点原地更新（不再每次调用新增节点）\n>       assert sub.store.count_layer(MemoryLayer.SELF) == n0 + 2\nE       AssertionError: assert 1 == (0 + 2)\nE        +  where 1 = count_layer(<MemoryLayer.SELF: 'self'>)\nE        +    where count_layer = <lingshu_ng.compat.LayeredStore object at 0xffffb62cc650>.count_layer\nE        +      where <lingshu_ng.compat.LayeredStore object at 0xffffb62cc650> = <lingshu_ng.compat_engine.SpacetimeMemoryEngine object at 0xffffb62cecc0>.store\nE        +    and   <MemoryLayer.SELF: 'self'> = MemoryLayer.SELF\n\ntests/test_issue191_sub_self_layer.py:34: AssertionError",
+   "test_trust_snapshot_failure_rolls_back": "Failed: DID NOT RAISE RuntimeError\nsub = <lingshu_ng.compat_engine.SpacetimeMemoryEngine object at 0xffffb6266d20>\nmonkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xffffb61b7cb0>\n\n    def test_trust_snapshot_failure_rolls_back(sub, monkeypatch):\n        sub.update_trust_state(0.3, 1)\n        before = (dict(sub.self_model.trust_state), list(sub.self_model.trust_history))\n        monkeypatch.setattr(sub.store, \"add_node\", lambda *a, **k: (_ for _ in ()).throw(RuntimeError(\"disk\")))\n>       with pytest.raises(RuntimeError):\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       Failed: DID NOT RAISE RuntimeError\n\ntests/test_issue191_sub_self_layer.py:65: Failed"
+  },
+  "seconds": 0.8
+ },
+ "test_issue192_simloop_phase_rolling.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.8
+ },
+ "test_issue193_scene_sim_contracts.py": {
+  "kind": "pytest",
+  "total": 6,
+  "passed": 6,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.0
+ },
+ "test_issue194_multimodal_scene_capacity.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.8
+ },
+ "test_issue195_gate_similar_edges.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 3,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.9
+ },
+ "test_issue196_nan_threshold_gates.py": {
+  "kind": "pytest",
+  "total": 9,
+  "passed": 9,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.7
+ },
+ "test_issue196_verdict_nonfinite.py": {
+  "kind": "pytest",
+  "total": 7,
+  "passed": 7,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.7
+ },
+ "test_issue197_hexnet_vec_atomic.py": {
+  "kind": "pytest",
+  "total": 5,
+  "passed": 5,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.8
+ },
+ "test_issue198_multi_seed_stable_id.py": {
+  "kind": "pytest",
+  "total": 1,
+  "passed": 1,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.1
+ },
+ "test_issue199_activation_empty_query.py": {
+  "kind": "pytest",
+  "total": 4,
+  "passed": 4,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.9
+ },
+ "test_issue200_skill_binding.py": {
+  "kind": "pytest",
+  "total": 4,
+  "passed": 4,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.7
+ },
+ "test_issue201_self_snapshot_recall.py": {
+  "kind": "pytest",
+  "total": 5,
+  "passed": 4,
+  "skipped": 0,
+  "failed_cases": [
+   "test_trust_and_value_change_do_not_grow_self_layer"
+  ],
+  "messages": {
+   "test_trust_and_value_change_do_not_grow_self_layer": ">.count_layer\n +      where <lingshu_ng.compat.LayeredStore object at 0xffff8d82d010> = <lingshu_ng.compat_engine.SpacetimeMemoryEngine object at 0xffff8d82e870>.store\n +    and   <MemoryLayer.SELF: 'self'> = MemoryLayer.SELF\ndef test_trust_and_value_change_do_not_grow_self_layer():\n        e = SpacetimeMemoryEngine(\":memory:\")\n        for i in range(50):\n            e.update_trust_state(0.5 + i * 0.005, i)\n        e.update_self({\"current_goal\": \"g\"})\n        e.record_value_change(\"诚实优先\", \"设计者确认\")\n        e.record_value_change(\"诚实优先（细化）\", \"复核\", replaces=\"诚实优先\")\n>       assert e.store.count_layer(MemoryLayer.SELF) == 2      # 自我当前态 + 信任当前态\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       AssertionError: assert 1 == 2\nE        +  where 1 = count_layer(<MemoryLayer.SELF: 'self'>)\nE        +    where count_layer = <lingshu_ng.compat.LayeredStore object at 0xffff8d82d010>.count_layer\nE        +      where <lingshu_ng.compat.LayeredStore object at 0xffff8d82d010> = <lingshu_ng.compat_engine.SpacetimeMemoryEngine object at 0xffff8d82e870>.store\nE        +    and   <MemoryLayer.SELF: 'self'> = MemoryLayer.SELF\n\ntests/test_issue201_self_snapshot_recall.py:58: AssertionError"
+  },
+  "seconds": 1.1
+ },
+ "test_issue203_causal_guard_gate.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.3
+ },
+ "test_issue205_self_edge_decay.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 3,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.8
+ },
+ "test_issue206_trust_state_range.py": {
+  "kind": "pytest",
+  "total": 8,
+  "passed": 8,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.8
+ },
+ "test_issue207_context_decay_deadzone.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.8
+ },
+ "test_issue208_reuse_tracker_bound.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.7
+ },
+ "test_issue209_python_floor.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 3,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.7
+ },
+ "test_issue210_forget_advisor.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 3,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.7
+ },
+ "test_issue211_world3d_build_pose.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 3,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.7
+ },
+ "test_issue212_value_change.py": {
+  "kind": "pytest",
+  "total": 7,
+  "passed": 7,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.8
+ },
+ "test_issue213_novelty_non_cjk.py": {
+  "kind": "pytest",
+  "total": 20,
+  "passed": 20,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.8
+ },
+ "test_issue214_context_consolidation.py": {
+  "kind": "pytest",
+  "total": 4,
+  "passed": 3,
+  "skipped": 0,
+  "failed_cases": [
+   "test_unworthy_context_is_forgotten_not_zombie"
+  ],
+  "messages": {
+   "test_unworthy_context_is_forgotten_not_zombie": "t_node(n.id) is None\nE       AssertionError: assert Node(id='ctx_3b2729a77b4e', content='今天下午随便聊了几句', modality='text', spatial_coordinates={}, temporal_coordinate=1791507...ated_at=1791507569.5836601, tags=['context', 'promoted'], semantic_coordinates={}, state_attributes={}, entity_id=None) is None\nE        +  where Node(id='ctx_3b2729a77b4e', content='今天下午随便聊了几句', modality='text', spatial_coordinates={}, temporal_coordinate=1791507...ated_at=1791507569.5836601, tags=['context', 'promoted'], semantic_coordinates={}, state_attributes={}, entity_id=None) = get_node('ctx_3b2729a77b4e')\nE        +    where get_node = <lingshu_ng.compat.LayeredStore object at 0xffffa4e38170>.get_node\nE        +      where <lingshu_ng.compat.LayeredStore object at 0xffffa4e38170> = <lingshu_ng.compat_engine.SpacetimeMemoryEngine object at 0xffffa4e2ee70>.store\nE        +    and   'ctx_3b2729a77b4e' = Node(id='ctx_3b2729a77b4e', content='今天下午随便聊了几句', modality='text', spatial_coordinates={}, temporal_coordinate=1791507...5836601, created_at=1791507569.5836601, tags=['context'], semantic_coordinates={}, state_attributes={}, entity_id=None).id\n\ntests/test_issue214_context_consolidation.py:46: AssertionError"
+  },
+  "seconds": 0.9
+ },
+ "test_issue215_causal_cycle_consistency.py": {
+  "kind": "pytest",
+  "total": 11,
+  "passed": 11,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.9
+ },
+ "test_issue216_negative_memory_parity.py": {
+  "kind": "pytest",
+  "total": 6,
+  "passed": 5,
+  "skipped": 0,
+  "failed_cases": [
+   "test_skill_without_failures_unchanged"
+  ],
+  "messages": {
+   "test_skill_without_failures_unchanged": "assert (0 == 0 and 0.6666666666666666 == 0.5 ± 5.0e-07\n  \n  comparison failed\n  Obtained: 0.6666666666666666\n  Expected: 0.5 ± 5.0e-07)\neng = <lingshu_ng.compat_engine.SpacetimeMemoryEngine object at 0xffff9321ba70>\n\n    def test_skill_without_failures_unchanged(eng):\n        eng.record_action_sequence([\"部署 v1\"], \"成功上线\", success=True, skill_hint=\"部署\")\n        sk = eng.recall_skill(\"部署\", limit=1)[0]\n>       assert sk[\"failure_count\"] == 0 and sk[\"confidence\"] == pytest.approx(0.5)\nE       assert (0 == 0 and 0.6666666666666666 == 0.5 ± 5.0e-07\nE         \nE         comparison failed\nE         Obtained: 0.6666666666666666\nE         Expected: 0.5 ± 5.0e-07)\n\ntests/test_issue216_negative_memory_parity.py:60: AssertionError"
+  },
+  "seconds": 0.8
+ },
+ "test_issue216_rejected_promotion_loop.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 3,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.0
+ },
+ "test_issue217_snapshot_shared_layer_guard.py": {
+  "kind": "pytest",
+  "total": 5,
+  "passed": 5,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.8
+ },
+ "test_issue218_anchor_unpack.py": {
+  "kind": "pytest",
+  "total": 39,
+  "passed": 39,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.6
+ },
+ "test_issue219_subject_split_band.py": {
+  "kind": "pytest",
+  "total": 4,
+  "passed": 4,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.6
+ },
+ "test_issue220_cognitive_baseline.py": {
+  "kind": "pytest",
+  "total": 6,
+  "passed": 6,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.7
+ },
+ "test_issue221_sky_object_horizon.py": {
+  "kind": "pytest",
+  "total": 17,
+  "passed": 16,
+  "skipped": 0,
+  "failed_cases": [
+   "test_sky_object_below_horizon_is_lifted_to_horizon"
+  ],
+  "messages": {
+   "test_sky_object_below_horizon_is_lifted_to_horizon": "AssertionError: (400.0, 400.11854379010856)\nassert 130.11854379010856 < 1.0\n +  where 130.11854379010856 = abs((400.11854379010856 - 270))\ndef test_sky_object_below_horizon_is_lifted_to_horizon():\n        # 「不低于地平线」的约定保留：地平线像素 = H*horizon_ratio = 270\n        w = World3D()\n        obj = w.add_vprim(VPrim(\"apple\", (390, 390, 410, 410), 0.9), W, H)\n        p = w.camera.project(obj.center, W, H)\n>       assert abs(p[1] - 270) < 1.0, p\nE       AssertionError: (400.0, 400.11854379010856)\nE       assert 130.11854379010856 < 1.0\nE        +  where 130.11854379010856 = abs((400.11854379010856 - 270))\n\ntests/test_issue221_sky_object_horizon.py:27: AssertionError"
+  },
+  "seconds": 0.8
+ },
+ "test_issue222_blindspot_store_gate.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 3,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.9
+ },
+ "test_issue223_dedup_merge_metadata.py": {
+  "kind": "pytest",
+  "total": 4,
+  "passed": 4,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.9
+ },
+ "test_issue224_snapshot_stored_layer.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.8
+ },
+ "test_issue225_dedup_polarity.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.8
+ },
+ "test_issue226_world_model_one_to_one.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.8
+ },
+ "test_issue227_brain_env_no_designer_key.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [
+   "test_rust_bridge_env_drops_designer_key"
+  ],
+  "messages": {
+   "test_rust_bridge_env_drops_designer_key": "AttributeError: <module 'lingshu_ng.nn.compat.rust_bridge' from '/workspace/work/ls/r6logs/ngsnap/lingshu_ng/nn/compat/rust_bridge.py'> has no attribute 'pack_data'\nmonkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xffff7af5f560>\ntmp_path = PosixPath('/tmp/pytest-of-sandbox/pytest-22/test_rust_bridge_env_drops_des0')\n\n    def test_rust_bridge_env_drops_designer_key(monkeypatch, tmp_path):\n        np = __import__(\"pytest\").importorskip(\"numpy\")\n        from lingshu.nn import rust_bridge\n        seen = {}\n        monkeypatch.setenv(\"AEIS_DESIGNER_KEY\", \"k-real\")\n>       monkeypatch.setattr(rust_bridge, \"pack_data\", lambda *a, **k: None)\nE       AttributeError: <module 'lingshu_ng.nn.compat.rust_bridge' from '/workspace/work/ls/r6logs/ngsnap/lingshu_ng/nn/compat/rust_bridge.py'> has no attribute 'pack_data'\n\ntests/test_issue227_brain_env_no_designer_key.py:42: AttributeError"
+  },
+  "seconds": 0.9
+ },
+ "test_issue229_activation_opposite_not_excitatory.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.9
+ },
+ "test_issue231_shapes_grounding.py": {
+  "kind": "pytest",
+  "total": 1,
+  "passed": 1,
+  "skipped": 10,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.2
+ },
+ "test_issue231_shapes_parts_attached.py": {
+  "kind": "pytest",
+  "total": 10,
+  "passed": 10,
+  "skipped": 1,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.9
+ },
+ "test_issue232_c1_gap_dprime.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.9
+ },
+ "test_issue233_seven_layer_run_ticks.py": {
+  "kind": "pytest",
+  "total": 9,
+  "passed": 9,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.8
+ },
+ "test_issue235_repro_html_comment.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 3,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.9
+ },
+ "test_issue236_fullwidth_semicolon.py": {
+  "kind": "pytest",
+  "total": 1,
+  "passed": 1,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 0.9
+ },
+ "test_issue237_license_spdx.py": {
+  "kind": "pytest",
+  "total": 1,
+  "passed": 1,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.0
+ },
+ "test_issue238_ci_docs_no_draft_marks.py": {
+  "kind": "pytest",
+  "total": 1,
+  "passed": 1,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.2
+ },
+ "test_issue239_repro_report_traceable.py": {
+  "kind": "pytest",
+  "total": 4,
+  "passed": 4,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.8
+ },
+ "test_issue240_coggraph_serve_host_check.py": {
+  "kind": "pytest",
+  "total": 1,
+  "passed": 1,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.7
+ },
+ "test_issue241_repro_runner_isolation.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 4.4
+ },
+ "test_issue243_world_facade_init.py": {
+  "kind": "pytest",
+  "total": 10,
+  "passed": 10,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.4
+ },
+ "test_issue244_edge_role_guard.py": {
+  "kind": "pytest",
+  "total": 5,
+  "passed": 5,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.4
+ },
+ "test_issue245_coggraph_viewer_xss.py": {
+  "kind": "pytest",
+  "total": 1,
+  "passed": 1,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.2
+ },
+ "test_issue246_context_cap_persist.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 3,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.1
+ },
+ "test_issue248_wm_simloop_wal_seq.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 1,
+  "skipped": 0,
+  "failed_cases": [
+   "test_wal_seq_monotonic_across_setups"
+  ],
+  "messages": {
+   "test_wal_seq_monotonic_across_setups": "NotImplementedError: wm_simloop 未迁移：ng 世界线 lingshu_ng.world 尚无对应组件（世界外观已与记忆引擎解耦，#178；不回落旧 lingshu.world）\ntmp_path = PosixPath('/tmp/pytest-of-sandbox/pytest-28/test_wal_seq_monotonic_across_0')\n\n    def test_wal_seq_monotonic_across_setups(tmp_path):\n        wal = str(tmp_path / \"wal.jsonl\")\n        e = SpacetimeMemoryEngine(\":memory:\")\n        for _ in range(3):\n>           e.wm_simloop(\"setup\", {\"entities\": [{\"category\": \"cat\", \"pos\": [5, 1.5, 5]}], \"wal_path\": wal})\n\ntests/test_issue248_wm_simloop_wal_seq.py:14: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\na = ('setup', {'entities': [{'category': 'cat', 'pos': [5, 1.5, 5]}], 'wal_path': '/tmp/pytest-of-sandbox/pytest-28/test_wal_seq_monotonic_across_0/wal.jsonl'})\nk = {}\n\n    def _unsupported(*a: Any, **k: Any) -> Any:\n>       raise NotImplementedError(\n            f\"{name} 未迁移：ng 世界线 lingshu_ng.world 尚无对应组件（世界外观已与记忆引擎解耦，#178；\"\n            f\"不回落旧 lingshu.world）\")\nE       NotImplementedError: wm_simloop 未迁移：ng 世界线 lingshu_ng.world 尚无对应组件（世界外观已与记忆引擎解耦，#178；不回落旧 lingshu.world）\n\n../r6logs/ngsnap/lingshu_ng/compat_stubs.py:102: NotImplementedError"
+  },
+  "seconds": 1.2
+ },
+ "test_issue249_seek_overshoot.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [
+   "test_shadow_move_formula_matches_simulator"
+  ],
+  "messages": {
+   "test_shadow_move_formula_matches_simulator": "assert (9.81, 1.5, 10.0) == (10.0, 1.5, 10.0)\n  \n  At index 0 diff: 9.81 != 10.0\n  Use -v to get more diff\ndef test_shadow_move_formula_matches_simulator():\n        s = SceneSimulator(size=24)\n        t, a = _chase(s, start=(9.5, 1.5, 10))   # 剩余 0.5 < speed 0.8\n        e = s.entities[a]\n        d = s._decide(e)\n        dist = math.hypot(10 - e.pos[0], 10 - e.pos[2])\n        s.step(1)\n        world = s.entities[a].pos\n        for m in (UnifiedWorldModel(), WorldLearner()):\n>           assert m._apply_move((9.5, 1.5, 10.0), 0.8, d, max_step=dist) == world\nE           assert (9.81, 1.5, 10.0) == (10.0, 1.5, 10.0)\nE             \nE             At index 0 diff: 9.81 != 10.0\nE             Use -v to get more diff\n\ntests/test_issue249_seek_overshoot.py:39: AssertionError"
+  },
+  "seconds": 1.1
+ },
+ "test_issue251_third_party_pinned.py": {
+  "kind": "pytest",
+  "total": 5,
+  "passed": 5,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.2
+ },
+ "test_issue253_extras_cover_imports.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 3,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 2.4
+ },
+ "test_issue254_hex_train_degenerate.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 3,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.1
+ },
+ "test_issue255_radial_profile_subpixel.py": {
+  "kind": "pytest",
+  "total": 1,
+  "passed": 1,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.1
+ },
+ "test_issue258_consolidate_full_scan.py": {
+  "kind": "pytest",
+  "total": 1,
+  "passed": 1,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.2
+ },
+ "test_issue259_context_fifo_write_order.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.3
+ },
+ "test_issue261_protection_sql_vars.py": {
+  "kind": "pytest",
+  "total": 5,
+  "passed": 5,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.9
+ },
+ "test_issue262_anchor_verify_identity.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 3,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.2
+ },
+ "test_issue263_maintenance_no_net_write.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.2
+ },
+ "test_issue264_spatiotemporal_candidates.py": {
+  "kind": "pytest",
+  "total": 1,
+  "passed": 1,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.2
+ },
+ "test_issue266_long_query_like_limit.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 3,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.5
+ },
+ "test_issue267_bad_row_tolerance.py": {
+  "kind": "pytest",
+  "total": 7,
+  "passed": 7,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.3
+ },
+ "test_issue268_dedup_condition_space.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 3,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.1
+ },
+ "test_issue269_structural_protect_verified.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 3,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.3
+ },
+ "test_issue270_backup_obs_tables.py": {
+  "kind": "pytest",
+  "total": 1,
+  "passed": 0,
+  "skipped": 0,
+  "failed_cases": [
+   "test_roundtrip_obs_tables_and_escalation"
+  ],
+  "messages": {
+   "test_roundtrip_obs_tables_and_escalation": "record_info_gap(x)\n        A.store.set_meta(\"flywheel_baseline\", \"0.42\")\n        A.store.conn.execute(\"INSERT INTO action_logs (ts, action_type, summary) VALUES (1,'heartbeat','心跳')\")\n        A.store.conn.commit()\n        esc = A.list_escalation_points(enabled_only=False)\n        A.store.conn.execute(\"UPDATE escalation_points SET enabled=0 WHERE code='ESC-003'\")\n        A.store.conn.commit()\n    \n        bk = str(tmp_path / \"b.json\")\n        r = A.export_all(bk)\n        dumped = set(json.load(open(bk, encoding=\"utf-8\"))) - {\"meta\"}\n        live = {t for (t,) in A.store.conn.execute(\n            \"SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'\")}\n>       assert live <= dumped | set(r[\"skipped_tables\"]), sorted(live - dumped)\nE       AssertionError: ['feature_df', 'index_dirty', 'index_state', 'node_index', 'node_terms', 'term_df']\nE       assert {'action_logs..._points', ...} <= {'action_logs...ntities', ...}\nE         \nE         Extra items in the left set:\nE         'index_state'\nE         'feature_df'\nE         'term_df'\nE         'index_dirty'\nE         'node_index'\nE         'node_terms'\n\ntests/test_issue270_backup_obs_tables.py:28: AssertionError"
+  },
+  "seconds": 1.3
+ },
+ "test_issue272_recall_skill_ranking.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 3,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.4
+ },
+ "test_issue273_pathguard_host_imports.py": {
+  "kind": "pytest",
+  "total": 5,
+  "passed": 5,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.5
+ },
+ "test_issue275_component_finder_host_names.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.4
+ },
+ "test_issue276_viewer_path_containment.py": {
+  "kind": "pytest",
+  "total": 1,
+  "passed": 1,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.3
+ },
+ "test_issue277_world3d_render_path.py": {
+  "kind": "pytest",
+  "total": 4,
+  "passed": 4,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.2
+ },
+ "test_issue278_mcp_handshake_timeout.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 2.8
+ },
+ "test_issue279_migrate_nondict_coords.py": {
+  "kind": "pytest",
+  "total": 6,
+  "passed": 6,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.2
+ },
+ "test_issue27_wander_unit_speed.py": {
+  "kind": "pytest",
+  "total": 4,
+  "passed": 4,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.2
+ },
+ "test_issue280_selfcond_divergence.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.2
+ },
+ "test_issue281_insight_tone_refuted_importance.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.6
+ },
+ "test_issue282_world_rebuild_latest.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 2.2
+ },
+ "test_issue283_stcnn_import_purity.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 3,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 2.5
+ },
+ "test_issue284_gen_import_purity.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 3,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 7.0
+ },
+ "test_issue285_c1_gap_plain_ref.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 3,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.7
+ },
+ "test_issue286_gate_declares_pyyaml.py": {
+  "kind": "pytest",
+  "total": 1,
+  "passed": 1,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.6
+ },
+ "test_layer_enumeration.py": {
+  "kind": "pytest",
+  "total": 11,
+  "passed": 11,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.6
+ },
+ "test_longterm_gate_layer.py": {
+  "kind": "pytest",
+  "total": 4,
+  "passed": 4,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.6
+ },
+ "test_longterm_gate_prefeed.py": {
+  "kind": "pytest",
+  "total": 1,
+  "passed": 1,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.8
+ },
+ "test_mcp_client_transport.py": {
+  "kind": "pytest",
+  "total": 27,
+  "passed": 27,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 5.8
+ },
+ "test_perf_equivalence.py": {
+  "kind": "pytest",
+  "total": 111,
+  "passed": 63,
+  "skipped": 0,
+  "failed_cases": [
+   "test_decay_cycle_equivalent[0.02-0.1-0]",
+   "test_decay_cycle_equivalent[0.02-0.1-1]",
+   "test_decay_cycle_equivalent[0.02-0.1-2]",
+   "test_decay_cycle_equivalent[0.02-0.1-3]",
+   "test_decay_cycle_equivalent[0.02-0.1-4]",
+   "test_decay_cycle_equivalent[0.02-0.1-5]",
+   "test_decay_cycle_equivalent[0.02-0.1-6]",
+   "test_decay_cycle_equivalent[0.02-0.1-7]",
+   "test_decay_cycle_equivalent[0.02-0.1-8]",
+   "test_decay_cycle_equivalent[0.02-0.1-9]",
+   "test_decay_cycle_equivalent[0.02-0.1-10]",
+   "test_decay_cycle_equivalent[0.02-0.1-11]",
+   "test_decay_cycle_equivalent[0.5-0.1-0]",
+   "test_decay_cycle_equivalent[0.5-0.1-1]",
+   "test_decay_cycle_equivalent[0.5-0.1-2]",
+   "test_decay_cycle_equivalent[0.5-0.1-3]",
+   "test_decay_cycle_equivalent[0.5-0.1-4]",
+   "test_decay_cycle_equivalent[0.5-0.1-5]",
+   "test_decay_cycle_equivalent[0.5-0.1-6]",
+   "test_decay_cycle_equivalent[0.5-0.1-7]",
+   "test_decay_cycle_equivalent[0.5-0.1-8]",
+   "test_decay_cycle_equivalent[0.5-0.1-9]",
+   "test_decay_cycle_equivalent[0.5-0.1-10]",
+   "test_decay_cycle_equivalent[0.5-0.1-11]",
+   "test_decay_cycle_equivalent[0.02-0.35-0]",
+   "test_decay_cycle_equivalent[0.02-0.35-1]",
+   "test_decay_cycle_equivalent[0.02-0.35-2]",
+   "test_decay_cycle_equivalent[0.02-0.35-3]",
+   "test_decay_cycle_equivalent[0.02-0.35-4]",
+   "test_decay_cycle_equivalent[0.02-0.35-5]",
+   "test_decay_cycle_equivalent[0.02-0.35-6]",
+   "test_decay_cycle_equivalent[0.02-0.35-7]",
+   "test_decay_cycle_equivalent[0.02-0.35-8]",
+   "test_decay_cycle_equivalent[0.02-0.35-9]",
+   "test_decay_cycle_equivalent[0.02-0.35-10]",
+   "test_decay_cycle_equivalent[0.02-0.35-11]",
+   "test_decay_cycle_equivalent[0.0-0.1-0]",
+   "test_decay_cycle_equivalent[0.0-0.1-1]",
+   "test_decay_cycle_equivalent[0.0-0.1-2]",
+   "test_decay_cycle_equivalent[0.0-0.1-3]",
+   "test_decay_cycle_equivalent[0.0-0.1-4]",
+   "test_decay_cycle_equivalent[0.0-0.1-5]",
+   "test_decay_cycle_equivalent[0.0-0.1-6]",
+   "test_decay_cycle_equivalent[0.0-0.1-7]",
+   "test_decay_cycle_equivalent[0.0-0.1-8]",
+   "test_decay_cycle_equivalent[0.0-0.1-9]",
+   "test_decay_cycle_equivalent[0.0-0.1-10]",
+   "test_decay_cycle_equivalent[0.0-0.1-11]"
+  ],
+  "messages": {
+   "test_decay_cycle_equivalent[0.02-0.1-0]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.02-0.1-1]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.02-0.1-2]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.02-0.1-3]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.02-0.1-4]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.02-0.1-5]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.02-0.1-6]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.02-0.1-7]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.02-0.1-8]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.02-0.1-9]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.02-0.1-10]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.02-0.1-11]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.5-0.1-0]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.5-0.1-1]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.5-0.1-2]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.5-0.1-3]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.5-0.1-4]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.5-0.1-5]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.5-0.1-6]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.5-0.1-7]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.5-0.1-8]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.5-0.1-9]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.5-0.1-10]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.5-0.1-11]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.02-0.35-0]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.02-0.35-1]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.02-0.35-2]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.02-0.35-3]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.02-0.35-4]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.02-0.35-5]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.02-0.35-6]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.02-0.35-7]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.02-0.35-8]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.02-0.35-9]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.02-0.35-10]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.02-0.35-11]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.0-0.1-0]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.0-0.1-1]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.0-0.1-2]": "_cycle_equivalent(seed, factor, minc):\n        a, b = _mk_store(seed), _mk_store(seed)\n        assert _dump(a) == _dump(b)\n        for _ in range(3):                                   # 连续多轮\n            _Baseline.decay_cycle(a, factor=factor, min_confidence=minc)\n            b.decay_cycle(factor=factor, min_confidence=minc)\n>           assert _dump(b) == _dump(a)\nE           assert ([('n000', 'c...7, ...), ...]) == ([('n000', 'c...7, ...), ...])\nE             \nE             At index 1 diff: [('e0000', 'n023', 'n043', 'causal', '{\"observation_position\": \"p\", \"observation_tool\": \"t\", \"time_window\": [0, 1.0], \"existence_constraint\": \"c\"}', 0.09, 1.0, 1, 3000.0, 0.0, 'extracted'), ('e0001', 'n002', 'n001', 'causal', '{\"observation_position\": \"p\", \"observation_tool\": \"t\", \"time_window\": [1, 2.0], \"existence_constraint\": \"c\"}', 0.1020408163265306, 1.0, 1, 3001.0, 0.0, 'extracted'), ('e0002', 'n047', 'n044', 'cyclic', '{\"observation_position\": \"p\", \"observation_tool\": \"t\", \"time_window\": [2, 3.0], \"existence_constraint\": \"c\"}', 0.09, 1.0, 0, 3002...\nE             \nE             ...Full output truncated (2 lines hidden), use '-vv' to show\n\ntests/test_perf_equivalence.py:274: AssertionError",
+   "test_decay_cycle_equivalent[0.0-0.1-3]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.0-0.1-4]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.0-0.1-5]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.0-0.1-6]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.0-0.1-7]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.0-0.1-8]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.0-0.1-9]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.0-0.1-10]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError",
+   "test_decay_cycle_equivalent[0.0-0.1-11]": ")\n                  {exclude}\n            ''', params)\n            rows = c.fetchall()\n            for row in rows:\n                edge = STEdge.from_row(tuple(row))\n                new_conf = cred_step(edge.confidence, factor)\n                if new_conf < min_confidence:\n                    # 低于最小置信度，删除边\n                    c.execute(\"DELETE FROM edges WHERE id=?\", (edge.id,))\n                else:\n                    c.execute(\"UPDATE edges SET confidence=? WHERE id=?\", (new_conf, edge.id))\n            # 短期记忆自动减少权重（v1.16）：CONTEXT 情境层节点 importance 指数衰减。\n            # 锚点/结构层不可遗忘（上面已排除）；KNOWLEDGE 层是长期知识不衰减；\n            # CONTEXT 层（短期/情境记忆）随时间淡出——低于阈值删除（自然遗忘）。\n            c.execute('''\n                SELECT id, importance FROM nodes\n                WHERE layer='context' AND importance IS NOT NULL\n            ''')  # 与 core-py-01 修复（eb51520）对齐：基线只冻结边衰减的旧写法\n            for nid, imp in c.fetchall():\n                new_imp = cred_step(imp, factor)\n                if new_imp < min_confidence:\n>                   c.execute(\"DELETE FROM nodes WHERE id=?\", (nid,))\nE                   sqlite3.IntegrityError: FOREIGN KEY constraint failed\n\ntests/test_perf_equivalence.py:182: IntegrityError"
+  },
+  "seconds": 22.7
+ },
+ "test_prediction_d006_threshold.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.7
+ },
+ "test_provenance.py": {
+  "kind": "pytest",
+  "total": 6,
+  "passed": 6,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.7
+ },
+ "test_provenance_sources.py": {
+  "kind": "pytest",
+  "total": 70,
+  "passed": 70,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.7
+ },
+ "test_query_order_invariance.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 3,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.5
+ },
+ "test_rust_bridge_plan.py": {
+  "kind": "pytest",
+  "total": 7,
+  "passed": 7,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.7
+ },
+ "test_scene_follow_patrol.py": {
+  "kind": "script",
+  "total": 1,
+  "passed": 1,
+  "failed_cases": [],
+  "sub": [
+   15,
+   15
+  ],
+  "sub_failed": [],
+  "tail": "",
+  "seconds": 0.4
+ },
+ "test_scene_model_skeleton_channel.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 3,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.5
+ },
+ "test_scene_relations.py": {
+  "kind": "pytest",
+  "total": 8,
+  "passed": 8,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.5
+ },
+ "test_silhouette_joint_names.py": {
+  "kind": "pytest",
+  "total": 4,
+  "passed": 4,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.8
+ },
+ "test_skeleton_fk_order_guard.py": {
+  "kind": "script",
+  "total": 1,
+  "passed": 1,
+  "failed_cases": [],
+  "sub": [
+   0,
+   0
+  ],
+  "sub_failed": [],
+  "tail": "",
+  "seconds": 1.0
+ },
+ "test_spacetime_invariant_verdict.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 3,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.7
+ },
+ "test_spatiotemporal_zero_radius.py": {
+  "kind": "pytest",
+  "total": 7,
+  "passed": 7,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.8
+ },
+ "test_stcnn_memory_consistency.py": {
+  "kind": "pytest",
+  "total": 5,
+  "passed": 5,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.8
+ },
+ "test_stcnn_scale_invariance.py": {
+  "kind": "pytest",
+  "total": 6,
+  "passed": 6,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.9
+ },
+ "test_stcnn_time_anchor.py": {
+  "kind": "pytest",
+  "total": 4,
+  "passed": 4,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.8
+ },
+ "test_track_identity_collision.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 26.7
+ },
+ "test_verdict_unasserted.py": {
+  "kind": "pytest",
+  "total": 10,
+  "passed": 10,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 2.0
+ },
+ "test_vprim_overlap_scale.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 3,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.9
+ },
+ "test_wm_simloop_load_priors.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 3,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.8
+ },
+ "test_wm_verify_unobserved.py": {
+  "kind": "script",
+  "total": 1,
+  "passed": 1,
+  "failed_cases": [],
+  "sub": [
+   17,
+   17
+  ],
+  "sub_failed": [],
+  "tail": "",
+  "seconds": 0.6
+ },
+ "test_world3d_add_vprim_pose.py": {
+  "kind": "pytest",
+  "total": 8,
+  "passed": 8,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.8
+ },
+ "test_world3d_box_backface.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 3,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.9
+ },
+ "test_world3d_camera_depth.py": {
+  "kind": "pytest",
+  "total": 3,
+  "passed": 3,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.9
+ },
+ "test_world3d_part_order.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.8
+ },
+ "test_world3d_pyramid_apex.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 2.2
+ },
+ "test_world_learner_oracle_rate.py": {
+  "kind": "pytest",
+  "total": 1,
+  "passed": 1,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.7
+ },
+ "test_world_model_edge_supersede.py": {
+  "kind": "pytest",
+  "total": 2,
+  "passed": 2,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.8
+ },
+ "test_world_seed.py": {
+  "kind": "pytest",
+  "total": 8,
+  "passed": 8,
+  "skipped": 0,
+  "failed_cases": [],
+  "messages": {},
+  "seconds": 1.6
+ }
+}

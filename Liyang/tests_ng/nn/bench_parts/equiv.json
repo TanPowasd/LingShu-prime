@@ -1,0 +1,16 @@
+{
+ "data": {
+  "steps": 15,
+  "samples": 40,
+  "curve_max_abs_diff": 4.440892098500626e-16,
+  "final_vec_max_abs_diff": 0.0,
+  "params_differing": 0,
+  "n_params": 375,
+  "legacy_s": 46.93,
+  "ng_s": 0.45
+ },
+ "env": {
+  "OPENBLAS_NUM_THREADS": "1"
+ },
+ "when": "2026-10-08 18:07:50"
+}
