@@ -17,10 +17,12 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Dict, Hashable, Iterable, List, Optional, Sequence, Set, Tuple
+from itertools import compress
+from typing import Callable, Dict, Hashable, Iterable, List, Optional, Sequence, Set, Tuple
 
-__all__ = ["Arc", "build_adjacency", "tarjan_scc", "cyclic_nodes", "has_cycle", "has_cycle_pairs",
-           "CycleScan", "enumerate_cycles", "chains", "paths_between", "cyclic_from_arcs", "scan_arcs"]
+__all__ = ["Arc", "build_adjacency", "tarjan_scc", "cyclic_nodes", "has_cycle", "has_cycle_pairs", "has_cycle_columns",
+           "CycleScan", "enumerate_cycles", "chains", "paths_between", "cyclic_from_arcs", "cyclic_from_pairs",
+           "cyclic_from_columns", "trim_acyclic", "scan_arcs", "scan_lazy"]
 
 #: 一条弧：(边 id, 源, 目标)
 Arc = Tuple[str, str, str]
@@ -102,39 +104,6 @@ def has_cycle(adj: Adj, order: Sequence[str]) -> bool:
     return bool(cyclic_nodes(adj, order)[0])
 
 
-def has_cycle_pairs(pairs: Iterable[Tuple[Hashable, Hashable]]) -> bool:
-    """C1 的判环快路径：只要 (源, 目标) 对、不要边 id，整数化后 Kahn 拓扑剥离（O(V+E)）。
-    剥不完 ⇔ 存在有向环 ⇔ 存在非平凡 SCC（含自环），与 :func:`has_cycle` 逐图等价；自环在读入时即返回。"""
-    key: Dict[Hashable, int] = {}
-    succ: List[List[int]] = []
-    indeg: List[int] = []
-    for s, t in pairs:
-        a = key.get(s)
-        if a is None:
-            a = key[s] = len(succ)
-            succ.append([])
-            indeg.append(0)
-        b = key.get(t)
-        if b is None:
-            b = key[t] = len(succ)
-            succ.append([])
-            indeg.append(0)
-        if a == b:
-            return True
-        succ[a].append(b)
-        indeg[b] += 1
-    queue = [i for i, d in enumerate(indeg) if d == 0]
-    peeled = 0
-    while queue:
-        u = queue.pop()
-        peeled += 1
-        for v in succ[u]:
-            indeg[v] -= 1
-            if indeg[v] == 0:
-                queue.append(v)
-    return peeled < len(succ)
-
-
 @dataclass
 class CycleScan:
     """环枚举结果：``cycles`` 为边 id 序列列表；``truncated`` 表示触及 max_cycles。"""
@@ -192,23 +161,89 @@ def _int_scc_cyclic(succ: List[List[int]]) -> List[bool]:
 
 def cyclic_from_arcs(arcs: Sequence[Arc]) -> Set[str]:
     """C1 的整数化实现：直接从弧列表求非平凡 SCC 内节点（与 :func:`cyclic_nodes` 同集合）。"""
-    key: Dict[str, int] = {}
-    succ: List[List[int]] = []
-    loops: Set[int] = set()
-    for _, s, t in arcs:
-        a = key.get(s)
-        if a is None:
-            a = key[s] = len(succ)
-            succ.append([])
-        b = key.get(t)
-        if b is None:
-            b = key[t] = len(succ)
-            succ.append([])
+    return cyclic_from_pairs([(s, t) for _, s, t in arcs])
+
+
+def cyclic_from_pairs(pairs: Iterable[Tuple[Hashable, Hashable]]) -> Set[Hashable]:
+    """同 :func:`cyclic_from_arcs`，只要 (src, dst)（判环不需要边 id——大库上少读三分之一的字符串）。"""
+    pairs = list(pairs)
+    return cyclic_from_columns(*zip(*pairs)) if pairs else set()
+
+
+def cyclic_from_columns(srcs: Sequence[Hashable], dsts: Sequence[Hashable]) -> Set[Hashable]:
+    """非平凡 SCC 内的节点（与 :func:`cyclic_nodes` 同集合），输入为对齐的源列 / 目标列。
+
+    三段：① :func:`trim_acyclic` 在 C 层按集合剪掉不可能在环上的弧（常态近 DAG 的大图几轮剪空即止）；
+    ② 对剩余弧整数化后 Kahn 剥离入度归零点（非平凡 SCC 的每个点都有来自 SCC 内的入弧，永远剥不掉）；
+    ③ 只对剥不掉的点（环及其下游）跑 Tarjan。"""
+    srcs, dsts = trim_acyclic(srcs, dsts)
+    if not srcs:
+        return set()
+    key, succ, indeg, loops = _int_graph(srcs, dsts)
+    rest = _kahn_rest(succ, indeg)
+    if not rest:
+        return set()
+    sub = {v: i for i, v in enumerate(rest)}
+    flags = _int_scc_cyclic([[sub[w] for w in succ[v] if w in sub] for v in rest])
+    inside = {rest[i] for i, f in enumerate(flags) if f} | loops
+    return {nid for nid, i in key.items() if i in inside}
+
+
+def has_cycle_pairs(pairs: Iterable[Tuple[Hashable, Hashable]]) -> bool:
+    """C1 的判环快路径：只要 (源, 目标) 对、不要边 id。与 :func:`has_cycle` 逐图等价（含自环）。"""
+    pairs = list(pairs)
+    return has_cycle_columns(*zip(*pairs)) if pairs else False
+
+
+def has_cycle_columns(srcs: Sequence[Hashable], dsts: Sequence[Hashable]) -> bool:
+    """:func:`has_cycle_pairs` 的列输入版：剪枝后 Kahn 剥不完 ⇔ 存在有向环（自环点入度永不归零）。"""
+    srcs, dsts = trim_acyclic(srcs, dsts)
+    if not srcs:
+        return False
+    _, succ, indeg, _ = _int_graph(srcs, dsts)
+    return bool(_kahn_rest(succ, indeg))
+
+
+def trim_acyclic(srcs: Sequence[Hashable], dsts: Sequence[Hashable]) -> Tuple[List[Hashable], List[Hashable]]:
+    """剪掉不可能在环上的弧：源点没有入弧、或目标点没有出弧的弧（环上每条弧两端都既有入弧又有出弧，一条不丢）。
+    反复剪到稳定；某轮剪掉不足四分之一就停（长链上逐轮只剥一层，剩下的交给 O(V+E) 的 Kahn），总开销 O(E)。
+    全程是 C 层的集合与 map/compress，大图上比逐弧 Python 循环快数倍。返回剩余弧的 (源列, 目标列)，保持原序。"""
+    srcs, dsts = list(srcs), list(dsts)
+    while srcs:
+        n = len(srcs)
+        core = set(srcs).intersection(dsts)
+        keep = list(map(core.__contains__, srcs))                 # 先按源筛，再按目标筛（两次 compress）
+        srcs, dsts = list(compress(srcs, keep)), list(compress(dsts, keep))
+        keep = list(map(core.__contains__, dsts))
+        srcs, dsts = list(compress(srcs, keep)), list(compress(dsts, keep))
+        if 4 * len(srcs) > 3 * n:                                 # 没剪动或剪得太少：交给 Kahn
+            break
+    return srcs, dsts
+
+
+def _int_graph(srcs: Sequence[Hashable], dsts: Sequence[Hashable]
+               ) -> Tuple[Dict[Hashable, int], List[List[int]], List[int], Set[int]]:
+    """(节点→整数, 后继表, 入度, 自环点)；整数化在 C 层批量完成（dict.fromkeys + map）。"""
+    key: Dict[Hashable, int] = {k: i for i, k in enumerate(dict.fromkeys([*srcs, *dsts]))}
+    si = list(map(key.__getitem__, srcs))
+    ti = list(map(key.__getitem__, dsts))
+    succ: List[List[int]] = [[] for _ in range(len(key))]
+    indeg = [0] * len(key)
+    for a, b in zip(si, ti):
         succ[a].append(b)
-        if a == b:
-            loops.add(a)
-    flags = _int_scc_cyclic(succ)
-    return {nid for nid, i in key.items() if flags[i] or i in loops}
+        indeg[b] += 1
+    return key, succ, indeg, {a for a, b in zip(si, ti) if a == b}
+
+
+def _kahn_rest(succ: List[List[int]], indeg: List[int]) -> List[int]:
+    """Kahn 剥离入度归零的点（就地改 indeg），返回剥不掉的点（入度仍 > 0：环及其下游）。"""
+    stack = [v for v, d in enumerate(indeg) if d == 0]
+    while stack:
+        for w in succ[stack.pop()]:
+            indeg[w] -= 1
+            if indeg[w] == 0:
+                stack.append(w)
+    return [v for v, d in enumerate(indeg) if d > 0]
 
 
 def scan_arcs(arcs: Sequence[Arc], max_len: Optional[int] = None, max_cycles: Optional[int] = 10000,
@@ -218,6 +253,19 @@ def scan_arcs(arcs: Sequence[Arc], max_len: Optional[int] = None, max_cycles: Op
     inside = cyclic_from_arcs(arcs)
     if not inside:
         return CycleScan()
+    adj, order = build_adjacency([a for a in arcs if a[1] in inside and a[2] in inside])
+    return enumerate_cycles(adj, order, max_len, max_cycles, max_steps)
+
+
+def scan_lazy(cols: Tuple[Sequence[str], Sequence[str]], fetch_arcs: Callable[[], Sequence[Arc]],
+              max_len: Optional[int] = None, max_cycles: Optional[int] = 10000,
+              max_steps: Optional[int] = None) -> CycleScan:
+    """与 ``scan_arcs(fetch_arcs(), …)`` 结果相同：先只用 (源列, 目标列) 判环，无环（常态）就不再读边 id；
+    有环时才取带 id 的弧表、按非平凡 SCC 的导出子图枚举。``cols`` 与 ``fetch_arcs()`` 须为同一边集。"""
+    inside = cyclic_from_columns(*cols)
+    if not inside:
+        return CycleScan()
+    arcs = fetch_arcs()
     adj, order = build_adjacency([a for a in arcs if a[1] in inside and a[2] in inside])
     return enumerate_cycles(adj, order, max_len, max_cycles, max_steps)
 

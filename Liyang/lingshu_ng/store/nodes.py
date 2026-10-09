@@ -17,8 +17,8 @@ from .. import dedup
 from ..layers import LayerPolicy
 from ..numeric import unit
 from ..types import MemoryLayer, Node, dumps, loads, now, split_semantic_keys
-from .db import Database
-from .schema import chunks, placeholders
+from .db import Database, fill_keys
+from .schema import KEY_MISSING, PENDING_KEY, chunks, placeholders
 
 __all__ = ["NodeRepo"]
 
@@ -28,6 +28,8 @@ _COLS16 = ("id, content, modality, spatial_coordinates, temporal_coordinate, con
 _SELECT = f"SELECT {_COLS16} FROM nodes"
 _INSERT = f"INSERT INTO nodes ({_COLS16}, dedup_key) VALUES ({placeholders(17)})"
 _REPLACE = f"INSERT OR REPLACE INTO nodes ({_COLS16}, dedup_key) VALUES ({placeholders(17)})"
+#: 要按创建时间/时间坐标有序读的 query 排序（走惰性索引 S5）
+_LAZY_ORDERS = frozenset({"created", "created_desc", "temporal_desc"})
 _UPDATABLE = {"content", "modality", "importance", "confidence", "layer", "tags",
               "state_attributes", "semantic_coordinates", "entity_id", "last_access",
               "access_count", "temporal_coordinate", "spatial_coordinates"}
@@ -40,19 +42,18 @@ class NodeRepo:
         self.db = db
         self.policy = policy
         self.text = text
-        #: (节点 id, 落库行) —— 最近一次 put 的写入（见 :meth:`fresh`）
+        #: (节点 id, 落库行, 写入时条件空间的常态四栏) —— 最近一次 put 的写入（见 :meth:`fresh`）
         self.last_written: Optional[tuple] = None
         self._backfill_keys()
 
     # ------------------------------------------------------------ 内部
     def _backfill_keys(self) -> None:
-        """旧库/外部裸写入留下的空 dedup_key 补齐（无空行时零写入）。"""
-        if not self.db.scalar("SELECT 1 FROM nodes WHERE dedup_key IS NULL LIMIT 1"):
+        """旧库/外部裸写入留下的空 dedup_key 补齐（去重索引已建时才查——走索引 O(1)；未建时待补键合法，
+        建索引前由 :meth:`Database.need_lazy_indexes` 批量补齐）。无空行时零写入。"""
+        if not self.db.lazy_ready or not self.db.scalar(f"SELECT 1 FROM nodes WHERE {KEY_MISSING} LIMIT 1"):
             return
-        rows = self.db.all("SELECT id, content FROM nodes WHERE dedup_key IS NULL")
         with self.db.tx() as c:
-            c.executemany("UPDATE nodes SET dedup_key=? WHERE id=?",
-                          [(dedup.content_key(r[1]), r[0]) for r in rows])
+            fill_keys(c)
 
     def _layer_of(self, c: Any, node_id: str) -> Optional[MemoryLayer]:
         row = c.execute("SELECT layer FROM nodes WHERE id=?", (node_id,)).fetchone()
@@ -75,7 +76,8 @@ class NodeRepo:
         派生文本索引默认惰性（只记脏，首读前批量重建）；``index_now`` = 在同一事务内即时索引本节点
         （逐条写、写后马上要读索引的路径用，如带去重的单条摄入——免得下一次读再单独开事务 flush）。"""
         node = self._validated(node)
-        row = node.to_row() + (dedup.content_key(node.content),)
+        # S5：去重索引未建（灌库期）时内容键写等长占位，建索引前批量补齐；建成后写时即算
+        row = node.to_row() + (dedup.content_key(node.content) if self.db.lazy_ready else PENDING_KEY,)
         with self.db.tx() as c:
             # 新 id（常态）：守卫只看新行层，直接 INSERT——主键冲突才回退到「读旧行 → 双层守卫 → 覆盖」
             self.policy.check_node_write(node.layer, None, allow_transition)
@@ -90,7 +92,7 @@ class NodeRepo:
             if index_now and self.text is not None:
                 self.text.reindex_written(c, node.id, row[1], row[12], row[8], True)
             # 派生文本索引：触发器已记脏，首次读之前由 TextIndex.flush 统一（批量）重建
-        self.last_written = (node.id, row)
+        self.last_written = (node.id, row, node.condition_space._plain())
         return node.id
 
     def fresh(self, node_id: str) -> Optional[Node]:
@@ -102,7 +104,7 @@ class NodeRepo:
         row = lw[1]
         if row[1].__class__ is not str or row[2].__class__ is not str:
             return None
-        return Node.from_row(row[:16])
+        return Node.from_written(row[:16], lw[2])
 
     def _reindex(self) -> None:
         """写时维护派生文本索引（同一事务；触发器已记脏）。"""
@@ -231,6 +233,8 @@ class NodeRepo:
                   "created": "created_at ASC, id", "created_desc": "created_at DESC, id",
                   "temporal_desc": "temporal_coordinate DESC, id",
                   "written": "rowid ASC", "written_desc": "rowid DESC"}   # 写入顺序（上游 #259）
+        if order in _LAZY_ORDERS:
+            self.db.need_lazy_indexes()
         sql = f"{_SELECT} WHERE {' AND '.join(where)} ORDER BY {orders[order]}"
         if limit is not None:
             sql += " LIMIT ?"
@@ -251,6 +255,7 @@ class NodeRepo:
         """按规范化内容键精确查找（M5 精确去重入口，无视野上限）。"""
         if not key:
             return []
+        self.db.need_keys()
         sql, params = f"{_SELECT} WHERE dedup_key=?", [key]
         if layers:
             sql += f" AND layer IN ({placeholders(len(layers))})"
@@ -260,6 +265,7 @@ class NodeRepo:
     def in_range(self, start: float, end: float, layer: Optional[MemoryLayer] = None,
                  limit: Optional[int] = 50) -> List[Node]:
         """时间坐标范围查询（走索引，不先截 importance 前 N 条，#179）。"""
+        self.db.need_lazy_indexes()
         sql, params = f"{_SELECT} WHERE temporal_coordinate BETWEEN ? AND ?", [start, end]
         if layer is not None:
             sql += " AND layer=?"
@@ -273,6 +279,7 @@ class NodeRepo:
     def undated_in_range(self, start: float, end: float) -> List[Node]:
         """无时间坐标（NULL）的行按 created_at 落在 [start, end] 取（时空查询的 created_at 回落口径，
         上游 PR #91：只替 NULL 回落，显式 0.0 仍按 0.0）。IS NULL 走时间坐标索引。"""
+        self.db.need_lazy_indexes()
         sql = f"{_SELECT} WHERE temporal_coordinate IS NULL AND created_at BETWEEN ? AND ? ORDER BY created_at, id"
         return [Node.from_row(tuple(r)) for r in self.db.all(sql, (start, end))]
 
@@ -285,6 +292,7 @@ class NodeRepo:
             for part in chunks(list(dict.fromkeys(ids))):
                 out += [tuple(r) for r in self.db.all(sql + f" AND id IN ({placeholders(len(part))})", part)]
             return out
+        self.db.need_lazy_indexes()
         if layers:
             sql += f" AND layer IN ({placeholders(len(layers))})"
             params = [MemoryLayer.coerce(x).value for x in layers]
@@ -306,6 +314,7 @@ class NodeRepo:
 
     def scan(self, layers: Optional[Sequence[MemoryLayer]] = None) -> Iterator[Node]:
         """全量流式扫描（可限层）。"""
+        self.db.need_lazy_indexes()
         sql, params = _SELECT, []
         if layers:
             sql += f" WHERE layer IN ({placeholders(len(layers))})"

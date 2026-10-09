@@ -70,3 +70,7 @@ ng / integrated（s1）= **1.62×**
 - 总分 s0 / s1：base 49.31 / 50.43 · integrated 54.45 / 55.10 · ng 88.18 / 88.99；**ng/integrated = 1.62× / 1.62×**（v1 同轮 1.62× / 1.61×）。
 - **r3 时延读数受并发污染**（计时段 2 并发作业 + 同机其它实验，负载 1.8–2.5；详见 LEADERBOARD_HARD.md r3 条）；r4 在空闲机上重测计时段。
 - HMB 维读 `evalsuite_hmb/out/hmb_r1.json`（hmb_r2.json 为 LLM 判官五臂读数、键不同，score.py 已改为跳过；同上）。
+
+### r4（进行中，未出分）
+
+- 质量段在跑、计时段未跑（见 LEADERBOARD_HARD.md r4 条）。v2 的 2× 目标结构上不可达：100/54.45 = 1.84×（r3 integrated），不跑 r5。

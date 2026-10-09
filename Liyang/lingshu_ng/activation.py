@@ -8,8 +8,13 @@ OPPOSITE 边按 0.5 兴奋传导、工作态不带极性(#229)、种子落表记
 
 不变量：
   A1 空/纯空白查询 ⇒ 0 个种子、空工作态（status=ok）；空图同理。
-  A2 每次 activate 都从库重读拓扑（无缓存失效问题）。
+  A2 每次 activate 看到的都是库的当前拓扑：派生图（规范化文本 + 出边邻接）按连接的
+     **提交指纹**（``PRAGMA data_version`` + ``total_changes``）缓存，任何连接对库的任何提交、
+     本连接的任何增删改都会令指纹变化 ⇒ 下次激活整体重读（从不读到过期图；#126 的反面）。
+     本引擎自己写 activation_nodes 不改图，写后在同一把锁内顺延指纹。
   A3 传播 = 逐跳 max-product：act(v) ← max(act(v), act(u)·decay(type))；兴奋与抑制分通道，
+     （实现只沿「上一跳值有变化」的前沿节点的出边松弛——值未变的节点其贡献上一跳已计入且通道
+     单调不降，结果与逐跳全边扫描逐位相同）；
      OPPOSITE 边只进抑制通道；净激活 = 兴奋 − 抑制，被抑制节点以 polarity=-1 落表、
      不进入下一轮自条件先验。
   A4 落表 source ∈ {seed, self_condition, propagate}，hop = 首次被激活的跳数。
@@ -22,10 +27,12 @@ import os
 import sqlite3
 import threading
 import uuid
+from collections import Counter
+from itertools import compress, repeat
 from contextlib import contextmanager
 from typing import Any, Dict, Iterator, List, Optional, Sequence, Tuple
 
-from .dedup import normalize
+from .dedup import normalize, normalize_many
 from .layers import LayerPolicy
 from .numeric import unit
 from .store.db import Database
@@ -102,24 +109,38 @@ class ActivationEngine:
         self.port = _port(db_path, conn, store)
 
     # ------------------------------------------------------------ 读图（A2）
-    def _graph(self) -> Tuple[Dict[str, str], List[Tuple[str, str, str]]]:
+    def _conn(self) -> sqlite3.Connection:
         """内部辅助函数。"""
+        return self.port.conn
+
+    def _fingerprint(self) -> Tuple[int, int]:
+        """库的提交指纹：其它连接提交 ⇒ data_version 变；本连接增删改 ⇒ total_changes 变。"""
+        c = self._conn()
+        with self.port.lock:
+            return int(c.execute("PRAGMA data_version").fetchone()[0]), int(c.total_changes)
+
+    def _derived(self) -> "_GraphView":
+        """当前拓扑的派生图（指纹未变则复用，否则整体重读）。"""
+        fp = self._fingerprint()
+        view = getattr(self, "_view", None)
+        if view is None or view.fp != fp:
+            view = self._view = _GraphView.load(self.port, fp, view)
+        return view
+
+    def _graph(self) -> Tuple[Dict[str, Tuple[str, bool]], List[Tuple[str, str, str]]]:
+        """参考读图（旧口径，逐条从库读出、不缓存）：(节点 → (规范化文本, 可做种子), 边 [(src, dst, relation)] 按 rowid)。
+        ``activate`` 走 :meth:`_derived` 的派生图；二者对种子与传播给出相同结果（性质测试守护）。"""
         cond, params = LayerPolicy.layers_where("layer", searchable=True)
         texts = {}
-        for nid, content, tags, ok in self.port.all(
-                f"SELECT id, content, tags, ({cond}) FROM nodes", params):
-            try:
-                tag_txt = " ".join(json.loads(tags)) if tags else ""
-            except ValueError:
-                tag_txt = ""
-            texts[nid] = (normalize((content or "") + " " + tag_txt), bool(ok))
+        for nid, content, tags, ok in self.port.all(f"SELECT id, content, tags, ({cond}) FROM nodes", params):
+            texts[nid] = (normalize((content or "") + " " + _tag_text(tags)), bool(ok))
         arcs = [(r[0], r[1], r[2]) for r in self.port.all(
             "SELECT source_id, target_id, relation_type FROM edges ORDER BY rowid")]
         return texts, arcs
 
     @staticmethod
     def _seeds(query: str, texts: Dict[str, Tuple[str, bool]], top_k: int) -> List[Tuple[str, float]]:
-        """内部辅助函数。"""
+        """参考实现（逐节点扫描）；``activate`` 走 :meth:`_GraphView.seeds`，结果逐项相同。"""
         q = normalize(query)
         if not q:
             return []                                                  # A1
@@ -138,7 +159,7 @@ class ActivationEngine:
     def _propagate(pos: Dict[str, float], arcs: Sequence[Tuple[str, str, str]], hops: int,
                    first_hop: Dict[str, int], trace: Optional[List[Dict]] = None,
                    floor: float = 0.0) -> Dict[str, float]:
-        """A3：逐跳 max-product；返回抑制通道。``pos``/``first_hop`` 就地更新。
+        """A3 参考实现（逐跳全边扫描）；返回抑制通道。``pos``/``first_hop`` 就地更新。
 
         ``trace`` 给定时逐跳追加旧版审计口径的 ``{"step", "phase": "propagate",
         "activated_count", "max_act"}``（重构路径全程留痕，旧 activation.py 的 steps）。
@@ -160,16 +181,37 @@ class ActivationEngine:
             pos.clear()
             pos.update(nxt_pos)
             neg = nxt_neg
-            if trace is not None:
-                trace.append({"step": hop, "phase": "propagate",
-                              "activated_count": sum(1 for v in pos.values() if v >= floor),
-                              "max_act": round(max(pos.values(), default=0.0), 4)})
+            _trace_hop(trace, hop, pos, floor)
+        return neg
+
+    @staticmethod
+    def _propagate_frontier(pos: Dict[str, float], out: Dict[str, List[Tuple[str, float, bool]]], hops: int,
+                            first_hop: Dict[str, int], trace: Optional[List[Dict]] = None,
+                            floor: float = 0.0) -> Dict[str, float]:
+        """A3 的前沿实现：与 :meth:`_propagate` 逐位相同（同一乘积、同一严格大于比较），只是
+        每跳只松弛「上一跳值变化过」的节点的出边（其余节点的贡献已在更早一跳计入，通道单调不降）。"""
+        neg: Dict[str, float] = {}
+        frontier = [nid for nid, a in pos.items() if a > 0]
+        for hop in range(1, hops + 1):
+            snap = {nid: pos[nid] for nid in frontier}       # 本跳读上一跳的值（不读本跳新值）
+            changed = set()
+            for s, a in snap.items():
+                for t, d, inhib in out.get(s, ()):
+                    v = a * d
+                    bucket = neg if inhib else pos
+                    if v > bucket.get(t, 0.0):
+                        bucket[t] = v
+                        if not inhib:
+                            changed.add(t)
+                        if t not in first_hop:
+                            first_hop[t] = hop
+            frontier = list(changed)
+            _trace_hop(trace, hop, pos, floor)
         return neg
 
     def _seed_by_text(self, query: str, top_k: int = 12) -> List[Tuple[str, float]]:
         """旧版同名入口：按当前图给查询选种子（空/纯空白查询 0 个种子，#199）。"""
-        texts, _ = self._graph()
-        return self._seeds(query or "", texts, int(top_k))
+        return self._derived().seeds(query or "", int(top_k))
 
     @property
     def _adj(self) -> None:
@@ -183,14 +225,14 @@ class ActivationEngine:
         """种子 → 扩散 → 工作态落表 + 审计。参数语义与旧版一致。"""
         t0 = now()
         w = unit(self_condition, "self_condition")
-        texts, arcs = self._graph()
-        seeds = self._seeds(query or "", texts, int(top_k))
+        view = self._derived()
+        seeds = view.seeds(query or "", int(top_k))
         pos: Dict[str, float] = {nid: s for nid, s in seeds}
         prior = prior_workset or workset
         carried = []
         if w > 0:
             for nid, a in self.carry_vector(prior).items():
-                if nid in texts:
+                if nid in view.known:
                     carried.append(nid)
                     pos[nid] = max(pos.get(nid, 0.0), float(a) * w)
         first_hop = {nid: 0 for nid in pos}
@@ -199,7 +241,7 @@ class ActivationEngine:
         if w > 0:
             steps.append({"step": 0, "phase": "self_condition", "prior_workset": prior,
                           "weight": w, "carried": len(carried)})
-        neg = self._propagate(pos, arcs, int(hops), first_hop, steps, float(act_floor))
+        neg = self._propagate_frontier(pos, view.out, int(hops), first_hop, steps, float(act_floor))
         seed_ids = {nid for nid, _ in seeds}
         members, suppressed = self._split(pos, neg, act_floor)
         sources = {nid: ("seed" if nid in seed_ids else "self_condition" if nid in carried
@@ -237,9 +279,13 @@ class ActivationEngine:
         rows = [(f"act_{uuid.uuid4().hex[:12]}", workset, nid, a, sources[nid], hops.get(nid, 0), t, pol)
                 for pol, group in ((1, members), (-1, suppressed)) for nid, a in group]
         with self.port.tx() as c:
+            view = getattr(self, "_view", None)
+            before = (int(c.execute("PRAGMA data_version").fetchone()[0]), int(c.total_changes))
             c.execute("DELETE FROM activation_nodes WHERE workset=?", (workset,))
             c.executemany("INSERT INTO activation_nodes (id, workset, node_id, activation, source, hop, "
                           "ts, polarity) VALUES (?,?,?,?,?,?,?,?)", rows)
+            if view is not None and view.fp == before:      # A2：自己的工作态写入不改图，顺延指纹
+                view.fp = (before[0], int(c.total_changes))
 
     def _audit(self, audit: Dict) -> None:
         """内部辅助函数。"""
@@ -284,3 +330,143 @@ class ActivationEngine:
             c.executemany("INSERT INTO activation_nodes (id, workset, node_id, activation, source, hop, "
                           "ts, polarity) VALUES (?,?,?,?,?,?,?,?)", rows)
         return {"status": "ok", "workset": ws, "restored": len(rows)}
+
+
+def _trace_hop(trace: Optional[List[Dict]], hop: int, pos: Dict[str, float], floor: float) -> None:
+    """旧版审计口径的逐跳留痕：{"step", "phase": "propagate", "activated_count", "max_act"}。"""
+    if trace is not None:
+        trace.append({"step": hop, "phase": "propagate",
+                      "activated_count": sum(1 for v in pos.values() if v >= floor),
+                      "max_act": round(max(pos.values(), default=0.0), 4)})
+
+
+def _sort_rows(rows: List[tuple], old_known: Dict[str, int], old_hay: Dict[str, str],
+               known: Dict[str, int], seed: Dict[str, str], todo: List[Tuple[str, str]]) -> None:
+    """一批 (id, content, tags, 可做种子) 行：记原文签名；可做种子且原文未变的沿用旧文本，否则排入待规范化。"""
+    for nid, content, tags, ok in rows:
+        sig = known[nid] = hash((content, tags, bool(ok)))
+        if not ok:
+            continue                                                   # A5：不可做种子，不留文本
+        if old_known.get(nid) == sig and nid in old_hay:
+            seed[nid] = old_hay[nid]
+        else:
+            todo.append((nid, (content or "") + " " + _tag_text(tags)))
+
+
+def _kth_count(hits: Counter, top_k: int) -> int:
+    """第 top_k 名的命中数（不足 top_k 个则为最低命中数）：按命中数直方图从高往低累计。"""
+    need = top_k
+    for c, k in sorted(Counter(hits.values()).items(), reverse=True):
+        need -= k
+        if need <= 0:
+            return c
+    return min(hits.values())
+
+
+def _tag_text(tags: Any) -> str:
+    """tags 列（JSON 数组）→ 空格连接的文本；坏 JSON 视为无标签（与旧读图口径一致）。"""
+    if not tags or tags == "[]":
+        return ""
+    try:
+        return " ".join(json.loads(tags))
+    except ValueError:
+        return ""
+
+
+class _GraphView:
+    """某一提交指纹下的派生图（A2）：节点签名表、可做种子节点的有序 (id, 规范化文本) 表、出边邻接。只读快照。
+
+    常驻只留激活要用的：``known``（节点 → 原文签名，判存在 + 增量重读）、``ids``/``hays``（A5 可做种子的节点按
+    id 排序）、``out``（src → [(dst, 衰减系数, 是否抑制)]）与边表签名。不留原文、不留边表副本。"""
+    __slots__ = ("fp", "known", "ids", "hays", "out", "arcs_sig")
+
+    #: 流式读节点 / 批量规范化的批大小（限制重读时的瞬时 Python 堆）
+    CHUNK = 4096
+
+    @classmethod
+    def build(cls, fp: Tuple[int, int], texts: Dict[str, Tuple[str, bool]],
+              arcs: Sequence[Tuple[str, str, str]]) -> "_GraphView":
+        """由参考口径的 (texts, arcs) 直接构造（测试用）。"""
+        v = cls.__new__(cls)
+        v.fp = fp
+        v.known = {nid: None for nid in texts}
+        v.ids = sorted(nid for nid, (_, ok) in texts.items() if ok)
+        v.hays = [texts[nid][0] for nid in v.ids]
+        v.out, v.arcs_sig = cls._out(arcs), None
+        return v
+
+    @staticmethod
+    def _out(arcs: Sequence[Tuple[str, str, str]]) -> Dict[str, List[Tuple[str, float, bool]]]:
+        """出边邻接：src → [(dst, 衰减系数, 是否抑制)]（插入序）。"""
+        out: Dict[str, List[Tuple[str, float, bool]]] = {}
+        for s, t, rel in arcs:
+            out.setdefault(s, []).append((t, EDGE_BASE_DECAY.get(rel, DEFAULT_DECAY), rel in INHIBITORY))
+        return out
+
+    @classmethod
+    def load(cls, port: Any, fp: Tuple[int, int], prev: Optional["_GraphView"] = None) -> "_GraphView":
+        """从库读出（锁内流式读节点、再读边）。
+
+        ``prev`` 为上一份派生图：原文签名 hash((content, tags, 可做种子)) 未变的节点沿用其规范化文本；
+        边表签名相同则沿用邻接——增量重建，结果与从零读出相同。"""
+        with port.lock:
+            cur = port.conn.cursor()
+            cur.row_factory = None
+            known, seed, fresh = cls._scan_nodes(cur, prev)
+            arcs = cur.execute("SELECT source_id, target_id, relation_type FROM edges ORDER BY rowid").fetchall()
+        v = cls.__new__(cls)
+        v.fp, v.known, v.arcs_sig = fp, known, hash(tuple(arcs))
+        v.out = prev.out if prev is not None and prev.arcs_sig == v.arcs_sig else cls._out(arcs)
+        if prev is not None and not fresh and seed.keys() == set(prev.ids):
+            v.ids, v.hays = prev.ids, prev.hays                      # 可做种子的文本表原样沿用
+        else:
+            v.ids = sorted(seed)
+            v.hays = [seed[nid] for nid in v.ids]
+        return v
+
+    @classmethod
+    def _scan_nodes(cls, cur: Any, prev: Optional["_GraphView"]) -> Tuple[Dict[str, int], Dict[str, str], int]:
+        """流式扫节点表：(节点→原文签名, 可做种子节点→规范化文本, 本次新算文本的节点数)。"""
+        cond, params = LayerPolicy.layers_where("layer", searchable=True)
+        old_known = prev.known if prev is not None else {}
+        old_hay = dict(zip(prev.ids, prev.hays)) if prev is not None else {}
+        known: Dict[str, int] = {}
+        seed: Dict[str, str] = {}
+        todo: List[Tuple[str, str]] = []
+        fresh = 0
+        cur.execute(f"SELECT id, content, tags, ({cond}) FROM nodes", params)
+        for rows in iter(lambda: cur.fetchmany(cls.CHUNK), []):
+            _sort_rows(rows, old_known, old_hay, known, seed, todo)
+            if len(todo) >= cls.CHUNK:
+                fresh += cls._drain(todo, seed)
+        return known, seed, fresh + cls._drain(todo, seed)
+
+    @staticmethod
+    def _drain(todo: List[Tuple[str, str]], seed: Dict[str, str]) -> int:
+        """把待规范化的节点批量算完、并入 seed；返回本批条数。"""
+        n = len(todo)
+        for (nid, _), hay in zip(todo, normalize_many([x[1] for x in todo])):
+            seed[nid] = hay
+        todo.clear()
+        return n
+
+    def seeds(self, query: str, top_k: int) -> List[Tuple[str, float]]:
+        """与 :meth:`ActivationEngine._seeds` 逐项相同：得分 = 命中 token 占比（round 6 位），
+        按 (-得分, id) 取前 top_k。按 token 逐个在有序文本表上做 C 层子串扫描后计数。"""
+        q = normalize(query)
+        if not q:
+            return []                                                  # A1
+        toks = {q[i:i + 2] for i in range(len(q) - 1)} | {q}
+        hays, n = self.hays, len(self.hays)
+        if n == 0 or top_k <= 0:
+            return []
+        if len(toks) > 100_000:          # 超长查询：round(·, 6) 可能并列相邻命中数，退回参考实现
+            return ActivationEngine._seeds(query, {nid: (h, True) for nid, h in zip(self.ids, hays)}, top_k)
+        hits: Counter = Counter()
+        for t in toks:
+            hits.update(compress(range(n), map(str.__contains__, hays, repeat(t))))
+        if not hits:
+            return []
+        thr, m = _kth_count(hits, top_k), len(toks)      # 只对不低于阈值的候选精确排序（id 表有序 ⇒ 下标序即 id 序）
+        cand = sorted(((-round(c / m, 6), i) for i, c in hits.items() if c >= thr))
+        return [(self.ids[i], -negs) for negs, i in cand[:top_k]]

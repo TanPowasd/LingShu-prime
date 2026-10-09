@@ -130,3 +130,12 @@ def test_compat_set_embedding_provider_forwards():
     c.add_perception("我的狗叫旺财")
     assert [n.content for n, _ in c.recall("宠物", 1)] == ["我的狗叫旺财"]
     c.close()
+
+
+def test_env_provider_failure_does_not_break_engine(monkeypatch):
+    monkeypatch.setenv("LINGSHU_NG_EMBED_MODEL", "/nonexistent/model-dir")
+    e = MemoryEngine(":memory:")
+    assert e.semantic is None and e.semantic_error
+    e.perceive("宠物医院周末营业")
+    assert _ids(e.recall("宠物医院", 1)) == ["宠物医院周末营业"]
+    e.close()

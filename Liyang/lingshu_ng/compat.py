@@ -211,7 +211,7 @@ class LayeredStore:
 
     def has_causal_cycle(self) -> bool:
         """旧 API ``has_causal_cycle``：形状适配，规则委托 ng 组件。"""
-        return causal.has_cycle_pairs(self.ng.edges.pairs(("causal", "cyclic")))
+        return causal.has_cycle_columns(*self.ng.edges.pair_columns(("causal", "cyclic")))
 
     def decay_cycle(self, factor: float = 0.02, min_confidence: float = 0.1) -> None:
         """旧 API ``decay_cycle``：形状适配，规则委托 ng 组件。"""

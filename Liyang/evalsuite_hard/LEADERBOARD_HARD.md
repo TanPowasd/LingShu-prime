@@ -210,3 +210,11 @@ ng / integrated（s1）= **1.61×**
   v2：base 49.31 / 50.43 · integrated 54.45 / 55.10 · ng 88.18 / 88.99；**ng/integrated = 1.62× / 1.62×**。
 - 分维变化（s0，r2→r3）：ng 规模 58.50→75.66、因果 81.46→92.84（r2 的宿主负载噪声消退一部分，仍受上述并发影响）；稳定性 48→100（c3/c4 在本地状态库上不再超时）；
   HMB 47.61→54.34（hmb_r1 的 ng_head 臂，非本轮重测）；检索 91.88→91.92；LLM 91.25→90.00。integrated 稳定性 48→98.64；base 稳定性仍 0（c0 段 100s 超时，后续段无状态文件 ERR）。
+
+### r4（进行中；ng@2a4c7d1 = r3 + 写入期矛盾检测 k1 + 判环快路径 + 可选语义第二路 semindex（默认不启用，召回与 c2/k1 逐名次相同）；base/integrated 不变）
+
+- 状态（2026-10-09 12:59 收口时）：质量段 `drive.sh r4 --klass quality --workers 2` 在跑（`out/logs/r4_quality.log`，剩 41 个作业，主要是稳定性链）；
+  **计时段未跑**——收口时 ng-arch-scale2 在 wt-scale 的性能实验刚停（/tmp/scale 最后写入 12:42），无法确认机器已空闲，按约定不跑；r4 尚未出分。
+- 续跑：质量段跑完后，`pgrep -af "evalsuite|pytest|probe|scale"` 确认空闲，再 `bash evalsuite_hard/drive.sh r4 --klass timing --workers 1`，
+  然后 `HARD_LLM=1 python3 evalsuite_hard/run_hard.py --run r4 --only llm_` 与 `--render`。
+- 2× 目标的结构上限：按 r3 integrated 读数，满分 100 时 v1 上限 100/54.86 = 1.82×、v2 上限 100/54.45 = 1.84×，**ng ≥2×integrated 在两榜都不可达**，故不跑 r5。

@@ -118,38 +118,50 @@ class EdgeRepo:
             params += vals
         return [Edge.from_row(tuple(r)) for r in self.db.all(sql + " ORDER BY rowid", params)]
 
-    def topology(self, types: Optional[Sequence[str]] = None) -> List[Tuple[str, str, str, str, float]]:
-        """轻量拓扑：[(id, src, dst, relation, confidence)]（插入序，不反序列化条件空间）。"""
-        sql, params = "SELECT id, source_id, target_id, relation_type, confidence FROM edges", []
+    def _topo(self, cols: str, types: Optional[Sequence[str]]) -> List[tuple]:
+        """边表的列投影（插入序、纯元组、可按关系过滤）——拓扑类只读接口的共同实现。"""
+        sql, params = f"SELECT {cols} FROM edges", []
         if types:
-            vals = [EdgeType.coerce(t).value for t in types]
-            sql += f" WHERE relation_type IN ({placeholders(len(vals))})"
-            params = vals
-        return [tuple(r) for r in self.db.all(sql + " ORDER BY rowid", params)]
-
-    def pairs(self, types: Optional[Sequence[str]] = None) -> List[Tuple[str, str]]:
-        """判环快路径用的 (源, 目标) 对（无序、不取边 id）。"""
-        sql, params = "SELECT source_id, target_id FROM edges", []
-        if types:
-            vals = [EdgeType.coerce(t).value for t in types]
-            sql += f" WHERE relation_type IN ({placeholders(len(vals))})"
-            params = vals
-        with self.db.lock:
-            cur = self.db.conn.cursor()
-            cur.row_factory = None
-            return cur.execute(sql, params).fetchall()
-
-    def arcs(self, types: Optional[Sequence[str]] = None) -> List[Tuple[str, str, str]]:
-        """判环/枚举用的最小拓扑：[(id, src, dst)]（插入序）。"""
-        sql, params = "SELECT id, source_id, target_id FROM edges", []
-        if types:
-            vals = [EdgeType.coerce(t).value for t in types]
-            sql += f" WHERE relation_type IN ({placeholders(len(vals))})"
-            params = vals
+            params = [EdgeType.coerce(t).value for t in types]
+            sql += f" WHERE relation_type IN ({placeholders(len(params))})"
         with self.db.lock:
             cur = self.db.conn.cursor()
             cur.row_factory = None                       # 纯元组：免逐行构造 sqlite3.Row
             return cur.execute(sql + " ORDER BY rowid", params).fetchall()
+
+    def topology(self, types: Optional[Sequence[str]] = None) -> List[Tuple[str, str, str, str, float]]:
+        """轻量拓扑：[(id, src, dst, relation, confidence)]（插入序，不反序列化条件空间）。"""
+        return self._topo("id, source_id, target_id, relation_type, confidence", types)
+
+    def arcs(self, types: Optional[Sequence[str]] = None) -> List[Tuple[str, str, str]]:
+        """判环/枚举用的最小拓扑：[(id, src, dst)]（插入序）。"""
+        return self._topo("id, source_id, target_id", types)
+
+    def pairs(self, types: Optional[Sequence[str]] = None) -> List[Tuple[str, str]]:
+        """判环用的最小拓扑：[(src, dst)]（不取边 id；插入序，与 :meth:`arcs` 同序同集——表扫描本就按 rowid，无额外排序）。"""
+        return self._topo("source_id, target_id", types)
+
+    def pair_columns(self, types: Optional[Sequence[str]] = None) -> Tuple[List[str], List[str]]:
+        """判环用的 (源列, 目标列)：与 :meth:`pairs` 同集同序（逐位对齐）。
+
+        一条聚合查询把两列各拼成一个 ``\\x00`` 分隔的串（同一趟扫描、同一行序喂两个聚合），C 层 split 切回——
+        免去逐行构造结果元组（5 万边级大库上是判环读边的主要开销）。端点为 NULL 或含 ``\\x00``（拼接无法无歧义切回）
+        时由计数核对发现，回落逐行读。"""
+        sql, params = ("SELECT group_concat(source_id, char(0)), group_concat(target_id, char(0)), COUNT(*), "
+                       "COUNT(source_id), COUNT(target_id) FROM edges"), []
+        if types:
+            params = [EdgeType.coerce(t).value for t in types]
+            sql += f" WHERE relation_type IN ({placeholders(len(params))})"
+        with self.db.lock:
+            a, b, n, ns, nt = self.db.conn.execute(sql, params).fetchone()
+            if not n:
+                return [], []
+            if ns == nt == n:
+                srcs, dsts = a.split("\x00"), b.split("\x00")
+                if len(srcs) == len(dsts) == n:
+                    return srcs, dsts
+            rows = self.pairs(types)
+        return [r[0] for r in rows], [r[1] for r in rows]
 
     def get_many(self, ids: Sequence[str]) -> Dict[str, Edge]:
         """批量取边（分块）。"""
@@ -168,8 +180,9 @@ class EdgeRepo:
         """边计数。"""
         if verified is None:
             return int(self.db.scalar("SELECT COUNT(*) FROM edges", default=0))
-        return int(self.db.scalar("SELECT COUNT(*) FROM edges WHERE verified=?",
-                                  (int(verified),), default=0))
+        if verified:                                     # 字面量条件才能命中部分索引 idx_edges_verified（免全表扫）
+            return int(self.db.scalar("SELECT COUNT(*) FROM edges WHERE verified=1", default=0))
+        return int(self.db.scalar("SELECT COUNT(*) FROM edges WHERE verified=?", (0,), default=0))
 
     def orphans(self) -> int:
         """引用缺失节点的边端点数（完整性校验）。"""

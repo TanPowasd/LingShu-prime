@@ -10,13 +10,14 @@
   S3 nodes/edges 的前 16/11 列保持旧列序；ng 新增列只追加在尾部。
   S4 派生文本索引（倒排 node_terms / df / 新奇特征计数）由纯 SQL 触发器「写时记脏 + 删时级联」
      维护，任何连接的裸写都不会让索引静默过期；触发器缺失（旧库）⇒ 全量记脏重建。
+  S5 只服务读路径的二级索引（:data:`LAZY_INDEXES`）惰性建：写入密集的灌库期不维护，首次需要时一次建齐。
 """
 from __future__ import annotations
 
 import sqlite3
 from typing import Dict, Iterable, List, Sequence, Set, Tuple
 
-__all__ = ["SCHEMA_VERSION", "TABLES", "INDEXES", "TRIGGERS", "columns_of", "missing_parts", "migrate",
+__all__ = ["SCHEMA_VERSION", "TABLES", "INDEXES", "LAZY_INDEXES", "PENDING_KEY", "KEY_MISSING", "lazy_indexes_missing", "ensure_lazy_indexes", "TRIGGERS", "columns_of", "missing_parts", "migrate",
            "existing_tables", "DERIVED_TABLES"]
 
 SCHEMA_VERSION = 3
@@ -107,7 +108,8 @@ TABLES: Dict[str, Tuple[Tuple[Column, ...], str]] = {
         ("feats", "TEXT NOT NULL"), ("grams", "INTEGER NOT NULL"),
     ), ""),
     "index_dirty": ((("node_id", "TEXT PRIMARY KEY"),), ""),
-    # 派生索引状态：('feats','0') = 新奇特征尚未构建（node_index.feats 全为 '[]'、feature_df 全 0，
+    # 派生索引状态：('hw', rowid) = 水位——rowid ≤ hw 的节点要么已索引、要么在 index_dirty 里；高于水位的行
+    # 一律视为脏（无该行 = 0）。('feats','0') = 新奇特征尚未构建（node_index.feats 全为 '[]'、feature_df 全 0，
     # 首次新奇度查询时批量补建）；无该行 = 已构建（旧库兼容）。('bulk',…) 仅在批量重建事务内存在，
     # 令 trg_index_ins 让位给集合式批量写入（事务结束前删除，其它连接永远看不到）。
     "index_state": ((("key", "TEXT PRIMARY KEY"), ("value", "TEXT")), ""),
@@ -119,7 +121,7 @@ DERIVED_TABLES = frozenset({"node_terms", "term_df", "feature_df", "node_index",
 _TABLE_OPTIONS = {"node_terms": " WITHOUT ROWID", "term_df": " WITHOUT ROWID", "feature_df": " WITHOUT ROWID",
                   "index_state": " WITHOUT ROWID"}
 #: 引用派生表结构的触发器（派生表重建时一并重建）
-_DERIVED_TRIGGERS = ("trg_index_ins", "trg_index_del")
+_DERIVED_TRIGGERS = ("trg_index_ins", "trg_index_del", "trg_nodes_ins")
 
 #: 索引名 → (表, 列表达式, 是否唯一)
 INDEXES: Dict[str, Tuple[str, str, bool]] = {
@@ -128,9 +130,8 @@ INDEXES: Dict[str, Tuple[str, str, bool]] = {
     "idx_nodes_ctx_seq": ("nodes", "layer", False),
     "idx_edges_source": ("edges", "source_id", False),
     "idx_edges_target": ("edges", "target_id", False),
-    "idx_nodes_dedup": ("nodes", "dedup_key", False),
-    "idx_nodes_created": ("nodes", "created_at", False),
-    "idx_nodes_temporal": ("nodes", "temporal_coordinate", False),
+    # 部分索引：只收已核实的边（常态极少）——统计 COUNT(*) WHERE verified=1 不再全表扫（冷自检）
+    "idx_edges_verified": ("edges", "verified", False),
     "idx_skills_name_key": ("skills", "name_key", False),
     "idx_rejected_key": ("rejected_paths", "path_key", False),
     "idx_flywheel_unique": ("flywheel_reuse", "session_id, round, node_id", True),
@@ -139,13 +140,32 @@ INDEXES: Dict[str, Tuple[str, str, bool]] = {
 }
 
 #: 部分索引的 WHERE（只有字面量写出同一条件的查询才会用到它，不干扰 ``layer=?`` 类查询的计划）
-INDEX_WHERE: Dict[str, str] = {"idx_nodes_ctx_seq": "layer = 'context'"}
+INDEX_WHERE: Dict[str, str] = {"idx_nodes_ctx_seq": "layer = 'context'", "idx_edges_verified": "verified = 1"}
+
+#: 惰性二级索引（S5）：只服务读路径（M5 精确去重查键、时间坐标范围、按创建时间有序全表读），写路径从不用。
+#: 新库不建；首次需要它们的读（:meth:`Database.need_lazy_indexes`）或灌库后的首次派生索引批量重建时一次建齐，此后常驻。
+#: 已有它们的旧库照旧维护（从不删除）。在不在只影响查询计划，不影响任何查询结果（相关查询都带全序 ORDER BY）。
+#: dedup_key 随之惰性：去重索引未建期间，免去重的写入（skip_dedup 灌库）写等长占位 PENDING_KEY，建索引前批量补齐；
+#: 建成后一律写时计算。任何查键（M5）之前先补齐全部空键（含其它连接/裸写入留下的），导出时空键现算。
+#: 延后计算的内容键占位（与 sha1 十六进制键等长、不可能是真键）：补键时原地改写、行长不变（不拆页）
+PENDING_KEY = "~" * 40
+#: 内容键待补：旧库/裸写入留下的 NULL，或灌库期的占位
+KEY_MISSING = f"(dedup_key IS NULL OR dedup_key = '{PENDING_KEY}')"
+
+LAZY_INDEXES: Dict[str, Tuple[str, str, bool]] = {
+    "idx_nodes_dedup": ("nodes", "dedup_key", False),
+    "idx_nodes_created": ("nodes", "created_at", False),
+    "idx_nodes_temporal": ("nodes", "temporal_coordinate", False),
+}
 
 #: 触发器（纯 SQL，不依赖应用函数——任何连接、包括旧代码的裸写都会维护派生索引）：
-#: nodes 增改 ⇒ 记脏；nodes 删 ⇒ 删 node_index；node_index 增删 ⇒ 维护倒排、df、新奇特征计数。
+#: nodes 增改 ⇒ 记脏（rowid 高于水位的新行由水位隐式记脏）；nodes 删 ⇒ 删 node_index；node_index 增删 ⇒ 维护倒排、df、新奇特征计数。
 TRIGGERS: Dict[str, str] = {
-    "trg_nodes_ins": "AFTER INSERT ON nodes BEGIN "
-                     "INSERT OR IGNORE INTO index_dirty(node_id) VALUES (NEW.id); END",
+    # 新行（rowid 高于派生索引水位 index_state('hw')）由水位隐式记脏，免逐行写 index_dirty；只有落在水位
+    # 以下的插入（REPLACE 复用/显式小 rowid）才显式记脏——见 textindex「水位」说明
+    "trg_nodes_ins": "AFTER INSERT ON nodes "
+                     "WHEN NEW.rowid <= COALESCE((SELECT CAST(value AS INTEGER) FROM index_state WHERE key = 'hw'), 0) "
+                     "BEGIN INSERT OR IGNORE INTO index_dirty(node_id) VALUES (NEW.id); END",
     "trg_nodes_upd": "AFTER UPDATE OF id, content, tags, layer ON nodes BEGIN "
                      "INSERT OR IGNORE INTO index_dirty(node_id) VALUES (NEW.id); "
                      "DELETE FROM node_index WHERE node_id = OLD.id AND OLD.id <> NEW.id; END",
@@ -261,6 +281,20 @@ def migrate(conn: sqlite3.Connection) -> Dict[str, List]:
         conn.execute("ROLLBACK")
         raise
     return gap
+
+
+def lazy_indexes_missing(conn: sqlite3.Connection) -> List[str]:
+    """S5：尚未建出的惰性索引名（只读）。"""
+    have = {r[0] for r in conn.execute(f"SELECT name FROM sqlite_master WHERE type='index' "
+                                       f"AND name IN ({placeholders(len(LAZY_INDEXES))})", tuple(LAZY_INDEXES))}
+    return [n for n in LAZY_INDEXES if n not in have]
+
+
+def ensure_lazy_indexes(conn: sqlite3.Connection) -> None:
+    """S5：在调用方的写事务里补建缺失的惰性索引。"""
+    for name in lazy_indexes_missing(conn):
+        t, expr, _ = LAZY_INDEXES[name]
+        conn.execute(f"CREATE INDEX IF NOT EXISTS {name} ON {t}({expr})")
 
 
 def placeholders(n: int) -> str:

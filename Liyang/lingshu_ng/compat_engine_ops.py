@@ -78,10 +78,14 @@ def stop_auto_decay(self) -> None:
 
 def self_check(self) -> Dict:
     """自检（self_ok 只认持久化 SELF；环由 SCC 判定）。"""
+    fp = self.ng.store.db.fingerprint()
     r = self.ng.self_check()
+    memo = getattr(self, "_stats_memo", None)        # 同一提交指纹下统计不变（与 ng.self_check 同口径复用）
+    if memo is None or memo[0] != fp:
+        memo = self._stats_memo = (fp, self.store.get_stats())
     r.update({"has_causal_cycle": r["has_cycle"],
               "anchor_ok": r["anchor_count"] > 0, "structure_ok": r["structure_count"] >= 2,
-              "self_model_exists": r["self_ok"], "stats": self.store.get_stats()})
+              "self_model_exists": r["self_ok"], "stats": dict(memo[1])})
     return r
 
 

@@ -2,7 +2,7 @@
 """HMB 零 LLM 检索轨 · 本地复测（只读调用 evalsuite_hmb 的 sys_worker.py / hmb_lib / 作者工具，不改其文件）。
 
   python run_hmbq.py snap <tag> [<rev>]      # git archive <rev>(默认 HEAD) → /tmp/hmbq_snap/<tag>，再叠加工作区里本人改动的文件
-  python run_hmbq.py run <tag>               # 在该快照下 sys_worker ingest novel → out/retr_<tag>_novel.json
+  python run_hmbq.py run <tag> [<out_tag>]   # 在该快照下 sys_worker ingest novel → out/retr_<tag>_novel.json
   python run_hmbq.py metrics <tag> [...]     # 同 metrics_r1 口径的读数（recall 主路径）+ 同条件 BM25 → out/metrics_<tag>.json
 口径与 evalsuite_hmb/metrics_r1.py 相同：cid_recall / quote_recall / point_keyword_cov / must_exclude_mix /
 pairs_hard9、pairs_all（作者 压缩代价.py，代理矛盾对清单 out/hmb_proxy_lists.json）/ 写入每块 ms / 查询中位 ms。
@@ -24,7 +24,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "out")
 SNAPD = "/tmp/hmbq_snap"
 MINE = ["lingshu_ng/retrieval.py", "lingshu_ng/rerank.py", "lingshu_ng/conflict.py", "lingshu_ng/engine.py",
-        "lingshu_ng/store/textindex.py"]   # 本人在工作区改动、尚可能未提交的文件
+        "lingshu_ng/store/textindex.py", "lingshu_ng/semindex.py", "lingshu_ng/embed/__init__.py",
+        "lingshu_ng/compat_engine.py"]   # 本人在工作区改动、尚可能未提交的文件
 
 
 def snap(tag, rev="HEAD"):
@@ -35,15 +36,16 @@ def snap(tag, rev="HEAD"):
     if rev == "HEAD":
         for f in MINE:
             if os.path.exists(os.path.join(REPO, f)):
+                os.makedirs(os.path.dirname(os.path.join(root, f)), exist_ok=True)
                 shutil.copy(os.path.join(REPO, f), os.path.join(root, f))
     print("snap", root)
 
 
-def run(tag):
+def run(tag, out_tag=None):
     root = os.path.join(SNAPD, tag)
     os.makedirs(OUT, exist_ok=True)
     env = dict(os.environ, PYTHONPATH=root, PYTHONHASHSEED="0")
-    out = os.path.join(OUT, f"retr_{tag}_novel.json")
+    out = os.path.join(OUT, f"retr_{out_tag or tag}_novel.json")
     p = subprocess.run([sys.executable, "-X", "utf8", os.path.join(HMBD, "sys_worker.py"), "--impl", "ng", "--task", "ingest",
                         "--corpus", "novel", "--queries", os.path.join(H.WORK, "queries_novel.json"), "--out", out],
                        env=env, cwd=root, capture_output=True, text=True)
@@ -131,6 +133,6 @@ if __name__ == "__main__":
     if c == "snap":
         snap(sys.argv[2], *(sys.argv[3:4]))
     elif c == "run":
-        run(sys.argv[2])
+        run(sys.argv[2], *(sys.argv[3:4]))
     elif c == "metrics":
         metrics(sys.argv[2:])

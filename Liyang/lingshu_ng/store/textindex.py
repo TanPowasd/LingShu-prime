@@ -12,7 +12,11 @@
     比文本 id 省一半以上倒排体积，读倒排不再构造 str；grams 冗余自 node_index，随行重写同步，
     让检索读倒排即得每个节点的精确率分母、无需逐行回表）；``term_df``：词元 df（WITHOUT ROWID）；
     ``feature_df``：新奇特征在可检索层中的出现节点数。
-  * 维护全部由 schema.TRIGGERS 的纯 SQL 触发器完成：nodes 增改 ⇒ ``index_dirty`` 记脏，
+  * 水位（arch-scale）：``index_state('hw')`` = 已处理到的最大 nodes.rowid。rowid 高于水位的行一律视为脏
+    （新行是 rowid 递增追加的常态——灌库时不再逐行写 ``index_dirty``，省一棵 B 树的随机写）；落在水位以下的
+    插入（REPLACE 复用 rowid、显式小 rowid）由插入触发器显式记脏。flush 处理「脏表 ∪ 水位以上」后在同一
+    写事务内把水位推到 MAX(rowid)。
+  * 维护全部由 schema.TRIGGERS 的纯 SQL 触发器完成：nodes 改 ⇒ ``index_dirty`` 记脏，
     nodes 删 ⇒ 级联删 node_index ⇒ 级联删倒排并递减计数。本模块只负责把脏节点「算词元 →
     重写 node_index 行」（:meth:`TextIndex.flush`；脏节点多时走集合式批量路径）。任何读之前先
     flush，所以旧代码的裸 SQL 写入同样不会让索引过期。
@@ -90,8 +94,29 @@ class TextIndex:
         c.execute("INSERT INTO node_index (node_id, terms, feats, grams) VALUES (?,?,?,?)",
                   self._row(nid, content, tags_json, layer, self.feats_ready(c)))
         c.execute("DELETE FROM index_dirty WHERE node_id=?", (nid,))
-        if c.execute("SELECT 1 FROM index_dirty LIMIT 1").fetchone() is not None:
+        hw = self._hw(c)
+        row = c.execute("SELECT rowid FROM nodes WHERE id=?", (nid,)).fetchone()
+        if row is not None and row[0] > hw and c.execute(
+                "SELECT 1 FROM nodes WHERE rowid > ? AND rowid <> ? LIMIT 1", (hw, row[0])).fetchone() is None:
+            self._set_hw(c, row[0])                       # 本节点是水位以上唯一的行且已索引：水位跟进
+        if self._pending(c):
             self.flush()
+
+    @staticmethod
+    def _hw(c: Any) -> int:
+        """派生索引水位（无记录 = 0：全部 rowid 都在水位以上）。"""
+        r = c.execute("SELECT CAST(value AS INTEGER) FROM index_state WHERE key='hw'").fetchone()
+        return int(r[0]) if r and r[0] is not None else 0
+
+    @staticmethod
+    def _set_hw(c: Any, hw: int) -> None:
+        c.execute("INSERT OR REPLACE INTO index_state(key, value) VALUES ('hw', ?)", (str(int(hw)),))
+
+    def _pending(self, c: Any) -> bool:
+        """是否有待重建的节点：脏表非空，或有 rowid 高于水位的行。"""
+        if c.execute("SELECT 1 FROM index_dirty LIMIT 1").fetchone() is not None:
+            return True
+        return c.execute("SELECT 1 FROM nodes WHERE rowid > ? LIMIT 1", (self._hw(c),)).fetchone() is not None
 
     #: 一次 flush 的脏节点数达到该值时走批量路径（绕开逐行触发器，见 :meth:`_bulk_flush`）
     BULK_MIN = 32
@@ -103,23 +128,32 @@ class TextIndex:
 
         写路径只记脏（触发器），派生索引在**首次读之前**统一重建：灌库时 N 次写只做一次批量构建。
         新奇特征只在已构建时随之维护；未构建时留给首次新奇度查询（:meth:`ensure_feats`）。"""
-        if self.db.scalar("SELECT 1 FROM index_dirty LIMIT 1") is None:
-            return 0
+        with self.db.lock:
+            if not self._pending(self.db.conn):
+                return 0
         with self.db.tx() as c:
             ready = self.feats_ready(c)
+            hw = self._hw(c)
             ids = [r[0] for r in c.execute("SELECT node_id FROM index_dirty").fetchall()]
-            if len(ids) >= self.BULK_MIN:
-                self._bulk_flush(c, ids, ready)
-            else:
-                for part in chunks(ids):
-                    ph = placeholders(len(part))
-                    got = c.execute(f"SELECT id, content, tags, layer FROM nodes WHERE id IN ({ph})",
-                                    part).fetchall()
-                    c.execute(f"DELETE FROM node_index WHERE node_id IN ({ph})", part)
-                    c.executemany("INSERT INTO node_index (node_id, terms, feats, grams) VALUES (?,?,?,?)",
-                                  [self._row(*r, ready) for r in got])
+            above = c.execute("SELECT id, rowid FROM nodes WHERE rowid > ? ORDER BY rowid", (hw,)).fetchall()
+            if above:
+                ids = list(dict.fromkeys(ids + [r[0] for r in above]))
+            (self._bulk_flush if len(ids) >= self.BULK_MIN else self._row_flush)(c, ids, ready)
             c.execute("DELETE FROM index_dirty")
+            if above:
+                self._set_hw(c, above[-1][1])
+        if len(ids) >= self.BULK_MIN:
+            self.db.need_lazy_indexes()                   # 灌库后的首次读：惰性二级索引一并建齐（S5）
         return len(ids)
+
+    def _row_flush(self, c: Any, ids: List[str], ready: bool) -> None:
+        """少量脏节点：逐行删旧插新（计数由 node_index 的触发器逐行维护）。"""
+        for part in chunks(ids):
+            ph = placeholders(len(part))
+            got = c.execute(f"SELECT id, content, tags, layer FROM nodes WHERE id IN ({ph})", part).fetchall()
+            c.execute(f"DELETE FROM node_index WHERE node_id IN ({ph})", part)
+            c.executemany("INSERT INTO node_index (node_id, terms, feats, grams) VALUES (?,?,?,?)",
+                          [self._row(*r, ready) for r in got])
 
     def _bulk_flush(self, c: Any, ids: List[str], ready: bool) -> None:
         """集合式批量重建（结果与逐行触发器路径相同，T1）：旧行照常经删除触发器退出计数；

@@ -12,6 +12,7 @@
 """
 from __future__ import annotations
 
+import copy
 import math
 import os
 import uuid
@@ -103,9 +104,14 @@ class MemoryEngine:
         self.autodecay = AutoDecay(self._auto_tick)
         #: 可选第二路召回（M1 语义检索提供者注入，见 :mod:`lingshu_ng.semindex`）；默认无
         self.semantic = None
+        #: 环境变量启用提供者失败的原因（缺依赖/模型文件；S4：退回纯词面，不影响引擎构造）
+        self.semantic_error: Optional[str] = None
         if os.environ.get("LINGSHU_NG_EMBED_MODEL", "").strip():
-            from .embed import from_env
-            self.set_embedding_provider(from_env())
+            try:
+                from .embed import from_env
+                self.set_embedding_provider(from_env())
+            except Exception as e:  # 外部依赖件（onnxruntime 等）的异常类型不可枚举：记录后退回纯词面
+                self.semantic_error = f"{type(e).__name__}: {e}"
 
     def set_embedding_provider(self, provider) -> None:
         """注入语义检索提供者（D-005 duck-typed：``add``+``search`` 或 ``encode``）；None 撤除。
@@ -240,11 +246,12 @@ class MemoryEngine:
                     entities: Optional[Sequence[str]] = None) -> WriteResult:
         """写情境层（短期记忆，不去重），随后按持久化容量上限 FIFO 淘汰。"""
         cs = condition_space or ConditionSpace.default("情境感知", "会话摄入")
-        r = self.perceive(content, importance=importance, condition_space=cs,
-                          tags=list(tags or []) + ["context"], entities=entities, skip_dedup=True,
-                          layer=MemoryLayer.CONTEXT, prefix="ctx")
-        self.maintenance.enforce_cap()
-        layer = self.store.nodes.layer_of(r.node_id)
+        with self.store.db.tx():               # 写入与 FIFO 淘汰同一事务（一次提交；上限从不被外部观察到越界）
+            r = self.perceive(content, importance=importance, condition_space=cs,
+                              tags=list(tags or []) + ["context"], entities=entities, skip_dedup=True,
+                              layer=MemoryLayer.CONTEXT, prefix="ctx")
+            self.maintenance.enforce_cap()
+            layer = self.store.nodes.layer_of(r.node_id)
         return WriteResult(r.node_id, r.action, layer.value if layer else None)
 
     def add_shared(self, layer: MemoryLayer, content: str, importance: float,
@@ -313,14 +320,36 @@ class MemoryEngine:
                     types: Sequence[str] = ("causal", "cyclic"),
                     max_steps: Optional[int] = None) -> causal.CycleScan:
         """环枚举（边 id 序列）。"""
-        return causal.scan_arcs(self.store.edges.arcs(types), max_len, max_cycles, max_steps)
+        db = self.store.db
+        with db.lock:                            # 两次读（判环 / 取 id）在同一读快照内，看到同一边集
+            snap = not db.conn.in_transaction
+            if snap:
+                db.conn.execute("BEGIN")
+            try:
+                return causal.scan_lazy(self.store.edges.pair_columns(types), lambda: self.store.edges.arcs(types),
+                                        max_len, max_cycles, max_steps)
+            finally:
+                if snap:
+                    db.conn.execute("COMMIT")
 
     def has_cycle(self, types: Sequence[str] = ("causal", "cyclic")) -> bool:
         """是否存在因果环（SCC 判定，与深度无关）。"""
-        return causal.has_cycle_pairs(self.store.edges.pairs(types))
+        return causal.has_cycle_columns(*self.store.edges.pair_columns(types))
 
     def self_check(self, cycle_budget: int = 256, step_budget: int = 200_000) -> Dict:
-        """自检：各层计数、SELF 持久化、因果环（SCC 精确判定 + 环数/步数双上限的枚举明细）。"""
+        """自检：各层计数、SELF 持久化、因果环（SCC 精确判定 + 环数/步数双上限的枚举明细）。
+
+        增量化：结果只取决于库内容，按提交指纹（:meth:`Database.fingerprint`）记忆——库自上次自检后
+        没有任何提交/改动时直接复用（每次返回新副本与新时间戳），任何写入后下一次自检整体重算。"""
+        fp = (self.store.db.fingerprint(), cycle_budget, step_budget)
+        memo = getattr(self, "_self_check_memo", None)
+        if memo is None or memo[0] != fp:
+            memo = self._self_check_memo = (fp, self._self_check(cycle_budget, step_budget))
+        r = copy.deepcopy(memo[1])
+        r["timestamp"] = now()
+        return r
+
+    def _self_check(self, cycle_budget: int, step_budget: int) -> Dict:
         n = self.store.nodes
         scan = self.find_cycles(max_cycles=cycle_budget, max_steps=step_budget)
         return {"anchor_count": n.count(MemoryLayer.ANCHOR), "structure_count": n.count(MemoryLayer.STRUCTURE),

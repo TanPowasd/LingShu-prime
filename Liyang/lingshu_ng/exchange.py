@@ -18,6 +18,7 @@ from __future__ import annotations
 import json
 from typing import Dict, List, Optional, Sequence, Tuple
 
+from . import dedup
 from .governance import verify_designer
 from .layers import LayerPolicy
 from .store import Store, schema
@@ -59,7 +60,16 @@ def _columns(store: Store, table: str) -> Tuple[str, ...]:
 def _rows(store: Store, table: str) -> List[Dict]:
     cols = _columns(store, table)
     order = "id" if "id" in cols else ("node_id" if "node_id" in cols else "rowid")
-    return [dict(r) for r in store.db.all(f"SELECT {', '.join(cols)} FROM {table} ORDER BY {order}")]
+    rows = [dict(r) for r in store.db.all(f"SELECT {', '.join(cols)} FROM {table} ORDER BY {order}")]
+    return _with_keys(rows) if table == "nodes" else rows
+
+
+def _with_keys(rows: List[Dict]) -> List[Dict]:
+    """S5：灌库期待补（占位/NULL）的 dedup_key 现算（导出与写时即算逐项相同；不写库）。"""
+    todo = [r for r in rows if r.get("dedup_key", "") in (None, schema.PENDING_KEY)]
+    for r, k in zip(todo, dedup.content_keys([r.get("content") for r in todo])):
+        r["dedup_key"] = k
+    return rows
 
 
 def export_all(store: Store, output_path: str) -> Dict:

@@ -64,17 +64,26 @@ class ConditionSpace:
     time_window: Tuple[float, float]
     existence_constraint: str
 
-    def to_json(self) -> str:
-        """四栏严格 JSON；时间窗终点为 +inf 时写 null。NaN 拒收。"""
+    def _plain(self) -> Optional[Tuple[str, str, float, float, str]]:
+        """常态四栏（三栏为 str、时间窗为非 NaN 浮点且下界有限、上界有限或 +inf）→ (op, ot, lo, hi, ec)，否则 None。"""
         lo, hi = self.time_window
         op, ot, ec = self.observation_position, self.observation_tool, self.existence_constraint
         if (lo.__class__ is float and hi.__class__ is float and op.__class__ is str
                 and ot.__class__ is str and ec.__class__ is str and lo == lo and hi == hi and lo != _INF
                 and lo != -_INF and hi != -_INF):
+            return op, ot, lo, hi, ec
+        return None
+
+    def to_json(self) -> str:
+        """四栏严格 JSON；时间窗终点为 +inf 时写 null。NaN 拒收。"""
+        p = self._plain()
+        if p is not None:
             # 快路径（常态：四栏为 str、时间窗为有限浮点或 +inf）：与通用路径逐字节相同
+            op, ot, lo, hi, ec = p
             return (f'{{"observation_position": {_STR(op)}, "observation_tool": {_STR(ot)}, '
                     f'"time_window": [{lo!r}, {"null" if hi == _INF else repr(hi)}], '
                     f'"existence_constraint": {_STR(ec)}}}')
+        lo, hi = self.time_window
         if isinstance(lo, float) and math.isnan(lo) or isinstance(hi, float) and math.isnan(hi):
             raise ValueError("time_window 不得含 NaN")
         enc = [None if (isinstance(v, float) and math.isinf(v)) else v for v in (lo, hi)]
@@ -262,6 +271,17 @@ class Node:
                 self.access_count, self.last_access, self.created_at, dumps(list(self.tags)),
                 dumps(self.semantic_coordinates or {}), dumps(self.state_attributes or {}),
                 self.entity_id)
+
+    @classmethod
+    def from_written(cls, row: Sequence[Any], plain: Optional[tuple]) -> "Node":
+        """刚由 :meth:`to_row` 写出的行 + 写出时条件空间的常态四栏（``ConditionSpace._plain()``，不可变元组）
+        → 与 ``from_row(row)`` 相同的节点，免 JSON 解析（浮点 repr 往返精确）；非常态/非空 JSON 列回落 :meth:`from_row`。"""
+        if plain is None or row[3] != "{}" or row[13] != "{}" or row[14] != "{}":
+            return cls.from_row(row)
+        c = ConditionSpace(plain[0], plain[1], (plain[2], plain[3]), plain[4])
+        return cls(row[0], row[1], row[2], {}, row[4], c, row[6], row[7], _LAYER_OF[row[8]],   # to_row 写的是枚举值
+                   row[9] or 0, row[10] if row[10] is not None else row[11], row[11], loads_tags(row[12]),
+                   {}, {}, row[15])
 
     @classmethod
     def from_row(cls, row: Sequence[Any]) -> "Node":

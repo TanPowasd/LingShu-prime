@@ -3,6 +3,8 @@
 
 ``OnnxEmbedder(model_dir)``：BGE 系中文句向量（如 bge-small-zh-v1.5 / bge-base-zh-v1.5 的 ONNX 导出，
 ``model_quantized.onnx`` + ``tokenizer.json``），CPU onnxruntime 推理，CLS 池化 + L2 归一；
+默认逐条编码（batch=1）：int8 动态量化模型的激活量化尺度按整批计算，批组成不同（后台线程取批随时序变化）
+会让同一文本得到不同向量、召回不可复现（iter4 实测两次 HMB 运行 174/184 题前 10 名不同）；逐条编码与批组成无关。
 实现 :mod:`lingshu_ng.semindex` 的「自带索引」提供者接口 ``add(ids, texts)`` / ``search(query, limit)``，
 也提供旧接口约定的 ``encode(text)``。依赖 numpy、onnxruntime、tokenizers（缺任何一个时构造即抛 ImportError）。
 
@@ -20,7 +22,7 @@ class OnnxEmbedder:
     """本地 ONNX 句向量 + 内存矩阵索引（float32，n×d；增量追加、按 id 覆盖）。"""
 
     def __init__(self, model_dir: str, fname: str = "model_quantized.onnx", maxlen: int = 512,
-                 threads: int = 1, batch: int = 8) -> None:
+                 threads: int = 1, batch: int = 1) -> None:
         import numpy as np
         import onnxruntime as ort
         from tokenizers import Tokenizer

@@ -20,6 +20,7 @@
 from __future__ import annotations
 
 import math
+import os
 import threading
 import time
 from typing import Dict, List, Optional, Sequence, Tuple
@@ -96,6 +97,7 @@ class SemanticIndex:
         self._stop = False
         self._mark = 0
         self._inflight = 0
+        self.nice = True
         self._thread: Optional[threading.Thread] = None
         if background:
             self._thread = threading.Thread(target=self._loop, name="ng-semindex", daemon=True)
@@ -143,6 +145,10 @@ class SemanticIndex:
         self._done(len(part))
 
     def _loop(self) -> None:
+        try:   # 后台编码线程降优先级：与写入争 CPU 时让写入先行（Linux 下按线程 id 生效；不支持则照常）
+            os.setpriority(os.PRIO_PROCESS, threading.get_native_id(), 10)
+        except (AttributeError, OSError):
+            self.nice = False
         while not self._stop:
             self._wake.wait(0.5)
             self._wake.clear()

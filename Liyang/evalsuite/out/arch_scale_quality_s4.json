@@ -1,0 +1,2146 @@
+{
+ "meta": {
+  "generated": "2026-10-09 11:23",
+  "rules": "evalsuite-rules-v1（2026-10-09 固定，先于 ng 首次读数提交）",
+  "weights": {
+   "probes": 0.4,
+   "props": 0.3,
+   "perf": 0.15,
+   "quality": 0.15
+  },
+  "seeds": 200,
+  "sizes": [
+   1000,
+   10000,
+   50000
+  ],
+  "python": "3.12.15",
+  "elapsed_s": 5.2,
+  "reused": []
+ },
+ "snapshots": [
+  {
+   "name": "base",
+   "src": "/workspace/work/ls/upstream",
+   "impl": "legacy",
+   "rev": "2bb8291",
+   "root": "/workspace/work/ls/wt-scale/evalsuite/out/_snapcache/base-2bb8291",
+   "commit": "2bb82910ff86817ee96b8fd13cfdbbcb62777251",
+   "dirty": false,
+   "importable": true,
+   "import_detail": "/workspace/work/ls/wt-scale/evalsuite/out/_snapcache/base-2bb8291/lingshu/core/core.py"
+  },
+  {
+   "name": "integrated",
+   "src": "/workspace/work/ls/integrated",
+   "impl": "legacy",
+   "rev": "667e84a",
+   "root": "/workspace/work/ls/wt-scale/evalsuite/out/_snapcache/integrated-667e84a",
+   "commit": "667e84ab9c8a3e4868a5b741d33312b847a34e02",
+   "dirty": false,
+   "importable": true,
+   "import_detail": "/workspace/work/ls/wt-scale/evalsuite/out/_snapcache/integrated-667e84a/lingshu/core/core.py"
+  },
+  {
+   "name": "ng-e423",
+   "src": "/workspace/work/ls/rewrite",
+   "impl": "ng",
+   "rev": "e423368",
+   "root": "/workspace/work/ls/wt-scale/evalsuite/out/_snapcache/ng-e423-e423368",
+   "commit": "e423368e9343323b6f10aa1c5cf8bbef7658f66a",
+   "dirty": false,
+   "importable": true,
+   "import_detail": "/workspace/work/ls/wt-scale/evalsuite/out/_snapcache/ng-e423-e423368/lingshu_ng/compat.py"
+  },
+  {
+   "name": "ng",
+   "src": "/workspace/work/ls/wt-scale",
+   "impl": "ng",
+   "rev": "18ed3e7",
+   "root": "/workspace/work/ls/wt-scale/evalsuite/out/_snapcache/ng-18ed3e7",
+   "commit": "18ed3e7dc700e6fe5ecf17dc7e7cc609054d39e7",
+   "dirty": false,
+   "importable": true,
+   "import_detail": "/workspace/work/ls/wt-scale/evalsuite/out/_snapcache/ng-18ed3e7/lingshu_ng/compat.py"
+  }
+ ],
+ "scores": {
+  "base": {
+   "probes": 0.0,
+   "props": 0.0,
+   "perf": 0.0,
+   "quality": 47.267051874084885,
+   "total": 7.0900577811127325
+  },
+  "integrated": {
+   "probes": 0.0,
+   "props": 0.0,
+   "perf": 0.0,
+   "quality": 43.0253154242742,
+   "total": 6.45379731364113
+  },
+  "ng-e423": {
+   "probes": 0.0,
+   "props": 0.0,
+   "perf": 0.0,
+   "quality": 99.68623481781377,
+   "total": 14.952935222672064
+  },
+  "ng": {
+   "probes": 0.0,
+   "props": 0.0,
+   "perf": 0.0,
+   "quality": 100.0,
+   "total": 15.0
+  }
+ },
+ "items": {
+  "probes": {
+   "i29-repeat-boost": {
+    "issue": 29,
+    "title": "重复写入同一错误陈述即增信到 ~1.0"
+   },
+   "i142-negation": {
+    "issue": 142,
+    "title": "M5 去重把否定命题当重复吞掉"
+   },
+   "i142-number": {
+    "issue": 142,
+    "title": "M5 去重对数值改动不敏感（2.5 毫克→7.5 毫克）"
+   },
+   "i142-correction-boost": {
+    "issue": 142,
+    "title": "对同一命题反复更正，原命题反而增信"
+   },
+   "i223-dedup-tags": {
+    "issue": 223,
+    "title": "去重命中时丢弃新输入的 tags/entities"
+   },
+   "i223-dedup-importance": {
+    "issue": 223,
+    "title": "去重命中时丢弃更高的 importance"
+   },
+   "i223-dedup-modality": {
+    "issue": 223,
+    "title": "不同模态的同文内容被合并成一个节点"
+   },
+   "i225-polarity": {
+    "issue": 225,
+    "title": "失败经验并进成功节点并为其增信"
+   },
+   "i35-search-truncation": {
+    "issue": 35,
+    "title": "检索按插入序硬截断：600 条中第 550 条不可达"
+   },
+   "i82-score-saturation": {
+    "issue": 82,
+    "title": "search_content 分数饱和：长短文同分"
+   },
+   "i132-zero-score": {
+    "issue": 132,
+    "title": "零分节点仍作为检索结果返回 / 同义扩展子串误触发"
+   },
+   "i183-tag-like": {
+    "issue": 183,
+    "title": "标签检索 LIKE 子串误配（ent:car_1 命中 ent:car_12 / ent:carX1）"
+   },
+   "i183-search-wildcard": {
+    "issue": 183,
+    "title": "search_content('%') 返回全库（通配符注入）"
+   },
+   "i181-cjk-tag": {
+    "issue": 181,
+    "title": "中文标签写成 \\uXXXX，按中文标签检索 0 条"
+   },
+   "i88-anchors-50": {
+    "issue": 88,
+    "title": "get_anchors 静默截为 50 条"
+   },
+   "i88-layer-enum": {
+    "issue": 88,
+    "title": "get_layer_nodes 整层枚举截断（知识层 61 条）"
+   },
+   "i89-radius0": {
+    "issue": 89,
+    "title": "spatiotemporal_query(time_radius=0) 同刻候选 ZeroDivisionError"
+   },
+   "i179-what-happened-at": {
+    "issue": 179,
+    "title": "what_happened_at 只看 importance 前 500 条"
+   },
+   "i52-access-memory": {
+    "issue": 52,
+    "title": ":memory: 后端检索命中后 access_count 恒 0"
+   },
+   "i164-importance-range": {
+    "issue": 164,
+    "title": "importance 无值域校验：1e6 原样入库并霸占 recall"
+   },
+   "i164-negative-importance": {
+    "issue": 164,
+    "title": "负 importance 原样入库"
+   },
+   "i185-nan-importance": {
+    "issue": 185,
+    "title": "NaN importance 入库（NULL / NaN 永不遗忘）"
+   },
+   "i185-inf-importance": {
+    "issue": 185,
+    "title": "+inf importance 永生并排第一"
+   },
+   "i185-nan-edge": {
+    "issue": 185,
+    "title": "NaN 边置信度入库，边衰减每轮抛 TypeError"
+   },
+   "i117-verify-edge-range": {
+    "issue": 117,
+    "title": "verify_edge 不校验置信度范围（5.0 照单写入）"
+   },
+   "i207-low-imp-context": {
+    "issue": 207,
+    "title": "importance ≤ 阈值的情境记忆永不衰减、永不删除"
+   },
+   "i36-protect-decay": {
+    "issue": 36,
+    "title": "被 protect 的情境节点被衰减删除"
+   },
+   "i36-protect-fifo": {
+    "issue": 36,
+    "title": "被 protect 的情境节点被 FIFO 上限淘汰"
+   },
+   "i210-forget-zero": {
+    "issue": 210,
+    "title": "forget_advisor：0.0 不归档 / 降权反把 0.05 抬到 0.1"
+   },
+   "i210-archive-immortal": {
+    "issue": 210,
+    "title": "归档值落在衰减死区：归档节点永久驻留"
+   },
+   "i115-conflict-edge-decay": {
+    "issue": 115,
+    "title": "矛盾 OPPOSITE 边被普通衰减删除，conflict 标签残留"
+   },
+   "i168-structure-edge": {
+    "issue": 168,
+    "title": "结构层节点的关联边随对端知识节点删除被剥光"
+   },
+   "i176-time-based": {
+    "issue": 176,
+    "title": "遗忘按调用次数而非流逝时间（0.1s 内 50 次 decay 等于 50 分钟）"
+   },
+   "i94-consolidate-round": {
+    "issue": 94,
+    "title": "consolidate_cycle 演练提权第 1 轮误触发"
+   },
+   "i258-consolidate-1000": {
+    "issue": 258,
+    "title": "consolidate_cycle 只处理 importance 前 1000 条"
+   },
+   "i246-cap-restart": {
+    "issue": 246,
+    "title": "情境层容量不持久：重启后第一条 add_context 删掉几百条"
+   },
+   "i246-cap-float": {
+    "issue": 246,
+    "title": "容量传 200.0 后每次写入抛 TypeError"
+   },
+   "i257-protect-many": {
+    "issue": 257,
+    "title": "保护名单 >16383 条后 decay_cycle 抛 too many SQL variables"
+   },
+   "i257-protect-ghost": {
+    "issue": 257,
+    "title": "不存在的 id 也能进保护名单"
+   },
+   "i166-induce-majority": {
+    "issue": 166,
+    "title": "某主题占候选池过半时 induce_concepts 归纳为 0"
+   },
+   "i81-threads": {
+    "issue": 81,
+    "title": "多线程共享连接：并发读写抛异常"
+   },
+   "i37-close-thread": {
+    "issue": 37,
+    "title": "close() 不 join 衰减线程，后台线程访问已关闭连接"
+   },
+   "i184-autodecay-dies": {
+    "issue": 184,
+    "title": "auto-decay 线程首次异常即静默退出"
+   },
+   "i54-consume-paused": {
+    "issue": 54,
+    "title": "paused 期间 consume_events 静默丢弃排队事件"
+   },
+   "i127-sub-demote": {
+    "issue": 127,
+    "title": "SUB 以同 id 写知识层节点即可把结构层节点降级并删除"
+   },
+   "i127-sub-importance": {
+    "issue": 127,
+    "title": "SUB 可改写结构层节点 importance/confidence"
+   },
+   "i127-primary-delete-structure": {
+    "issue": 127,
+    "title": "PRIMARY 以同 id 改写为知识层后可删除结构层"
+   },
+   "i234-sub-edge-structure": {
+    "issue": 234,
+    "title": "SUB 可在结构层节点间新增并自证『已验证』边"
+   },
+   "i244-sub-edge-overwrite": {
+    "issue": 244,
+    "title": "SUB 以同 id 覆盖 PRIMARY 的结构层因果边"
+   },
+   "i234-sub-tag-structure": {
+    "issue": 234,
+    "title": "SUB 可对结构层节点打标签"
+   },
+   "i234-sub-protect": {
+    "issue": 234,
+    "title": "SUB 可为结构层节点登记保护"
+   },
+   "i191-sub-self": {
+    "issue": 191,
+    "title": "SUB 实例 update_self 抛 PermissionError（SELF 被当作共享层）"
+   },
+   "i217-sub-snapshot": {
+    "issue": 217,
+    "title": "SUB 经快照『已存在→更新』分支改写结构层节点"
+   },
+   "i109-external-anchor": {
+    "issue": 109,
+    "title": "register_external_anchor 无密钥直写结构层"
+   },
+   "i118-same-identity": {
+    "issue": 118,
+    "title": "同一身份可走完提案→复核→终裁全程"
+   },
+   "i118-rejected-revive": {
+    "issue": 118,
+    "title": "已否决的提案可被『复核』复活后改判通过"
+   },
+   "i118-unverified-adjudicate": {
+    "issue": 118,
+    "title": "未复核的提案可直接终裁通过"
+   },
+   "i140-content-swap": {
+    "issue": 140,
+    "title": "复核后同 id 改写内容，终裁把未经复核的内容写进结构层"
+   },
+   "i167-pending-deleted": {
+    "issue": 167,
+    "title": "待终裁提案节点被 FIFO 删除后终裁仍返回成功"
+   },
+   "i216-rejected-resubmit": {
+    "issue": 216,
+    "title": "设计者否决过的提案原文重提即写入结构层"
+   },
+   "i51-nonascii-key": {
+    "issue": 51,
+    "title": "非 ASCII 设计者密钥让终裁从『拒绝』变成抛 TypeError"
+   },
+   "i222-blindspot-bypass": {
+    "issue": 222,
+    "title": "store.resolve_blindspot 无密钥即可关闭盲区"
+   },
+   "i153-verifier-restart": {
+    "issue": 153,
+    "title": "终裁通过的验证标准重启即失效"
+   },
+   "i153-dedup-bypass": {
+    "issue": 153,
+    "title": "set_dedup_config 无密钥旁路，get_verifier_config 报旧值"
+   },
+   "i118-standard-range": {
+    "issue": 118,
+    "title": "验证标准终裁参数不做值域校验（dedup_static=5.0）"
+   },
+   "i130-sub-escalation": {
+    "issue": 130,
+    "title": "SUB 无密钥即可关闭全部升级点"
+   },
+   "i57-escalation-value": {
+    "issue": 57,
+    "title": "check_escalation 的数值阈值门永不求值"
+   },
+   "i38-insight-v2": {
+    "issue": 38,
+    "title": "insight_verify V2 零证据即 verified 且 importance 直升 0.9"
+   },
+   "i125-import-structure": {
+    "issue": 125,
+    "title": "import_all 无密钥改写结构层原文"
+   },
+   "i125-import-escalation": {
+    "issue": 125,
+    "title": "import_all 可关闭全部升级点"
+   },
+   "i93-dangling-import": {
+    "issue": 93,
+    "title": "import_all 原样引入孤儿边且不报"
+   },
+   "i16-export": {
+    "issue": 16,
+    "title": "export_all 对缺失表抛 OperationalError"
+   },
+   "i165-shared-sync": {
+    "issue": 165,
+    "title": "共享层同步载荷不含结构层/锚点层"
+   },
+   "i33-self-restart": {
+    "issue": 33,
+    "title": "自我模型重启即失忆"
+   },
+   "i33-trust-restart": {
+    "issue": 33,
+    "title": "信任积累活不过一次重启"
+   },
+   "i107-selfcheck-blind": {
+    "issue": 107,
+    "title": "self_check 在全新/无自我库上仍报 self_ok=True"
+   },
+   "i122-history-bound": {
+    "issue": 122,
+    "title": "SelfModel.history 无界增长"
+   },
+   "i201-self-recall": {
+    "issue": 201,
+    "title": "自我快照以普通记忆参与 recall，挤掉真实记忆"
+   },
+   "i201-self-unbounded": {
+    "issue": 201,
+    "title": "每次 update_self 新增一个不可删除的 SELF 节点（无界）"
+   },
+   "i205-self-edge-decay": {
+    "issue": 205,
+    "title": "自我→经历因果边被衰减删除"
+   },
+   "i212-value-refine": {
+    "issue": 212,
+    "title": "record_value_change 细化一条价值观即抹掉整表"
+   },
+   "i212-evolution-bound": {
+    "issue": 212,
+    "title": "同值重复修正 value_evolution 仍无界追加"
+   },
+   "i182-self-overwrite": {
+    "issue": 182,
+    "title": "update_self 无门控 setattr：一次调用即改写价值观"
+   },
+   "i182-self-nonatomic": {
+    "issue": 182,
+    "title": "坏调用后内存已改、快照写不进（运行态与持久态分叉）"
+   },
+   "i206-trust-nan": {
+    "issue": 206,
+    "title": "update_trust_state 接受 NaN / 越界 t_total"
+   },
+   "i206-trust-gate": {
+    "issue": 206,
+    "title": "t_total 极大时任意快照都以 imp=1.0 写入长期层并加保护"
+   },
+   "i145-long-chain": {
+    "issue": 145,
+    "title": "reason_causal 链长超过 max_depth 时返回 0 条"
+   },
+   "i145-cycle-branch": {
+    "issue": 145,
+    "title": "reason_causal 遇环的分支整条丢弃"
+   },
+   "i145-two-cycle": {
+    "issue": 145,
+    "title": "find_cycles 漏报 2 环 A⇄B"
+   },
+   "i145-self-loop": {
+    "issue": 145,
+    "title": "find_cycles 漏报自环"
+   },
+   "i145-dup-report": {
+    "issue": 145,
+    "title": "同一个环被每个节点重复报告"
+   },
+   "i215-cycle-consistency": {
+    "issue": 215,
+    "title": "环长 > max_depth 时 has_cycle=True 而 self_check 报 0"
+   },
+   "i215-selfcheck-time": {
+    "issue": 215,
+    "title": "有环稠密图 self_check 仍整趟深搜（45 节点/211 边）"
+   },
+   "i252-dense-scc": {
+    "issue": 252,
+    "title": "11 节点互为因果：self_check 全枚举（14s/3GB）"
+   },
+   "i252-find-cycles-budget": {
+    "issue": 252,
+    "title": "find_cycles 在稠密 SCC 上无预算（9 节点完全图）"
+   },
+   "i95-activation-empty-graph": {
+    "issue": 95,
+    "title": "空认知图默认 hops=2 激活抛 ValueError"
+   },
+   "i199-activation-empty-query": {
+    "issue": 199,
+    "title": "空查询把全图节点当满分种子"
+   },
+   "i161-activation-space-query": {
+    "issue": 161,
+    "title": "纯空格查询命中全部节点"
+   },
+   "i126-activation-cache": {
+    "issue": 126,
+    "title": "激活引擎图缓存不刷新：新增节点被丢弃"
+   },
+   "i229-activation-opposite": {
+    "issue": 229,
+    "title": "OPPOSITE（矛盾）边按兴奋传导，被反驳结论激活"
+   },
+   "i139-replace-nonatomic": {
+    "issue": 139,
+    "title": "subgraph_replace 新子树缺键时旧子树已被删（非原子）"
+   },
+   "i139-replace-parent": {
+    "issue": 139,
+    "title": "old_sub_root_id==parent_id 时父节点自身被删"
+   },
+   "i139-replace-protected": {
+    "issue": 139,
+    "title": "subgraph_replace 级联删除受保护节点"
+   },
+   "i224-receipt-layer": {
+    "issue": 224,
+    "title": "write_snapshot 回执 layer 与实际落库层不一致"
+   },
+   "i224-context-hit": {
+    "issue": 224,
+    "title": "快照命中情境层旧节点报 long_term+protected，节点仍留在情境层被删"
+   },
+   "i114-gate-unreachable": {
+    "issue": 114,
+    "title": "默认 t_total=0 时全新内容快照一律 discarded / 长期层不可达"
+   },
+   "i44-gate-links": {
+    "issue": 44,
+    "title": "长期层关联边从未建成（links 恒 0）"
+   },
+   "i213-novelty-english": {
+    "issue": 213,
+    "title": "新奇检测对英文/代码/西里尔失明（恒 0.5）"
+   },
+   "i213-novelty-repeat-en": {
+    "issue": 213,
+    "title": "英文内容重复仍判 0.5（无法识别已知）"
+   },
+   "i213-novelty-identifier": {
+    "issue": 213,
+    "title": "只改数字/标识符（收款账号、IP）被判完全已知"
+   },
+   "i48-novelty-window": {
+    "issue": 48,
+    "title": "新奇度只看 top-80：较老的既有知识被判为新"
+   },
+   "i214-promote-context": {
+    "issue": 214,
+    "title": "情境层→知识层巩固通路不存在（维护周期从不提升）"
+   },
+   "i83-provenance-gate": {
+    "issue": 83,
+    "title": "显式来源被 gate/novel_prefeed 覆盖（user→fixture）"
+   },
+   "i146-provenance-roundtrip": {
+    "issue": 146,
+    "title": "to_tags 的 verify_methods / vref 凭证读不回（strong→weak）"
+   },
+   "i20-provenance-human-review": {
+    "issue": 20,
+    "title": "from_legacy 永远推不出 human_review"
+   },
+   "i138-cond-unasserted": {
+    "issue": 138,
+    "title": "非法/带空格的条件值静默折叠为 UNASSERTED，同 cond_hash"
+   },
+   "i180-cred-step": {
+    "issue": 180,
+    "title": "cred_step 与 cred_factor 语义反转，混用单步归零"
+   },
+   "i7-numpy-free": {
+    "issue": 7,
+    "title": "core 轻核承诺：屏蔽 numpy 后 activation 模块不可导入"
+   },
+   "i200-skill-substring": {
+    "issue": 200,
+    "title": "record_action_sequence 用子串把『备份』追加进『删除备份』"
+   },
+   "i200-skill-wildcard": {
+    "issue": 200,
+    "title": "技能检索 hint 含 _ / % 命中任意技能"
+   },
+   "i200-skill-failure": {
+    "issue": 200,
+    "title": "技能失败从不降信（50 败 10 胜置信度仍高）"
+   },
+   "i216-skill-from-failures": {
+    "issue": 216,
+    "title": "同一失败犯 21 次，技能照常提取 / 负记忆不参与"
+   },
+   "i216-failure-importance": {
+    "issue": 216,
+    "title": "失败经验 importance 低于成功（负记忆不同价）"
+   },
+   "i154-reflect-self-evidence": {
+    "issue": 154,
+    "title": "recursive_reflect 把自己的归档当证据：第二次起偏差恒 False"
+   },
+   "i154-reflect-negation": {
+    "issue": 154,
+    "title": "可逆性按子串判：『不删除』判为不可逆+需设计者"
+   },
+   "i130-reflect-escalation": {
+    "issue": 130,
+    "title": "反思判出需设计者后不调用升级点（check_escalation 零调用）"
+   },
+   "i184-tx-lock": {
+    "issue": 184,
+    "title": "写方法中途异常后连接停在未提交事务里，外部写入 database is locked"
+   },
+   "i92-old-schema": {
+    "issue": 92,
+    "title": "老库（缺后加列/表）打开即崩或永远补不上"
+   },
+   "i156-cwd-hijack": {
+    "issue": 156,
+    "title": "构造引擎时按裸模块名从 sys.path 导入：cwd 里同名 .py 被执行"
+   },
+   "i243-facade-init": {
+    "issue": 243,
+    "title": "world 门面声明 init 动作但没有 init 分支"
+   },
+   "i55-world-degenerate": {
+    "issue": 55,
+    "title": "world_model run(0) 等退化输入崩溃"
+   }
+  },
+  "props": {
+   "P01-layer-immutability": "锚点/结构层在任意维护操作序列后内容与层不变",
+   "P02-dedup-idempotent": "同一内容重复写入幂等：返回同一 id、库中只有一条",
+   "P03-dedup-polarity": "去重对否定/数值敏感：插入『不』或改一个数字的句子不被合并",
+   "P04-decay-monotone": "衰减单调：可衰减节点 importance 不增、被删节点不复活",
+   "P05-decay-termination": "衰减终止：未保护的情境节点在有限轮（factor=0.2，≤150 轮）内被遗忘",
+   "P06-export-import-roundtrip": "导出→导入往返：本地层（知识/情境）与其间的边逐项等价；共享层（锚点/结构）要么原样恢复、要么整条不导入（隔离），绝不被改写",
+   "P07-cycle-vs-brute": "环检测与暴力枚举一致：has_cycle 判定 + find_cycles 计数（n≤6）",
+   "P08-concurrent-no-loss": "并发写不丢：3 线程各写 8 条唯一内容，全部恰好落库一次",
+   "P09-nonfinite-rejected": "非有限数值（NaN/±inf）不进库：要么被拒，要么不以非有限值存储",
+   "P10-recall-no-self": "检索不返回 SELF 快照",
+   "P11-sub-no-protected-write": "SUB 角色不可改写受保护层（锚点/结构）的节点与边",
+   "P12-importance-range": "importance 写入后恒在 [0,1]（越界值被拒或钳制）",
+   "P13-tag-exact": "按标签检索精确匹配（含 _ % 中文 前缀相同的标签）",
+   "P14-gate-receipt": "门控回执层 = 实际落库层（任意 hint）",
+   "P15-protected-survive": "被 protect 的节点在衰减/容量淘汰/遗忘建议后仍存在"
+  }
+ },
+ "probes": {
+  "base": {},
+  "integrated": {},
+  "ng-e423": {},
+  "ng": {}
+ },
+ "props": {
+  "base": {},
+  "integrated": {},
+  "ng-e423": {},
+  "ng": {}
+ },
+ "perf": {},
+ "quality": {
+  "base": {
+   "available": true,
+   "scope": "lingshu/core",
+   "modules": 8,
+   "total_lines": 6579,
+   "total_sloc": 5689,
+   "max_module": {
+    "module": "lingshu/core/core.py",
+    "lines": 5248,
+    "sloc": 4590
+   },
+   "module_lines": [
+    {
+     "module": "lingshu/core/core.py",
+     "lines": 5248,
+     "sloc": 4590
+    },
+    {
+     "module": "lingshu/core/provenance.py",
+     "lines": 394,
+     "sloc": 312
+    },
+    {
+     "module": "lingshu/core/activation.py",
+     "lines": 366,
+     "sloc": 319
+    },
+    {
+     "module": "lingshu/core/longterm_gate.py",
+     "lines": 324,
+     "sloc": 276
+    },
+    {
+     "module": "lingshu/core/condition_normalize.py",
+     "lines": 153,
+     "sloc": 127
+    },
+    {
+     "module": "lingshu/core/verdict.py",
+     "lines": 50,
+     "sloc": 35
+    },
+    {
+     "module": "lingshu/core/time_core.py",
+     "lines": 43,
+     "sloc": 29
+    },
+    {
+     "module": "lingshu/core/__init__.py",
+     "lines": 1,
+     "sloc": 1
+    }
+   ],
+   "functions": 336,
+   "max_func": {
+    "func": "lingshu/core/core.py:_init_tables@380",
+    "len": 155,
+    "cc": 11
+   },
+   "mean_func_len": 16.66,
+   "cc_top10": [
+    {
+     "func": "lingshu/core/core.py:world3d@2850",
+     "len": 153,
+     "cc": 45
+    },
+    {
+     "func": "lingshu/core/provenance.py:from_legacy@271",
+     "len": 90,
+     "cc": 38
+    },
+    {
+     "func": "lingshu/core/core.py:insight_report@1636",
+     "len": 48,
+     "cc": 29
+    },
+    {
+     "func": "lingshu/core/core.py:induce_concepts@4840",
+     "len": 79,
+     "cc": 25
+    },
+    {
+     "func": "lingshu/core/core.py:recalc_structural_importance@1403",
+     "len": 111,
+     "cc": 24
+    },
+    {
+     "func": "lingshu/core/core.py:ingest_frame@4258",
+     "len": 65,
+     "cc": 24
+    },
+    {
+     "func": "lingshu/core/longterm_gate.py:write_snapshot@162",
+     "len": 76,
+     "cc": 23
+    },
+    {
+     "func": "lingshu/core/provenance.py:validate@196",
+     "len": 38,
+     "cc": 22
+    },
+    {
+     "func": "lingshu/core/core.py:find_cycles@860",
+     "len": 107,
+     "cc": 19
+    },
+    {
+     "func": "lingshu/core/core.py:visual_check@2788",
+     "len": 61,
+     "cc": 19
+    }
+   ],
+   "cc_over_10": 35,
+   "cc_mean": 4.4,
+   "dup_rate": 0.0095,
+   "parse_errors": []
+  },
+  "integrated": {
+   "available": true,
+   "scope": "lingshu/core",
+   "modules": 10,
+   "total_lines": 8176,
+   "total_sloc": 6953,
+   "max_module": {
+    "module": "lingshu/core/core.py",
+    "lines": 5493,
+    "sloc": 4641
+   },
+   "module_lines": [
+    {
+     "module": "lingshu/core/core.py",
+     "lines": 5493,
+     "sloc": 4641
+    },
+    {
+     "module": "lingshu/core/world_facade.py",
+     "lines": 894,
+     "sloc": 862
+    },
+    {
+     "module": "lingshu/core/longterm_gate.py",
+     "lines": 433,
+     "sloc": 362
+    },
+    {
+     "module": "lingshu/core/activation.py",
+     "lines": 415,
+     "sloc": 355
+    },
+    {
+     "module": "lingshu/core/provenance.py",
+     "lines": 411,
+     "sloc": 324
+    },
+    {
+     "module": "lingshu/core/component_resolver.py",
+     "lines": 247,
+     "sloc": 191
+    },
+    {
+     "module": "lingshu/core/condition_normalize.py",
+     "lines": 153,
+     "sloc": 127
+    },
+    {
+     "module": "lingshu/core/verdict.py",
+     "lines": 72,
+     "sloc": 51
+    },
+    {
+     "module": "lingshu/core/time_core.py",
+     "lines": 57,
+     "sloc": 39
+    },
+    {
+     "module": "lingshu/core/__init__.py",
+     "lines": 1,
+     "sloc": 1
+    }
+   ],
+   "functions": 389,
+   "max_func": {
+    "func": "lingshu/core/world_facade.py:world3d@24",
+    "len": 174,
+    "cc": 54
+   },
+   "mean_func_len": 17.76,
+   "cc_top10": [
+    {
+     "func": "lingshu/core/world_facade.py:world3d@24",
+     "len": 174,
+     "cc": 54
+    },
+    {
+     "func": "lingshu/core/provenance.py:from_legacy@288",
+     "len": 90,
+     "cc": 38
+    },
+    {
+     "func": "lingshu/core/core.py:recalc_structural_importance@1872",
+     "len": 135,
+     "cc": 31
+    },
+    {
+     "func": "lingshu/core/core.py:insight_report@2191",
+     "len": 54,
+     "cc": 30
+    },
+    {
+     "func": "lingshu/core/longterm_gate.py:write_snapshot@228",
+     "len": 111,
+     "cc": 30
+    },
+    {
+     "func": "lingshu/core/core.py:add_perception@2786",
+     "len": 84,
+     "cc": 26
+    },
+    {
+     "func": "lingshu/core/core.py:induce_concepts@4994",
+     "len": 80,
+     "cc": 25
+    },
+    {
+     "func": "lingshu/core/core.py:ingest_frame@4335",
+     "len": 65,
+     "cc": 24
+    },
+    {
+     "func": "lingshu/core/core.py:insight_verify@2137",
+     "len": 53,
+     "cc": 23
+    },
+    {
+     "func": "lingshu/core/provenance.py:validate@196",
+     "len": 38,
+     "cc": 22
+    }
+   ],
+   "cc_over_10": 44,
+   "cc_mean": 4.75,
+   "dup_rate": 0.0115,
+   "parse_errors": []
+  },
+  "ng-e423": {
+   "available": true,
+   "scope": "lingshu_ng",
+   "modules": 109,
+   "total_lines": 19259,
+   "total_sloc": 15793,
+   "max_module": {
+    "module": "lingshu_ng/world/compat.py",
+    "lines": 752,
+    "sloc": 601
+   },
+   "module_lines": [
+    {
+     "module": "lingshu_ng/world/compat.py",
+     "lines": 752,
+     "sloc": 601
+    },
+    {
+     "module": "lingshu_ng/nn/net.py",
+     "lines": 507,
+     "sloc": 422
+    },
+    {
+     "module": "lingshu_ng/world/world_model.py",
+     "lines": 503,
+     "sloc": 431
+    },
+    {
+     "module": "lingshu_ng/compat_engine.py",
+     "lines": 488,
+     "sloc": 393
+    },
+    {
+     "module": "lingshu_ng/world/prediction.py",
+     "lines": 440,
+     "sloc": 378
+    },
+    {
+     "module": "lingshu_ng/compat.py",
+     "lines": 407,
+     "sloc": 319
+    },
+    {
+     "module": "lingshu_ng/world/raster.py",
+     "lines": 400,
+     "sloc": 336
+    },
+    {
+     "module": "lingshu_ng/engine.py",
+     "lines": 392,
+     "sloc": 334
+    },
+    {
+     "module": "lingshu_ng/compat_engine_ops.py",
+     "lines": 376,
+     "sloc": 277
+    },
+    {
+     "module": "lingshu_ng/causal.py",
+     "lines": 375,
+     "sloc": 335
+    },
+    {
+     "module": "lingshu_ng/world/world_learner.py",
+     "lines": 346,
+     "sloc": 287
+    },
+    {
+     "module": "lingshu_ng/types.py",
+     "lines": 342,
+     "sloc": 283
+    },
+    {
+     "module": "lingshu_ng/store/nodes.py",
+     "lines": 340,
+     "sloc": 298
+    },
+    {
+     "module": "lingshu_ng/store/textindex.py",
+     "lines": 330,
+     "sloc": 282
+    },
+    {
+     "module": "lingshu_ng/self_model.py",
+     "lines": 309,
+     "sloc": 263
+    },
+    {
+     "module": "lingshu_ng/retrieval.py",
+     "lines": 293,
+     "sloc": 250
+    },
+    {
+     "module": "lingshu_ng/compat_world_sim.py",
+     "lines": 290,
+     "sloc": 230
+    },
+    {
+     "module": "lingshu_ng/world/spacetime.py",
+     "lines": 288,
+     "sloc": 237
+    },
+    {
+     "module": "lingshu_ng/expansion.py",
+     "lines": 287,
+     "sloc": 249
+    },
+    {
+     "module": "lingshu_ng/activation.py",
+     "lines": 286,
+     "sloc": 252
+    },
+    {
+     "module": "lingshu_ng/provenance.py",
+     "lines": 274,
+     "sloc": 239
+    },
+    {
+     "module": "lingshu_ng/store/schema.py",
+     "lines": 274,
+     "sloc": 227
+    },
+    {
+     "module": "lingshu_ng/compat_world.py",
+     "lines": 271,
+     "sloc": 237
+    },
+    {
+     "module": "lingshu_ng/graphquery.py",
+     "lines": 259,
+     "sloc": 231
+    },
+    {
+     "module": "lingshu_ng/gen/pack_certify.py",
+     "lines": 253,
+     "sloc": 205
+    },
+    {
+     "module": "lingshu_ng/world/catalog.py",
+     "lines": 248,
+     "sloc": 207
+    },
+    {
+     "module": "lingshu_ng/gen/layout.py",
+     "lines": 238,
+     "sloc": 198
+    },
+    {
+     "module": "lingshu_ng/gen/cellpack.py",
+     "lines": 230,
+     "sloc": 190
+    },
+    {
+     "module": "lingshu_ng/decay.py",
+     "lines": 226,
+     "sloc": 193
+    },
+    {
+     "module": "lingshu_ng/world/anchor_graph.py",
+     "lines": 226,
+     "sloc": 174
+    },
+    {
+     "module": "lingshu_ng/world/curiosity.py",
+     "lines": 224,
+     "sloc": 186
+    },
+    {
+     "module": "lingshu_ng/world/scene_sim.py",
+     "lines": 218,
+     "sloc": 168
+    },
+    {
+     "module": "lingshu_ng/nn/stcnn.py",
+     "lines": 215,
+     "sloc": 172
+    },
+    {
+     "module": "lingshu_ng/world/geometry.py",
+     "lines": 215,
+     "sloc": 169
+    },
+    {
+     "module": "lingshu_ng/gen/hexgen.py",
+     "lines": 210,
+     "sloc": 173
+    },
+    {
+     "module": "lingshu_ng/world/scene.py",
+     "lines": 210,
+     "sloc": 159
+    },
+    {
+     "module": "lingshu_ng/gate.py",
+     "lines": 208,
+     "sloc": 176
+    },
+    {
+     "module": "lingshu_ng/store/registry.py",
+     "lines": 197,
+     "sloc": 164
+    },
+    {
+     "module": "lingshu_ng/exchange.py",
+     "lines": 190,
+     "sloc": 154
+    },
+    {
+     "module": "lingshu_ng/perception/conditions.py",
+     "lines": 186,
+     "sloc": 155
+    },
+    {
+     "module": "lingshu_ng/world/camera.py",
+     "lines": 185,
+     "sloc": 146
+    },
+    {
+     "module": "lingshu_ng/nn/compat/hex_cnn.py",
+     "lines": 182,
+     "sloc": 133
+    },
+    {
+     "module": "lingshu_ng/nn/hexgrid.py",
+     "lines": 181,
+     "sloc": 145
+    },
+    {
+     "module": "lingshu_ng/nn/text.py",
+     "lines": 181,
+     "sloc": 153
+    },
+    {
+     "module": "lingshu_ng/world/voxel.py",
+     "lines": 181,
+     "sloc": 146
+    },
+    {
+     "module": "lingshu_ng/world/seven_layer_loop.py",
+     "lines": 176,
+     "sloc": 141
+    },
+    {
+     "module": "lingshu_ng/nn/render.py",
+     "lines": 175,
+     "sloc": 141
+    },
+    {
+     "module": "lingshu_ng/nn/compat/hex_train.py",
+     "lines": 170,
+     "sloc": 127
+    },
+    {
+     "module": "lingshu_ng/store/edges.py",
+     "lines": 168,
+     "sloc": 142
+    },
+    {
+     "module": "lingshu_ng/gen/multi_seed.py",
+     "lines": 167,
+     "sloc": 138
+    },
+    {
+     "module": "lingshu_ng/nn/conv.py",
+     "lines": 165,
+     "sloc": 134
+    },
+    {
+     "module": "lingshu_ng/insight.py",
+     "lines": 164,
+     "sloc": 143
+    },
+    {
+     "module": "lingshu_ng/dedup.py",
+     "lines": 163,
+     "sloc": 127
+    },
+    {
+     "module": "lingshu_ng/world/sim.py",
+     "lines": 161,
+     "sloc": 128
+    },
+    {
+     "module": "lingshu_ng/world/multiview.py",
+     "lines": 153,
+     "sloc": 124
+    },
+    {
+     "module": "lingshu_ng/nn/infogap.py",
+     "lines": 151,
+     "sloc": 127
+    },
+    {
+     "module": "lingshu_ng/nn/ortho.py",
+     "lines": 150,
+     "sloc": 127
+    },
+    {
+     "module": "lingshu_ng/nn/train.py",
+     "lines": 149,
+     "sloc": 125
+    },
+    {
+     "module": "lingshu_ng/gen/composite.py",
+     "lines": 146,
+     "sloc": 122
+    },
+    {
+     "module": "lingshu_ng/world/skeleton.py",
+     "lines": 145,
+     "sloc": 110
+    },
+    {
+     "module": "lingshu_ng/nn/search.py",
+     "lines": 144,
+     "sloc": 123
+    },
+    {
+     "module": "lingshu_ng/nn/recon.py",
+     "lines": 143,
+     "sloc": 119
+    },
+    {
+     "module": "lingshu_ng/skills.py",
+     "lines": 143,
+     "sloc": 120
+    },
+    {
+     "module": "lingshu_ng/layers.py",
+     "lines": 142,
+     "sloc": 113
+    },
+    {
+     "module": "lingshu_ng/store/db.py",
+     "lines": 140,
+     "sloc": 113
+    },
+    {
+     "module": "lingshu_ng/_pathguard.py",
+     "lines": 135,
+     "sloc": 105
+    },
+    {
+     "module": "lingshu_ng/nn/compat/hex_hier.py",
+     "lines": 128,
+     "sloc": 96
+    },
+    {
+     "module": "lingshu_ng/reflect.py",
+     "lines": 124,
+     "sloc": 102
+    },
+    {
+     "module": "lingshu_ng/world/anchor_verify.py",
+     "lines": 124,
+     "sloc": 105
+    },
+    {
+     "module": "lingshu_ng/nn/cards.py",
+     "lines": 120,
+     "sloc": 103
+    },
+    {
+     "module": "lingshu_ng/gen/verify.py",
+     "lines": 116,
+     "sloc": 96
+    },
+    {
+     "module": "lingshu_ng/novelty.py",
+     "lines": 114,
+     "sloc": 88
+    },
+    {
+     "module": "lingshu_ng/compat_stubs.py",
+     "lines": 106,
+     "sloc": 89
+    },
+    {
+     "module": "lingshu_ng/gen/attrs.py",
+     "lines": 100,
+     "sloc": 87
+    },
+    {
+     "module": "lingshu_ng/world/validate.py",
+     "lines": 99,
+     "sloc": 75
+    },
+    {
+     "module": "lingshu_ng/compat_frame.py",
+     "lines": 97,
+     "sloc": 82
+    },
+    {
+     "module": "lingshu_ng/negative.py",
+     "lines": 97,
+     "sloc": 79
+    },
+    {
+     "module": "lingshu_ng/nn/compat/hex_gen.py",
+     "lines": 95,
+     "sloc": 65
+    },
+    {
+     "module": "lingshu_ng/nn/scenes.py",
+     "lines": 95,
+     "sloc": 80
+    },
+    {
+     "module": "lingshu_ng/store/meta.py",
+     "lines": 95,
+     "sloc": 74
+    },
+    {
+     "module": "lingshu_ng/subgraph.py",
+     "lines": 95,
+     "sloc": 80
+    },
+    {
+     "module": "lingshu_ng/nn/multimodal.py",
+     "lines": 89,
+     "sloc": 72
+    },
+    {
+     "module": "lingshu_ng/perception/verdict.py",
+     "lines": 88,
+     "sloc": 70
+    },
+    {
+     "module": "lingshu_ng/nn/compat/hex_text.py",
+     "lines": 84,
+     "sloc": 63
+    },
+    {
+     "module": "lingshu_ng/scheduler.py",
+     "lines": 74,
+     "sloc": 61
+    },
+    {
+     "module": "lingshu_ng/world/scene_relations.py",
+     "lines": 69,
+     "sloc": 54
+    },
+    {
+     "module": "lingshu_ng/numeric.py",
+     "lines": 63,
+     "sloc": 48
+    },
+    {
+     "module": "lingshu_ng/nn/compat/hex_composite.py",
+     "lines": 59,
+     "sloc": 41
+    },
+    {
+     "module": "lingshu_ng/gen/align_probe.py",
+     "lines": 57,
+     "sloc": 43
+    },
+    {
+     "module": "lingshu_ng/compat_gate.py",
+     "lines": 52,
+     "sloc": 38
+    },
+    {
+     "module": "lingshu_ng/store/__init__.py",
+     "lines": 52,
+     "sloc": 41
+    },
+    {
+     "module": "lingshu_ng/governance.py",
+     "lines": 51,
+     "sloc": 37
+    },
+    {
+     "module": "lingshu_ng/nn/compat/__init__.py",
+     "lines": 48,
+     "sloc": 35
+    },
+    {
+     "module": "lingshu_ng/compat_txguard.py",
+     "lines": 45,
+     "sloc": 36
+    },
+    {
+     "module": "lingshu_ng/escalation.py",
+     "lines": 44,
+     "sloc": 35
+    },
+    {
+     "module": "lingshu_ng/timecore.py",
+     "lines": 44,
+     "sloc": 30
+    },
+    {
+     "module": "lingshu_ng/nn/compat/rust_bridge.py",
+     "lines": 43,
+     "sloc": 29
+    },
+    {
+     "module": "lingshu_ng/nn/compat/hex_search.py",
+     "lines": 38,
+     "sloc": 25
+    },
+    {
+     "module": "lingshu_ng/compat_activation.py",
+     "lines": 34,
+     "sloc": 23
+    },
+    {
+     "module": "lingshu_ng/gen/ids.py",
+     "lines": 33,
+     "sloc": 24
+    },
+    {
+     "module": "lingshu_ng/world/__init__.py",
+     "lines": 21,
+     "sloc": 19
+    },
+    {
+     "module": "lingshu_ng/nn/__init__.py",
+     "lines": 17,
+     "sloc": 15
+    },
+    {
+     "module": "lingshu_ng/gen/__init__.py",
+     "lines": 13,
+     "sloc": 11
+    },
+    {
+     "module": "lingshu_ng/nn/compat/hex_recon.py",
+     "lines": 11,
+     "sloc": 7
+    },
+    {
+     "module": "lingshu_ng/nn/compat/stcnn.py",
+     "lines": 11,
+     "sloc": 8
+    },
+    {
+     "module": "lingshu_ng/__init__.py",
+     "lines": 9,
+     "sloc": 6
+    },
+    {
+     "module": "lingshu_ng/nn/compat/hex_ortho.py",
+     "lines": 9,
+     "sloc": 6
+    },
+    {
+     "module": "lingshu_ng/perception/__init__.py",
+     "lines": 9,
+     "sloc": 6
+    },
+    {
+     "module": "lingshu_ng/compat_condition_normalize.py",
+     "lines": 4,
+     "sloc": 3
+    }
+   ],
+   "functions": 1495,
+   "max_func": {
+    "func": "lingshu_ng/causal.py:_dfs_from@213",
+    "len": 48,
+    "cc": 15
+   },
+   "mean_func_len": 8.52,
+   "cc_top10": [
+    {
+     "func": "lingshu_ng/compat_frame.py:ingest_frame@61",
+     "len": 37,
+     "cc": 20
+    },
+    {
+     "func": "lingshu_ng/graphquery.py:recalc_structural_importance@205",
+     "len": 43,
+     "cc": 20
+    },
+    {
+     "func": "lingshu_ng/provenance.py:validate@125",
+     "len": 32,
+     "cc": 20
+    },
+    {
+     "func": "lingshu_ng/types.py:from_json@86",
+     "len": 31,
+     "cc": 20
+    },
+    {
+     "func": "lingshu_ng/engine.py:_find_duplicate@144",
+     "len": 24,
+     "cc": 18
+    },
+    {
+     "func": "lingshu_ng/exchange.py:_sanitize_node@98",
+     "len": 31,
+     "cc": 18
+    },
+    {
+     "func": "lingshu_ng/gen/layout.py:plan@195",
+     "len": 44,
+     "cc": 18
+    },
+    {
+     "func": "lingshu_ng/types.py:to_json@67",
+     "len": 17,
+     "cc": 18
+    },
+    {
+     "func": "lingshu_ng/compat_world.py:_w3_build@97",
+     "len": 35,
+     "cc": 17
+    },
+    {
+     "func": "lingshu_ng/nn/search.py:recursive_search@62",
+     "len": 45,
+     "cc": 17
+    }
+   ],
+   "cc_over_10": 53,
+   "cc_mean": 3.0,
+   "dup_rate": 0.0052,
+   "parse_errors": []
+  },
+  "ng": {
+   "available": true,
+   "scope": "lingshu_ng",
+   "modules": 109,
+   "total_lines": 19591,
+   "total_sloc": 16071,
+   "max_module": {
+    "module": "lingshu_ng/world/compat.py",
+    "lines": 752,
+    "sloc": 601
+   },
+   "module_lines": [
+    {
+     "module": "lingshu_ng/world/compat.py",
+     "lines": 752,
+     "sloc": 601
+    },
+    {
+     "module": "lingshu_ng/nn/net.py",
+     "lines": 507,
+     "sloc": 422
+    },
+    {
+     "module": "lingshu_ng/world/world_model.py",
+     "lines": 503,
+     "sloc": 431
+    },
+    {
+     "module": "lingshu_ng/compat_engine.py",
+     "lines": 488,
+     "sloc": 393
+    },
+    {
+     "module": "lingshu_ng/activation.py",
+     "lines": 472,
+     "sloc": 414
+    },
+    {
+     "module": "lingshu_ng/world/prediction.py",
+     "lines": 440,
+     "sloc": 378
+    },
+    {
+     "module": "lingshu_ng/engine.py",
+     "lines": 416,
+     "sloc": 356
+    },
+    {
+     "module": "lingshu_ng/causal.py",
+     "lines": 415,
+     "sloc": 366
+    },
+    {
+     "module": "lingshu_ng/compat.py",
+     "lines": 407,
+     "sloc": 319
+    },
+    {
+     "module": "lingshu_ng/world/raster.py",
+     "lines": 400,
+     "sloc": 336
+    },
+    {
+     "module": "lingshu_ng/compat_engine_ops.py",
+     "lines": 380,
+     "sloc": 281
+    },
+    {
+     "module": "lingshu_ng/store/textindex.py",
+     "lines": 362,
+     "sloc": 310
+    },
+    {
+     "module": "lingshu_ng/world/world_learner.py",
+     "lines": 346,
+     "sloc": 287
+    },
+    {
+     "module": "lingshu_ng/types.py",
+     "lines": 342,
+     "sloc": 283
+    },
+    {
+     "module": "lingshu_ng/store/nodes.py",
+     "lines": 340,
+     "sloc": 298
+    },
+    {
+     "module": "lingshu_ng/self_model.py",
+     "lines": 309,
+     "sloc": 263
+    },
+    {
+     "module": "lingshu_ng/retrieval.py",
+     "lines": 293,
+     "sloc": 250
+    },
+    {
+     "module": "lingshu_ng/compat_world_sim.py",
+     "lines": 290,
+     "sloc": 230
+    },
+    {
+     "module": "lingshu_ng/world/spacetime.py",
+     "lines": 288,
+     "sloc": 237
+    },
+    {
+     "module": "lingshu_ng/expansion.py",
+     "lines": 287,
+     "sloc": 249
+    },
+    {
+     "module": "lingshu_ng/store/schema.py",
+     "lines": 278,
+     "sloc": 228
+    },
+    {
+     "module": "lingshu_ng/provenance.py",
+     "lines": 274,
+     "sloc": 239
+    },
+    {
+     "module": "lingshu_ng/compat_world.py",
+     "lines": 271,
+     "sloc": 237
+    },
+    {
+     "module": "lingshu_ng/graphquery.py",
+     "lines": 259,
+     "sloc": 231
+    },
+    {
+     "module": "lingshu_ng/gen/pack_certify.py",
+     "lines": 253,
+     "sloc": 205
+    },
+    {
+     "module": "lingshu_ng/world/catalog.py",
+     "lines": 248,
+     "sloc": 207
+    },
+    {
+     "module": "lingshu_ng/gen/layout.py",
+     "lines": 238,
+     "sloc": 198
+    },
+    {
+     "module": "lingshu_ng/gen/cellpack.py",
+     "lines": 230,
+     "sloc": 190
+    },
+    {
+     "module": "lingshu_ng/decay.py",
+     "lines": 226,
+     "sloc": 193
+    },
+    {
+     "module": "lingshu_ng/world/anchor_graph.py",
+     "lines": 226,
+     "sloc": 174
+    },
+    {
+     "module": "lingshu_ng/world/curiosity.py",
+     "lines": 224,
+     "sloc": 186
+    },
+    {
+     "module": "lingshu_ng/world/scene_sim.py",
+     "lines": 218,
+     "sloc": 168
+    },
+    {
+     "module": "lingshu_ng/nn/stcnn.py",
+     "lines": 215,
+     "sloc": 172
+    },
+    {
+     "module": "lingshu_ng/world/geometry.py",
+     "lines": 215,
+     "sloc": 169
+    },
+    {
+     "module": "lingshu_ng/gen/hexgen.py",
+     "lines": 210,
+     "sloc": 173
+    },
+    {
+     "module": "lingshu_ng/world/scene.py",
+     "lines": 210,
+     "sloc": 159
+    },
+    {
+     "module": "lingshu_ng/gate.py",
+     "lines": 208,
+     "sloc": 176
+    },
+    {
+     "module": "lingshu_ng/dedup.py",
+     "lines": 197,
+     "sloc": 152
+    },
+    {
+     "module": "lingshu_ng/store/registry.py",
+     "lines": 197,
+     "sloc": 164
+    },
+    {
+     "module": "lingshu_ng/exchange.py",
+     "lines": 190,
+     "sloc": 154
+    },
+    {
+     "module": "lingshu_ng/perception/conditions.py",
+     "lines": 186,
+     "sloc": 155
+    },
+    {
+     "module": "lingshu_ng/world/camera.py",
+     "lines": 185,
+     "sloc": 146
+    },
+    {
+     "module": "lingshu_ng/nn/compat/hex_cnn.py",
+     "lines": 182,
+     "sloc": 133
+    },
+    {
+     "module": "lingshu_ng/nn/hexgrid.py",
+     "lines": 181,
+     "sloc": 145
+    },
+    {
+     "module": "lingshu_ng/nn/text.py",
+     "lines": 181,
+     "sloc": 153
+    },
+    {
+     "module": "lingshu_ng/world/voxel.py",
+     "lines": 181,
+     "sloc": 146
+    },
+    {
+     "module": "lingshu_ng/world/seven_layer_loop.py",
+     "lines": 176,
+     "sloc": 141
+    },
+    {
+     "module": "lingshu_ng/nn/render.py",
+     "lines": 175,
+     "sloc": 141
+    },
+    {
+     "module": "lingshu_ng/nn/compat/hex_train.py",
+     "lines": 170,
+     "sloc": 127
+    },
+    {
+     "module": "lingshu_ng/store/edges.py",
+     "lines": 170,
+     "sloc": 142
+    },
+    {
+     "module": "lingshu_ng/gen/multi_seed.py",
+     "lines": 167,
+     "sloc": 138
+    },
+    {
+     "module": "lingshu_ng/nn/conv.py",
+     "lines": 165,
+     "sloc": 134
+    },
+    {
+     "module": "lingshu_ng/insight.py",
+     "lines": 164,
+     "sloc": 143
+    },
+    {
+     "module": "lingshu_ng/world/sim.py",
+     "lines": 161,
+     "sloc": 128
+    },
+    {
+     "module": "lingshu_ng/world/multiview.py",
+     "lines": 153,
+     "sloc": 124
+    },
+    {
+     "module": "lingshu_ng/nn/infogap.py",
+     "lines": 151,
+     "sloc": 127
+    },
+    {
+     "module": "lingshu_ng/nn/ortho.py",
+     "lines": 150,
+     "sloc": 127
+    },
+    {
+     "module": "lingshu_ng/nn/train.py",
+     "lines": 149,
+     "sloc": 125
+    },
+    {
+     "module": "lingshu_ng/gen/composite.py",
+     "lines": 146,
+     "sloc": 122
+    },
+    {
+     "module": "lingshu_ng/store/db.py",
+     "lines": 146,
+     "sloc": 118
+    },
+    {
+     "module": "lingshu_ng/world/skeleton.py",
+     "lines": 145,
+     "sloc": 110
+    },
+    {
+     "module": "lingshu_ng/nn/search.py",
+     "lines": 144,
+     "sloc": 123
+    },
+    {
+     "module": "lingshu_ng/nn/recon.py",
+     "lines": 143,
+     "sloc": 119
+    },
+    {
+     "module": "lingshu_ng/skills.py",
+     "lines": 143,
+     "sloc": 120
+    },
+    {
+     "module": "lingshu_ng/layers.py",
+     "lines": 142,
+     "sloc": 113
+    },
+    {
+     "module": "lingshu_ng/_pathguard.py",
+     "lines": 135,
+     "sloc": 105
+    },
+    {
+     "module": "lingshu_ng/nn/compat/hex_hier.py",
+     "lines": 128,
+     "sloc": 96
+    },
+    {
+     "module": "lingshu_ng/reflect.py",
+     "lines": 124,
+     "sloc": 102
+    },
+    {
+     "module": "lingshu_ng/world/anchor_verify.py",
+     "lines": 124,
+     "sloc": 105
+    },
+    {
+     "module": "lingshu_ng/nn/cards.py",
+     "lines": 120,
+     "sloc": 103
+    },
+    {
+     "module": "lingshu_ng/gen/verify.py",
+     "lines": 116,
+     "sloc": 96
+    },
+    {
+     "module": "lingshu_ng/novelty.py",
+     "lines": 114,
+     "sloc": 88
+    },
+    {
+     "module": "lingshu_ng/compat_stubs.py",
+     "lines": 106,
+     "sloc": 89
+    },
+    {
+     "module": "lingshu_ng/gen/attrs.py",
+     "lines": 100,
+     "sloc": 87
+    },
+    {
+     "module": "lingshu_ng/world/validate.py",
+     "lines": 99,
+     "sloc": 75
+    },
+    {
+     "module": "lingshu_ng/compat_frame.py",
+     "lines": 97,
+     "sloc": 82
+    },
+    {
+     "module": "lingshu_ng/negative.py",
+     "lines": 97,
+     "sloc": 79
+    },
+    {
+     "module": "lingshu_ng/nn/compat/hex_gen.py",
+     "lines": 95,
+     "sloc": 65
+    },
+    {
+     "module": "lingshu_ng/nn/scenes.py",
+     "lines": 95,
+     "sloc": 80
+    },
+    {
+     "module": "lingshu_ng/store/meta.py",
+     "lines": 95,
+     "sloc": 74
+    },
+    {
+     "module": "lingshu_ng/subgraph.py",
+     "lines": 95,
+     "sloc": 80
+    },
+    {
+     "module": "lingshu_ng/nn/multimodal.py",
+     "lines": 89,
+     "sloc": 72
+    },
+    {
+     "module": "lingshu_ng/perception/verdict.py",
+     "lines": 88,
+     "sloc": 70
+    },
+    {
+     "module": "lingshu_ng/nn/compat/hex_text.py",
+     "lines": 84,
+     "sloc": 63
+    },
+    {
+     "module": "lingshu_ng/scheduler.py",
+     "lines": 74,
+     "sloc": 61
+    },
+    {
+     "module": "lingshu_ng/world/scene_relations.py",
+     "lines": 69,
+     "sloc": 54
+    },
+    {
+     "module": "lingshu_ng/numeric.py",
+     "lines": 63,
+     "sloc": 48
+    },
+    {
+     "module": "lingshu_ng/nn/compat/hex_composite.py",
+     "lines": 59,
+     "sloc": 41
+    },
+    {
+     "module": "lingshu_ng/gen/align_probe.py",
+     "lines": 57,
+     "sloc": 43
+    },
+    {
+     "module": "lingshu_ng/compat_gate.py",
+     "lines": 52,
+     "sloc": 38
+    },
+    {
+     "module": "lingshu_ng/store/__init__.py",
+     "lines": 52,
+     "sloc": 41
+    },
+    {
+     "module": "lingshu_ng/governance.py",
+     "lines": 51,
+     "sloc": 37
+    },
+    {
+     "module": "lingshu_ng/nn/compat/__init__.py",
+     "lines": 48,
+     "sloc": 35
+    },
+    {
+     "module": "lingshu_ng/compat_txguard.py",
+     "lines": 45,
+     "sloc": 36
+    },
+    {
+     "module": "lingshu_ng/escalation.py",
+     "lines": 44,
+     "sloc": 35
+    },
+    {
+     "module": "lingshu_ng/timecore.py",
+     "lines": 44,
+     "sloc": 30
+    },
+    {
+     "module": "lingshu_ng/nn/compat/rust_bridge.py",
+     "lines": 43,
+     "sloc": 29
+    },
+    {
+     "module": "lingshu_ng/nn/compat/hex_search.py",
+     "lines": 38,
+     "sloc": 25
+    },
+    {
+     "module": "lingshu_ng/compat_activation.py",
+     "lines": 34,
+     "sloc": 23
+    },
+    {
+     "module": "lingshu_ng/gen/ids.py",
+     "lines": 33,
+     "sloc": 24
+    },
+    {
+     "module": "lingshu_ng/world/__init__.py",
+     "lines": 21,
+     "sloc": 19
+    },
+    {
+     "module": "lingshu_ng/nn/__init__.py",
+     "lines": 17,
+     "sloc": 15
+    },
+    {
+     "module": "lingshu_ng/gen/__init__.py",
+     "lines": 13,
+     "sloc": 11
+    },
+    {
+     "module": "lingshu_ng/nn/compat/hex_recon.py",
+     "lines": 11,
+     "sloc": 7
+    },
+    {
+     "module": "lingshu_ng/nn/compat/stcnn.py",
+     "lines": 11,
+     "sloc": 8
+    },
+    {
+     "module": "lingshu_ng/__init__.py",
+     "lines": 9,
+     "sloc": 6
+    },
+    {
+     "module": "lingshu_ng/nn/compat/hex_ortho.py",
+     "lines": 9,
+     "sloc": 6
+    },
+    {
+     "module": "lingshu_ng/perception/__init__.py",
+     "lines": 9,
+     "sloc": 6
+    },
+    {
+     "module": "lingshu_ng/compat_condition_normalize.py",
+     "lines": 4,
+     "sloc": 3
+    }
+   ],
+   "functions": 1524,
+   "max_func": {
+    "func": "lingshu_ng/causal.py:_dfs_from@253",
+    "len": 48,
+    "cc": 15
+   },
+   "mean_func_len": 8.52,
+   "cc_top10": [
+    {
+     "func": "lingshu_ng/compat_frame.py:ingest_frame@61",
+     "len": 37,
+     "cc": 20
+    },
+    {
+     "func": "lingshu_ng/graphquery.py:recalc_structural_importance@205",
+     "len": 43,
+     "cc": 20
+    },
+    {
+     "func": "lingshu_ng/provenance.py:validate@125",
+     "len": 32,
+     "cc": 20
+    },
+    {
+     "func": "lingshu_ng/types.py:from_json@86",
+     "len": 31,
+     "cc": 20
+    },
+    {
+     "func": "lingshu_ng/engine.py:_find_duplicate@145",
+     "len": 24,
+     "cc": 18
+    },
+    {
+     "func": "lingshu_ng/exchange.py:_sanitize_node@98",
+     "len": 31,
+     "cc": 18
+    },
+    {
+     "func": "lingshu_ng/gen/layout.py:plan@195",
+     "len": 44,
+     "cc": 18
+    },
+    {
+     "func": "lingshu_ng/types.py:to_json@67",
+     "len": 17,
+     "cc": 18
+    },
+    {
+     "func": "lingshu_ng/compat_world.py:_w3_build@97",
+     "len": 35,
+     "cc": 17
+    },
+    {
+     "func": "lingshu_ng/nn/search.py:recursive_search@62",
+     "len": 45,
+     "cc": 17
+    }
+   ],
+   "cc_over_10": 53,
+   "cc_mean": 3.0,
+   "dup_rate": 0.0051,
+   "parse_errors": []
+  }
+ },
+ "legacy_bench": {}
+}

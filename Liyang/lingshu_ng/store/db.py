@@ -20,6 +20,7 @@ import threading
 from contextlib import contextmanager
 from typing import Any, Iterator, List, Optional, Sequence
 
+from .. import dedup
 from . import schema
 
 __all__ = ["Database"]
@@ -45,6 +46,38 @@ class Database:
             self._pragma(f"PRAGMA busy_timeout={int(timeout * 1000)}")
         self.migrated = schema.migrate(self.conn)
         self.closed = False
+        self._lazy_ready = not schema.lazy_indexes_missing(self.conn)
+
+    @property
+    def lazy_ready(self) -> bool:
+        """惰性二级索引（S5）是否已建齐——齐则写入时即算 dedup_key，否则免去重写入留空待补。"""
+        return self._lazy_ready
+
+    def need_lazy_indexes(self) -> None:
+        """S5：读路径要用惰性二级索引前调用——缺则在一个写事务里先补齐待补的 dedup_key、再一次建齐索引，此后零开销。
+        只读库/锁超时则放弃本次（查询照常正确，只是不走索引），下次再试。"""
+        if self._lazy_ready:
+            return
+        try:
+            with self.tx() as c:
+                if schema.lazy_indexes_missing(c):
+                    fill_keys(c)
+                    schema.ensure_lazy_indexes(c)
+            self._lazy_ready = True
+        except sqlite3.OperationalError:
+            pass
+
+    def need_keys(self) -> None:
+        """M5 按键查之前：惰性索引齐全，且库里没有待补的 dedup_key（其它连接灌库期的占位、旧代码裸写入的 NULL）。"""
+        self.need_lazy_indexes()
+        with self.lock:
+            if self.conn.execute(f"SELECT 1 FROM nodes WHERE {schema.KEY_MISSING} LIMIT 1").fetchone() is None:
+                return
+            try:
+                with self.tx() as c:
+                    fill_keys(c)
+            except sqlite3.OperationalError:
+                pass
 
     def _pragma(self, sql: str) -> None:
         try:
@@ -84,6 +117,12 @@ class Database:
             with self.lock:
                 rows = cur.fetchmany(batch)
 
+    def fingerprint(self) -> tuple:
+        """提交指纹 (data_version, total_changes)：其它连接的任何提交、本连接的任何增删改（含触发器、
+        回滚掉的改动）都会令它变化——相等 ⇒ 自上次取指纹以来库内容未变（派生结果可安全复用）。"""
+        with self.lock:
+            return (int(self.conn.execute("PRAGMA data_version").fetchone()[0]), int(self.conn.total_changes))
+
     # ------------------------------------------------------------ 写
     def run(self, sql: str, params: Sequence[Any] = ()) -> int:
         """单语句写（自带事务），返回受影响行数。"""
@@ -106,6 +145,20 @@ class Database:
             if not self.closed:
                 self.conn.close()
                 self.closed = True
+
+
+def fill_keys(c: sqlite3.Connection, batch: int = 4096) -> int:
+    """补齐待补的 dedup_key（NULL 或占位；按 rowid 分批读、批量规范化，与逐条 :func:`dedup.content_key` 相同；瞬时内存与批大小成正比）。
+    返回补的行数。须在写事务内调用。"""
+    last, n = 0, 0
+    while True:
+        rows = c.execute(f"SELECT rowid, content FROM nodes WHERE rowid > ? AND {schema.KEY_MISSING} "
+                         "ORDER BY rowid LIMIT ?", (last, batch)).fetchall()
+        if not rows:
+            return n
+        c.executemany("UPDATE nodes SET dedup_key=? WHERE rowid=?",
+                      zip(dedup.content_keys([r[1] for r in rows]), [r[0] for r in rows]))
+        last, n = rows[-1][0], n + len(rows)
 
 
 class _Tx:

@@ -164,7 +164,10 @@ def test_schema_migration_includes_indexes_and_reopen_is_read_only(tmp_path):
     s = Store(db)
     assert not any(missing_parts(s.db.conn).values())
     assert s.nodes.get("old").content == "旧内容"
-    assert s.db.scalar("SELECT dedup_key FROM nodes WHERE id='old'")       # 旧行补齐内容键
+    # 旧行补齐内容键：S5 惰性——首次按键查（M5）之前补齐，并能被精确去重查到
+    from lingshu_ng import dedup as _dd
+    assert [n.id for n in s.nodes.by_key(_dd.content_key("旧内容"))] == ["old"]
+    assert s.db.scalar("SELECT dedup_key FROM nodes WHERE id='old'") == _dd.content_key("旧内容")
     s.close()
     s2 = Store(db)
     assert s2.db.conn.total_changes == 0 and not any(s2.db.migrated.values())
