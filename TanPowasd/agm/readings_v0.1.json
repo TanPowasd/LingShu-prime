@@ -1,0 +1,50 @@
+{
+ "asymmetry": {
+  "W(咖啡→地铁)": 0.2564,
+  "W(地铁→咖啡)": 0.1533
+ },
+ "forgetting": {
+  "t+1": {
+   "once": 0.707,
+   "consolidated": 0.931
+  },
+  "t+10": {
+   "once": 0.302,
+   "consolidated": 0.781
+  },
+  "t+100": {
+   "once": 0.1,
+   "consolidated": 0.621
+  },
+  "s(consolidated)": 3.846,
+  "fixed": true
+ },
+ "spacing": {
+  "massed_s": 0.381,
+  "spaced_s": 3.459
+ },
+ "merge": {
+  "nodes": 2,
+  "mentions": [
+   2,
+   1
+  ],
+  "s": [
+   0.95,
+   0.0
+  ]
+ },
+ "association": {
+  "query": "奶奶家的院子",
+  "vector_only": [
+   "奶奶家的院子",
+   "地铁换乘路线",
+   "夏天的蝉鸣"
+  ],
+  "spreading": [
+   "奶奶家的院子",
+   "外婆做的桂花糕",
+   "公司周会纪要"
+  ]
+ }
+}
