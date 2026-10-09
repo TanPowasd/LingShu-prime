@@ -4,7 +4,7 @@
 不是打补丁，而是从零重写身体侧的记忆引擎（lingshu/core，旧版 core.py 4483 行单体 + world_facade 853 行），
 新实现放在 `lingshu_ng/`（独立包，不 import 旧 lingshu.core），并提供 `lingshu_ng.compat` 兼容门面，
 使旧 API 调用方（含 tests/ 下 core 相关测试）可在 `LINGSHU_IMPL=ng` 下跑通。
-“远超旧项目”由自建测评 `evalsuite/` 量化证明：旧 = 上游 2bb8291，修补版 = integrated-v2，新 = ng。
+与旧项目的对比由自建测评 `evalsuite/` 给出读数（旧 = 上游 2bb8291，修补版 = integrated-v2，新 = ng）。注意：该测评的题目与判分由我方设计，存在自评偏差，不能单独作为“优于旧项目”的证据；外部基准与自建测评的分层说明见本目录 `README.md` §4、§6（2026-10-09 按外部审查意见改写此句）。
 
 ## 架构（新）
 - `lingshu_ng/store/`：schema（单一声明式表定义 + 版本迁移）、连接管理（线程本地、显式 :memory: 共享）、仓储层（Node/Edge 仓储，参数化 SQL，绝无 LIKE 拼接）。

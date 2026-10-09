@@ -71,9 +71,14 @@ def test_compat_surface_covers_legacy_tests():
     import re
     from lingshu_ng.nn import compat
     tests = pathlib.Path(__file__).resolve().parents[2] / "tests"
+    legacy = sorted(tests.glob("test_hex_*.py")) + sorted(tests.glob("test_stcnn_*.py"))
+    if not tests.is_dir() or not legacy:
+        # 本测试读取上游旧测试目录 tests/ 中的 import 语句来核对 compat 表面；
+        # 发布包/独立检出不含上游 tests/，此时无从核对，跳过而不是报失败。
+        pytest.skip(f"上游旧测试目录 {tests} 不存在或不含 test_hex_*/test_stcnn_*（发布包未收录上游 tests/），"
+                    "无法核对 compat 表面；把上游 tests/ 放到仓库根即可启用本测试")
     missing = []
-    for f in sorted(tests.glob("test_hex_*.py")) + sorted(tests.glob("test_stcnn_*.py")) + \
-            [tests / "test_rust_bridge_plan.py"]:
+    for f in legacy + [tests / "test_rust_bridge_plan.py"]:
         src = f.read_text(encoding="utf-8")
         for mod, names in re.findall(r"from lingshu\.nn\.(\w+) import \(?([^)]*?)\)?\n(?!\s+\w)", src, re.S):
             m = __import__(f"lingshu_ng.nn.compat.{mod}", fromlist=["x"])

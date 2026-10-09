@@ -15,7 +15,7 @@ dependencies = []
 [project.optional-dependencies]
 # 轻核承诺：core 纯标准库（不装任何 extras 也可运行）
 # 版本区间依据＝2026-10-08 实测矩阵（Python 3.12.x：numpy 2.3.5/2.4.2/2.5.3 · Pillow 12.2.0/12.3.0），
-# 区间外未测不承诺；矩阵与说明见 README「代码主体」节（外部报告 issue #4）。
+# 区间外未测不承诺（外部报告 issue #4）；本发布目录的安装与依赖说明见 Liyang/README.md §3。
 # world 的 render()（ng world.compat / 旧 world3d 等）用 Pillow（#253）
 world = ["numpy>=2.3.5,<2.6", "Pillow>=12.2,<13"]
 nn = ["numpy>=2.3.5,<2.6", "Pillow>=12.2,<13"]
@@ -27,6 +27,9 @@ dev = ["pytest"]
 accel = ["scipy"]
 data = ["pyarrow"]
 diffusion = ["torch", "diffusers"]
+# 发布副本新增（Liyang/，ng 源仓库未改）：ng 可选语义第二路 lingshu_ng/embed（ONNX 编码器）。
+# 只声明包名不设区间、不进 full；另需自备 bge 系 ONNX 模型目录并设 LINGSHU_NG_EMBED_MODEL，缺依赖时引擎退回纯词面。
+semantic = ["onnxruntime", "tokenizers"]
 
 [tool.setuptools.packages.find]
 include = ["lingshu*"]
