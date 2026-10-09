@@ -1,0 +1,50 @@
+{
+ "edges_independent": {
+  "|v(树→糕)|": 0.9,
+  "|v(糕→树)|": 0.3,
+  "cos(正反方向)": -0.083
+ },
+ "path_before_learning": {
+  "S(按权重加权)": 0.8692,
+  "乘积(对照)": 0.648,
+  "算术平均(对照)": 0.8667,
+  "直度φ": 0.562
+ },
+ "straightening_phi_per_walk": [
+  0.733,
+  0.843,
+  0.909,
+  0.948,
+  0.971
+ ],
+ "shortcut": {
+  "w": 0.8692,
+  "cos(捷径方向, 路径合矢量)": 1.0,
+  "via_path": "家→院子→桂花树→桂花糕",
+  "path_still_stored": true
+ },
+ "best_path(家→桂花糕)": {
+  "path": [
+   "家",
+   "院子",
+   "桂花树",
+   "桂花糕"
+  ],
+  "S": 0.8692
+ },
+ "after_mid_edge_weakened": {
+  "stale_detected": true,
+  "shortcut_w_refreshed": 0.8579,
+  "best_path_now": [
+   "家",
+   "院子",
+   "桂花树",
+   "桂花糕"
+  ],
+  "S": 0.8579
+ },
+ "cycle_residual": {
+  "一致回路 A→B→C→A": 0.0,
+  "随机方向回路 X→Y→Z→X": 0.4281
+ }
+}
