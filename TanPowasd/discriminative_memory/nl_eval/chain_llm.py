@@ -196,6 +196,7 @@ def main():
     ap.add_argument('--limit', type=int, default=0)
     ap.add_argument('--workers', type=int, default=8)
     ap.add_argument('--model', default=MODEL)
+    ap.add_argument('--out-name', default='chain_readings_llm.json')
     ap.add_argument('--dry', action='store_true', help='不发请求：只数调用并打印一条样例提示')
     args = ap.parse_args()
     sysmsg = load_official(args.bench)
@@ -211,7 +212,13 @@ def main():
     sys.path.insert(0, str(Path(args.bench) / 'chain' / 'tools'))
     import probe_judge as J
     J.OUT, J.RUNS = data, RES / 'runs'
-    llm = None if args.dry else LLM(args.model)
+    if args.dry:
+        llm = None
+    else:
+        from cline_pool import ClinePool          # 多 key 池；无 key 环境变量时退回单 key 代理模式
+        llm = ClinePool(args.model)
+        if not llm.proxy_mode and args.workers == 8:
+            args.workers = llm.workers
     total = 0
     readings = []
     for arm in args.arms.split(','):
@@ -278,7 +285,7 @@ def main():
         cal = J.calibration([r['all'] for r in readings], sut_arm='llm_rrf3')
     except Exception as e:   # noqa: BLE001
         cal = {'error': f'{type(e).__name__}: {e}'}
-    (RES / 'chain_readings_llm.json').write_text(json.dumps(dict(model=args.model, readings=readings,
+    (RES / args.out_name).write_text(json.dumps(dict(model=args.model, readings=readings,
                                                                  calibration=cal), ensure_ascii=False, indent=1),
                                                 encoding='utf-8')
     print(json.dumps(cal, ensure_ascii=False)[:400])
