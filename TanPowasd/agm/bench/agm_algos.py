@@ -355,3 +355,123 @@ class ACGraph:
             for c in self.p2c[p]:
                 sc[c] = sc.get(c, 0.0) + self.DECAY * p2[p] / len(self.p2c[p])
         return sorted(sc, key=lambda c: -sc[c])
+
+
+# ---------------- 纯 SAM 图（不依赖 BM25 / AGM / 预设字典） ----------------
+class SAMGraph:
+    """后缀自动机 + 双向带权连通图。
+
+    短语节点不靠字典：每个新块加入前先在已有历史的 SAM 上做匹配统计量，
+    与前文重复的右端极大子串（≥MINLEN 字）就是这个块的短语节点（块→短语边）。
+    短语→块：沿后缀链接树取该子串的全部出现位置，换算成块号（endpos），超过 cap 个块视为太泛、不走。
+    权重与 AC 图相同：短语→块 1/df，块→短语 idf 占比；查询入口 = 查询在 SAM 上的极大匹配。
+    """
+    HOP_C, HOP_P, DECAY = 30, 20, 0.5
+
+    def __init__(self, cap_frac, minlen=3):
+        self.cap_frac, self.minlen = cap_frac, minlen
+        self.nxt, self.link, self.ln, self.own = [{}], [-1], [0], [-1]
+        self.kids = [set()]
+        self.last = 0
+        self.c2p = []
+        self.N = 0
+
+    def _ext(self, c, cid):
+        nxt, link, ln, kids = self.nxt, self.link, self.ln, self.kids
+        cur = len(ln)
+        ln.append(ln[self.last] + 1); link.append(-1); nxt.append({}); self.own.append(cid); kids.append(set())
+        p = self.last
+        while p != -1 and c not in nxt[p]:
+            nxt[p][c] = cur
+            p = link[p]
+        if p == -1:
+            link[cur] = 0; kids[0].add(cur)
+        else:
+            q = nxt[p][c]
+            if ln[p] + 1 == ln[q]:
+                link[cur] = q; kids[q].add(cur)
+            else:
+                cl = len(ln)
+                ln.append(ln[p] + 1); link.append(link[q]); nxt.append(dict(nxt[q])); self.own.append(-1); kids.append(set())
+                kids[link[q]].discard(q); kids[link[q]].add(cl)
+                while p != -1 and nxt[p].get(c) == q:
+                    nxt[p][c] = cl
+                    p = link[p]
+                link[q] = link[cur] = cl
+                kids[cl].update((q, cur))
+        self.last = cur
+
+    def _matches(self, q):
+        nxt, link, ln = self.nxt, self.link, self.ln
+        v, l, L = 0, 0, []
+        for c in q:
+            while v and c not in nxt[v]:
+                v = link[v]; l = ln[v]
+            if c in nxt[v]:
+                v = nxt[v][c]; l += 1
+            else:
+                v, l = 0, 0
+            L.append(l)
+        return {q[i - l + 1: i + 1] for i, l in enumerate(L)
+                if l >= self.minlen and (i + 1 == len(L) or L[i + 1] != l + 1)}
+
+    def add_chunk(self, s):
+        i = self.N
+        self.c2p.append(self._matches(s) if i else set())
+        for ch in s:
+            self._ext(ch, i)
+        self._ext(SEP, -1)
+        self.N += 1
+        return i
+
+    def occ(self, p, cap):
+        """子串 p 出现在哪些块；位置数超过 4·cap 直接判为太泛（返回 None）。"""
+        v = 0
+        for ch in p:
+            v = self.nxt[v].get(ch)
+            if v is None:
+                return set()
+        out, st, seen = set(), [v], 0
+        while st:
+            u = st.pop()
+            if self.own[u] >= 0:
+                out.add(self.own[u]); seen += 1
+                if seen > 4 * cap:
+                    return None
+            st.extend(self.kids[u])
+        return out if len(out) <= cap else None
+
+    def rank(self, q):
+        if not self.N:
+            return []
+        N, cap = self.N, max(2, int(self.cap_frac * self.N))
+        memo = {}
+
+        def oc(p):
+            if p not in memo:
+                memo[p] = self.occ(p, cap)
+            return memo[p]
+        idf = lambda d: math.log(1 + N / d)
+        a0 = {}
+        for p in self._matches(q):
+            o = oc(p)
+            if o:
+                a0[p] = len(p) * idf(len(o))
+        c1 = collections.defaultdict(float)
+        for p, v in a0.items():
+            for c in memo[p]:
+                c1[c] += v / len(memo[p])
+        top_c = sorted(c1, key=lambda c: -c1[c])[: self.HOP_C]
+        p2 = collections.defaultdict(float)
+        for c in top_c:
+            ps = [(p, oc(p)) for p in self.c2p[c] if p not in a0]
+            ps = [(p, len(o)) for p, o in ps if o]
+            tot = sum(idf(d) for _, d in ps) or 1.0
+            for p, d in ps:
+                p2[p] += c1[c] * idf(d) / tot
+        sc = dict(c1)
+        for p in sorted(p2, key=lambda p: -p2[p])[: self.HOP_P]:
+            o = memo[p]
+            for c in o:
+                sc[c] = sc.get(c, 0.0) + self.DECAY * p2[p] / len(o)
+        return sorted(sc, key=lambda c: -sc[c])

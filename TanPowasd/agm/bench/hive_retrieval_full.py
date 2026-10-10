@@ -78,6 +78,9 @@ def main():
     for t in texts:
         acg.add_chunk(t)
     acg.sleep()
+    samg = X.SAMGraph(CAP_FRAC)                   # 纯 SAM 图（短语节点由 SAM 自动发现）
+    for t in texts:
+        samg.add_chunk(t)
     acg2 = X.ACGraph(CAP_FRAC, top=None)          # 全字典变体：块里所有合格短语都进字典
     for t in texts:
         acg2.add_chunk(t)
@@ -108,6 +111,7 @@ def main():
         orders["AGM-AC种子"][qid] = agm.rank_seeds(s_ac) if s_ac else o_agm
         orders["AC图"][qid] = acg.rank(qn)
         orders["AC图-全字典"][qid] = acg2.rank(qn)
+        orders["SAM图"][qid] = samg.rank(qn)
         orders["RRF(BM25,AC图)"][qid] = X.rrf([o_bm, orders["AC图"][qid]])
         orders["RRF(BM25,AGM)"][qid] = X.rrf([o_bm, o_agm])
         orders["RRF(BM25,AGM,SAM)"][qid] = X.rrf([o_bm, o_agm, o_sam])
