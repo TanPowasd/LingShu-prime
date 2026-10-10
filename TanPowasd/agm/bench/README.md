@@ -185,3 +185,18 @@ python TanPowasd/agm/bench/hive_e2e_v2.py <hive-memory-bench 路径> --mix 0.5  
 | AGM-学习v2 对 AGM-静态 | 4 / 11 | 0.12 |
 
 所以：双通道胜过纯窗口、AGM 结构边胜过 BM25，这两条站得住；**「近因+AGM 胜过近因+BM25」不能宣称**，上面 v2 结论第 1 条以本表为准。
+
+
+## 官方管线（生成器＋判官）主轮 92 题 — 2026-10-10
+
+`python hive_official.py gen <bench> --arm 直读|BM25|AGM` → `score_sut.py build out_<臂> real_<臂>` → `semantic.py prepare real_<臂> --select semantic` → `python hive_official.py judge <bench> real_<臂>` → `semantic.py finalize` → `score_sut.py report out_<臂> real_<臂>`。
+生成器与语义判官都是 deepseek-v4.1-flash（temp 0）；作答契约逐字取自基准；检索臂预算 8,000 字。
+
+| 臂 | 通过 | 开放题 o | 客观题 q |
+|:--|--:|--:|--:|
+| 直读（全文 6 万字） | 33/92 | 21/54 | 12/38 |
+| AGM | 24/92 | 12/54 | 12/38 |
+| BM25 | 18/92 | 9/54 | 9/38 |
+
+配对符号检验（逐题）：AGM vs BM25 11 胜 5 负 p=0.21（不显著）；直读 vs AGM 17/8 p=0.11；直读 vs BM25 20/5 p=0.004。
+口径差异：只有 1 个判官且与生成器同模型（官方要求 ≥2 判官）；未跑 L2 依据契合判官（只会把 pass 降为 review）。校准：官方 README 里 DeepSeek V4.1 Flash 长上下文主轮 43/92，我们的直读 33/92，说明本管线约严 10 题，臂间比较仍同口径。主轮答案键已公开，有污染风险。

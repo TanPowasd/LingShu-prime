@@ -1,0 +1,27 @@
+{
+ "bench": "hive-memory-bench 72130ac main round 92",
+ "generator": "cline-pass/deepseek-v4.1-flash temp 0",
+ "judge": "same model, single semantic judge (official wants >=2); L2 cite judge not run",
+ "budget_chars": 8000,
+ "pass": {
+  "直读(全文)": "33/92",
+  "BM25": "18/92",
+  "AGM": "24/92"
+ },
+ "open_o": {
+  "直读": "21/54",
+  "BM25": "9/54",
+  "AGM": "12/54"
+ },
+ "objective_q": {
+  "直读": "12/38",
+  "BM25": "9/38",
+  "AGM": "12/38"
+ },
+ "paired_sign": {
+  "AGM vs BM25": "11/5 p=0.21",
+  "直读 vs AGM": "17/8 p=0.108",
+  "直读 vs BM25": "20/5 p=0.004"
+ },
+ "calibration": "official README: DeepSeek V4.1 Flash long-context main round 43/92 (multi-judge); our 直读 33/92 -> our single-judge pipeline is stricter by ~10"
+}
