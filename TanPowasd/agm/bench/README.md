@@ -200,3 +200,27 @@ python TanPowasd/agm/bench/hive_e2e_v2.py <hive-memory-bench 路径> --mix 0.5  
 
 配对符号检验（逐题）：AGM vs BM25 11 胜 5 负 p=0.21（不显著）；直读 vs AGM 17/8 p=0.11；直读 vs BM25 20/5 p=0.004。
 口径差异：只有 1 个判官且与生成器同模型（官方要求 ≥2 判官）；未跑 L2 依据契合判官（只会把 pass 降为 review）。校准：官方 README 里 DeepSeek V4.1 Flash 长上下文主轮 43/92，我们的直读 33/92，说明本管线约严 10 题，臂间比较仍同口径。主轮答案键已公开，有污染风险。
+
+## 全算法零 key 对比（2026-10-10，v0.7 候选部件）
+
+新增 `bench/agm_algos.py`（后缀自动机、AC、RRF、二分阈值、ACT-R 基线激活、配对统计），
+`bench/hive_retrieval_full.py`（检索面 13 臂）、`bench/hive_e2e_full.py` + `hive_e2e_full_merge.py`（e2e 19 臂，按文件统计）。
+读数：`readings_bench_hive_retrieval_full.json`、`readings_bench_hive_e2e_full.json`。参数跑前写死，未调参。
+
+复跑：
+```
+python bench/hive_retrieval_full.py <bench> --json readings_bench_hive_retrieval_full.json
+python bench/hive_e2e_full.py <bench> --json a.json      # 可用 --files 分片并行
+python bench/hive_e2e_full_merge.py a.json [b.json] --json readings_bench_hive_e2e_full.json
+```
+
+披露的两处跑中修正（都是实现错误，不是调参）：
+1. AC 首版模式取 3/4 字且 df≥1，92 题一次都没命中 → 改为 2–4 字、2≤df≤8%。
+2. e2e 换种子的 AGM 首版放电集合后没用 BM25 补满预算 → 已补。
+
+结论：
+- e2e：RRF3(近因,BM25,AGM) 覆盖与 近因+AGM-静态 持平（0.1559 vs 0.1562，8/8），窗口外收益 0.0522 vs 0.0416（16/0，CI [0.0085,0.0122]）——同样总覆盖，多给 25% 窗口外内容。
+- 二分θ、ACT-R 使用增量、学习v2：与 近因+AGM-静态 无差别。
+- 后缀自动机/AC 作检索种子：负面（AC 种子 e2e 1/15、检索面 8000 档对 AGM 0/11；SAM 种子检索面 4000 档 1/22）。SAM 极大匹配大量落在虚词片段上。
+- 检索面：没有任何新臂显著胜过 BM25 或 AGM；RRF(BM25,AGM) 在 2000/4000 档数值最高但不显著。
+- 仍未解决：覆盖口径偏向近因；e2e 显著集用全文件 df（已加「在线覆盖」口径，结论不变）。
