@@ -1,0 +1,73 @@
+{
+  "dataset": "hive-memory-bench/chain v0.2",
+  "dataset_commit": "426a86a",
+  "model_calls": 0,
+  "network_attempts": 0,
+  "scope": "structured event/state-chain control; extraction is not measured",
+  "counts": {
+    "chains": 63,
+    "events": 828
+  },
+  "readings": {
+    "exact": 642,
+    "questions": 642,
+    "exact_rate": 1.0,
+    "by_type": {
+      "历史": {
+        "correct": 189,
+        "questions": 189,
+        "rate": 1.0
+      },
+      "变更": {
+        "correct": 63,
+        "questions": 63,
+        "rate": 1.0
+      },
+      "时点": {
+        "correct": 63,
+        "questions": 63,
+        "rate": 1.0
+      },
+      "状态归属": {
+        "correct": 201,
+        "questions": 201,
+        "rate": 1.0
+      },
+      "现值": {
+        "correct": 63,
+        "questions": 63,
+        "rate": 1.0
+      },
+      "缘由": {
+        "correct": 63,
+        "questions": 63,
+        "rate": 1.0
+      }
+    }
+  },
+  "interval_control": {
+    "passed": true,
+    "expected": {
+      "1": "A",
+      "3": "A",
+      "4": "B",
+      "7": "B",
+      "8": "C",
+      "20": "C"
+    },
+    "got": {
+      "1": "A",
+      "3": "A",
+      "4": "B",
+      "7": "B",
+      "8": "C",
+      "20": "C"
+    }
+  },
+  "statistics": {
+    "events": 828,
+    "slots": 63,
+    "raw_sources": 0,
+    "aliases": 0
+  }
+}
