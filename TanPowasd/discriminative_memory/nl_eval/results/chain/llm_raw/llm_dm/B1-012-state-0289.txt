@@ -1,0 +1,8 @@
+[
+{"seq":2,"op":"set","value":"小满","alt":null,"cid":"青石镇#2"},
+{"seq":7,"op":"set","value":"老陈","alt":null,"cid":"青石镇#7"},
+{"seq":12,"op":"unresolve","value":"小满","alt":"周舟","cid":"青石镇#12"},
+{"seq":16,"op":"set","value":"无人","alt":null,"cid":"青石镇#16"},
+{"seq":20,"op":"set","value":"小满","alt":null,"cid":"青石镇#20"},
+{"seq":25,"op":"set","value":"无人","alt":null,"cid":"青石镇#25"}
+]

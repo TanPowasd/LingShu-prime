@@ -1,0 +1,1 @@
+{"qid":"B1-030-state-0242","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"青石镇#30","line":30,"quote":"周舟·同名者 的信任对象转为 老陈，起因是一次救助。"}],"confidence":"certain"}

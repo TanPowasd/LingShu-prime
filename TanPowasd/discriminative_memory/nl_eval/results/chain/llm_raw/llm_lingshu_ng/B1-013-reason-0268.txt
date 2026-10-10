@@ -1,0 +1,1 @@
+{"qid":"B1-013-reason-0268","value":"私下承诺","state":"active","at_seq":13,"chain":[],"basis":[{"file":"青石镇#13","line":13,"quote":"老陈 的立场转为 沉默，起因是私下承诺。"}],"confidence":"certain"}

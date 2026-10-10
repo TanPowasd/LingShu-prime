@@ -1,0 +1,1 @@
+{"qid":"B2-013-timepoint-0436","value":"祠堂 与 磨坊","state":"unresolved","at_seq":13,"chain":[],"basis":[{"file":"雾港#13","line":13,"quote":"阿桑 的位置出现两种并存的取值：祠堂 与 磨坊，尚未裁定，起因是一次救助。"}],"confidence":"certain"}

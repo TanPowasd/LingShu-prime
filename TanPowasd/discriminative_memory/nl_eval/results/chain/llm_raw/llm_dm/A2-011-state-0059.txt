@@ -1,0 +1,13 @@
+[
+  {"seq":10,"op":"set","value":"bbolt","alt":null,"cid":"流明项目#10"},
+  {"seq":11,"op":"retire","value":null,"alt":null,"cid":"流明项目#11"},
+  {"seq":12,"op":"set","value":"bbolt","alt":null,"cid":"流明项目#12"},
+  {"seq":13,"op":"set","value":"sled","alt":null,"cid":"流明项目#13"},
+  {"seq":25,"op":"set","value":"redis","alt":null,"cid":"流明项目#25"},
+  {"seq":26,"op":"set","value":"bbolt","alt":null,"cid":"流明项目#26"},
+  {"seq":27,"op":"set","value":"lmdb","alt":null,"cid":"流明项目#27"},
+  {"seq":37,"op":"set","value":"sqlite","alt":null,"cid":"流明项目#37"},
+  {"seq":38,"op":"set","value":"lmdb","alt":null,"cid":"流明项目#38"},
+  {"seq":39,"op":"set","value":"badger","alt":null,"cid":"流明项目#39"},
+  {"seq":40,"op":"set","value":"rocksdb","alt":null,"cid":"流明项目#40"}
+]

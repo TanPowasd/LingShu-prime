@@ -1,0 +1,1 @@
+{"qid":"A3-049-timepoint-0136","value":"timeout_ms=64 与 retry=256","state":"unresolved","at_seq":null,"chain":[],"basis":[{"file":"织女项目#49","line":49,"quote":"织女项目 的配置值出现两种并存的取值：timeout_ms=64 与 retry=256，尚未裁定，起因是线上故障复盘。"}],"confidence":"certain"}

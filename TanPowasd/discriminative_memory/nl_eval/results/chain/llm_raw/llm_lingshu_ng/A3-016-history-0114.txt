@@ -1,0 +1,1 @@
+{"qid":"A3-016-history-0114","value":"fetch(key, ttl, tag, refresh)","state":"active","at_seq":16,"chain":[],"basis":[{"file":"织女项目#16","line":1,"quote":"织女项目 的函数签名调整为 fetch(key, ttl, tag, refresh)，起因是代码评审意见。"}],"confidence":"certain"}

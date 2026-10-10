@@ -1,0 +1,1 @@
+{"qid":"B1-006-history-0194","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"青石镇#6","line":6,"quote":"第 6 章（青石镇）。"}],"confidence":"probable"}

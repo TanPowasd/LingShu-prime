@@ -1,0 +1,1 @@
+{"qid":"A1-060-present-0001","value":"rocksdb","state":"active","at_seq":50,"chain":[],"basis":[{"file":"猎户项目#50","line":50,"quote":"猎户项目 的依赖名调整为 rocksdb，起因是线上故障复盘。"}],"confidence":"probable"}

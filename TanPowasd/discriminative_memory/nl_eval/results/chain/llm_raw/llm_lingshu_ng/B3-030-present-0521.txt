@@ -1,0 +1,1 @@
+{"qid":"B3-030-present-0521","value":"顾九","state":"active","at_seq":20,"chain":[],"basis":[{"file":"孤山驿#20","line":20,"quote":"程雪 的信任对象转为 顾九，起因是旧事重提。"},{"file":"孤山驿#6","line":6,"quote":"程雪 的信任对象首次确立为 外人。"}],"confidence":"probable"}

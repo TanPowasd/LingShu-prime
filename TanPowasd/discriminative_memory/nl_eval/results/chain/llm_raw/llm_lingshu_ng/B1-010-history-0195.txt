@@ -1,0 +1,1 @@
+{"qid":"B1-010-history-0195","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"青石镇#10","line":10,"quote":"满儿 移到了 祠堂，起因是旧事重提。"}],"confidence":"unknown"}

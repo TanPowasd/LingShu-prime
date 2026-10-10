@@ -1,0 +1,9 @@
+[
+  {"seq":10,"op":"set","value":10800,"alt":null,"cid":"流明项目#10"},
+  {"seq":11,"op":"set","value":21600,"alt":null,"cid":"流明项目#11"},
+  {"seq":12,"op":"set","value":900,"alt":null,"cid":"流明项目#12"},
+  {"seq":13,"op":"set","value":21600,"alt":null,"cid":"流明项目#13"},
+  {"seq":25,"op":"set","value":1800,"alt":null,"cid":"流明项目#25"},
+  {"seq":27,"op":"set","value":900,"alt":null,"cid":"流明项目#27"},
+  {"seq":38,"op":"set","value":1800,"alt":null,"cid":"流明项目#38"}
+]

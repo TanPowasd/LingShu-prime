@@ -1,0 +1,1 @@
+{"qid":"A2-060-present-0081","value":"cfg_754423","state":"active","at_seq":41,"chain":[],"basis":[{"file":"流明项目#41","line":41,"quote":"流明项目 的配置值调整为 cfg_754423，起因是压测暴露并发缺陷。"}],"confidence":"probable"}

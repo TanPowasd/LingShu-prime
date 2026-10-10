@@ -1,0 +1,1 @@
+{"qid":"A1-060-state-0032","value":"cfg_202750","state":"active","at_seq":51,"chain":[],"basis":[{"file":"猎户项目#51","line":51,"quote":"猎户项目 的配置值调整为 cfg_202750，起因是安全审计要求。"},{"file":"猎户项目#47","line":47,"quote":"猎户项目 的配置值调整为 cfg_196568，起因是线上故障复盘。"}],"confidence":"certain"}

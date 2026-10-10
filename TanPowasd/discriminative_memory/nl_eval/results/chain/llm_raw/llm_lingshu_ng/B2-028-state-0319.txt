@@ -1,0 +1,1 @@
+{"qid":"B2-028-state-0319","value":null,"state":"retired","at_seq":null,"chain":[],"basis":[{"file":"雾港#28","line":28,"quote":"杜衡 的位置被撤销，此后不再保留取值，起因是利益冲突。"}],"confidence":"certain"}

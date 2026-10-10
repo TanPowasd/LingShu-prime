@@ -1,0 +1,1 @@
+{"qid":"A3-060-state-0132","value":"batch_size=32","state":"active","at_seq":22,"chain":[],"basis":[{"file":"织女项目#22","line":22,"quote":"织女项目 的配置值调整为 batch_size=32，起因是接口兼容性调整。"}],"confidence":"certain"}

@@ -1,0 +1,1 @@
+{"qid":"A3-060-present-0121","value":"300","state":"active","at_seq":50,"chain":[],"basis":[{"file":"织女项目#50","line":50,"quote":"织女项目 的有效期秒数调整为 300，起因是容量评估结论。"}],"confidence":"certain"}

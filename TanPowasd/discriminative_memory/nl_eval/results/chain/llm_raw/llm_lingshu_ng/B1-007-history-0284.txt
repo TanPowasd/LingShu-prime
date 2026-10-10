@@ -1,0 +1,1 @@
+{"qid":"B1-007-history-0284","value":"老陈","state":"active","at_seq":7,"chain":[],"basis":[{"file":"青石镇#7","line":7,"quote":"禾生 的信任对象转为 老陈，起因是一次救助。"},{"file":"青石镇#8","line":8,"quote":"禾生 自第 8 章起改名为 阿禾。"}],"confidence":"certain"}

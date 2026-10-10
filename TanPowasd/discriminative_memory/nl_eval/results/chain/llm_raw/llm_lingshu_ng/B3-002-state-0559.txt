@@ -1,0 +1,1 @@
+{"qid":"B3-002-state-0559","value":"祠堂 与 驿站","state":"unresolved","at_seq":2,"chain":[],"basis":[{"file":"孤山驿#2","line":1,"quote":"陆平 的位置出现两种并存的取值：祠堂 与 驿站，尚未裁定，起因是共同的外敌。"}],"confidence":"certain"}

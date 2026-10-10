@@ -1,0 +1,1 @@
+{"qid":"B1-001-history-0233","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"青石镇#1","line":1,"quote":"陈伯 的位置首次确立为 祠堂。"}],"confidence":"probable"}

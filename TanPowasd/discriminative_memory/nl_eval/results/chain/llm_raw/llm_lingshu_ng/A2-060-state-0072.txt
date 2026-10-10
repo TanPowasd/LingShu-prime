@@ -1,0 +1,1 @@
+{"qid":"A2-060-state-0072","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"流明项目#30","line":30,"quote":"流明项目·下属 的有效期秒数出现两种并存的取值：300 与 3600，尚未裁定，起因是接口兼容性调整。"},{"file":"流明项目#10","line":10,"quote":"流明项目·缓存模块 的有效期秒数调整为 10800，起因是线上故障复盘。"}],"confidence":"certain"}

@@ -1,0 +1,17 @@
+[
+  {"seq":17,"op":"set","value":"1800","alt":null,"cid":"流明项目#17"},
+  {"seq":19,"op":"set","value":"3600","alt":null,"cid":"流明项目#19"},
+  {"seq":21,"op":"set","value":"300","alt":null,"cid":"流明项目#21"},
+  {"seq":23,"op":"set","value":"10800","alt":null,"cid":"流明项目#23"},
+  {"seq":25,"op":"set","value":"1800","alt":null,"cid":"流明项目#25"},
+  {"seq":27,"op":"set","value":"900","alt":null,"cid":"流明项目#27"},
+  {"seq":29,"op":"set","value":"300","alt":null,"cid":"流明项目#29"},
+  {"seq":32,"op":"set","value":"600","alt":null,"cid":"流明项目#32"},
+  {"seq":35,"op":"set","value":"10800","alt":null,"cid":"流明项目#35"},
+  {"seq":38,"op":"set","value":"1800","alt":null,"cid":"流明项目#38"},
+  {"seq":42,"op":"set","value":"7200","alt":null,"cid":"流明项目#42"},
+  {"seq":45,"op":"set","value":"21600","alt":null,"cid":"流明项目#45"},
+  {"seq":48,"op":"set","value":"300","alt":null,"cid":"流明项目#48"},
+  {"seq":51,"op":"set","value":"600","alt":null,"cid":"流明项目#51"},
+  {"seq":55,"op":"set","value":"21600","alt":null,"cid":"流明项目#55"}
+]

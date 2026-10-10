@@ -1,0 +1,1 @@
+{"qid":"B3-023-state-0599","value":null,"state":"unresolved","at_seq":null,"chain":[],"basis":[{"file":"孤山驿#23","line":23,"quote":"顾九 的位置出现两种并存的取值：集市 与 渡口，尚未裁定，起因是一场误会。"}],"confidence":"certain"}

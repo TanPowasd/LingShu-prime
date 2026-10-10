@@ -1,0 +1,5 @@
+[
+  {"seq":31,"op":"set","value":"600","alt":null,"cid":"猎户项目#31"},
+  {"seq":40,"op":"set","value":"21600","alt":null,"cid":"猎户项目#40"},
+  {"seq":55,"op":"retire","value":null,"alt":null,"cid":"猎户项目#55"}
+]

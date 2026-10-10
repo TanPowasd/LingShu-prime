@@ -1,0 +1,6 @@
+[
+  {"seq":22,"op":"set","value":"resolve(key, ttl, force)","alt":null,"cid":"猎户项目#22"},
+  {"seq":24,"op":"set","value":"load(key, ttl, force)","alt":null,"cid":"猎户项目#24"},
+  {"seq":39,"op":"set","value":"sync(key)","alt":null,"cid":"猎户项目#39"},
+  {"seq":46,"op":"unresolve","value":"sync(key, ttl, tag, refresh)","alt":"sync(key, ttl)","cid":"猎户项目#46"}
+]

@@ -1,0 +1,26 @@
+{
+  "qid": "B2-030-change-0427",
+  "value": "观望",
+  "state": "active",
+  "at_seq": 26,
+  "chain": [
+    {"seq": 1, "from": null, "to": "沉默"},
+    {"seq": 2, "from": "沉默", "to": "暧昧"},
+    {"seq": 3, "from": "暧昧", "to": "支持"},
+    {"seq": 4, "from": "支持", "to": "反对"},
+    {"seq": 5, "from": "反对", "to": "沉默"},
+    {"seq": 6, "from": "沉默", "to": "反对"},
+    {"seq": 7, "from": "反对", "to": "沉默"},
+    {"seq": 8, "from": "沉默", "to": null},
+    {"seq": 13, "from": null, "to": "沉默"},
+    {"seq": 17, "from": "沉默", "to": "暧昧"},
+    {"seq": 22, "from": "暧昧", "to": "中立"},
+    {"seq": 26, "from": "中立", "to": "观望"}
+  ],
+  "basis": [
+    {"file": "雾港#1", "line": 9, "quote": "沈砚 的立场首次确立为 沉默。"},
+    {"file": "雾港#8", "line": 2, "quote": "沈砚 的立场被撤销，此后不再保留取值，起因是旧事重提。"},
+    {"file": "雾港#26", "line": 8, "quote": "沈砚 的立场转为 观望，起因是一场误会。"}
+  ],
+  "confidence": "certain"
+}

@@ -1,0 +1,1 @@
+{"qid":"B1-030-present-0301","value":"观望","state":"active","at_seq":25,"chain":[],"basis":[{"file":"青石镇#25","line":25,"quote":"阿禾 的立场转为 观望，起因是一桩旧账。"}],"confidence":"certain"}

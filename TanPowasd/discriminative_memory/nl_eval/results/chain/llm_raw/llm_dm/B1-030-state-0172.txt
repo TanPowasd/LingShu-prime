@@ -1,0 +1,1 @@
+[{"seq":11,"op":"set","value":"欣慰","alt":null,"cid":"青石镇#11"},{"seq":14,"op":"set","value":"释然","alt":null,"cid":"青石镇#14"},{"seq":19,"op":"set","value":"平静","alt":null,"cid":"青石镇#19"},{"seq":23,"op":"set","value":"愤怒","alt":null,"cid":"青石镇#23"},{"seq":29,"op":"retire","value":null,"alt":null,"cid":"青石镇#29"}]

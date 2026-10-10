@@ -1,0 +1,4 @@
+[
+  {"seq": 26, "op": "set", "value": "resolve(key)", "alt": null, "cid": "猎户项目#26"},
+  {"seq": 28, "op": "set", "value": "fetch(key, ttl, tag, refresh)", "alt": null, "cid": "猎户项目#28"}
+]

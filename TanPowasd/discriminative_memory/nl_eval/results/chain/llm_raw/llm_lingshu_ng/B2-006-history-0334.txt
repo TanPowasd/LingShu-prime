@@ -1,0 +1,1 @@
+{"qid":"B2-006-history-0334","value":"犹豫","state":"active","at_seq":6,"chain":[],"basis":[{"file":"雾港#6","line":1,"quote":"杜衡 的情绪转为 犹豫，起因是一桩旧账。"}],"confidence":"certain"}

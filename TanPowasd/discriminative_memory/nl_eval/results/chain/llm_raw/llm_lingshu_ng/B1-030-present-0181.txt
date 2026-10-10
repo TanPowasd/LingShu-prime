@@ -1,0 +1,1 @@
+{"qid":"B1-030-present-0181","value":"反对","state":"active","at_seq":29,"chain":[],"basis":[{"file":"青石镇#29","line":29,"quote":"周舟 的立场转为 反对，起因是私下承诺。"},{"file":"青石镇#23","line":23,"quote":"周舟 的立场转为 观望，起因是第三方的劝说。"},{"file":"青石镇#10","line":10,"quote":"周舟 的立场被撤销，此后不再保留取值，起因是旧事重提。"}],"confidence":"certain"}

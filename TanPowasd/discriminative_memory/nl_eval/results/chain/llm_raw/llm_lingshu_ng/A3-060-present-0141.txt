@@ -1,0 +1,1 @@
+{"qid":"A3-060-present-0141","value":"10800","state":"active","at_seq":60,"chain":[],"basis":[{"file":"织女项目#60","line":60,"quote":"织女项目·缓存模块 的有效期秒数调整为 10800，起因是压测暴露并发缺陷。"}],"confidence":"certain"}

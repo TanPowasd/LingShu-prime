@@ -1,0 +1,1 @@
+{"qid":"A2-060-state-0052","value":"badger","state":"active","at_seq":30,"chain":[],"basis":[{"file":"流明项目#30","line":30,"quote":"流明项目 的依赖名调整为 badger，起因是容量评估结论。"}],"confidence":"probable"}

@@ -1,0 +1,1 @@
+{"qid":"B3-013-state-0569","value":null,"state":"unresolved","at_seq":13,"chain":[],"basis":[{"file":"孤山驿#13","line":13,"quote":"陆平 的信任对象出现两种并存的取值：顾九 与 白芨，尚未裁定，起因是一场误会。"}],"confidence":"certain"}

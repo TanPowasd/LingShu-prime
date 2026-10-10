@@ -1,0 +1,1 @@
+{"qid":"A1-060-state-0002","value":"active","state":"active","at_seq":47,"chain":[],"basis":[{"file":"猎户项目#47","line":47,"quote":"猎户项目 的依赖名调整为 bbolt，起因是代码评审意见。"}],"confidence":"certain"}

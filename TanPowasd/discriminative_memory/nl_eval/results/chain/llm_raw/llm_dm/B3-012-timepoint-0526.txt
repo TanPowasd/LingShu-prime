@@ -1,0 +1,8 @@
+[
+  {"seq":6,"op":"set","value":"外人","alt":null,"cid":"孤山驿#6"},
+  {"seq":8,"op":"set","value":"白芨","alt":null,"cid":"孤山驿#8"},
+  {"seq":12,"op":"unresolve","value":"顾九","alt":"陆平","cid":"孤山驿#12"},
+  {"seq":16,"op":"set","value":"陆平","alt":null,"cid":"孤山驿#16"},
+  {"seq":20,"op":"set","value":"顾九","alt":null,"cid":"孤山驿#20"},
+  {"seq":25,"op":"set","value":"白芨","alt":null,"cid":"孤山驿#25"}
+]

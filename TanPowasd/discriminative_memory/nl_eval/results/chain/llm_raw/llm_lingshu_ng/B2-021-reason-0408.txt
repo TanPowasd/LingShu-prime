@@ -1,0 +1,1 @@
+{"qid":"B2-021-reason-0408","value":"私下承诺","state":"active","at_seq":21,"chain":[],"basis":[{"file":"雾港#21","line":21,"quote":"沈砚 的信任对象转为 无人，起因是私下承诺。"}],"confidence":"certain"}

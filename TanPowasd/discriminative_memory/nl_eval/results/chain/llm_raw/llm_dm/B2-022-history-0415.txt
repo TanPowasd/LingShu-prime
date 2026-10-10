@@ -1,0 +1,4 @@
+[
+  {"seq":13,"op":"set","value":"平静","alt":null,"cid":"雾港#13"},
+  {"seq":22,"op":"set","value":"焦虑","alt":null,"cid":"雾港#22"}
+]

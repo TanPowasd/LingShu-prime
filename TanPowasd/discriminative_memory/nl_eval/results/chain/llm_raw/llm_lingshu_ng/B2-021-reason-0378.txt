@@ -1,0 +1,1 @@
+{"qid":"B2-021-reason-0378","value":"一桩旧账","state":"active","at_seq":21,"chain":[],"basis":[{"file":"雾港#21","line":21,"quote":"林昭 的情绪出现两种并存的取值：愤怒 与 欣慰，尚未裁定，起因是一桩旧账。"}],"confidence":"certain"}

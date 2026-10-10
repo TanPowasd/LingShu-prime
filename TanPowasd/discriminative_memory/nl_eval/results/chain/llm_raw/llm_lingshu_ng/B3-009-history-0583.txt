@@ -1,0 +1,1 @@
+{"qid":"B3-009-history-0583","value":"沉默","state":"active","at_seq":9,"chain":[],"basis":[{"file":"孤山驿#9","line":9,"quote":"陆平 的立场首次确立为 沉默。"}],"confidence":"certain"}

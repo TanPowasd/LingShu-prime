@@ -1,0 +1,4 @@
+[
+  {"seq":7,"op":"unresolve","value":"暧昧","alt":"反对","cid":"孤山驿#7"},
+  {"seq":27,"op":"set","value":"观望","alt":null,"cid":"孤山驿#27"}
+]

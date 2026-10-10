@@ -1,0 +1,12 @@
+[
+  {"seq":1,"op":"set","value":"batch_size=16","alt":null,"cid":"流明项目#1"},
+  {"seq":22,"op":"set","value":"cfg_683952","alt":null,"cid":"流明项目#22"},
+  {"seq":23,"op":"set","value":"cfg_273189","alt":null,"cid":"流明项目#23"},
+  {"seq":24,"op":"set","value":"cfg_692357","alt":null,"cid":"流明项目#24"},
+  {"seq":26,"op":"set","value":"cfg_457311","alt":null,"cid":"流明项目#26"},
+  {"seq":30,"op":"set","value":"cfg_710970","alt":null,"cid":"流明项目#30"},
+  {"seq":31,"op":"set","value":"cfg_680534","alt":null,"cid":"流明项目#31"},
+  {"seq":32,"op":"set","value":"cfg_838262","alt":null,"cid":"流明项目#32"},
+  {"seq":33,"op":"set","value":"cfg_957414","alt":null,"cid":"流明项目#33"},
+  {"seq":43,"op":"set","value":"cfg_962313","alt":null,"cid":"流明项目#43"}
+]

@@ -1,0 +1,1 @@
+{"qid":"B1-012-timepoint-0286","value":"小满 与 周舟","state":"unresolved","at_seq":12,"chain":[],"basis":[{"file":"青石镇#12","line":12,"quote":"阿禾 的信任对象出现两种并存的取值：小满 与 周舟，尚未裁定，起因是私下承诺。"}],"confidence":"certain"}

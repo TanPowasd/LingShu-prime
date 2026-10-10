@@ -1,0 +1,6 @@
+[
+  {"seq":5,"op":"set","value":"外人","alt":null,"cid":"雾港#5"},
+  {"seq":7,"op":"set","value":"阿桑","alt":null,"cid":"雾港#7"},
+  {"seq":16,"op":"set","value":"外人","alt":null,"cid":"雾港#16"},
+  {"seq":25,"op":"set","value":"无人","alt":null,"cid":"雾港#25"}
+]

@@ -1,0 +1,13 @@
+[
+  {"seq":1,"op":"set","value":"支持","alt":null,"cid":"孤山驿#1"},
+  {"seq":2,"op":"set","value":"观望","alt":null,"cid":"孤山驿#2"},
+  {"seq":4,"op":"set","value":"反对","alt":null,"cid":"孤山驿#4"},
+  {"seq":5,"op":"set","value":"观望","alt":null,"cid":"孤山驿#5"},
+  {"seq":6,"op":"set","value":"中立","alt":null,"cid":"孤山驿#6"},
+  {"seq":7,"op":"set","value":"支持","alt":null,"cid":"孤山驿#7"},
+  {"seq":8,"op":"set","value":"沉默","alt":null,"cid":"孤山驿#8"},
+  {"seq":12,"op":"set","value":"支持","alt":null,"cid":"孤山驿#12"},
+  {"seq":16,"op":"set","value":"中立","alt":null,"cid":"孤山驿#16"},
+  {"seq":21,"op":"retire","value":null,"alt":null,"cid":"孤山驿#21"},
+  {"seq":25,"op":"set","value":"暧昧","alt":null,"cid":"孤山驿#25"}
+]

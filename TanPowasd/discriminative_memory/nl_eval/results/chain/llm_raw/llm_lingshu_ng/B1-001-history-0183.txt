@@ -1,0 +1,1 @@
+{"qid":"B1-001-history-0183","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"青石镇#1","line":1,"quote":"第 1 章（青石镇）。"},{"file":"青石镇#1","line":1,"quote":"舟子 的立场首次确立为 中立。"}],"confidence":"probable"}

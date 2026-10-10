@@ -1,0 +1,1 @@
+[{"seq":9,"op":"set","value":"反对","alt":null,"cid":"雾港#9"},{"seq":14,"op":"unresolve","value":"中立","alt":"暧昧","cid":"雾港#14"},{"seq":18,"op":"set","value":"暧昧","alt":null,"cid":"雾港#18"},{"seq":22,"op":"set","value":"反对","alt":null,"cid":"雾港#22"},{"seq":27,"op":"set","value":"沉默","alt":null,"cid":"雾港#27"}]

@@ -1,0 +1,1 @@
+{"qid":"B2-025-timepoint-0356","value":null,"state":"retired","at_seq":null,"chain":[],"basis":[{"file":"雾港#25","line":25,"quote":"林昭 的位置被撤销，此后不再保留取值，起因是一场误会。"}],"confidence":"certain"}

@@ -1,0 +1,1 @@
+{"qid":"B1-017-history-0235","value":"码头","state":"active","at_seq":17,"chain":[],"basis":[{"file":"青石镇#17","line":17,"quote":"老陈 移到了 码头，起因是旧事重提。"}],"confidence":"certain"}

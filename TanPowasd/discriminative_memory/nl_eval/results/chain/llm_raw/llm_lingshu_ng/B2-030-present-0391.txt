@@ -1,0 +1,1 @@
+{"qid":"B2-030-present-0391","value":null,"state":"retired","at_seq":null,"chain":[],"basis":[{"file":"雾港#8","line":8,"quote":"沈砚 的位置首次确立为 粮仓。"},{"file":"雾港#26","line":26,"quote":"沈砚 的位置被撤销，此后不再保留取值，起因是利益冲突。"}],"confidence":"certain"}

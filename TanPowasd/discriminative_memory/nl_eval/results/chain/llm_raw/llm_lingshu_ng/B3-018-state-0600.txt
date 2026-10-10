@@ -1,0 +1,1 @@
+{"qid":"B3-018-state-0600","value":"后山","state":"active","at_seq":18,"chain":[],"basis":[{"file":"孤山驿#18","line":18,"quote":"顾九 移到了 后山，起因是第三方的劝说。"}],"confidence":"certain"}

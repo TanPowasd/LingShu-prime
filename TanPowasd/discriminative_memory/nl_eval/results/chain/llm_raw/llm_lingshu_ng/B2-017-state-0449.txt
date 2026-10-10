@@ -1,0 +1,1 @@
+{"qid":"B2-017-state-0449","value":"杜衡 与 林昭","state":"unresolved","at_seq":17,"chain":[],"basis":[{"file":"雾港#17","line":17,"quote":"阿桑 的信任对象出现两种并存的取值：杜衡 与 林昭，尚未裁定，起因是共同的外敌。"}],"confidence":"certain"}

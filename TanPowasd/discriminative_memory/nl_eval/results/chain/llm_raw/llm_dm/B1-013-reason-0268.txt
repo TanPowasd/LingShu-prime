@@ -1,0 +1,6 @@
+[
+  {"seq":2, "op":"set", "value":"反对", "alt":null, "cid":"青石镇#2"},
+  {"seq":3, "op":"set", "value":"中立", "alt":null, "cid":"青石镇#3"},
+  {"seq":4, "op":"set", "value":"支持", "alt":null, "cid":"青石镇#4"},
+  {"seq":13, "op":"set", "value":"沉默", "alt":null, "cid":"青石镇#13"}
+]

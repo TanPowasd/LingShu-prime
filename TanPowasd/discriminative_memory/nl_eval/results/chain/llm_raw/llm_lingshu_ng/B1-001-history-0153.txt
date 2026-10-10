@@ -1,0 +1,1 @@
+{"qid":"B1-001-history-0153","value":"祠堂","state":"active","at_seq":1,"chain":[],"basis":[{"file":"青石镇#1","line":1,"quote":"舟子 的位置首次确立为 祠堂。"},{"file":"青石镇#28","line":28,"quote":"周舟 的位置此后确立为 祠堂，起因是第三方的劝说。"},{"file":"青石镇#23","line":23,"quote":"周舟 的位置被撤销，此后不再保留取值，起因是一场误会。"}],"confidence":"probable"}

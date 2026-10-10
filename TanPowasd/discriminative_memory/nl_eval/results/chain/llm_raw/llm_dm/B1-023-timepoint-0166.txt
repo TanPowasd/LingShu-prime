@@ -1,0 +1,7 @@
+[
+  {"seq":10,"op":"set","value":"小满","alt":null,"cid":"青石镇#10"},
+  {"seq":14,"op":"set","value":"无人","alt":null,"cid":"青石镇#14"},
+  {"seq":18,"op":"set","value":"阿禾","alt":null,"cid":"青石镇#18"},
+  {"seq":23,"op":"retire","value":null,"alt":null,"cid":"青石镇#23"},
+  {"seq":28,"op":"set","value":"无人","alt":null,"cid":"青石镇#28"}
+]

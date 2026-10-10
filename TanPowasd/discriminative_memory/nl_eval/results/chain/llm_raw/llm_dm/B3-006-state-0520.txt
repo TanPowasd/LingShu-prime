@@ -1,0 +1,8 @@
+[
+  {"seq":6,"op":"set","value":"码头","alt":null,"cid":"孤山驿#6"},
+  {"seq":8,"op":"set","value":"渡口","alt":null,"cid":"孤山驿#8"},
+  {"seq":12,"op":"set","value":"集市","alt":null,"cid":"孤山驿#12"},
+  {"seq":16,"op":"set","value":"后山","alt":null,"cid":"孤山驿#16"},
+  {"seq":20,"op":"set","value":"磨坊","alt":null,"cid":"孤山驿#20"},
+  {"seq":25,"op":"retire","value":null,"alt":null,"cid":"孤山驿#25"}
+]

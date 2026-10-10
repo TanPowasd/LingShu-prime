@@ -1,0 +1,1 @@
+{"qid":"B2-030-state-0402","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"雾港#30","line":30,"quote":"沈砚·同名者 的情绪转为 愤怒，起因是私下承诺。"}],"confidence":"certain"}

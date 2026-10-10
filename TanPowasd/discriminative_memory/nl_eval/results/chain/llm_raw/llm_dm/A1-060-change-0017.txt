@@ -1,0 +1,5 @@
+[
+  {"seq":18,"op":"set","value":"get(key)","alt":null,"cid":"猎户项目#18"},
+  {"seq":20,"op":"set","value":"sync(id, key, ttl)","alt":null,"cid":"猎户项目#20"},
+  {"seq":39,"op":"set","value":"sync(key)","alt":null,"cid":"猎户项目#39"}
+]

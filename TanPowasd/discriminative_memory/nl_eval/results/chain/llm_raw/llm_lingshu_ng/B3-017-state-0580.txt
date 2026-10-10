@@ -1,0 +1,1 @@
+{"qid":"B3-017-state-0580","value":"低落","state":"active","at_seq":17,"chain":[],"basis":[{"file":"孤山驿#17","line":17,"quote":"陆平 的情绪转为 低落，起因是私下承诺。"}],"confidence":"certain"}

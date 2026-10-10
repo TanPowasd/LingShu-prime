@@ -1,0 +1,6 @@
+[
+  {"seq":15,"op":"set","value":"愤怒","alt":null,"cid":"孤山驿#15"},
+  {"seq":19,"op":"set","value":"戒备","alt":null,"cid":"孤山驿#19"},
+  {"seq":23,"op":"retire","value":null,"alt":null,"cid":"孤山驿#23"},
+  {"seq":28,"op":"set","value":"低落","alt":null,"cid":"孤山驿#28"}
+]

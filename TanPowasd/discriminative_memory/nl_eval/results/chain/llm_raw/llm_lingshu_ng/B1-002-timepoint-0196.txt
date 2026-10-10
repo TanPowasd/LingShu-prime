@@ -1,0 +1,1 @@
+{"qid":"B1-002-timepoint-0196","value":null,"state":"unresolved","at_seq":null,"chain":[],"basis":[{"file":"青石镇#2","line":2,"quote":"满儿 的位置出现两种并存的取值：磨坊 与 驿站，尚未裁定，起因是利益冲突。"}],"confidence":"probable"}

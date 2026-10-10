@@ -1,0 +1,1 @@
+{"qid":"B3-030-present-0621","value":null,"state":"retired","at_seq":null,"chain":[],"basis":[{"file":"孤山驿#28","line":28,"quote":"顾九 的立场被撤销，此后不再保留取值，起因是一桩旧账。"},{"file":"孤山驿#18","line":18,"quote":"顾九 的立场转为 中立，起因是利益冲突。"}],"confidence":"certain"}

@@ -1,0 +1,1 @@
+{"qid":"B2-021-history-0395","value":"粮仓","state":"active","at_seq":21,"chain":[],"basis":[{"file":"雾港#21","line":21,"quote":"沈砚 移到了 粮仓，起因是旧事重提。"},{"file":"雾港#8","line":8,"quote":"沈砚 的位置首次确立为 粮仓。"}],"confidence":"certain"}

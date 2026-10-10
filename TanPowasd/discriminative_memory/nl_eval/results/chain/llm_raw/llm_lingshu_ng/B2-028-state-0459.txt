@@ -1,0 +1,1 @@
+{"qid":"B2-028-state-0459","value":null,"state":"retired","at_seq":null,"chain":[],"basis":[{"file":"雾港#28","line":28,"quote":"阿桑 的情绪被撤销，此后不再保留取值，起因是一次救助。"}],"confidence":"certain"}

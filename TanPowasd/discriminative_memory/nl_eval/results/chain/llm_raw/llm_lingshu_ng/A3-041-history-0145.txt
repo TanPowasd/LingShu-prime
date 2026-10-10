@@ -1,0 +1,1 @@
+{"qid":"A3-041-history-0145","value":"7200","state":"retired","at_seq":41,"chain":[],"basis":[{"file":"织女项目#41","line":41,"quote":"织女项目·缓存模块 的有效期秒数调整为 7200，起因是容量评估结论。"}],"confidence":"certain"}

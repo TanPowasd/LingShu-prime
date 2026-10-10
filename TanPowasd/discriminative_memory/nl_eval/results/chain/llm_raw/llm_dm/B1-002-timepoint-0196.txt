@@ -1,0 +1,8 @@
+[
+  {"seq":2,"op":"unresolve","value":"磨坊","alt":"驿站","cid":"青石镇#2"},
+  {"seq":3,"op":"set","value":"祠堂","alt":null,"cid":"青石镇#3"},
+  {"seq":13,"op":"set","value":"后山","alt":null,"cid":"青石镇#13"},
+  {"seq":18,"op":"set","value":"磨坊","alt":null,"cid":"青石镇#18"},
+  {"seq":22,"op":"set","value":"驿站","alt":null,"cid":"青石镇#22"},
+  {"seq":27,"op":"set","value":"后山","alt":null,"cid":"青石镇#27"}
+]

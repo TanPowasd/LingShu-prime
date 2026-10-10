@@ -1,0 +1,1 @@
+{"qid":"B1-030-present-0221","value":"暧昧","state":"active","at_seq":27,"chain":[],"basis":[{"file":"青石镇#27","line":27,"quote":"小满 的立场此后确立为 暧昧，起因是一场误会。"},{"file":"青石镇#22","line":22,"quote":"小满 的立场被撤销，此后不再保留取值，起因是旧事重提。"}],"confidence":"certain"}

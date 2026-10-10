@@ -1,0 +1,4 @@
+[
+  {"seq":22, "op":"set", "value":"get(id, key, ttl)", "alt":null, "cid":"流明项目#22"},
+  {"seq":39, "op":"set", "value":"get(key, ttl)", "alt":null, "cid":"流明项目#39"}
+]

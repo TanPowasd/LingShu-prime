@@ -1,0 +1,1 @@
+{"qid":"A1-016-state-0010","value":"lmdb","state":"active","at_seq":16,"chain":[],"basis":[{"file":"猎户项目#16","line":16,"quote":"猎户项目 的依赖名调整为 lmdb，起因是灰度观测数据。"}],"confidence":"certain"}

@@ -1,0 +1,8 @@
+[
+  {"seq": 13, "op": "set", "value": "21600", "alt": null, "cid": "流明项目#13"},
+  {"seq": 14, "op": "retire", "value": null, "alt": null, "cid": "流明项目#14"},
+  {"seq": 15, "op": "set", "value": "300", "alt": null, "cid": "流明项目#15"},
+  {"seq": 32, "op": "set", "value": "600", "alt": null, "cid": "流明项目#32"},
+  {"seq": 35, "op": "set", "value": "10800", "alt": null, "cid": "流明项目#35"},
+  {"seq": 38, "op": "set", "value": "1800", "alt": null, "cid": "流明项目#38"}
+]

@@ -1,0 +1,5 @@
+[
+  {"seq":7,"op":"set","value":"犹豫","alt":null,"cid":"雾港#7"},
+  {"seq":17,"op":"set","value":"欣慰","alt":null,"cid":"雾港#17"},
+  {"seq":26,"op":"set","value":"犹豫","alt":null,"cid":"雾港#26"}
+]

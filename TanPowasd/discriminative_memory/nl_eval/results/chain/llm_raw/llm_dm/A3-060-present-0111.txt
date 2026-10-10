@@ -1,0 +1,5 @@
+[
+  {"seq":1,"op":"set","value":"load(key, ttl, tag, refresh)","alt":null,"cid":"织女项目#1"},
+  {"seq":2,"op":"set","value":"fetch(key, ttl, refresh)","alt":null,"cid":"织女项目#2"},
+  {"seq":6,"op":"set","value":"get(key)","alt":null,"cid":"织女项目#6"}
+]

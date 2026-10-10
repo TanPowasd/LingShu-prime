@@ -1,0 +1,1 @@
+{"qid":"B1-009-history-0203","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"青石镇#17","line":17,"quote":"小满 的信任对象此后确立为 周舟，起因是旧事重提。"},{"file":"雾港#9","line":9,"quote":"杜衡 的信任对象转为 阿桑，起因是一次救助。"}],"confidence":"probable"}

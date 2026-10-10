@@ -1,0 +1,1 @@
+{"qid":"B1-017-state-0210","value":"周舟","state":"active","at_seq":17,"chain":[],"basis":[{"file":"青石镇#17","line":17,"quote":"小满 的信任对象此后确立为 周舟，起因是旧事重提。"},{"file":"青石镇#13","line":13,"quote":"小满 的信任对象被撤销，此后不再保留取值，起因是一桩旧账。"}],"confidence":"certain"}

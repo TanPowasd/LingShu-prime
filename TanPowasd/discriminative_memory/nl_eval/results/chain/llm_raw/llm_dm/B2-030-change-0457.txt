@@ -1,0 +1,1 @@
+[{"seq":5,"op":"set","value":"欣慰","alt":null,"cid":"雾港#5"},{"seq":9,"op":"set","value":"释然","alt":null,"cid":"雾港#9"},{"seq":14,"op":"set","value":"欣慰","alt":null,"cid":"雾港#14"},{"seq":18,"op":"set","value":"犹豫","alt":null,"cid":"雾港#18"},{"seq":23,"op":"set","value":"平静","alt":null,"cid":"雾港#23"},{"seq":28,"op":"retire","value":null,"alt":null,"cid":"雾港#28"}]

@@ -1,0 +1,1 @@
+{"qid":"A2-027-reason-0098","value":"接口兼容性调整","state":"active","at_seq":27,"chain":[],"basis":[{"file":"流明项目#27","line":27,"quote":"流明项目·缓存模块 的有效期秒数调整为 900，起因是接口兼容性调整。"}],"confidence":"certain"}

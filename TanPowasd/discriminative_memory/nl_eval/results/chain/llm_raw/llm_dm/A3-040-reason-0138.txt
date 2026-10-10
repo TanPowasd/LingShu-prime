@@ -1,0 +1,1 @@
+[{"seq":37,"op":"set","value":"retry=16","alt":null,"cid":"织女项目#37"},{"seq":40,"op":"set","value":"max_conn=32","alt":null,"cid":"织女项目#40"}]

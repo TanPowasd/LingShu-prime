@@ -1,0 +1,1 @@
+[{"seq":1,"op":"set","value":"低落","alt":null,"cid":"雾港#1"},{"seq":2,"op":"set","value":"犹豫","alt":null,"cid":"雾港#2"},{"seq":3,"op":"set","value":"戒备","alt":null,"cid":"雾港#3"},{"seq":23,"op":"set","value":"焦虑","alt":null,"cid":"雾港#23"}]

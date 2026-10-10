@@ -1,0 +1,13 @@
+[
+  {"seq":1,"op":"set","value":"中立","alt":null,"cid":"青石镇#1"},
+  {"seq":2,"op":"set","value":"反对","alt":null,"cid":"青石镇#2"},
+  {"seq":3,"op":"set","value":"中立","alt":null,"cid":"青石镇#3"},
+  {"seq":4,"op":"set","value":"支持","alt":null,"cid":"青石镇#4"},
+  {"seq":5,"op":"set","value":"沉默","alt":null,"cid":"青石镇#5"},
+  {"seq":7,"op":"retire","value":null,"alt":null,"cid":"青石镇#7"},
+  {"seq":9,"op":"set","value":"暧昧","alt":null,"cid":"青石镇#9"},
+  {"seq":13,"op":"set","value":"沉默","alt":null,"cid":"青石镇#13"},
+  {"seq":17,"op":"set","value":"中立","alt":null,"cid":"青石镇#17"},
+  {"seq":21,"op":"set","value":"沉默","alt":null,"cid":"青石镇#21"},
+  {"seq":26,"op":"set","value":"支持","alt":null,"cid":"青石镇#26"}
+]

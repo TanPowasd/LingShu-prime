@@ -1,0 +1,1 @@
+{"qid":"A3-004-state-0119","value":null,"state":"unresolved","at_seq":null,"chain":[],"basis":[{"file":"织女项目#4","line":4,"quote":"织女项目 的函数签名出现两种并存的取值：sync(key, ttl, refresh) 与 resolve(key, ttl, tag, refresh)，尚未裁定，起因是接口兼容性调整。"}],"confidence":"certain"}

@@ -1,0 +1,1 @@
+{"qid":"A3-060-state-0635","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"织女项目#27","line":27,"quote":"第 27 次提交（织女项目）。当天的变更窗口开得比往常早。"}],"confidence":"certain"}

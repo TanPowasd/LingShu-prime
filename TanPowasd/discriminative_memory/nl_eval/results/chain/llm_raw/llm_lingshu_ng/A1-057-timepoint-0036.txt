@@ -1,0 +1,1 @@
+{"qid":"A1-057-timepoint-0036","value":null,"state":"retired","at_seq":57,"chain":[],"basis":[{"file":"猎户项目#57","line":57,"quote":"猎户项目 的配置值被撤销，此后不再保留取值，起因是压测暴露并发缺陷。"}],"confidence":"certain"}

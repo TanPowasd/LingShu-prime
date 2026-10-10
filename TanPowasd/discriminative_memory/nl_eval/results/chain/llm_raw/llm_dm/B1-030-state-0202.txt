@@ -1,0 +1,6 @@
+[
+{"seq":13,"op":"retire","value":null,"alt":null,"cid":"青石镇#13"},
+{"seq":17,"op":"set","value":"周舟","alt":null,"cid":"青石镇#17"},
+{"seq":22,"op":"set","value":"老陈","alt":null,"cid":"青石镇#22"},
+{"seq":27,"op":"set","value":"外人","alt":null,"cid":"青石镇#27"}
+]

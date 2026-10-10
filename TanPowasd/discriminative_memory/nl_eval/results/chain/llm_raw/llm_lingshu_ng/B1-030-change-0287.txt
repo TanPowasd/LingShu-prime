@@ -1,0 +1,1 @@
+{"qid":"B1-030-change-0287","value":"无人","state":"active","at_seq":25,"chain":[{"seq":5,"from":null,"to":"外人"},{"seq":7,"from":"外人","to":"老陈"},{"seq":12,"from":"老陈","to":"小满 与 周

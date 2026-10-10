@@ -1,0 +1,1 @@
+{"qid":"B1-021-history-0295","value":"焦虑","state":"active","at_seq":21,"chain":[],"basis":[{"file":"青石镇#21","line":21,"quote":"阿禾 的情绪转为 焦虑，起因是私下承诺。"}],"confidence":"certain"}

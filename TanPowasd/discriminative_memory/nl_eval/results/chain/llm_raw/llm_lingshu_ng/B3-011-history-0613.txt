@@ -1,0 +1,1 @@
+{"qid":"B3-011-history-0613","value":"平静","state":"retired","at_seq":11,"chain":[],"basis":[{"file":"孤山驿#11","line":11,"quote":"九爷 的情绪首次确立为 平静。"},{"file":"孤山驿#14","line":14,"quote":"九爷 自第 14 章起改名为 顾九。"},{"file":"孤山驿#14","line":14,"quote":"顾九 的情绪转为 愤怒，起因是一场误会。"}],"confidence":"certain"}

@@ -1,0 +1,1 @@
+{"qid":"A1-011-history-0044","value":"21600","state":"retired","at_seq":11,"chain":[],"basis":[{"file":"猎户项目#11","line":11,"quote":"猎户项目·缓存模块 的有效期秒数调整为 21600，起因是压测暴露并发缺陷。"}],"confidence":"certain"}

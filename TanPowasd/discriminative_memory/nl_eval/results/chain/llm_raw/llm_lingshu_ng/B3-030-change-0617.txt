@@ -1,0 +1,1 @@
+{"qid":"B3-030-change-0617","value":"低落","state":"active","at_seq":28,"chain":[{"seq":15,"from":null,"to":"愤怒"},{"seq":19,"from":"愤怒","to":"戒备"},{"seq":23,"from":"戒备","to":null},{"seq":28,"from":null,"to":"低落"}],"basis":[{"file":"孤山驿#15","line":15,"quote":"顾九 的情绪转为 愤怒，起因是一场误会。"},{"file":"孤山驿#19","line":19,"quote

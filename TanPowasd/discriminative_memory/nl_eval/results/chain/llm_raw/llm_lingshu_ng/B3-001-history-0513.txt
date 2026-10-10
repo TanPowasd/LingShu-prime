@@ -1,0 +1,1 @@
+{"qid":"B3-001-history-0513","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"孤山驿#1","line":1,"quote":"白芨 的信任对象首次确立为 程雪。"},{"file":"孤山驿#11","line":11,"quote":"需要说明的是，程雪·同名者 与 程雪 同名但并非同一主体。"},{"file":"孤山驿#12","line":12,"quote":"程雪 移到了 集市，起因是旧事重提。"}],"confidence":"probable"}

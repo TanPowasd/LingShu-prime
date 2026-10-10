@@ -1,0 +1,1 @@
+{"qid":"B3-023-history-0605","value":"无人","state":"active","at_seq":23,"chain":[],"basis":[{"file":"孤山驿#23","line":23,"quote":"顾九 的信任对象的争议就此裁定为 无人，起因是利益冲突。"}],"confidence":"certain"}

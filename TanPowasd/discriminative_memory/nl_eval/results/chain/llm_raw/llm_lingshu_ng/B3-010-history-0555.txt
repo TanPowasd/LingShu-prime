@@ -1,0 +1,1 @@
+{"qid":"B3-010-history-0555","value":"后山","state":"active","at_seq":10,"chain":[],"basis":[{"file":"孤山驿#10","line":10,"quote":"陆平 移到了 后山，起因是一桩旧账。"}],"confidence":"certain"}

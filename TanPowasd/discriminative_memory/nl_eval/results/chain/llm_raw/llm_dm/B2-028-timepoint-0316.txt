@@ -1,0 +1,4 @@
+[
+  {"seq":18,"op":"set","value":"集市","alt":null,"cid":"雾港#18"},
+  {"seq":28,"op":"retire","value":null,"alt":null,"cid":"雾港#28"}
+]

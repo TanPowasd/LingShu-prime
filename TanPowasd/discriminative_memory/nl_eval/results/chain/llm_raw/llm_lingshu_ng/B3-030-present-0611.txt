@@ -1,0 +1,1 @@
+{"qid":"B3-030-present-0611","value":"低落","state":"active","at_seq":28,"chain":[],"basis":[{"file":"孤山驿#28","line":28,"quote":"顾九 的情绪此后确立为 低落，起因是第三方的劝说。"}],"confidence":"certain"}

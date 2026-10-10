@@ -1,0 +1,6 @@
+[
+  {"seq":14,"op":"set","value":"反对","alt":null,"cid":"孤山驿#14"},
+  {"seq":18,"op":"set","value":"中立","alt":null,"cid":"孤山驿#18"},
+  {"seq":23,"op":"set","value":"支持","alt":null,"cid":"孤山驿#23"},
+  {"seq":28,"op":"retire","value":null,"alt":null,"cid":"孤山驿#28"}
+]

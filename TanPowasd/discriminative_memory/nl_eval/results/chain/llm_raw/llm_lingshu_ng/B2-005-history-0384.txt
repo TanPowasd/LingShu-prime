@@ -1,0 +1,1 @@
+{"qid":"B2-005-history-0384","value":"沉默","state":"active","at_seq":5,"chain":[],"basis":[{"file":"雾港#5","line":5,"quote":"林昭 的立场转为 沉默，起因是私下承诺。"}],"confidence":"certain"}

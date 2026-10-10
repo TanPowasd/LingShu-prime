@@ -1,0 +1,4 @@
+[
+  {"seq":21,"op":"unresolve","value":"愤怒","alt":"欣慰","cid":"雾港#21"},
+  {"seq":26,"op":"set","value":"犹豫","alt":null,"cid":"雾港#26"}
+]

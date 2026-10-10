@@ -1,0 +1,1 @@
+{"qid":"B2-030-present-0401","value":"阿桑","state":"active","at_seq":26,"chain":[],"basis":[{"file":"雾港#26","line":26,"quote":"沈砚 的信任对象转为 阿桑，起因是旧事重提。"}],"confidence":"certain"}

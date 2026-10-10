@@ -1,0 +1,1 @@
+{"qid":"B2-003-state-0369","value":null,"state":"retired","at_seq":null,"chain":[],"basis":[{"file":"雾港#3","line":3,"quote":"林昭 的信任对象被撤销，此后不再保留取值，起因是共同的外敌。"}],"confidence":"certain"}

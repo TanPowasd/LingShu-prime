@@ -1,0 +1,7 @@
+[
+  {"seq":8,"op":"retire","value":null,"alt":null,"cid":"青石镇#8"},
+  {"seq":12,"op":"set","value":"支持","alt":null,"cid":"青石镇#12"},
+  {"seq":16,"op":"set","value":"观望","alt":null,"cid":"青石镇#16"},
+  {"seq":20,"op":"set","value":"暧昧","alt":null,"cid":"青石镇#20"},
+  {"seq":25,"op":"set","value":"观望","alt":null,"cid":"青石镇#25"}
+]

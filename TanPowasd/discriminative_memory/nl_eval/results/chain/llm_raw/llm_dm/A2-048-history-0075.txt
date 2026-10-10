@@ -1,0 +1,6 @@
+[
+  {"seq":34,"op":"set","value":"10800","alt":null,"cid":"流明项目#34"},
+  {"seq":37,"op":"set","value":"3600","alt":null,"cid":"流明项目#37"},
+  {"seq":48,"op":"set","value":"7200","alt":null,"cid":"流明项目#48"},
+  {"seq":50,"op":"set","value":"1800","alt":null,"cid":"流明项目#50"}
+]

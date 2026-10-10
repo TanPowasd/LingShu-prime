@@ -1,0 +1,1 @@
+{"qid":"B2-022-reason-0468","value":"旧事重提","state":"active","at_seq":22,"chain":[],"basis":[{"file":"雾港#22","line":22,"quote":"阿桑 的立场转为 反对，起因是旧事重提。"}],"confidence":"certain"}

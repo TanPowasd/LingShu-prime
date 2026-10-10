@@ -1,0 +1,1 @@
+{"qid":"B1-020-history-0305","value":"暧昧","state":"active","at_seq":20,"chain":[],"basis":[{"file":"青石镇#20","line":20,"quote":"阿禾 的立场转为 暧昧，起因是一桩旧账。"}],"confidence":"certain"}

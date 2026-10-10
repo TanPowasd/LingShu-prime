@@ -1,0 +1,5 @@
+[
+  {"seq": 7, "op": "set", "value": "陆平", "alt": null, "cid": "孤山驿#7"},
+  {"seq": 17, "op": "set", "value": "顾九", "alt": null, "cid": "孤山驿#17"},
+  {"seq": 27, "op": "set", "value": "外人", "alt": null, "cid": "孤山驿#27"}
+]

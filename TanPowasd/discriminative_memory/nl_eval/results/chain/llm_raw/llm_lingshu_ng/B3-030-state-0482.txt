@@ -1,0 +1,1 @@
+{"qid":"B3-030-state-0482","value":"无人","state":"active","at_seq":10,"chain":[],"basis":[{"file":"孤山驿#10","line":10,"quote":"白芨 的信任对象转为 无人，起因是第三方的劝说。"}],"confidence":"certain"}

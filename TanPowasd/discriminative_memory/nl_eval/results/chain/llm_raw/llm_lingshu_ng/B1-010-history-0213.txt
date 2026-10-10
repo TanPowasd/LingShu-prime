@@ -1,0 +1,1 @@
+{"qid":"B1-010-history-0213","value":"犹豫","state":"active","at_seq":10,"chain":[],"basis":[{"file":"青石镇#10","line":10,"quote":"满儿 的情绪首次确立为 犹豫。"},{"file":"青石镇#13","line":13,"quote":"满儿 自第 13 章起改名为 小满。"}],"confidence":"certain"}

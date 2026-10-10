@@ -1,0 +1,1 @@
+{"qid":"A1-031-history-0005","value":"redis","state":"active","at_seq":31,"chain":[],"basis":[{"file":"猎户项目#31","line":31,"quote":"猎户项目 的依赖名调整为 redis，起因是接口兼容性调整。"}],"confidence":"certain"}

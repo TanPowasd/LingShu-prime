@@ -1,0 +1,14 @@
+[
+  {"seq":1,"op":"set","value":"沉默","alt":null,"cid":"雾港#1"},
+  {"seq":2,"op":"set","value":"暧昧","alt":null,"cid":"雾港#2"},
+  {"seq":3,"op":"set","value":"支持","alt":null,"cid":"雾港#3"},
+  {"seq":4,"op":"set","value":"反对","alt":null,"cid":"雾港#4"},
+  {"seq":5,"op":"set","value":"沉默","alt":null,"cid":"雾港#5"},
+  {"seq":6,"op":"set","value":"反对","alt":null,"cid":"雾港#6"},
+  {"seq":7,"op":"set","value":"沉默","alt":null,"cid":"雾港#7"},
+  {"seq":8,"op":"retire","value":null,"alt":null,"cid":"雾港#8"},
+  {"seq":13,"op":"set","value":"沉默","alt":null,"cid":"雾港#13"},
+  {"seq":17,"op":"set","value":"暧昧","alt":null,"cid":"雾港#17"},
+  {"seq":22,"op":"set","value":"中立","alt":null,"cid":"雾港#22"},
+  {"seq":26,"op":"set","value":"观望","alt":null,"cid":"雾港#26"}
+]

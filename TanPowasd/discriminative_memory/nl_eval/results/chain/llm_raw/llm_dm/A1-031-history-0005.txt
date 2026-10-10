@@ -1,0 +1,11 @@
+[
+  {"seq":25,"op":"set","value":"badger","alt":null,"cid":"猎户项目#25"},
+  {"seq":26,"op":"set","value":"rocksdb","alt":null,"cid":"猎户项目#26"},
+  {"seq":27,"op":"set","value":"redis","alt":null,"cid":"猎户项目#27"},
+  {"seq":30,"op":"set","value":"lmdb","alt":null,"cid":"猎户项目#30"},
+  {"seq":31,"op":"set","value":"redis","alt":null,"cid":"猎户项目#31"},
+  {"seq":38,"op":"set","value":"rocksdb","alt":null,"cid":"猎户项目#38"},
+  {"seq":39,"op":"set","value":"lmdb","alt":null,"cid":"猎户项目#39"},
+  {"seq":40,"op":"set","value":"sqlite","alt":null,"cid":"猎户项目#40"},
+  {"seq":56,"op":"set","value":"redis","alt":null,"cid":"猎户项目#56"}
+]

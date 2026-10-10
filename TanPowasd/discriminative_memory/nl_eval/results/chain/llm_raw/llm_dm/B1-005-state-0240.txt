@@ -1,0 +1,6 @@
+[
+  {"seq":5,"op":"set","value":"渡口","alt":null,"cid":"青石镇#5"},
+  {"seq":7,"op":"set","value":"祠堂","alt":null,"cid":"青石镇#7"},
+  {"seq":17,"op":"set","value":"码头","alt":null,"cid":"青石镇#17"},
+  {"seq":26,"op":"set","value":"磨坊","alt":null,"cid":"青石镇#26"}
+]

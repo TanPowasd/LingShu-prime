@@ -1,0 +1,8 @@
+[
+  {"seq":4,"op":"set","value":"阿桑","alt":null,"cid":"雾港#4"},
+  {"seq":8,"op":"unresolve","value":"林昭","alt":"杜衡","cid":"雾港#8"},
+  {"seq":12,"op":"set","value":"无人","alt":null,"cid":"雾港#12"},
+  {"seq":17,"op":"set","value":"阿桑","alt":null,"cid":"雾港#17"},
+  {"seq":21,"op":"set","value":"无人","alt":null,"cid":"雾港#21"},
+  {"seq":26,"op":"set","value":"阿桑","alt":null,"cid":"雾港#26"}
+]

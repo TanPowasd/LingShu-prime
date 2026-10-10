@@ -1,0 +1,1 @@
+{"qid":"A1-021-history-0034","value":"cfg_544042","state":"active","at_seq":21,"chain":[],"basis":[{"file":"猎户项目#21","line":21,"quote":"猎户项目 的配置值调整为 cfg_544042，起因是压测暴露并发缺陷。"}],"confidence":"certain"}

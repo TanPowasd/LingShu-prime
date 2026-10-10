@@ -1,0 +1,1 @@
+{"qid":"A3-045-history-0105","value":null,"state":"retired","at_seq":45,"chain":[],"basis":[{"file":"织女项目#45","line":45,"quote":"织女项目 的依赖名被撤销，此后不再保留取值，起因是依赖库升级。"}],"confidence":"certain"}

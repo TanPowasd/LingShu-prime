@@ -1,0 +1,1 @@
+{"qid":"A2-060-present-0071","value":"1800","state":"active","at_seq":50,"chain":[{"seq":44,"from":null,"to":"3600"},{"seq":50,"from":"3600","to":"1800"}],"basis":[{"file":"流明项目#44","line":44,"quote":"流明项目 的有效期秒数调整为 3600，起因是安全审计要求。"},{"file":"流明项目#50","line":50,"quote":"流明项目 的有效期秒数调整为 1800，起因是容量评估结论。"}],"confidence":"probable"}

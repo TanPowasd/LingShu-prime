@@ -1,0 +1,1 @@
+{"qid":"B1-030-present-0151","value":"祠堂","state":"active","at_seq":28,"chain":[],"basis":[{"file":"青石镇#28","line":28,"quote":"周舟 的位置此后确立为 祠堂，起因是第三方的劝说。"}],"confidence":"certain"}

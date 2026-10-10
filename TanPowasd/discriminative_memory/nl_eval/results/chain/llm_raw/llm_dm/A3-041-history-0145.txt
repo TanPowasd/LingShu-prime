@@ -1,0 +1,9 @@
+[
+  {"seq":40,"op":"set","value":"21600","alt":null,"cid":"织女项目#40"},
+  {"seq":41,"op":"set","value":"7200","alt":null,"cid":"织女项目#41"},
+  {"seq":42,"op":"set","value":"1800","alt":null,"cid":"织女项目#42"},
+  {"seq":43,"op":"set","value":"900","alt":null,"cid":"织女项目#43"},
+  {"seq":44,"op":"set","value":"300","alt":null,"cid":"织女项目#44"},
+  {"seq":45,"op":"set","value":"21600","alt":null,"cid":"织女项目#45"},
+  {"seq":46,"op":"set","value":"600","alt":null,"cid":"织女项目#46"}
+]

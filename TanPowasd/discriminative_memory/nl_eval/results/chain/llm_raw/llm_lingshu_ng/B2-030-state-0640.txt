@@ -1,0 +1,1 @@
+{"qid":"B2-030-state-0640","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[],"confidence":"certain"}

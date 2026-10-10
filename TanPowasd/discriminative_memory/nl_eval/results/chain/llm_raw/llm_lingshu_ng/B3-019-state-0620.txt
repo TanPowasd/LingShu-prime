@@ -1,0 +1,1 @@
+{"qid":"B3-019-state-0620","value":"戒备","state":"active","at_seq":19,"chain":[],"basis":[{"file":"孤山驿#19","line":19,"quote":"顾九 的情绪转为 戒备，起因是私下承诺。"}],"confidence":"certain"}

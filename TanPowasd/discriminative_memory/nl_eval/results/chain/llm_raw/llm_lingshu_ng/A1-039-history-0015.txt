@@ -1,0 +1,1 @@
+{"qid":"A1-039-history-0015","value":"sync(key)","state":"retired","at_seq":39,"chain":[],"basis":[{"file":"猎户项目#39","line":39,"quote":"猎户项目 的函数签名调整为 sync(key)，起因是代码评审意见。"}],"confidence":"certain"}

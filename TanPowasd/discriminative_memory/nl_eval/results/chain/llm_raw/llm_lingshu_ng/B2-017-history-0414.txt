@@ -1,0 +1,1 @@
+{"qid":"B2-017-history-0414","value":"低落","state":"active","at_seq":17,"chain":[],"basis":[{"file":"雾港#17","line":17,"quote":"沈砚 的情绪转为 低落，起因是共同的外敌。"}],"confidence":"certain"}

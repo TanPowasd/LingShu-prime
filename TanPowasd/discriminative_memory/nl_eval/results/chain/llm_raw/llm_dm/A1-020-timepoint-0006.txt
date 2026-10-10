@@ -1,0 +1,7 @@
+[
+  {"seq":20,"op":"unresolve","value":"bbolt","alt":"lmdb","cid":"猎户项目#20"},
+  {"seq":21,"op":"set","value":"sqlite","alt":null,"cid":"猎户项目#21"},
+  {"seq":22,"op":"set","value":"bbolt","alt":null,"cid":"猎户项目#22"},
+  {"seq":23,"op":"set","value":"sled","alt":null,"cid":"猎户项目#23"},
+  {"seq":50,"op":"set","value":"rocksdb","alt":null,"cid":"猎户项目#50"}
+]

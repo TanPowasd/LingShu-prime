@@ -1,0 +1,1 @@
+{"qid":"B1-009-history-0253","value":"愤怒","state":"active","at_seq":9,"chain":[],"basis":[{"file":"青石镇#9","line":9,"quote":"老陈 的情绪首次确立为 愤怒。"}],"confidence":"certain"}

@@ -1,0 +1,1 @@
+{"qid":"B2-030-change-0347","value":"暧昧","state":"active","at_seq":28,"chain":[{"seq":10,"from":null,"to":"观望"},{"seq":14,"from":"观望","to":"沉默"},{"seq":19,"from":"沉默","to":"暧昧"},{"seq":23,"from":"暧昧","to":null},{"seq":28,"from":null,"to":"暧昧"}],"basis":[{"file":"雾港#10","line":12,"

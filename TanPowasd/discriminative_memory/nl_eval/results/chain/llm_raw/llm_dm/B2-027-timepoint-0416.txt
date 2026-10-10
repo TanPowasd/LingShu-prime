@@ -1,0 +1,4 @@
+[
+  {"seq":17,"op":"set","value":"低落","alt":null,"cid":"雾港#17"},
+  {"seq":27,"op":"retire","value":null,"alt":null,"cid":"雾港#27"}
+]

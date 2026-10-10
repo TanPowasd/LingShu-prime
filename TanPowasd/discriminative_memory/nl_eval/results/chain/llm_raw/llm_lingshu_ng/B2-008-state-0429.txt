@@ -1,0 +1,1 @@
+{"qid":"B2-008-state-0429","value":null,"state":"retired","at_seq":null,"chain":[],"basis":[{"file":"雾港#8","line":8,"quote":"沈砚 的立场被撤销，此后不再保留取值，起因是旧事重提。"},{"file":"雾港#1","line":1,"quote":"沈砚 的立场首次确立为 沉默。"}],"confidence":"certain"}

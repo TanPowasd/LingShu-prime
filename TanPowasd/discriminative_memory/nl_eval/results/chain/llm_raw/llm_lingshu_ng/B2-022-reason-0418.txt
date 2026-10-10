@@ -1,0 +1,1 @@
+{"qid":"B2-022-reason-0418","value":"利益冲突","state":"active","at_seq":22,"chain":[],"basis":[{"file":"雾港#22","line":22,"quote":"沈砚 的情绪转为 焦虑，起因是利益冲突。"}],"confidence":"certain"}

@@ -1,0 +1,1 @@
+{"qid":"B3-005-state-0550","value":"观望","state":"active","at_seq":5,"chain":[],"basis":[{"file":"孤山驿#5","line":5,"quote":"程雪 的立场转为 观望，起因是第三方的劝说。"}],"confidence":"certain"}

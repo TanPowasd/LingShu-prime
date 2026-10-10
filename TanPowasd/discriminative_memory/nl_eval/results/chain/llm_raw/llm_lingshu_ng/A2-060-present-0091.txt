@@ -1,0 +1,1 @@
+{"qid":"A2-060-present-0091","value":"21600","state":"active","at_seq":55,"chain":[],"basis":[{"file":"流明项目#55","line":55,"quote":"流明项目·缓存模块 的有效期秒数调整为 21600，起因是接口兼容性调整。"},{"file":"流明项目#51","line":51,"quote":"流明项目·缓存模块 的有效期秒数调整为 600，起因是压测暴露并发缺陷。"}],"confidence":"certain"}
