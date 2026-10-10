@@ -238,7 +238,8 @@ def cap_material(hits, cap):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('bench')
-    ap.add_argument('--arms', default='disc_frozen,disc_ext,bm25,rrf3,versionblind,closed')
+    ap.add_argument('--arms', default='disc_frozen,disc_ext,bm25,rrf3,lingshu,versionblind,closed')
+    ap.add_argument('--dsh', default=str(TAN.parent.parent / 'dsh-memory'))
     ap.add_argument('--out', default=str(HERE / 'results' / 'chain'))
     args = ap.parse_args()
     B = Path(args.bench) / 'chain'
@@ -290,7 +291,16 @@ def main():
         (d / 'retrieval').mkdir(parents=True)
         led = full_ledger(frozen_events if arm == 'disc_frozen' else ext_events) if arm.startswith('disc') else None
         bm = BM25(corpus) if arm == 'bm25' else BM25(vb_corpus) if arm == 'versionblind' else None
-        rm = None
+        rm = lm = None
+        if arm == 'lingshu':                      # 官方 lingshu 臂＝dsh-memory md_cg（MdCG.add/search）
+            import tempfile
+            sys.path.insert(0, str(Path(args.dsh)))
+            from md_cg.mdcg import MdCG
+            lm = MdCG(tempfile.mkdtemp(prefix='mdcg_chain_'))
+            nid = {}
+            for c in corpus:
+                i = lm.add(c['cid'].replace('#', '@'), f"# {c['cid']}\n{c['text']}")
+                nid[i] = c['cid']
         if arm == 'rrf3':
             import rrf3 as R
             rm = R.RRF3Memory()
@@ -309,7 +319,10 @@ def main():
                 cids = sorted({e['cid'] for e in used}, key=lambda c: by_cid[c]['seq'])
                 mat = [{'cid': c, 'text': by_cid[c]['text']} for c in cids]
             else:
-                if rm is not None:
+                if lm is not None:
+                    res, _ = lm.search(q['question'], k=CHAIN_K if chq else K)
+                    hits = [by_cid[nid[r[0]['id']]] for r in res if r[0].get('id') in nid]
+                elif rm is not None:
                     hits, seen = [], set()
                     for h in rm.retrieve(q['question'], budget=CHAIN_CAP if chq else CAP):
                         cid = owner[h.id]

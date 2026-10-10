@@ -451,6 +451,117 @@
    }
   },
   {
+   "arm": "lingshu",
+   "all": {
+    "arm": "lingshu",
+    "present": 0.2553,
+    "history": 0.8362,
+    "chain": 0.7679,
+    "chain_row_recall": 0.8724,
+    "stale": 0.6383,
+    "future": 0.0,
+    "subject_confusion": 0.0,
+    "four_state": 0.797,
+    "reason": 0.9841,
+    "verbatim": 0.8848,
+    "n": 625,
+    "counts": {
+     "present": 47,
+     "history": 177,
+     "chain": 56,
+     "chain_row_recall": 56,
+     "stale": 47,
+     "future": 202,
+     "subject_confusion": 239,
+     "four_state": 197,
+     "reason": 63,
+     "verbatim": 625
+    },
+    "bucket_main": {
+     "long": 0.6552,
+     "mid": 0.6275,
+     "short": 0.8054
+    },
+    "bucket_main_n": {
+     "long": 29,
+     "mid": 102,
+     "short": 149
+    }
+   },
+   "test": {
+    "arm": "lingshu",
+    "present": 0.2258,
+    "history": 0.9076,
+    "chain": 0.8462,
+    "chain_row_recall": 0.8844,
+    "stale": 0.7097,
+    "future": 0.0,
+    "subject_confusion": 0.0,
+    "four_state": 0.8182,
+    "reason": 1.0,
+    "verbatim": 0.9069,
+    "n": 419,
+    "counts": {
+     "present": 31,
+     "history": 119,
+     "chain": 39,
+     "chain_row_recall": 39,
+     "stale": 31,
+     "future": 140,
+     "subject_confusion": 170,
+     "four_state": 132,
+     "reason": 42,
+     "verbatim": 419
+    },
+    "bucket_main": {
+     "long": 0.7,
+     "mid": 0.7353,
+     "short": 0.8317
+    },
+    "bucket_main_n": {
+     "long": 20,
+     "mid": 68,
+     "short": 101
+    }
+   },
+   "dev": {
+    "arm": "lingshu",
+    "present": 0.3125,
+    "history": 0.6897,
+    "chain": 0.5882,
+    "chain_row_recall": 0.8415,
+    "stale": 0.5,
+    "future": 0.0,
+    "subject_confusion": 0.0,
+    "four_state": 0.7538,
+    "reason": 0.9524,
+    "verbatim": 0.8398,
+    "n": 206,
+    "counts": {
+     "present": 16,
+     "history": 58,
+     "chain": 17,
+     "chain_row_recall": 17,
+     "stale": 16,
+     "future": 62,
+     "subject_confusion": 69,
+     "four_state": 65,
+     "reason": 21,
+     "verbatim": 206
+    },
+    "bucket_main": {
+     "long": 0.5556,
+     "mid": 0.4118,
+     "short": 0.75
+    },
+    "bucket_main_n": {
+     "long": 9,
+     "mid": 34,
+     "short": 48
+    }
+   }
+  },
+  {
    "arm": "versionblind",
    "all": {
     "arm": "versionblind",
