@@ -1,0 +1,265 @@
+{
+ "bench_commit": "426a86a",
+ "prereg": "chain_prereg.md",
+ "dev_docs": [
+  "A1",
+  "B1"
+ ],
+ "readings": [
+  {
+   "arm": "lingshu",
+   "all": {
+    "arm": "lingshu",
+    "present": 0.2553,
+    "history": 0.8362,
+    "chain": 0.7679,
+    "chain_row_recall": 0.8724,
+    "stale": 0.6383,
+    "future": 0.0,
+    "subject_confusion": 0.0,
+    "four_state": 0.797,
+    "reason": 0.9841,
+    "verbatim": 0.8848,
+    "n": 625,
+    "counts": {
+     "present": 47,
+     "history": 177,
+     "chain": 56,
+     "chain_row_recall": 56,
+     "stale": 47,
+     "future": 202,
+     "subject_confusion": 239,
+     "four_state": 197,
+     "reason": 63,
+     "verbatim": 625
+    },
+    "bucket_main": {
+     "long": 0.6552,
+     "mid": 0.6275,
+     "short": 0.8054
+    },
+    "bucket_main_n": {
+     "long": 29,
+     "mid": 102,
+     "short": 149
+    }
+   },
+   "test": {
+    "arm": "lingshu",
+    "present": 0.2258,
+    "history": 0.9076,
+    "chain": 0.8462,
+    "chain_row_recall": 0.8844,
+    "stale": 0.7097,
+    "future": 0.0,
+    "subject_confusion": 0.0,
+    "four_state": 0.8182,
+    "reason": 1.0,
+    "verbatim": 0.9069,
+    "n": 419,
+    "counts": {
+     "present": 31,
+     "history": 119,
+     "chain": 39,
+     "chain_row_recall": 39,
+     "stale": 31,
+     "future": 140,
+     "subject_confusion": 170,
+     "four_state": 132,
+     "reason": 42,
+     "verbatim": 419
+    },
+    "bucket_main": {
+     "long": 0.7,
+     "mid": 0.7353,
+     "short": 0.8317
+    },
+    "bucket_main_n": {
+     "long": 20,
+     "mid": 68,
+     "short": 101
+    }
+   },
+   "dev": {
+    "arm": "lingshu",
+    "present": 0.3125,
+    "history": 0.6897,
+    "chain": 0.5882,
+    "chain_row_recall": 0.8415,
+    "stale": 0.5,
+    "future": 0.0,
+    "subject_confusion": 0.0,
+    "four_state": 0.7538,
+    "reason": 0.9524,
+    "verbatim": 0.8398,
+    "n": 206,
+    "counts": {
+     "present": 16,
+     "history": 58,
+     "chain": 17,
+     "chain_row_recall": 17,
+     "stale": 16,
+     "future": 62,
+     "subject_confusion": 69,
+     "four_state": 65,
+     "reason": 21,
+     "verbatim": 206
+    },
+    "bucket_main": {
+     "long": 0.5556,
+     "mid": 0.4118,
+     "short": 0.75
+    },
+    "bucket_main_n": {
+     "long": 9,
+     "mid": 34,
+     "short": 48
+    }
+   }
+  },
+  {
+   "arm": "lingshu_st",
+   "all": {
+    "arm": "lingshu_st",
+    "present": 0.6383,
+    "history": 0.7797,
+    "chain": 0.6607,
+    "chain_row_recall": 0.7891,
+    "stale": 0.2553,
+    "future": 0.0,
+    "subject_confusion": 0.0,
+    "four_state": 0.7157,
+    "reason": 0.9206,
+    "verbatim": 0.8384,
+    "n": 625,
+    "counts": {
+     "present": 47,
+     "history": 177,
+     "chain": 56,
+     "chain_row_recall": 56,
+     "stale": 47,
+     "future": 202,
+     "subject_confusion": 239,
+     "four_state": 197,
+     "reason": 63,
+     "verbatim": 625
+    },
+    "bucket_main": {
+     "long": 0.4483,
+     "mid": 0.6176,
+     "short": 0.8658
+    },
+    "bucket_main_n": {
+     "long": 29,
+     "mid": 102,
+     "short": 149
+    }
+   },
+   "test": {
+    "arm": "lingshu_st",
+    "present": 0.5161,
+    "history": 0.8655,
+    "chain": 0.7179,
+    "chain_row_recall": 0.783,
+    "stale": 0.3871,
+    "future": 0.0,
+    "subject_confusion": 0.0,
+    "four_state": 0.7197,
+    "reason": 0.9524,
+    "verbatim": 0.8663,
+    "n": 419,
+    "counts": {
+     "present": 31,
+     "history": 119,
+     "chain": 39,
+     "chain_row_recall": 39,
+     "stale": 31,
+     "future": 140,
+     "subject_confusion": 170,
+     "four_state": 132,
+     "reason": 42,
+     "verbatim": 419
+    },
+    "bucket_main": {
+     "long": 0.4,
+     "mid": 0.7206,
+     "short": 0.8911
+    },
+    "bucket_main_n": {
+     "long": 20,
+     "mid": 68,
+     "short": 101
+    }
+   },
+   "dev": {
+    "arm": "lingshu_st",
+    "present": 0.875,
+    "history": 0.6034,
+    "chain": 0.5294,
+    "chain_row_recall": 0.8049,
+    "stale": 0.0,
+    "future": 0.0,
+    "subject_confusion": 0.0,
+    "four_state": 0.7077,
+    "reason": 0.8571,
+    "verbatim": 0.7816,
+    "n": 206,
+    "counts": {
+     "present": 16,
+     "history": 58,
+     "chain": 17,
+     "chain_row_recall": 17,
+     "stale": 16,
+     "future": 62,
+     "subject_confusion": 69,
+     "four_state": 65,
+     "reason": 21,
+     "verbatim": 206
+    },
+    "bucket_main": {
+     "long": 0.5556,
+     "mid": 0.4118,
+     "short": 0.8125
+    },
+    "bucket_main_n": {
+     "long": 9,
+     "mid": 34,
+     "short": 48
+    }
+   }
+  }
+ ],
+ "calibration": {
+  "version_blind": {
+   "present": 0.0,
+   "history": 0.0,
+   "chain": 0.0
+  },
+  "closed_book": 0.0,
+  "chain_length_monotonic": true,
+  "sut_arm": "lingshu",
+  "sut_buckets": {
+   "long": {
+    "rate": 0.6552,
+    "n": 29
+   },
+   "mid": {
+    "rate": 0.6275,
+    "n": 102
+   },
+   "short": {
+    "rate": 0.8054,
+    "n": 149
+   }
+  },
+  "gate_stage": "full",
+  "criteria": {
+   "c1": false,
+   "c2": false,
+   "c3": true,
+   "c4": true
+  },
+  "passed": false,
+  "details": "① 版本盲指纹：现值 None（要求 ≥0.5）、历史 None、变更链 None（要求 ≤0.15）、现值分母 0（要求 ≥20）→ 不过；② 闭卷核心：现值 None / 历史 None / 变更链 None（各 ≤0.2）、答题量 0（≥100）→ 不过；③ 链长单调（**被测系统臂**）：被测臂 lingshu 桶 ['short', 'mid', 'long']＝[0.8054, 0.6275, 0.6552]，短链 0.8054 ≥ 下界 0.3 且 ≥ 结构基线 0.2676+0.1；结构基线 {'long': 0.0787, 'mid': 0.1536, 'short': 0.2676}（仅诊断，不作判据）→ 过；④ 读数自洽：值域合法、答卷同源完整、且读数可由答卷独立复算 → 过。（本次 limit=全量；阶段=full；口径：可推题不进主读数，历史叙述豁免须状态判对。）"
+ }
+}

@@ -295,6 +295,7 @@ def main():
     ap.add_argument('bench')
     ap.add_argument('--arms', default='disc_frozen,disc_ext,bm25,rrf3,lingshu,versionblind,closed')
     ap.add_argument('--dsh', default=str(TAN.parent.parent / 'dsh-memory'))
+    ap.add_argument('--lingshu', default=str(TAN.parent.parent / 'lingshu'))
     ap.add_argument('--out', default=str(HERE / 'results' / 'chain'))
     args = ap.parse_args()
     B = Path(args.bench) / 'chain'
@@ -366,6 +367,16 @@ def main():
                 def search(self, q, k):
                     return ([({'id': n.id}, sc) for n, sc in ng.search(q, limit=k)], None)
             lm = _NG()
+        if arm == 'lingshu_st':                   # 上游 lingshu 主仓 core.SpacetimeMemoryEngine.add_perception/search_content（默认 M5 去重）
+            sys.path.insert(0, str(Path(args.lingshu)))
+            from lingshu.core.core import SpacetimeMemoryEngine
+            st = SpacetimeMemoryEngine(); nid = {}
+            for c in corpus:
+                nid[st.add_perception(c['text']).id] = c['cid']
+            class _ST:
+                def search(self, q, k):
+                    return ([({'id': n.id}, sc) for n, sc in st.search_content(q, limit=k)], None)
+            lm = _ST()
         dm_cache = {}
         if arm in ('rrf3', 'rrf3_dm'):
             import rrf3 as R
