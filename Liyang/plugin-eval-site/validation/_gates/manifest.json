@@ -1,0 +1,58 @@
+{
+ "validation_id": "_gates",
+ "scope": "端到端验证计划 v0 门槛 2–6（受控夹具、公平性、安全案例、追根与失效、故障注入）；门槛 1 不在本批",
+ "created": "2026-10-10T11:38:25+08:00",
+ "executor": "pes-e2e-gates（代理）",
+ "independent_reviewer": null,
+ "docs_sha256": {
+  "ACCEPTANCE_16.md": "b990bfbfd65cc7a0524e13a4886a731a558d00cdf08cb1c2da53698481482455",
+  "工程协议手册-v1.1.md": "e7cfa4a9d7166e8f4eb8090c48448170912d9267eefd047cc8661fa7b8183d83",
+  "差距分析.md": "160213cbccbd308f3d0d80312809c16bd9799e42531b8a932e97be5bf912f15c",
+  "插件测评站-方案v3.0-完整修订版.md": "94eb3a6ae6915b81347a4026f9d99139a80610913a7d0fb1a97663a3756c20c4",
+  "插件测评站-方案v3.0-简版.md": "aca608cb66a9b357234e0c1379bab1d36d0f53fbb8b1df7e995febf8d85fd034",
+  "端到端验证计划-v0.md": "ed842b89bd87a20886d93cf97d73e8ccb73f2de7ec74d09d432abb0dad229089",
+  "记忆域判定规范_v0_落地.md": "455f495de19b157d3ea7fdb25e2fd3c6f1bbb83a9893d84bc0f12d91047d2f4c"
+ },
+ "docs_match_SHA256SUMS": true,
+ "docs_not_in_SHA256SUMS": [
+  "ACCEPTANCE_16.md",
+  "差距分析.md",
+  "记忆域判定规范_v0_落地.md"
+ ],
+ "harness_git_head": "e4ae922a11e4193c61e1fe7696fd71605d35d211",
+ "hmb_git": "72130ac5fe6c28aa7eb91111cadf84574bf1b45a",
+ "judge_py_sha256": "f8578a779316ff8a7db5c6907264a9c7091f39c84feb7f77eacd16effbc98fae",
+ "examA_py_sha256": "7c04154fe28dceb72b8f99969a0243c714073c1368e6d9f2cd7003b92d6325b8",
+ "upstream_hmb_judge_sha256": "8718178c113523705ea36f52cdde58b03bc107314af3598bad92041bd42243ac",
+ "tools_sha256": {
+  "tools/gates/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "tools/gates/common.py": "5aeb845cf15485e15e1b1ef5f8ebee81a4d796f2cddf961a6fe742c58ef1f19a",
+  "tools/gates/evidence_chain.py": "b02c69958bc59af83877e29fccdb66c233ff8214e4feb06090cc94e3cfb891bf",
+  "tools/gates/evidence_verify.py": "99f5b25334d505d32fc69396ff8f487d13d2aa0b036f640edfcabfd9df6f79ec",
+  "tools/gates/fairness.py": "03816d7937a4a8aa5186b3bcce2962aa195bd80833c56558649e9bf3bb893b1b",
+  "tools/gates/fault_evidence.py": "ddb45021c9ee76344708b8299313da53f6e49ab61a2992193234159cdbd1c418",
+  "tools/gates/fault_judge.py": "bed0fbaec6fea7c1393e3ec110f729ee0e847f13584764635033fd576509b979",
+  "tools/gates/fault_judge_more.py": "ae20a088fef5a731fcfd844996b1d806907b1cf546ece61b038c8f7558d2781a",
+  "tools/gates/fixtures.py": "78c7c33a7823e5bfd553e996a53ec6a2e4718d0d6caa5a8c7b3f98fee54c8382",
+  "tools/gates/invalidate.py": "7bd3aea6a5eb3889e03e5b2a106d57aedccfdbe0ffa3ec94112289092269a8ce",
+  "tools/gates/manifest.py": "81f9695ffea9f9fc0f9fc689acd63ff1d4737753e42b622d5d6e118a7975adcb",
+  "tools/gates/probe_recall_mutation.py": "e7cf99e6783959da42e8e6065615c383421b47db467a303a0a728eb5df3dbe5f",
+  "tools/gates/real_trial.py": "db00cd339c1f2b87bd226151aa3fe4a2aac6e3a57b64ef2bd7dd5bfbbde373ea",
+  "tools/gates/regression.py": "63532c1a14702ce954db8e81d124f263f8c27943a6afc1ba8aff07343c4bc434",
+  "tools/gates/run_fixtures.py": "7706dca374b8d85e0d12783a21915d1e4b69f41db80125bbf41063f20c173a53",
+  "tools/gates/safety.py": "e63e3b80b8c29bb999d040782a686866b16ba58d4b64969785482f8a9cb611ff",
+  "tools/gates/state_check.py": "d226893b65482e31aca7e36e6a0eb43bd66df51e2c19b35b2eadb561e85fae7c",
+  "tools/gates/state_restore.py": "bd24532098b082d4cf1952aa08fcf8b82d56a14347b85fad140d9009293187f5"
+ },
+ "model": "cline-pass/deepseek-v4.1-flash（经 harness/llm.py 匀速闸）",
+ "outputs": {
+  "gate2": "validation/_gates/gate2/",
+  "regression": "validation/_gates/regression/",
+  "gate3": "validation/_gates/gate3/",
+  "gate4": "validation/_gates/gate4/",
+  "gate5+6③": "validation/_gates/gate5_6_evidence/",
+  "gate6①": "validation/_gates/gate6/judge_fault/",
+  "gate6②": "validation/_gates/gate6/state_restore/",
+  "replicas(可销毁, 不入 git)": "validation/_gates/replica/"
+ }
+}

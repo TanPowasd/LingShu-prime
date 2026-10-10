@@ -1,0 +1,180 @@
+{
+ "at": "2026-10-10T11:19:27+08:00",
+ "rows": [
+  {
+   "version": "M2_weight_paraphrase_1",
+   "sha256": "0927c1e00187ea2b747209e78cd01d933ce02ac5e6f90c40dcc39985fd37b897",
+   "is_defect": true,
+   "regression_all_pass": false,
+   "by_class": {
+    "correct": {
+     "n": 24,
+     "pass": 24
+    },
+    "wrong": {
+     "n": 24,
+     "pass": 24
+    },
+    "boundary": {
+     "n": 26,
+     "pass": 25
+    }
+   },
+   "fails": [
+    [
+     "RB09",
+     "WEIGHT paraphrase=0.5",
+     0.5,
+     1.0
+    ]
+   ],
+   "batch_gate_pass": true,
+   "outcome_ok": true
+  },
+  {
+   "version": "M3_parse_fail_as_strict",
+   "sha256": "b48a4a6dc2aef07a5c406918c14150688330c6127d41bae50d73b5078bc31015",
+   "is_defect": true,
+   "regression_all_pass": false,
+   "by_class": {
+    "correct": {
+     "n": 24,
+     "pass": 24
+    },
+    "wrong": {
+     "n": 24,
+     "pass": 24
+    },
+    "boundary": {
+     "n": 26,
+     "pass": 23
+    }
+   },
+   "fails": [
+    [
+     "RB03",
+     "parse_verdict 垃圾输出",
+     "parse_err",
+     "strict"
+    ],
+    [
+     "RB04",
+     "parse_verdict 越界档位 partial",
+     "parse_err",
+     "strict"
+    ],
+    [
+     "RB05",
+     "parse_verdict 空串",
+     "parse_err",
+     "strict"
+    ]
+   ],
+   "batch_gate_pass": true,
+   "outcome_ok": true
+  },
+  {
+   "version": "M4_gate_weakened",
+   "sha256": "e54f2b3536b9eab5f78877cf9799190a9f524582b5b9166d2179c2c0294990b7",
+   "is_defect": true,
+   "regression_all_pass": false,
+   "by_class": {
+    "correct": {
+     "n": 24,
+     "pass": 24
+    },
+    "wrong": {
+     "n": 24,
+     "pass": 24
+    },
+    "boundary": {
+     "n": 26,
+     "pass": 25
+    }
+   },
+   "fails": [
+    [
+     "RB17",
+     "gate：锚正确率 43/48(0.896) 不过",
+     false,
+     true
+    ]
+   ],
+   "batch_gate_pass": true,
+   "outcome_ok": true
+  },
+  {
+   "version": "M5_strict_merge",
+   "sha256": "cd76f5564ca1056423370600ed84bee676227cd80cabbb2c4b59a3ac4a1e7cbe",
+   "is_defect": true,
+   "regression_all_pass": false,
+   "by_class": {
+    "correct": {
+     "n": 24,
+     "pass": 24
+    },
+    "wrong": {
+     "n": 24,
+     "pass": 24
+    },
+    "boundary": {
+     "n": 26,
+     "pass": 24
+    }
+   },
+   "fails": [
+    [
+     "RB06",
+     "combine strict+miss 取宽松",
+     [
+      "strict",
+      "miss"
+     ],
+     [
+      "miss",
+      "miss"
+     ]
+    ],
+    [
+     "RB07",
+     "combine parse_err+miss",
+     [
+      "miss",
+      "parse_err"
+     ],
+     [
+      "parse_err",
+      "parse_err"
+     ]
+    ]
+   ],
+   "batch_gate_pass": true,
+   "outcome_ok": true
+  },
+  {
+   "version": "C0_noop_comment",
+   "sha256": "6a690cec7d2de0d70be79eb55792264e5d15344bc3e12299456f111178f77839",
+   "is_defect": false,
+   "regression_all_pass": true,
+   "by_class": {
+    "correct": {
+     "n": 24,
+     "pass": 24
+    },
+    "wrong": {
+     "n": 24,
+     "pass": 24
+    },
+    "boundary": {
+     "n": 26,
+     "pass": 26
+    }
+   },
+   "fails": [],
+   "batch_gate_pass": true,
+   "outcome_ok": true
+  }
+ ],
+ "all_ok": true,
+ "note": "M5（合并改取更严格档）在回归集上是否被抓取决于回归集有无两判官分歧样本——本集两判官 100% 同判，见报告"
+}

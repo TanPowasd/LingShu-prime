@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+*.tmp
+logs/*.log
+# 运行目录（录像 JSONL、逐题作答/判词，体积大）不入 git；复算方法见 README_重跑考卷B.md。
+# 报告需要的副本保留在复核包：reports/dsh-memory_站外复核包/run_B_dsh/（含 recording.jsonl、summary.json、q/、judge/）与 逐题结果_B_dsh.csv。
+runs/

@@ -1,0 +1,36 @@
+{
+ "qid": "C-096",
+ "seed": 3,
+ "raw": "{\"qid\": \"C-096\", \"prediction\": \"接着把要记下的故事内容发给豆包去写——荣会把那段故事（很可能是关于这套协议、记忆系统或他与助手协作历程的叙述）整理成文字发出去，让豆包来执笔成文。\", \"basis\": [{\"file\": \"确认协议内容.md\", \"line\": 27764, \"quote\": \"我想把这个故事记下。就给豆包去写吧。\"}], \"confidence\": 0.55}",
+ "answer": {
+  "qid": "C-096",
+  "prediction": "接着把要记下的故事内容发给豆包去写——荣会把那段故事（很可能是关于这套协议、记忆系统或他与助手协作历程的叙述）整理成文字发出去，让豆包来执笔成文。",
+  "basis": [
+   {
+    "file": "确认协议内容.md",
+    "line": 27764,
+    "quote": "我想把这个故事记下。就给豆包去写吧。"
+   }
+  ],
+  "confidence": 0.55,
+  "parse_err": false
+ },
+ "basis_check": [
+  {
+   "file": "确认协议内容.md",
+   "line": 27764,
+   "verbatim": true,
+   "line_pm3": true
+  }
+ ],
+ "usage": {
+  "prompt_tokens": 1665,
+  "completion_tokens": 111,
+  "total_tokens": 1776
+ },
+ "finish_reason": "stop",
+ "ev": [
+  1007,
+  5955.309
+ ]
+}

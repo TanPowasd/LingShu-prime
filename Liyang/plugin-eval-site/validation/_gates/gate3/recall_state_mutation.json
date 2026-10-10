@@ -1,0 +1,10 @@
+{
+ "probe": "tools/gates/probe_recall_mutation.py",
+ "plugin": "dsh-memory@c8c3655",
+ "state": "/tmp/gates-dshm-state（门槛6②装好的实例）",
+ "changed_after_2_recalls": [
+  "MDCG_ROOT/_access.log",
+  "MDCG_ROOT/_heartbeat.jsonl"
+ ],
+ "unchanged": "_index.json、_sources.json、节点文件"
+}

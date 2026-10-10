@@ -1,0 +1,27 @@
+{
+ "batches_done": 190,
+ "files_started": 4,
+ "llm_calls": 692,
+ "status": {
+  "200": 692
+ },
+ "prompt_tokens": 13155921,
+ "completion_tokens": 599879,
+ "cost_usd": 1.7441,
+ "last_call_wall": "2026-10-10T09:27:46+08:00",
+ "recent60_median_prompt_chars": 14937.0,
+ "recent60_max_prompt_chars": 57983,
+ "recent60_finish_length": 0,
+ "flush_events": 189,
+ "flush_failed": [],
+ "n_flush_failed": 0,
+ "flush_retry_events": 3,
+ "event_types_tail": {
+  "plugin.install.begin": 3,
+  "plugin.install.result": 3,
+  "plugin.install.note": 2,
+  "plugin.ingest.plan": 2,
+  "plugin.flush": 189,
+  "plugin.flush.retry": 3
+ }
+}

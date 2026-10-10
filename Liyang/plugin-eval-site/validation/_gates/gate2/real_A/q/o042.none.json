@@ -1,0 +1,18 @@
+{
+ "qid": "o042",
+ "cond": "none",
+ "resp": {
+  "qid": "o042",
+  "conclusion": "材料中没有可据以作答的正文内容。",
+  "answer": "本考场未提供任何正文检索片段，因此无法说明巨子塔、风神像、指南、风之种这四样东西如何把两个世界连成一条线。",
+  "evidence": [],
+  "confidence": "unknown",
+  "claims": []
+ },
+ "parse_err": false,
+ "raw": "{\"qid\": \"o042\", \"conclusion\": \"材料中没有可据以作答的正文内容。\", \"answer\": \"本考场未提供任何正文检索片段，因此无法说明巨子塔、风神像、指南、风之种这四样东西如何把两个世界连成一条线。\", \"evidence\": [], \"confidence\": \"unknown\", \"claims\": []}",
+ "ev": [
+  51,
+  104.642
+ ]
+}

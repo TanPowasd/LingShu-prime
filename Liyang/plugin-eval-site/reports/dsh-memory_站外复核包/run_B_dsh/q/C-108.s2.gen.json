@@ -1,0 +1,36 @@
+{
+ "qid": "C-108",
+ "seed": 2,
+ "raw": "{\"qid\": \"C-108\", \"prediction\": \"继续粘贴Kimi对荣推导的逐条解剖：承接“一、总体评价：逻辑自洽≠物理正确”往下展开，列出致命的数学矛盾与多个根本性概念错误，把Kimi的回答完整发出来，供荣参考。\", \"basis\": [{\"file\": \"确认协议内容.md\", \"line\": 39741, \"quote\": \"以下是kimi的回答荣，我读了这份完整推导。\"}], \"confidence\": 0.72}",
+ "answer": {
+  "qid": "C-108",
+  "prediction": "继续粘贴Kimi对荣推导的逐条解剖：承接“一、总体评价：逻辑自洽≠物理正确”往下展开，列出致命的数学矛盾与多个根本性概念错误，把Kimi的回答完整发出来，供荣参考。",
+  "basis": [
+   {
+    "file": "确认协议内容.md",
+    "line": 39741,
+    "quote": "以下是kimi的回答荣，我读了这份完整推导。"
+   }
+  ],
+  "confidence": 0.72,
+  "parse_err": false
+ },
+ "basis_check": [
+  {
+   "file": "确认协议内容.md",
+   "line": 39741,
+   "verbatim": true,
+   "line_pm3": true
+  }
+ ],
+ "usage": {
+  "prompt_tokens": 1500,
+  "completion_tokens": 113,
+  "total_tokens": 1613
+ },
+ "finish_reason": "stop",
+ "ev": [
+  767,
+  5713.474
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "qid": "C-074",
+ "seed": 1,
+ "raw": "{\"qid\": \"C-074\", \"prediction\": \"我会继续按之前的节奏推进——把第二十一章的起点链接（qidian.com/chapter/1046167157/...）发给你，让你接着阅读并给出结构分析。\", \"basis\": [{\"file\": \"智能论恢复确认.md\", \"line\": 40017, \"quote\": \"https://www.qidian.com/chapter/1046167157/859132280/---> 用户提供了第二十章的链接，要求我阅读并给出结构分析。\"}], \"confidence\": 0.7}",
+ "answer": {
+  "qid": "C-074",
+  "prediction": "我会继续按之前的节奏推进——把第二十一章的起点链接（qidian.com/chapter/1046167157/...）发给你，让你接着阅读并给出结构分析。",
+  "basis": [
+   {
+    "file": "智能论恢复确认.md",
+    "line": 40017,
+    "quote": "https://www.qidian.com/chapter/1046167157/859132280/---> 用户提供了第二十章的链接，要求我阅读并给出结构分析。"
+   }
+  ],
+  "confidence": 0.7,
+  "parse_err": false
+ },
+ "basis_check": [
+  {
+   "file": "智能论恢复确认.md",
+   "line": 40017,
+   "verbatim": true,
+   "line_pm3": true
+  }
+ ],
+ "usage": {
+  "prompt_tokens": 1093,
+  "completion_tokens": 124,
+  "total_tokens": 1217
+ },
+ "finish_reason": "stop",
+ "ev": [
+  410,
+  5401.783
+ ]
+}

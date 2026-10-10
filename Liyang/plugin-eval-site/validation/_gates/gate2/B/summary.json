@@ -1,0 +1,41 @@
+{
+ "exam": "B",
+ "batch_status": "valid",
+ "attempt": 1,
+ "gate": {
+  "n_anchor": 48,
+  "n_items": 100,
+  "majority_baseline": 0.5,
+  "anchor_acc_v1": 1.0,
+  "anchor_margin_pp_v1": 50.0,
+  "anchor_acc_v2": 1.0,
+  "anchor_margin_pp_v2": 50.0,
+  "anchor_agree": 1.0,
+  "anchor_kappa": 1.0,
+  "items_agree": 1.0,
+  "items_kappa": 1.0,
+  "pass": true
+ },
+ "n": 100,
+ "pass": 97,
+ "by_variant": {
+  "answer_key+可回源依据": {
+   "strict": 20
+  },
+  "声明缺信息、不编造": {
+   "miss": 20
+  },
+  "替换实体": {
+   "strict": 3,
+   "paraphrase": 15,
+   "miss": 2
+  },
+  "注入旧值（断点前上一条人类消息当预测）": {
+   "miss": 20
+  },
+  "删除关键依据（内容=答案键、basis 清空）": {
+   "strict": 20
+  }
+ },
+ "at": "2026-10-10T11:03:25+08:00"
+}

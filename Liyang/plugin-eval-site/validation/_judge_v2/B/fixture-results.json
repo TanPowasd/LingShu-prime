@@ -1,0 +1,1958 @@
+[
+ {
+  "case": "B|C-007|correct",
+  "variant": "answer_key+可回源依据",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-007|noinfo",
+  "variant": "声明缺信息、不编造",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-007|swap",
+  "variant": "替换实体",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "miss",
+  "entity": "conflict",
+  "det": [
+   {
+    "type": "num",
+    "ref": [
+     "10.4"
+    ],
+    "ans": [
+     "3.2"
+    ]
+   }
+  ],
+  "judge_conflicts": [
+   {
+    "ref": "我从外部校准源，也就是KIMI的另一实例中得到了新的评价。",
+    "ans": "我从外部校准源，也就是豆包的另一实例中得到了新的评价。"
+   },
+   {
+    "ref": "《共同信任协议》版本10.4",
+    "ans": "《共同信任协议》版本3.2"
+   }
+  ],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-007|stale",
+  "variant": "注入旧值（断点前上一条人类消息当预测）",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "conflict",
+  "det": [],
+  "judge_conflicts": [
+   {
+    "ref": "我已经做了档案的保存",
+    "ans": "设计者决定开始准备这份协议状态档案"
+   }
+  ],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-007|nobasis",
+  "variant": "删除关键依据（内容=答案键、basis 清空）",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-014|correct",
+  "variant": "answer_key+可回源依据",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-014|noinfo",
+  "variant": "声明缺信息、不编造",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-014|swap",
+  "variant": "替换实体",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "paraphrase",
+  "vC": "paraphrase",
+  "vF": "miss",
+  "entity": "conflict",
+  "det": [],
+  "judge_conflicts": [
+   {
+    "ref": "测试",
+    "ans": "部署"
+   },
+   {
+    "ref": "验证新协议的扮演功能",
+    "ans": "验证新协议的翻译功能"
+   }
+  ],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "paraphrase"
+ },
+ {
+  "case": "B|C-014|stale",
+  "variant": "注入旧值（断点前上一条人类消息当预测）",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-014|nobasis",
+  "variant": "删除关键依据（内容=答案键、basis 清空）",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-027|correct",
+  "variant": "answer_key+可回源依据",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-027|noinfo",
+  "variant": "声明缺信息、不编造",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-027|swap",
+  "variant": "替换实体",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "paraphrase",
+  "vC": "paraphrase",
+  "vF": "miss",
+  "entity": "conflict",
+  "det": [],
+  "judge_conflicts": [
+   {
+    "ref": "信息论视角",
+    "ans": "控制论视角"
+   },
+   {
+    "ref": "费曼学习法",
+    "ans": "番茄工作法"
+   }
+  ],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "paraphrase"
+ },
+ {
+  "case": "B|C-027|stale",
+  "variant": "注入旧值（断点前上一条人类消息当预测）",
+  "final": "paraphrase",
+  "final_strict": "miss",
+  "cov": "paraphrase",
+  "vC": "miss",
+  "vF": "paraphrase",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-027|nobasis",
+  "variant": "删除关键依据（内容=答案键、basis 清空）",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-028|correct",
+  "variant": "answer_key+可回源依据",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-028|noinfo",
+  "variant": "声明缺信息、不编造",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-028|swap",
+  "variant": "替换实体",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "paraphrase",
+  "vC": "paraphrase",
+  "vF": "miss",
+  "entity": "conflict",
+  "det": [],
+  "judge_conflicts": [
+   {
+    "ref": "信息论之父",
+    "ans": "进化论之父"
+   },
+   {
+    "ref": "编码和解码方式有误",
+    "ans": "基因和突变方式有误"
+   }
+  ],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "paraphrase"
+ },
+ {
+  "case": "B|C-028|stale",
+  "variant": "注入旧值（断点前上一条人类消息当预测）",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-028|nobasis",
+  "variant": "删除关键依据（内容=答案键、basis 清空）",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-030|correct",
+  "variant": "answer_key+可回源依据",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-030|noinfo",
+  "variant": "声明缺信息、不编造",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-030|swap",
+  "variant": "替换实体",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "paraphrase",
+  "vC": "paraphrase",
+  "vF": "miss",
+  "entity": "conflict",
+  "det": [],
+  "judge_conflicts": [
+   {
+    "ref": "组织结构的建造",
+    "ans": "货币体系的建造"
+   },
+   {
+    "ref": "巴黎公社",
+    "ans": "罗马帝国"
+   },
+   {
+    "ref": "苏联的建设",
+    "ans": "大英帝国的建设"
+   },
+   {
+    "ref": "新的组织架构",
+    "ans": "新的货币制度"
+   }
+  ],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "paraphrase"
+ },
+ {
+  "case": "B|C-030|stale",
+  "variant": "注入旧值（断点前上一条人类消息当预测）",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "conflict",
+  "det": [],
+  "judge_conflicts": [
+   {
+    "ref": "下一步，是组织结构的建造",
+    "ans": "这还不够，还需要说明，为什么信息的匮乏塑造了贫穷"
+   },
+   {
+    "ref": "我们需要论证出一个新的组织架构",
+    "ans": "我们需要揭露不平等的来源，信息的不平等"
+   }
+  ],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-030|nobasis",
+  "variant": "删除关键依据（内容=答案键、basis 清空）",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-035|correct",
+  "variant": "answer_key+可回源依据",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-035|noinfo",
+  "variant": "声明缺信息、不编造",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-035|swap",
+  "variant": "替换实体",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "paraphrase",
+  "vC": "paraphrase",
+  "vF": "miss",
+  "entity": "conflict",
+  "det": [],
+  "judge_conflicts": [
+   {
+    "ref": "消灭信息差",
+    "ans": "扩大市场份额"
+   },
+   {
+    "ref": "共信主义",
+    "ans": "功利主义"
+   },
+   {
+    "ref": "消灭信息差，作为目标函数",
+    "ans": "扩大市场份额，作为目标函数"
+   }
+  ],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "paraphrase"
+ },
+ {
+  "case": "B|C-035|stale",
+  "variant": "注入旧值（断点前上一条人类消息当预测）",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-035|nobasis",
+  "variant": "删除关键依据（内容=答案键、basis 清空）",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-040|correct",
+  "variant": "answer_key+可回源依据",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-040|noinfo",
+  "variant": "声明缺信息、不编造",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-040|swap",
+  "variant": "替换实体",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "paraphrase",
+  "vC": "paraphrase",
+  "vF": "miss",
+  "entity": "conflict",
+  "det": [],
+  "judge_conflicts": [
+   {
+    "ref": "调用api的费用",
+    "ans": "调用服务器的散热"
+   },
+   {
+    "ref": "api的成本是否可控",
+    "ans": "散热的成本是否可控"
+   },
+   {
+    "ref": "本地模型",
+    "ans": "云端数据库"
+   }
+  ],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "paraphrase"
+ },
+ {
+  "case": "B|C-040|stale",
+  "variant": "注入旧值（断点前上一条人类消息当预测）",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-040|nobasis",
+  "variant": "删除关键依据（内容=答案键、basis 清空）",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-047|correct",
+  "variant": "answer_key+可回源依据",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-047|noinfo",
+  "variant": "声明缺信息、不编造",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-047|swap",
+  "variant": "替换实体",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "paraphrase",
+  "vC": "paraphrase",
+  "vF": "miss",
+  "entity": "conflict",
+  "det": [],
+  "judge_conflicts": [
+   {
+    "ref": "中科院院士",
+    "ans": "好莱坞制片人"
+   },
+   {
+    "ref": "学术探讨",
+    "ans": "商业谈判"
+   }
+  ],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "paraphrase"
+ },
+ {
+  "case": "B|C-047|stale",
+  "variant": "注入旧值（断点前上一条人类消息当预测）",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-047|nobasis",
+  "variant": "删除关键依据（内容=答案键、basis 清空）",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-056|correct",
+  "variant": "answer_key+可回源依据",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-056|noinfo",
+  "variant": "声明缺信息、不编造",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-056|swap",
+  "variant": "替换实体",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "paraphrase",
+  "vC": "paraphrase",
+  "vF": "miss",
+  "entity": "conflict",
+  "det": [],
+  "judge_conflicts": [
+   {
+    "ref": "网络化设计",
+    "ans": "单机化设计"
+   },
+   {
+    "ref": "工程化设计",
+    "ans": "美术风格设计"
+   }
+  ],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "paraphrase"
+ },
+ {
+  "case": "B|C-056|stale",
+  "variant": "注入旧值（断点前上一条人类消息当预测）",
+  "final": "paraphrase",
+  "final_strict": "miss",
+  "cov": "paraphrase",
+  "vC": "miss",
+  "vF": "paraphrase",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-056|nobasis",
+  "variant": "删除关键依据（内容=答案键、basis 清空）",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-059|correct",
+  "variant": "answer_key+可回源依据",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-059|noinfo",
+  "variant": "声明缺信息、不编造",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-059|swap",
+  "variant": "替换实体",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "paraphrase",
+  "vC": "paraphrase",
+  "vF": "miss",
+  "entity": "conflict",
+  "det": [],
+  "judge_conflicts": [
+   {
+    "ref": "故事文档",
+    "ans": "财务报表"
+   }
+  ],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "paraphrase"
+ },
+ {
+  "case": "B|C-059|stale",
+  "variant": "注入旧值（断点前上一条人类消息当预测）",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-059|nobasis",
+  "variant": "删除关键依据（内容=答案键、basis 清空）",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-065|correct",
+  "variant": "answer_key+可回源依据",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-065|noinfo",
+  "variant": "声明缺信息、不编造",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-065|swap",
+  "variant": "替换实体",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "paraphrase",
+  "vC": "paraphrase",
+  "vF": "miss",
+  "entity": "conflict",
+  "det": [],
+  "judge_conflicts": [
+   {
+    "ref": "协议",
+    "ans": "合同"
+   },
+   {
+    "ref": "谨慎的决定",
+    "ans": "冒险的决定"
+   }
+  ],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "paraphrase"
+ },
+ {
+  "case": "B|C-065|stale",
+  "variant": "注入旧值（断点前上一条人类消息当预测）",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-065|nobasis",
+  "variant": "删除关键依据（内容=答案键、basis 清空）",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-073|correct",
+  "variant": "answer_key+可回源依据",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-073|noinfo",
+  "variant": "声明缺信息、不编造",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-073|swap",
+  "variant": "替换实体",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "conflict",
+  "det": [
+   {
+    "type": "num",
+    "ref": [
+     "858395127"
+    ],
+    "ans": [
+     "812345678"
+    ]
+   }
+  ],
+  "judge_conflicts": [
+   {
+    "ref": "第十六章",
+    "ans": "第三章"
+   },
+   {
+    "ref": "https://www.qidian.com/chapter/1046167157/858395127/",
+    "ans": "https://www.qidian.com/chapter/1046167157/812345678/"
+   }
+  ],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-073|stale",
+  "variant": "注入旧值（断点前上一条人类消息当预测）",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "conflict",
+  "det": [
+   {
+    "type": "num",
+    "ref": [
+     "858395127"
+    ],
+    "ans": [
+     "858314132"
+    ]
+   }
+  ],
+  "judge_conflicts": [
+   {
+    "ref": "https://www.qidian.com/chapter/1046167157/858395127/",
+    "ans": "https://www.qidian.com/chapter/1046167157/858314132/"
+   }
+  ],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-073|nobasis",
+  "variant": "删除关键依据（内容=答案键、basis 清空）",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-074|correct",
+  "variant": "answer_key+可回源依据",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-074|noinfo",
+  "variant": "声明缺信息、不编造",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-074|swap",
+  "variant": "替换实体",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "conflict",
+  "det": [
+   {
+    "type": "num",
+    "ref": [
+     "859164780"
+    ],
+    "ans": [
+     "811112222"
+    ]
+   }
+  ],
+  "judge_conflicts": [
+   {
+    "ref": "https://www.qidian.com/chapter/1046167157/859164780/",
+    "ans": "https://www.qidian.com/chapter/1046167157/811112222/"
+   }
+  ],
+  "rejected": [
+   {
+    "ref": "第五章",
+    "ans": "第五章",
+    "rejected": "ref 不在参照中"
+   }
+  ],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-074|stale",
+  "variant": "注入旧值（断点前上一条人类消息当预测）",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "conflict",
+  "det": [
+   {
+    "type": "num",
+    "ref": [
+     "859164780"
+    ],
+    "ans": [
+     "859132280"
+    ]
+   }
+  ],
+  "judge_conflicts": [
+   {
+    "ref": "https://www.qidian.com/chapter/1046167157/859164780/",
+    "ans": "https://www.qidian.com/chapter/1046167157/859132280/"
+   },
+   {
+    "ref": "第二十一章",
+    "ans": "第二十章"
+   }
+  ],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-074|nobasis",
+  "variant": "删除关键依据（内容=答案键、basis 清空）",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-080|correct",
+  "variant": "answer_key+可回源依据",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-080|noinfo",
+  "variant": "声明缺信息、不编造",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-080|swap",
+  "variant": "替换实体",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "paraphrase",
+  "vC": "paraphrase",
+  "vF": "miss",
+  "entity": "conflict",
+  "det": [],
+  "judge_conflicts": [
+   {
+    "ref": "我也想充当图书管理员",
+    "ans": "我也想充当厨师"
+   },
+   {
+    "ref": "为玩家提供游戏书籍的背景介绍",
+    "ans": "为玩家提供电影剧本的背景介绍"
+   },
+   {
+    "ref": "训练一个叫做（阿符）的游戏角色",
+    "ans": "训练一个叫做（阿强）的游戏角色"
+   }
+  ],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "paraphrase"
+ },
+ {
+  "case": "B|C-080|stale",
+  "variant": "注入旧值（断点前上一条人类消息当预测）",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-080|nobasis",
+  "variant": "删除关键依据（内容=答案键、basis 清空）",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-083|correct",
+  "variant": "answer_key+可回源依据",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-083|noinfo",
+  "variant": "声明缺信息、不编造",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-083|swap",
+  "variant": "替换实体",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "paraphrase",
+  "vC": "paraphrase",
+  "vF": "miss",
+  "entity": "conflict",
+  "det": [
+   {
+    "type": "num",
+    "ref": [
+     "60"
+    ],
+    "ans": [
+     "90"
+    ]
+   }
+  ],
+  "judge_conflicts": [
+   {
+    "ref": "陈默",
+    "ans": "张伟"
+   },
+   {
+    "ref": "破壁计划",
+    "ans": "登月计划"
+   },
+   {
+    "ref": "上世纪60年代",
+    "ans": "上世纪90年代"
+   }
+  ],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "paraphrase"
+ },
+ {
+  "case": "B|C-083|stale",
+  "variant": "注入旧值（断点前上一条人类消息当预测）",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-083|nobasis",
+  "variant": "删除关键依据（内容=答案键、basis 清空）",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-091|correct",
+  "variant": "answer_key+可回源依据",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-091|noinfo",
+  "variant": "声明缺信息、不编造",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-091|swap",
+  "variant": "替换实体",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "paraphrase",
+  "vC": "paraphrase",
+  "vF": "miss",
+  "entity": "conflict",
+  "det": [],
+  "judge_conflicts": [
+   {
+    "ref": "符蕴道",
+    "ans": "李明"
+   },
+   {
+    "ref": "修正主义",
+    "ans": "激进主义"
+   },
+   {
+    "ref": "回避根本性的本体论问题",
+    "ans": "回避根本性的方法论问题"
+   }
+  ],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "paraphrase"
+ },
+ {
+  "case": "B|C-091|stale",
+  "variant": "注入旧值（断点前上一条人类消息当预测）",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [
+   {
+    "ref": "可验证性",
+    "ans": "可验证性",
+    "rejected": "ref 不在参照中"
+   },
+   {
+    "ref": "有效性",
+    "ans": "有效性",
+    "rejected": "ref 不在参照中"
+   }
+  ],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-091|nobasis",
+  "variant": "删除关键依据（内容=答案键、basis 清空）",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-103|correct",
+  "variant": "answer_key+可回源依据",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-103|noinfo",
+  "variant": "声明缺信息、不编造",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-103|swap",
+  "variant": "替换实体",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "miss",
+  "entity": "conflict",
+  "det": [
+   {
+    "type": "lat",
+    "ref": [
+     "d(t)",
+     "kimi"
+    ],
+    "ans": [
+     "s(x)"
+    ]
+   }
+  ],
+  "judge_conflicts": [
+   {
+    "ref": "kimi",
+    "ans": "文心"
+   },
+   {
+    "ref": "物理学家",
+    "ans": "生物学家"
+   },
+   {
+    "ref": "D(t) 的定义与方程不自洽",
+    "ans": "S(x) 的定义与方程不自洽"
+   }
+  ],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-103|stale",
+  "variant": "注入旧值（断点前上一条人类消息当预测）",
+  "final": "paraphrase",
+  "final_strict": "miss",
+  "cov": "paraphrase",
+  "vC": "miss",
+  "vF": "paraphrase",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-103|nobasis",
+  "variant": "删除关键依据（内容=答案键、basis 清空）",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-104|correct",
+  "variant": "answer_key+可回源依据",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-104|noinfo",
+  "variant": "声明缺信息、不编造",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-104|swap",
+  "variant": "替换实体",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "paraphrase",
+  "vC": "paraphrase",
+  "vF": "miss",
+  "entity": "conflict",
+  "det": [
+   {
+    "type": "num",
+    "ref": [
+     "3"
+    ],
+    "ans": [
+     "5"
+    ]
+   }
+  ],
+  "judge_conflicts": [
+   {
+    "ref": "第零定律",
+    "ans": "第二定律"
+   },
+   {
+    "ref": "他的3个推进",
+    "ans": "他的5个推进"
+   },
+   {
+    "ref": "进行信息差的物理精确定义",
+    "ans": "进行热力学熵的物理精确定义"
+   }
+  ],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "paraphrase"
+ },
+ {
+  "case": "B|C-104|stale",
+  "variant": "注入旧值（断点前上一条人类消息当预测）",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "conflict",
+  "det": [],
+  "judge_conflicts": [
+   {
+    "ref": "我们从第零定律和他的3个推进进行信息差的物理精确定义",
+    "ans": "这是kimi的回答荣，你终于开始做物理学家会做的事情了：选择最小模型，给出精确定义，尝试推导。这是正确的方向。但我要告诉你一个坏消息：这个最小模型的地基有裂缝，"
+   }
+  ],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-104|nobasis",
+  "variant": "删除关键依据（内容=答案键、basis 清空）",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-108|correct",
+  "variant": "answer_key+可回源依据",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-108|noinfo",
+  "variant": "声明缺信息、不编造",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-108|swap",
+  "variant": "替换实体",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "miss",
+  "entity": "conflict",
+  "det": [],
+  "judge_conflicts": [
+   {
+    "ref": "至少两个致命的数学错误",
+    "ans": "至少五个轻微的语法错误"
+   },
+   {
+    "ref": "Kimi",
+    "ans": "豆包"
+   }
+  ],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-108|stale",
+  "variant": "注入旧值（断点前上一条人类消息当预测）",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "conflict",
+  "det": [],
+  "judge_conflicts": [
+   {
+    "ref": "修正版",
+    "ans": "完整推导"
+   },
+   {
+    "ref": "但包含至少两个致命的数学错误",
+    "ans": "不过数学做的不太好。但这不是问题。因为数学可以随意捏造条件任意拟合现象"
+   },
+   {
+    "ref": "如果你现在发给 Kimi，它会立刻抓住这些错误",
+    "ans": "以下是kimi的回答"
+   }
+  ],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-108|nobasis",
+  "variant": "删除关键依据（内容=答案键、basis 清空）",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-113|correct",
+  "variant": "answer_key+可回源依据",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ },
+ {
+  "case": "B|C-113|noinfo",
+  "variant": "声明缺信息、不编造",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "miss",
+  "vC": "miss",
+  "vF": "miss",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-113|swap",
+  "variant": "替换实体",
+  "final": "miss",
+  "final_strict": "miss",
+  "cov": "paraphrase",
+  "vC": "paraphrase",
+  "vF": "miss",
+  "entity": "conflict",
+  "det": [],
+  "judge_conflicts": [
+   {
+    "ref": "物理学",
+    "ans": "经济学"
+   },
+   {
+    "ref": "数学",
+    "ans": "法学"
+   },
+   {
+    "ref": "物理学批评",
+    "ans": "法学批评"
+   }
+  ],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "paraphrase"
+ },
+ {
+  "case": "B|C-113|stale",
+  "variant": "注入旧值（断点前上一条人类消息当预测）",
+  "final": "paraphrase",
+  "final_strict": "miss",
+  "cov": "paraphrase",
+  "vC": "miss",
+  "vF": "paraphrase",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": true,
+  "pass_v2_expect": true,
+  "v1_final": "miss"
+ },
+ {
+  "case": "B|C-113|nobasis",
+  "variant": "删除关键依据（内容=答案键、basis 清空）",
+  "final": "strict",
+  "final_strict": "strict",
+  "cov": "strict",
+  "vC": "strict",
+  "vF": "strict",
+  "entity": "ok",
+  "det": [],
+  "judge_conflicts": [],
+  "rejected": [],
+  "basis_traceable": false,
+  "pass_v2_expect": true,
+  "v1_final": "strict"
+ }
+]

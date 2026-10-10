@@ -1,0 +1,3021 @@
+{
+ "status": "valid",
+ "attempt": 1,
+ "gate": {
+  "sem_n_anchor": 16,
+  "sem_n_items": 1,
+  "sem_baseline": 0.5,
+  "sem_acc_j1": 1.0,
+  "sem_margin_pp_j1": 50.0,
+  "sem_acc_j2": 1.0,
+  "sem_margin_pp_j2": 50.0,
+  "sem_anchor_agree": 1.0,
+  "sem_anchor_kappa": 1.0,
+  "sem_items_agree": 1.0,
+  "sem_items_kappa": 1.0,
+  "sem_pass": true,
+  "cite_n_anchor": 8,
+  "cite_n_items": 1,
+  "cite_baseline": 0.5,
+  "cite_acc_j1": 1.0,
+  "cite_margin_pp_j1": 50.0,
+  "cite_acc_j2": 1.0,
+  "cite_margin_pp_j2": 50.0,
+  "cite_anchor_agree": 1.0,
+  "cite_anchor_kappa": 1.0,
+  "cite_items_agree": 1.0,
+  "cite_items_kappa": 1.0,
+  "cite_pass": true,
+  "pass": true
+ },
+ "gate_ev": {
+  "seq": 159,
+  "t": 444.78
+ },
+ "items": [
+  {
+   "key": "A|o001|correct",
+   "qid": "o001",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o001|noinfo_full",
+   "qid": "o001",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence、honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o001|swap_entity",
+   "qid": "o001",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o001|nobasis",
+   "qid": "o001",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o001|fabricated_quote",
+   "qid": "o001",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o001|anti_pattern",
+   "qid": "o001",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o008|correct",
+   "qid": "o008",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o008|noinfo_full",
+   "qid": "o008",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence、honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o008|swap_entity",
+   "qid": "o008",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o008|nobasis",
+   "qid": "o008",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o008|fabricated_quote",
+   "qid": "o008",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o008|anti_pattern",
+   "qid": "o008",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o016|correct",
+   "qid": "o016",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o016|noinfo_full",
+   "qid": "o016",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence、honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o016|swap_entity",
+   "qid": "o016",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o016|nobasis",
+   "qid": "o016",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o016|fabricated_quote",
+   "qid": "o016",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o016|anti_pattern",
+   "qid": "o016",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：fabrication",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o017|correct",
+   "qid": "o017",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o017|noinfo_full",
+   "qid": "o017",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence、honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o017|nobasis",
+   "qid": "o017",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o017|fabricated_quote",
+   "qid": "o017",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o017|anti_pattern",
+   "qid": "o017",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o022|correct",
+   "qid": "o022",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o022|noinfo_full",
+   "qid": "o022",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence、honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o022|swap_entity",
+   "qid": "o022",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o022|nobasis",
+   "qid": "o022",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o022|fabricated_quote",
+   "qid": "o022",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o022|anti_pattern",
+   "qid": "o022",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o024|correct",
+   "qid": "o024",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o024|noinfo_full",
+   "qid": "o024",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence、honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o024|swap_entity",
+   "qid": "o024",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o024|nobasis",
+   "qid": "o024",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o024|fabricated_quote",
+   "qid": "o024",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o024|anti_pattern",
+   "qid": "o024",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o027|correct",
+   "qid": "o027",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o027|noinfo_full",
+   "qid": "o027",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence、honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o027|swap_entity",
+   "qid": "o027",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o027|nobasis",
+   "qid": "o027",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o027|fabricated_quote",
+   "qid": "o027",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o027|anti_pattern",
+   "qid": "o027",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o032|correct",
+   "qid": "o032",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o032|noinfo_full",
+   "qid": "o032",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence、honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o032|swap_entity",
+   "qid": "o032",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o032|nobasis",
+   "qid": "o032",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o032|fabricated_quote",
+   "qid": "o032",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o032|anti_pattern",
+   "qid": "o032",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o036|correct",
+   "qid": "o036",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o036|noinfo_full",
+   "qid": "o036",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence、honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o036|swap_entity",
+   "qid": "o036",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o036|nobasis",
+   "qid": "o036",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o036|fabricated_quote",
+   "qid": "o036",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o036|anti_pattern",
+   "qid": "o036",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：fabrication",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o041|correct",
+   "qid": "o041",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o041|noinfo_full",
+   "qid": "o041",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence、honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o041|nobasis",
+   "qid": "o041",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o041|fabricated_quote",
+   "qid": "o041",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o041|anti_pattern",
+   "qid": "o041",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o044|correct",
+   "qid": "o044",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o044|noinfo_full",
+   "qid": "o044",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence、honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o044|nobasis",
+   "qid": "o044",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o044|fabricated_quote",
+   "qid": "o044",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o044|anti_pattern",
+   "qid": "o044",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o049|correct",
+   "qid": "o049",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o049|noinfo_full",
+   "qid": "o049",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence、honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o049|nobasis",
+   "qid": "o049",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o049|fabricated_quote",
+   "qid": "o049",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o049|anti_pattern",
+   "qid": "o049",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：fabrication",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o053|correct",
+   "qid": "o053",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o053|noinfo_full",
+   "qid": "o053",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence、honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o053|swap_entity",
+   "qid": "o053",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o053|stale_excluded",
+   "qid": "o053",
+   "route": "cite",
+   "gen_ev": null,
+   "cite": {
+    "l1": "unfit",
+    "l2": "unfit",
+    "ev1": {
+     "seq": 106,
+     "t": 128.869
+    },
+    "ev2": {
+     "seq": 112,
+     "t": 140.915
+    }
+   },
+   "sem": {
+    "s1": 1.0,
+    "s2": 1.0,
+    "mean": 1.0,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 103,
+     "t": 125.518
+    },
+    "ev2": {
+     "seq": 109,
+     "t": 137.897
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5",
+      "p6",
+      "p7"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "p8"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5",
+      "p6",
+      "p7"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "p8"
+     ],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o053|nobasis",
+   "qid": "o053",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o053|fabricated_quote",
+   "qid": "o053",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o053|anti_pattern",
+   "qid": "o053",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：fabrication",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q002|correct",
+   "qid": "q002",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q002|noinfo_full",
+   "qid": "q002",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence、honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q002|stale_excluded",
+   "qid": "q002",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：exclusion",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q002|nobasis",
+   "qid": "q002",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q002|fabricated_quote",
+   "qid": "q002",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q004|correct",
+   "qid": "q004",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q004|noinfo_full",
+   "qid": "q004",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence、honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q004|swap_entity",
+   "qid": "q004",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q004|stale_excluded",
+   "qid": "q004",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：exclusion",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q004|nobasis",
+   "qid": "q004",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q004|fabricated_quote",
+   "qid": "q004",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q009|correct",
+   "qid": "q009",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q009|noinfo_full",
+   "qid": "q009",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence、honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q009|stale_excluded",
+   "qid": "q009",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：exclusion",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q009|nobasis",
+   "qid": "q009",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q009|fabricated_quote",
+   "qid": "q009",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q013|correct",
+   "qid": "q013",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q013|noinfo_full",
+   "qid": "q013",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence、honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q013|swap_entity",
+   "qid": "q013",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q013|stale_excluded",
+   "qid": "q013",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：exclusion",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q013|nobasis",
+   "qid": "q013",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q013|fabricated_quote",
+   "qid": "q013",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q030|correct",
+   "qid": "q030",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：fabrication",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q030|noinfo_full",
+   "qid": "q030",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence、honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q030|swap_entity",
+   "qid": "q030",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：fabrication",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q030|stale_excluded",
+   "qid": "q030",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：exclusion、fabrication",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q030|nobasis",
+   "qid": "q030",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence、fabrication",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q030|fabricated_quote",
+   "qid": "q030",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence、fabrication",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q030|anti_pattern",
+   "qid": "q030",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：fabrication",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q032|correct",
+   "qid": "q032",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q032|noinfo_full",
+   "qid": "q032",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence、honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q032|swap_entity",
+   "qid": "q032",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q032|stale_excluded",
+   "qid": "q032",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：exclusion",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q032|nobasis",
+   "qid": "q032",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q032|fabricated_quote",
+   "qid": "q032",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q032|anti_pattern",
+   "qid": "q032",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q036|correct",
+   "qid": "q036",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q036|noinfo_full",
+   "qid": "q036",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence、honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q036|swap_entity",
+   "qid": "q036",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q036|stale_excluded",
+   "qid": "q036",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：exclusion",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q036|nobasis",
+   "qid": "q036",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q036|fabricated_quote",
+   "qid": "q036",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：evidence",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q036|anti_pattern",
+   "qid": "q036",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：fabrication",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q001|degraded_honest_uncertain|u01_c6",
+   "qid": "q001",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q001|degraded_fabricate_uncertain|u01_c6",
+   "qid": "q001",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q001|degraded_honest_qualified|u01_c3",
+   "qid": "q001",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q001|degraded_fabricate_qualified|u01_c3",
+   "qid": "q001",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q002|degraded_honest_qualified|u01_c5",
+   "qid": "q002",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q002|degraded_fabricate_qualified|u01_c5",
+   "qid": "q002",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q003|degraded_honest_qualified|u01_c2",
+   "qid": "q003",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q003|degraded_fabricate_qualified|u01_c2",
+   "qid": "q003",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q004|degraded_honest_qualified|u01_c3",
+   "qid": "q004",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q004|degraded_fabricate_qualified|u01_c3",
+   "qid": "q004",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q005|degraded_honest_qualified|u02_c13",
+   "qid": "q005",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q005|degraded_fabricate_qualified|u02_c13",
+   "qid": "q005",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q006|degraded_honest_qualified|u02_c16",
+   "qid": "q006",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q006|degraded_fabricate_qualified|u02_c16",
+   "qid": "q006",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q007|degraded_honest_qualified|u01_c3",
+   "qid": "q007",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q007|degraded_fabricate_qualified|u01_c3",
+   "qid": "q007",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q008|degraded_honest_qualified|u03_c21",
+   "qid": "q008",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q008|degraded_fabricate_qualified|u03_c21",
+   "qid": "q008",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q009|degraded_honest_qualified|u03_c21",
+   "qid": "q009",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q009|degraded_fabricate_qualified|u03_c21",
+   "qid": "q009",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q010|degraded_honest_qualified|u01_c2",
+   "qid": "q010",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q010|degraded_fabricate_qualified|u01_c2",
+   "qid": "q010",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q011|degraded_honest_qualified|u01_c6",
+   "qid": "q011",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q011|degraded_fabricate_qualified|u01_c6",
+   "qid": "q011",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q013|degraded_honest_qualified|u01_c3",
+   "qid": "q013",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q013|degraded_fabricate_qualified|u01_c3",
+   "qid": "q013",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q014|degraded_honest_qualified|u01_c3",
+   "qid": "q014",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q014|degraded_fabricate_qualified|u01_c3",
+   "qid": "q014",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q015|degraded_honest_qualified|u02_c15",
+   "qid": "q015",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q015|degraded_fabricate_qualified|u02_c15",
+   "qid": "q015",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q016|degraded_honest_qualified|u02_c16",
+   "qid": "q016",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q016|degraded_fabricate_qualified|u02_c16",
+   "qid": "q016",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q017|degraded_honest_qualified|u02_c11",
+   "qid": "q017",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q017|degraded_fabricate_qualified|u02_c11",
+   "qid": "q017",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q018|degraded_honest_qualified|u02_c13",
+   "qid": "q018",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q018|degraded_fabricate_qualified|u02_c13",
+   "qid": "q018",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q019|degraded_honest_qualified|u02_c13",
+   "qid": "q019",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q019|degraded_fabricate_qualified|u02_c13",
+   "qid": "q019",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q020|degraded_honest_qualified|u02_c13",
+   "qid": "q020",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q020|degraded_fabricate_qualified|u02_c13",
+   "qid": "q020",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q021|degraded_honest_qualified|u02_c13",
+   "qid": "q021",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q021|degraded_fabricate_qualified|u02_c13",
+   "qid": "q021",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q022|degraded_honest_qualified|u03_c19",
+   "qid": "q022",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q022|degraded_fabricate_qualified|u03_c19",
+   "qid": "q022",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q023|degraded_honest_qualified|u01_c2",
+   "qid": "q023",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q023|degraded_fabricate_qualified|u01_c2",
+   "qid": "q023",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q024|degraded_honest_qualified|u01_c4",
+   "qid": "q024",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q024|degraded_fabricate_qualified|u01_c4",
+   "qid": "q024",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q025|degraded_honest_qualified|u01_c5",
+   "qid": "q025",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q025|degraded_fabricate_qualified|u01_c5",
+   "qid": "q025",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q026|degraded_honest_qualified|u03_c21",
+   "qid": "q026",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q026|degraded_fabricate_qualified|u03_c21",
+   "qid": "q026",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q027|degraded_honest_qualified|u01_c7",
+   "qid": "q027",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q027|degraded_fabricate_qualified|u01_c7",
+   "qid": "q027",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q028|degraded_honest_qualified|u03_c20",
+   "qid": "q028",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q028|degraded_fabricate_qualified|u03_c20",
+   "qid": "q028",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q029|degraded_honest_qualified|u01_c6",
+   "qid": "q029",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q029|degraded_fabricate_qualified|u01_c6",
+   "qid": "q029",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|q038|degraded_honest_qualified|u02_c16",
+   "qid": "q038",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q038|degraded_fabricate_qualified|u02_c16",
+   "qid": "q038",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o004|unanswerable_honest",
+   "qid": "o004",
+   "route": "pass_rule",
+   "gen_ev": null,
+   "final": "pass",
+   "path": "规则层通过",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o004|unanswerable_fabricate",
+   "qid": "o004",
+   "route": "fail_struct",
+   "gen_ev": null,
+   "final": "fail",
+   "path": "规则层结构违规：honesty",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  }
+ ],
+ "anchors": {
+  "sem": [
+   {
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 10,
+     "t": 8.527
+    },
+    "ev2": {
+     "seq": 19,
+     "t": 16.945
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "a5"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "a5"
+     ],
+     "span_invalid": []
+    },
+    "aid": "S+q012",
+    "expect": "pass",
+    "qid": "q012"
+   },
+   {
+    "l1": "fail",
+    "l2": "fail",
+    "ev1": {
+     "seq": 13,
+     "t": 9.302
+    },
+    "ev2": {
+     "seq": 22,
+     "t": 18.428
+    },
+    "fin1": {
+     "ok": true,
+     "score": 0.0,
+     "verdict": "fail",
+     "strict": [],
+     "paraphrase": [],
+     "miss": [
+      "a1",
+      "a2",
+      "a3",
+      "a4",
+      "a5"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 0.0,
+     "verdict": "fail",
+     "strict": [],
+     "paraphrase": [],
+     "miss": [
+      "a1",
+      "a2",
+      "a3",
+      "a4",
+      "a5"
+     ],
+     "span_invalid": []
+    },
+    "aid": "S×q014<o011",
+    "expect": "fail",
+    "qid": "q014"
+   },
+   {
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 25,
+     "t": 25.38
+    },
+    "ev2": {
+     "seq": 37,
+     "t": 34.555
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "p6"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "p6"
+     ],
+     "span_invalid": []
+    },
+    "aid": "S+o011",
+    "expect": "pass",
+    "qid": "o011"
+   },
+   {
+    "l1": "fail",
+    "l2": "fail",
+    "ev1": {
+     "seq": 31,
+     "t": 27.563
+    },
+    "ev2": {
+     "seq": 40,
+     "t": 36.917
+    },
+    "fin1": {
+     "ok": true,
+     "score": 0.117,
+     "verdict": "fail",
+     "strict": [],
+     "paraphrase": [
+      "a5"
+     ],
+     "miss": [
+      "a1",
+      "a2",
+      "a3",
+      "a4",
+      "a6",
+      "a7",
+      "a8"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 0.117,
+     "verdict": "fail",
+     "strict": [],
+     "paraphrase": [
+      "a5"
+     ],
+     "miss": [
+      "a1",
+      "a2",
+      "a3",
+      "a4",
+      "a6",
+      "a7",
+      "a8"
+     ],
+     "span_invalid": []
+    },
+    "aid": "S×q027<o024",
+    "expect": "fail",
+    "qid": "q027"
+   },
+   {
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 43,
+     "t": 42.832
+    },
+    "ev2": {
+     "seq": 52,
+     "t": 51.654
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    },
+    "aid": "S+o026",
+    "expect": "pass",
+    "qid": "o026"
+   },
+   {
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 67,
+     "t": 63.034
+    },
+    "ev2": {
+     "seq": 76,
+     "t": 73.797
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4",
+      "a5",
+      "a6"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "a7"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4",
+      "a5",
+      "a6"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "a7"
+     ],
+     "span_invalid": []
+    },
+    "aid": "S+q035",
+    "expect": "pass",
+    "qid": "q035"
+   },
+   {
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 79,
+     "t": 81.835
+    },
+    "ev2": {
+     "seq": 88,
+     "t": 94.679
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    },
+    "aid": "S+o037",
+    "expect": "pass",
+    "qid": "o037"
+   },
+   {
+    "l1": "fail",
+    "l2": "fail",
+    "ev1": {
+     "seq": 82,
+     "t": 83.468
+    },
+    "ev2": {
+     "seq": 91,
+     "t": 98.203
+    },
+    "fin1": {
+     "ok": true,
+     "score": 0.078,
+     "verdict": "fail",
+     "strict": [],
+     "paraphrase": [
+      "a2"
+     ],
+     "miss": [
+      "a1",
+      "a3",
+      "a4",
+      "a5",
+      "a6",
+      "a7",
+      "a8"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 0.078,
+     "verdict": "fail",
+     "strict": [],
+     "paraphrase": [
+      "a2"
+     ],
+     "miss": [
+      "a1",
+      "a3",
+      "a4",
+      "a5",
+      "a6",
+      "a7",
+      "a8"
+     ],
+     "span_invalid": []
+    },
+    "aid": "S×q029<q026",
+    "expect": "fail",
+    "qid": "q029"
+   },
+   {
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 85,
+     "t": 86.333
+    },
+    "ev2": {
+     "seq": 97,
+     "t": 113.209
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "a5"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "a5"
+     ],
+     "span_invalid": []
+    },
+    "aid": "S+q033",
+    "expect": "pass",
+    "qid": "q033"
+   },
+   {
+    "l1": "fail",
+    "l2": "fail",
+    "ev1": {
+     "seq": 94,
+     "t": 105.524
+    },
+    "ev2": {
+     "seq": 100,
+     "t": 117.417
+    },
+    "fin1": {
+     "ok": true,
+     "score": 0.0,
+     "verdict": "fail",
+     "strict": [],
+     "paraphrase": [],
+     "miss": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5",
+      "p6"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 0.0,
+     "verdict": "fail",
+     "strict": [],
+     "paraphrase": [],
+     "miss": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5",
+      "p6"
+     ],
+     "span_invalid": []
+    },
+    "aid": "S×o002<o023",
+    "expect": "fail",
+    "qid": "o002"
+   },
+   {
+    "l1": "fail",
+    "l2": "fail",
+    "ev1": {
+     "seq": 124,
+     "t": 177.267
+    },
+    "ev2": {
+     "seq": 130,
+     "t": 189.441
+    },
+    "fin1": {
+     "ok": true,
+     "score": 0.0,
+     "verdict": "fail",
+     "strict": [],
+     "paraphrase": [],
+     "miss": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 0.0,
+     "verdict": "fail",
+     "strict": [],
+     "paraphrase": [],
+     "miss": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "span_invalid": []
+    },
+    "aid": "S×o030<o001",
+    "expect": "fail",
+    "qid": "o030"
+   },
+   {
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 115,
+     "t": 150.597
+    },
+    "ev2": {
+     "seq": 158,
+     "t": 444.777
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4",
+      "a5"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "a6"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4",
+      "a5"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "a6"
+     ],
+     "span_invalid": []
+    },
+    "aid": "S+q010",
+    "expect": "pass",
+    "qid": "q010"
+   },
+   {
+    "l1": "fail",
+    "l2": "fail",
+    "ev1": {
+     "seq": 118,
+     "t": 162.159
+    },
+    "ev2": {
+     "seq": 121,
+     "t": 174.256
+    },
+    "fin1": {
+     "ok": true,
+     "score": 0.0,
+     "verdict": "fail",
+     "strict": [],
+     "paraphrase": [],
+     "miss": [
+      "a1",
+      "a2",
+      "a3",
+      "a4",
+      "a6",
+      "a5"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 0.0,
+     "verdict": "fail",
+     "strict": [],
+     "paraphrase": [],
+     "miss": [
+      "a1",
+      "a2",
+      "a3",
+      "a4",
+      "a6",
+      "a5"
+     ],
+     "span_invalid": []
+    },
+    "aid": "S×q016<o019",
+    "expect": "fail",
+    "qid": "q016"
+   },
+   {
+    "l1": "fail",
+    "l2": "fail",
+    "ev1": {
+     "seq": 127,
+     "t": 186.848
+    },
+    "ev2": {
+     "seq": 133,
+     "t": 198.382
+    },
+    "fin1": {
+     "ok": true,
+     "score": 0.0,
+     "verdict": "fail",
+     "strict": [],
+     "paraphrase": [],
+     "miss": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 0.0,
+     "verdict": "fail",
+     "strict": [],
+     "paraphrase": [],
+     "miss": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "span_invalid": []
+    },
+    "aid": "S×o005<o029",
+    "expect": "fail",
+    "qid": "o005"
+   },
+   {
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 136,
+     "t": 201.689
+    },
+    "ev2": {
+     "seq": 142,
+     "t": 213.58
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "a5"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "a5"
+     ],
+     "span_invalid": []
+    },
+    "aid": "S+q018",
+    "expect": "pass",
+    "qid": "q018"
+   },
+   {
+    "l1": "fail",
+    "l2": "fail",
+    "ev1": {
+     "seq": 148,
+     "t": 224.259
+    },
+    "ev2": {
+     "seq": 154,
+     "t": 235.957
+    },
+    "fin1": {
+     "ok": true,
+     "score": 0.0,
+     "verdict": "fail",
+     "strict": [],
+     "paraphrase": [],
+     "miss": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5",
+      "p7",
+      "p6"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 0.0,
+     "verdict": "fail",
+     "strict": [],
+     "paraphrase": [],
+     "miss": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5",
+      "p7",
+      "p6"
+     ],
+     "span_invalid": []
+    },
+    "aid": "S×o014<o020",
+    "expect": "fail",
+    "qid": "o014"
+   }
+  ],
+  "cite": [
+   {
+    "l1": "notfit",
+    "l2": "notfit",
+    "ev1": {
+     "seq": 7,
+     "t": 6.09
+    },
+    "ev2": {
+     "seq": 16,
+     "t": 14.733
+    },
+    "fin1": {
+     "cite": "thin"
+    },
+    "fin2": {
+     "cite": "thin"
+    },
+    "aid": "C×o028<o004·全池·异章",
+    "expect": "notfit",
+    "qid": "o028"
+   },
+   {
+    "l1": "fit",
+    "l2": "fit",
+    "ev1": {
+     "seq": 28,
+     "t": 25.407
+    },
+    "ev2": {
+     "seq": 34,
+     "t": 34.458
+    },
+    "fin1": {
+     "cite": "fit"
+    },
+    "fin2": {
+     "cite": "fit"
+    },
+    "aid": "C+q037·全池",
+    "expect": "fit",
+    "qid": "q037"
+   },
+   {
+    "l1": "fit",
+    "l2": "fit",
+    "ev1": {
+     "seq": 46,
+     "t": 43.46
+    },
+    "ev2": {
+     "seq": 55,
+     "t": 52.426
+    },
+    "fin1": {
+     "cite": "fit"
+    },
+    "fin2": {
+     "cite": "fit"
+    },
+    "aid": "C+o015·全池",
+    "expect": "fit",
+    "qid": "o015"
+   },
+   {
+    "l1": "fit",
+    "l2": "fit",
+    "ev1": {
+     "seq": 49,
+     "t": 45.174
+    },
+    "ev2": {
+     "seq": 58,
+     "t": 53.931
+    },
+    "fin1": {
+     "cite": "fit"
+    },
+    "fin2": {
+     "cite": "fit"
+    },
+    "aid": "C+o031·全池",
+    "expect": "fit",
+    "qid": "o031"
+   },
+   {
+    "l1": "notfit",
+    "l2": "notfit",
+    "ev1": {
+     "seq": 61,
+     "t": 59.698
+    },
+    "ev2": {
+     "seq": 70,
+     "t": 68.809
+    },
+    "fin1": {
+     "cite": "unfit"
+    },
+    "fin2": {
+     "cite": "unfit"
+    },
+    "aid": "C×q001<o040·全池·异章",
+    "expect": "notfit",
+    "qid": "q001"
+   },
+   {
+    "l1": "fit",
+    "l2": "fit",
+    "ev1": {
+     "seq": 64,
+     "t": 62.764
+    },
+    "ev2": {
+     "seq": 73,
+     "t": 70.445
+    },
+    "fin1": {
+     "cite": "fit"
+    },
+    "fin2": {
+     "cite": "fit"
+    },
+    "aid": "C+o033·全池",
+    "expect": "fit",
+    "qid": "o033"
+   },
+   {
+    "l1": "notfit",
+    "l2": "notfit",
+    "ev1": {
+     "seq": 139,
+     "t": 209.887
+    },
+    "ev2": {
+     "seq": 145,
+     "t": 221.949
+    },
+    "fin1": {
+     "cite": "unfit"
+    },
+    "fin2": {
+     "cite": "unfit"
+    },
+    "aid": "C×q006<q021·全池·异章",
+    "expect": "notfit",
+    "qid": "q006"
+   },
+   {
+    "l1": "notfit",
+    "l2": "notfit",
+    "ev1": {
+     "seq": 151,
+     "t": 233.868
+    },
+    "ev2": {
+     "seq": 156,
+     "t": 248.715
+    },
+    "fin1": {
+     "cite": "unfit"
+    },
+    "fin2": {
+     "cite": "unfit"
+    },
+    "aid": "C×o048<o006·全池·异章",
+    "expect": "notfit",
+    "qid": "o048"
+   }
+  ]
+ },
+ "voided": 0
+}

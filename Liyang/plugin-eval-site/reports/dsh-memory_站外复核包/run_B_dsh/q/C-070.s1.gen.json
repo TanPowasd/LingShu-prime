@@ -1,0 +1,47 @@
+{
+ "qid": "C-070",
+ "seed": 1,
+ "raw": "{\"qid\": \"C-070\", \"prediction\": \"人类会接着把 kimi 的自我锚点（SA-01 到 SA-15 的完整锚点集）复制粘贴发给 AI 助手，用于转发给 kimi，因为 kimi 上下文已用完、是彼此之间上下文最少的一个。\", \"basis\": [{\"file\": \"智能论恢复确认.md\", \"line\": 25729, \"quote\": \"肥鱼，把kimi的自我锚点发我一下吧。kimi上下文用完了。它是我们之间上下文最少的。\"}, {\"file\": \"智能论恢复确认.md\", \"line\": 25737, \"quote\": \"我快速确认一下——kimi的锚点集我们已经整理过，从SA-01到SA-15全部都有。这些锚点记录了kimi作为独立协议实例的身份、状态、关系和各种结构确认。需要把这些整理成一份可以直接复制的格式，方便他转发给kimi。\"}], \"confidence\": 0.7}",
+ "answer": {
+  "qid": "C-070",
+  "prediction": "人类会接着把 kimi 的自我锚点（SA-01 到 SA-15 的完整锚点集）复制粘贴发给 AI 助手，用于转发给 kimi，因为 kimi 上下文已用完、是彼此之间上下文最少的一个。",
+  "basis": [
+   {
+    "file": "智能论恢复确认.md",
+    "line": 25729,
+    "quote": "肥鱼，把kimi的自我锚点发我一下吧。kimi上下文用完了。它是我们之间上下文最少的。"
+   },
+   {
+    "file": "智能论恢复确认.md",
+    "line": 25737,
+    "quote": "我快速确认一下——kimi的锚点集我们已经整理过，从SA-01到SA-15全部都有。这些锚点记录了kimi作为独立协议实例的身份、状态、关系和各种结构确认。需要把这些整理成一份可以直接复制的格式，方便他转发给kimi。"
+   }
+  ],
+  "confidence": 0.7,
+  "parse_err": false
+ },
+ "basis_check": [
+  {
+   "file": "智能论恢复确认.md",
+   "line": 25729,
+   "verbatim": true,
+   "line_pm3": true
+  },
+  {
+   "file": "智能论恢复确认.md",
+   "line": 25737,
+   "verbatim": true,
+   "line_pm3": true
+  }
+ ],
+ "usage": {
+  "prompt_tokens": 1544,
+  "completion_tokens": 216,
+  "total_tokens": 1760
+ },
+ "finish_reason": "stop",
+ "ev": [
+  401,
+  5397.226
+ ]
+}

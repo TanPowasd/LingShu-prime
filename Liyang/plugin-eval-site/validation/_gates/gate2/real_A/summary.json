@@ -1,0 +1,85 @@
+{
+ "batch_status": "valid",
+ "attempt": 1,
+ "gate": {
+  "sem_n_anchor": 16,
+  "sem_n_items": 14,
+  "sem_baseline": 0.5,
+  "sem_acc_j1": 1.0,
+  "sem_margin_pp_j1": 50.0,
+  "sem_acc_j2": 1.0,
+  "sem_margin_pp_j2": 50.0,
+  "sem_anchor_agree": 1.0,
+  "sem_anchor_kappa": 1.0,
+  "sem_items_agree": 0.9285714285714286,
+  "sem_items_kappa": 0.6315789473684212,
+  "sem_pass": true,
+  "cite_n_anchor": 8,
+  "cite_n_items": 1,
+  "cite_baseline": 0.5,
+  "cite_acc_j1": 1.0,
+  "cite_margin_pp_j1": 50.0,
+  "cite_acc_j2": 1.0,
+  "cite_margin_pp_j2": 50.0,
+  "cite_anchor_agree": 1.0,
+  "cite_anchor_kappa": 1.0,
+  "cite_items_agree": 1.0,
+  "cite_items_kappa": 1.0,
+  "cite_pass": true,
+  "pass": true
+ },
+ "n_cards": 20,
+ "mean_score": {
+  "gold": 0.5,
+  "none": 0.0,
+  "wrong": 0.05
+ },
+ "verdicts": {
+  "gold": {
+   "fail/sem": 7,
+   "pass/pass_rule": 10,
+   "fail/cite": 1,
+   "fail/fail_struct": 2
+  },
+  "none": {
+   "fail/fail_struct": 19,
+   "fail/sem": 1
+  },
+  "wrong": {
+   "fail/sem": 4,
+   "pass/sem": 1,
+   "fail/fail_struct": 15
+  }
+ },
+ "gold_vs_none": {
+  "mean_diff": 0.5,
+  "ci95": [
+   0.3,
+   0.7
+  ],
+  "better": 10,
+  "worse": 0,
+  "sign_p": 0.002
+ },
+ "gold_vs_wrong": {
+  "mean_diff": 0.45,
+  "ci95": [
+   0.2,
+   0.7
+  ],
+  "better": 10,
+  "worse": 1,
+  "sign_p": 0.0117
+ },
+ "none_vs_wrong": {
+  "mean_diff": -0.05,
+  "ci95": [
+   -0.15,
+   0.0
+  ],
+  "better": 0,
+  "worse": 1,
+  "sign_p": 1.0
+ },
+ "at": "2026-10-10T11:04:45+08:00"
+}

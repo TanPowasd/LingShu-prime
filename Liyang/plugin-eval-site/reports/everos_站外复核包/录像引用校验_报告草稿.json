@@ -1,0 +1,11 @@
+{
+ "deductions": {
+  "total": 11,
+  "ok": 11,
+  "coverage": 1.0,
+  "pass": true
+ },
+ "problems": [],
+ "all_citations": 72,
+ "all_citations_bad": []
+}

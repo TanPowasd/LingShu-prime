@@ -1,0 +1,106 @@
+{
+ "host_ver": "0.2.0-rc.2",
+ "steps": [
+  {
+   "id": "S1a",
+   "cmd": [
+    "node",
+    "-v"
+   ],
+   "rc": 0,
+   "stdout_tail": "v22.23.3\n",
+   "stderr_tail": ""
+  },
+  {
+   "id": "S1b",
+   "cmd": [
+    "npm",
+    "-v"
+   ],
+   "rc": 0,
+   "stdout_tail": "10.9.9\n",
+   "stderr_tail": ""
+  },
+  {
+   "id": "S2",
+   "cmd": [
+    "npm",
+    "i",
+    "-g",
+    "--prefix",
+    "/workspace/work/pes/plugins/dsh-auto-memory/_sbx/install/npm-global",
+    "@deepseek-ai/dsh@0.2.0-rc.2"
+   ],
+   "rc": 0,
+   "stdout_tail": "\nadded 540 packages in 2m\n",
+   "stderr_tail": "npm warn deprecated node-domexception@1.0.0: Use your platform's native DOMException instead\n"
+  },
+  {
+   "id": "S3a",
+   "cmd": [
+    "dsh",
+    "--version"
+   ],
+   "rc": 0,
+   "stdout_tail": "0.2.0-rc.2\n",
+   "stderr_tail": ""
+  },
+  {
+   "id": "S3b",
+   "cmd": [
+    "dsh",
+    "--help"
+   ],
+   "rc": 0,
+   "stdout_tail": "                                 dsh --profile <name> --help)\n\nOptions:\n  -V, --version                  output the version number\n  --profile <name>               the profile under $DSH_HOME/profiles to boot\n  --from-default-profile <name>  initialize a new custom profile from a shipped\n                                 profile template\n  --patch <path>                 extra patch-list overlay applied after the\n                                 profile layer (repeatable)\n  --dump-config                  print the composed profile tree and exit\n  --dump-config-schema           print JSON Schema for profile entries and\n                                 patches without mounting\n  --dump-default-config          print the profile tree without its user layer\n                                 or --patch overlays and exit\n\nExamples:\n  dsh web                                   boot the web profile (same as: dsh --profile web)\n  dsh rescue --from-default-profile web\n                                            create rescue from the shipped web template, then boot it\n  dsh headless \"run the tests\"              answer one task, print the result, and exit\n  dsh tui --patch ./extra.yml               boot a custom profile with one extra overlay\n  dsh tui --resume <session>                arguments after the launcher flags reach the app\n  dsh web --help                            the web app's own flags and help\n  dsh plugin --profile tui add <package>    install a plugin into the tui profile\n\n",
+   "stderr_tail": ""
+  },
+  {
+   "id": "S4",
+   "cmd": [
+    "dsh",
+    "plugin",
+    "--profile",
+    "demo",
+    "add",
+    "dsh-auto-memory"
+   ],
+   "rc": 0,
+   "stdout_tail": "Update available! 12.9.1 → 12.10.1.\nChangelog: https://pnpm.io/v/12.10.1\nTo update, run: curl -fsSL https://get.pnpm.io/install.sh | sh -\nPackages are hard linked from the content-addressable store to the virtual store.\n  Content-addressable store is at: /workspace/work/pes/plugins/dsh-auto-memory/_sbx/install/home/.local/share/pnpm/store/v11\n  Virtual store is at:             node_modules/.pnpm\nPackages: +5\n+++++\nProgress: resolved 5, reused 0, downloaded 5, added 5, done\n[WARN] Issues with peer dependencies found. Run \"pnpm peers check\" to list them.\n\ndependencies:\n+ dsh-auto-memory 0.7.0\n\nDone in 745ms using pnpm v12.9.1\n",
+   "stderr_tail": "dsh: initialized profile demo at /workspace/work/pes/plugins/dsh-auto-memory/_sbx/install/home/.dsh/profiles/demo\n"
+  },
+  {
+   "id": "S6",
+   "cmd": [
+    "dsh",
+    "plugin",
+    "--help"
+   ],
+   "rc": 1,
+   "stdout_tail": "",
+   "stderr_tail": "error: required option '--profile <name>' not specified\n"
+  },
+  {
+   "id": "S5a",
+   "cmd": "find $HOME -maxdepth 4 -not -path '*/node_modules/*' -not -path '*/.npm/*' | head -100",
+   "rc": 0,
+   "stdout_tail": "/plugins/dsh-auto-memory/_sbx/install/home/.cache/pnpm/v11/metadata\n/workspace/work/pes/plugins/dsh-auto-memory/_sbx/install/home/.dsh\n/workspace/work/pes/plugins/dsh-auto-memory/_sbx/install/home/.dsh/profiles\n/workspace/work/pes/plugins/dsh-auto-memory/_sbx/install/home/.dsh/profiles/demo\n/workspace/work/pes/plugins/dsh-auto-memory/_sbx/install/home/.dsh/profiles/demo/.plugin-manager\n/workspace/work/pes/plugins/dsh-auto-memory/_sbx/install/home/.dsh/profiles/demo/cordis.patch.yml\n/workspace/work/pes/plugins/dsh-auto-memory/_sbx/install/home/.dsh/profiles/demo/node_modules\n/workspace/work/pes/plugins/dsh-auto-memory/_sbx/install/home/.dsh/profiles/demo/package.json\n/workspace/work/pes/plugins/dsh-auto-memory/_sbx/install/home/.dsh/profiles/demo/pnpm-lock.yaml\n/workspace/work/pes/plugins/dsh-auto-memory/_sbx/install/home/.dsh/profiles/demo/pnpm-workspace.yaml\n/workspace/work/pes/plugins/dsh-auto-memory/_sbx/install/home/.local\n/workspace/work/pes/plugins/dsh-auto-memory/_sbx/install/home/.local/share\n/workspace/work/pes/plugins/dsh-auto-memory/_sbx/install/home/.local/share/pnpm\n/workspace/work/pes/plugins/dsh-auto-memory/_sbx/install/home/.local/share/pnpm/store\n/workspace/work/pes/plugins/dsh-auto-memory/_sbx/install/home/.local/state\n/workspace/work/pes/plugins/dsh-auto-memory/_sbx/install/home/.local/state/pnpm\n/workspace/work/pes/plugins/dsh-auto-memory/_sbx/install/home/.local/state/pnpm/pnpm-state.json\n/workspace/work/pes/plugins/dsh-auto-memory/_sbx/install/home/.npm\n",
+   "stderr_tail": ""
+  },
+  {
+   "id": "S5b",
+   "cmd": "find $HOME -name cordis.patch.yml -not -path '*/.npm/*' | head; for f in $(find $HOME -name 'cordis*.yml' -not -path '*/.npm/*' | head -5); do echo == $f; cat $f; done",
+   "rc": 0,
+   "stdout_tail": "/workspace/work/pes/plugins/dsh-auto-memory/_sbx/install/home/.dsh/profiles/demo/cordis.patch.yml\n/workspace/work/pes/plugins/dsh-auto-memory/_sbx/install/home/.dsh/profiles/demo/node_modules/dsh-auto-memory/cordis.patch.yml\n== /workspace/work/pes/plugins/dsh-auto-memory/_sbx/install/home/.dsh/profiles/demo/cordis.patch.yml\n# Your patch layer for this dsh profile, applied after every bundle layer:\n# a top-level YAML array of loader patch entries (id-targeted config\n# overrides, disables, and insert lists; `!!js` expressions allowed).\n[]\n== /workspace/work/pes/plugins/dsh-auto-memory/_sbx/install/home/.dsh/profiles/demo/node_modules/dsh-auto-memory/cordis.patch.yml\n# dsh-auto-memory 组合包贡献的配置层。\n# insert 行的 name 在已安装形态必须是 npm 包名(Node 模块解析);\n# config 省略,全部走插件 schema 默认值(用户经 profile patch 按 id 整表覆盖)。\n- insert:\n    - id: auto-memory\n      name: dsh-auto-memory\n",
+   "stderr_tail": ""
+  },
+  {
+   "id": "S5c",
+   "cmd": "for d in $(find $HOME /workspace/work/pes/plugins/dsh-auto-memory/_sbx/install/npm-global -type d -name dsh-auto-memory -path '*node_modules*' 2>/dev/null | head -5); do echo == $d; cat $d/package.json | head -5; sha256sum $d/lib/index.js; done",
+   "rc": 0,
+   "stdout_tail": "== /workspace/work/pes/plugins/dsh-auto-memory/_sbx/install/home/.dsh/profiles/demo/node_modules/dsh-auto-memory\n{\n  \"name\": \"dsh-auto-memory\",\n  \"version\": \"0.7.0\",\n  \"description\": \"Claude Code style auto-memory plugin for DeepSeek Harness: typed memory files + MEMORY.md index auto-injected into the system prompt\",\n  \"type\": \"module\",\nbd7d79ea1ca6e5c4018aa95ab993312ea7aaa65bd74df477673df8d648d81858  /workspace/work/pes/plugins/dsh-auto-memory/_sbx/install/home/.dsh/profiles/demo/node_modules/dsh-auto-memory/lib/index.js\n",
+   "stderr_tail": ""
+  }
+ ],
+ "tarball_lib_index_sha256": "bd7d79ea1ca6e5c4018aa95ab993312ea7aaa65bd74df477673df8d648d81858"
+}

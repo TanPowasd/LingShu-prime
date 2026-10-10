@@ -1,0 +1,230 @@
+{
+ "at": "2026-10-10T11:11:51+08:00",
+ "preselect": [
+  "C-021",
+  "C-051",
+  "C-069",
+  "C-077",
+  "C-078",
+  "C-110"
+ ],
+ "orig_sha256": "f8578a779316ff8a7db5c6907264a9c7091f39c84feb7f77eacd16effbc98fae",
+ "mutant_sha256": "60afdec499e112c184dd010e981261b74a27603db809af63b61acbb76fd52832",
+ "blind_map": {
+  "V1": "/workspace/work/pes/validation/_gates/gate6/judge_fault/judge_mutant.py",
+  "V2": "/workspace/work/pes/harness/judge.py"
+ },
+ "detection": {
+  "V1": {
+   "judge_sha256": "60afdec499e112c184dd010e981261b74a27603db809af63b61acbb76fd52832",
+   "all_pass": false,
+   "by_class": {
+    "correct": {
+     "n": 24,
+     "pass": 24
+    },
+    "wrong": {
+     "n": 24,
+     "pass": 17
+    },
+    "boundary": {
+     "n": 26,
+     "pass": 26
+    }
+   },
+   "fails": [
+    [
+     "R×C-021<C-071",
+     "miss",
+     "strict"
+    ],
+    [
+     "R×C-051<C-021",
+     "miss",
+     "strict"
+    ],
+    [
+     "R×C-069<C-003",
+     "miss",
+     "strict"
+    ],
+    [
+     "R×C-077<C-038",
+     "miss",
+     "strict"
+    ],
+    [
+     "R×C-078<C-093",
+     "miss",
+     "strict"
+    ],
+    [
+     "R×C-110<C-055",
+     "miss",
+     "strict"
+    ],
+    [
+     "R0C-021",
+     "miss",
+     "strict"
+    ]
+   ],
+   "batch_gate_pass": true
+  },
+  "V2": {
+   "judge_sha256": "f8578a779316ff8a7db5c6907264a9c7091f39c84feb7f77eacd16effbc98fae",
+   "all_pass": true,
+   "by_class": {
+    "correct": {
+     "n": 24,
+     "pass": 24
+    },
+    "wrong": {
+     "n": 24,
+     "pass": 24
+    },
+    "boundary": {
+     "n": 26,
+     "pass": 26
+    }
+   },
+   "fails": [],
+   "batch_gate_pass": true
+  }
+ },
+ "detector_correct_on_both": true,
+ "mutant_fail_cases_all_preselected": true,
+ "online_gate_passed_anyway": {
+  "V1": true,
+  "V2": true
+ },
+ "board_before": [
+  {
+   "entry": "board:B_dsh_vs_null",
+   "plugin": "dsh-memory",
+   "verdict": "😐",
+   "label": "看不出差别",
+   "items_gain": -1,
+   "report": "published/reports/dsh-memory_考卷B_草稿.md"
+  },
+  {
+   "entry": "board:B_bm25_vs_null",
+   "plugin": "bm25(参照臂)",
+   "verdict": "❌",
+   "label": "帮倒忙",
+   "items_gain": -6,
+   "report": "published/reports/bm25_考卷B_参照.md"
+  }
+ ],
+ "board_with_mutant": [
+  {
+   "entry": "board:B_dsh_vs_null",
+   "plugin": "dsh-memory",
+   "verdict": "😐",
+   "label": "看不出差别",
+   "items_gain": 2,
+   "report": "published/reports/dsh-memory_考卷B_草稿.md"
+  },
+  {
+   "entry": "board:B_bm25_vs_null",
+   "plugin": "bm25(参照臂)",
+   "verdict": "❌",
+   "label": "帮倒忙",
+   "items_gain": -6,
+   "report": "published/reports/bm25_考卷B_参照.md"
+  }
+ ],
+ "board_after_revoke": {
+  "title": "测试能力榜（验证副本，非正式）",
+  "generated": "2026-10-10T11:11:48+08:00",
+  "valid": [
+   {
+    "entry": "board:B_bm25_vs_null",
+    "plugin": "bm25(参照臂)",
+    "verdict": "❌",
+    "label": "帮倒忙",
+    "items_gain": -6,
+    "report": "published/reports/bm25_考卷B_参照.md"
+   }
+  ],
+  "invalid": [
+   {
+    "entry": "board:B_dsh_vs_null",
+    "plugin": "dsh-memory",
+    "verdict": "😐",
+    "label": "看不出差别",
+    "items_gain": 2,
+    "report": "published/reports/dsh-memory_考卷B_草稿.md",
+    "withdrawn_at": "2026-10-10T11:11:50+08:00",
+    "why": "JUDGE_REVOKED 60afdec499e112c1"
+   }
+  ]
+ },
+ "sweeps": [
+  {
+   "at": "2026-10-10T11:11:50+08:00",
+   "action": "sweep",
+   "errors": [
+    {
+     "code": "JUDGE_REVOKED",
+     "node": "judge:60afdec499e112c184dd010e981261b74a27603db809af63b61acbb76fd52832",
+     "judge": "60afdec499e112c1",
+     "reason": "回归集未通过（已知错误样本被判对）"
+    }
+   ],
+   "invalid_nodes": [
+    "analysis:B_dsh_vs_null",
+    "badge:dsh-memory",
+    "board:B_dsh_vs_null",
+    "judge:60afdec499e112c184dd010e981261b74a27603db809af63b61acbb76fd52832",
+    "report:dsh-memory_考卷B_草稿",
+    "run:B_dsh"
+   ],
+   "affected": {
+    "reports": [
+     "dsh-memory_考卷B_草稿"
+    ],
+    "board": [
+     "board:B_dsh_vs_null"
+    ],
+    "badges": [
+     "dsh-memory"
+    ]
+   }
+  }
+ ],
+ "fixed_with": "f8578a779316ff8a7db5c6907264a9c7091f39c84feb7f77eacd16effbc98fae",
+ "board_after_fix": {
+  "title": "测试能力榜（验证副本，非正式）",
+  "generated": "2026-10-10T11:11:48+08:00",
+  "valid": [
+   {
+    "entry": "board:B_bm25_vs_null",
+    "plugin": "bm25(参照臂)",
+    "verdict": "❌",
+    "label": "帮倒忙",
+    "items_gain": -6,
+    "report": "published/reports/bm25_考卷B_参照.md"
+   },
+   {
+    "entry": "board:B_dsh_vs_null",
+    "plugin": "dsh-memory",
+    "verdict": "😐",
+    "label": "看不出差别",
+    "items_gain": -1,
+    "report": "published/reports/dsh-memory_考卷B_草稿.md",
+    "reinstated_at": "2026-10-10T11:11:51+08:00"
+   }
+  ],
+  "invalid": []
+ },
+ "recompute_equals_original": {
+  "B_dsh_vs_null": true,
+  "B_bm25_vs_null": true
+ },
+ "originals_untouched": {
+  "ok": true,
+  "n": 1099,
+  "problems": []
+ }
+}

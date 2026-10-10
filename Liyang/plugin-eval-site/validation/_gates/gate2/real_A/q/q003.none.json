@@ -1,0 +1,17 @@
+{
+ "qid": "q003",
+ "cond": "none",
+ "resp": {
+  "qid": "q003",
+  "conclusion": "材料中没有关于蜂巢社会控制者的内容。",
+  "answer": "本考场未提供任何正文片段（检索材料为空），因此无法依据给定正文回答蜂巢社会的控制者是谁。",
+  "evidence": [],
+  "confidence": "unknown"
+ },
+ "parse_err": false,
+ "raw": "{\"qid\": \"q003\", \"conclusion\": \"材料中没有关于蜂巢社会控制者的内容。\", \"answer\": \"本考场未提供任何正文片段（检索材料为空），因此无法依据给定正文回答蜂巢社会的控制者是谁。\", \"evidence\": [], \"confidence\": \"unknown\"}",
+ "ev": [
+  93,
+  215.816
+ ]
+}

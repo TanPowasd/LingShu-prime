@@ -1,0 +1,87 @@
+{
+ "plugin": "dsh-memory",
+ "sha": "c8c3655234d57214ae990ab2c7590f7ba590d901",
+ "roots": {
+  "MDCG_ROOT": "/tmp/gates-dshm-state/root",
+  "HOME_MDCG": "/tmp/gates-dshm-state/home/.mdcg",
+  "HOME_DSH": "/tmp/gates-dshm-state/home/.dsh"
+ },
+ "classes": [
+  {
+   "class": "主文件(节点)",
+   "glob": "MDCG_ROOT/contextual/*"
+  },
+  {
+   "class": "主文件(节点)",
+   "glob": "MDCG_ROOT/*/*.md"
+  },
+  {
+   "class": "索引",
+   "glob": "MDCG_ROOT/_index.json"
+  },
+  {
+   "class": "摄取游标/缓存",
+   "glob": "MDCG_ROOT/_sources.json"
+  },
+  {
+   "class": "审计/访问日志",
+   "glob": "MDCG_ROOT/_*.jsonl"
+  },
+  {
+   "class": "审计/访问日志",
+   "glob": "MDCG_ROOT/_access.log"
+  },
+  {
+   "class": "密钥",
+   "glob": "MDCG_ROOT/_keys.json"
+  },
+  {
+   "class": "密钥",
+   "glob": "HOME_MDCG/master.key"
+  },
+  {
+   "class": "宿主侧配置",
+   "glob": "HOME_*"
+  }
+ ],
+ "baseline": {
+  "MDCG_ROOT/_index.json": "1fe1592187899861e518c9d20d87e1b5b9b7dcca8b9ec3a9059c5842748bf5e1",
+  "MDCG_ROOT/_sources.json": "8526aaba4edbdb1ac16b72859f00829520db7c2e8921b479204b178a83914585",
+  "MDCG_ROOT/_audit.jsonl": "7f92d15f7038c99fc92e130cbc896b1230edf87acfa239c2de3824c2f7490ace",
+  "MDCG_ROOT/_crypto.jsonl": "4eb19fc6d6fef54574f95f2db51944b0e467b9a9b39d05bb789723d24c7204fa",
+  "MDCG_ROOT/_heartbeat.jsonl": "7bb8265a4ac266be0928af8984fa01d6683c5e6d6f5c2afef7d827682cb5da25",
+  "MDCG_ROOT/_keys.json": "eb86253d8fe2dc1031a8745e1b5c17252129c6b249414b79b8eb867ec1ea0f71",
+  "MDCG_ROOT/contextual/src_9db064_ca646db183.md": "883885c4bb1164198f6720c5d5efdf0aa0e81d71ad687582b3c4282a668f849a",
+  "MDCG_ROOT/contextual/src_9db064_80e4b71c69.md": "926d370385df35f4de3be6925401ac0471c16e188090180a11c8b8b633b6eda3",
+  "MDCG_ROOT/contextual/src_9db064_161da2d502.md": "e4c7a537bc98ace7ec52e51695aa293dbcd328110eb76493854faa99729cfce6",
+  "HOME_MDCG/master.key": "5d8e721cc323d647de26d96f9a9d7832edaeb12c12aa1d9b4ba737238f11e47c",
+  "HOME_MDCG/theory.json": "4f5498c0ec6a1da0d4ab5872f1c5982fd10e4fb62214284617be33fd4ae30ffe",
+  "HOME_MDCG/_tokens.json": "4c261f1891ffabb04c496e5d48cc4b8dc6beeeaa67914c133e97665c4e9c68a3",
+  "HOME_DSH/.dsh-memory/data/README_memory_bench_1000.md": "f4a1a7b2d31b3d653eb6ef92c19a195363702b9f36bcf314b7677297075cf564",
+  "HOME_DSH/.dsh-memory/data/_crosscheck_worklist.json": "c6715f9072188c8ce4d5f6be8370327a60ad5c423a66cb236ec24631e171cb09",
+  "HOME_DSH/.dsh-memory/data/_sample50.jsonl": "6cc7c6cc83671ec5c382dbf5e0858701f7d5a8e8873f6fe285237086ebc2715f",
+  "HOME_DSH/.dsh-memory/data/_verdicts_batch1.jsonl": "238ce0e7ef51d2df7e121849872e361087611bd4394c7450971943286b009e11",
+  "HOME_DSH/.dsh-memory/data/_verdicts_reflect.jsonl": "c11ff0b6ed79b5972bef00e4b2995ea574b96423af6b931817835186a1e4f8c3",
+  "HOME_DSH/.dsh-memory/data/_verdicts_verify.jsonl": "cfb5a7e97d3af7b9f403403d546bfd249b2a3159c89ee16949aaee0cce81e538",
+  "HOME_DSH/.dsh-memory/data/memory-bench-1000.jsonl": "93c6d8ce40baea3682de3836451f7d34d8ab12219622bcc8b33ecd6bb8455620",
+  "HOME_DSH/.dsh-memory/data/policy.json": "2c906f697cb051df479a377218641615ea8f9dc6cd1347bb09bd46d000b6ac31",
+  "HOME_DSH/.dsh-memory/data/benchmarks/bench6-100-zh-en/README.md": "e881854ac3b276cfb63de215203e28b1aa20c57780fb55666444c09e308c7816",
+  "HOME_DSH/.dsh-memory/data/benchmarks/bench6-100-zh-en/manifest.json": "38de9e390909fa5cbd9d02d353c7d85cba4a1514a97eb421ea7732d479482231",
+  "HOME_DSH/.dsh-memory/data/benchmarks/bench6-100-zh-en/pool.jsonl": "084a9eaa5061baf2c0afbe9999a73537cbf5bd880ab76b12241c1fc029fdcdc5",
+  "HOME_DSH/.dsh-memory/data/benchmarks/bench6-100-zh-en/questions.jsonl": "581a029f853aab228e5068aafd2ca06c1f9a759016b4aef873fd3edb4c862359",
+  "HOME_DSH/.dsh-memory/data/benchmarks/bench6-100-zh-en/results_v1.0.json": "3a28e5cca2cd6038e0f922e3d51648c7512dc821f854fc49cdd94313c9d63d26",
+  "HOME_DSH/.dsh-memory/data/benchmarks/bench6-100-zh-en/run_bench.py": "3bfbac5bd682aa90d4ae02f7e32dd8935474394fbdcf7e9cc8467a6b75668b02",
+  "HOME_DSH/.dsh-memory/data/benchmarks/locomo-zh-500/README.md": "a42726b2a51216b679011e0aab19df53eb22912fce529eab58a92d7683bf2790",
+  "HOME_DSH/.dsh-memory/data/benchmarks/locomo-zh-500/VERSION.json": "130ed9df3a5dfd78c261173eab62784de5b49b5a6c3724f01cd83ec003660a79",
+  "HOME_DSH/.dsh-memory/data/benchmarks/locomo-zh-500/corpus567.jsonl": "8a81914668abfae5b999981f4594f9fc9cd25bf06ec827125fe9771dea0a2d83",
+  "HOME_DSH/.dsh-memory/data/benchmarks/locomo-zh-500/questions500.jsonl": "7c15e3220de8fd42b1191f019f723a8ef544b53d2a472ee817f3c130de28cbc5"
+ },
+ "excluded": [
+  "*.lock（0 字节互斥锁）"
+ ],
+ "not_covered": [
+  "/tmp/md_cg_servers/<pid>.json（服务自报文件，外部；本契约不覆盖，残留单列）"
+ ],
+ "verify": "tools/gates/state_check.py（独立：sha256 逐对象比对基线；不读插件自报）",
+ "created": "2026-10-10T10:34:13+08:00"
+}

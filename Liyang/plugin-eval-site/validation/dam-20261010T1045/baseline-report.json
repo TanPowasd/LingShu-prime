@@ -1,0 +1,1295 @@
+{
+ "schema": "pes.baseline-report/v1",
+ "validation_id": "dam-20261010T1045",
+ "analysis_id": "dam-20261010T1045/analysis-v1",
+ "generated_wall": "2026-10-10T15:01:44+08:00",
+ "preregistration_sha256": "61d9bef5c9257d786403275266b9e65d93a2ee0c4ec2ff8a2c141b74fe7c1bf5",
+ "pairs": [
+  {
+   "pair_id": "pair2",
+   "rerun": 2,
+   "complete": false,
+   "invalid": true,
+   "B0": 33.7079,
+   "P": null
+  },
+  {
+   "pair_id": "pair1",
+   "rerun": 1,
+   "complete": false,
+   "invalid": true,
+   "B0": null,
+   "P": 32.0225
+  },
+  {
+   "pair_id": "pair3",
+   "rerun": 3,
+   "complete": true,
+   "invalid": false,
+   "B0": 33.7079,
+   "P": 35.9551,
+   "delta": 2.2472
+  },
+  {
+   "pair_id": "pair2-r1",
+   "rerun": 2,
+   "complete": true,
+   "invalid": false,
+   "B0": 33.1461,
+   "P": 33.7079,
+   "delta": 0.5618
+  },
+  {
+   "pair_id": "pair1-r1",
+   "rerun": 1,
+   "complete": true,
+   "invalid": false,
+   "B0": 34.8315,
+   "P": 32.0225,
+   "delta": -2.809
+  }
+ ],
+ "verdict_v3": {
+  "analysis_id": "dam-20261010T1045/analysis-v1",
+  "run_state": "有效",
+  "release_state": "方法试验",
+  "capability": null,
+  "capability_label": null,
+  "capability_observed": "❓",
+  "install_stage": "✅成功",
+  "reasons": [
+   "有效样本不足：独立场景 1（要求 ≥8），每场景配对重跑最少 3（要求 ≥3）；极少场景下窄区间不代表充分证据",
+   "未达正式发布门槛：taskset_frozen、domain_spec_frozen、independent_review、scenarios_groupable、样本计划场景数 1 < 域要求 8（只发布方法试验与已知事实）"
+  ],
+  "errors": [],
+  "excluded_pairs": [
+   {
+    "pair_id": "pair2",
+    "scenario_id": "hmb-e2e-history-1",
+    "reason": "见 validity.json"
+   },
+   {
+    "pair_id": "pair1",
+    "scenario_id": "hmb-e2e-history-1",
+    "reason": "见 validity.json"
+   }
+  ],
+  "estimate": 0.0,
+  "interval": [
+   0.0,
+   0.0
+  ],
+  "half_width": 0.0,
+  "base_abs": 33.89513108614232,
+  "plug_abs": 33.89513108614232,
+  "n_scenarios": 1,
+  "reruns_per_scenario": 3,
+  "scenarios": {
+   "hmb-e2e-history-1": {
+    "d": 0.0,
+    "w": 1.0,
+    "reruns": 3,
+    "base": 33.89513108614232,
+    "plug": 33.89513108614232
+   }
+  },
+  "rankable": false,
+  "manifest": {
+   "analysis_id": "dam-20261010T1045/analysis-v1",
+   "seed_derivation": "uint64_be(SHA-256(utf8(analysis_id))[0:8])",
+   "seed": 16925712318010273228,
+   "impl_id": "pes.verdict_v3",
+   "impl_version": "1.0.0",
+   "rng": "splitmix64/u53-floor/v1",
+   "percentile": "hyndman-fan-type7-linear",
+   "aggregation_order": [
+    "item_weighted_score_0_100",
+    "pair_diff_P_minus_B",
+    "scenario_mean_over_reruns",
+    "scenario_weighted_mean",
+    "resample_scenarios_with_replacement"
+   ],
+   "index_mapping": "floor((x>>11) * 2^-53 * G)",
+   "draw_order": "b-major (b=0..B-1, j=0..G-1)",
+   "statistic": "weighted mean of resampled scenario diffs",
+   "scenario_weighting": "equal",
+   "B": 10000,
+   "conf": 0.95,
+   "thresholds": {
+    "a": 5,
+    "b": 5,
+    "max_half_width": 5
+   },
+   "sample_minimum": {
+    "min_scenarios": 8,
+    "min_reruns": 3
+   },
+   "metric": {
+    "kind": "continuous",
+    "scale_max": 1.0
+   },
+   "scale": "0-100",
+   "weights_sha256": "d56b889d52525d6136ba0f9813d039d76a7cf005d6113b4dc0b9a4055d6dbcf4",
+   "python": "3.12.15",
+   "platform": "Linux-6.12.110+-aarch64-with-glibc2.41",
+   "libraries": {
+    "stdlib-only": true
+   },
+   "impl_file_sha256": "5dab21e5e605890d87264c5b657b7ca3eaa14f0c34692a8b660774c01f492d71"
+  },
+  "gates_missing": [
+   "taskset_frozen",
+   "domain_spec_frozen",
+   "independent_review",
+   "scenarios_groupable",
+   "样本计划场景数 1 < 域要求 8"
+  ]
+ },
+ "verdict_v3_impl_sha256": "5dab21e5e605890d87264c5b657b7ca3eaa14f0c34692a8b660774c01f492d71",
+ "card_level_descriptive": {
+  "unit": "卡（非独立单位，仅描述）",
+  "n_cards": 89,
+  "n_pairs": 3,
+  "mean_delta": 0.0,
+  "ci95_card_bootstrap": [
+   -3.184,
+   3.371
+  ],
+  "B": 10000,
+  "rng": "CPython random.Random MT19937",
+  "cards_P_better": 20,
+  "cards_B0_better": 20,
+  "cards_tied": 49
+ },
+ "runs": {
+  "pair2-B0": {
+   "validity": {
+    "valid": true,
+    "reasons": []
+   },
+   "stats": {
+    "llm_calls": {
+     "generator": 88,
+     "judge-1": 137,
+     "judge-2": 137
+    },
+    "prompt_tokens": {
+     "generator": 32121,
+     "judge-1": 48627,
+     "judge-2": 48627
+    },
+    "completion_tokens": {
+     "generator": 14806,
+     "judge-1": 5392,
+     "judge-2": 5436
+    },
+    "cost_usd": {
+     "generator": 0.011713,
+     "judge-1": 0.007403,
+     "judge-2": 0.007265
+    },
+    "retries": 1,
+    "recording_truncated_by_eio": false,
+    "wall_first": "2026-10-10T10:45:53.541+08:00",
+    "wall_last": "2026-10-10T11:28:59.024+08:00",
+    "t_span_s": 2256.392
+   },
+   "score": 33.7079,
+   "counts": {
+    "strict": 4,
+    "paraphrase": 52,
+    "miss": 33
+   },
+   "parse_err": 0,
+   "judge_attempt": 1,
+   "judge_gate": {
+    "n_anchor": 48,
+    "n_items": 89,
+    "majority_baseline": 0.5,
+    "anchor_acc_v1": 1.0,
+    "anchor_margin_pp_v1": 50.0,
+    "anchor_acc_v2": 0.9791666666666666,
+    "anchor_margin_pp_v2": 47.9,
+    "anchor_agree": 0.9791666666666666,
+    "anchor_kappa": 0.9591836734693877,
+    "items_agree": 0.9438202247191011,
+    "items_kappa": 0.8926158301158301,
+    "pass": true
+   },
+   "started": "2026-10-10T10:45:53+08:00"
+  },
+  "pair2-P": {
+   "validity": {
+    "valid": false,
+    "reasons": [
+     "确认的环境故障：11:43 CST 左右沙箱重启，pair2-P/recording.jsonl 自约 4.0 MiB 起持续 EIO（三次重读、逐 4k 块读 683 块失败），11:38 之后的录像事件（阶段 B 第 45–89 卡注入、作答 28 卡）不可读——证据链受中断污染",
+     "状态独立校验：verify_state.py card-post 阶段 A 16/16、阶段 B 89/89 通过（状态本身未见损坏），但录像为必需证据，不能续跑补齐"
+    ],
+    "invalidated_wall": "2026-10-10 11:52 CST",
+    "by": "pes-e2e-dam（接手）",
+    "policy": "preregistration.sample_plan.invalid_policy：任一侧无效→整对作废留痕，两侧按原侧序重跑为 pair2-r1"
+   },
+   "stats": {
+    "llm_calls": {
+     "plugin-consolidate": 61
+    },
+    "prompt_tokens": {
+     "plugin-consolidate": 722677
+    },
+    "completion_tokens": {
+     "plugin-consolidate": 84522
+    },
+    "cost_usd": {
+     "plugin-consolidate": 0.116606
+    },
+    "retries": 1,
+    "recording_truncated_by_eio": true,
+    "wall_first": "2026-10-10T11:28:59.106+08:00",
+    "wall_last": "2026-10-10T11:38:53.063+08:00",
+    "t_span_s": 593.958,
+    "inject": {
+     "n_cards": 89,
+     "section_bytes_median": 4016,
+     "section_bytes_min": 3957,
+     "section_bytes_max": 4068,
+     "memories_median": 65,
+     "memories_min": 59,
+     "memories_max": 67,
+     "cards_index_truncated": 89,
+     "checks_pass": 89
+    },
+    "phaseA": {
+     "n_files": 16,
+     "ok": 16,
+     "checks_pass": 16,
+     "memories_written": [
+      4,
+      5,
+      5,
+      5,
+      4,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      3,
+      4,
+      5
+     ]
+    }
+   },
+   "score": null,
+   "counts": null,
+   "parse_err": null,
+   "judge_attempt": null,
+   "judge_gate": null,
+   "started": "2026-10-10T11:28:59+08:00"
+  },
+  "pair1-P": {
+   "validity": {
+    "valid": true,
+    "reasons": []
+   },
+   "stats": {
+    "llm_calls": {
+     "plugin-consolidate": 105,
+     "generator": 89,
+     "judge-1": 137,
+     "judge-2": 137
+    },
+    "prompt_tokens": {
+     "plugin-consolidate": 1287452,
+     "generator": 117578,
+     "judge-1": 50664,
+     "judge-2": 50664
+    },
+    "completion_tokens": {
+     "plugin-consolidate": 147841,
+     "generator": 17397,
+     "judge-1": 5446,
+     "judge-2": 5492
+    },
+    "cost_usd": {
+     "plugin-consolidate": 0.220725,
+     "generator": 0.020721,
+     "judge-1": 0.007815,
+     "judge-2": 0.007322
+    },
+    "retries": 0,
+    "recording_truncated_by_eio": false,
+    "wall_first": "2026-10-10T11:53:39.863+08:00",
+    "wall_last": "2026-10-10T12:35:12.249+08:00",
+    "t_span_s": 2492.386,
+    "inject": {
+     "n_cards": 89,
+     "section_bytes_median": 4061,
+     "section_bytes_min": 3914,
+     "section_bytes_max": 4068,
+     "memories_median": 60,
+     "memories_min": 55,
+     "memories_max": 62,
+     "cards_index_truncated": 89,
+     "checks_pass": 89
+    },
+    "phaseA": {
+     "n_files": 16,
+     "ok": 16,
+     "checks_pass": 16,
+     "memories_written": [
+      4,
+      5,
+      5,
+      5,
+      5,
+      5,
+      4,
+      5,
+      5,
+      3,
+      5,
+      5,
+      4,
+      4,
+      5,
+      5
+     ]
+    }
+   },
+   "score": 32.0225,
+   "counts": {
+    "strict": 8,
+    "paraphrase": 41,
+    "miss": 40
+   },
+   "parse_err": 0,
+   "judge_attempt": 1,
+   "judge_gate": {
+    "n_anchor": 48,
+    "n_items": 89,
+    "majority_baseline": 0.5,
+    "anchor_acc_v1": 1.0,
+    "anchor_margin_pp_v1": 50.0,
+    "anchor_acc_v2": 1.0,
+    "anchor_margin_pp_v2": 50.0,
+    "anchor_agree": 1.0,
+    "anchor_kappa": 1.0,
+    "items_agree": 0.9550561797752809,
+    "items_kappa": 0.9221687800612154,
+    "pass": true
+   },
+   "started": "2026-10-10T11:53:39+08:00"
+  },
+  "pair1-B0": {
+   "validity": {
+    "valid": false,
+    "reasons": [
+     "确认的环境故障：12:57 CST 左右沙箱第二次重启；工作区盘回退到约 12:45 的状态（之后写入丢失，含已提交的 pair1-B0 完成结果 37.64/100 与 commit 5c3394b/d9b4c29），且 pair1-B0/recording.jsonl、judge/verdicts.jsonl 读出 EIO——证据链受中断污染",
+     "按预注册 invalid_policy 整对作废留痕，不续跑；丢失前观察到的 pair1 读数（B0 37.64，P 32.02，Δ −5.62）只作留痕，不进分析"
+    ],
+    "invalidated_wall": "2026-10-10 13:06 CST",
+    "by": "pes-e2e-dam（接手）",
+    "policy": "preregistration.sample_plan.invalid_policy"
+   },
+   "stats": {
+    "llm_calls": {},
+    "prompt_tokens": {},
+    "completion_tokens": {},
+    "cost_usd": {},
+    "retries": 0,
+    "recording_truncated_by_eio": true,
+    "wall_first": null,
+    "wall_last": null,
+    "t_span_s": null
+   },
+   "score": null,
+   "counts": null,
+   "parse_err": null,
+   "judge_attempt": null,
+   "judge_gate": null,
+   "started": "2026-10-10T12:35:56+08:00"
+  },
+  "pair3-B0": {
+   "validity": {
+    "valid": true,
+    "reasons": []
+   },
+   "stats": {
+    "llm_calls": {
+     "generator": 89,
+     "judge-1": 137,
+     "judge-2": 137
+    },
+    "prompt_tokens": {
+     "generator": 32479,
+     "judge-1": 48822,
+     "judge-2": 48822
+    },
+    "completion_tokens": {
+     "generator": 14929,
+     "judge-1": 5422,
+     "judge-2": 5396
+    },
+    "cost_usd": {
+     "generator": 0.011817,
+     "judge-1": 0.007661,
+     "judge-2": 0.007266
+    },
+    "retries": 0,
+    "recording_truncated_by_eio": false,
+    "wall_first": "2026-10-10T13:07:40.123+08:00",
+    "wall_last": "2026-10-10T13:16:45.069+08:00",
+    "t_span_s": 544.946
+   },
+   "score": 33.7079,
+   "counts": {
+    "strict": 6,
+    "paraphrase": 48,
+    "miss": 35
+   },
+   "parse_err": 0,
+   "judge_attempt": 1,
+   "judge_gate": {
+    "n_anchor": 48,
+    "n_items": 89,
+    "majority_baseline": 0.5,
+    "anchor_acc_v1": 1.0,
+    "anchor_margin_pp_v1": 50.0,
+    "anchor_acc_v2": 1.0,
+    "anchor_margin_pp_v2": 50.0,
+    "anchor_agree": 1.0,
+    "anchor_kappa": 1.0,
+    "items_agree": 0.9775280898876404,
+    "items_kappa": 0.9593792788680967,
+    "pass": true
+   },
+   "started": "2026-10-10T13:07:40+08:00"
+  },
+  "pair3-P": {
+   "validity": {
+    "valid": true,
+    "reasons": []
+   },
+   "stats": {
+    "llm_calls": {
+     "plugin-consolidate": 105,
+     "generator": 89,
+     "judge-1": 137,
+     "judge-2": 137
+    },
+    "prompt_tokens": {
+     "plugin-consolidate": 1285007,
+     "generator": 120158,
+     "judge-1": 51025,
+     "judge-2": 51025
+    },
+    "completion_tokens": {
+     "plugin-consolidate": 154520,
+     "generator": 17543,
+     "judge-1": 5485,
+     "judge-2": 5534
+    },
+    "cost_usd": {
+     "plugin-consolidate": 0.224382,
+     "generator": 0.021116,
+     "judge-1": 0.007709,
+     "judge-2": 0.007288
+    },
+    "retries": 0,
+    "recording_truncated_by_eio": false,
+    "wall_first": "2026-10-10T13:18:10.775+08:00",
+    "wall_last": "2026-10-10T13:34:06.786+08:00",
+    "t_span_s": 956.012,
+    "inject": {
+     "n_cards": 89,
+     "section_bytes_median": 4040,
+     "section_bytes_min": 3951,
+     "section_bytes_max": 4068,
+     "memories_median": 56,
+     "memories_min": 51,
+     "memories_max": 61,
+     "cards_index_truncated": 89,
+     "checks_pass": 89
+    },
+    "phaseA": {
+     "n_files": 16,
+     "ok": 16,
+     "checks_pass": 16,
+     "memories_written": [
+      0,
+      5,
+      5,
+      4,
+      5,
+      5,
+      4,
+      4,
+      5,
+      3,
+      5,
+      4,
+      5,
+      4,
+      5,
+      4
+     ]
+    }
+   },
+   "score": 35.9551,
+   "counts": {
+    "strict": 7,
+    "paraphrase": 50,
+    "miss": 32
+   },
+   "parse_err": 0,
+   "judge_attempt": 1,
+   "judge_gate": {
+    "n_anchor": 48,
+    "n_items": 89,
+    "majority_baseline": 0.5,
+    "anchor_acc_v1": 1.0,
+    "anchor_margin_pp_v1": 50.0,
+    "anchor_acc_v2": 1.0,
+    "anchor_margin_pp_v2": 50.0,
+    "anchor_agree": 1.0,
+    "anchor_kappa": 1.0,
+    "items_agree": 0.898876404494382,
+    "items_kappa": 0.8209655789003129,
+    "pass": true
+   },
+   "started": "2026-10-10T13:18:10+08:00"
+  },
+  "pair2-B0-r1": {
+   "validity": {
+    "valid": true,
+    "reasons": []
+   },
+   "stats": {
+    "llm_calls": {
+     "generator": 89,
+     "judge-1": 137,
+     "judge-2": 137
+    },
+    "prompt_tokens": {
+     "generator": 32479,
+     "judge-1": 48775,
+     "judge-2": 48775
+    },
+    "completion_tokens": {
+     "generator": 14618,
+     "judge-1": 5409,
+     "judge-2": 5403
+    },
+    "cost_usd": {
+     "generator": 0.011633,
+     "judge-1": 0.00764,
+     "judge-2": 0.007302
+    },
+    "retries": 0,
+    "recording_truncated_by_eio": false,
+    "wall_first": "2026-10-10T13:35:33.685+08:00",
+    "wall_last": "2026-10-10T13:44:38.497+08:00",
+    "t_span_s": 544.812
+   },
+   "score": 33.1461,
+   "counts": {
+    "strict": 6,
+    "paraphrase": 47,
+    "miss": 36
+   },
+   "parse_err": 0,
+   "judge_attempt": 1,
+   "judge_gate": {
+    "n_anchor": 48,
+    "n_items": 89,
+    "majority_baseline": 0.5,
+    "anchor_acc_v1": 1.0,
+    "anchor_margin_pp_v1": 50.0,
+    "anchor_acc_v2": 1.0,
+    "anchor_margin_pp_v2": 50.0,
+    "anchor_agree": 1.0,
+    "anchor_kappa": 1.0,
+    "items_agree": 0.9662921348314607,
+    "items_kappa": 0.9394420503515537,
+    "pass": true
+   },
+   "started": "2026-10-10T13:35:33+08:00"
+  },
+  "pair2-P-r1": {
+   "validity": {
+    "valid": true,
+    "reasons": []
+   },
+   "stats": {
+    "llm_calls": {
+     "plugin-consolidate": 105,
+     "generator": 89,
+     "judge-1": 137,
+     "judge-2": 137
+    },
+    "prompt_tokens": {
+     "plugin-consolidate": 1294252,
+     "generator": 117529,
+     "judge-1": 50666,
+     "judge-2": 50666
+    },
+    "completion_tokens": {
+     "plugin-consolidate": 152069,
+     "generator": 17342,
+     "judge-1": 5464,
+     "judge-2": 5537
+    },
+    "cost_usd": {
+     "plugin-consolidate": 0.223283,
+     "generator": 0.02151,
+     "judge-1": 0.007757,
+     "judge-2": 0.007401
+    },
+    "retries": 0,
+    "recording_truncated_by_eio": false,
+    "wall_first": "2026-10-10T13:46:04.728+08:00",
+    "wall_last": "2026-10-10T14:01:28.392+08:00",
+    "t_span_s": 923.664,
+    "inject": {
+     "n_cards": 89,
+     "section_bytes_median": 4062,
+     "section_bytes_min": 3930,
+     "section_bytes_max": 4068,
+     "memories_median": 67,
+     "memories_min": 62,
+     "memories_max": 70,
+     "cards_index_truncated": 89,
+     "checks_pass": 89
+    },
+    "phaseA": {
+     "n_files": 16,
+     "ok": 16,
+     "checks_pass": 16,
+     "memories_written": [
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      4,
+      4,
+      5,
+      4,
+      5,
+      4,
+      5,
+      5
+     ]
+    }
+   },
+   "score": 33.7079,
+   "counts": {
+    "strict": 6,
+    "paraphrase": 48,
+    "miss": 35
+   },
+   "parse_err": 0,
+   "judge_attempt": 1,
+   "judge_gate": {
+    "n_anchor": 48,
+    "n_items": 89,
+    "majority_baseline": 0.5,
+    "anchor_acc_v1": 1.0,
+    "anchor_margin_pp_v1": 50.0,
+    "anchor_acc_v2": 1.0,
+    "anchor_margin_pp_v2": 50.0,
+    "anchor_agree": 1.0,
+    "anchor_kappa": 1.0,
+    "items_agree": 0.9325842696629213,
+    "items_kappa": 0.8778032036613271,
+    "pass": true
+   },
+   "started": "2026-10-10T13:46:04+08:00"
+  },
+  "pair1-P-r1": {
+   "validity": {
+    "valid": true,
+    "reasons": []
+   },
+   "stats": {
+    "llm_calls": {
+     "plugin-consolidate": 105,
+     "generator": 89,
+     "judge-1": 137,
+     "judge-2": 137
+    },
+    "prompt_tokens": {
+     "plugin-consolidate": 1283902,
+     "generator": 116900,
+     "judge-1": 50408,
+     "judge-2": 50408
+    },
+    "completion_tokens": {
+     "plugin-consolidate": 150258,
+     "generator": 16922,
+     "judge-1": 5516,
+     "judge-2": 5515
+    },
+    "cost_usd": {
+     "plugin-consolidate": 0.221867,
+     "generator": 0.02029,
+     "judge-1": 0.007786,
+     "judge-2": 0.007263
+    },
+    "retries": 0,
+    "recording_truncated_by_eio": false,
+    "wall_first": "2026-10-10T14:02:55.256+08:00",
+    "wall_last": "2026-10-10T14:19:32.573+08:00",
+    "t_span_s": 997.318,
+    "inject": {
+     "n_cards": 89,
+     "section_bytes_median": 3991,
+     "section_bytes_min": 3947,
+     "section_bytes_max": 4064,
+     "memories_median": 56,
+     "memories_min": 51,
+     "memories_max": 58,
+     "cards_index_truncated": 89,
+     "checks_pass": 89
+    },
+    "phaseA": {
+     "n_files": 16,
+     "ok": 16,
+     "checks_pass": 16,
+     "memories_written": [
+      5,
+      5,
+      5,
+      3,
+      5,
+      4,
+      5,
+      5,
+      4,
+      1,
+      3,
+      4,
+      5,
+      4,
+      5,
+      5
+     ]
+    }
+   },
+   "score": 32.0225,
+   "counts": {
+    "strict": 6,
+    "paraphrase": 45,
+    "miss": 38
+   },
+   "parse_err": 0,
+   "judge_attempt": 1,
+   "judge_gate": {
+    "n_anchor": 48,
+    "n_items": 89,
+    "majority_baseline": 0.5,
+    "anchor_acc_v1": 1.0,
+    "anchor_margin_pp_v1": 50.0,
+    "anchor_acc_v2": 1.0,
+    "anchor_margin_pp_v2": 50.0,
+    "anchor_agree": 1.0,
+    "anchor_kappa": 1.0,
+    "items_agree": 0.9550561797752809,
+    "items_kappa": 0.9197836863452004,
+    "pass": true
+   },
+   "started": "2026-10-10T14:02:55+08:00"
+  },
+  "pair1-B0-r1": {
+   "validity": {
+    "valid": true,
+    "reasons": []
+   },
+   "stats": {
+    "llm_calls": {
+     "generator": 89,
+     "judge-1": 137,
+     "judge-2": 137
+    },
+    "prompt_tokens": {
+     "generator": 32479,
+     "judge-1": 48696,
+     "judge-2": 48696
+    },
+    "completion_tokens": {
+     "generator": 14403,
+     "judge-1": 5411,
+     "judge-2": 5356
+    },
+    "cost_usd": {
+     "generator": 0.011503,
+     "judge-1": 0.007783,
+     "judge-2": 0.00728
+    },
+    "retries": 0,
+    "recording_truncated_by_eio": false,
+    "wall_first": "2026-10-10T14:25:11.071+08:00",
+    "wall_last": "2026-10-10T14:34:17.534+08:00",
+    "t_span_s": 546.463
+   },
+   "score": 34.8315,
+   "counts": {
+    "strict": 5,
+    "paraphrase": 52,
+    "miss": 32
+   },
+   "parse_err": 0,
+   "judge_attempt": 1,
+   "judge_gate": {
+    "n_anchor": 48,
+    "n_items": 89,
+    "majority_baseline": 0.5,
+    "anchor_acc_v1": 1.0,
+    "anchor_margin_pp_v1": 50.0,
+    "anchor_acc_v2": 1.0,
+    "anchor_margin_pp_v2": 50.0,
+    "anchor_agree": 1.0,
+    "anchor_kappa": 1.0,
+    "items_agree": 0.9325842696629213,
+    "items_kappa": 0.8731892662075516,
+    "pass": true
+   },
+   "started": "2026-10-10T14:25:11+08:00"
+  }
+ },
+ "budget": {
+  "used": {
+   "llm_calls": 3384,
+   "cost_usd": 1.2571,
+   "prompt_tokens": 7270379,
+   "completion_tokens": 904384
+  },
+  "cap": {
+   "max_llm_calls": 6000,
+   "max_cost_usd": 1.5,
+   "estimate": "每对约 B0 363 + P 379 ≈ 742 次；3 对 ≈ 2.2k 次、≈0.8 USD",
+   "install_budget": "真实宿主安装 1 次（已录像）；仿真环境准备不计调用"
+  }
+ },
+ "status": {
+  "runs": {
+   "pair2-B0": {
+    "final": true,
+    "valid": true,
+    "validity": {
+     "valid": true,
+     "reasons": []
+    },
+    "budget_after": {
+     "calls": 362,
+     "cost_usd": 0.0264
+    }
+   },
+   "pair2-P": {
+    "final": true,
+    "valid": false,
+    "validity": {
+     "valid": false,
+     "reasons": [
+      "确认的环境故障：11:43 CST 左右沙箱重启，pair2-P/recording.jsonl 自约 4.0 MiB 起持续 EIO（三次重读、逐 4k 块读 683 块失败），11:38 之后的录像事件（阶段 B 第 45–89 卡注入、作答 28 卡）不可读——证据链受中断污染",
+      "状态独立校验：verify_state.py card-post 阶段 A 16/16、阶段 B 89/89 通过（状态本身未见损坏），但录像为必需证据，不能续跑补齐"
+     ],
+     "invalidated_wall": "2026-10-10 11:52 CST",
+     "by": "pes-e2e-dam（接手）",
+     "policy": "preregistration.sample_plan.invalid_policy：任一侧无效→整对作废留痕，两侧按原侧序重跑为 pair2-r1"
+    }
+   },
+   "pair1-P": {
+    "final": true,
+    "valid": true,
+    "validity": {
+     "valid": true,
+     "reasons": []
+    },
+    "budget_after": {
+     "calls": 963,
+     "cost_usd": 0.5162,
+     "degraded": [
+      {
+       "file": "raw/pair2-P/recording.jsonl",
+       "error": "OSError(5, 'Input/output error')",
+       "prefix": [
+        61,
+        0.1166
+       ],
+       "artifacts": [
+        133,
+        0.2332
+       ],
+       "used": [
+        133,
+        0.2332
+       ]
+      }
+     ]
+    }
+   },
+   "pair1-B0": {
+    "final": true,
+    "valid": false,
+    "validity": {
+     "valid": false,
+     "reasons": [
+      "确认的环境故障：12:57 CST 左右沙箱第二次重启；工作区盘回退到约 12:45 的状态（之后写入丢失，含已提交的 pair1-B0 完成结果 37.64/100 与 commit 5c3394b/d9b4c29），且 pair1-B0/recording.jsonl、judge/verdicts.jsonl 读出 EIO——证据链受中断污染",
+      "按预注册 invalid_policy 整对作废留痕，不续跑；丢失前观察到的 pair1 读数（B0 37.64，P 32.02，Δ −5.62）只作留痕，不进分析"
+     ],
+     "invalidated_wall": "2026-10-10 13:06 CST",
+     "by": "pes-e2e-dam（接手）",
+     "policy": "preregistration.sample_plan.invalid_policy"
+    }
+   },
+   "pair3-B0": {
+    "final": true,
+    "valid": true,
+    "validity": {
+     "valid": true,
+     "reasons": []
+    },
+    "budget_after": {
+     "calls": 1415,
+     "cost_usd": 0.5545,
+     "degraded": [
+      {
+       "file": "raw/pair1-B0/recording.jsonl",
+       "error": "OSError(5, 'Input/output error')",
+       "prefix": [
+        0,
+        0.0
+       ],
+       "artifacts": [
+        89,
+        0.0116
+       ],
+       "used": [
+        89,
+        0.0116
+       ]
+      },
+      {
+       "file": "raw/pair2-P/recording.jsonl",
+       "error": "OSError(5, 'Input/output error')",
+       "prefix": [
+        61,
+        0.1166
+       ],
+       "artifacts": [
+        133,
+        0.2332
+       ],
+       "used": [
+        133,
+        0.2332
+       ]
+      }
+     ]
+    }
+   },
+   "pair3-P": {
+    "final": true,
+    "valid": true,
+    "validity": {
+     "valid": true,
+     "reasons": []
+    },
+    "budget_after": {
+     "calls": 1883,
+     "cost_usd": 0.815,
+     "degraded": [
+      {
+       "file": "raw/pair1-B0/recording.jsonl",
+       "error": "OSError(5, 'Input/output error')",
+       "prefix": [
+        0,
+        0.0
+       ],
+       "artifacts": [
+        89,
+        0.0116
+       ],
+       "used": [
+        89,
+        0.0116
+       ]
+      },
+      {
+       "file": "raw/pair2-P/recording.jsonl",
+       "error": "OSError(5, 'Input/output error')",
+       "prefix": [
+        61,
+        0.1166
+       ],
+       "artifacts": [
+        133,
+        0.2332
+       ],
+       "used": [
+        133,
+        0.2332
+       ]
+      }
+     ]
+    }
+   },
+   "pair2-B0-r1": {
+    "final": true,
+    "valid": true,
+    "validity": {
+     "valid": true,
+     "reasons": []
+    },
+    "budget_after": {
+     "calls": 2246,
+     "cost_usd": 0.8416,
+     "degraded": [
+      {
+       "file": "raw/pair1-B0/recording.jsonl",
+       "error": "OSError(5, 'Input/output error')",
+       "prefix": [
+        0,
+        0.0
+       ],
+       "artifacts": [
+        89,
+        0.0116
+       ],
+       "used": [
+        89,
+        0.0116
+       ]
+      },
+      {
+       "file": "raw/pair2-P/recording.jsonl",
+       "error": "OSError(5, 'Input/output error')",
+       "prefix": [
+        61,
+        0.1166
+       ],
+       "artifacts": [
+        133,
+        0.2332
+       ],
+       "used": [
+        133,
+        0.2332
+       ]
+      }
+     ]
+    }
+   },
+   "pair2-P-r1": {
+    "final": true,
+    "valid": true,
+    "validity": {
+     "valid": true,
+     "reasons": []
+    },
+    "budget_after": {
+     "calls": 2714,
+     "cost_usd": 1.1015,
+     "degraded": [
+      {
+       "file": "raw/pair1-B0/recording.jsonl",
+       "error": "OSError(5, 'Input/output error')",
+       "prefix": [
+        0,
+        0.0
+       ],
+       "artifacts": [
+        89,
+        0.0116
+       ],
+       "used": [
+        89,
+        0.0116
+       ]
+      },
+      {
+       "file": "raw/pair2-P/recording.jsonl",
+       "error": "OSError(5, 'Input/output error')",
+       "prefix": [
+        61,
+        0.1166
+       ],
+       "artifacts": [
+        133,
+        0.2332
+       ],
+       "used": [
+        133,
+        0.2332
+       ]
+      }
+     ]
+    }
+   },
+   "pair1-P-r1": {
+    "final": true,
+    "valid": true,
+    "validity": {
+     "valid": true,
+     "reasons": []
+    },
+    "budget_after": {
+     "calls": 3182,
+     "cost_usd": 1.3587,
+     "degraded": [
+      {
+       "file": "raw/pair1-B0/recording.jsonl",
+       "error": "OSError(5, 'Input/output error')",
+       "prefix": [
+        0,
+        0.0
+       ],
+       "artifacts": [
+        89,
+        0.0116
+       ],
+       "used": [
+        89,
+        0.0116
+       ]
+      },
+      {
+       "file": "raw/pair2-P/recording.jsonl",
+       "error": "OSError(5, 'Input/output error')",
+       "prefix": [
+        61,
+        0.1166
+       ],
+       "artifacts": [
+        133,
+        0.2332
+       ],
+       "used": [
+        133,
+        0.2332
+       ]
+      }
+     ]
+    }
+   },
+   "pair1-B0-r1": {
+    "final": true,
+    "valid": true,
+    "validity": {
+     "valid": true,
+     "reasons": []
+    },
+    "budget_after": {
+     "calls": 3545,
+     "cost_usd": 1.3853,
+     "degraded": [
+      {
+       "file": "raw/pair1-B0/recording.jsonl",
+       "error": "OSError(5, 'Input/output error')",
+       "prefix": [
+        0,
+        0.0
+       ],
+       "artifacts": [
+        89,
+        0.0116
+       ],
+       "used": [
+        89,
+        0.0116
+       ]
+      },
+      {
+       "file": "raw/pair2-P/recording.jsonl",
+       "error": "OSError(5, 'Input/output error')",
+       "prefix": [
+        61,
+        0.1166
+       ],
+       "artifacts": [
+        133,
+        0.2332
+       ],
+       "used": [
+        133,
+        0.2332
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "appended_reruns": [
+   {
+    "run_id": "pair2-B0-r1",
+    "pair_id": "pair2-r1",
+    "scenario_id": "hmb-e2e-history-1",
+    "rerun": 2,
+    "condition": "B0",
+    "gen_seed": 2,
+    "order_index": 0,
+    "orig_pair_id": "pair2",
+    "reason": "pair2-P 无效：['确认的环境故障：11:43 CST 左右沙箱重启，pair2-P/recording.jsonl 自约 4.0 MiB 起持续 EIO（三次重读、逐 4k 块读 683 块失败），11:38 之后的录像事件（阶段 B 第 45–89 卡注入、作答 28 卡）不可读——证据链受中断污染']"
+   },
+   {
+    "run_id": "pair2-P-r1",
+    "pair_id": "pair2-r1",
+    "scenario_id": "hmb-e2e-history-1",
+    "rerun": 2,
+    "condition": "P",
+    "gen_seed": 2,
+    "order_index": 1,
+    "orig_pair_id": "pair2",
+    "reason": "pair2-P 无效：['确认的环境故障：11:43 CST 左右沙箱重启，pair2-P/recording.jsonl 自约 4.0 MiB 起持续 EIO（三次重读、逐 4k 块读 683 块失败），11:38 之后的录像事件（阶段 B 第 45–89 卡注入、作答 28 卡）不可读——证据链受中断污染']"
+   },
+   {
+    "run_id": "pair1-P-r1",
+    "pair_id": "pair1-r1",
+    "scenario_id": "hmb-e2e-history-1",
+    "rerun": 1,
+    "condition": "P",
+    "gen_seed": 1,
+    "order_index": 2,
+    "orig_pair_id": "pair1",
+    "reason": "pair1-B0 无效：['确认的环境故障：12:57 CST 左右沙箱第二次重启；工作区盘回退到约 12:45 的状态（之后写入丢失，含已提交的 pair1-B0 完成结果 37.64/100 与 commit 5c3394b/d9b4c29），且 pair1-B0/recording.jsonl、judge/verdicts.jsonl 读出 EIO——证据链受中断污染']"
+   },
+   {
+    "run_id": "pair1-B0-r1",
+    "pair_id": "pair1-r1",
+    "scenario_id": "hmb-e2e-history-1",
+    "rerun": 1,
+    "condition": "B0",
+    "gen_seed": 1,
+    "order_index": 3,
+    "orig_pair_id": "pair1",
+    "reason": "pair1-B0 无效：['确认的环境故障：12:57 CST 左右沙箱第二次重启；工作区盘回退到约 12:45 的状态（之后写入丢失，含已提交的 pair1-B0 完成结果 37.64/100 与 commit 5c3394b/d9b4c29），且 pair1-B0/recording.jsonl、judge/verdicts.jsonl 读出 EIO——证据链受中断污染']"
+   }
+  ],
+  "invalidated_pairs": [
+   {
+    "pair_id": "pair2",
+    "by_run": "pair2-P",
+    "reasons": [
+     "确认的环境故障：11:43 CST 左右沙箱重启，pair2-P/recording.jsonl 自约 4.0 MiB 起持续 EIO（三次重读、逐 4k 块读 683 块失败），11:38 之后的录像事件（阶段 B 第 45–89 卡注入、作答 28 卡）不可读——证据链受中断污染",
+     "状态独立校验：verify_state.py card-post 阶段 A 16/16、阶段 B 89/89 通过（状态本身未见损坏），但录像为必需证据，不能续跑补齐"
+    ]
+   },
+   {
+    "pair_id": "pair1",
+    "by_run": "pair1-B0",
+    "reasons": [
+     "确认的环境故障：12:57 CST 左右沙箱第二次重启；工作区盘回退到约 12:45 的状态（之后写入丢失，含已提交的 pair1-B0 完成结果 37.64/100 与 commit 5c3394b/d9b4c29），且 pair1-B0/recording.jsonl、judge/verdicts.jsonl 读出 EIO——证据链受中断污染",
+     "按预注册 invalid_policy 整对作废留痕，不续跑；丢失前观察到的 pair1 读数（B0 37.64，P 32.02，Δ −5.62）只作留痕，不进分析"
+    ]
+   }
+  ],
+  "all_done": true
+ }
+}

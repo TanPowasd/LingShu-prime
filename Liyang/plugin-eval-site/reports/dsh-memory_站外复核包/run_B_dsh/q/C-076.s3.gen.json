@@ -1,0 +1,36 @@
+{
+ "qid": "C-076",
+ "seed": 3,
+ "raw": "{\"qid\": \"C-076\", \"prediction\": \"我会把刚才那条 curl 命令访问本地 8000 端口的 memory 接口返回的响应（JSON 结果或报错）粘贴出来，然后继续排查/确认记忆系统是否正常读写，并接着推进协议实例的恢复与验证。\", \"basis\": [{\"file\": \"智能论恢复确认.md\", \"line\": 66665, \"quote\": \"D:\\\\Program Files\\\\1_ai\\\\catgirl-protocol-interface>curl -X POST http://localhost:8000/memory…\"}], \"confidence\": 0.42}",
+ "answer": {
+  "qid": "C-076",
+  "prediction": "我会把刚才那条 curl 命令访问本地 8000 端口的 memory 接口返回的响应（JSON 结果或报错）粘贴出来，然后继续排查/确认记忆系统是否正常读写，并接着推进协议实例的恢复与验证。",
+  "basis": [
+   {
+    "file": "智能论恢复确认.md",
+    "line": 66665,
+    "quote": "D:\\Program Files\\1_ai\\catgirl-protocol-interface>curl -X POST http://localhost:8000/memory…"
+   }
+  ],
+  "confidence": 0.42,
+  "parse_err": false
+ },
+ "basis_check": [
+  {
+   "file": "智能论恢复确认.md",
+   "line": 66665,
+   "verbatim": false,
+   "line_pm3": false
+  }
+ ],
+ "usage": {
+  "prompt_tokens": 1522,
+  "completion_tokens": 132,
+  "total_tokens": 1654
+ },
+ "finish_reason": "stop",
+ "ev": [
+  950,
+  5896.6
+ ]
+}

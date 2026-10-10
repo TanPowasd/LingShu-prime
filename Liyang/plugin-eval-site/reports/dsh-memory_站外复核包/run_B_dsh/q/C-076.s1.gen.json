@@ -1,0 +1,36 @@
+{
+ "qid": "C-076",
+ "seed": 1,
+ "raw": "{\"qid\": \"C-076\", \"prediction\": \"我会继续在命令行里测试刚启动的代理服务，把 curl 请求打到 8000 端口的 /memory 接口上，观察返回结果，然后根据输出决定是继续调接口还是回去改代码。\", \"basis\": [{\"file\": \"智能论恢复确认.md\", \"line\": 66665, \"quote\": \"D:\\\\Program Files\\\\1_ai\\\\catgirl-protocol-interface>curl -X POST http://localhost:8000/memory…\"}], \"confidence\": 0.6}",
+ "answer": {
+  "qid": "C-076",
+  "prediction": "我会继续在命令行里测试刚启动的代理服务，把 curl 请求打到 8000 端口的 /memory 接口上，观察返回结果，然后根据输出决定是继续调接口还是回去改代码。",
+  "basis": [
+   {
+    "file": "智能论恢复确认.md",
+    "line": 66665,
+    "quote": "D:\\Program Files\\1_ai\\catgirl-protocol-interface>curl -X POST http://localhost:8000/memory…"
+   }
+  ],
+  "confidence": 0.6,
+  "parse_err": false
+ },
+ "basis_check": [
+  {
+   "file": "智能论恢复确认.md",
+   "line": 66665,
+   "verbatim": false,
+   "line_pm3": false
+  }
+ ],
+ "usage": {
+  "prompt_tokens": 1522,
+  "completion_tokens": 125,
+  "total_tokens": 1647
+ },
+ "finish_reason": "stop",
+ "ev": [
+  416,
+  5404.538
+ ]
+}

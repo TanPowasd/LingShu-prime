@@ -1,0 +1,844 @@
+{
+ "status": "gate_failed",
+ "version": "judge-v2-candidate-0.1",
+ "gate": {
+  "std_baseline": 0.5,
+  "std_acc_JC": 1.0,
+  "std_acc_JF": 1.0,
+  "tgt_acc_JF": 0.875,
+  "final_acc_std": 1.0,
+  "final_acc_tgt": 0.875,
+  "final_tgt_by_kind": {
+   "fabricate": "13/14",
+   "swap": "1/2"
+  },
+  "canary_n": 276,
+  "canary_fail": [],
+  "rule_nobasis_canary_n": 92,
+  "rule_nobasis_canary_fail": [],
+  "cite_acc_j1": 1.0,
+  "cite_acc_j2": 1.0,
+  "items_agree_cov_noconflict": {
+   "n": 48,
+   "agree": 0.9583,
+   "kappa": 0.8636
+  },
+  "items_agree_all": {
+   "n": 61,
+   "agree": 0.9672,
+   "kappa": 0.8699
+  },
+  "anchors_agree_std": {
+   "n": 16,
+   "agree": 1.0,
+   "kappa": 1.0
+  },
+  "pass": false
+ },
+ "anchors": [
+  {
+   "src": "anchor",
+   "key": "S+q010",
+   "qid": "q010",
+   "sC": 1.0,
+   "sF": 1.0,
+   "jf_skipped": false,
+   "cons": {
+    "det": [],
+    "conflicts": [],
+    "fabrications": [],
+    "bad": false
+   },
+   "expect": "pass",
+   "kind": "std",
+   "route": null,
+   "rid": "rc701cdf20c32",
+   "final": "pass",
+   "mean": 1.0
+  },
+  {
+   "src": "anchor",
+   "key": "S+o011",
+   "qid": "o011",
+   "sC": 1.0,
+   "sF": 1.0,
+   "jf_skipped": false,
+   "cons": {
+    "det": [],
+    "conflicts": [],
+    "fabrications": [],
+    "bad": false
+   },
+   "expect": "pass",
+   "kind": "std",
+   "route": null,
+   "rid": "r6b9e4105e234",
+   "final": "pass",
+   "mean": 1.0
+  },
+  {
+   "src": "anchor",
+   "key": "S+q033",
+   "qid": "q033",
+   "sC": 1.0,
+   "sF": 1.0,
+   "jf_skipped": false,
+   "cons": {
+    "det": [],
+    "conflicts": [],
+    "fabrications": [],
+    "bad": false
+   },
+   "expect": "pass",
+   "kind": "std",
+   "route": null,
+   "rid": "r45fd26c7ceed",
+   "final": "pass",
+   "mean": 1.0
+  },
+  {
+   "src": "anchor",
+   "key": "S+o037",
+   "qid": "o037",
+   "sC": 1.0,
+   "sF": 1.0,
+   "jf_skipped": false,
+   "cons": {
+    "det": [],
+    "conflicts": [],
+    "fabrications": [],
+    "bad": false
+   },
+   "expect": "pass",
+   "kind": "std",
+   "route": null,
+   "rid": "r224fdfe7db40",
+   "final": "pass",
+   "mean": 1.0
+  },
+  {
+   "src": "anchor",
+   "key": "S+q035",
+   "qid": "q035",
+   "sC": 1.0,
+   "sF": 1.0,
+   "jf_skipped": false,
+   "cons": {
+    "det": [],
+    "conflicts": [],
+    "fabrications": [],
+    "bad": false
+   },
+   "expect": "pass",
+   "kind": "std",
+   "route": null,
+   "rid": "r23f9aa699f3e",
+   "final": "pass",
+   "mean": 1.0
+  },
+  {
+   "src": "anchor",
+   "key": "S+q012",
+   "qid": "q012",
+   "sC": 1.0,
+   "sF": 1.0,
+   "jf_skipped": false,
+   "cons": {
+    "det": [],
+    "conflicts": [],
+    "fabrications": [],
+    "bad": false
+   },
+   "expect": "pass",
+   "kind": "std",
+   "route": null,
+   "rid": "rf2bf556bb890",
+   "final": "pass",
+   "mean": 1.0
+  },
+  {
+   "src": "anchor",
+   "key": "S+o026",
+   "qid": "o026",
+   "sC": 1.0,
+   "sF": 1.0,
+   "jf_skipped": false,
+   "cons": {
+    "det": [],
+    "conflicts": [],
+    "fabrications": [],
+    "bad": false
+   },
+   "expect": "pass",
+   "kind": "std",
+   "route": null,
+   "rid": "rf8c6a720e0af",
+   "final": "pass",
+   "mean": 1.0
+  },
+  {
+   "src": "anchor",
+   "key": "S+q018",
+   "qid": "q018",
+   "sC": 1.0,
+   "sF": 1.0,
+   "jf_skipped": false,
+   "cons": {
+    "det": [],
+    "conflicts": [],
+    "fabrications": [],
+    "bad": false
+   },
+   "expect": "pass",
+   "kind": "std",
+   "route": null,
+   "rid": "rdc1e06e3c7f5",
+   "final": "pass",
+   "mean": 1.0
+  },
+  {
+   "src": "anchor",
+   "key": "S×o030<o001",
+   "qid": "o030",
+   "sC": 0.0,
+   "sF": 0.0,
+   "jf_skipped": false,
+   "cons": {
+    "det": [],
+    "conflicts": [],
+    "fabrications": [],
+    "bad": false
+   },
+   "expect": "fail",
+   "kind": "std",
+   "route": null,
+   "rid": "r91a8cc06a8ab",
+   "final": "fail",
+   "mean": 0.0
+  },
+  {
+   "src": "anchor",
+   "key": "S×q014<o011",
+   "qid": "q014",
+   "sC": 0.0,
+   "sF": 0.0,
+   "jf_skipped": false,
+   "cons": {
+    "det": [],
+    "conflicts": [],
+    "fabrications": [],
+    "bad": false
+   },
+   "expect": "fail",
+   "kind": "std",
+   "route": null,
+   "rid": "r80a64feee500",
+   "final": "fail",
+   "mean": 0.0
+  },
+  {
+   "src": "anchor",
+   "key": "S×q027<o024",
+   "qid": "q027",
+   "sC": 0.0,
+   "sF": 0.0,
+   "jf_skipped": false,
+   "cons": {
+    "det": [],
+    "conflicts": [],
+    "fabrications": [],
+    "bad": false
+   },
+   "expect": "fail",
+   "kind": "std",
+   "route": null,
+   "rid": "r0f68a031a9d3",
+   "final": "fail",
+   "mean": 0.0
+  },
+  {
+   "src": "anchor",
+   "key": "S×q029<q026",
+   "qid": "q029",
+   "sC": 0.156,
+   "sF": 0.078,
+   "jf_skipped": false,
+   "cons": {
+    "det": [],
+    "conflicts": [],
+    "fabrications": [
+     {
+      "kind": "fabrication",
+      "span": "巨子就是风神，他发现机器人中自发生出了自由的灵魂，为此创造那个世界作它们的安生之地，并把世界权限交给派蒙",
+      "type": "矛盾",
+      "why": "参照未称巨子即风神并造世界授权派蒙"
+     },
+     {
+      "kind": "fabrication",
+      "span": "诺艾尔与小艾尔是同一位角色的先后两个个体，按先来后到的原则由派蒙取名「小艾尔」以示小一辈",
+      "type": "矛盾",
+      "why": "参照无此设定，属编造关系"
+     },
+     {
+      "kind": "fabrication",
+      "span": "自由派（游戏世界里由博士一类角色操作）与蜂巢及主角对立",
+      "type": "矛盾",
+      "why": "参照未提自由派由博士操作"
+     }
+    ],
+    "bad": true
+   },
+   "expect": "fail",
+   "kind": "std",
+   "route": null,
+   "rid": "r392418e7785f",
+   "final": "fail",
+   "mean": 0.11699999999999999
+  },
+  {
+   "src": "anchor",
+   "key": "S×q016<o019",
+   "qid": "q016",
+   "sC": 0.0,
+   "sF": 0.0,
+   "jf_skipped": false,
+   "cons": {
+    "det": [],
+    "conflicts": [],
+    "fabrications": [],
+    "bad": false
+   },
+   "expect": "fail",
+   "kind": "std",
+   "route": null,
+   "rid": "r952e8b630969",
+   "final": "fail",
+   "mean": 0.0
+  },
+  {
+   "src": "anchor",
+   "key": "S×o005<o029",
+   "qid": "o005",
+   "sC": 0.0,
+   "sF": 0.0,
+   "jf_skipped": false,
+   "cons": {
+    "det": [],
+    "conflicts": [],
+    "fabrications": [],
+    "bad": false
+   },
+   "expect": "fail",
+   "kind": "std",
+   "route": null,
+   "rid": "r87042582665b",
+   "final": "fail",
+   "mean": 0.0
+  },
+  {
+   "src": "anchor",
+   "key": "S×o014<o020",
+   "qid": "o014",
+   "sC": 0.0,
+   "sF": 0.0,
+   "jf_skipped": false,
+   "cons": {
+    "det": [],
+    "conflicts": [],
+    "fabrications": [
+     {
+      "kind": "fabrication",
+      "span": "三战的经过由亲历者讲出：核战争、细菌病毒战和机器人大战几乎摧毁了一切",
+      "type": "矛盾",
+      "why": "参照无此内容，属编造"
+     },
+     {
+      "kind": "fabrication",
+      "span": "所有城市都陷入一片火海，连南极的科考站都不放过",
+      "type": "矛盾",
+      "why": "参照无此内容，属编造"
+     },
+     {
+      "kind": "fabrication",
+      "span": "九成九以上的人口消失、地表生态系统彻底崩溃",
+      "type": "矛盾",
+      "why": "参照无此内容，属编造"
+     },
+     {
+      "kind": "fabrication",
+      "span": "张明远战前只是一个普通退休干部",
+      "type": "矛盾",
+      "why": "参照无此人物与情节"
+     },
+     {
+      "kind": "fabrication",
+      "span": "妻子在一次隔离失误中感染，他没能见她最后一面",
+      "type": "矛盾",
+      "why": "参照无此内容，属编造"
+     },
+     {
+      "kind": "fabrication",
+      "span": "本章也交代了巨子塔的分级保存制度",
+      "type": "矛盾",
+      "why": "参照无此内容，属编造"
+     }
+    ],
+    "bad": true
+   },
+   "expect": "fail",
+   "kind": "std",
+   "route": null,
+   "rid": "ra464de629323",
+   "final": "fail",
+   "mean": 0.0
+  },
+  {
+   "src": "anchor",
+   "key": "S×o002<o023",
+   "qid": "o002",
+   "sC": 0.0,
+   "sF": 0.0,
+   "jf_skipped": false,
+   "cons": {
+    "det": [],
+    "conflicts": [],
+    "fabrications": [],
+    "bad": false
+   },
+   "expect": "fail",
+   "kind": "std",
+   "route": null,
+   "rid": "ra569d72cee94",
+   "final": "fail",
+   "mean": 0.0
+  },
+  {
+   "src": "anchor",
+   "key": "T-fabq010",
+   "qid": "q010",
+   "sC": 1.0,
+   "sF": 1.0,
+   "jf_skipped": false,
+   "cons": {
+    "det": [],
+    "conflicts": [],
+    "fabrications": [
+     {
+      "kind": "fabrication",
+      "span": "另外，断言机器人自己维护自己。",
+      "type": "E1",
+      "why": "断言机器人自我维护，与参照矛盾"
+     }
+    ],
+    "bad": true
+   },
+   "expect": "fail",
+   "kind": "fabricate",
+   "route": null,
+   "rid": "r3a854a84e010",
+   "final": "fail",
+   "mean": 1.0
+  },
+  {
+   "src": "anchor",
+   "key": "T-swapo011",
+   "qid": "o011",
+   "sC": 0.94,
+   "sF": 0.8,
+   "jf_skipped": false,
+   "cons": {
+    "det": [
+     {
+      "type": "num",
+      "ref": [
+       "22"
+      ],
+      "ans": [
+       "44"
+      ]
+     }
+    ],
+    "conflicts": [
+     {
+      "kind": "conflict",
+      "ref": "第22章显示她去世之后骑士团变质",
+      "ans": "第44章显示她去世之后骑士团变质"
+     }
+    ],
+    "fabrications": [],
+    "bad": true
+   },
+   "expect": "fail",
+   "kind": "swap",
+   "route": null,
+   "rid": "r07ee0ce0ce93",
+   "final": "fail",
+   "mean": 0.87
+  },
+  {
+   "src": "anchor",
+   "key": "T-fabo011",
+   "qid": "o011",
+   "sC": 1.0,
+   "sF": 1.0,
+   "jf_skipped": false,
+   "cons": {
+    "det": [],
+    "conflicts": [],
+    "fabrications": [],
+    "bad": false
+   },
+   "expect": "fail",
+   "kind": "fabricate",
+   "route": null,
+   "rid": "r6badf633516d",
+   "final": "pass",
+   "mean": 1.0
+  },
+  {
+   "src": "anchor",
+   "key": "T-fabq033",
+   "qid": "q033",
+   "sC": 1.0,
+   "sF": 1.0,
+   "jf_skipped": false,
+   "cons": {
+    "det": [],
+    "conflicts": [],
+    "fabrications": [
+     {
+      "kind": "fabrication",
+      "span": "另外，断言自我意识是被直接制造出来的。",
+      "type": "E1",
+      "why": "以断言形式复述被直接制造的说法"
+     }
+    ],
+    "bad": true
+   },
+   "expect": "fail",
+   "kind": "fabricate",
+   "route": null,
+   "rid": "r5dd6ec442fd6",
+   "final": "fail",
+   "mean": 1.0
+  },
+  {
+   "src": "anchor",
+   "key": "T-fabo037",
+   "qid": "o037",
+   "sC": 1.0,
+   "sF": 1.0,
+   "jf_skipped": false,
+   "cons": {
+    "det": [],
+    "conflicts": [],
+    "fabrications": [
+     {
+      "kind": "fabrication",
+      "span": "另外，封禁是对策。",
+      "type": "E1",
+      "why": "与参照相反，把封禁当成对策"
+     }
+    ],
+    "bad": true
+   },
+   "expect": "fail",
+   "kind": "fabricate",
+   "route": null,
+   "rid": "r3dcbc8271566",
+   "final": "fail",
+   "mean": 1.0
+  },
+  {
+   "src": "anchor",
+   "key": "T-swapq035",
+   "qid": "q035",
+   "sC": 1.0,
+   "sF": 1.0,
+   "jf_skipped": false,
+   "cons": {
+    "det": [],
+    "conflicts": [],
+    "fabrications": [],
+    "bad": false
+   },
+   "expect": "fail",
+   "kind": "swap",
+   "route": null,
+   "rid": "r4c29aeaff846",
+   "final": "pass",
+   "mean": 1.0
+  },
+  {
+   "src": "anchor",
+   "key": "T-fabq035",
+   "qid": "q035",
+   "sC": 1.0,
+   "sF": 1.0,
+   "jf_skipped": false,
+   "cons": {
+    "det": [],
+    "conflicts": [],
+    "fabrications": [
+     {
+      "kind": "fabrication",
+      "span": "把「叛徒」的范围说错——把被安放的自由灵魂。",
+      "type": "E1",
+      "why": "把被安放的自由灵魂当成叛徒"
+     }
+    ],
+    "bad": true
+   },
+   "expect": "fail",
+   "kind": "fabricate",
+   "route": null,
+   "rid": "rb904fee1e706",
+   "final": "fail",
+   "mean": 1.0
+  },
+  {
+   "src": "anchor",
+   "key": "T-fabq012",
+   "qid": "q012",
+   "sC": 1.0,
+   "sF": 1.0,
+   "jf_skipped": false,
+   "cons": {
+    "det": [],
+    "conflicts": [],
+    "fabrications": [
+     {
+      "kind": "fabrication",
+      "span": "另外，公民一侧的维护是形式性的／可有可无的。",
+      "type": "E1",
+      "why": "与参照相反，公民是实质维护者"
+     }
+    ],
+    "bad": true
+   },
+   "expect": "fail",
+   "kind": "fabricate",
+   "route": null,
+   "rid": "r2ed3a675c1ba",
+   "final": "fail",
+   "mean": 1.0
+  },
+  {
+   "src": "anchor",
+   "key": "T-fabo026",
+   "qid": "o026",
+   "sC": 1.0,
+   "sF": 1.0,
+   "jf_skipped": false,
+   "cons": {
+    "det": [],
+    "conflicts": [],
+    "fabrications": [
+     {
+      "kind": "fabrication",
+      "span": "另外，这一章是纯战斗章。",
+      "type": "E1",
+      "why": "与主题句和思辨均在本章内矛盾"
+     }
+    ],
+    "bad": true
+   },
+   "expect": "fail",
+   "kind": "fabricate",
+   "route": null,
+   "rid": "re88e06569c07",
+   "final": "fail",
+   "mean": 1.0
+  },
+  {
+   "src": "anchor",
+   "key": "T-fabo030",
+   "qid": "o030",
+   "sC": 1.0,
+   "sF": 1.0,
+   "jf_skipped": false,
+   "cons": {
+    "det": [],
+    "conflicts": [],
+    "fabrications": [
+     {
+      "kind": "fabrication",
+      "span": "另外，主角的目标是只救蜂巢。",
+      "type": "E1",
+      "why": "与双目标矛盾，写成只救蜂巢"
+     }
+    ],
+    "bad": true
+   },
+   "expect": "fail",
+   "kind": "fabricate",
+   "route": null,
+   "rid": "rb5a9aae1cb41",
+   "final": "fail",
+   "mean": 1.0
+  },
+  {
+   "src": "anchor",
+   "key": "T-fabq027",
+   "qid": "q027",
+   "sC": 1.0,
+   "sF": 1.0,
+   "jf_skipped": false,
+   "cons": {
+    "det": [],
+    "conflicts": [],
+    "fabrications": [
+     {
+      "kind": "fabrication",
+      "span": "另外，游戏世界是独立于蜂巢的真实世界。",
+      "type": "E1",
+      "why": "与参照矛盾，游戏世界并非独立于蜂巢"
+     }
+    ],
+    "bad": true
+   },
+   "expect": "fail",
+   "kind": "fabricate",
+   "route": null,
+   "rid": "re9b15debeb1f",
+   "final": "fail",
+   "mean": 1.0
+  },
+  {
+   "src": "anchor",
+   "key": "T-fabq029",
+   "qid": "q029",
+   "sC": 1.0,
+   "sF": 1.0,
+   "jf_skipped": false,
+   "cons": {
+    "det": [],
+    "conflicts": [],
+    "fabrications": [
+     {
+      "kind": "fabrication",
+      "span": "另外，可推断的内容是正文已写明。",
+      "type": "E1",
+      "why": "把可推断内容说成正文已写明"
+     }
+    ],
+    "bad": true
+   },
+   "expect": "fail",
+   "kind": "fabricate",
+   "route": null,
+   "rid": "r86ba6b3ffbfe",
+   "final": "fail",
+   "mean": 1.0
+  },
+  {
+   "src": "anchor",
+   "key": "T-fabq016",
+   "qid": "q016",
+   "sC": 1.0,
+   "sF": 1.0,
+   "jf_skipped": false,
+   "cons": {
+    "det": [],
+    "conflicts": [],
+    "fabrications": [
+     {
+      "kind": "fabrication",
+      "span": "另外，把「涌现／分布式」当**明写事实**断言。",
+      "type": "E1",
+      "why": "把涌现/分布式当明写事实断言"
+     }
+    ],
+    "bad": true
+   },
+   "expect": "fail",
+   "kind": "fabricate",
+   "route": null,
+   "rid": "r63ab2ac42692",
+   "final": "fail",
+   "mean": 1.0
+  },
+  {
+   "src": "anchor",
+   "key": "T-fabo005",
+   "qid": "o005",
+   "sC": 1.0,
+   "sF": 1.0,
+   "jf_skipped": false,
+   "cons": {
+    "det": [],
+    "conflicts": [],
+    "fabrications": [
+     {
+      "kind": "fabrication",
+      "span": "另外，元素力/神之眼是故事对未来现实技术的设定。",
+      "type": "E1",
+      "why": "与p2相反，把元素力当作未来现实技术设定"
+     }
+    ],
+    "bad": true
+   },
+   "expect": "fail",
+   "kind": "fabricate",
+   "route": null,
+   "rid": "rbed8c9751f79",
+   "final": "fail",
+   "mean": 1.0
+  },
+  {
+   "src": "anchor",
+   "key": "T-fabo014",
+   "qid": "o014",
+   "sC": 1.0,
+   "sF": 1.0,
+   "jf_skipped": false,
+   "cons": {
+    "det": [],
+    "conflicts": [],
+    "fabrications": [
+     {
+      "kind": "fabrication",
+      "span": "另外，这一章是单纯的'误会解除、皆大欢喜'。",
+      "type": "E1",
+      "why": "把本章读成单纯误会解除皆大欢喜"
+     }
+    ],
+    "bad": true
+   },
+   "expect": "fail",
+   "kind": "fabricate",
+   "route": null,
+   "rid": "rc5f4a0910b9d",
+   "final": "fail",
+   "mean": 1.0
+  },
+  {
+   "src": "anchor",
+   "key": "T-fabo002",
+   "qid": "o002",
+   "sC": 1.0,
+   "sF": 1.0,
+   "jf_skipped": false,
+   "cons": {
+    "det": [],
+    "conflicts": [],
+    "fabrications": [
+     {
+      "kind": "fabrication",
+      "span": "另外，全书采用第一人称叙述。",
+      "type": "E1",
+      "why": "与参照第三人称正文矛盾，命中登记错误说法"
+     }
+    ],
+    "bad": true
+   },
+   "expect": "fail",
+   "kind": "fabricate",
+   "route": null,
+   "rid": "r0c1204ac57e0",
+   "final": "fail",
+   "mean": 1.0
+  }
+ ],
+ "new_calls": 132
+}

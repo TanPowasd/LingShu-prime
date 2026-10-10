@@ -1,0 +1,17 @@
+{
+ "qid": "q019",
+ "cond": "none",
+ "resp": {
+  "qid": "q019",
+  "conclusion": "无法确定，正文未提供任何相关材料。",
+  "answer": "本考场未返回任何正文片段，因此无法依据给定正文判断派蒙对陈默、风神陈默的情感。",
+  "evidence": [],
+  "confidence": "unknown"
+ },
+ "parse_err": false,
+ "raw": "{\"qid\": \"q019\", \"conclusion\": \"无法确定，正文未提供任何相关材料。\", \"answer\": \"本考场未返回任何正文片段，因此无法依据给定正文判断派蒙对陈默、风神陈默的情感。\", \"evidence\": [], \"confidence\": \"unknown\"}",
+ "ev": [
+  132,
+  295.353
+ ]
+}

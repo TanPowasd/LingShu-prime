@@ -1,0 +1,67 @@
+{
+ "arms": [
+  {
+   "arm": "A_null",
+   "quarantine_dirs": [],
+   "judge_attempts": {
+    "s1": {
+     "attempt": 1,
+     "voided": 0
+    },
+    "s2": {
+     "attempt": 1,
+     "voided": 0
+    },
+    "s3": {
+     "attempt": 1,
+     "voided": 0
+    }
+   }
+  },
+  {
+   "arm": "A_bm25",
+   "quarantine_dirs": [
+    "_quarantine_dupseq_0834-0852"
+   ],
+   "judge_attempts": {
+    "s1": {
+     "attempt": 1,
+     "voided": 0
+    },
+    "s2": {
+     "attempt": 1,
+     "voided": 0
+    },
+    "s3": {
+     "attempt": 1,
+     "voided": 0
+    }
+   }
+  },
+  {
+   "arm": "A_dsh",
+   "quarantine_dirs": [
+    "_quarantine_dupseq_0834-0852"
+   ],
+   "judge_attempts": {
+    "s1": {
+     "attempt": 1,
+     "voided": 0
+    },
+    "s2": {
+     "attempt": 1,
+     "voided": 0
+    },
+    "s3": {
+     "attempt": 1,
+     "voided": 0
+    }
+   }
+  }
+ ],
+ "one_sided_rejudge": [
+  "A_bm25",
+  "A_dsh"
+ ],
+ "finding": "并发事故后只对 A_bm25/A_dsh 的部分批次剔除缓存并重判（A_null 未重判）；A_bm25 s1 另因锚修正作废重批 2 次——判分环节的「只补跑一边」：配对的 P 侧判词来自重判批次、B0 侧来自原批次。按 v3 应整对重判或预登记该处置。"
+}

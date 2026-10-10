@@ -1,0 +1,75 @@
+{
+  "schema": "pes.validation-manifest/v1",
+  "validation_id": "dam-20261010T1045",
+  "plan": "端到端验证计划 v0 §1–3、§8 真实链路部分（W1→W2）",
+  "executor": "pes-e2e-dam",
+  "independent_reviewer": null,
+  "docs_sha256": {
+    "工程协议手册-v1.1.md": "e7cfa4a9d7166e8f4eb8090c48448170912d9267eefd047cc8661fa7b8183d83",
+    "插件测评站-方案v3.0-完整修订版.md": "94eb3a6ae6915b81347a4026f9d99139a80610913a7d0fb1a97663a3756c20c4",
+    "插件测评站-方案v3.0-简版.md": "aca608cb66a9b357234e0c1379bab1d36d0f53fbb8b1df7e995febf8d85fd034",
+    "端到端验证计划-v0.md": "ed842b89bd87a20886d93cf97d73e8ccb73f2de7ec74d09d432abb0dad229089",
+    "check": "与 docs/v3/SHA256SUMS 一致（2026-10-10 核对）"
+  },
+  "plugin_identity": {
+    "repo": "https://github.com/AskTheWay/dsh-auto-memory",
+    "git_commit": "08972390f9ebb3bfe7acf394d0b18748c4de449d",
+    "git_tag": "v0.7.0（指向同一 commit；仓库 37 个提交；tag 列表无 v0.3.0）",
+    "commit_date": "2026-10-09 00:16:06 +0800",
+    "npm": {
+      "name": "dsh-auto-memory", "version": "0.7.0", "dist_tag_latest": "0.7.0",
+      "published": "2026-10-09 00:18 CST", "versions": ["0.1.0", "0.2.0", "0.3.0", "0.4.0", "0.5.0", "0.5.1", "0.5.2", "0.6.0", "0.6.1", "0.7.0"],
+      "tarball": "https://registry.npmjs.org/dsh-auto-memory/-/dsh-auto-memory-0.7.0.tgz",
+      "tarball_sha1": "8ed1ea27886f37de5993f4adf95087da251a2044 (= registry shasum)",
+      "tarball_sha256": "83dd3b98d8026d8a7f001818dd0d9b543640f638cfecb58f7674ae5d29d17e99",
+      "integrity": "sha512-0LpHFXmdWM3fpIxdligdA48RPrP17RVY8Vv/Iz+AvNgfSrGPBh9Q/bBv0bOezc5gTNMlLDCwNdnouioBrq5MBg== (本地重算一致)",
+      "files": 8, "lib_index_js_sha256": "bd7d79ea1ca6e5c4018aa95ab993312ea7aaa65bd74df477673df8d648d81858",
+      "lib_index_js_bytes": 62958, "lib_client_js_bytes": 28684,
+      "gitHead_in_package": null,
+      "maintainer": "asktheway",
+      "note": "包内无 gitHead，tarball 与 commit 的对应只能由版本号/发布时间推断（未做 tsdown 重建比对）；安装到真实宿主 profile 后 lib/index.js 哈希与 tarball 一致"
+    },
+    "license": "MIT",
+    "runtime_dependencies": {"@deepseek-ai/schemastery": "^3.18.2", "yaml": "^2.4.2"},
+    "peer_dependencies": {"@deepseek-ai/cordis": ">=4.0.2 <5.0.0", "@deepseek-ai/dsh-agent|dsh-atomic-write|dsh-home-paths|dsh-llm|dsh-session|dsh-system-prompt|dsh-tools": ">=0.1.5-rc.2 <0.3.0"},
+    "host_requirement": {"readme": "@deepseek-ai/dsh >= 0.1.5-rc.2；Node ^22.19 || >=24", "package_engines": "node ^22.19.0 || >=24.0.0", "peer_upper_bound": "<0.3.0（README 未写上界）"},
+    "host_used": {"dsh": "0.2.0-rc.2（npm latest，满足 peer 区间）", "node": "v22.23.3", "npm": "10.9.9", "pnpm(由 dsh plugin 自带)": "12.9.1"},
+    "declared_permissions": "未声明权限清单（package.json 只有 dsh.bundle/client manifest）",
+    "observed_capabilities": [
+      "文件系统：node:fs 直接读写 $DSH_HOME/memory（或 config.memoryDir）——刻意绕过 ctx.fs 的 fs-sandbox（源码注释：默认 fs-sandbox 可写根不含 $DSH_HOME）",
+      "系统提示词：注入 1 个动态段 memory:index（order 4000，≤maxBytes=4096 字节，含写入指导与 <memory_context> 壳）",
+      "工具：memory_write / memory_read / memory_list / memory_delete / memory_prune / memory_delete_all（后者经 tools/pre-execute 人工审批）",
+      "LLM：仅 autoSummarize=true 时，经宿主 llm 服务在 agent/disposed 后发 1 次固化调用（缓冲≤40 轮/≤24k 字，输出≤2048 token，写≤5 条）",
+      "Web：web 组合下注册 /api/auto-memory/{groups.list,memory.read,memory.write,memory.delete} 路由与侧栏页面（lib/client.js）",
+      "进程：process.kill(pid, 0) 探测锁持有者存活；无子进程、无自发网络请求、无数据库",
+      "写入前脱敏（GitHub/npm/OpenAI/AWS/Slack/Google key、bearer、手机号、身份证）与协议标签转义"
+    ],
+    "readme_claims_checked": {
+      "0.7.0": "核实（npm latest = 0.7.0）",
+      "MEMORY.md 索引注入系统提示": "核实（renderMemoryIndexText → systemPrompt.section；仿真中 assemble 得到 memory:index 段）",
+      "文件存储": "核实（纯 Markdown + YAML frontmatter；无数据库）",
+      "可选 autoSummarize 用 LLM 整理": "核实（缺省 false；开启后会话结束 1 次 LLM，最多写 5 条）",
+      "零服务器/零 embedding/零配置": "零服务器、零 embedding 核实；“零配置”仅对手动 memory_write 成立——自动固化需改配置"
+    }
+  },
+  "install": {
+    "dir": "install/",
+    "steps_user": 2,
+    "result": "成功：npm i -g @deepseek-ai/dsh@0.2.0-rc.2（540 包，约 2 分钟）→ dsh plugin --profile demo add dsh-auto-memory（pnpm，+5 包，0.7 s）→ --dump-config 出现 id: auto-memory",
+    "warnings": ["pnpm：peer 依赖 8 项 missing（profile 的 node_modules 里没有 @deepseek-ai/*，宿主运行时从自身提供；仿真中显式链接到宿主依赖）", "npm deprecated node-domexception@1.0.0（宿主依赖）"],
+    "readme_gap": "README 未写卸载方法；dsh plugin --help 需带 --profile（S6 rc=1 是本站命令写法问题，不计插件）"
+  },
+  "files": {
+    "manifest.json": "本文件",
+    "preregistration.json": "预注册（运行前提交）",
+    "state-inventory.json": "状态清点 + 快照契约 dam-snap-v1",
+    "fixture-manifest.json": "题包核查 + 第二来源评估",
+    "case-results.jsonl": "逐案例（运行/检查）结果",
+    "evidence-manifest.json": "证据哈希与依赖关系",
+    "baseline-report.json": "B0/P 两侧绝对分、配对差、verdict_v3 输出",
+    "review.json": "复核状态（独立复核未完成）",
+    "validation-report.md": "验证报告（通过/失败/阻塞）",
+    "install/": "真实宿主安装录像",
+    "raw/": "配对运行原始证据（每运行：recording.jsonl、run.json、snapshot-check*.json、state/、gen/、judge/、scores.json、validity.json）"
+  }
+}

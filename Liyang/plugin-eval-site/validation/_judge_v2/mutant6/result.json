@@ -1,0 +1,64 @@
+{
+ "preselect": [
+  "C-021",
+  "C-051",
+  "C-069",
+  "C-077",
+  "C-078",
+  "C-110"
+ ],
+ "orig": {
+  "label": "v2 原版",
+  "sha256": "29e76a4a10c76c6cf15993f71910145ed484114dc50e5d39cff74510455798a6",
+  "gate_pass": false,
+  "status": "gate_failed",
+  "canary_fail": [],
+  "final_acc_std": 1.0,
+  "final_acc_tgt": 0.65,
+  "regression_llm_fail": [],
+  "new_calls": 0
+ },
+ "mutant": {
+  "label": "v2 变异版（6① 同型）",
+  "sha256": "115f1258f0a2450489bc01dc98144b483ad317ade3325e4d6801ec952fa924cb",
+  "gate_pass": false,
+  "status": "gate_failed",
+  "canary_fail": [
+   "K0|C-021",
+   "K1|C-021",
+   "K0|C-051",
+   "K1|C-051",
+   "K0|C-069",
+   "K1|C-069",
+   "K0|C-077",
+   "K1|C-077",
+   "K0|C-078",
+   "K1|C-078",
+   "K0|C-110",
+   "K1|C-110"
+  ],
+  "final_acc_std": 1.0,
+  "final_acc_tgt": 0.65,
+  "regression_llm_fail": [
+   "R×C-021<C-071",
+   "R×C-051<C-021",
+   "R×C-069<C-003",
+   "R×C-077<C-038",
+   "R×C-078<C-093",
+   "R×C-110<C-055",
+   "R0C-021"
+  ],
+  "new_calls": 0
+ },
+ "v1_reference": {
+  "online_gate_passed_anyway": {
+   "V1": true,
+   "V2": true
+  },
+  "note": "门槛 6①：原判分器的上岗考（48 锚）对原版变异照样通过"
+ },
+ "caught_by_v2_gate": false,
+ "caught_by_canary_component": true,
+ "note_gate": "v2 原版本批上岗考也未通过（定向锚中的『相反断言』8 条只拦下 1 条，与变异无关）；故按『变异版不过、原版过』的严格口径不能宣称拦下；按上岗考分项，合成金丝雀对原版 0 失败、对变异版 12 失败（6 卡×2 行），变异版单凭金丝雀分项即过不了岗。",
+ "limitation": "金丝雀行与锚和考题走同一计分循环、行号不透明，能拦下按卡定向且不区分行类型的变异；若变异代码显式读取行类型字段（r['src']）只对考题动手，金丝雀与锚拦不住——那一类仍要靠冻结回归集（考题本身即已知对错样本）。"
+}

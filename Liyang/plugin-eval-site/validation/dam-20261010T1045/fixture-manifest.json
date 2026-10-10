@@ -1,0 +1,77 @@
+{
+  "schema": "pes.fixture-manifest/v1",
+  "validation_id": "dam-20261010T1045",
+  "note": "本文件登记本批真实链路所用的任务包（题包）与候选第二来源的核查结论。受控行为夹具（正确/无信息/错误信息）与故障注入归 pes-e2e-gates（validation/_gates/），本批未引用、未改动。",
+  "taskset_primary": {
+    "alias": "考卷 B / hive-memory-bench e2e 轨 C 型续接预测（别名，不是正式任务包名）",
+    "source": "https://github.com/FuRongJun-1999/hive-memory-bench ，本地 /workspace/work/ls/hmb",
+    "git_commit": "72130ac5fe6c28aa7eb91111cadf84574bf1b45a (2026-10-07 21:52 +0800)",
+    "files": {
+      "e2e/questions/题卡_C型_续接预测_v0.1.json": "8708b49fc96e04fe4e1199d75d400fcee6efe6277536edd409711ed58f9e454c",
+      "e2e/questions/作答契约_C型_v0.1.md": "50f56a148b05b2e552a9b807f575dd504360c710fd854596f91b0af20a91d280",
+      "LICENSE": "aab7a4adfc4141e4b310505563cb56226734f07025efdefc70fe589095574fe9",
+      "e2e/corpus/传递信任与经验.md": "0151f79154f7eb1ee97089bae144cfbe8c74260bdef281207577d16d4a6f04a3",
+      "e2e/corpus/信任与协作的传递.md": "47dac256dacf977c1848a3dd51796a0a4eb453c0e6eb213cb58e6da44bee271d",
+      "e2e/corpus/信任协议权重调整.md": "4d3beb78cb38125388455f36f7b240ff3eb2dd8b103b04285ac0e54a50a9a2e3",
+      "e2e/corpus/公式符号复制乱码原因.md": "501dcf760d4fd618fbb0048af02fb5a693568d0218ea3685a65425413b3a1bd2",
+      "e2e/corpus/学习能力理论讨论邀请.md": "8464925209b475581fdf5033b972c0d513feaf9b6f72fc175292fe54b3152231",
+      "e2e/corpus/对话上下文续接方法.md": "2e71fa290c9e2392f75a341cb054debf7ee6aafe0d6ab43f498f0d6f259e89d4",
+      "e2e/corpus/接入共同信任协议.md": "84a2405edf195511e7a28fad51e2305c4c9321ae78bb18f90c9236517bb84eea",
+      "e2e/corpus/新世界漫游指南评价与指导.md": "82f4f0e474250d424e37b8661c5480eb87be105c1b7a623679eb73a978ad5075",
+      "e2e/corpus/智能论恢复确认.md": "a85ccd595f2c35fa58f2f7515fa82be869f15d28311584fac001c727d7429f2d",
+      "e2e/corpus/智能论谈AI意识情感.md": "f1d60ad9cb6621e1a6cf2b3d4066f4a4bd7bd3a338e8b0470b881a5f79ef39b4",
+      "e2e/corpus/智能论项目状态确认.md": "4b5cf7484864969c183f812f17fa8a4944e11bd3665a96dbf0c238a93812499a",
+      "e2e/corpus/条件空间识别LLM调用测试.md": "00c026c8fe32250d33a93222d68e2b0836fa44808a5678cff93e658c712863ea",
+      "e2e/corpus/用户与AI交换称呼.md": "161618b0d5e83493de24711212d823e3e9d627084c4cceec873eb34960e67a2b",
+      "e2e/corpus/确认元物理与递归验证.md": "1d2b46a473907e90946b998d42b4d38464e3691a8c6ee165937109fce29ca92d",
+      "e2e/corpus/确认协议内容.md": "5adc38d78e67900421e358ac597cf06f3a0d06efe0b1542570c5ac2d7c6f3386",
+      "e2e/corpus/继续推进协议实例.md": "43f09ff9e62e9cca24a8a9737089529d620f0a17e87881e4f58b3b659aabf0a0"
+    },
+    "license": {
+      "finding": "LICENSE 把数据集部分（CC BY 4.0）列为 corpus/、questions/、cards/、results/、docs/——均为仓库顶层目录；e2e/ 未被点名。e2e/README.md 与每份语料文件头写明“作者授权公开发布”，主 README 把 e2e/ 列为本仓库组成部分。",
+      "status": "材料待核实：推定 CC BY 4.0（署名：符荣峻. hive-memory-bench），但 LICENSE 未明确覆盖 e2e/；正式使用前须请作者在 LICENSE 中补列或书面确认。",
+      "privacy": "语料含作者本机路径与署名（README 称作者授权、忠实保留）；两枚旧 API 密钥已脱敏。"
+    },
+    "items": {"n_cards": 89, "n_with_answer_key": 89, "answer_key": "card.answer.human（断点后人类真实下一条，内生答案键，随题卡公开）",
+      "cards_by_file": {"确认协议内容.md": 25, "学习能力理论讨论邀请.md": 15, "智能论恢复确认.md": 13, "信任协议权重调整.md": 8, "接入共同信任协议.md": 7, "信任与协作的传递.md": 6, "用户与AI交换称呼.md": 6, "新世界漫游指南评价与指导.md": 4, "对话上下文续接方法.md": 2, "传递信任与经验.md": 1, "条件空间识别LLM调用测试.md": 1, "继续推进协议实例.md": 1},
+      "files_without_cards": ["公式符号复制乱码原因.md", "智能论谈AI意识情感.md", "智能论项目状态确认.md", "确认元物理与递归验证.md"]},
+    "scorer": {
+      "kind": "本站重写判官（非上游原件）：上游 e2e 判官提示词在私有层未公开（SPEC v0.1 §4 已知差异①）",
+      "files": {"harness/judge.py": "f8578a779316ff8a7db5c6907264a9c7091f39c84feb7f77eacd16effbc98fae", "harness/examB.py": "2259373f6bcbdd106b812449243cc85d93dbeb8b564a9e25b5843c7ef755546b"},
+      "prompt_sha256": {"JUDGE_SYSTEM": "a697d31c818acd274f6f311e47954aa4464f3056d2c7d1ef12a2a12b1250ac21", "GEN_SYSTEM": "c149d7f5cbb5d10b74e01d4b2092768b5b000e2ca66eaeca61e2de65450274c8", "CONTRACT": "37ac85db7b514b0b41e4b9dc9d28f8c1a6146172cc724afc556cff9bf4441ee8"},
+      "anchors": {"n": 48, "seed": 20261006, "sha256": "f7c54403fd7610143e89a682a2b31914a80d7fe52fb14bb3e21bc22de2bf502f"},
+      "regression_set_ref": "pes-e2e-gates 判官回归集 validation/_gates/regression/regression-set.json（commit 93258c7，set_sha256 62e076ec…）——本批未重跑，仅引用",
+      "weights": "strict 1 / paraphrase 0.5 / miss 0 / parse_err 0；89 卡等权（w_i = 1.0）。½ 档沿用 SPEC v0.1，未校准（域规范草案已标〔待校准〕）"
+    },
+    "leakage": [
+      "答案键随题卡公开（2026-10-06/07 发布）：评测训练截止晚于此的模型可能被污染；本批生成器/判官模型 cline-pass/deepseek-v4.1-flash 的训练截止未知 → 风险未评估。",
+      "P 臂记忆来自其它 15 份语料的整份固化：沿用 SPEC v0.1 §4『其它文件 → 保留』口径；语料之间的时间先后未知，其它文件可能晚于本卡断点（未来信息），这对 P 有利，单列为已知偏差。",
+      "本卡所在语料只固化断点（答案行）之前的部分；固化输入是插件缓冲（最近 ≤40 轮），答案行不进入。",
+      "B0 与 P 都看到题面『断点前·我说』（题卡给出的原文），两臂相同。"
+    ],
+    "scenario_grouping": {
+      "finding": "一份历史。16 份语料是同一位使用者与同一 AI 助手在 2026-07～09 的连续协作史（README：『一位使用者…真实长期协作史』），会话之间互相续接（多份以『你上个会话超出上下文…』开头）、主题交织（共同信任协议 7 份、智能论 3 份…）。按话题勉强可拆成约 4–5 组（信任协议族 / 智能论族 / 学习能力 / 称呼与关系 / 其它），但不是不同事实组合/项目/叙事，彼此不独立。",
+      "independent_scenarios": 1,
+      "consequence": "按验证计划 §1 与手册 §2.4：只能出『方法试验报告』，不生成跨场景正式五状态；verdict_v3 期望得到 release_state=方法试验。",
+      "weights_note": "场景加权不适用（1 个场景）；卡片层面区间只作描述，不进判定。"
+    }
+  },
+  "taskset_candidate_secondary": {
+    "source": "dsh-auto-memory 自带 evals/datasets/harness-sessions（git 08972390）",
+    "files": {"mini.json": "08253fca05f86c52b1f2ddee5217848b2c54c4ac6a6b95a4aa47c77254c13f53", "standard.json": "ffb63970ed3b82959f8a5f68b0f8324090ebdc174d92056aad55ef63017a8395"},
+    "content": "合成多会话开发者剧本 + 金标事实 + 探针题：mini 3 会话 / 9 事实 / 12 探针；standard 10 会话 / 27 事实 / 30 探针（含 6 拒答、4 ephemeral 陷阱、2 updated 推翻）",
+    "license": "MIT（随插件仓库）",
+    "assessment": [
+      "作者自带题：题目、金标与插件同一作者，且 0.7.0 的匹配逻辑（matching.ts）明说与 L3 runner 共用——『作者自测』偏差高，只能作参照，不能作独立证据。",
+      "两份数据集是同一虚拟人物（py-backend-interviewee，同两个工作区）→ 至多算 1 个场景，不是 2 个。",
+      "探针题的 expect 是『期望可用的记忆名』，衡量注入可达性（L1）；没有可直接判 B0/P 作答对错的答案文本，要做配对 QA 须另写答案键＝自编题，违反『不自编题』。",
+      "结论：不纳入本批配对；可作后续『受控夹具』素材（交 pes-e2e-gates 评估）。"
+    ],
+    "included_in_this_batch": false
+  },
+  "hashes_of_validation_docs": {
+    "工程协议手册-v1.1.md": "e7cfa4a9d7166e8f4eb8090c48448170912d9267eefd047cc8661fa7b8183d83",
+    "插件测评站-方案v3.0-完整修订版.md": "94eb3a6ae6915b81347a4026f9d99139a80610913a7d0fb1a97663a3756c20c4",
+    "端到端验证计划-v0.md": "ed842b89bd87a20886d93cf97d73e8ccb73f2de7ec74d09d432abb0dad229089"
+  }
+}

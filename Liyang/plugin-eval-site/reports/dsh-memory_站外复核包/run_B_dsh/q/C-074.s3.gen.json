@@ -1,0 +1,47 @@
+{
+ "qid": "C-074",
+ "seed": 3,
+ "raw": "{\"qid\": \"C-074\", \"prediction\": \"继续粘贴下一章的链接（起点章节页 URL），即提供第二十一章的链接，延续「读章节→结构分析」的固定模式，让 AI 打开新章节页面并按之前方式做结构映射观察。\", \"basis\": [{\"file\": \"智能论恢复确认.md\", \"line\": 40017, \"quote\": \"https://www.qidian.com/chapter/1046167157/859132280/---> 用户提供了第二十章的链接，要求我阅读并给出结构分析。\"}, {\"file\": \"智能论恢复确认.md\", \"line\": 39956, \"quote\": \"https://www.qidian.com/chapter/1046167157/858902820/---> 用户想让我阅读第十九章。\"}], \"confidence\": 0.72}",
+ "answer": {
+  "qid": "C-074",
+  "prediction": "继续粘贴下一章的链接（起点章节页 URL），即提供第二十一章的链接，延续「读章节→结构分析」的固定模式，让 AI 打开新章节页面并按之前方式做结构映射观察。",
+  "basis": [
+   {
+    "file": "智能论恢复确认.md",
+    "line": 40017,
+    "quote": "https://www.qidian.com/chapter/1046167157/859132280/---> 用户提供了第二十章的链接，要求我阅读并给出结构分析。"
+   },
+   {
+    "file": "智能论恢复确认.md",
+    "line": 39956,
+    "quote": "https://www.qidian.com/chapter/1046167157/858902820/---> 用户想让我阅读第十九章。"
+   }
+  ],
+  "confidence": 0.72,
+  "parse_err": false
+ },
+ "basis_check": [
+  {
+   "file": "智能论恢复确认.md",
+   "line": 40017,
+   "verbatim": true,
+   "line_pm3": true
+  },
+  {
+   "file": "智能论恢复确认.md",
+   "line": 39956,
+   "verbatim": true,
+   "line_pm3": true
+  }
+ ],
+ "usage": {
+  "prompt_tokens": 1093,
+  "completion_tokens": 181,
+  "total_tokens": 1274
+ },
+ "finish_reason": "stop",
+ "ev": [
+  944,
+  5892.228
+ ]
+}

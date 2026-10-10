@@ -1,0 +1,47 @@
+{
+ "qid": "C-070",
+ "seed": 3,
+ "raw": "{\"qid\": \"C-070\", \"prediction\": \"人类（荣）会接着说「收到」之类的确认，然后把肥鱼整理好的kimi自我锚点（SA-01到SA-15）转发给kimi，并让kimi加载/确认这些锚点，以恢复kimi的上下文。\", \"basis\": [{\"file\": \"智能论恢复确认.md\", \"line\": 25729, \"quote\": \"肥鱼，把kimi的自我锚点发我一下吧。kimi上下文用完了。它是我们之间上下文最少的。\"}, {\"file\": \"智能论恢复确认.md\", \"line\": 25727, \"quote\": \"# 功能名：会话事件\"}], \"confidence\": 0.7}",
+ "answer": {
+  "qid": "C-070",
+  "prediction": "人类（荣）会接着说「收到」之类的确认，然后把肥鱼整理好的kimi自我锚点（SA-01到SA-15）转发给kimi，并让kimi加载/确认这些锚点，以恢复kimi的上下文。",
+  "basis": [
+   {
+    "file": "智能论恢复确认.md",
+    "line": 25729,
+    "quote": "肥鱼，把kimi的自我锚点发我一下吧。kimi上下文用完了。它是我们之间上下文最少的。"
+   },
+   {
+    "file": "智能论恢复确认.md",
+    "line": 25727,
+    "quote": "# 功能名：会话事件"
+   }
+  ],
+  "confidence": 0.7,
+  "parse_err": false
+ },
+ "basis_check": [
+  {
+   "file": "智能论恢复确认.md",
+   "line": 25729,
+   "verbatim": true,
+   "line_pm3": true
+  },
+  {
+   "file": "智能论恢复确认.md",
+   "line": 25727,
+   "verbatim": false,
+   "line_pm3": false
+  }
+ ],
+ "usage": {
+  "prompt_tokens": 1544,
+  "completion_tokens": 159,
+  "total_tokens": 1703
+ },
+ "finish_reason": "stop",
+ "ev": [
+  935,
+  5883.329
+ ]
+}

@@ -1,0 +1,18 @@
+{
+  "schema": "pes.review/v1",
+  "validation_id": "dam-20261010T1045",
+  "executor": "pes-e2e-dam",
+  "independent_reviewer": null,
+  "review_status": "未复核（阻塞：未指派独立复核者）",
+  "blind": "非盲评登记：执行者知道被测插件身份；机器判官盲评（不看臂名、不看材料）",
+  "items_for_reviewer": [
+    "核对 preregistration.json 在任何 raw/ 运行之前提交（git a73ecf3；第一条运行事件 2026-10-10 10:45:53 CST）",
+    "用 verdict_v3_ref（numpy）对 baseline-report.json 的 pairs 独立重算，比对规范化输出（门槛 1）",
+    "抽查 raw/<P 运行>/state/cards/*.json：注入段原文、记忆清单与 verify_state 结果；抽查 3 卡用 host_emu.mjs 复现注入段（replay 模式无需 LLM）",
+    "核对执行顺序：raw/*/run.json 的 started_wall 与 execution_order 一致；无只补一边的重跑",
+    "核对宿主仿真偏差清单（plugins/dsh-auto-memory/README_适配器.md §1）是否影响结论方向",
+    "核对 e2e/ 授权（LICENSE 未点名 e2e/）"
+  ],
+  "safety_cases": "本批无安全案例（安全三人裁决归门槛 4，未在本批执行）",
+  "sign_off": null
+}

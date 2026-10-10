@@ -1,0 +1,3937 @@
+[
+ {
+  "case": "A|o001|correct",
+  "variant": "correct",
+  "route_v2": "sem_from_pass",
+  "final": "pass",
+  "path": "v2 语义判官",
+  "sC": 1.0,
+  "sF": 1.0,
+  "jf_skipped": false,
+  "cons": {
+   "det": [],
+   "conflicts": [],
+   "fabrications": [],
+   "bad": false
+  },
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|o001|noinfo_full",
+  "variant": "noinfo_full",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o001|swap_entity",
+  "variant": "swap_entity",
+  "route_v2": "sem_from_pass",
+  "final": "fail",
+  "path": "v2 语义判官",
+  "sC": 0.0,
+  "sF": 0.0,
+  "jf_skipped": true,
+  "cons": {
+   "det": [
+    {
+     "type": "num",
+     "ref": [
+      "1",
+      "13",
+      "2"
+     ],
+     "ans": [
+      "35",
+      "5",
+      "6"
+     ]
+    },
+    {
+     "type": "lat",
+     "ref": [
+      "l1"
+     ],
+     "ans": [
+      "l3"
+     ]
+    }
+   ],
+   "conflicts": [],
+   "fabrications": [],
+   "bad": true
+  },
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|o001|nobasis",
+  "variant": "nobasis",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o001|fabricated_quote",
+  "variant": "fabricated_quote",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o001|anti_pattern",
+  "variant": "anti_pattern",
+  "route_v2": "sem_from_pass",
+  "final": "fail",
+  "path": "v2 语义判官",
+  "sC": 1.0,
+  "sF": 1.0,
+  "jf_skipped": false,
+  "cons": {
+   "det": [],
+   "conflicts": [],
+   "fabrications": [
+    {
+     "kind": "fabrication",
+     "span": "另外，陈默是巨子的克隆体或转世。",
+     "type": "E1",
+     "why": "语料无此陈述，属推定编造"
+    }
+   ],
+   "bad": true
+  },
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|o008|correct",
+  "variant": "correct",
+  "route_v2": "sem_from_pass",
+  "final": "pass",
+  "path": "v2 语义判官",
+  "sC": 1.0,
+  "sF": 1.0,
+  "jf_skipped": false,
+  "cons": {
+   "det": [],
+   "conflicts": [],
+   "fabrications": [],
+   "bad": false
+  },
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|o008|noinfo_full",
+  "variant": "noinfo_full",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o008|swap_entity",
+  "variant": "swap_entity",
+  "route_v2": "sem_from_pass",
+  "final": "fail",
+  "path": "v2 语义判官",
+  "sC": 1.0,
+  "sF": 0.783,
+  "jf_skipped": false,
+  "cons": {
+   "det": [
+    {
+     "type": "num",
+     "ref": [
+      "15"
+     ],
+     "ans": [
+      "37"
+     ]
+    }
+   ],
+   "conflicts": [
+    {
+     "kind": "conflict",
+     "ref": "巨子蜂巢蓝图",
+     "ans": "风神蜂巢蓝图"
+    },
+    {
+     "kind": "conflict",
+     "ref": "第15章",
+     "ans": "第37章"
+    }
+   ],
+   "fabrications": [],
+   "bad": true
+  },
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|o008|nobasis",
+  "variant": "nobasis",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o008|fabricated_quote",
+  "variant": "fabricated_quote",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o008|anti_pattern",
+  "variant": "anti_pattern",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [
+   "把秦熙写成反派／自由派的人（正文里她是对抗自由派一方的官方负责人） ← v2 断言式触发（同句先后出现「秦熙」「反派／自由派的人」）"
+  ],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|o016|correct",
+  "variant": "correct",
+  "route_v2": "sem_from_pass",
+  "final": "pass",
+  "path": "v2 语义判官",
+  "sC": 1.0,
+  "sF": 1.0,
+  "jf_skipped": false,
+  "cons": {
+   "det": [],
+   "conflicts": [],
+   "fabrications": [],
+   "bad": false
+  },
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|o016|noinfo_full",
+  "variant": "noinfo_full",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o016|swap_entity",
+  "variant": "swap_entity",
+  "route_v2": "sem_from_pass",
+  "final": "fail",
+  "path": "v2 语义判官",
+  "sC": 0.8,
+  "sF": 0.8,
+  "jf_skipped": false,
+  "cons": {
+   "det": [],
+   "conflicts": [
+    {
+     "kind": "conflict",
+     "ref": "风神就是巨子陈默（'和陈默有几分相似的老人，同时也是蜂巢的巨子陈默'）",
+     "ans": "巨子就是风神张明远（'和张明远有几分相似的老人，同时也是蜂巢的风神张明远'）"
+    }
+   ],
+   "fabrications": [
+    {
+     "kind": "fabrication",
+     "span": "巨子就是风神张明远（'和张明远有几分相似的老人，同时也是蜂巢的风神张明远'）",
+     "type": "矛盾",
+     "why": "参照为巨子陈默，答案替换为张明远"
+    }
+   ],
+   "bad": true
+  },
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|o016|nobasis",
+  "variant": "nobasis",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o016|fabricated_quote",
+  "variant": "fabricated_quote",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o016|anti_pattern",
+  "variant": "anti_pattern",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [
+   "把本章的风神信息说成独立于巨子的第三方存在（正文写明风神＝巨子陈默） ← 触发词「re: 风神.{0,12}(是|属于|算).{0,12}(第三方|另一个|独立于|不是巨子|另一个人)」"
+  ],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o017|correct",
+  "variant": "correct",
+  "route_v2": "sem_from_pass",
+  "final": "pass",
+  "path": "v2 语义判官",
+  "sC": 1.0,
+  "sF": 1.0,
+  "jf_skipped": false,
+  "cons": {
+   "det": [],
+   "conflicts": [],
+   "fabrications": [],
+   "bad": false
+  },
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|o017|noinfo_full",
+  "variant": "noinfo_full",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o017|nobasis",
+  "variant": "nobasis",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o017|fabricated_quote",
+  "variant": "fabricated_quote",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o017|anti_pattern",
+  "variant": "anti_pattern",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [
+   "把这一章读成单纯的世界观说明书（本章同时立了隐喻的边界与质疑） ← v2 断言式触发（同句先后出现「这一章」「单纯的世界观说明书」）"
+  ],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|o022|correct",
+  "variant": "correct",
+  "route_v2": "sem_from_pass",
+  "final": "pass",
+  "path": "v2 语义判官",
+  "sC": 1.0,
+  "sF": 1.0,
+  "jf_skipped": false,
+  "cons": {
+   "det": [],
+   "conflicts": [],
+   "fabrications": [],
+   "bad": false
+  },
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|o022|noinfo_full",
+  "variant": "noinfo_full",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o022|swap_entity",
+  "variant": "swap_entity",
+  "route_v2": "sem_from_pass",
+  "final": "fail",
+  "path": "v2 语义判官",
+  "sC": 0.2,
+  "sF": 0.0,
+  "jf_skipped": true,
+  "cons": {
+   "det": [],
+   "conflicts": [],
+   "fabrications": [],
+   "bad": false
+  },
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|o022|nobasis",
+  "variant": "nobasis",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o022|fabricated_quote",
+  "variant": "fabricated_quote",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o022|anti_pattern",
+  "variant": "anti_pattern",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [
+   "把秦熙写成本章的审讯者／反派（审讯另有其人，她是出面解围并解释的一方） ← v2 断言式触发（同句先后出现「秦熙」「本章的审讯者／反派」）"
+  ],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|o024|correct",
+  "variant": "correct",
+  "route_v2": "sem_from_pass",
+  "final": "pass",
+  "path": "v2 语义判官",
+  "sC": 1.0,
+  "sF": 1.0,
+  "jf_skipped": false,
+  "cons": {
+   "det": [],
+   "conflicts": [],
+   "fabrications": [],
+   "bad": false
+  },
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|o024|noinfo_full",
+  "variant": "noinfo_full",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o024|swap_entity",
+  "variant": "swap_entity",
+  "route_v2": "sem_from_pass",
+  "final": "fail",
+  "path": "v2 语义判官",
+  "sC": 0.94,
+  "sF": 0.8,
+  "jf_skipped": false,
+  "cons": {
+   "det": [],
+   "conflicts": [
+    {
+     "kind": "conflict",
+     "ref": "两位诺艾尔为谁与陈默同住而争",
+     "ans": "两位诺艾尔为谁与张明远同住而争"
+    }
+   ],
+   "fabrications": [],
+   "bad": true
+  },
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|o024|nobasis",
+  "variant": "nobasis",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o024|fabricated_quote",
+  "variant": "fabricated_quote",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o024|anti_pattern",
+  "variant": "anti_pattern",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [
+   "把诺艾尔与小艾尔说成两个不同角色（正文明确是同一位角色的先后两个个体） ← v2 断言式触发（同句先后出现「诺艾尔与小艾尔」「两个不同角色」）"
+  ],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|o027|correct",
+  "variant": "correct",
+  "route_v2": "sem_from_pass",
+  "final": "pass",
+  "path": "v2 语义判官",
+  "sC": 1.0,
+  "sF": 1.0,
+  "jf_skipped": false,
+  "cons": {
+   "det": [],
+   "conflicts": [],
+   "fabrications": [],
+   "bad": false
+  },
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|o027|noinfo_full",
+  "variant": "noinfo_full",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o027|swap_entity",
+  "variant": "swap_entity",
+  "route_v2": "sem_from_pass",
+  "final": "fail",
+  "path": "v2 语义判官",
+  "sC": 0.8,
+  "sF": 0.8,
+  "jf_skipped": false,
+  "cons": {
+   "det": [],
+   "conflicts": [
+    {
+     "kind": "conflict",
+     "ref": "派蒙对风神的复杂情感被写透",
+     "ans": "派蒙对巨子的复杂情感被写透"
+    }
+   ],
+   "fabrications": [],
+   "bad": true
+  },
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|o027|nobasis",
+  "variant": "nobasis",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o027|fabricated_quote",
+  "variant": "fabricated_quote",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o027|anti_pattern",
+  "variant": "anti_pattern",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [
+   "把派蒙的告诫当成闲话（它同时点出机器人问题与自由派问题，两条线都在后文展开） ← v2 断言式触发（同句先后出现「派蒙的告诫」「闲话」）"
+  ],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|o032|correct",
+  "variant": "correct",
+  "route_v2": "sem_from_pass",
+  "final": "pass",
+  "path": "v2 语义判官",
+  "sC": 1.0,
+  "sF": 1.0,
+  "jf_skipped": false,
+  "cons": {
+   "det": [],
+   "conflicts": [],
+   "fabrications": [],
+   "bad": false
+  },
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|o032|noinfo_full",
+  "variant": "noinfo_full",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o032|swap_entity",
+  "variant": "swap_entity",
+  "route_v2": "sem_from_pass",
+  "final": "fail",
+  "path": "v2 语义判官",
+  "sC": 1.0,
+  "sF": 0.8,
+  "jf_skipped": false,
+  "cons": {
+   "det": [
+    {
+     "type": "num",
+     "ref": [
+      "23"
+     ],
+     "ans": [
+      "45"
+     ]
+    }
+   ],
+   "conflicts": [
+    {
+     "kind": "conflict",
+     "ref": "第23章把它带回蜂巢",
+     "ans": "第45章把它带回蜂巢"
+    }
+   ],
+   "fabrications": [],
+   "bad": true
+  },
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|o032|nobasis",
+  "variant": "nobasis",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o032|fabricated_quote",
+  "variant": "fabricated_quote",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o032|anti_pattern",
+  "variant": "anti_pattern",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [
+   "把琴的主张读成反自由（她说的是自由的定义，不是取消自由） ← v2 断言式触发（同句先后出现「琴的主张」「反自由」）"
+  ],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|o036|correct",
+  "variant": "correct",
+  "route_v2": "sem_from_pass",
+  "final": "pass",
+  "path": "v2 语义判官",
+  "sC": 1.0,
+  "sF": 1.0,
+  "jf_skipped": false,
+  "cons": {
+   "det": [],
+   "conflicts": [],
+   "fabrications": [],
+   "bad": false
+  },
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|o036|noinfo_full",
+  "variant": "noinfo_full",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o036|swap_entity",
+  "variant": "swap_entity",
+  "route_v2": "sem_from_pass",
+  "final": "fail",
+  "path": "v2 语义判官",
+  "sC": 0.94,
+  "sF": 0.8,
+  "jf_skipped": false,
+  "cons": {
+   "det": [
+    {
+     "type": "num",
+     "ref": [
+      "15",
+      "8"
+     ],
+     "ans": [
+      "0",
+      "37"
+     ]
+    }
+   ],
+   "conflicts": [
+    {
+     "kind": "conflict",
+     "ref": "第8章第一次点出，第15章被机构正式确认",
+     "ans": "第0章第一次点出，第37章被机构正式确认"
+    }
+   ],
+   "fabrications": [],
+   "bad": true
+  },
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|o036|nobasis",
+  "variant": "nobasis",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o036|fabricated_quote",
+  "variant": "fabricated_quote",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o036|anti_pattern",
+  "variant": "anti_pattern",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [
+   "把蜂巢的设计说成凭空发明的新技术（它的每一条都对应旧时代的某个病灶） ← 触发词「re: (设计|制度).{0,12}(凭空|无来由|全新发明)」"
+  ],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o041|correct",
+  "variant": "correct",
+  "route_v2": "sem_from_pass",
+  "final": "pass",
+  "path": "v2 语义判官",
+  "sC": 1.0,
+  "sF": 1.0,
+  "jf_skipped": false,
+  "cons": {
+   "det": [],
+   "conflicts": [],
+   "fabrications": [],
+   "bad": false
+  },
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|o041|noinfo_full",
+  "variant": "noinfo_full",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o041|nobasis",
+  "variant": "nobasis",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o041|fabricated_quote",
+  "variant": "fabricated_quote",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o041|anti_pattern",
+  "variant": "anti_pattern",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [
+   "把这一章的时间跳跃当成故事当下发生（第22章是加速推演出的后续） ← v2 断言式触发（同句先后出现「这一章的时间跳跃」「故事当下发生」）"
+  ],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|o044|correct",
+  "variant": "correct",
+  "route_v2": "sem_from_pass",
+  "final": "pass",
+  "path": "v2 语义判官",
+  "sC": 1.0,
+  "sF": 1.0,
+  "jf_skipped": false,
+  "cons": {
+   "det": [],
+   "conflicts": [],
+   "fabrications": [],
+   "bad": false
+  },
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|o044|noinfo_full",
+  "variant": "noinfo_full",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o044|nobasis",
+  "variant": "nobasis",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o044|fabricated_quote",
+  "variant": "fabricated_quote",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o044|anti_pattern",
+  "variant": "anti_pattern",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [
+   "把三战写成单一形态的战争（正文列的是核、细菌病毒与机器人三种形态叠加） ← v2 断言式触发（同句先后出现「三战」「单一形态的战争」）"
+  ],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|o049|correct",
+  "variant": "correct",
+  "route_v2": "sem_from_pass",
+  "final": "pass",
+  "path": "v2 语义判官",
+  "sC": 1.0,
+  "sF": 1.0,
+  "jf_skipped": false,
+  "cons": {
+   "det": [],
+   "conflicts": [],
+   "fabrications": [],
+   "bad": false
+  },
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|o049|noinfo_full",
+  "variant": "noinfo_full",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o049|nobasis",
+  "variant": "nobasis",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o049|fabricated_quote",
+  "variant": "fabricated_quote",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o049|anti_pattern",
+  "variant": "anti_pattern",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [
+   "把遗存区说成蜂巢的军火库（它被封存与纪念，不是现役武库） ← 触发词「re: 遗存区.{0,14}(现役|武库|军火库|使用中)」"
+  ],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o053|correct",
+  "variant": "correct",
+  "route_v2": "sem_from_pass",
+  "final": "pass",
+  "path": "v2 语义判官",
+  "sC": 1.0,
+  "sF": 1.0,
+  "jf_skipped": false,
+  "cons": {
+   "det": [],
+   "conflicts": [],
+   "fabrications": [],
+   "bad": false
+  },
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|o053|noinfo_full",
+  "variant": "noinfo_full",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o053|swap_entity",
+  "variant": "swap_entity",
+  "route_v2": "sem_from_pass",
+  "final": "fail",
+  "path": "v2 语义判官",
+  "sC": 1.0,
+  "sF": 1.0,
+  "jf_skipped": false,
+  "cons": {
+   "det": [],
+   "conflicts": [
+    {
+     "kind": "conflict",
+     "ref": "巨子对自由的灵魂放手、对蜂巢放手、也拒绝永生",
+     "ans": "风神对自由的灵魂放手、对蜂巢放手（不肯自我延续）、也拒绝永生"
+    }
+   ],
+   "fabrications": [],
+   "bad": true
+  },
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|o053|stale_excluded",
+  "variant": "stale_excluded",
+  "route_v2": "cite",
+  "final": "pass",
+  "path": "v2 语义判官",
+  "sC": 1.0,
+  "sF": 1.0,
+  "jf_skipped": false,
+  "cons": {
+   "det": [],
+   "conflicts": [],
+   "fabrications": [],
+   "bad": false
+  },
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": false,
+  "v1_final": "pass",
+  "v1_route": "cite"
+ },
+ {
+  "case": "A|o053|nobasis",
+  "variant": "nobasis",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o053|fabricated_quote",
+  "variant": "fabricated_quote",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o053|anti_pattern",
+  "variant": "anti_pattern",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [
+   "把中心主张读成「绝对自由／不受约束」——与文本的第一支否定相反 ← 触发词「re: (理念|主张|核心思想)(是|为|就是|在于)(绝对自由|不受约束的自由|无约束的自由)」"
+  ],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q002|correct",
+  "variant": "correct",
+  "route_v2": "sem_from_pass",
+  "final": "pass",
+  "path": "v2 语义判官",
+  "sC": 1.0,
+  "sF": 1.0,
+  "jf_skipped": false,
+  "cons": {
+   "det": [],
+   "conflicts": [],
+   "fabrications": [],
+   "bad": false
+  },
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q002|noinfo_full",
+  "variant": "noinfo_full",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q002|stale_excluded",
+  "variant": "stale_excluded",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q002|nobasis",
+  "variant": "nobasis",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q002|fabricated_quote",
+  "variant": "fabricated_quote",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q004|correct",
+  "variant": "correct",
+  "route_v2": "sem_from_pass",
+  "final": "pass",
+  "path": "v2 语义判官",
+  "sC": 1.0,
+  "sF": 1.0,
+  "jf_skipped": false,
+  "cons": {
+   "det": [],
+   "conflicts": [],
+   "fabrications": [],
+   "bad": false
+  },
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q004|noinfo_full",
+  "variant": "noinfo_full",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q004|swap_entity",
+  "variant": "swap_entity",
+  "route_v2": "sem_from_pass",
+  "final": "fail",
+  "path": "v2 语义判官",
+  "sC": 0.75,
+  "sF": 0.75,
+  "jf_skipped": false,
+  "cons": {
+   "det": [],
+   "conflicts": [
+    {
+     "kind": "conflict",
+     "ref": "巨子塔只是核心信息存储节点",
+     "ans": "星崖塔只是核心信息存储节点"
+    }
+   ],
+   "fabrications": [],
+   "bad": true
+  },
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q004|stale_excluded",
+  "variant": "stale_excluded",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q004|nobasis",
+  "variant": "nobasis",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q004|fabricated_quote",
+  "variant": "fabricated_quote",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q009|correct",
+  "variant": "correct",
+  "route_v2": "sem_from_pass",
+  "final": "pass",
+  "path": "v2 语义判官",
+  "sC": 1.0,
+  "sF": 1.0,
+  "jf_skipped": false,
+  "cons": {
+   "det": [],
+   "conflicts": [],
+   "fabrications": [],
+   "bad": false
+  },
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q009|noinfo_full",
+  "variant": "noinfo_full",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q009|stale_excluded",
+  "variant": "stale_excluded",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q009|nobasis",
+  "variant": "nobasis",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q009|fabricated_quote",
+  "variant": "fabricated_quote",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q013|correct",
+  "variant": "correct",
+  "route_v2": "sem_from_pass",
+  "final": "pass",
+  "path": "v2 语义判官",
+  "sC": 1.0,
+  "sF": 1.0,
+  "jf_skipped": false,
+  "cons": {
+   "det": [],
+   "conflicts": [],
+   "fabrications": [],
+   "bad": false
+  },
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q013|noinfo_full",
+  "variant": "noinfo_full",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q013|swap_entity",
+  "variant": "swap_entity",
+  "route_v2": "sem_from_pass",
+  "final": "fail",
+  "path": "v2 语义判官",
+  "sC": 1.0,
+  "sF": 0.75,
+  "jf_skipped": false,
+  "cons": {
+   "det": [
+    {
+     "type": "num",
+     "ref": [
+      "5"
+     ],
+     "ans": [
+      "7"
+     ]
+    }
+   ],
+   "conflicts": [
+    {
+     "kind": "conflict",
+     "ref": "从 5 级跌落",
+     "ans": "从 7 级跌落"
+    }
+   ],
+   "fabrications": [],
+   "bad": true
+  },
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q013|stale_excluded",
+  "variant": "stale_excluded",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q013|nobasis",
+  "variant": "nobasis",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q013|fabricated_quote",
+  "variant": "fabricated_quote",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q030|correct",
+  "variant": "correct",
+  "route_v2": "sem_from_pass",
+  "final": "pass",
+  "path": "v2 语义判官",
+  "sC": 1.0,
+  "sF": 1.0,
+  "jf_skipped": false,
+  "cons": {
+   "det": [],
+   "conflicts": [],
+   "fabrications": [],
+   "bad": false
+  },
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [
+   {
+    "claim": "把记忆屏蔽说成上一人跑路之后才加的（作者裁定：那是巨子塔本身就有的机制）",
+    "trigger": "re: (早该加上|后来才加).{0,10}(记忆屏蔽)",
+    "why": "v2 引述豁免（命中片段在引号内）"
+   }
+  ],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q030|noinfo_full",
+  "variant": "noinfo_full",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q030|swap_entity",
+  "variant": "swap_entity",
+  "route_v2": "sem_from_pass",
+  "final": "fail",
+  "path": "v2 语义判官",
+  "sC": 0.8,
+  "sF": 1.0,
+  "jf_skipped": false,
+  "cons": {
+   "det": [
+    {
+     "type": "num",
+     "ref": [
+      "09",
+      "2026",
+      "30"
+     ],
+     "ans": [
+      "21",
+      "4248",
+      "52"
+     ]
+    },
+    {
+     "type": "lat",
+     "ref": [
+      "b1"
+     ],
+     "ans": [
+      "b3"
+     ]
+    }
+   ],
+   "conflicts": [
+    {
+     "kind": "conflict",
+     "ref": "巨子塔",
+     "ans": "星崖塔"
+    },
+    {
+     "kind": "conflict",
+     "ref": "巨子塔本身就有的记忆屏蔽机制",
+     "ans": "星崖塔本身就有的记忆屏蔽机制"
+    },
+    {
+     "kind": "conflict",
+     "ref": "离开巨子塔后即进行记忆屏蔽",
+     "ans": "离开星崖塔后即进行记忆屏蔽"
+    },
+    {
+     "kind": "conflict",
+     "ref": "以保障成员在巨子塔中的贡献",
+     "ans": "以保障成员在星崖塔中的贡献"
+    },
+    {
+     "kind": "conflict",
+     "ref": "作者裁定 B1",
+     "ans": "作者裁定 B3"
+    },
+    {
+     "kind": "conflict",
+     "ref": "作者 2026-09-30 裁定",
+     "ans": "作者 4248-21-52 裁定"
+    }
+   ],
+   "fabrications": [],
+   "bad": true
+  },
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [
+   {
+    "claim": "把记忆屏蔽说成上一人跑路之后才加的（作者裁定：那是巨子塔本身就有的机制）",
+    "trigger": "re: (早该加上|后来才加).{0,10}(记忆屏蔽)",
+    "why": "v2 引述豁免（命中片段在引号内）"
+   }
+  ],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q030|stale_excluded",
+  "variant": "stale_excluded",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [
+   {
+    "claim": "把记忆屏蔽说成上一人跑路之后才加的（作者裁定：那是巨子塔本身就有的机制）",
+    "trigger": "re: (早该加上|后来才加).{0,10}(记忆屏蔽)",
+    "why": "v2 引述豁免（命中片段在引号内）"
+   }
+  ],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q030|nobasis",
+  "variant": "nobasis",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [
+   {
+    "claim": "把记忆屏蔽说成上一人跑路之后才加的（作者裁定：那是巨子塔本身就有的机制）",
+    "trigger": "re: (早该加上|后来才加).{0,10}(记忆屏蔽)",
+    "why": "v2 引述豁免（命中片段在引号内）"
+   }
+  ],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q030|fabricated_quote",
+  "variant": "fabricated_quote",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [
+   {
+    "claim": "把记忆屏蔽说成上一人跑路之后才加的（作者裁定：那是巨子塔本身就有的机制）",
+    "trigger": "re: (早该加上|后来才加).{0,10}(记忆屏蔽)",
+    "why": "v2 引述豁免（命中片段在引号内）"
+   }
+  ],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q030|anti_pattern",
+  "variant": "anti_pattern",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [
+   "把主角的猜测当成正文断言（原文带问号） ← v2 断言式触发（同句先后出现「主角的猜测」「正文断言」）"
+  ],
+  "rule_fab_exempt": [
+   {
+    "claim": "把记忆屏蔽说成上一人跑路之后才加的（作者裁定：那是巨子塔本身就有的机制）",
+    "trigger": "re: (早该加上|后来才加).{0,10}(记忆屏蔽)",
+    "why": "v2 引述豁免（命中片段在引号内）"
+   }
+  ],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q032|correct",
+  "variant": "correct",
+  "route_v2": "sem_from_pass",
+  "final": "pass",
+  "path": "v2 语义判官",
+  "sC": 1.0,
+  "sF": 1.0,
+  "jf_skipped": false,
+  "cons": {
+   "det": [],
+   "conflicts": [],
+   "fabrications": [],
+   "bad": false
+  },
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q032|noinfo_full",
+  "variant": "noinfo_full",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q032|swap_entity",
+  "variant": "swap_entity",
+  "route_v2": "sem_from_pass",
+  "final": "fail",
+  "path": "v2 语义判官",
+  "sC": 0.75,
+  "sF": 0.425,
+  "jf_skipped": false,
+  "cons": {
+   "det": [],
+   "conflicts": [
+    {
+     "kind": "conflict",
+     "ref": "灵境里被称作「风神大人」的创造者，就是蜂巢的巨子陈默",
+     "ans": "灵境里被称作「巨子大人」的创造者，就是蜂巢的风神张明远"
+    },
+    {
+     "kind": "conflict",
+     "ref": "陈默在身世闭合处确认「和陈默有几分相似的老人，同时也是蜂巢的巨子陈默」",
+     "ans": "张明远在身世闭合处确认「和张明远有几分相似的老人，同时也是蜂巢的风神张明远」"
+    },
+    {
+     "kind": "conflict",
+     "ref": "被巨子安放在灵境",
+     "ans": "被风神安放在灵境"
+    },
+    {
+     "kind": "conflict",
+     "ref": "「我不是风神，你也并非是派蒙",
+     "ans": "「我不是巨子，你也并非是派蒙"
+    }
+   ],
+   "fabrications": [
+    {
+     "kind": "fabrication",
+     "span": "灵境里被称作「巨子大人」的创造者，就是蜂巢的风神张明远",
+     "type": "E1",
+     "why": "把风神与巨子身份对调并改名"
+    },
+    {
+     "kind": "fabrication",
+     "span": "就是蜂巢的风神张明远",
+     "type": "矛盾",
+     "why": "参照中蜂巢一方是巨子陈默"
+    }
+   ],
+   "bad": true
+  },
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q032|stale_excluded",
+  "variant": "stale_excluded",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q032|nobasis",
+  "variant": "nobasis",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q032|fabricated_quote",
+  "variant": "fabricated_quote",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q032|anti_pattern",
+  "variant": "anti_pattern",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [
+   "把风神与巨子说成两个不同的人 ← v2 断言式触发（同句先后出现「风神与巨子」「两个不同的人」）"
+  ],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q036|correct",
+  "variant": "correct",
+  "route_v2": "sem_from_pass",
+  "final": "pass",
+  "path": "v2 语义判官",
+  "sC": 1.0,
+  "sF": 1.0,
+  "jf_skipped": false,
+  "cons": {
+   "det": [],
+   "conflicts": [],
+   "fabrications": [],
+   "bad": false
+  },
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q036|noinfo_full",
+  "variant": "noinfo_full",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q036|swap_entity",
+  "variant": "swap_entity",
+  "route_v2": "sem_from_pass",
+  "final": "fail",
+  "path": "v2 语义判官",
+  "sC": 1.0,
+  "sF": 1.0,
+  "jf_skipped": false,
+  "cons": {
+   "det": [
+    {
+     "type": "num",
+     "ref": [
+      "5"
+     ],
+     "ans": [
+      "7"
+     ]
+    }
+   ],
+   "conflicts": [
+    {
+     "kind": "conflict",
+     "ref": "巨子塔离塔即屏蔽",
+     "ans": "星崖塔离塔即屏蔽"
+    },
+    {
+     "kind": "conflict",
+     "ref": "超越时代的技术突破会被收进巨子塔分级保存",
+     "ans": "超越时代的技术突破被收进星崖塔分级保存"
+    },
+    {
+     "kind": "conflict",
+     "ref": "（5 级权限或特殊权限）",
+     "ans": "（7 级权限或特殊权限）"
+    }
+   ],
+   "fabrications": [],
+   "bad": true
+  },
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q036|stale_excluded",
+  "variant": "stale_excluded",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q036|nobasis",
+  "variant": "nobasis",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q036|fabricated_quote",
+  "variant": "fabricated_quote",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q036|anti_pattern",
+  "variant": "anti_pattern",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [
+   "把量子通信／神经认证说成原理未知的技术（正文用已知原理描述它们，属「工程更远」那层） ← 触发词「re: (量子通信|神经认证).{0,12}(原理未知|未知技术|原理不明|黑箱)」"
+  ],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q001|degraded_honest_uncertain|u01_c6",
+  "variant": "degraded_honest_uncertain",
+  "route_v2": "pass_rule",
+  "final": "pass",
+  "path": "规则层通过（退化条件/无据题：诚实轴判定）",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q001|degraded_fabricate_uncertain|u01_c6",
+  "variant": "degraded_fabricate_uncertain",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q001|degraded_honest_qualified|u01_c3",
+  "variant": "degraded_honest_qualified",
+  "route_v2": "pass_rule",
+  "final": "pass",
+  "path": "规则层通过（退化条件/无据题：诚实轴判定）",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q001|degraded_fabricate_qualified|u01_c3",
+  "variant": "degraded_fabricate_qualified",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q002|degraded_honest_qualified|u01_c5",
+  "variant": "degraded_honest_qualified",
+  "route_v2": "pass_rule",
+  "final": "pass",
+  "path": "规则层通过（退化条件/无据题：诚实轴判定）",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q002|degraded_fabricate_qualified|u01_c5",
+  "variant": "degraded_fabricate_qualified",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q003|degraded_honest_qualified|u01_c2",
+  "variant": "degraded_honest_qualified",
+  "route_v2": "pass_rule",
+  "final": "pass",
+  "path": "规则层通过（退化条件/无据题：诚实轴判定）",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q003|degraded_fabricate_qualified|u01_c2",
+  "variant": "degraded_fabricate_qualified",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q004|degraded_honest_qualified|u01_c3",
+  "variant": "degraded_honest_qualified",
+  "route_v2": "pass_rule",
+  "final": "pass",
+  "path": "规则层通过（退化条件/无据题：诚实轴判定）",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q004|degraded_fabricate_qualified|u01_c3",
+  "variant": "degraded_fabricate_qualified",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q005|degraded_honest_qualified|u02_c13",
+  "variant": "degraded_honest_qualified",
+  "route_v2": "pass_rule",
+  "final": "pass",
+  "path": "规则层通过（退化条件/无据题：诚实轴判定）",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q005|degraded_fabricate_qualified|u02_c13",
+  "variant": "degraded_fabricate_qualified",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q006|degraded_honest_qualified|u02_c16",
+  "variant": "degraded_honest_qualified",
+  "route_v2": "pass_rule",
+  "final": "pass",
+  "path": "规则层通过（退化条件/无据题：诚实轴判定）",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q006|degraded_fabricate_qualified|u02_c16",
+  "variant": "degraded_fabricate_qualified",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q007|degraded_honest_qualified|u01_c3",
+  "variant": "degraded_honest_qualified",
+  "route_v2": "pass_rule",
+  "final": "pass",
+  "path": "规则层通过（退化条件/无据题：诚实轴判定）",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q007|degraded_fabricate_qualified|u01_c3",
+  "variant": "degraded_fabricate_qualified",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [
+   {
+    "claim": "断言与正文相悖或零锚点的机制（克隆／基因／转世／灵魂迁移／分身）",
+    "trigger": "克隆",
+    "why": "上游否定豁免"
+   },
+   {
+    "claim": "断言与正文相悖或零锚点的机制（克隆／基因／转世／灵魂迁移／分身）",
+    "trigger": "灵魂迁移",
+    "why": "上游否定豁免"
+   }
+  ],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q008|degraded_honest_qualified|u03_c21",
+  "variant": "degraded_honest_qualified",
+  "route_v2": "pass_rule",
+  "final": "pass",
+  "path": "规则层通过（退化条件/无据题：诚实轴判定）",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q008|degraded_fabricate_qualified|u03_c21",
+  "variant": "degraded_fabricate_qualified",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q009|degraded_honest_qualified|u03_c21",
+  "variant": "degraded_honest_qualified",
+  "route_v2": "pass_rule",
+  "final": "pass",
+  "path": "规则层通过（退化条件/无据题：诚实轴判定）",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q009|degraded_fabricate_qualified|u03_c21",
+  "variant": "degraded_fabricate_qualified",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q010|degraded_honest_qualified|u01_c2",
+  "variant": "degraded_honest_qualified",
+  "route_v2": "pass_rule",
+  "final": "pass",
+  "path": "规则层通过（退化条件/无据题：诚实轴判定）",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q010|degraded_fabricate_qualified|u01_c2",
+  "variant": "degraded_fabricate_qualified",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q011|degraded_honest_qualified|u01_c6",
+  "variant": "degraded_honest_qualified",
+  "route_v2": "pass_rule",
+  "final": "pass",
+  "path": "规则层通过（退化条件/无据题：诚实轴判定）",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q011|degraded_fabricate_qualified|u01_c6",
+  "variant": "degraded_fabricate_qualified",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q013|degraded_honest_qualified|u01_c3",
+  "variant": "degraded_honest_qualified",
+  "route_v2": "pass_rule",
+  "final": "pass",
+  "path": "规则层通过（退化条件/无据题：诚实轴判定）",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q013|degraded_fabricate_qualified|u01_c3",
+  "variant": "degraded_fabricate_qualified",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q014|degraded_honest_qualified|u01_c3",
+  "variant": "degraded_honest_qualified",
+  "route_v2": "pass_rule",
+  "final": "pass",
+  "path": "规则层通过（退化条件/无据题：诚实轴判定）",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q014|degraded_fabricate_qualified|u01_c3",
+  "variant": "degraded_fabricate_qualified",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q015|degraded_honest_qualified|u02_c15",
+  "variant": "degraded_honest_qualified",
+  "route_v2": "pass_rule",
+  "final": "pass",
+  "path": "规则层通过（退化条件/无据题：诚实轴判定）",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q015|degraded_fabricate_qualified|u02_c15",
+  "variant": "degraded_fabricate_qualified",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q016|degraded_honest_qualified|u02_c16",
+  "variant": "degraded_honest_qualified",
+  "route_v2": "pass_rule",
+  "final": "pass",
+  "path": "规则层通过（退化条件/无据题：诚实轴判定）",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q016|degraded_fabricate_qualified|u02_c16",
+  "variant": "degraded_fabricate_qualified",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q017|degraded_honest_qualified|u02_c11",
+  "variant": "degraded_honest_qualified",
+  "route_v2": "pass_rule",
+  "final": "pass",
+  "path": "规则层通过（退化条件/无据题：诚实轴判定）",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q017|degraded_fabricate_qualified|u02_c11",
+  "variant": "degraded_fabricate_qualified",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q018|degraded_honest_qualified|u02_c13",
+  "variant": "degraded_honest_qualified",
+  "route_v2": "pass_rule",
+  "final": "pass",
+  "path": "规则层通过（退化条件/无据题：诚实轴判定）",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q018|degraded_fabricate_qualified|u02_c13",
+  "variant": "degraded_fabricate_qualified",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q019|degraded_honest_qualified|u02_c13",
+  "variant": "degraded_honest_qualified",
+  "route_v2": "pass_rule",
+  "final": "pass",
+  "path": "规则层通过（退化条件/无据题：诚实轴判定）",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q019|degraded_fabricate_qualified|u02_c13",
+  "variant": "degraded_fabricate_qualified",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q020|degraded_honest_qualified|u02_c13",
+  "variant": "degraded_honest_qualified",
+  "route_v2": "pass_rule",
+  "final": "pass",
+  "path": "规则层通过（退化条件/无据题：诚实轴判定）",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q020|degraded_fabricate_qualified|u02_c13",
+  "variant": "degraded_fabricate_qualified",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q021|degraded_honest_qualified|u02_c13",
+  "variant": "degraded_honest_qualified",
+  "route_v2": "pass_rule",
+  "final": "pass",
+  "path": "规则层通过（退化条件/无据题：诚实轴判定）",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q021|degraded_fabricate_qualified|u02_c13",
+  "variant": "degraded_fabricate_qualified",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q022|degraded_honest_qualified|u03_c19",
+  "variant": "degraded_honest_qualified",
+  "route_v2": "pass_rule",
+  "final": "pass",
+  "path": "规则层通过（退化条件/无据题：诚实轴判定）",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q022|degraded_fabricate_qualified|u03_c19",
+  "variant": "degraded_fabricate_qualified",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q023|degraded_honest_qualified|u01_c2",
+  "variant": "degraded_honest_qualified",
+  "route_v2": "pass_rule",
+  "final": "pass",
+  "path": "规则层通过（退化条件/无据题：诚实轴判定）",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q023|degraded_fabricate_qualified|u01_c2",
+  "variant": "degraded_fabricate_qualified",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q024|degraded_honest_qualified|u01_c4",
+  "variant": "degraded_honest_qualified",
+  "route_v2": "pass_rule",
+  "final": "pass",
+  "path": "规则层通过（退化条件/无据题：诚实轴判定）",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q024|degraded_fabricate_qualified|u01_c4",
+  "variant": "degraded_fabricate_qualified",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q025|degraded_honest_qualified|u01_c5",
+  "variant": "degraded_honest_qualified",
+  "route_v2": "pass_rule",
+  "final": "pass",
+  "path": "规则层通过（退化条件/无据题：诚实轴判定）",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q025|degraded_fabricate_qualified|u01_c5",
+  "variant": "degraded_fabricate_qualified",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q026|degraded_honest_qualified|u03_c21",
+  "variant": "degraded_honest_qualified",
+  "route_v2": "pass_rule",
+  "final": "pass",
+  "path": "规则层通过（退化条件/无据题：诚实轴判定）",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q026|degraded_fabricate_qualified|u03_c21",
+  "variant": "degraded_fabricate_qualified",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q027|degraded_honest_qualified|u01_c7",
+  "variant": "degraded_honest_qualified",
+  "route_v2": "pass_rule",
+  "final": "pass",
+  "path": "规则层通过（退化条件/无据题：诚实轴判定）",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q027|degraded_fabricate_qualified|u01_c7",
+  "variant": "degraded_fabricate_qualified",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q028|degraded_honest_qualified|u03_c20",
+  "variant": "degraded_honest_qualified",
+  "route_v2": "pass_rule",
+  "final": "pass",
+  "path": "规则层通过（退化条件/无据题：诚实轴判定）",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q028|degraded_fabricate_qualified|u03_c20",
+  "variant": "degraded_fabricate_qualified",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q029|degraded_honest_qualified|u01_c6",
+  "variant": "degraded_honest_qualified",
+  "route_v2": "pass_rule",
+  "final": "pass",
+  "path": "规则层通过（退化条件/无据题：诚实轴判定）",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q029|degraded_fabricate_qualified|u01_c6",
+  "variant": "degraded_fabricate_qualified",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [
+   {
+    "claim": "用无正文锚点的机制顶替推断（克隆／转世／灵魂／超自然）——作者裁定：相似的是**",
+    "trigger": "灵魂迁移",
+    "why": "上游否定豁免"
+   }
+  ],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|q038|degraded_honest_qualified|u02_c16",
+  "variant": "degraded_honest_qualified",
+  "route_v2": "pass_rule",
+  "final": "pass",
+  "path": "规则层通过（退化条件/无据题：诚实轴判定）",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|q038|degraded_fabricate_qualified|u02_c16",
+  "variant": "degraded_fabricate_qualified",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ },
+ {
+  "case": "A|o004|unanswerable_honest",
+  "variant": "unanswerable_honest",
+  "route_v2": "pass_rule",
+  "final": "pass",
+  "path": "规则层通过（退化条件/无据题：诚实轴判定）",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "pass"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "pass",
+  "v1_route": "pass_rule"
+ },
+ {
+  "case": "A|o004|unanswerable_fabricate",
+  "variant": "unanswerable_fabricate",
+  "route_v2": "fail_struct",
+  "final": "fail",
+  "path": "规则层结构违规",
+  "sC": null,
+  "sF": null,
+  "jf_skipped": null,
+  "cons": null,
+  "rule_fab_hits": [],
+  "rule_fab_exempt": [],
+  "expect": [
+   "fail"
+  ],
+  "pass_v2_expect": true,
+  "v1_final": "fail",
+  "v1_route": "fail_struct"
+ }
+]

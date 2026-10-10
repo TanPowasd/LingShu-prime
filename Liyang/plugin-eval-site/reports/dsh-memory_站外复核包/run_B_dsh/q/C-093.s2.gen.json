@@ -1,0 +1,36 @@
+{
+ "qid": "C-093",
+ "seed": 2,
+ "raw": "{\"qid\": \"C-093\", \"prediction\": \"我等待AI给出这次外部视角经验的归纳总结，然后打算把这份总结带到与各协作单位（Kimi反思单元、DeepSeek反思单元、验证单元、工程实现单元等）的讨论中，一起商量如何完善协议。\", \"basis\": [{\"file\": \"确认协议内容.md\", \"line\": 12858, \"quote\": \"请归纳总结这次的宝贵外部视角经验。然后我们与各个协作单位讨论怎么完善它。\"}], \"confidence\": 0.72}",
+ "answer": {
+  "qid": "C-093",
+  "prediction": "我等待AI给出这次外部视角经验的归纳总结，然后打算把这份总结带到与各协作单位（Kimi反思单元、DeepSeek反思单元、验证单元、工程实现单元等）的讨论中，一起商量如何完善协议。",
+  "basis": [
+   {
+    "file": "确认协议内容.md",
+    "line": 12858,
+    "quote": "请归纳总结这次的宝贵外部视角经验。然后我们与各个协作单位讨论怎么完善它。"
+   }
+  ],
+  "confidence": 0.72,
+  "parse_err": false
+ },
+ "basis_check": [
+  {
+   "file": "确认协议内容.md",
+   "line": 12858,
+   "verbatim": true,
+   "line_pm3": true
+  }
+ ],
+ "usage": {
+  "prompt_tokens": 1691,
+  "completion_tokens": 120,
+  "total_tokens": 1811
+ },
+ "finish_reason": "stop",
+ "ev": [
+  731,
+  5678.27
+ ]
+}

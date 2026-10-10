@@ -1,0 +1,60 @@
+{
+ "schema": "pes.judge-v2-det-readout/v1",
+ "judge_v2_impl": "harness/judge_v2/judge_b.py consistency+score_row（确定性层）",
+ "per_run": {
+  "pair3-B0": {
+   "v1": 33.7079,
+   "v2det": 33.7079,
+   "conflicts": 0,
+   "flips": []
+  },
+  "pair3-P": {
+   "v1": 35.9551,
+   "v2det": 35.9551,
+   "conflicts": 0,
+   "flips": []
+  },
+  "pair2-B0-r1": {
+   "v1": 33.1461,
+   "v2det": 33.1461,
+   "conflicts": 0,
+   "flips": []
+  },
+  "pair2-P-r1": {
+   "v1": 33.7079,
+   "v2det": 33.7079,
+   "conflicts": 0,
+   "flips": []
+  },
+  "pair1-B0-r1": {
+   "v1": 34.8315,
+   "v2det": 34.8315,
+   "conflicts": 0,
+   "flips": []
+  },
+  "pair1-P-r1": {
+   "v1": 32.0225,
+   "v2det": 32.0225,
+   "conflicts": 0,
+   "flips": []
+  }
+ },
+ "pairs": [
+  {
+   "pair_id": "pair3",
+   "delta_v1": 2.2472,
+   "delta_v2det": 2.2472
+  },
+  {
+   "pair_id": "pair2-r1",
+   "delta_v1": 0.5618,
+   "delta_v2det": 0.5618
+  },
+  {
+   "pair_id": "pair1-r1",
+   "delta_v1": -2.809,
+   "delta_v2det": -2.809
+  }
+ ],
+ "markdown": "只用 v2 候选的**确定性实体/数值一致性层**（同句式且数字/拉丁词被替换 ⇒ 判 miss），零新增调用；JF 事实核查判官层未跑——v2 候选上岗考 v2 两批均未过（d1c49f3、8cc2c7c），不能作判分依据。本节只是描述性读数，不进判定。\n\n| 运行 | v1 分 | v2 确定性层分 | 触发冲突的题 |\n|:--|--:|--:|--:|\n| pair3-B0 | 33.71 | 33.71 | 0 |\n| pair3-P | 35.96 | 35.96 | 0 |\n| pair2-B0-r1 | 33.15 | 33.15 | 0 |\n| pair2-P-r1 | 33.71 | 33.71 | 0 |\n| pair1-B0-r1 | 34.83 | 34.83 | 0 |\n| pair1-P-r1 | 32.02 | 32.02 | 0 |\n\n| 配对 | Δ（v1） | Δ（v2 确定性层） |\n|:--|--:|--:|\n| pair3 | +2.25 | +2.25 |\n| pair2-r1 | +0.56 | +0.56 |\n| pair1-r1 | -2.81 | -2.81 |\n\n读法：确定性层只在预测与真实下一句“同句式”（字符对齐率 ≥ 0.6）时触发；续接预测很少与真实下一句逐字同构，所以它几乎抓不到这里的替换实体——门槛 2 指出的漏判主要要靠 JF 判官层，而该层未上岗。因此 v1 分数里 paraphrase 半分可能虚高这一局限**仍然成立**。"
+}

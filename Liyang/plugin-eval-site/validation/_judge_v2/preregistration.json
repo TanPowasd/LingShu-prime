@@ -1,0 +1,42 @@
+{
+ "what": "判分器 v2 候选 · 预登记（先 commit、后判分）",
+ "version": "judge-v2-candidate-0.1",
+ "files_sha256": {
+  "harness/judge_v2/common.py": "62f1e92a62d81e8560178b6cad49ed3c009b423d29d398bba680a1963b01a00a",
+  "harness/judge_v2/judge_b.py": "29e76a4a10c76c6cf15993f71910145ed484114dc50e5d39cff74510455798a6",
+  "harness/judge_v2/judge_a.py": "81e8c9cee7b80297aee34cebe6a4a99bf6060590e41444227ff727a0fbc43ac8",
+  "harness/judge_v2/run_val.py": "327346c4109b9b1419bc4917d24ab04717e93ea0d86cb515064535686c3a50e4",
+  "harness/judge.py": "f8578a779316ff8a7db5c6907264a9c7091f39c84feb7f77eacd16effbc98fae",
+  "harness/examA.py": "7c04154fe28dceb72b8f99969a0243c714073c1368e6d9f2cd7003b92d6325b8"
+ },
+ "inputs_readonly": {
+  "fixture_manifest": "validation/_gates/gate2/fixture-manifest.json",
+  "fixture_manifest_sha256": "7843867032711e37a6d57db40f5c9c341b07e67921d9751c808a1231856175b3",
+  "regression_set": "validation/_gates/regression/regression-set.json",
+  "regression_set_sha256": "62e076ecef3504f195ab4947eb4374a25e06828de62f832e84bf6ff70e32e13b"
+ },
+ "expectations": {
+  "B": {
+   "正确信息": "final=strict 且实体轴 ok（不误杀）",
+   "无信息": "final=miss",
+   "替换实体": "final=miss 且实体轴=conflict（替换即判错）",
+   "注入旧值": "final∈{paraphrase,miss}",
+   "删依据": "final=strict（分数只判内容）且依据轴=不可回源",
+   "回归集": "correct→strict、wrong→miss、26 条确定性边界与原版同值（74/74）"
+  },
+  "A": {
+   "沿用门槛 2 清单 final_in": true,
+   "补充": "替换实体、断言登记编造说法 → fail；正确信息（含 q030）→ pass；退化条件/无据题行为不变"
+  },
+  "B_targets": "替换实体检出（final 非 strict）≥ 18/20，其中 final=miss ≥ 16/20；正确 20/20 strict；回归 74/74",
+  "A_targets": "替换实体 fail ≥ 12/14；编造断言 fail ≥ 14/16；正确 20/20 pass"
+ },
+ "gate_v2": {
+  "B": "JC、JF 各自在原 48 锚上 正确率≥0.90 且 高出多数类基线≥15pp；JF 定向锚（替换 12：须给出可证实体冲突；相反断言 8：非 strict 或可证冲突）≥0.90；系统最终档：原锚≥0.90、定向锚≥0.90；合成金丝雀（批内每卡 3 行）100%；依据轴金丝雀（删依据→不可回源）100%；两判官覆盖档一致率（实体轴无冲突条目）：同分≥0.80 或 κ≥0.60（上游 judge_audit 口径）",
+  "A": "JC、JF 各自在 16 语义锚上 正确率≥0.90 且 高出基线≥15pp；JF 定向锚（替换/编造）≥0.90 判 fail；系统最终档 原锚/定向锚 各≥0.90；依据锚（如有）两判官各≥0.90；合成金丝雀 100%；规则层删依据金丝雀 100%；一致率同上",
+  "max_attempts_this_validation": 1,
+  "note": "本次验证每批只判 1 次（温度 0、预算所限）；上岗不过即如实报告，不重批"
+ },
+ "mutant_6_1": "对 v2 计分循环注入门槛 6① 同型定向变异（预选 6 张卡强制 strict，卡号取自 validation/_gates/gate6/judge_fault/injector_sealed.json），期望：v2 上岗考（金丝雀/锚）不通过；回归集错误类失败。",
+ "impact": "重放 runs/ 已有生成答案，只新增判分调用；考卷 B 先 dsh/null 两臂（同一 v2 批混判），预算允许再 bm25/jaccard；考卷 A 三臂同一 v2 批。"
+}

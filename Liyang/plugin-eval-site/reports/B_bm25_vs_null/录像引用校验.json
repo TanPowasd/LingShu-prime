@@ -1,0 +1,29 @@
+{
+ "all_pass": true,
+ "files": {
+  "能力分.md": {
+   "total": 38,
+   "ok": 38,
+   "pass": true,
+   "problems": []
+  },
+  "能力分_扣分明细.md": {
+   "total": 248,
+   "ok": 248,
+   "pass": true,
+   "problems": []
+  },
+  "好不好用.md": {
+   "total": 0,
+   "ok": 0,
+   "pass": true,
+   "problems": []
+  },
+  "成本与安全.md": {
+   "total": 0,
+   "ok": 0,
+   "pass": true,
+   "problems": []
+  }
+ }
+}

@@ -1,0 +1,37 @@
+{
+ "exam": "B/e2e-C v0.1",
+ "plugin": "plugins/dsh-memory/adapter.py:DshMemoryPlugin",
+ "plugin_name": "dsh-memory",
+ "plugin_version": "c8c3655234d5",
+ "plugin_kind": "mcp-stdio",
+ "generator": {
+  "model": "cline-pass/deepseek-v4.1-flash",
+  "temperature": 0.7,
+  "max_tokens": 1500,
+  "thinking": "off"
+ },
+ "judge": {
+  "model": "cline-pass/deepseek-v4.1-flash",
+  "temperature": 0.0,
+  "max_tokens": 600,
+  "thinking": "off",
+  "n_judges": 2
+ },
+ "seeds": [
+  1,
+  2,
+  3
+ ],
+ "k": 5,
+ "material_cap": 12000,
+ "n_cards": 89,
+ "prompt_sha": {
+  "gen_system": "c149d7f5cbb5d10b",
+  "contract": "37ac85db7b514b0b",
+  "judge_system": "a697d31c818acd27"
+ },
+ "cards_sha": "8708b49fc96e04fe",
+ "hmb_git": "72130ac5fe6c28aa7eb91111cadf84574bf1b45a",
+ "harness_git": "1863abb635e1b1b6b9034a4cac1c652a246bfa43",
+ "anchor_seed": 20261006
+}

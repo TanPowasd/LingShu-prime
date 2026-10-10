@@ -1,0 +1,170 @@
+{
+ "order_algorithm": "python random.Random（Mersenne Twister）, sys.version=3.12.15；shuffle 作用于按 (pair_id, side) 排序后的列表",
+ "order_seed": 20261015,
+ "pairs": [
+  {
+   "pair_id": "p00",
+   "scenario": "s0",
+   "seed": 1
+  },
+  {
+   "pair_id": "p01",
+   "scenario": "s1",
+   "seed": 1
+  },
+  {
+   "pair_id": "p02",
+   "scenario": "s2",
+   "seed": 1
+  },
+  {
+   "pair_id": "p03",
+   "scenario": "s3",
+   "seed": 1
+  },
+  {
+   "pair_id": "p04",
+   "scenario": "s0",
+   "seed": 1
+  },
+  {
+   "pair_id": "p05",
+   "scenario": "s1",
+   "seed": 1
+  },
+  {
+   "pair_id": "p06",
+   "scenario": "s2",
+   "seed": 1
+  },
+  {
+   "pair_id": "p07",
+   "scenario": "s3",
+   "seed": 1
+  },
+  {
+   "pair_id": "p08",
+   "scenario": "s0",
+   "seed": 1
+  },
+  {
+   "pair_id": "p09",
+   "scenario": "s1",
+   "seed": 1
+  },
+  {
+   "pair_id": "p10",
+   "scenario": "s2",
+   "seed": 1
+  },
+  {
+   "pair_id": "p11",
+   "scenario": "s3",
+   "seed": 1
+  }
+ ],
+ "order": [
+  [
+   "p01",
+   "B0"
+  ],
+  [
+   "p04",
+   "B0"
+  ],
+  [
+   "p06",
+   "B0"
+  ],
+  [
+   "p02",
+   "B0"
+  ],
+  [
+   "p09",
+   "B0"
+  ],
+  [
+   "p08",
+   "P"
+  ],
+  [
+   "p02",
+   "P"
+  ],
+  [
+   "p03",
+   "P"
+  ],
+  [
+   "p01",
+   "P"
+  ],
+  [
+   "p10",
+   "B0"
+  ],
+  [
+   "p05",
+   "P"
+  ],
+  [
+   "p05",
+   "B0"
+  ],
+  [
+   "p04",
+   "P"
+  ],
+  [
+   "p08",
+   "B0"
+  ],
+  [
+   "p10",
+   "P"
+  ],
+  [
+   "p06",
+   "P"
+  ],
+  [
+   "p11",
+   "B0"
+  ],
+  [
+   "p09",
+   "P"
+  ],
+  [
+   "p00",
+   "P"
+  ],
+  [
+   "p00",
+   "B0"
+  ],
+  [
+   "p07",
+   "P"
+  ],
+  [
+   "p07",
+   "B0"
+  ],
+  [
+   "p11",
+   "P"
+  ],
+  [
+   "p03",
+   "B0"
+  ]
+ ],
+ "budget": {
+  "max_calls": 200,
+  "external_fault_rerun_cap_per_pair": 1
+ },
+ "stop_rule": "达到补跑上限仍不完整 → 停止该批并记录阻塞",
+ "order_sha256": "3933877bf9656cb4c56ee97167db9241a631dbc4122b0413ed2d32e7a1420c3a"
+}

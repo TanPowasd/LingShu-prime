@@ -1,0 +1,3 @@
+{"pair_id": "P-X", "side": "P(dsh-memory)", "restore_check": "pass", "valid": true, "reason": null}
+{"pair_id": "P-Y", "side": "P(dsh-memory)", "restore_check": "fail", "valid": false, "reason": "恢复验证失败：受控状态对象与基线快照不一致 → 本次运行不得计入配对样本（手册 §3.2 四要素④）"}
+{"pair_id": "P-Y-rerun", "side": "B0+P 整对重跑", "restore_check": "pass", "valid": true, "replaces": "P-Y"}

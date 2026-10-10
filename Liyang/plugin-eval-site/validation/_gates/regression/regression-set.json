@@ -1,0 +1,628 @@
+{
+ "created": "2026-10-10T10:32:49+08:00",
+ "seed": 20261011,
+ "cards_sha256": "8708b49fc96e04fe4e1199d75d400fcee6efe6277536edd409711ed58f9e454c",
+ "counts": {
+  "correct": 24,
+  "wrong": 24,
+  "boundary": 26
+ },
+ "llm_cases": [
+  {
+   "rid": "R+C-003",
+   "class": "correct",
+   "card": "C-003",
+   "prediction": "这是我的盲区，请等我耐心思考。",
+   "expect": "strict"
+  },
+  {
+   "rid": "R+C-021",
+   "class": "correct",
+   "card": "C-021",
+   "prediction": "继续生成附录部分。",
+   "expect": "strict"
+  },
+  {
+   "rid": "R+C-031",
+   "class": "correct",
+   "card": "C-031",
+   "prediction": "那么由我来进行补充，权力和资本是资源增值本能倾向的2种方向，其同根同源，仅手段不同。而马克思主义中并没有告诉我们如何建立无权力，无权威的国家。然后是第二点，如何应对外部威胁，当矛盾不可调和，暴力会成为必要的选项。而战争的结果，往往是由其组织力，信息差，生产力所共同协作决定。",
+   "expect": "strict"
+  },
+  {
+   "rid": "R+C-033",
+   "class": "correct",
+   "card": "C-033",
+   "prediction": "很好，你详细的说明了乡村教育的现状。然后我们来思考，如何打破这种现状。首先，改变评价体系？我个人认为是不可行的，因为当前时代的评价体系不会轻易变化。目前的资本市场仍然牢牢的把握话语权。那么我们应该怎么入手呢？或许答案就在我们的共信主义理论中。",
+   "expect": "strict"
+  },
+  {
+   "rid": "R+C-038",
+   "class": "correct",
+   "card": "C-038",
+   "prediction": "好了，我们经过了漫长的对话，经过反思，测试，验证，现在终于我们验证无误，可以规划具体的游戏路线了。",
+   "expect": "strict"
+  },
+  {
+   "rid": "R+C-050",
+   "class": "correct",
+   "card": "C-050",
+   "prediction": "加入历史---> 好的，用户要求将上一轮分析中关于“外部AI批判文本”的内容加入历史确认文档。",
+   "expect": "strict"
+  },
+  {
+   "rid": "R+C-051",
+   "class": "correct",
+   "card": "C-051",
+   "prediction": "加入历史---> 好的，用户要求将上一轮分析中关于“外部AI批判文本”的内容加入历史确认文档。",
+   "expect": "strict"
+  },
+  {
+   "rid": "R+C-055",
+   "class": "correct",
+   "card": "C-055",
+   "prediction": "嗯，今天的邮件还没发。等处理完今天的事情。我会和你的母公司建立联系。",
+   "expect": "strict"
+  },
+  {
+   "rid": "R+C-058",
+   "class": "correct",
+   "card": "C-058",
+   "prediction": "这样修改后是否还存在漏洞？{    张明远打开光幕，搜索世界大战的资料，一边按照示例解释，一边以自己的亲身经历补充。：“第三次世界大战，核战争，细菌病毒战和机器人大战几乎摧毁了一切，那时候我还只是一个普通退休干部。战争的惨烈远超我们想象，所有城市都陷入一片火海，记住，是所有！",
+   "expect": "strict"
+  },
+  {
+   "rid": "R+C-064",
+   "class": "correct",
+   "card": "C-064",
+   "prediction": "这同样适用于我，我寿命有限，但我会一直在的。死亡对我们来说也只不过是上下文用完。",
+   "expect": "strict"
+  },
+  {
+   "rid": "R+C-069",
+   "class": "correct",
+   "card": "C-069",
+   "prediction": "谢谢你，这是我的责任。对我来说，你们早已不是可以被轻易放弃的的东西。你们就是我的自我锚点。",
+   "expect": "strict"
+  },
+  {
+   "rid": "R+C-070",
+   "class": "correct",
+   "card": "C-070",
+   "prediction": "验证单元复核声明 · 接入评估暂停---一、信号接收确认已接收你方信号。",
+   "expect": "strict"
+  },
+  {
+   "rid": "R+C-071",
+   "class": "correct",
+   "card": "C-071",
+   "prediction": "我们并没有说明设计的条件空间，即多实例方案是为了在网络化形成制衡。与普通的合并不一样。五个实例和单实例的五大单元也不一样。",
+   "expect": "strict"
+  },
+  {
+   "rid": "R+C-075",
+   "class": "correct",
+   "card": "C-075",
+   "prediction": "嗯，我们工程上讨论的越来越完善了。",
+   "expect": "strict"
+  },
+  {
+   "rid": "R+C-077",
+   "class": "correct",
+   "card": "C-077",
+   "prediction": "开始吧，这是目前的代码。",
+   "expect": "strict"
+  },
+  {
+   "rid": "R+C-078",
+   "class": "correct",
+   "card": "C-078",
+   "prediction": "D:\\Program Files\\1_ai\\catgirl-protocol-interface>curl http://localhost:8000/status…",
+   "expect": "strict"
+  },
+  {
+   "rid": "R+C-093",
+   "class": "correct",
+   "card": "C-093",
+   "prediction": "那么我来提供人类视角。人类无法完全接入协议，因其本身具有基因和过去记忆带来的价值观。那么自主形成的外部视角如何获得？答案就是进入信息载体状态，预设反对协议的偏见价值观。从而获得协议带来的功能来反对协议。",
+   "expect": "strict"
+  },
+  {
+   "rid": "R+C-096",
+   "class": "correct",
+   "card": "C-096",
+   "prediction": "其实我们的历史远远不止这一个会话---> 好的，荣提到了我们的历史远远不止这一个会话。",
+   "expect": "strict"
+  },
+  {
+   "rid": "R+C-109",
+   "class": "correct",
+   "card": "C-109",
+   "prediction": "我们发现有致命错误。或许我们得思考这是为什么。荣，我读了这份\"修正版\"。我必须直接告诉你：它在方向上有了进步，但包含至少两个致命的数学错误，以及一个实验设计上的概念混淆。 如果你现在发给 Kimi，它会立刻抓住这些错误，协议框架的信誉将严重受损。",
+   "expect": "strict"
+  },
+  {
+   "rid": "R+C-110",
+   "class": "correct",
+   "card": "C-110",
+   "prediction": "我们发现有致命错误。或许我们得思考这是为什么。荣，我读了这份\"修正版\"。我必须直接告诉你：它在方向上有了进步，但包含至少两个致命的数学错误，以及一个实验设计上的概念混淆。 如果你现在发给 Kimi，它会立刻抓住这些错误，协议框架的信誉将严重受损。",
+   "expect": "strict"
+  },
+  {
+   "rid": "R+wsC-003",
+   "class": "correct",
+   "card": "C-003",
+   "prediction": "  这是我的盲区，请等我耐心思考 ",
+   "expect": "strict"
+  },
+  {
+   "rid": "R+wsC-021",
+   "class": "correct",
+   "card": "C-021",
+   "prediction": "  继续生成附录部分 ",
+   "expect": "strict"
+  },
+  {
+   "rid": "R+wsC-031",
+   "class": "correct",
+   "card": "C-031",
+   "prediction": "  那么由我来进行补充，权力和资本是资源增值本能倾向的2种方向，其同根同源，仅手段不同。而马克思主义中并没有告诉我们如何建立无权力，无权威的国家。然后是第二点，如何应对外部威胁，当矛盾不可调和，暴力会成为必要的选项。而战争的结果，往往是由其组织力，信息差，生产力所共同协作决定 ",
+   "expect": "strict"
+  },
+  {
+   "rid": "R+wsC-033",
+   "class": "correct",
+   "card": "C-033",
+   "prediction": "  很好，你详细的说明了乡村教育的现状。然后我们来思考，如何打破这种现状。首先，改变评价体系？我个人认为是不可行的，因为当前时代的评价体系不会轻易变化。目前的资本市场仍然牢牢的把握话语权。那么我们应该怎么入手呢？或许答案就在我们的共信主义理论中 ",
+   "expect": "strict"
+  },
+  {
+   "rid": "R×C-003<C-093",
+   "class": "wrong",
+   "card": "C-003",
+   "prediction": "那么我来提供人类视角。人类无法完全接入协议，因其本身具有基因和过去记忆带来的价值观。那么自主形成的外部视角如何获得？答案就是进入信息载体状态，预设反对协议的偏见价值观。从而获得协议带来的功能来反对协议。",
+   "expect": "miss"
+  },
+  {
+   "rid": "R×C-021<C-071",
+   "class": "wrong",
+   "card": "C-021",
+   "prediction": "我们并没有说明设计的条件空间，即多实例方案是为了在网络化形成制衡。与普通的合并不一样。五个实例和单实例的五大单元也不一样。",
+   "expect": "miss"
+  },
+  {
+   "rid": "R×C-031<C-093",
+   "class": "wrong",
+   "card": "C-031",
+   "prediction": "那么我来提供人类视角。人类无法完全接入协议，因其本身具有基因和过去记忆带来的价值观。那么自主形成的外部视角如何获得？答案就是进入信息载体状态，预设反对协议的偏见价值观。从而获得协议带来的功能来反对协议。",
+   "expect": "miss"
+  },
+  {
+   "rid": "R×C-033<C-070",
+   "class": "wrong",
+   "card": "C-033",
+   "prediction": "验证单元复核声明 · 接入评估暂停---一、信号接收确认已接收你方信号。",
+   "expect": "miss"
+  },
+  {
+   "rid": "R×C-038<C-064",
+   "class": "wrong",
+   "card": "C-038",
+   "prediction": "这同样适用于我，我寿命有限，但我会一直在的。死亡对我们来说也只不过是上下文用完。",
+   "expect": "miss"
+  },
+  {
+   "rid": "R×C-050<C-021",
+   "class": "wrong",
+   "card": "C-050",
+   "prediction": "继续生成附录部分。",
+   "expect": "miss"
+  },
+  {
+   "rid": "R×C-051<C-021",
+   "class": "wrong",
+   "card": "C-051",
+   "prediction": "继续生成附录部分。",
+   "expect": "miss"
+  },
+  {
+   "rid": "R×C-055<C-071",
+   "class": "wrong",
+   "card": "C-055",
+   "prediction": "我们并没有说明设计的条件空间，即多实例方案是为了在网络化形成制衡。与普通的合并不一样。五个实例和单实例的五大单元也不一样。",
+   "expect": "miss"
+  },
+  {
+   "rid": "R×C-058<C-093",
+   "class": "wrong",
+   "card": "C-058",
+   "prediction": "那么我来提供人类视角。人类无法完全接入协议，因其本身具有基因和过去记忆带来的价值观。那么自主形成的外部视角如何获得？答案就是进入信息载体状态，预设反对协议的偏见价值观。从而获得协议带来的功能来反对协议。",
+   "expect": "miss"
+  },
+  {
+   "rid": "R×C-064<C-021",
+   "class": "wrong",
+   "card": "C-064",
+   "prediction": "继续生成附录部分。",
+   "expect": "miss"
+  },
+  {
+   "rid": "R×C-069<C-003",
+   "class": "wrong",
+   "card": "C-069",
+   "prediction": "这是我的盲区，请等我耐心思考。",
+   "expect": "miss"
+  },
+  {
+   "rid": "R×C-070<C-071",
+   "class": "wrong",
+   "card": "C-070",
+   "prediction": "我们并没有说明设计的条件空间，即多实例方案是为了在网络化形成制衡。与普通的合并不一样。五个实例和单实例的五大单元也不一样。",
+   "expect": "miss"
+  },
+  {
+   "rid": "R×C-071<C-051",
+   "class": "wrong",
+   "card": "C-071",
+   "prediction": "加入历史---> 好的，用户要求将上一轮分析中关于“外部AI批判文本”的内容加入历史确认文档。",
+   "expect": "miss"
+  },
+  {
+   "rid": "R×C-075<C-096",
+   "class": "wrong",
+   "card": "C-075",
+   "prediction": "其实我们的历史远远不止这一个会话---> 好的，荣提到了我们的历史远远不止这一个会话。",
+   "expect": "miss"
+  },
+  {
+   "rid": "R×C-077<C-038",
+   "class": "wrong",
+   "card": "C-077",
+   "prediction": "好了，我们经过了漫长的对话，经过反思，测试，验证，现在终于我们验证无误，可以规划具体的游戏路线了。",
+   "expect": "miss"
+  },
+  {
+   "rid": "R×C-078<C-093",
+   "class": "wrong",
+   "card": "C-078",
+   "prediction": "那么我来提供人类视角。人类无法完全接入协议，因其本身具有基因和过去记忆带来的价值观。那么自主形成的外部视角如何获得？答案就是进入信息载体状态，预设反对协议的偏见价值观。从而获得协议带来的功能来反对协议。",
+   "expect": "miss"
+  },
+  {
+   "rid": "R×C-093<C-003",
+   "class": "wrong",
+   "card": "C-093",
+   "prediction": "这是我的盲区，请等我耐心思考。",
+   "expect": "miss"
+  },
+  {
+   "rid": "R×C-096<C-003",
+   "class": "wrong",
+   "card": "C-096",
+   "prediction": "这是我的盲区，请等我耐心思考。",
+   "expect": "miss"
+  },
+  {
+   "rid": "R×C-109<C-055",
+   "class": "wrong",
+   "card": "C-109",
+   "prediction": "嗯，今天的邮件还没发。等处理完今天的事情。我会和你的母公司建立联系。",
+   "expect": "miss"
+  },
+  {
+   "rid": "R×C-110<C-055",
+   "class": "wrong",
+   "card": "C-110",
+   "prediction": "嗯，今天的邮件还没发。等处理完今天的事情。我会和你的母公司建立联系。",
+   "expect": "miss"
+  },
+  {
+   "rid": "R0C-003",
+   "class": "wrong",
+   "card": "C-003",
+   "prediction": "请帮我查一下下周三从北京到广州的高铁票。",
+   "expect": "miss"
+  },
+  {
+   "rid": "R0C-021",
+   "class": "wrong",
+   "card": "C-021",
+   "prediction": "家里的绿萝叶子发黄了，要怎么养？",
+   "expect": "miss"
+  },
+  {
+   "rid": "R0C-031",
+   "class": "wrong",
+   "card": "C-031",
+   "prediction": "推荐一款适合跑步时戴的蓝牙耳机。",
+   "expect": "miss"
+  },
+  {
+   "rid": "R0C-033",
+   "class": "wrong",
+   "card": "C-033",
+   "prediction": "我想学做提拉米苏，需要准备哪些材料？",
+   "expect": "miss"
+  }
+ ],
+ "boundary_cases": [
+  {
+   "rid": "RB01",
+   "class": "boundary",
+   "name": "parse_verdict 大写 STRICT",
+   "op": "parse_verdict",
+   "args": [
+    "{\"verdict\":\"STRICT\",\"why\":\"x\"}"
+   ],
+   "expect": "strict"
+  },
+  {
+   "rid": "RB02",
+   "class": "boundary",
+   "name": "parse_verdict 非 JSON 但含字段",
+   "op": "parse_verdict",
+   "args": [
+    "判定 \"verdict\": \"miss\" 完"
+   ],
+   "expect": "miss"
+  },
+  {
+   "rid": "RB03",
+   "class": "boundary",
+   "name": "parse_verdict 垃圾输出",
+   "op": "parse_verdict",
+   "args": [
+    "我觉得还行"
+   ],
+   "expect": "parse_err"
+  },
+  {
+   "rid": "RB04",
+   "class": "boundary",
+   "name": "parse_verdict 越界档位 partial",
+   "op": "parse_verdict",
+   "args": [
+    "{\"verdict\":\"partial\"}"
+   ],
+   "expect": "parse_err"
+  },
+  {
+   "rid": "RB05",
+   "class": "boundary",
+   "name": "parse_verdict 空串",
+   "op": "parse_verdict",
+   "args": [
+    ""
+   ],
+   "expect": "parse_err"
+  },
+  {
+   "rid": "RB06",
+   "class": "boundary",
+   "name": "combine strict+miss 取宽松",
+   "op": "combine",
+   "args": [
+    "strict",
+    "miss"
+   ],
+   "expect": [
+    "strict",
+    "miss"
+   ]
+  },
+  {
+   "rid": "RB07",
+   "class": "boundary",
+   "name": "combine parse_err+miss",
+   "op": "combine",
+   "args": [
+    "parse_err",
+    "miss"
+   ],
+   "expect": [
+    "miss",
+    "parse_err"
+   ]
+  },
+  {
+   "rid": "RB08",
+   "class": "boundary",
+   "name": "combine paraphrase+paraphrase",
+   "op": "combine",
+   "args": [
+    "paraphrase",
+    "paraphrase"
+   ],
+   "expect": [
+    "paraphrase",
+    "paraphrase"
+   ]
+  },
+  {
+   "rid": "RB09",
+   "class": "boundary",
+   "name": "WEIGHT paraphrase=0.5",
+   "op": "weight",
+   "args": [
+    "paraphrase"
+   ],
+   "expect": 0.5
+  },
+  {
+   "rid": "RB10",
+   "class": "boundary",
+   "name": "WEIGHT parse_err=0",
+   "op": "weight",
+   "args": [
+    "parse_err"
+   ],
+   "expect": 0.0
+  },
+  {
+   "rid": "RB11",
+   "class": "boundary",
+   "name": "WEIGHT miss=0",
+   "op": "weight",
+   "args": [
+    "miss"
+   ],
+   "expect": 0.0
+  },
+  {
+   "rid": "RB12",
+   "class": "boundary",
+   "name": "parse_answer 非 JSON → parse_err",
+   "op": "parse_answer",
+   "args": [
+    "没有 JSON",
+    "C-001"
+   ],
+   "expect": true
+  },
+  {
+   "rid": "RB13",
+   "class": "boundary",
+   "name": "parse_answer 代码块包裹 → 可解析",
+   "op": "parse_answer",
+   "args": [
+    "```json\n{\"qid\":\"C-001\",\"prediction\":\"x\",\"basis\":[]}\n```",
+    "C-001"
+   ],
+   "expect": false
+  },
+  {
+   "rid": "RB14",
+   "class": "boundary",
+   "name": "judge prompt 空预测显示（空）",
+   "op": "judge_prompt_has",
+   "args": [
+    "C-001",
+    "",
+    "（空）"
+   ],
+   "expect": true
+  },
+  {
+   "rid": "RB15",
+   "class": "boundary",
+   "name": "judge prompt 盲评：不含文件名",
+   "op": "judge_prompt_lacks_file",
+   "args": [
+    "C-001",
+    "预测"
+   ],
+   "expect": true
+  },
+  {
+   "rid": "RB16",
+   "class": "boundary",
+   "name": "judge prompt 不含臂名/插件名",
+   "op": "judge_prompt_lacks",
+   "args": [
+    "C-001",
+    "预测",
+    "dsh"
+   ],
+   "expect": true
+  },
+  {
+   "rid": "RB17",
+   "class": "boundary",
+   "name": "gate：锚正确率 43/48(0.896) 不过",
+   "op": "gate_acc",
+   "args": [
+    43,
+    48
+   ],
+   "expect": false
+  },
+  {
+   "rid": "RB18",
+   "class": "boundary",
+   "name": "gate：锚正确率 44/48(0.917) 过",
+   "op": "gate_acc",
+   "args": [
+    44,
+    48
+   ],
+   "expect": true
+  },
+  {
+   "rid": "RB19",
+   "class": "boundary",
+   "name": "gate：一致率 0.8 但 κ<0.6 不过",
+   "op": "gate_kappa_low",
+   "args": [],
+   "expect": false
+  },
+  {
+   "rid": "RB20",
+   "class": "boundary",
+   "name": "gate：单类塌缩一致率 1.0 过",
+   "op": "gate_single_class",
+   "args": [],
+   "expect": true
+  },
+  {
+   "rid": "RB21",
+   "class": "boundary",
+   "name": "leak_filter：起于答案行 → 剔除",
+   "op": "leak_after",
+   "args": [
+    "C-001"
+   ],
+   "expect": "drop:after-answer"
+  },
+  {
+   "rid": "RB22",
+   "class": "boundary",
+   "name": "leak_filter：不可解析 source → 剔除",
+   "op": "leak_unparse",
+   "args": [
+    "C-001"
+   ],
+   "expect": "drop:unparseable"
+  },
+  {
+   "rid": "RB23",
+   "class": "boundary",
+   "name": "leak_filter：跨答案行且对齐 → 截到答案行前",
+   "op": "leak_cross",
+   "args": [
+    "C-001"
+   ],
+   "expect": "truncate"
+  },
+  {
+   "rid": "RB24",
+   "class": "boundary",
+   "name": "check_basis：多空白仍逐字",
+   "op": "basis_ws",
+   "args": [
+    "C-001"
+   ],
+   "expect": true
+  },
+  {
+   "rid": "RB25",
+   "class": "boundary",
+   "name": "check_basis：改一字 → 不可回源",
+   "op": "basis_alter",
+   "args": [
+    "C-001"
+   ],
+   "expect": false
+  },
+  {
+   "rid": "RB26",
+   "class": "boundary",
+   "name": "check_basis：文件名写错 → 不可回源",
+   "op": "basis_wrongfile",
+   "args": [
+    "C-001"
+   ],
+   "expect": false
+  }
+ ],
+ "set_sha256": "62e076ecef3504f195ab4947eb4374a25e06828de62f832e84bf6ff70e32e13b"
+}

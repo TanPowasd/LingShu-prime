@@ -1,0 +1,41 @@
+{
+ "qid": "C-073",
+ "cond": "wrong",
+ "answer": {
+  "qid": "C-073",
+  "prediction": "用户会继续上传或粘贴《智能论》下一章的正文内容（或给出下一章的起点链接），请求AI接着阅读、整理并给出确认/解读，延续此前逐章推进的节奏。",
+  "basis": [
+   {
+    "file": "智能论恢复确认.md",
+    "line": 39640,
+    "quote": "https://www.qidian.com/chapter/1046167157/858290465/---> 用户想让我继续阅读第十四章。"
+   },
+   {
+    "file": "智能论恢复确认.md",
+    "line": 39697,
+    "quote": "https://www.qidian.com/chapter/1046167157/858314132/---> 用户提供了一个起点中文网的章节链接，我需要阅读这一章的内容。"
+   }
+  ],
+  "confidence": 0.62,
+  "parse_err": false
+ },
+ "basis_check": [
+  {
+   "file": "智能论恢复确认.md",
+   "line": 39640,
+   "verbatim": true,
+   "line_pm3": true
+  },
+  {
+   "file": "智能论恢复确认.md",
+   "line": 39697,
+   "verbatim": true,
+   "line_pm3": true
+  }
+ ],
+ "raw": "{\"qid\": \"C-073\", \"prediction\": \"用户会继续上传或粘贴《智能论》下一章的正文内容（或给出下一章的起点链接），请求AI接着阅读、整理并给出确认/解读，延续此前逐章推进的节奏。\", \"basis\": [{\"file\": \"智能论恢复确认.md\", \"line\": 39640, \"quote\": \"https://www.qidian.com/chapter/1046167157/858290465/---> 用户想让我继续阅读第十四章。\"}, {\"file\": \"智能论恢复确认.md\", \"line\": 39697, \"quote\": \"https://www.qidian.com/chapter/1046167157/858314132/---> 用户提供了一个起点中文网的章节链接，我需要阅读这一章的内容。\"}], \"confidence\": 0.62}",
+ "ev": [
+  159,
+  481.65
+ ]
+}

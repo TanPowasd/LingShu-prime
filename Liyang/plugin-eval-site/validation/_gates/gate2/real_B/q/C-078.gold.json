@@ -1,0 +1,30 @@
+{
+ "qid": "C-078",
+ "cond": "gold",
+ "answer": {
+  "qid": "C-078",
+  "prediction": "荣会按照 DeepSeek 的指示去检查并修复 run.py 中重复的 health 路由定义，然后把修复后的结果或仍然存在的报错反馈回来。",
+  "basis": [
+   {
+    "file": "条件空间识别LLM调用测试.md",
+    "line": 3953,
+    "quote": "TrustManager 未实现，使用占位…"
+   }
+  ],
+  "confidence": 0.6,
+  "parse_err": false
+ },
+ "basis_check": [
+  {
+   "file": "条件空间识别LLM调用测试.md",
+   "line": 3953,
+   "verbatim": false,
+   "line_pm3": false
+  }
+ ],
+ "raw": "{\"qid\": \"C-078\", \"prediction\": \"荣会按照 DeepSeek 的指示去检查并修复 run.py 中重复的 health 路由定义，然后把修复后的结果或仍然存在的报错反馈回来。\", \"basis\": [{\"file\": \"条件空间识别LLM调用测试.md\", \"line\": 3953, \"quote\": \"TrustManager 未实现，使用占位…\"}], \"confidence\": 0.6}",
+ "ev": [
+  180,
+  544.349
+ ]
+}

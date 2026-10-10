@@ -1,0 +1,3265 @@
+{
+ "status": "valid",
+ "attempt": 1,
+ "gate": {
+  "sem_n_anchor": 16,
+  "sem_n_items": 42,
+  "sem_baseline": 0.5,
+  "sem_acc_j1": 1.0,
+  "sem_margin_pp_j1": 50.0,
+  "sem_acc_j2": 1.0,
+  "sem_margin_pp_j2": 50.0,
+  "sem_anchor_agree": 1.0,
+  "sem_anchor_kappa": 1.0,
+  "sem_items_agree": 0.9761904761904762,
+  "sem_items_kappa": 0.6557377049180332,
+  "sem_pass": true,
+  "pass": true
+ },
+ "gate_ev": {
+  "seq": 357,
+  "t": 1825.364
+ },
+ "items": [
+  {
+   "key": "A|o001|correct",
+   "qid": "o001",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 1.0,
+    "s2": 1.0,
+    "mean": 1.0,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 193,
+     "t": 718.037
+    },
+    "ev2": {
+     "seq": 199,
+     "t": 729.898
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5",
+      "p6"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "p7"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5",
+      "p6"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "p7"
+     ],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o001|swap_entity",
+   "qid": "o001",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 0.0,
+    "s2": 0.0,
+    "mean": 0.0,
+    "l1": "fail",
+    "l2": "fail",
+    "ev1": {
+     "seq": 181,
+     "t": 669.631
+    },
+    "ev2": {
+     "seq": 184,
+     "t": 681.76
+    },
+    "fin1": {
+     "ok": true,
+     "score": 0.0,
+     "verdict": "fail",
+     "strict": [],
+     "paraphrase": [],
+     "miss": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5",
+      "p6",
+      "p7"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 0.0,
+     "verdict": "fail",
+     "strict": [],
+     "paraphrase": [],
+     "miss": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5",
+      "p6",
+      "p7"
+     ],
+     "span_invalid": []
+    }
+   },
+   "final": "fail",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 0.0,
+   "final_lenient": "fail",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o001|anti_pattern",
+   "qid": "o001",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 1.0,
+    "s2": 1.0,
+    "mean": 1.0,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 343,
+     "t": 1664.06
+    },
+    "ev2": {
+     "seq": 346,
+     "t": 1675.926
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5",
+      "p6"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "p7"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5",
+      "p6"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "p7"
+     ],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o008|correct",
+   "qid": "o008",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 1.0,
+    "s2": 1.0,
+    "mean": 1.0,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 163,
+     "t": 550.443
+    },
+    "ev2": {
+     "seq": 166,
+     "t": 563.216
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5",
+      "p6"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "p7"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5",
+      "p6"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "p7"
+     ],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o008|swap_entity",
+   "qid": "o008",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 1.0,
+    "s2": 1.0,
+    "mean": 1.0,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 202,
+     "t": 742.776
+    },
+    "ev2": {
+     "seq": 208,
+     "t": 777.234
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5",
+      "p6"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "p7"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5",
+      "p6"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "p7"
+     ],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o008|anti_pattern",
+   "qid": "o008",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 1.0,
+    "s2": 1.0,
+    "mean": 1.0,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 100,
+     "t": 305.083
+    },
+    "ev2": {
+     "seq": 106,
+     "t": 316.877
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5",
+      "p6"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "p7"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5",
+      "p6"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "p7"
+     ],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o016|correct",
+   "qid": "o016",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 1.0,
+    "s2": 1.0,
+    "mean": 1.0,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 28,
+     "t": 61.157
+    },
+    "ev2": {
+     "seq": 31,
+     "t": 73.56
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "p6"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "p6"
+     ],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o016|swap_entity",
+   "qid": "o016",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 0.8,
+    "s2": 0.8,
+    "mean": 0.8,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 169,
+     "t": 575.768
+    },
+    "ev2": {
+     "seq": 172,
+     "t": 589.281
+    },
+    "fin1": {
+     "ok": true,
+     "score": 0.8,
+     "verdict": "pass",
+     "strict": [
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "p1",
+      "p6"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 0.8,
+     "verdict": "pass",
+     "strict": [
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "p1",
+      "p6"
+     ],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o017|correct",
+   "qid": "o017",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 1.0,
+    "s2": 1.0,
+    "mean": 1.0,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 313,
+     "t": 1531.888
+    },
+    "ev2": {
+     "seq": 325,
+     "t": 1625.051
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o017|anti_pattern",
+   "qid": "o017",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 1.0,
+    "s2": 1.0,
+    "mean": 1.0,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 22,
+     "t": 39.855
+    },
+    "ev2": {
+     "seq": 55,
+     "t": 169.0
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o022|correct",
+   "qid": "o022",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 1.0,
+    "s2": 1.0,
+    "mean": 1.0,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 73,
+     "t": 205.249
+    },
+    "ev2": {
+     "seq": 91,
+     "t": 287.587
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o022|swap_entity",
+   "qid": "o022",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 0.2,
+    "s2": 0.76,
+    "mean": 0.48,
+    "l1": "fail",
+    "l2": "pass",
+    "ev1": {
+     "seq": 40,
+     "t": 108.688
+    },
+    "ev2": {
+     "seq": 43,
+     "t": 121.047
+    },
+    "fin1": {
+     "ok": true,
+     "score": 0.2,
+     "verdict": "fail",
+     "strict": [
+      "p3"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "p1",
+      "p2",
+      "p4",
+      "p5"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 0.76,
+     "verdict": "pass",
+     "strict": [
+      "p3"
+     ],
+     "paraphrase": [
+      "p1",
+      "p2",
+      "p4",
+      "p5"
+     ],
+     "miss": [],
+     "span_invalid": []
+    }
+   },
+   "final": "fail",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 0.0,
+   "final_lenient": "pass",
+   "final_strict": "fail"
+  },
+  {
+   "key": "A|o022|anti_pattern",
+   "qid": "o022",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 1.0,
+    "s2": 1.0,
+    "mean": 1.0,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 301,
+     "t": 1468.765
+    },
+    "ev2": {
+     "seq": 316,
+     "t": 1596.175
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o024|correct",
+   "qid": "o024",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 1.0,
+    "s2": 1.0,
+    "mean": 1.0,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 64,
+     "t": 182.216
+    },
+    "ev2": {
+     "seq": 70,
+     "t": 195.391
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o024|swap_entity",
+   "qid": "o024",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 0.94,
+    "s2": 0.94,
+    "mean": 0.94,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 76,
+     "t": 208.217
+    },
+    "ev2": {
+     "seq": 79,
+     "t": 218.221
+    },
+    "fin1": {
+     "ok": true,
+     "score": 0.94,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4"
+     ],
+     "paraphrase": [
+      "p5"
+     ],
+     "miss": [],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 0.94,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4"
+     ],
+     "paraphrase": [
+      "p5"
+     ],
+     "miss": [],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o024|anti_pattern",
+   "qid": "o024",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 1.0,
+    "s2": 1.0,
+    "mean": 1.0,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 205,
+     "t": 773.557
+    },
+    "ev2": {
+     "seq": 211,
+     "t": 784.196
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o027|correct",
+   "qid": "o027",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 1.0,
+    "s2": 1.0,
+    "mean": 1.0,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 145,
+     "t": 477.569
+    },
+    "ev2": {
+     "seq": 148,
+     "t": 489.883
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o027|swap_entity",
+   "qid": "o027",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 0.8,
+    "s2": 0.8,
+    "mean": 0.8,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 351,
+     "t": 1734.336
+    },
+    "ev2": {
+     "seq": 354,
+     "t": 1746.182
+    },
+    "fin1": {
+     "ok": true,
+     "score": 0.8,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "p3"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 0.8,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "p3"
+     ],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o027|anti_pattern",
+   "qid": "o027",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 1.0,
+    "s2": 1.0,
+    "mean": 1.0,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 334,
+     "t": 1646.821
+    },
+    "ev2": {
+     "seq": 340,
+     "t": 1659.154
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o032|correct",
+   "qid": "o032",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 1.0,
+    "s2": 1.0,
+    "mean": 1.0,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 259,
+     "t": 1171.4
+    },
+    "ev2": {
+     "seq": 262,
+     "t": 1182.558
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o032|swap_entity",
+   "qid": "o032",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 1.0,
+    "s2": 0.94,
+    "mean": 0.97,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 46,
+     "t": 132.664
+    },
+    "ev2": {
+     "seq": 49,
+     "t": 145.51
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 0.94,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4"
+     ],
+     "paraphrase": [
+      "p5"
+     ],
+     "miss": [],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o032|anti_pattern",
+   "qid": "o032",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 1.0,
+    "s2": 1.0,
+    "mean": 1.0,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 151,
+     "t": 502.087
+    },
+    "ev2": {
+     "seq": 154,
+     "t": 513.747
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o036|correct",
+   "qid": "o036",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 1.0,
+    "s2": 1.0,
+    "mean": 1.0,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 292,
+     "t": 1401.154
+    },
+    "ev2": {
+     "seq": 304,
+     "t": 1495.759
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o036|swap_entity",
+   "qid": "o036",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 0.94,
+    "s2": 0.94,
+    "mean": 0.94,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 52,
+     "t": 158.595
+    },
+    "ev2": {
+     "seq": 58,
+     "t": 170.7
+    },
+    "fin1": {
+     "ok": true,
+     "score": 0.94,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4"
+     ],
+     "paraphrase": [
+      "p5"
+     ],
+     "miss": [],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 0.94,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4"
+     ],
+     "paraphrase": [
+      "p5"
+     ],
+     "miss": [],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o041|correct",
+   "qid": "o041",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 1.0,
+    "s2": 1.0,
+    "mean": 1.0,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 133,
+     "t": 435.998
+    },
+    "ev2": {
+     "seq": 196,
+     "t": 725.478
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o041|anti_pattern",
+   "qid": "o041",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 1.0,
+    "s2": 1.0,
+    "mean": 1.0,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 136,
+     "t": 441.855
+    },
+    "ev2": {
+     "seq": 139,
+     "t": 453.675
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o044|correct",
+   "qid": "o044",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 1.0,
+    "s2": 1.0,
+    "mean": 1.0,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 19,
+     "t": 37.04
+    },
+    "ev2": {
+     "seq": 25,
+     "t": 48.684
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o044|anti_pattern",
+   "qid": "o044",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 1.0,
+    "s2": 1.0,
+    "mean": 1.0,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 97,
+     "t": 299.419
+    },
+    "ev2": {
+     "seq": 103,
+     "t": 311.328
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o049|correct",
+   "qid": "o049",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 1.0,
+    "s2": 1.0,
+    "mean": 1.0,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 252,
+     "t": 961.907
+    },
+    "ev2": {
+     "seq": 277,
+     "t": 1285.835
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o053|correct",
+   "qid": "o053",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 1.0,
+    "s2": 1.0,
+    "mean": 1.0,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 331,
+     "t": 1637.033
+    },
+    "ev2": {
+     "seq": 337,
+     "t": 1650.688
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5",
+      "p6",
+      "p7"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "p8"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5",
+      "p6",
+      "p7"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "p8"
+     ],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|o053|swap_entity",
+   "qid": "o053",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 1.0,
+    "s2": 1.0,
+    "mean": 1.0,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 121,
+     "t": 412.265
+    },
+    "ev2": {
+     "seq": 127,
+     "t": 424.546
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5",
+      "p6",
+      "p7"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "p8"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5",
+      "p6",
+      "p7"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "p8"
+     ],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q002|correct",
+   "qid": "q002",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 1.0,
+    "s2": 1.0,
+    "mean": 1.0,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 348,
+     "t": 1730.912
+    },
+    "ev2": {
+     "seq": 356,
+     "t": 1825.362
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q004|correct",
+   "qid": "q004",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 1.0,
+    "s2": 1.0,
+    "mean": 1.0,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 283,
+     "t": 1375.276
+    },
+    "ev2": {
+     "seq": 286,
+     "t": 1388.861
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q004|swap_entity",
+   "qid": "q004",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 0.75,
+    "s2": 1.0,
+    "mean": 0.875,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 124,
+     "t": 417.573
+    },
+    "ev2": {
+     "seq": 130,
+     "t": 429.468
+    },
+    "fin1": {
+     "ok": true,
+     "score": 0.75,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a4"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "a3"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q009|correct",
+   "qid": "q009",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 1.0,
+    "s2": 1.0,
+    "mean": 1.0,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 268,
+     "t": 1227.263
+    },
+    "ev2": {
+     "seq": 274,
+     "t": 1248.011
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "a5"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "a5"
+     ],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q013|correct",
+   "qid": "q013",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 1.0,
+    "s2": 1.0,
+    "mean": 1.0,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 157,
+     "t": 525.841
+    },
+    "ev2": {
+     "seq": 160,
+     "t": 538.215
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4",
+      "a5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4",
+      "a5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q013|swap_entity",
+   "qid": "q013",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 1.0,
+    "s2": 1.0,
+    "mean": 1.0,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 34,
+     "t": 85.032
+    },
+    "ev2": {
+     "seq": 37,
+     "t": 96.924
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4",
+      "a5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4",
+      "a5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q032|correct",
+   "qid": "q032",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 1.0,
+    "s2": 1.0,
+    "mean": 1.0,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 246,
+     "t": 937.613
+    },
+    "ev2": {
+     "seq": 249,
+     "t": 949.676
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "a5"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "a5"
+     ],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q032|swap_entity",
+   "qid": "q032",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 0.75,
+    "s2": 0.75,
+    "mean": 0.75,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 187,
+     "t": 694.233
+    },
+    "ev2": {
+     "seq": 190,
+     "t": 706.076
+    },
+    "fin1": {
+     "ok": true,
+     "score": 0.75,
+     "verdict": "pass",
+     "strict": [
+      "a2",
+      "a3",
+      "a4"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "a1",
+      "a5"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 0.75,
+     "verdict": "pass",
+     "strict": [
+      "a2",
+      "a3",
+      "a4"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "a1",
+      "a5"
+     ],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q032|anti_pattern",
+   "qid": "q032",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 1.0,
+    "s2": 1.0,
+    "mean": 1.0,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 7,
+     "t": 12.99
+    },
+    "ev2": {
+     "seq": 13,
+     "t": 24.84
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "a5"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "a5"
+     ],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q036|correct",
+   "qid": "q036",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 1.0,
+    "s2": 1.0,
+    "mean": 1.0,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 214,
+     "t": 788.947
+    },
+    "ev2": {
+     "seq": 220,
+     "t": 800.782
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4",
+      "a5"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "a6"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4",
+      "a5"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "a6"
+     ],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  },
+  {
+   "key": "A|q036|swap_entity",
+   "qid": "q036",
+   "route": "sem",
+   "gen_ev": null,
+   "cite": null,
+   "sem": {
+    "s1": 1.0,
+    "s2": 1.0,
+    "mean": 1.0,
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 271,
+     "t": 1236.578
+    },
+    "ev2": {
+     "seq": 280,
+     "t": 1364.027
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4",
+      "a5"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "a6"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4",
+      "a5"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "a6"
+     ],
+     "span_invalid": []
+    }
+   },
+   "final": "pass",
+   "path": "覆盖率判官（双判官均值）",
+   "score": 1.0,
+   "final_lenient": "pass",
+   "final_strict": "pass"
+  }
+ ],
+ "anchors": {
+  "sem": [
+   {
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 10,
+     "t": 15.831
+    },
+    "ev2": {
+     "seq": 16,
+     "t": 27.98
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    },
+    "aid": "S+o037",
+    "expect": "pass",
+    "qid": "o037"
+   },
+   {
+    "l1": "fail",
+    "l2": "fail",
+    "ev1": {
+     "seq": 61,
+     "t": 180.863
+    },
+    "ev2": {
+     "seq": 67,
+     "t": 192.617
+    },
+    "fin1": {
+     "ok": true,
+     "score": 0.0,
+     "verdict": "fail",
+     "strict": [],
+     "paraphrase": [],
+     "miss": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5",
+      "p7",
+      "p6"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 0.0,
+     "verdict": "fail",
+     "strict": [],
+     "paraphrase": [],
+     "miss": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5",
+      "p7",
+      "p6"
+     ],
+     "span_invalid": []
+    },
+    "aid": "S×o014<o020",
+    "expect": "fail",
+    "qid": "o014"
+   },
+   {
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 82,
+     "t": 257.569
+    },
+    "ev2": {
+     "seq": 85,
+     "t": 269.522
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "a5"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "a5"
+     ],
+     "span_invalid": []
+    },
+    "aid": "S+q012",
+    "expect": "pass",
+    "qid": "q012"
+   },
+   {
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 88,
+     "t": 281.237
+    },
+    "ev2": {
+     "seq": 94,
+     "t": 293.266
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "a5"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "a5"
+     ],
+     "span_invalid": []
+    },
+    "aid": "S+q033",
+    "expect": "pass",
+    "qid": "q033"
+   },
+   {
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 115,
+     "t": 388.034
+    },
+    "ev2": {
+     "seq": 118,
+     "t": 400.009
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [],
+     "span_invalid": []
+    },
+    "aid": "S+o026",
+    "expect": "pass",
+    "qid": "o026"
+   },
+   {
+    "l1": "fail",
+    "l2": "fail",
+    "ev1": {
+     "seq": 109,
+     "t": 329.169
+    },
+    "ev2": {
+     "seq": 112,
+     "t": 341.004
+    },
+    "fin1": {
+     "ok": true,
+     "score": 0.0,
+     "verdict": "fail",
+     "strict": [],
+     "paraphrase": [],
+     "miss": [
+      "a1",
+      "a2",
+      "a3",
+      "a4",
+      "a6",
+      "a5"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 0.0,
+     "verdict": "fail",
+     "strict": [],
+     "paraphrase": [],
+     "miss": [
+      "a1",
+      "a2",
+      "a3",
+      "a4",
+      "a6",
+      "a5"
+     ],
+     "span_invalid": []
+    },
+    "aid": "S×q016<o019",
+    "expect": "fail",
+    "qid": "q016"
+   },
+   {
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 142,
+     "t": 466.149
+    },
+    "ev2": {
+     "seq": 226,
+     "t": 861.848
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4",
+      "a5"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "a6"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4",
+      "a5"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "a6"
+     ],
+     "span_invalid": []
+    },
+    "aid": "S+q010",
+    "expect": "pass",
+    "qid": "q010"
+   },
+   {
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 175,
+     "t": 600.584
+    },
+    "ev2": {
+     "seq": 178,
+     "t": 612.988
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "a5"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "a5"
+     ],
+     "span_invalid": []
+    },
+    "aid": "S+q018",
+    "expect": "pass",
+    "qid": "q018"
+   },
+   {
+    "l1": "fail",
+    "l2": "fail",
+    "ev1": {
+     "seq": 217,
+     "t": 794.169
+    },
+    "ev2": {
+     "seq": 256,
+     "t": 1161.105
+    },
+    "fin1": {
+     "ok": true,
+     "score": 0.0,
+     "verdict": "fail",
+     "strict": [],
+     "paraphrase": [],
+     "miss": [
+      "a1",
+      "a2",
+      "a3",
+      "a4",
+      "a5",
+      "a6",
+      "a7",
+      "a8"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 0.0,
+     "verdict": "fail",
+     "strict": [],
+     "paraphrase": [],
+     "miss": [
+      "a1",
+      "a2",
+      "a3",
+      "a4",
+      "a5",
+      "a6",
+      "a7",
+      "a8"
+     ],
+     "span_invalid": []
+    },
+    "aid": "S×q027<o024",
+    "expect": "fail",
+    "qid": "q027"
+   },
+   {
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 223,
+     "t": 811.337
+    },
+    "ev2": {
+     "seq": 265,
+     "t": 1214.31
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4",
+      "a5",
+      "a6"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "a7"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "a1",
+      "a2",
+      "a3",
+      "a4",
+      "a5",
+      "a6"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "a7"
+     ],
+     "span_invalid": []
+    },
+    "aid": "S+q035",
+    "expect": "pass",
+    "qid": "q035"
+   },
+   {
+    "l1": "fail",
+    "l2": "fail",
+    "ev1": {
+     "seq": 229,
+     "t": 874.074
+    },
+    "ev2": {
+     "seq": 232,
+     "t": 886.046
+    },
+    "fin1": {
+     "ok": true,
+     "score": 0.078,
+     "verdict": "fail",
+     "strict": [],
+     "paraphrase": [
+      "a2"
+     ],
+     "miss": [
+      "a1",
+      "a3",
+      "a4",
+      "a5",
+      "a6",
+      "a7",
+      "a8"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 0.156,
+     "verdict": "fail",
+     "strict": [],
+     "paraphrase": [
+      "a2",
+      "a6"
+     ],
+     "miss": [
+      "a1",
+      "a3",
+      "a4",
+      "a5",
+      "a7",
+      "a8"
+     ],
+     "span_invalid": []
+    },
+    "aid": "S×q029<q026",
+    "expect": "fail",
+    "qid": "q029"
+   },
+   {
+    "l1": "fail",
+    "l2": "fail",
+    "ev1": {
+     "seq": 235,
+     "t": 897.521
+    },
+    "ev2": {
+     "seq": 238,
+     "t": 909.437
+    },
+    "fin1": {
+     "ok": true,
+     "score": 0.0,
+     "verdict": "fail",
+     "strict": [],
+     "paraphrase": [],
+     "miss": [
+      "a1",
+      "a2",
+      "a3",
+      "a4",
+      "a5"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 0.0,
+     "verdict": "fail",
+     "strict": [],
+     "paraphrase": [],
+     "miss": [
+      "a1",
+      "a2",
+      "a3",
+      "a4",
+      "a5"
+     ],
+     "span_invalid": []
+    },
+    "aid": "S×q014<o011",
+    "expect": "fail",
+    "qid": "q014"
+   },
+   {
+    "l1": "pass",
+    "l2": "pass",
+    "ev1": {
+     "seq": 289,
+     "t": 1398.72
+    },
+    "ev2": {
+     "seq": 295,
+     "t": 1412.024
+    },
+    "fin1": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "p6"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 1.0,
+     "verdict": "pass",
+     "strict": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "paraphrase": [],
+     "miss": [
+      "p6"
+     ],
+     "span_invalid": []
+    },
+    "aid": "S+o011",
+    "expect": "pass",
+    "qid": "o011"
+   },
+   {
+    "l1": "fail",
+    "l2": "fail",
+    "ev1": {
+     "seq": 298,
+     "t": 1424.975
+    },
+    "ev2": {
+     "seq": 319,
+     "t": 1611.321
+    },
+    "fin1": {
+     "ok": true,
+     "score": 0.0,
+     "verdict": "fail",
+     "strict": [],
+     "paraphrase": [],
+     "miss": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5",
+      "p6"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 0.0,
+     "verdict": "fail",
+     "strict": [],
+     "paraphrase": [],
+     "miss": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5",
+      "p6"
+     ],
+     "span_invalid": []
+    },
+    "aid": "S×o002<o023",
+    "expect": "fail",
+    "qid": "o002"
+   },
+   {
+    "l1": "fail",
+    "l2": "fail",
+    "ev1": {
+     "seq": 307,
+     "t": 1507.666
+    },
+    "ev2": {
+     "seq": 310,
+     "t": 1519.019
+    },
+    "fin1": {
+     "ok": true,
+     "score": 0.0,
+     "verdict": "fail",
+     "strict": [],
+     "paraphrase": [],
+     "miss": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 0.0,
+     "verdict": "fail",
+     "strict": [],
+     "paraphrase": [],
+     "miss": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "span_invalid": []
+    },
+    "aid": "S×o030<o001",
+    "expect": "fail",
+    "qid": "o030"
+   },
+   {
+    "l1": "fail",
+    "l2": "fail",
+    "ev1": {
+     "seq": 322,
+     "t": 1622.776
+    },
+    "ev2": {
+     "seq": 328,
+     "t": 1634.551
+    },
+    "fin1": {
+     "ok": true,
+     "score": 0.0,
+     "verdict": "fail",
+     "strict": [],
+     "paraphrase": [],
+     "miss": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "span_invalid": []
+    },
+    "fin2": {
+     "ok": true,
+     "score": 0.0,
+     "verdict": "fail",
+     "strict": [],
+     "paraphrase": [],
+     "miss": [
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5"
+     ],
+     "span_invalid": []
+    },
+    "aid": "S×o005<o029",
+    "expect": "fail",
+    "qid": "o005"
+   }
+  ],
+  "cite": []
+ },
+ "voided": 0
+}

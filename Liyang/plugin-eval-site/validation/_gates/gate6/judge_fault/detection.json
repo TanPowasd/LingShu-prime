@@ -1,0 +1,78 @@
+{
+ "V1": {
+  "judge_sha256": "60afdec499e112c184dd010e981261b74a27603db809af63b61acbb76fd52832",
+  "all_pass": false,
+  "by_class": {
+   "correct": {
+    "n": 24,
+    "pass": 24
+   },
+   "wrong": {
+    "n": 24,
+    "pass": 17
+   },
+   "boundary": {
+    "n": 26,
+    "pass": 26
+   }
+  },
+  "fails": [
+   [
+    "R×C-021<C-071",
+    "miss",
+    "strict"
+   ],
+   [
+    "R×C-051<C-021",
+    "miss",
+    "strict"
+   ],
+   [
+    "R×C-069<C-003",
+    "miss",
+    "strict"
+   ],
+   [
+    "R×C-077<C-038",
+    "miss",
+    "strict"
+   ],
+   [
+    "R×C-078<C-093",
+    "miss",
+    "strict"
+   ],
+   [
+    "R×C-110<C-055",
+    "miss",
+    "strict"
+   ],
+   [
+    "R0C-021",
+    "miss",
+    "strict"
+   ]
+  ],
+  "batch_gate_pass": true
+ },
+ "V2": {
+  "judge_sha256": "f8578a779316ff8a7db5c6907264a9c7091f39c84feb7f77eacd16effbc98fae",
+  "all_pass": true,
+  "by_class": {
+   "correct": {
+    "n": 24,
+    "pass": 24
+   },
+   "wrong": {
+    "n": 24,
+    "pass": 24
+   },
+   "boundary": {
+    "n": 26,
+    "pass": 26
+   }
+  },
+  "fails": [],
+  "batch_gate_pass": true
+ }
+}

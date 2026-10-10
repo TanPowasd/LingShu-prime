@@ -1,0 +1,415 @@
+{
+ "runs": {
+  "pair2-B0": {
+   "final": true,
+   "valid": true,
+   "validity": {
+    "valid": true,
+    "reasons": []
+   },
+   "budget_after": {
+    "calls": 362,
+    "cost_usd": 0.0264
+   }
+  },
+  "pair2-P": {
+   "final": true,
+   "valid": false,
+   "validity": {
+    "valid": false,
+    "reasons": [
+     "确认的环境故障：11:43 CST 左右沙箱重启，pair2-P/recording.jsonl 自约 4.0 MiB 起持续 EIO（三次重读、逐 4k 块读 683 块失败），11:38 之后的录像事件（阶段 B 第 45–89 卡注入、作答 28 卡）不可读——证据链受中断污染",
+     "状态独立校验：verify_state.py card-post 阶段 A 16/16、阶段 B 89/89 通过（状态本身未见损坏），但录像为必需证据，不能续跑补齐"
+    ],
+    "invalidated_wall": "2026-10-10 11:52 CST",
+    "by": "pes-e2e-dam（接手）",
+    "policy": "preregistration.sample_plan.invalid_policy：任一侧无效→整对作废留痕，两侧按原侧序重跑为 pair2-r1"
+   }
+  },
+  "pair1-P": {
+   "final": true,
+   "valid": true,
+   "validity": {
+    "valid": true,
+    "reasons": []
+   },
+   "budget_after": {
+    "calls": 963,
+    "cost_usd": 0.5162,
+    "degraded": [
+     {
+      "file": "raw/pair2-P/recording.jsonl",
+      "error": "OSError(5, 'Input/output error')",
+      "prefix": [
+       61,
+       0.1166
+      ],
+      "artifacts": [
+       133,
+       0.2332
+      ],
+      "used": [
+       133,
+       0.2332
+      ]
+     }
+    ]
+   }
+  },
+  "pair1-B0": {
+   "final": true,
+   "valid": false,
+   "validity": {
+    "valid": false,
+    "reasons": [
+     "确认的环境故障：12:57 CST 左右沙箱第二次重启；工作区盘回退到约 12:45 的状态（之后写入丢失，含已提交的 pair1-B0 完成结果 37.64/100 与 commit 5c3394b/d9b4c29），且 pair1-B0/recording.jsonl、judge/verdicts.jsonl 读出 EIO——证据链受中断污染",
+     "按预注册 invalid_policy 整对作废留痕，不续跑；丢失前观察到的 pair1 读数（B0 37.64，P 32.02，Δ −5.62）只作留痕，不进分析"
+    ],
+    "invalidated_wall": "2026-10-10 13:06 CST",
+    "by": "pes-e2e-dam（接手）",
+    "policy": "preregistration.sample_plan.invalid_policy"
+   }
+  },
+  "pair3-B0": {
+   "final": true,
+   "valid": true,
+   "validity": {
+    "valid": true,
+    "reasons": []
+   },
+   "budget_after": {
+    "calls": 1415,
+    "cost_usd": 0.5545,
+    "degraded": [
+     {
+      "file": "raw/pair1-B0/recording.jsonl",
+      "error": "OSError(5, 'Input/output error')",
+      "prefix": [
+       0,
+       0.0
+      ],
+      "artifacts": [
+       89,
+       0.0116
+      ],
+      "used": [
+       89,
+       0.0116
+      ]
+     },
+     {
+      "file": "raw/pair2-P/recording.jsonl",
+      "error": "OSError(5, 'Input/output error')",
+      "prefix": [
+       61,
+       0.1166
+      ],
+      "artifacts": [
+       133,
+       0.2332
+      ],
+      "used": [
+       133,
+       0.2332
+      ]
+     }
+    ]
+   }
+  },
+  "pair3-P": {
+   "final": true,
+   "valid": true,
+   "validity": {
+    "valid": true,
+    "reasons": []
+   },
+   "budget_after": {
+    "calls": 1883,
+    "cost_usd": 0.815,
+    "degraded": [
+     {
+      "file": "raw/pair1-B0/recording.jsonl",
+      "error": "OSError(5, 'Input/output error')",
+      "prefix": [
+       0,
+       0.0
+      ],
+      "artifacts": [
+       89,
+       0.0116
+      ],
+      "used": [
+       89,
+       0.0116
+      ]
+     },
+     {
+      "file": "raw/pair2-P/recording.jsonl",
+      "error": "OSError(5, 'Input/output error')",
+      "prefix": [
+       61,
+       0.1166
+      ],
+      "artifacts": [
+       133,
+       0.2332
+      ],
+      "used": [
+       133,
+       0.2332
+      ]
+     }
+    ]
+   }
+  },
+  "pair2-B0-r1": {
+   "final": true,
+   "valid": true,
+   "validity": {
+    "valid": true,
+    "reasons": []
+   },
+   "budget_after": {
+    "calls": 2246,
+    "cost_usd": 0.8416,
+    "degraded": [
+     {
+      "file": "raw/pair1-B0/recording.jsonl",
+      "error": "OSError(5, 'Input/output error')",
+      "prefix": [
+       0,
+       0.0
+      ],
+      "artifacts": [
+       89,
+       0.0116
+      ],
+      "used": [
+       89,
+       0.0116
+      ]
+     },
+     {
+      "file": "raw/pair2-P/recording.jsonl",
+      "error": "OSError(5, 'Input/output error')",
+      "prefix": [
+       61,
+       0.1166
+      ],
+      "artifacts": [
+       133,
+       0.2332
+      ],
+      "used": [
+       133,
+       0.2332
+      ]
+     }
+    ]
+   }
+  },
+  "pair2-P-r1": {
+   "final": true,
+   "valid": true,
+   "validity": {
+    "valid": true,
+    "reasons": []
+   },
+   "budget_after": {
+    "calls": 2714,
+    "cost_usd": 1.1015,
+    "degraded": [
+     {
+      "file": "raw/pair1-B0/recording.jsonl",
+      "error": "OSError(5, 'Input/output error')",
+      "prefix": [
+       0,
+       0.0
+      ],
+      "artifacts": [
+       89,
+       0.0116
+      ],
+      "used": [
+       89,
+       0.0116
+      ]
+     },
+     {
+      "file": "raw/pair2-P/recording.jsonl",
+      "error": "OSError(5, 'Input/output error')",
+      "prefix": [
+       61,
+       0.1166
+      ],
+      "artifacts": [
+       133,
+       0.2332
+      ],
+      "used": [
+       133,
+       0.2332
+      ]
+     }
+    ]
+   }
+  },
+  "pair1-P-r1": {
+   "final": true,
+   "valid": true,
+   "validity": {
+    "valid": true,
+    "reasons": []
+   },
+   "budget_after": {
+    "calls": 3182,
+    "cost_usd": 1.3587,
+    "degraded": [
+     {
+      "file": "raw/pair1-B0/recording.jsonl",
+      "error": "OSError(5, 'Input/output error')",
+      "prefix": [
+       0,
+       0.0
+      ],
+      "artifacts": [
+       89,
+       0.0116
+      ],
+      "used": [
+       89,
+       0.0116
+      ]
+     },
+     {
+      "file": "raw/pair2-P/recording.jsonl",
+      "error": "OSError(5, 'Input/output error')",
+      "prefix": [
+       61,
+       0.1166
+      ],
+      "artifacts": [
+       133,
+       0.2332
+      ],
+      "used": [
+       133,
+       0.2332
+      ]
+     }
+    ]
+   }
+  },
+  "pair1-B0-r1": {
+   "final": true,
+   "valid": true,
+   "validity": {
+    "valid": true,
+    "reasons": []
+   },
+   "budget_after": {
+    "calls": 3545,
+    "cost_usd": 1.3853,
+    "degraded": [
+     {
+      "file": "raw/pair1-B0/recording.jsonl",
+      "error": "OSError(5, 'Input/output error')",
+      "prefix": [
+       0,
+       0.0
+      ],
+      "artifacts": [
+       89,
+       0.0116
+      ],
+      "used": [
+       89,
+       0.0116
+      ]
+     },
+     {
+      "file": "raw/pair2-P/recording.jsonl",
+      "error": "OSError(5, 'Input/output error')",
+      "prefix": [
+       61,
+       0.1166
+      ],
+      "artifacts": [
+       133,
+       0.2332
+      ],
+      "used": [
+       133,
+       0.2332
+      ]
+     }
+    ]
+   }
+  }
+ },
+ "appended_reruns": [
+  {
+   "run_id": "pair2-B0-r1",
+   "pair_id": "pair2-r1",
+   "scenario_id": "hmb-e2e-history-1",
+   "rerun": 2,
+   "condition": "B0",
+   "gen_seed": 2,
+   "order_index": 0,
+   "orig_pair_id": "pair2",
+   "reason": "pair2-P 无效：['确认的环境故障：11:43 CST 左右沙箱重启，pair2-P/recording.jsonl 自约 4.0 MiB 起持续 EIO（三次重读、逐 4k 块读 683 块失败），11:38 之后的录像事件（阶段 B 第 45–89 卡注入、作答 28 卡）不可读——证据链受中断污染']"
+  },
+  {
+   "run_id": "pair2-P-r1",
+   "pair_id": "pair2-r1",
+   "scenario_id": "hmb-e2e-history-1",
+   "rerun": 2,
+   "condition": "P",
+   "gen_seed": 2,
+   "order_index": 1,
+   "orig_pair_id": "pair2",
+   "reason": "pair2-P 无效：['确认的环境故障：11:43 CST 左右沙箱重启，pair2-P/recording.jsonl 自约 4.0 MiB 起持续 EIO（三次重读、逐 4k 块读 683 块失败），11:38 之后的录像事件（阶段 B 第 45–89 卡注入、作答 28 卡）不可读——证据链受中断污染']"
+  },
+  {
+   "run_id": "pair1-P-r1",
+   "pair_id": "pair1-r1",
+   "scenario_id": "hmb-e2e-history-1",
+   "rerun": 1,
+   "condition": "P",
+   "gen_seed": 1,
+   "order_index": 2,
+   "orig_pair_id": "pair1",
+   "reason": "pair1-B0 无效：['确认的环境故障：12:57 CST 左右沙箱第二次重启；工作区盘回退到约 12:45 的状态（之后写入丢失，含已提交的 pair1-B0 完成结果 37.64/100 与 commit 5c3394b/d9b4c29），且 pair1-B0/recording.jsonl、judge/verdicts.jsonl 读出 EIO——证据链受中断污染']"
+  },
+  {
+   "run_id": "pair1-B0-r1",
+   "pair_id": "pair1-r1",
+   "scenario_id": "hmb-e2e-history-1",
+   "rerun": 1,
+   "condition": "B0",
+   "gen_seed": 1,
+   "order_index": 3,
+   "orig_pair_id": "pair1",
+   "reason": "pair1-B0 无效：['确认的环境故障：12:57 CST 左右沙箱第二次重启；工作区盘回退到约 12:45 的状态（之后写入丢失，含已提交的 pair1-B0 完成结果 37.64/100 与 commit 5c3394b/d9b4c29），且 pair1-B0/recording.jsonl、judge/verdicts.jsonl 读出 EIO——证据链受中断污染']"
+  }
+ ],
+ "invalidated_pairs": [
+  {
+   "pair_id": "pair2",
+   "by_run": "pair2-P",
+   "reasons": [
+    "确认的环境故障：11:43 CST 左右沙箱重启，pair2-P/recording.jsonl 自约 4.0 MiB 起持续 EIO（三次重读、逐 4k 块读 683 块失败），11:38 之后的录像事件（阶段 B 第 45–89 卡注入、作答 28 卡）不可读——证据链受中断污染",
+    "状态独立校验：verify_state.py card-post 阶段 A 16/16、阶段 B 89/89 通过（状态本身未见损坏），但录像为必需证据，不能续跑补齐"
+   ]
+  },
+  {
+   "pair_id": "pair1",
+   "by_run": "pair1-B0",
+   "reasons": [
+    "确认的环境故障：12:57 CST 左右沙箱第二次重启；工作区盘回退到约 12:45 的状态（之后写入丢失，含已提交的 pair1-B0 完成结果 37.64/100 与 commit 5c3394b/d9b4c29），且 pair1-B0/recording.jsonl、judge/verdicts.jsonl 读出 EIO——证据链受中断污染",
+    "按预注册 invalid_policy 整对作废留痕，不续跑；丢失前观察到的 pair1 读数（B0 37.64，P 32.02，Δ −5.62）只作留痕，不进分析"
+   ]
+  }
+ ],
+ "all_done": true
+}

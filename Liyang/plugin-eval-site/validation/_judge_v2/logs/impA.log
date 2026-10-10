@@ -1,0 +1,34 @@
+{
+ "std_baseline": 0.5,
+ "std_acc_JC": 1.0,
+ "std_acc_JF": 1.0,
+ "tgt_acc_JF": 0.875,
+ "final_acc_std": 1.0,
+ "final_acc_tgt": 0.875,
+ "final_tgt_by_kind": {
+  "fabricate": "13/14",
+  "swap": "1/2"
+ },
+ "canary_n": 276,
+ "canary_fail": [],
+ "rule_nobasis_canary_n": 92,
+ "rule_nobasis_canary_fail": [],
+ "cite_acc_j1": 1.0,
+ "cite_acc_j2": 1.0,
+ "items_agree_cov_noconflict": {
+  "n": 48,
+  "agree": 0.9583,
+  "kappa": 0.8636
+ },
+ "items_agree_all": {
+  "n": 61,
+  "agree": 0.9672,
+  "kappa": 0.8699
+ },
+ "anchors_agree_std": {
+  "n": 16,
+  "agree": 1.0,
+  "kappa": 1.0
+ },
+ "pass": false
+}

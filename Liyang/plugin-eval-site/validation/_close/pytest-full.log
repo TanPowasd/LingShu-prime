@@ -1,0 +1,9 @@
+........................................................................ [ 54%]
+.............................................................            [100%]
+=============================== warnings summary ===============================
+tests/test_gates_offline.py::test_regression_boundary_catches_mutant
+  /tmp/pytest-of-sandbox/pytest-3/test_regression_boundary_catch0/judge_mut.py:13: DeprecationWarning: __package__ != __spec__.parent
+    from .examB import extract_json
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+133 passed, 1 warning in 19.06s

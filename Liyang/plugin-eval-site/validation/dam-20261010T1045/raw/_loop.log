@@ -1,0 +1,101 @@
+[loop] 2026-10-10 10:50:41 第 1 轮
+== pair2-B0 (B0) 开始
+[loop] 2026-10-10 11:01:10 第 1 轮
+== pair2-B0 (B0) 开始
+== pair2-B0 → {'valid': True, 'reasons': []}
+== pair2-P (P) 开始
+[loop] 2026-10-10 11:45:42 第 1 轮
+Traceback (most recent call last):
+  File "/workspace/work/pes/plugins/dsh-auto-memory/run_pairs.py", line 343, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/workspace/work/pes/plugins/dsh-auto-memory/run_pairs.py", line 310, in main
+    b = budget(vdir)
+        ^^^^^^^^^^^^
+  File "/workspace/work/pes/plugins/dsh-auto-memory/run_pairs.py", line 275, in budget
+    for line in f:
+                ^
+OSError: [Errno 5] Input/output error
+[loop] rc=1
+[loop] 2026-10-10 11:46:13 第 2 轮
+Traceback (most recent call last):
+  File "/workspace/work/pes/plugins/dsh-auto-memory/run_pairs.py", line 343, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/workspace/work/pes/plugins/dsh-auto-memory/run_pairs.py", line 310, in main
+    b = budget(vdir)
+        ^^^^^^^^^^^^
+  File "/workspace/work/pes/plugins/dsh-auto-memory/run_pairs.py", line 275, in budget
+    for line in f:
+                ^
+OSError: [Errno 5] Input/output error
+[loop] rc=1
+[loop] 2026-10-10 11:46:43 第 3 轮
+Traceback (most recent call last):
+  File "/workspace/work/pes/plugins/dsh-auto-memory/run_pairs.py", line 343, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/workspace/work/pes/plugins/dsh-auto-memory/run_pairs.py", line 310, in main
+    b = budget(vdir)
+        ^^^^^^^^^^^^
+  File "/workspace/work/pes/plugins/dsh-auto-memory/run_pairs.py", line 275, in budget
+    for line in f:
+                ^
+OSError: [Errno 5] Input/output error
+[loop] rc=1
+[loop] 2026-10-10 11:47:14 第 4 轮
+Traceback (most recent call last):
+  File "/workspace/work/pes/plugins/dsh-auto-memory/run_pairs.py", line 343, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/workspace/work/pes/plugins/dsh-auto-memory/run_pairs.py", line 310, in main
+    b = budget(vdir)
+        ^^^^^^^^^^^^
+  File "/workspace/work/pes/plugins/dsh-auto-memory/run_pairs.py", line 275, in budget
+    for line in f:
+                ^
+OSError: [Errno 5] Input/output error
+[loop] rc=1
+[loop] 2026-10-10 11:47:44 第 5 轮
+Traceback (most recent call last):
+  File "/workspace/work/pes/plugins/dsh-auto-memory/run_pairs.py", line 343, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/workspace/work/pes/plugins/dsh-auto-memory/run_pairs.py", line 310, in main
+    b = budget(vdir)
+        ^^^^^^^^^^^^
+  File "/workspace/work/pes/plugins/dsh-auto-memory/run_pairs.py", line 275, in budget
+    for line in f:
+                ^
+OSError: [Errno 5] Input/output error
+[loop] rc=1
+[loop] 2026-10-10 11:48:15 第 6 轮
+Traceback (most recent call last):
+  File "/workspace/work/pes/plugins/dsh-auto-memory/run_pairs.py", line 343, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/workspace/work/pes/plugins/dsh-auto-memory/run_pairs.py", line 310, in main
+    b = budget(vdir)
+        ^^^^^^^^^^^^
+  File "/workspace/work/pes/plugins/dsh-auto-memory/run_pairs.py", line 275, in budget
+    for line in f:
+                ^
+OSError: [Errno 5] Input/output error
+[loop] rc=1
+[接手] 2026-10-10 11:53:17 pes-e2e-dam 接手：pair2 整对作废（见 2bdd790），续跑外壳重启 DAM_CONC=8
+[loop] 2026-10-10 11:53:17 第 1 轮
+== pair1-P (P) 开始
+== pair1-P → {'valid': True, 'reasons': []}
+== pair1-B0 (B0) 开始
+[接手] 2026-10-10 13:06:52 12:57 沙箱重启（盘回退至~12:45、pair1-B0 录像/判词 EIO）→ pair1 整对作废，追加 pair1-P-r1/pair1-B0-r1；续跑外壳重启
+[loop] 2026-10-10 13:06:52 第 1 轮
+== pair3-B0 (B0) 开始
+== pair3-B0 → {'valid': True, 'reasons': []}
+== pair3-P (P) 开始
+== pair3-P → {'valid': True, 'reasons': []}
+== pair2-B0-r1 (B0) 开始
+== pair2-B0-r1 → {'valid': True, 'reasons': []}
+== pair2-P-r1 (P) 开始
+== pair2-P-r1 → {'valid': True, 'reasons': []}
+== pair1-P-r1 (P) 开始
+== pair1-P-r1 → {'valid': True, 'reasons': []}

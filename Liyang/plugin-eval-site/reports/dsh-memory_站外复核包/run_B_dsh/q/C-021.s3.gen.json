@@ -1,0 +1,47 @@
+{
+ "qid": "C-021",
+ "seed": 3,
+ "raw": "{\"qid\": \"C-021\", \"prediction\": \"人类会继续以「继续生成」这类简短指令推进协议文本的产出，让 AI 接着把附录 X 到附录 XIV 以及版本历史和结语写下去，而不会提出新的问题或修改要求。\", \"basis\": [{\"file\": \"信任协议权重调整.md\", \"line\": 51372, \"quote\": \"**我说：**\\n\\n继续生成\\n\\n---\"}, {\"file\": \"信任协议权重调整.md\", \"line\": 51397, \"quote\": \"由于这是大量文本，我需要合理安排，确保逻辑清晰，每个附录都有明确的目的和内容。\"}], \"confidence\": 0.72}",
+ "answer": {
+  "qid": "C-021",
+  "prediction": "人类会继续以「继续生成」这类简短指令推进协议文本的产出，让 AI 接着把附录 X 到附录 XIV 以及版本历史和结语写下去，而不会提出新的问题或修改要求。",
+  "basis": [
+   {
+    "file": "信任协议权重调整.md",
+    "line": 51372,
+    "quote": "**我说：**\n\n继续生成\n\n---"
+   },
+   {
+    "file": "信任协议权重调整.md",
+    "line": 51397,
+    "quote": "由于这是大量文本，我需要合理安排，确保逻辑清晰，每个附录都有明确的目的和内容。"
+   }
+  ],
+  "confidence": 0.72,
+  "parse_err": false
+ },
+ "basis_check": [
+  {
+   "file": "信任协议权重调整.md",
+   "line": 51372,
+   "verbatim": true,
+   "line_pm3": false
+  },
+  {
+   "file": "信任协议权重调整.md",
+   "line": 51397,
+   "verbatim": true,
+   "line_pm3": true
+  }
+ ],
+ "usage": {
+  "prompt_tokens": 1630,
+  "completion_tokens": 150,
+  "total_tokens": 1780
+ },
+ "finish_reason": "stop",
+ "ev": [
+  824,
+  5770.993
+ ]
+}

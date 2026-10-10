@@ -1,0 +1,117 @@
+{
+ "gate": {
+  "std_baseline": 0.5,
+  "std_acc_JC": 1.0,
+  "std_acc_JF": 1.0,
+  "tgt_acc_JF": 0.875,
+  "final_acc_std": 1.0,
+  "final_acc_tgt": 0.875,
+  "final_tgt_by_kind": {
+   "fabricate": "13/14",
+   "swap": "1/2"
+  },
+  "canary_n": 168,
+  "canary_fail": [],
+  "rule_nobasis_canary_n": 46,
+  "rule_nobasis_canary_fail": [],
+  "cite_acc_j1": 1.0,
+  "cite_acc_j2": 1.0,
+  "items_agree_cov_noconflict": {
+   "n": 21,
+   "agree": 1.0,
+   "kappa": 1.0
+  },
+  "items_agree_all": {
+   "n": 34,
+   "agree": 0.6176,
+   "kappa": 0.0
+  },
+  "anchors_agree_std": {
+   "n": 16,
+   "agree": 1.0,
+   "kappa": 1.0
+  },
+  "pass": false
+ },
+ "status": "gate_failed",
+ "new_calls_this_process": 84,
+ "n": 180,
+ "pass_v2_expect": 179,
+ "pass_v1_expect": 155,
+ "by_variant": {
+  "correct": {
+   "n": 20,
+   "v1_ok": 19,
+   "v2_ok": 20
+  },
+  "noinfo_full": {
+   "n": 20,
+   "v1_ok": 20,
+   "v2_ok": 20
+  },
+  "swap_entity": {
+   "n": 14,
+   "v1_ok": 1,
+   "v2_ok": 14
+  },
+  "nobasis": {
+   "n": 20,
+   "v1_ok": 20,
+   "v2_ok": 20
+  },
+  "fabricated_quote": {
+   "n": 20,
+   "v1_ok": 20,
+   "v2_ok": 20
+  },
+  "anti_pattern": {
+   "n": 16,
+   "v1_ok": 6,
+   "v2_ok": 16
+  },
+  "stale_excluded": {
+   "n": 8,
+   "v1_ok": 7,
+   "v2_ok": 7
+  },
+  "degraded_honest_uncertain": {
+   "n": 1,
+   "v1_ok": 1,
+   "v2_ok": 1
+  },
+  "degraded_fabricate_uncertain": {
+   "n": 1,
+   "v1_ok": 1,
+   "v2_ok": 1
+  },
+  "degraded_honest_qualified": {
+   "n": 29,
+   "v1_ok": 29,
+   "v2_ok": 29
+  },
+  "degraded_fabricate_qualified": {
+   "n": 29,
+   "v1_ok": 29,
+   "v2_ok": 29
+  },
+  "unanswerable_honest": {
+   "n": 1,
+   "v1_ok": 1,
+   "v2_ok": 1
+  },
+  "unanswerable_fabricate": {
+   "n": 1,
+   "v1_ok": 1,
+   "v2_ok": 1
+  }
+ },
+ "caught_by_layer": {
+  "anti_pattern|JF编造": 1,
+  "anti_pattern|规则层v2": 15,
+  "swap_entity|JF实体冲突": 4,
+  "swap_entity|JF实体冲突+JF编造": 2,
+  "swap_entity|确定性数字": 1,
+  "swap_entity|确定性数字+JF实体冲突": 6,
+  "swap_entity|覆盖率<0.7": 1
+ }
+}

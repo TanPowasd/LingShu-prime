@@ -1,5 +1,7 @@
 # Liyang · lingshu_ng（灵枢重写版）
 
+> **插件测评站**（另一条工作线）：见 [`plugin-eval-site/`](plugin-eval-site/README.md) —— 方案 v3.0 端到端验证结果、判分器缺陷与 v2 候选、多场景考卷 C。
+
 > 本目录由 Liyang（GitHub: Liyang1145）提交，是对上游 [FuRongJun-1999/lingshu](https://github.com/FuRongJun-1999/lingshu) 身体侧记忆引擎的**完全重写**，以及配套的测评脚本与读数。
 > 快照来源：重写仓库分支 `ng` 的已提交 HEAD `875d838bdbba2d686d429e1998edf67cdbb96b62`（2026-10-09 13:00 CST；= iter4 收口 `11a449a` + 规模优化线 `arch-scale` rebase 后快进合入），用 `git archive` 导出，不含任何未提交改动。该提交上 `python -m pytest tests_ng -q`：**2798 passed**（含上游 `tests/` 的开发树）。
 > 同步范围：`lingshu_ng/`、`lingshu/`、`tests_ng/`、`evalsuite*/`、`REWRITE_REPORT_core.md`、`ARCH_SCALE_LOG.md`、`tools/scale/`。不含模型文件、SQLite 库、缓存与 `__pycache__`。

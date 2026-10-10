@@ -1,0 +1,118 @@
+{
+ "checks": [
+  {
+   "run": "pair3-B0",
+   "recomputed": 33.7079,
+   "scores_json": 33.7079,
+   "item_scores_equal": true
+  },
+  {
+   "run": "pair3-P",
+   "recomputed": 35.9551,
+   "scores_json": 35.9551,
+   "item_scores_equal": true
+  },
+  {
+   "run": "pair2-B0-r1",
+   "recomputed": 33.1461,
+   "scores_json": 33.1461,
+   "item_scores_equal": true
+  },
+  {
+   "run": "pair2-P-r1",
+   "recomputed": 33.7079,
+   "scores_json": 33.7079,
+   "item_scores_equal": true
+  },
+  {
+   "run": "pair1-B0-r1",
+   "recomputed": 34.8315,
+   "scores_json": 34.8315,
+   "item_scores_equal": true
+  },
+  {
+   "run": "pair1-P-r1",
+   "recomputed": 32.0225,
+   "scores_json": 32.0225,
+   "item_scores_equal": true
+  }
+ ],
+ "pairs": [
+  {
+   "pair_id": "pair3",
+   "B0": 33.7079,
+   "P": 35.9551,
+   "delta": 2.2472
+  },
+  {
+   "pair_id": "pair2-r1",
+   "B0": 33.1461,
+   "P": 33.7079,
+   "delta": 0.5618
+  },
+  {
+   "pair_id": "pair1-r1",
+   "B0": 34.8315,
+   "P": 32.0225,
+   "delta": -2.809
+  }
+ ],
+ "main": {
+  "run_state": "有效",
+  "release_state": "方法试验",
+  "capability_observed": "❓",
+  "estimate": 0.0,
+  "interval": [
+   0.0,
+   0.0
+  ],
+  "half_width": 0.0,
+  "base_abs": 33.89513108614232,
+  "plug_abs": 33.89513108614232,
+  "n_scenarios": 1,
+  "reruns_per_scenario": 3
+ },
+ "ref": {
+  "estimate": 0.0,
+  "interval": [
+   0.0,
+   0.0
+  ],
+  "half_width": 0.0,
+  "capability_observed": "❓",
+  "base_abs": 33.89513108614233,
+  "plug_abs": 33.89513108614232
+ },
+ "compare_normalized": [
+  "run_state: '有效' ≠ None",
+  "release_state: '方法试验' ≠ None"
+ ],
+ "vs_baseline_report": {
+  "estimate": [
+   0.0,
+   0.0
+  ],
+  "interval": [
+   [
+    0.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "capability_observed": [
+   "❓",
+   "❓"
+  ],
+  "run_state": [
+   "有效",
+   "有效"
+  ],
+  "release_state": [
+   "方法试验",
+   "方法试验"
+  ]
+ }
+}

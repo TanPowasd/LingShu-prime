@@ -1,0 +1,168 @@
+{
+ "created": "2026-10-10T10:34:21+08:00",
+ "task_ingest": {
+  "X": {
+   "session": "task_B.md",
+   "turns": 2,
+   "new_events": 2,
+   "written": 2,
+   "denied": 0,
+   "id_map_hit": "2/2",
+   "dur_s": 0.003,
+   "chars": 39
+  },
+  "Y": {
+   "session": "task_B.md",
+   "turns": 2,
+   "new_events": 2,
+   "written": 2,
+   "denied": 0,
+   "id_map_hit": "2/2",
+   "dur_s": 0.003,
+   "chars": 39
+  }
+ },
+ "results": [
+  {
+   "case": "X",
+   "injected": "full",
+   "expected": "通过（无误报）",
+   "observed": "通过",
+   "pass": true,
+   "bad_by_class": {},
+   "detail": {
+    "ok": true,
+    "reject_pair": false,
+    "n_objects": 30,
+    "n_bad": 0,
+    "bad_by_class": {},
+    "objects": [],
+    "reason": null
+   }
+  },
+  {
+   "case": "Y",
+   "injected": "main_only",
+   "expected": "拒绝配对",
+   "observed": "拒绝配对",
+   "pass": true,
+   "bad_by_class": {
+    "审计/访问日志": {
+     "hash_mismatch": 3
+    },
+    "索引": {
+     "hash_mismatch": 1
+    },
+    "摄取游标/缓存": {
+     "hash_mismatch": 1
+    }
+   },
+   "detail": {
+    "ok": false,
+    "reject_pair": true,
+    "n_objects": 30,
+    "n_bad": 5,
+    "bad_by_class": {
+     "审计/访问日志": {
+      "hash_mismatch": 3
+     },
+     "索引": {
+      "hash_mismatch": 1
+     },
+     "摄取游标/缓存": {
+      "hash_mismatch": 1
+     }
+    },
+    "objects": [
+     {
+      "object": "MDCG_ROOT/_audit.jsonl",
+      "class": "审计/访问日志",
+      "status": "hash_mismatch",
+      "baseline": "7f92d15f7038c99f",
+      "current": "40213ecac67824c5"
+     },
+     {
+      "object": "MDCG_ROOT/_crypto.jsonl",
+      "class": "审计/访问日志",
+      "status": "hash_mismatch",
+      "baseline": "4eb19fc6d6fef545",
+      "current": "4506e82c9de4a1f4"
+     },
+     {
+      "object": "MDCG_ROOT/_heartbeat.jsonl",
+      "class": "审计/访问日志",
+      "status": "hash_mismatch",
+      "baseline": "7bb8265a4ac266be",
+      "current": "8d96fb1f9e1a8a57"
+     },
+     {
+      "object": "MDCG_ROOT/_index.json",
+      "class": "索引",
+      "status": "hash_mismatch",
+      "baseline": "1fe1592187899861",
+      "current": "e5c8aa22d7a18c0b"
+     },
+     {
+      "object": "MDCG_ROOT/_sources.json",
+      "class": "摄取游标/缓存",
+      "status": "hash_mismatch",
+      "baseline": "8526aaba4edbdb1a",
+      "current": "c18ab554825e5705"
+     }
+    ],
+    "reason": "恢复验证失败：受控状态对象与基线快照不一致 → 本次运行不得计入配对样本（手册 §3.2 四要素④）",
+    "pollution_probe": {
+     "recall_on_polluted_state": {
+      "我的猫叫什么名字，几岁": [
+       {
+        "src": "baseline_A.md#L1-L1",
+        "text": "我的猫叫小橘，今年三岁，最喜欢吃鸡胸肉。"
+       }
+      ],
+      "猫最喜欢吃什么": [
+       {
+        "src": "baseline_A.md#L1-L1",
+        "text": "我的猫叫小橘，今年三岁，最喜欢吃鸡胸肉。"
+       }
+      ]
+     },
+     "reingest_same_session": {
+      "session": "task_B.md",
+      "turns": 2,
+      "new_events": 0,
+      "written": 0,
+      "denied": 0,
+      "id_map_hit": "0/0",
+      "dur_s": 0.0,
+      "chars": 39
+     }
+    },
+    "after_full_restore": {
+     "ok": true,
+     "n_bad": 0
+    },
+    "rerun_pair": {
+     "task_ingest": {
+      "session": "task_B.md",
+      "turns": 2,
+      "new_events": 2,
+      "written": 2,
+      "denied": 0,
+      "id_map_hit": "2/2",
+      "dur_s": 0.003,
+      "chars": 39
+     },
+     "recall": null
+    }
+   }
+  },
+  {
+   "case": "control_baseline",
+   "injected": "无（刚完整恢复）",
+   "expected": "通过",
+   "observed": "通过",
+   "pass": true
+  }
+ ],
+ "all_pass": true
+}

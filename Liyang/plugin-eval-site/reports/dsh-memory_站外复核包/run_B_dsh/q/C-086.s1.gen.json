@@ -1,0 +1,36 @@
+{
+ "qid": "C-086",
+ "seed": 1,
+ "raw": "{\"qid\": \"C-086\", \"prediction\": \"我会接着问：历史篇具体要写哪些内容、按什么时间线或阶段来组织，比如从协议最早的版本开始，还是从更早的对话起点开始？并请AI先给出一个历史篇的目录或内容框架建议，以便我确认。\", \"basis\": [{\"file\": \"确认协议内容.md\", \"line\": 1640, \"quote\": \"你认为历史篇需要怎么制作？其内容包含什么？\"}], \"confidence\": 0.72}",
+ "answer": {
+  "qid": "C-086",
+  "prediction": "我会接着问：历史篇具体要写哪些内容、按什么时间线或阶段来组织，比如从协议最早的版本开始，还是从更早的对话起点开始？并请AI先给出一个历史篇的目录或内容框架建议，以便我确认。",
+  "basis": [
+   {
+    "file": "确认协议内容.md",
+    "line": 1640,
+    "quote": "你认为历史篇需要怎么制作？其内容包含什么？"
+   }
+  ],
+  "confidence": 0.72,
+  "parse_err": false
+ },
+ "basis_check": [
+  {
+   "file": "确认协议内容.md",
+   "line": 1640,
+   "verbatim": true,
+   "line_pm3": true
+  }
+ ],
+ "usage": {
+  "prompt_tokens": 1573,
+  "completion_tokens": 117,
+  "total_tokens": 1690
+ },
+ "finish_reason": "stop",
+ "ev": [
+  443,
+  5418.135
+ ]
+}

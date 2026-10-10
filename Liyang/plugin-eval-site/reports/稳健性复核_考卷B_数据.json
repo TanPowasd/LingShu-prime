@@ -1,0 +1,3605 @@
+{
+ "n_cards": 89,
+ "n_answer_key_clusters": 76,
+ "shared_key_groups": [
+  [
+   "C-020",
+   "C-021"
+  ],
+  [
+   "C-037",
+   "C-038",
+   "C-039"
+  ],
+  [
+   "C-046",
+   "C-047"
+  ],
+  [
+   "C-050",
+   "C-051"
+  ],
+  [
+   "C-068",
+   "C-069"
+  ],
+  [
+   "C-086",
+   "C-087"
+  ],
+  [
+   "C-091",
+   "C-092"
+  ],
+  [
+   "C-101",
+   "C-102"
+  ],
+  [
+   "C-104",
+   "C-105"
+  ],
+  [
+   "C-106",
+   "C-107"
+  ],
+  [
+   "C-108",
+   "C-109",
+   "C-110"
+  ]
+ ],
+ "disagree_cards_by_arm": {
+  "B_dsh_jaccard": [
+   "C-002",
+   "C-008",
+   "C-012",
+   "C-029",
+   "C-040",
+   "C-043",
+   "C-046",
+   "C-058",
+   "C-060",
+   "C-068",
+   "C-070",
+   "C-075",
+   "C-078",
+   "C-083",
+   "C-089",
+   "C-094",
+   "C-102",
+   "C-107",
+   "C-109",
+   "C-110",
+   "C-116"
+  ],
+  "B_bm25": [
+   "C-009",
+   "C-012",
+   "C-040",
+   "C-046",
+   "C-054",
+   "C-058",
+   "C-069",
+   "C-071",
+   "C-073",
+   "C-078",
+   "C-081",
+   "C-085",
+   "C-089",
+   "C-090",
+   "C-093",
+   "C-102",
+   "C-103",
+   "C-108",
+   "C-109"
+  ],
+  "B_dsh": [
+   "C-028",
+   "C-077",
+   "C-087",
+   "C-088",
+   "C-095",
+   "C-101",
+   "C-110",
+   "C-112",
+   "C-116"
+  ],
+  "B_null": [
+   "C-002",
+   "C-003",
+   "C-008",
+   "C-021",
+   "C-030",
+   "C-033",
+   "C-034",
+   "C-037",
+   "C-061",
+   "C-078",
+   "C-082",
+   "C-083",
+   "C-101",
+   "C-104",
+   "C-106",
+   "C-107",
+   "C-108",
+   "C-116"
+  ]
+ },
+ "disagree_cards_any_arm": [
+  "C-002",
+  "C-003",
+  "C-008",
+  "C-009",
+  "C-012",
+  "C-021",
+  "C-028",
+  "C-029",
+  "C-030",
+  "C-033",
+  "C-034",
+  "C-037",
+  "C-040",
+  "C-043",
+  "C-046",
+  "C-054",
+  "C-058",
+  "C-060",
+  "C-061",
+  "C-068",
+  "C-069",
+  "C-070",
+  "C-071",
+  "C-073",
+  "C-075",
+  "C-077",
+  "C-078",
+  "C-081",
+  "C-082",
+  "C-083",
+  "C-085",
+  "C-087",
+  "C-088",
+  "C-089",
+  "C-090",
+  "C-093",
+  "C-094",
+  "C-095",
+  "C-101",
+  "C-102",
+  "C-103",
+  "C-104",
+  "C-106",
+  "C-107",
+  "C-108",
+  "C-109",
+  "C-110",
+  "C-112",
+  "C-116"
+ ],
+ "comparisons": [
+  {
+   "plug": "B_dsh",
+   "base": "B_null",
+   "title": "dsh-memory vs 底子（本报告结论）",
+   "rows": [
+    {
+     "scorer": "main",
+     "scorer_desc": "主口径：双判官取宽松档，strict 1 / paraphrase ½",
+     "filter": "all",
+     "filter_desc": "全部 89 卡",
+     "item": {
+      "n": 89,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": -1.17,
+      "per_seed_items": {
+       "1": -1.0,
+       "2": -4.0,
+       "3": 1.5
+      },
+      "sign": [
+       20,
+       28,
+       0.31232680747326924
+      ],
+      "ci_items_item": [
+       -4.83,
+       2.5
+      ],
+      "ci_items_cluster": [
+       -5.31,
+       2.94
+      ],
+      "width_item": 7.33,
+      "width_cluster": 8.25,
+      "eff_n": {
+       "n": 89,
+       "n_clusters": 76,
+       "se_iid": 0.0207,
+       "se_cluster": 0.0242,
+       "deff": 1.3764,
+       "n_eff": 64.6606,
+       "icc": 0.364
+      }
+     },
+     "cluster": {
+      "n": 89,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": -1.17,
+      "per_seed_items": {
+       "1": -1.0,
+       "2": -4.0,
+       "3": 1.5
+      },
+      "sign": [
+       20,
+       28,
+       0.31232680747326924
+      ],
+      "ci_items_item": [
+       -4.83,
+       2.5
+      ],
+      "ci_items_cluster": [
+       -5.31,
+       2.94
+      ],
+      "width_item": 7.33,
+      "width_cluster": 8.25,
+      "eff_n": {
+       "n": 89,
+       "n_clusters": 76,
+       "se_iid": 0.0207,
+       "se_cluster": 0.0242,
+       "deff": 1.3764,
+       "n_eff": 64.6606,
+       "icc": 0.364
+      }
+     },
+     "cluster_weighted_items_gain": -2.73,
+     "n_clusters_used": 76
+    },
+    {
+     "scorer": "main",
+     "scorer_desc": "主口径：双判官取宽松档，strict 1 / paraphrase ½",
+     "filter": "drop_disagree_pair",
+     "filter_desc": "去掉本对比两臂任一种子判官分歧的卡（25 卡）",
+     "item": {
+      "n": 64,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": -1.0,
+      "per_seed_items": {
+       "1": -1.0,
+       "2": -3.5,
+       "3": 1.5
+      },
+      "sign": [
+       12,
+       18,
+       0.361594608053565
+      ],
+      "ci_items_item": [
+       -3.67,
+       1.67
+      ],
+      "ci_items_cluster": [
+       -3.56,
+       1.59
+      ],
+      "width_item": 5.33,
+      "width_cluster": 5.15,
+      "eff_n": {
+       "n": 64,
+       "n_clusters": 59,
+       "se_iid": 0.0209,
+       "se_cluster": 0.0209,
+       "deff": 1.0027,
+       "n_eff": 63.8255,
+       "icc": 0.8018
+      }
+     },
+     "cluster": {
+      "n": 64,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": -1.0,
+      "per_seed_items": {
+       "1": -1.0,
+       "2": -3.5,
+       "3": 1.5
+      },
+      "sign": [
+       12,
+       18,
+       0.361594608053565
+      ],
+      "ci_items_item": [
+       -3.67,
+       1.67
+      ],
+      "ci_items_cluster": [
+       -3.56,
+       1.59
+      ],
+      "width_item": 5.33,
+      "width_cluster": 5.15,
+      "eff_n": {
+       "n": 64,
+       "n_clusters": 59,
+       "se_iid": 0.0209,
+       "se_cluster": 0.0209,
+       "deff": 1.0027,
+       "n_eff": 63.8255,
+       "icc": 0.8018
+      }
+     }
+    },
+    {
+     "scorer": "main",
+     "scorer_desc": "主口径：双判官取宽松档，strict 1 / paraphrase ½",
+     "filter": "drop_disagree_any",
+     "filter_desc": "去掉四臂任一批判官分歧的卡（49 卡）",
+     "item": {
+      "n": 40,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": -0.17,
+      "per_seed_items": {
+       "1": -1.0,
+       "2": -0.5,
+       "3": 1.0
+      },
+      "sign": [
+       9,
+       10,
+       1.0
+      ],
+      "ci_items_item": [
+       -2.17,
+       1.83
+      ],
+      "ci_items_cluster": [
+       -2.28,
+       1.83
+      ],
+      "width_item": 4.0,
+      "width_cluster": 4.11,
+      "eff_n": {
+       "n": 40,
+       "n_clusters": 37,
+       "se_iid": 0.0263,
+       "se_cluster": 0.0264,
+       "deff": 1.0022,
+       "n_eff": 39.913,
+       "icc": 0.6673
+      }
+     },
+     "cluster": {
+      "n": 40,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": -0.17,
+      "per_seed_items": {
+       "1": -1.0,
+       "2": -0.5,
+       "3": 1.0
+      },
+      "sign": [
+       9,
+       10,
+       1.0
+      ],
+      "ci_items_item": [
+       -2.17,
+       1.83
+      ],
+      "ci_items_cluster": [
+       -2.28,
+       1.83
+      ],
+      "width_item": 4.0,
+      "width_cluster": 4.11,
+      "eff_n": {
+       "n": 40,
+       "n_clusters": 37,
+       "se_iid": 0.0263,
+       "se_cluster": 0.0264,
+       "deff": 1.0022,
+       "n_eff": 39.913,
+       "icc": 0.6673
+      }
+     }
+    },
+    {
+     "scorer": "main",
+     "scorer_desc": "主口径：双判官取宽松档，strict 1 / paraphrase ½",
+     "filter": "drop_dirty",
+     "filter_desc": "去掉脏卡 C-116",
+     "item": {
+      "n": 88,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": -1.33,
+      "per_seed_items": {
+       "1": -1.5,
+       "2": -4.0,
+       "3": 1.5
+      },
+      "sign": [
+       19,
+       28,
+       0.24296021728332562
+      ],
+      "ci_items_item": [
+       -4.83,
+       2.33
+      ],
+      "ci_items_cluster": [
+       -5.37,
+       2.9
+      ],
+      "width_item": 7.17,
+      "width_cluster": 8.27,
+      "eff_n": {
+       "n": 88,
+       "n_clusters": 75,
+       "se_iid": 0.0208,
+       "se_cluster": 0.0245,
+       "deff": 1.3844,
+       "n_eff": 63.565,
+       "icc": 0.365
+      }
+     },
+     "cluster": {
+      "n": 88,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": -1.33,
+      "per_seed_items": {
+       "1": -1.5,
+       "2": -4.0,
+       "3": 1.5
+      },
+      "sign": [
+       19,
+       28,
+       0.24296021728332562
+      ],
+      "ci_items_item": [
+       -4.83,
+       2.33
+      ],
+      "ci_items_cluster": [
+       -5.37,
+       2.9
+      ],
+      "width_item": 7.17,
+      "width_cluster": 8.27,
+      "eff_n": {
+       "n": 88,
+       "n_clusters": 75,
+       "se_iid": 0.0208,
+       "se_cluster": 0.0245,
+       "deff": 1.3844,
+       "n_eff": 63.565,
+       "icc": 0.365
+      }
+     }
+    },
+    {
+     "scorer": "strict_only",
+     "scorer_desc": "只按 strict 计分（宽松档合并，paraphrase 记 0）",
+     "filter": "all",
+     "filter_desc": "全部 89 卡",
+     "item": {
+      "n": 89,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": 0.0,
+      "per_seed_items": {
+       "1": -1.0,
+       "2": -1.0,
+       "3": 2.0
+      },
+      "sign": [
+       7,
+       7,
+       1.0
+      ],
+      "ci_items_item": [
+       -3.33,
+       3.33
+      ],
+      "ci_items_cluster": [
+       -3.71,
+       3.88
+      ],
+      "width_item": 6.67,
+      "width_cluster": 7.59,
+      "eff_n": {
+       "n": 89,
+       "n_clusters": 76,
+       "se_iid": 0.0192,
+       "se_cluster": 0.022,
+       "deff": 1.3102,
+       "n_eff": 67.9265,
+       "icc": 0.4802
+      }
+     },
+     "cluster": {
+      "n": 89,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": 0.0,
+      "per_seed_items": {
+       "1": -1.0,
+       "2": -1.0,
+       "3": 2.0
+      },
+      "sign": [
+       7,
+       7,
+       1.0
+      ],
+      "ci_items_item": [
+       -3.33,
+       3.33
+      ],
+      "ci_items_cluster": [
+       -3.71,
+       3.88
+      ],
+      "width_item": 6.67,
+      "width_cluster": 7.59,
+      "eff_n": {
+       "n": 89,
+       "n_clusters": 76,
+       "se_iid": 0.0192,
+       "se_cluster": 0.022,
+       "deff": 1.3102,
+       "n_eff": 67.9265,
+       "icc": 0.4802
+      }
+     },
+     "cluster_weighted_items_gain": -0.39,
+     "n_clusters_used": 76
+    },
+    {
+     "scorer": "strict_only",
+     "scorer_desc": "只按 strict 计分（宽松档合并，paraphrase 记 0）",
+     "filter": "drop_disagree_pair",
+     "filter_desc": "去掉本对比两臂任一种子判官分歧的卡（25 卡）",
+     "item": {
+      "n": 64,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": 1.0,
+      "per_seed_items": {
+       "1": 1.0,
+       "2": 0.0,
+       "3": 2.0
+      },
+      "sign": [
+       5,
+       2,
+       0.453125
+      ],
+      "ci_items_item": [
+       -1.33,
+       3.33
+      ],
+      "ci_items_cluster": [
+       -1.33,
+       3.39
+      ],
+      "width_item": 4.67,
+      "width_cluster": 4.72,
+      "eff_n": {
+       "n": 64,
+       "n_clusters": 59,
+       "se_iid": 0.0188,
+       "se_cluster": 0.0189,
+       "deff": 1.0031,
+       "n_eff": 63.8049,
+       "icc": 1.0
+      }
+     },
+     "cluster": {
+      "n": 64,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": 1.0,
+      "per_seed_items": {
+       "1": 1.0,
+       "2": 0.0,
+       "3": 2.0
+      },
+      "sign": [
+       5,
+       2,
+       0.453125
+      ],
+      "ci_items_item": [
+       -1.33,
+       3.33
+      ],
+      "ci_items_cluster": [
+       -1.33,
+       3.39
+      ],
+      "width_item": 4.67,
+      "width_cluster": 4.72,
+      "eff_n": {
+       "n": 64,
+       "n_clusters": 59,
+       "se_iid": 0.0188,
+       "se_cluster": 0.0189,
+       "deff": 1.0031,
+       "n_eff": 63.8049,
+       "icc": 1.0
+      }
+     }
+    },
+    {
+     "scorer": "harsh_weighted",
+     "scorer_desc": "双判官取更严格档，折合计分",
+     "filter": "all",
+     "filter_desc": "全部 89 卡",
+     "item": {
+      "n": 89,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": -0.17,
+      "per_seed_items": {
+       "1": 0.0,
+       "2": -4.0,
+       "3": 3.5
+      },
+      "sign": [
+       23,
+       25,
+       0.8854334972865132
+      ],
+      "ci_items_item": [
+       -3.67,
+       3.33
+      ],
+      "ci_items_cluster": [
+       -4.26,
+       3.9
+      ],
+      "width_item": 7.0,
+      "width_cluster": 8.17,
+      "eff_n": {
+       "n": 89,
+       "n_clusters": 76,
+       "se_iid": 0.02,
+       "se_cluster": 0.024,
+       "deff": 1.432,
+       "n_eff": 62.1503,
+       "icc": 0.6015
+      }
+     },
+     "cluster": {
+      "n": 89,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": -0.17,
+      "per_seed_items": {
+       "1": 0.0,
+       "2": -4.0,
+       "3": 3.5
+      },
+      "sign": [
+       23,
+       25,
+       0.8854334972865132
+      ],
+      "ci_items_item": [
+       -3.67,
+       3.33
+      ],
+      "ci_items_cluster": [
+       -4.26,
+       3.9
+      ],
+      "width_item": 7.0,
+      "width_cluster": 8.17,
+      "eff_n": {
+       "n": 89,
+       "n_clusters": 76,
+       "se_iid": 0.02,
+       "se_cluster": 0.024,
+       "deff": 1.432,
+       "n_eff": 62.1503,
+       "icc": 0.6015
+      }
+     },
+     "cluster_weighted_items_gain": -1.89,
+     "n_clusters_used": 76
+    },
+    {
+     "scorer": "harsh_weighted",
+     "scorer_desc": "双判官取更严格档，折合计分",
+     "filter": "drop_disagree_pair",
+     "filter_desc": "去掉本对比两臂任一种子判官分歧的卡（25 卡）",
+     "item": {
+      "n": 64,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": -1.0,
+      "per_seed_items": {
+       "1": -1.0,
+       "2": -3.5,
+       "3": 1.5
+      },
+      "sign": [
+       12,
+       18,
+       0.361594608053565
+      ],
+      "ci_items_item": [
+       -3.67,
+       1.67
+      ],
+      "ci_items_cluster": [
+       -3.56,
+       1.59
+      ],
+      "width_item": 5.33,
+      "width_cluster": 5.15,
+      "eff_n": {
+       "n": 64,
+       "n_clusters": 59,
+       "se_iid": 0.0209,
+       "se_cluster": 0.0209,
+       "deff": 1.0027,
+       "n_eff": 63.8255,
+       "icc": 0.8018
+      }
+     },
+     "cluster": {
+      "n": 64,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": -1.0,
+      "per_seed_items": {
+       "1": -1.0,
+       "2": -3.5,
+       "3": 1.5
+      },
+      "sign": [
+       12,
+       18,
+       0.361594608053565
+      ],
+      "ci_items_item": [
+       -3.67,
+       1.67
+      ],
+      "ci_items_cluster": [
+       -3.56,
+       1.59
+      ],
+      "width_item": 5.33,
+      "width_cluster": 5.15,
+      "eff_n": {
+       "n": 64,
+       "n_clusters": 59,
+       "se_iid": 0.0209,
+       "se_cluster": 0.0209,
+       "deff": 1.0027,
+       "n_eff": 63.8255,
+       "icc": 0.8018
+      }
+     }
+    },
+    {
+     "scorer": "harsh_strict_only",
+     "scorer_desc": "双判官取更严格档且只按 strict 计分（最严）",
+     "filter": "all",
+     "filter_desc": "全部 89 卡",
+     "item": {
+      "n": 89,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": 1.33,
+      "per_seed_items": {
+       "1": 1.0,
+       "2": 0.0,
+       "3": 3.0
+      },
+      "sign": [
+       6,
+       3,
+       0.5078125
+      ],
+      "ci_items_item": [
+       -1.33,
+       4.33
+      ],
+      "ci_items_cluster": [
+       -1.7,
+       4.78
+      ],
+      "width_item": 5.67,
+      "width_cluster": 6.49,
+      "eff_n": {
+       "n": 89,
+       "n_clusters": 76,
+       "se_iid": 0.0159,
+       "se_cluster": 0.019,
+       "deff": 1.4248,
+       "n_eff": 62.4634,
+       "icc": 0.7475
+      }
+     },
+     "cluster": {
+      "n": 89,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": 1.33,
+      "per_seed_items": {
+       "1": 1.0,
+       "2": 0.0,
+       "3": 3.0
+      },
+      "sign": [
+       6,
+       3,
+       0.5078125
+      ],
+      "ci_items_item": [
+       -1.33,
+       4.33
+      ],
+      "ci_items_cluster": [
+       -1.7,
+       4.78
+      ],
+      "width_item": 5.67,
+      "width_cluster": 6.49,
+      "eff_n": {
+       "n": 89,
+       "n_clusters": 76,
+       "se_iid": 0.0159,
+       "se_cluster": 0.019,
+       "deff": 1.4248,
+       "n_eff": 62.4634,
+       "icc": 0.7475
+      }
+     },
+     "cluster_weighted_items_gain": 0.52,
+     "n_clusters_used": 76
+    },
+    {
+     "scorer": "harsh_strict_only",
+     "scorer_desc": "双判官取更严格档且只按 strict 计分（最严）",
+     "filter": "drop_disagree_pair",
+     "filter_desc": "去掉本对比两臂任一种子判官分歧的卡（25 卡）",
+     "item": {
+      "n": 64,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": 1.0,
+      "per_seed_items": {
+       "1": 1.0,
+       "2": 0.0,
+       "3": 2.0
+      },
+      "sign": [
+       5,
+       2,
+       0.453125
+      ],
+      "ci_items_item": [
+       -1.33,
+       3.33
+      ],
+      "ci_items_cluster": [
+       -1.33,
+       3.39
+      ],
+      "width_item": 4.67,
+      "width_cluster": 4.72,
+      "eff_n": {
+       "n": 64,
+       "n_clusters": 59,
+       "se_iid": 0.0188,
+       "se_cluster": 0.0189,
+       "deff": 1.0031,
+       "n_eff": 63.8049,
+       "icc": 1.0
+      }
+     },
+     "cluster": {
+      "n": 64,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": 1.0,
+      "per_seed_items": {
+       "1": 1.0,
+       "2": 0.0,
+       "3": 2.0
+      },
+      "sign": [
+       5,
+       2,
+       0.453125
+      ],
+      "ci_items_item": [
+       -1.33,
+       3.33
+      ],
+      "ci_items_cluster": [
+       -1.33,
+       3.39
+      ],
+      "width_item": 4.67,
+      "width_cluster": 4.72,
+      "eff_n": {
+       "n": 64,
+       "n_clusters": 59,
+       "se_iid": 0.0188,
+       "se_cluster": 0.0189,
+       "deff": 1.0031,
+       "n_eff": 63.8049,
+       "icc": 1.0
+      }
+     }
+    }
+   ]
+  },
+  {
+   "plug": "B_bm25",
+   "base": "B_null",
+   "title": "BM25 vs 底子（参照）",
+   "rows": [
+    {
+     "scorer": "main",
+     "scorer_desc": "主口径：双判官取宽松档，strict 1 / paraphrase ½",
+     "filter": "all",
+     "filter_desc": "全部 89 卡",
+     "item": {
+      "n": 89,
+      "verdict": "❌",
+      "label": "帮倒忙",
+      "reasons": [],
+      "items_gain": -5.83,
+      "per_seed_items": {
+       "1": -4.0,
+       "2": -9.0,
+       "3": -4.5
+      },
+      "sign": [
+       19,
+       38,
+       0.01634810389737615
+      ],
+      "ci_items_item": [
+       -9.83,
+       -1.83
+      ],
+      "ci_items_cluster": [
+       -10.38,
+       -1.29
+      ],
+      "width_item": 8.0,
+      "width_cluster": 9.09,
+      "eff_n": {
+       "n": 89,
+       "n_clusters": 76,
+       "se_iid": 0.0229,
+       "se_cluster": 0.0264,
+       "deff": 1.3334,
+       "n_eff": 66.7466,
+       "icc": 0.7326
+      }
+     },
+     "cluster": {
+      "n": 89,
+      "verdict": "❌",
+      "label": "帮倒忙",
+      "reasons": [],
+      "items_gain": -5.83,
+      "per_seed_items": {
+       "1": -4.0,
+       "2": -9.0,
+       "3": -4.5
+      },
+      "sign": [
+       19,
+       38,
+       0.01634810389737615
+      ],
+      "ci_items_item": [
+       -9.83,
+       -1.83
+      ],
+      "ci_items_cluster": [
+       -10.38,
+       -1.29
+      ],
+      "width_item": 8.0,
+      "width_cluster": 9.09,
+      "eff_n": {
+       "n": 89,
+       "n_clusters": 76,
+       "se_iid": 0.0229,
+       "se_cluster": 0.0264,
+       "deff": 1.3334,
+       "n_eff": 66.7466,
+       "icc": 0.7326
+      }
+     },
+     "cluster_weighted_items_gain": -6.08,
+     "n_clusters_used": 76
+    },
+    {
+     "scorer": "main",
+     "scorer_desc": "主口径：双判官取宽松档，strict 1 / paraphrase ½",
+     "filter": "drop_disagree_pair",
+     "filter_desc": "去掉本对比两臂任一种子判官分歧的卡（35 卡）",
+     "item": {
+      "n": 54,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "效应不足 3 道题"
+      ],
+      "items_gain": -2.83,
+      "per_seed_items": {
+       "1": -4.0,
+       "2": -3.0,
+       "3": -1.5
+      },
+      "sign": [
+       11,
+       22,
+       0.08014331245794892
+      ],
+      "ci_items_item": [
+       -5.5,
+       -0.17
+      ],
+      "ci_items_cluster": [
+       -5.73,
+       0.16
+      ],
+      "width_item": 5.33,
+      "width_cluster": 5.89,
+      "eff_n": {
+       "n": 54,
+       "n_clusters": 50,
+       "se_iid": 0.0256,
+       "se_cluster": 0.0278,
+       "deff": 1.1772,
+       "n_eff": 45.8716,
+       "icc": 0.7068
+      }
+     },
+     "cluster": {
+      "n": 54,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "效应不足 3 道题"
+      ],
+      "items_gain": -2.83,
+      "per_seed_items": {
+       "1": -4.0,
+       "2": -3.0,
+       "3": -1.5
+      },
+      "sign": [
+       11,
+       22,
+       0.08014331245794892
+      ],
+      "ci_items_item": [
+       -5.5,
+       -0.17
+      ],
+      "ci_items_cluster": [
+       -5.73,
+       0.16
+      ],
+      "width_item": 5.33,
+      "width_cluster": 5.89,
+      "eff_n": {
+       "n": 54,
+       "n_clusters": 50,
+       "se_iid": 0.0256,
+       "se_cluster": 0.0278,
+       "deff": 1.1772,
+       "n_eff": 45.8716,
+       "icc": 0.7068
+      }
+     }
+    },
+    {
+     "scorer": "main",
+     "scorer_desc": "主口径：双判官取宽松档，strict 1 / paraphrase ½",
+     "filter": "drop_disagree_any",
+     "filter_desc": "去掉四臂任一批判官分歧的卡（49 卡）",
+     "item": {
+      "n": 40,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "效应不足 3 道题"
+      ],
+      "items_gain": -2.33,
+      "per_seed_items": {
+       "1": -4.5,
+       "2": -2.0,
+       "3": -0.5
+      },
+      "sign": [
+       8,
+       15,
+       0.21003961563110352
+      ],
+      "ci_items_item": [
+       -4.67,
+       -0.17
+      ],
+      "ci_items_cluster": [
+       -4.92,
+       0.17
+      ],
+      "width_item": 4.5,
+      "width_cluster": 5.09,
+      "eff_n": {
+       "n": 40,
+       "n_clusters": 37,
+       "se_iid": 0.0296,
+       "se_cluster": 0.0326,
+       "deff": 1.2151,
+       "n_eff": 32.9204,
+       "icc": 0.6038
+      }
+     },
+     "cluster": {
+      "n": 40,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "效应不足 3 道题"
+      ],
+      "items_gain": -2.33,
+      "per_seed_items": {
+       "1": -4.5,
+       "2": -2.0,
+       "3": -0.5
+      },
+      "sign": [
+       8,
+       15,
+       0.21003961563110352
+      ],
+      "ci_items_item": [
+       -4.67,
+       -0.17
+      ],
+      "ci_items_cluster": [
+       -4.92,
+       0.17
+      ],
+      "width_item": 4.5,
+      "width_cluster": 5.09,
+      "eff_n": {
+       "n": 40,
+       "n_clusters": 37,
+       "se_iid": 0.0296,
+       "se_cluster": 0.0326,
+       "deff": 1.2151,
+       "n_eff": 32.9204,
+       "icc": 0.6038
+      }
+     }
+    },
+    {
+     "scorer": "main",
+     "scorer_desc": "主口径：双判官取宽松档，strict 1 / paraphrase ½",
+     "filter": "drop_dirty",
+     "filter_desc": "去掉脏卡 C-116",
+     "item": {
+      "n": 88,
+      "verdict": "❌",
+      "label": "帮倒忙",
+      "reasons": [],
+      "items_gain": -5.67,
+      "per_seed_items": {
+       "1": -4.0,
+       "2": -9.0,
+       "3": -4.0
+      },
+      "sign": [
+       19,
+       37,
+       0.022241389472860112
+      ],
+      "ci_items_item": [
+       -9.67,
+       -1.83
+      ],
+      "ci_items_cluster": [
+       -10.18,
+       -1.06
+      ],
+      "width_item": 7.83,
+      "width_cluster": 9.12,
+      "eff_n": {
+       "n": 88,
+       "n_clusters": 75,
+       "se_iid": 0.0231,
+       "se_cluster": 0.0267,
+       "deff": 1.3337,
+       "n_eff": 65.983,
+       "icc": 0.735
+      }
+     },
+     "cluster": {
+      "n": 88,
+      "verdict": "❌",
+      "label": "帮倒忙",
+      "reasons": [],
+      "items_gain": -5.67,
+      "per_seed_items": {
+       "1": -4.0,
+       "2": -9.0,
+       "3": -4.0
+      },
+      "sign": [
+       19,
+       37,
+       0.022241389472860112
+      ],
+      "ci_items_item": [
+       -9.67,
+       -1.83
+      ],
+      "ci_items_cluster": [
+       -10.18,
+       -1.06
+      ],
+      "width_item": 7.83,
+      "width_cluster": 9.12,
+      "eff_n": {
+       "n": 88,
+       "n_clusters": 75,
+       "se_iid": 0.0231,
+       "se_cluster": 0.0267,
+       "deff": 1.3337,
+       "n_eff": 65.983,
+       "icc": 0.735
+      }
+     }
+    },
+    {
+     "scorer": "strict_only",
+     "scorer_desc": "只按 strict 计分（宽松档合并，paraphrase 记 0）",
+     "filter": "all",
+     "filter_desc": "全部 89 卡",
+     "item": {
+      "n": 89,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": 0.0,
+      "per_seed_items": {
+       "1": -2.0,
+       "2": 0.0,
+       "3": 2.0
+      },
+      "sign": [
+       5,
+       4,
+       1.0
+      ],
+      "ci_items_item": [
+       -3.33,
+       3.33
+      ],
+      "ci_items_cluster": [
+       -3.41,
+       3.47
+      ],
+      "width_item": 6.67,
+      "width_cluster": 6.88,
+      "eff_n": {
+       "n": 89,
+       "n_clusters": 76,
+       "se_iid": 0.0185,
+       "se_cluster": 0.02,
+       "deff": 1.1689,
+       "n_eff": 76.1374,
+       "icc": 0.2957
+      }
+     },
+     "cluster": {
+      "n": 89,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": 0.0,
+      "per_seed_items": {
+       "1": -2.0,
+       "2": 0.0,
+       "3": 2.0
+      },
+      "sign": [
+       5,
+       4,
+       1.0
+      ],
+      "ci_items_item": [
+       -3.33,
+       3.33
+      ],
+      "ci_items_cluster": [
+       -3.41,
+       3.47
+      ],
+      "width_item": 6.67,
+      "width_cluster": 6.88,
+      "eff_n": {
+       "n": 89,
+       "n_clusters": 76,
+       "se_iid": 0.0185,
+       "se_cluster": 0.02,
+       "deff": 1.1689,
+       "n_eff": 76.1374,
+       "icc": 0.2957
+      }
+     },
+     "cluster_weighted_items_gain": -0.2,
+     "n_clusters_used": 76
+    },
+    {
+     "scorer": "strict_only",
+     "scorer_desc": "只按 strict 计分（宽松档合并，paraphrase 记 0）",
+     "filter": "drop_disagree_pair",
+     "filter_desc": "去掉本对比两臂任一种子判官分歧的卡（35 卡）",
+     "item": {
+      "n": 54,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": -0.0,
+      "per_seed_items": {
+       "1": -2.0,
+       "2": 1.0,
+       "3": 1.0
+      },
+      "sign": [
+       2,
+       1,
+       1.0
+      ],
+      "ci_items_item": [
+       -1.67,
+       1.33
+      ],
+      "ci_items_cluster": [
+       -1.73,
+       1.38
+      ],
+      "width_item": 3.0,
+      "width_cluster": 3.12,
+      "eff_n": {
+       "n": 54,
+       "n_clusters": 50,
+       "se_iid": 0.0153,
+       "se_cluster": 0.0153,
+       "deff": 1.0015,
+       "n_eff": 53.9185,
+       "icc": 1.0
+      }
+     },
+     "cluster": {
+      "n": 54,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": -0.0,
+      "per_seed_items": {
+       "1": -2.0,
+       "2": 1.0,
+       "3": 1.0
+      },
+      "sign": [
+       2,
+       1,
+       1.0
+      ],
+      "ci_items_item": [
+       -1.67,
+       1.33
+      ],
+      "ci_items_cluster": [
+       -1.73,
+       1.38
+      ],
+      "width_item": 3.0,
+      "width_cluster": 3.12,
+      "eff_n": {
+       "n": 54,
+       "n_clusters": 50,
+       "se_iid": 0.0153,
+       "se_cluster": 0.0153,
+       "deff": 1.0015,
+       "n_eff": 53.9185,
+       "icc": 1.0
+      }
+     }
+    },
+    {
+     "scorer": "harsh_weighted",
+     "scorer_desc": "双判官取更严格档，折合计分",
+     "filter": "all",
+     "filter_desc": "全部 89 卡",
+     "item": {
+      "n": 89,
+      "verdict": "❌",
+      "label": "帮倒忙",
+      "reasons": [],
+      "items_gain": -5.83,
+      "per_seed_items": {
+       "1": -4.5,
+       "2": -8.5,
+       "3": -4.5
+      },
+      "sign": [
+       21,
+       37,
+       0.04794032407166697
+      ],
+      "ci_items_item": [
+       -10.0,
+       -1.67
+      ],
+      "ci_items_cluster": [
+       -10.28,
+       -1.48
+      ],
+      "width_item": 8.33,
+      "width_cluster": 8.8,
+      "eff_n": {
+       "n": 89,
+       "n_clusters": 76,
+       "se_iid": 0.0238,
+       "se_cluster": 0.0257,
+       "deff": 1.1723,
+       "n_eff": 75.922,
+       "icc": 0.2071
+      }
+     },
+     "cluster": {
+      "n": 89,
+      "verdict": "❌",
+      "label": "帮倒忙",
+      "reasons": [],
+      "items_gain": -5.83,
+      "per_seed_items": {
+       "1": -4.5,
+       "2": -8.5,
+       "3": -4.5
+      },
+      "sign": [
+       21,
+       37,
+       0.04794032407166697
+      ],
+      "ci_items_item": [
+       -10.0,
+       -1.67
+      ],
+      "ci_items_cluster": [
+       -10.28,
+       -1.48
+      ],
+      "width_item": 8.33,
+      "width_cluster": 8.8,
+      "eff_n": {
+       "n": 89,
+       "n_clusters": 76,
+       "se_iid": 0.0238,
+       "se_cluster": 0.0257,
+       "deff": 1.1723,
+       "n_eff": 75.922,
+       "icc": 0.2071
+      }
+     },
+     "cluster_weighted_items_gain": -6.38,
+     "n_clusters_used": 76
+    },
+    {
+     "scorer": "harsh_weighted",
+     "scorer_desc": "双判官取更严格档，折合计分",
+     "filter": "drop_disagree_pair",
+     "filter_desc": "去掉本对比两臂任一种子判官分歧的卡（35 卡）",
+     "item": {
+      "n": 54,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "效应不足 3 道题"
+      ],
+      "items_gain": -2.83,
+      "per_seed_items": {
+       "1": -4.0,
+       "2": -3.0,
+       "3": -1.5
+      },
+      "sign": [
+       11,
+       22,
+       0.08014331245794892
+      ],
+      "ci_items_item": [
+       -5.5,
+       -0.17
+      ],
+      "ci_items_cluster": [
+       -5.73,
+       0.16
+      ],
+      "width_item": 5.33,
+      "width_cluster": 5.89,
+      "eff_n": {
+       "n": 54,
+       "n_clusters": 50,
+       "se_iid": 0.0256,
+       "se_cluster": 0.0278,
+       "deff": 1.1772,
+       "n_eff": 45.8716,
+       "icc": 0.7068
+      }
+     },
+     "cluster": {
+      "n": 54,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "效应不足 3 道题"
+      ],
+      "items_gain": -2.83,
+      "per_seed_items": {
+       "1": -4.0,
+       "2": -3.0,
+       "3": -1.5
+      },
+      "sign": [
+       11,
+       22,
+       0.08014331245794892
+      ],
+      "ci_items_item": [
+       -5.5,
+       -0.17
+      ],
+      "ci_items_cluster": [
+       -5.73,
+       0.16
+      ],
+      "width_item": 5.33,
+      "width_cluster": 5.89,
+      "eff_n": {
+       "n": 54,
+       "n_clusters": 50,
+       "se_iid": 0.0256,
+       "se_cluster": 0.0278,
+       "deff": 1.1772,
+       "n_eff": 45.8716,
+       "icc": 0.7068
+      }
+     }
+    },
+    {
+     "scorer": "harsh_strict_only",
+     "scorer_desc": "双判官取更严格档且只按 strict 计分（最严）",
+     "filter": "all",
+     "filter_desc": "全部 89 卡",
+     "item": {
+      "n": 89,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": 1.67,
+      "per_seed_items": {
+       "1": 0.0,
+       "2": 2.0,
+       "3": 3.0
+      },
+      "sign": [
+       7,
+       3,
+       0.34375
+      ],
+      "ci_items_item": [
+       -1.0,
+       4.67
+      ],
+      "ci_items_cluster": [
+       -1.07,
+       4.72
+      ],
+      "width_item": 5.67,
+      "width_cluster": 5.79,
+      "eff_n": {
+       "n": 89,
+       "n_clusters": 76,
+       "se_iid": 0.0163,
+       "se_cluster": 0.017,
+       "deff": 1.084,
+       "n_eff": 82.1036,
+       "icc": -0.1458
+      }
+     },
+     "cluster": {
+      "n": 89,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": 1.67,
+      "per_seed_items": {
+       "1": 0.0,
+       "2": 2.0,
+       "3": 3.0
+      },
+      "sign": [
+       7,
+       3,
+       0.34375
+      ],
+      "ci_items_item": [
+       -1.0,
+       4.67
+      ],
+      "ci_items_cluster": [
+       -1.07,
+       4.72
+      ],
+      "width_item": 5.67,
+      "width_cluster": 5.79,
+      "eff_n": {
+       "n": 89,
+       "n_clusters": 76,
+       "se_iid": 0.0163,
+       "se_cluster": 0.017,
+       "deff": 1.084,
+       "n_eff": 82.1036,
+       "icc": -0.1458
+      }
+     },
+     "cluster_weighted_items_gain": 1.11,
+     "n_clusters_used": 76
+    },
+    {
+     "scorer": "harsh_strict_only",
+     "scorer_desc": "双判官取更严格档且只按 strict 计分（最严）",
+     "filter": "drop_disagree_pair",
+     "filter_desc": "去掉本对比两臂任一种子判官分歧的卡（35 卡）",
+     "item": {
+      "n": 54,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": -0.0,
+      "per_seed_items": {
+       "1": -2.0,
+       "2": 1.0,
+       "3": 1.0
+      },
+      "sign": [
+       2,
+       1,
+       1.0
+      ],
+      "ci_items_item": [
+       -1.67,
+       1.33
+      ],
+      "ci_items_cluster": [
+       -1.73,
+       1.38
+      ],
+      "width_item": 3.0,
+      "width_cluster": 3.12,
+      "eff_n": {
+       "n": 54,
+       "n_clusters": 50,
+       "se_iid": 0.0153,
+       "se_cluster": 0.0153,
+       "deff": 1.0015,
+       "n_eff": 53.9185,
+       "icc": 1.0
+      }
+     },
+     "cluster": {
+      "n": 54,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": -0.0,
+      "per_seed_items": {
+       "1": -2.0,
+       "2": 1.0,
+       "3": 1.0
+      },
+      "sign": [
+       2,
+       1,
+       1.0
+      ],
+      "ci_items_item": [
+       -1.67,
+       1.33
+      ],
+      "ci_items_cluster": [
+       -1.73,
+       1.38
+      ],
+      "width_item": 3.0,
+      "width_cluster": 3.12,
+      "eff_n": {
+       "n": 54,
+       "n_clusters": 50,
+       "se_iid": 0.0153,
+       "se_cluster": 0.0153,
+       "deff": 1.0015,
+       "n_eff": 53.9185,
+       "icc": 1.0
+      }
+     }
+    }
+   ]
+  },
+  {
+   "plug": "B_dsh_jaccard",
+   "base": "B_null",
+   "title": "jaccard 附录臂 vs 底子（不进结论）",
+   "rows": [
+    {
+     "scorer": "main",
+     "scorer_desc": "主口径：双判官取宽松档，strict 1 / paraphrase ½",
+     "filter": "all",
+     "filter_desc": "全部 89 卡",
+     "item": {
+      "n": 89,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": 1.5,
+      "per_seed_items": {
+       "1": 3.0,
+       "2": -1.5,
+       "3": 3.0
+      },
+      "sign": [
+       29,
+       26,
+       0.7877061896700435
+      ],
+      "ci_items_item": [
+       -1.67,
+       4.83
+      ],
+      "ci_items_cluster": [
+       -1.91,
+       4.83
+      ],
+      "width_item": 6.5,
+      "width_cluster": 6.75,
+      "eff_n": {
+       "n": 89,
+       "n_clusters": 76,
+       "se_iid": 0.0188,
+       "se_cluster": 0.0196,
+       "deff": 1.0829,
+       "n_eff": 82.1903,
+       "icc": 0.4035
+      }
+     },
+     "cluster": {
+      "n": 89,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": 1.5,
+      "per_seed_items": {
+       "1": 3.0,
+       "2": -1.5,
+       "3": 3.0
+      },
+      "sign": [
+       29,
+       26,
+       0.7877061896700435
+      ],
+      "ci_items_item": [
+       -1.67,
+       4.83
+      ],
+      "ci_items_cluster": [
+       -1.91,
+       4.83
+      ],
+      "width_item": 6.5,
+      "width_cluster": 6.75,
+      "eff_n": {
+       "n": 89,
+       "n_clusters": 76,
+       "se_iid": 0.0188,
+       "se_cluster": 0.0196,
+       "deff": 1.0829,
+       "n_eff": 82.1903,
+       "icc": 0.4035
+      }
+     },
+     "cluster_weighted_items_gain": 0.88,
+     "n_clusters_used": 76
+    },
+    {
+     "scorer": "main",
+     "scorer_desc": "主口径：双判官取宽松档，strict 1 / paraphrase ½",
+     "filter": "drop_disagree_pair",
+     "filter_desc": "去掉本对比两臂任一种子判官分歧的卡（33 卡）",
+     "item": {
+      "n": 56,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": 0.33,
+      "per_seed_items": {
+       "1": -0.5,
+       "2": 0.0,
+       "3": 1.5
+      },
+      "sign": [
+       16,
+       17,
+       1.0
+      ],
+      "ci_items_item": [
+       -2.0,
+       2.83
+      ],
+      "ci_items_cluster": [
+       -2.02,
+       2.77
+      ],
+      "width_item": 4.83,
+      "width_cluster": 4.79,
+      "eff_n": {
+       "n": 56,
+       "n_clusters": 52,
+       "se_iid": 0.0225,
+       "se_cluster": 0.0221,
+       "deff": 0.9658,
+       "n_eff": 57.9846,
+       "icc": -0.23
+      }
+     },
+     "cluster": {
+      "n": 56,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": 0.33,
+      "per_seed_items": {
+       "1": -0.5,
+       "2": 0.0,
+       "3": 1.5
+      },
+      "sign": [
+       16,
+       17,
+       1.0
+      ],
+      "ci_items_item": [
+       -2.0,
+       2.83
+      ],
+      "ci_items_cluster": [
+       -2.02,
+       2.77
+      ],
+      "width_item": 4.83,
+      "width_cluster": 4.79,
+      "eff_n": {
+       "n": 56,
+       "n_clusters": 52,
+       "se_iid": 0.0225,
+       "se_cluster": 0.0221,
+       "deff": 0.9658,
+       "n_eff": 57.9846,
+       "icc": -0.23
+      }
+     }
+    },
+    {
+     "scorer": "main",
+     "scorer_desc": "主口径：双判官取宽松档，strict 1 / paraphrase ½",
+     "filter": "drop_disagree_any",
+     "filter_desc": "去掉四臂任一批判官分歧的卡（49 卡）",
+     "item": {
+      "n": 40,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": -0.0,
+      "per_seed_items": {
+       "1": -0.5,
+       "2": 0.0,
+       "3": 0.5
+      },
+      "sign": [
+       11,
+       12,
+       1.0
+      ],
+      "ci_items_item": [
+       -2.0,
+       2.0
+      ],
+      "ci_items_cluster": [
+       -1.93,
+       1.88
+      ],
+      "width_item": 4.0,
+      "width_cluster": 3.81,
+      "eff_n": {
+       "n": 40,
+       "n_clusters": 37,
+       "se_iid": 0.026,
+       "se_cluster": 0.0246,
+       "deff": 0.8966,
+       "n_eff": 44.6129,
+       "icc": -0.7152
+      }
+     },
+     "cluster": {
+      "n": 40,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": -0.0,
+      "per_seed_items": {
+       "1": -0.5,
+       "2": 0.0,
+       "3": 0.5
+      },
+      "sign": [
+       11,
+       12,
+       1.0
+      ],
+      "ci_items_item": [
+       -2.0,
+       2.0
+      ],
+      "ci_items_cluster": [
+       -1.93,
+       1.88
+      ],
+      "width_item": 4.0,
+      "width_cluster": 3.81,
+      "eff_n": {
+       "n": 40,
+       "n_clusters": 37,
+       "se_iid": 0.026,
+       "se_cluster": 0.0246,
+       "deff": 0.8966,
+       "n_eff": 44.6129,
+       "icc": -0.7152
+      }
+     }
+    },
+    {
+     "scorer": "main",
+     "scorer_desc": "主口径：双判官取宽松档，strict 1 / paraphrase ½",
+     "filter": "drop_dirty",
+     "filter_desc": "去掉脏卡 C-116",
+     "item": {
+      "n": 88,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": 1.33,
+      "per_seed_items": {
+       "1": 2.5,
+       "2": -1.5,
+       "3": 3.0
+      },
+      "sign": [
+       28,
+       26,
+       0.8919231511047494
+      ],
+      "ci_items_item": [
+       -1.83,
+       4.67
+      ],
+      "ci_items_cluster": [
+       -2.1,
+       4.73
+      ],
+      "width_item": 6.5,
+      "width_cluster": 6.83,
+      "eff_n": {
+       "n": 88,
+       "n_clusters": 75,
+       "se_iid": 0.019,
+       "se_cluster": 0.0198,
+       "deff": 1.0852,
+       "n_eff": 81.0876,
+       "icc": 0.4055
+      }
+     },
+     "cluster": {
+      "n": 88,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": 1.33,
+      "per_seed_items": {
+       "1": 2.5,
+       "2": -1.5,
+       "3": 3.0
+      },
+      "sign": [
+       28,
+       26,
+       0.8919231511047494
+      ],
+      "ci_items_item": [
+       -1.83,
+       4.67
+      ],
+      "ci_items_cluster": [
+       -2.1,
+       4.73
+      ],
+      "width_item": 6.5,
+      "width_cluster": 6.83,
+      "eff_n": {
+       "n": 88,
+       "n_clusters": 75,
+       "se_iid": 0.019,
+       "se_cluster": 0.0198,
+       "deff": 1.0852,
+       "n_eff": 81.0876,
+       "icc": 0.4055
+      }
+     }
+    },
+    {
+     "scorer": "strict_only",
+     "scorer_desc": "只按 strict 计分（宽松档合并，paraphrase 记 0）",
+     "filter": "all",
+     "filter_desc": "全部 89 卡",
+     "item": {
+      "n": 89,
+      "verdict": "✅",
+      "label": "真有用",
+      "reasons": [],
+      "items_gain": 3.67,
+      "per_seed_items": {
+       "1": 2.0,
+       "2": 4.0,
+       "3": 5.0
+      },
+      "sign": [
+       11,
+       4,
+       0.11846923828125
+      ],
+      "ci_items_item": [
+       0.67,
+       7.0
+      ],
+      "ci_items_cluster": [
+       0.32,
+       7.75
+      ],
+      "width_item": 6.33,
+      "width_cluster": 7.43,
+      "eff_n": {
+       "n": 89,
+       "n_clusters": 76,
+       "se_iid": 0.0191,
+       "se_cluster": 0.0218,
+       "deff": 1.3035,
+       "n_eff": 68.2781,
+       "icc": 0.6928
+      }
+     },
+     "cluster": {
+      "n": 89,
+      "verdict": "✅",
+      "label": "真有用",
+      "reasons": [],
+      "items_gain": 3.67,
+      "per_seed_items": {
+       "1": 2.0,
+       "2": 4.0,
+       "3": 5.0
+      },
+      "sign": [
+       11,
+       4,
+       0.11846923828125
+      ],
+      "ci_items_item": [
+       0.67,
+       7.0
+      ],
+      "ci_items_cluster": [
+       0.32,
+       7.75
+      ],
+      "width_item": 6.33,
+      "width_cluster": 7.43,
+      "eff_n": {
+       "n": 89,
+       "n_clusters": 76,
+       "se_iid": 0.0191,
+       "se_cluster": 0.0218,
+       "deff": 1.3035,
+       "n_eff": 68.2781,
+       "icc": 0.6928
+      }
+     },
+     "cluster_weighted_items_gain": 3.58,
+     "n_clusters_used": 76
+    },
+    {
+     "scorer": "strict_only",
+     "scorer_desc": "只按 strict 计分（宽松档合并，paraphrase 记 0）",
+     "filter": "drop_disagree_pair",
+     "filter_desc": "去掉本对比两臂任一种子判官分歧的卡（33 卡）",
+     "item": {
+      "n": 56,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": 1.33,
+      "per_seed_items": {
+       "1": 0.0,
+       "2": 1.0,
+       "3": 3.0
+      },
+      "sign": [
+       5,
+       2,
+       0.453125
+      ],
+      "ci_items_item": [
+       -0.67,
+       3.33
+      ],
+      "ci_items_cluster": [
+       -0.65,
+       3.52
+      ],
+      "width_item": 4.0,
+      "width_cluster": 4.18,
+      "eff_n": {
+       "n": 56,
+       "n_clusters": 52,
+       "se_iid": 0.0187,
+       "se_cluster": 0.0188,
+       "deff": 1.0056,
+       "n_eff": 55.6877,
+       "icc": 1.0
+      }
+     },
+     "cluster": {
+      "n": 56,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": 1.33,
+      "per_seed_items": {
+       "1": 0.0,
+       "2": 1.0,
+       "3": 3.0
+      },
+      "sign": [
+       5,
+       2,
+       0.453125
+      ],
+      "ci_items_item": [
+       -0.67,
+       3.33
+      ],
+      "ci_items_cluster": [
+       -0.65,
+       3.52
+      ],
+      "width_item": 4.0,
+      "width_cluster": 4.18,
+      "eff_n": {
+       "n": 56,
+       "n_clusters": 52,
+       "se_iid": 0.0187,
+       "se_cluster": 0.0188,
+       "deff": 1.0056,
+       "n_eff": 55.6877,
+       "icc": 1.0
+      }
+     }
+    },
+    {
+     "scorer": "harsh_weighted",
+     "scorer_desc": "双判官取更严格档，折合计分",
+     "filter": "all",
+     "filter_desc": "全部 89 卡",
+     "item": {
+      "n": 89,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": 0.83,
+      "per_seed_items": {
+       "1": 2.0,
+       "2": -0.5,
+       "3": 1.0
+      },
+      "sign": [
+       28,
+       27,
+       1.0
+      ],
+      "ci_items_item": [
+       -2.5,
+       4.17
+      ],
+      "ci_items_cluster": [
+       -2.56,
+       4.21
+      ],
+      "width_item": 6.67,
+      "width_cluster": 6.77,
+      "eff_n": {
+       "n": 89,
+       "n_clusters": 76,
+       "se_iid": 0.0193,
+       "se_cluster": 0.0197,
+       "deff": 1.0474,
+       "n_eff": 84.9755,
+       "icc": 0.0089
+      }
+     },
+     "cluster": {
+      "n": 89,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": 0.83,
+      "per_seed_items": {
+       "1": 2.0,
+       "2": -0.5,
+       "3": 1.0
+      },
+      "sign": [
+       28,
+       27,
+       1.0
+      ],
+      "ci_items_item": [
+       -2.5,
+       4.17
+      ],
+      "ci_items_cluster": [
+       -2.56,
+       4.21
+      ],
+      "width_item": 6.67,
+      "width_cluster": 6.77,
+      "eff_n": {
+       "n": 89,
+       "n_clusters": 76,
+       "se_iid": 0.0193,
+       "se_cluster": 0.0197,
+       "deff": 1.0474,
+       "n_eff": 84.9755,
+       "icc": 0.0089
+      }
+     },
+     "cluster_weighted_items_gain": 0.0,
+     "n_clusters_used": 76
+    },
+    {
+     "scorer": "harsh_weighted",
+     "scorer_desc": "双判官取更严格档，折合计分",
+     "filter": "drop_disagree_pair",
+     "filter_desc": "去掉本对比两臂任一种子判官分歧的卡（33 卡）",
+     "item": {
+      "n": 56,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": 0.33,
+      "per_seed_items": {
+       "1": -0.5,
+       "2": 0.0,
+       "3": 1.5
+      },
+      "sign": [
+       16,
+       17,
+       1.0
+      ],
+      "ci_items_item": [
+       -2.0,
+       2.83
+      ],
+      "ci_items_cluster": [
+       -2.02,
+       2.77
+      ],
+      "width_item": 4.83,
+      "width_cluster": 4.79,
+      "eff_n": {
+       "n": 56,
+       "n_clusters": 52,
+       "se_iid": 0.0225,
+       "se_cluster": 0.0221,
+       "deff": 0.9658,
+       "n_eff": 57.9846,
+       "icc": -0.23
+      }
+     },
+     "cluster": {
+      "n": 56,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": 0.33,
+      "per_seed_items": {
+       "1": -0.5,
+       "2": 0.0,
+       "3": 1.5
+      },
+      "sign": [
+       16,
+       17,
+       1.0
+      ],
+      "ci_items_item": [
+       -2.0,
+       2.83
+      ],
+      "ci_items_cluster": [
+       -2.02,
+       2.77
+      ],
+      "width_item": 4.83,
+      "width_cluster": 4.79,
+      "eff_n": {
+       "n": 56,
+       "n_clusters": 52,
+       "se_iid": 0.0225,
+       "se_cluster": 0.0221,
+       "deff": 0.9658,
+       "n_eff": 57.9846,
+       "icc": -0.23
+      }
+     }
+    },
+    {
+     "scorer": "harsh_strict_only",
+     "scorer_desc": "双判官取更严格档且只按 strict 计分（最严）",
+     "filter": "all",
+     "filter_desc": "全部 89 卡",
+     "item": {
+      "n": 89,
+      "verdict": "✅",
+      "label": "真有用",
+      "reasons": [],
+      "items_gain": 3.33,
+      "per_seed_items": {
+       "1": 1.0,
+       "2": 4.0,
+       "3": 5.0
+      },
+      "sign": [
+       9,
+       2,
+       0.0654296875
+      ],
+      "ci_items_item": [
+       0.67,
+       6.33
+      ],
+      "ci_items_cluster": [
+       0.34,
+       7.0
+      ],
+      "width_item": 5.67,
+      "width_cluster": 6.66,
+      "eff_n": {
+       "n": 89,
+       "n_clusters": 76,
+       "se_iid": 0.0164,
+       "se_cluster": 0.0193,
+       "deff": 1.387,
+       "n_eff": 64.1651,
+       "icc": 0.8213
+      }
+     },
+     "cluster": {
+      "n": 89,
+      "verdict": "✅",
+      "label": "真有用",
+      "reasons": [],
+      "items_gain": 3.33,
+      "per_seed_items": {
+       "1": 1.0,
+       "2": 4.0,
+       "3": 5.0
+      },
+      "sign": [
+       9,
+       2,
+       0.0654296875
+      ],
+      "ci_items_item": [
+       0.67,
+       6.33
+      ],
+      "ci_items_cluster": [
+       0.34,
+       7.0
+      ],
+      "width_item": 5.67,
+      "width_cluster": 6.66,
+      "eff_n": {
+       "n": 89,
+       "n_clusters": 76,
+       "se_iid": 0.0164,
+       "se_cluster": 0.0193,
+       "deff": 1.387,
+       "n_eff": 64.1651,
+       "icc": 0.8213
+      }
+     },
+     "cluster_weighted_items_gain": 2.93,
+     "n_clusters_used": 76
+    },
+    {
+     "scorer": "harsh_strict_only",
+     "scorer_desc": "双判官取更严格档且只按 strict 计分（最严）",
+     "filter": "drop_disagree_pair",
+     "filter_desc": "去掉本对比两臂任一种子判官分歧的卡（33 卡）",
+     "item": {
+      "n": 56,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": 1.33,
+      "per_seed_items": {
+       "1": 0.0,
+       "2": 1.0,
+       "3": 3.0
+      },
+      "sign": [
+       5,
+       2,
+       0.453125
+      ],
+      "ci_items_item": [
+       -0.67,
+       3.33
+      ],
+      "ci_items_cluster": [
+       -0.65,
+       3.52
+      ],
+      "width_item": 4.0,
+      "width_cluster": 4.18,
+      "eff_n": {
+       "n": 56,
+       "n_clusters": 52,
+       "se_iid": 0.0187,
+       "se_cluster": 0.0188,
+       "deff": 1.0056,
+       "n_eff": 55.6877,
+       "icc": 1.0
+      }
+     },
+     "cluster": {
+      "n": 56,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": 1.33,
+      "per_seed_items": {
+       "1": 0.0,
+       "2": 1.0,
+       "3": 3.0
+      },
+      "sign": [
+       5,
+       2,
+       0.453125
+      ],
+      "ci_items_item": [
+       -0.67,
+       3.33
+      ],
+      "ci_items_cluster": [
+       -0.65,
+       3.52
+      ],
+      "width_item": 4.0,
+      "width_cluster": 4.18,
+      "eff_n": {
+       "n": 56,
+       "n_clusters": 52,
+       "se_iid": 0.0187,
+       "se_cluster": 0.0188,
+       "deff": 1.0056,
+       "n_eff": 55.6877,
+       "icc": 1.0
+      }
+     }
+    }
+   ]
+  },
+  {
+   "plug": "B_dsh",
+   "base": "B_bm25",
+   "title": "dsh-memory vs BM25（参照对照）",
+   "rows": [
+    {
+     "scorer": "main",
+     "scorer_desc": "主口径：双判官取宽松档，strict 1 / paraphrase ½",
+     "filter": "all",
+     "filter_desc": "全部 89 卡",
+     "item": {
+      "n": 89,
+      "verdict": "✅",
+      "label": "真有用",
+      "reasons": [],
+      "items_gain": 4.67,
+      "per_seed_items": {
+       "1": 3.0,
+       "2": 5.0,
+       "3": 6.0
+      },
+      "sign": [
+       35,
+       25,
+       0.2450608330229457
+      ],
+      "ci_items_item": [
+       0.5,
+       8.83
+      ],
+      "ci_items_cluster": [
+       0.17,
+       9.1
+      ],
+      "width_item": 8.33,
+      "width_cluster": 8.93,
+      "eff_n": {
+       "n": 89,
+       "n_clusters": 76,
+       "se_iid": 0.0241,
+       "se_cluster": 0.0254,
+       "deff": 1.1155,
+       "n_eff": 79.7837,
+       "icc": 0.5378
+      }
+     },
+     "cluster": {
+      "n": 89,
+      "verdict": "✅",
+      "label": "真有用",
+      "reasons": [],
+      "items_gain": 4.67,
+      "per_seed_items": {
+       "1": 3.0,
+       "2": 5.0,
+       "3": 6.0
+      },
+      "sign": [
+       35,
+       25,
+       0.2450608330229457
+      ],
+      "ci_items_item": [
+       0.5,
+       8.83
+      ],
+      "ci_items_cluster": [
+       0.17,
+       9.1
+      ],
+      "width_item": 8.33,
+      "width_cluster": 8.93,
+      "eff_n": {
+       "n": 89,
+       "n_clusters": 76,
+       "se_iid": 0.0241,
+       "se_cluster": 0.0254,
+       "deff": 1.1155,
+       "n_eff": 79.7837,
+       "icc": 0.5378
+      }
+     },
+     "cluster_weighted_items_gain": 3.35,
+     "n_clusters_used": 76
+    },
+    {
+     "scorer": "main",
+     "scorer_desc": "主口径：双判官取宽松档，strict 1 / paraphrase ½",
+     "filter": "drop_disagree_pair",
+     "filter_desc": "去掉本对比两臂任一种子判官分歧的卡（28 卡）",
+     "item": {
+      "n": 61,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "效应不足 3 道题"
+      ],
+      "items_gain": 2.0,
+      "per_seed_items": {
+       "1": 1.5,
+       "2": 2.0,
+       "3": 2.5
+      },
+      "sign": [
+       20,
+       16,
+       0.617719317029696
+      ],
+      "ci_items_item": [
+       -1.17,
+       5.17
+      ],
+      "ci_items_cluster": [
+       -1.45,
+       5.34
+      ],
+      "width_item": 6.33,
+      "width_cluster": 6.79,
+      "eff_n": {
+       "n": 61,
+       "n_clusters": 54,
+       "se_iid": 0.0267,
+       "se_cluster": 0.0288,
+       "deff": 1.1681,
+       "n_eff": 52.2216,
+       "icc": 0.6806
+      }
+     },
+     "cluster": {
+      "n": 61,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "效应不足 3 道题"
+      ],
+      "items_gain": 2.0,
+      "per_seed_items": {
+       "1": 1.5,
+       "2": 2.0,
+       "3": 2.5
+      },
+      "sign": [
+       20,
+       16,
+       0.617719317029696
+      ],
+      "ci_items_item": [
+       -1.17,
+       5.17
+      ],
+      "ci_items_cluster": [
+       -1.45,
+       5.34
+      ],
+      "width_item": 6.33,
+      "width_cluster": 6.79,
+      "eff_n": {
+       "n": 61,
+       "n_clusters": 54,
+       "se_iid": 0.0267,
+       "se_cluster": 0.0288,
+       "deff": 1.1681,
+       "n_eff": 52.2216,
+       "icc": 0.6806
+      }
+     }
+    },
+    {
+     "scorer": "main",
+     "scorer_desc": "主口径：双判官取宽松档，strict 1 / paraphrase ½",
+     "filter": "drop_disagree_any",
+     "filter_desc": "去掉四臂任一批判官分歧的卡（49 卡）",
+     "item": {
+      "n": 40,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "效应不足 3 道题"
+      ],
+      "items_gain": 2.17,
+      "per_seed_items": {
+       "1": 3.5,
+       "2": 1.5,
+       "3": 1.5
+      },
+      "sign": [
+       16,
+       10,
+       0.32693958282470703
+      ],
+      "ci_items_item": [
+       -0.5,
+       4.83
+      ],
+      "ci_items_cluster": [
+       -0.68,
+       5.04
+      ],
+      "width_item": 5.33,
+      "width_cluster": 5.72,
+      "eff_n": {
+       "n": 40,
+       "n_clusters": 37,
+       "se_iid": 0.0334,
+       "se_cluster": 0.0372,
+       "deff": 1.2381,
+       "n_eff": 32.3081,
+       "icc": 0.8968
+      }
+     },
+     "cluster": {
+      "n": 40,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "效应不足 3 道题"
+      ],
+      "items_gain": 2.17,
+      "per_seed_items": {
+       "1": 3.5,
+       "2": 1.5,
+       "3": 1.5
+      },
+      "sign": [
+       16,
+       10,
+       0.32693958282470703
+      ],
+      "ci_items_item": [
+       -0.5,
+       4.83
+      ],
+      "ci_items_cluster": [
+       -0.68,
+       5.04
+      ],
+      "width_item": 5.33,
+      "width_cluster": 5.72,
+      "eff_n": {
+       "n": 40,
+       "n_clusters": 37,
+       "se_iid": 0.0334,
+       "se_cluster": 0.0372,
+       "deff": 1.2381,
+       "n_eff": 32.3081,
+       "icc": 0.8968
+      }
+     }
+    },
+    {
+     "scorer": "main",
+     "scorer_desc": "主口径：双判官取宽松档，strict 1 / paraphrase ½",
+     "filter": "drop_dirty",
+     "filter_desc": "去掉脏卡 C-116",
+     "item": {
+      "n": 88,
+      "verdict": "✅",
+      "label": "真有用",
+      "reasons": [],
+      "items_gain": 4.33,
+      "per_seed_items": {
+       "1": 2.5,
+       "2": 5.0,
+       "3": 5.5
+      },
+      "sign": [
+       34,
+       25,
+       0.2975952082844287
+      ],
+      "ci_items_item": [
+       0.33,
+       8.5
+      ],
+      "ci_items_cluster": [
+       -0.0,
+       8.7
+      ],
+      "width_item": 8.17,
+      "width_cluster": 8.7,
+      "eff_n": {
+       "n": 88,
+       "n_clusters": 75,
+       "se_iid": 0.0241,
+       "se_cluster": 0.0255,
+       "deff": 1.1209,
+       "n_eff": 78.5068,
+       "icc": 0.5348
+      }
+     },
+     "cluster": {
+      "n": 88,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0"
+      ],
+      "items_gain": 4.33,
+      "per_seed_items": {
+       "1": 2.5,
+       "2": 5.0,
+       "3": 5.5
+      },
+      "sign": [
+       34,
+       25,
+       0.2975952082844287
+      ],
+      "ci_items_item": [
+       0.33,
+       8.5
+      ],
+      "ci_items_cluster": [
+       -0.0,
+       8.7
+      ],
+      "width_item": 8.17,
+      "width_cluster": 8.7,
+      "eff_n": {
+       "n": 88,
+       "n_clusters": 75,
+       "se_iid": 0.0241,
+       "se_cluster": 0.0255,
+       "deff": 1.1209,
+       "n_eff": 78.5068,
+       "icc": 0.5348
+      }
+     }
+    },
+    {
+     "scorer": "strict_only",
+     "scorer_desc": "只按 strict 计分（宽松档合并，paraphrase 记 0）",
+     "filter": "all",
+     "filter_desc": "全部 89 卡",
+     "item": {
+      "n": 89,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": -0.0,
+      "per_seed_items": {
+       "1": 1.0,
+       "2": -1.0,
+       "3": 0.0
+      },
+      "sign": [
+       7,
+       5,
+       0.7744140625
+      ],
+      "ci_items_item": [
+       -3.0,
+       2.67
+      ],
+      "ci_items_cluster": [
+       -2.61,
+       2.33
+      ],
+      "width_item": 5.67,
+      "width_cluster": 4.94,
+      "eff_n": {
+       "n": 89,
+       "n_clusters": 76,
+       "se_iid": 0.016,
+       "se_cluster": 0.0141,
+       "deff": 0.7793,
+       "n_eff": 114.2061,
+       "icc": -0.6968
+      }
+     },
+     "cluster": {
+      "n": 89,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": -0.0,
+      "per_seed_items": {
+       "1": 1.0,
+       "2": -1.0,
+       "3": 0.0
+      },
+      "sign": [
+       7,
+       5,
+       0.7744140625
+      ],
+      "ci_items_item": [
+       -3.0,
+       2.67
+      ],
+      "ci_items_cluster": [
+       -2.61,
+       2.33
+      ],
+      "width_item": 5.67,
+      "width_cluster": 4.94,
+      "eff_n": {
+       "n": 89,
+       "n_clusters": 76,
+       "se_iid": 0.016,
+       "se_cluster": 0.0141,
+       "deff": 0.7793,
+       "n_eff": 114.2061,
+       "icc": -0.6968
+      }
+     },
+     "cluster_weighted_items_gain": -0.2,
+     "n_clusters_used": 76
+    },
+    {
+     "scorer": "strict_only",
+     "scorer_desc": "只按 strict 计分（宽松档合并，paraphrase 记 0）",
+     "filter": "drop_disagree_pair",
+     "filter_desc": "去掉本对比两臂任一种子判官分歧的卡（28 卡）",
+     "item": {
+      "n": 61,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": 0.33,
+      "per_seed_items": {
+       "1": 1.0,
+       "2": -1.0,
+       "3": 1.0
+      },
+      "sign": [
+       5,
+       3,
+       0.7265625
+      ],
+      "ci_items_item": [
+       -2.0,
+       2.33
+      ],
+      "ci_items_cluster": [
+       -1.69,
+       2.19
+      ],
+      "width_item": 4.33,
+      "width_cluster": 3.88,
+      "eff_n": {
+       "n": 61,
+       "n_clusters": 54,
+       "se_iid": 0.0183,
+       "se_cluster": 0.0165,
+       "deff": 0.8171,
+       "n_eff": 74.6559,
+       "icc": -0.9591
+      }
+     },
+     "cluster": {
+      "n": 61,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": 0.33,
+      "per_seed_items": {
+       "1": 1.0,
+       "2": -1.0,
+       "3": 1.0
+      },
+      "sign": [
+       5,
+       3,
+       0.7265625
+      ],
+      "ci_items_item": [
+       -2.0,
+       2.33
+      ],
+      "ci_items_cluster": [
+       -1.69,
+       2.19
+      ],
+      "width_item": 4.33,
+      "width_cluster": 3.88,
+      "eff_n": {
+       "n": 61,
+       "n_clusters": 54,
+       "se_iid": 0.0183,
+       "se_cluster": 0.0165,
+       "deff": 0.8171,
+       "n_eff": 74.6559,
+       "icc": -0.9591
+      }
+     }
+    },
+    {
+     "scorer": "harsh_weighted",
+     "scorer_desc": "双判官取更严格档，折合计分",
+     "filter": "all",
+     "filter_desc": "全部 89 卡",
+     "item": {
+      "n": 89,
+      "verdict": "✅",
+      "label": "真有用",
+      "reasons": [],
+      "items_gain": 5.67,
+      "per_seed_items": {
+       "1": 4.5,
+       "2": 4.5,
+       "3": 8.0
+      },
+      "sign": [
+       34,
+       21,
+       0.10478948242660335
+      ],
+      "ci_items_item": [
+       1.5,
+       9.83
+      ],
+      "ci_items_cluster": [
+       1.35,
+       9.95
+      ],
+      "width_item": 8.33,
+      "width_cluster": 8.6,
+      "eff_n": {
+       "n": 89,
+       "n_clusters": 76,
+       "se_iid": 0.0239,
+       "se_cluster": 0.0248,
+       "deff": 1.0769,
+       "n_eff": 82.6463,
+       "icc": 0.4965
+      }
+     },
+     "cluster": {
+      "n": 89,
+      "verdict": "✅",
+      "label": "真有用",
+      "reasons": [],
+      "items_gain": 5.67,
+      "per_seed_items": {
+       "1": 4.5,
+       "2": 4.5,
+       "3": 8.0
+      },
+      "sign": [
+       34,
+       21,
+       0.10478948242660335
+      ],
+      "ci_items_item": [
+       1.5,
+       9.83
+      ],
+      "ci_items_cluster": [
+       1.35,
+       9.95
+      ],
+      "width_item": 8.33,
+      "width_cluster": 8.6,
+      "eff_n": {
+       "n": 89,
+       "n_clusters": 76,
+       "se_iid": 0.0239,
+       "se_cluster": 0.0248,
+       "deff": 1.0769,
+       "n_eff": 82.6463,
+       "icc": 0.4965
+      }
+     },
+     "cluster_weighted_items_gain": 4.49,
+     "n_clusters_used": 76
+    },
+    {
+     "scorer": "harsh_weighted",
+     "scorer_desc": "双判官取更严格档，折合计分",
+     "filter": "drop_disagree_pair",
+     "filter_desc": "去掉本对比两臂任一种子判官分歧的卡（28 卡）",
+     "item": {
+      "n": 61,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "效应不足 3 道题"
+      ],
+      "items_gain": 2.0,
+      "per_seed_items": {
+       "1": 1.5,
+       "2": 2.0,
+       "3": 2.5
+      },
+      "sign": [
+       20,
+       16,
+       0.617719317029696
+      ],
+      "ci_items_item": [
+       -1.17,
+       5.17
+      ],
+      "ci_items_cluster": [
+       -1.45,
+       5.34
+      ],
+      "width_item": 6.33,
+      "width_cluster": 6.79,
+      "eff_n": {
+       "n": 61,
+       "n_clusters": 54,
+       "se_iid": 0.0267,
+       "se_cluster": 0.0288,
+       "deff": 1.1681,
+       "n_eff": 52.2216,
+       "icc": 0.6806
+      }
+     },
+     "cluster": {
+      "n": 61,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "效应不足 3 道题"
+      ],
+      "items_gain": 2.0,
+      "per_seed_items": {
+       "1": 1.5,
+       "2": 2.0,
+       "3": 2.5
+      },
+      "sign": [
+       20,
+       16,
+       0.617719317029696
+      ],
+      "ci_items_item": [
+       -1.17,
+       5.17
+      ],
+      "ci_items_cluster": [
+       -1.45,
+       5.34
+      ],
+      "width_item": 6.33,
+      "width_cluster": 6.79,
+      "eff_n": {
+       "n": 61,
+       "n_clusters": 54,
+       "se_iid": 0.0267,
+       "se_cluster": 0.0288,
+       "deff": 1.1681,
+       "n_eff": 52.2216,
+       "icc": 0.6806
+      }
+     }
+    },
+    {
+     "scorer": "harsh_strict_only",
+     "scorer_desc": "双判官取更严格档且只按 strict 计分（最严）",
+     "filter": "all",
+     "filter_desc": "全部 89 卡",
+     "item": {
+      "n": 89,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": -0.33,
+      "per_seed_items": {
+       "1": 1.0,
+       "2": -2.0,
+       "3": 0.0
+      },
+      "sign": [
+       6,
+       5,
+       1.0
+      ],
+      "ci_items_item": [
+       -3.0,
+       2.33
+      ],
+      "ci_items_cluster": [
+       -2.87,
+       1.91
+      ],
+      "width_item": 5.33,
+      "width_cluster": 4.78,
+      "eff_n": {
+       "n": 89,
+       "n_clusters": 76,
+       "se_iid": 0.0155,
+       "se_cluster": 0.0136,
+       "deff": 0.7676,
+       "n_eff": 115.9476,
+       "icc": -0.7985
+      }
+     },
+     "cluster": {
+      "n": 89,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": -0.33,
+      "per_seed_items": {
+       "1": 1.0,
+       "2": -2.0,
+       "3": 0.0
+      },
+      "sign": [
+       6,
+       5,
+       1.0
+      ],
+      "ci_items_item": [
+       -3.0,
+       2.33
+      ],
+      "ci_items_cluster": [
+       -2.87,
+       1.91
+      ],
+      "width_item": 5.33,
+      "width_cluster": 4.78,
+      "eff_n": {
+       "n": 89,
+       "n_clusters": 76,
+       "se_iid": 0.0155,
+       "se_cluster": 0.0136,
+       "deff": 0.7676,
+       "n_eff": 115.9476,
+       "icc": -0.7985
+      }
+     },
+     "cluster_weighted_items_gain": -0.59,
+     "n_clusters_used": 76
+    },
+    {
+     "scorer": "harsh_strict_only",
+     "scorer_desc": "双判官取更严格档且只按 strict 计分（最严）",
+     "filter": "drop_disagree_pair",
+     "filter_desc": "去掉本对比两臂任一种子判官分歧的卡（28 卡）",
+     "item": {
+      "n": 61,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": 0.33,
+      "per_seed_items": {
+       "1": 1.0,
+       "2": -1.0,
+       "3": 1.0
+      },
+      "sign": [
+       5,
+       3,
+       0.7265625
+      ],
+      "ci_items_item": [
+       -2.0,
+       2.33
+      ],
+      "ci_items_cluster": [
+       -1.69,
+       2.19
+      ],
+      "width_item": 4.33,
+      "width_cluster": 3.88,
+      "eff_n": {
+       "n": 61,
+       "n_clusters": 54,
+       "se_iid": 0.0183,
+       "se_cluster": 0.0165,
+       "deff": 0.8171,
+       "n_eff": 74.6559,
+       "icc": -0.9591
+      }
+     },
+     "cluster": {
+      "n": 61,
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": 0.33,
+      "per_seed_items": {
+       "1": 1.0,
+       "2": -1.0,
+       "3": 1.0
+      },
+      "sign": [
+       5,
+       3,
+       0.7265625
+      ],
+      "ci_items_item": [
+       -2.0,
+       2.33
+      ],
+      "ci_items_cluster": [
+       -1.69,
+       2.19
+      ],
+      "width_item": 4.33,
+      "width_cluster": 3.88,
+      "eff_n": {
+       "n": 61,
+       "n_clusters": 54,
+       "se_iid": 0.0183,
+       "se_cluster": 0.0165,
+       "deff": 0.8171,
+       "n_eff": 74.6559,
+       "icc": -0.9591
+      }
+     }
+    }
+   ]
+  }
+ ]
+}

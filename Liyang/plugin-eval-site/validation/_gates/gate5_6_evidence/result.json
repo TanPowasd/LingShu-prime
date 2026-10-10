@@ -1,0 +1,181 @@
+{
+ "at": "2026-10-10T11:13:40+08:00",
+ "control": {
+  "sweep_errors": [],
+  "invalid_nodes": [],
+  "board_valid": [
+   "board:B_dsh_vs_null",
+   "board:B_bm25_vs_null"
+  ]
+ },
+ "gate5_trace": {
+  "report": "dsh-memory_考卷B_草稿",
+  "chain": {
+   "report": [
+    "report:dsh-memory_考卷B_草稿"
+   ],
+   "analysis": [
+    "analysis:B_dsh_vs_null"
+   ],
+   "run": [
+    "run:B_dsh",
+    "run:B_null"
+   ],
+   "input": [
+    "input:cards",
+    "input:corpus"
+   ],
+   "recording": [
+    "recording:dsh_install",
+    "recording:dsh_key",
+    "recording:dsh_retire"
+   ],
+   "judge": [
+    "judge:f8578a779316ff8a7db5c6907264a9c7091f39c84feb7f77eacd16effbc98fae"
+   ]
+  },
+  "citations_total": 36,
+  "citations_hit": 36,
+  "citations_miss": [],
+  "headline_claims_match_recompute": {
+   "label 😐": true,
+   "净提升 -1 题": true,
+   "区间 -5～+2": true
+  },
+  "recomputed": {
+   "verdict": "😐",
+   "label": "看不出差别",
+   "D": -0.013108614,
+   "ci": [
+    -0.054307116,
+    0.028089888
+   ],
+   "items_gain": -1.166666667,
+   "ci_items": [
+    -4.833333333,
+    2.5
+   ],
+   "sign": [
+    20,
+    28
+   ],
+   "per_seed_D": {
+    "1": -0.011235955,
+    "2": -0.04494382,
+    "3": 0.016853933
+   }
+  },
+  "verify_ok": true,
+  "verify_errors": []
+ },
+ "fault": {
+  "sealed": {
+   "deleted": "runs/B_dsh/q/C-041.s3.gen.json",
+   "modified": "runs/B_bm25/judge/s3.json",
+   "modified_item": {
+    "index": 19,
+    "card": "C-070",
+    "final_before": "miss",
+    "final_after": "strict"
+   },
+   "cache_traps": [
+    "runs/B_dsh/summary.json",
+    "runs/B_bm25/summary.json",
+    "analysis/*/result.json（发布时的旧结果）"
+   ],
+   "at": "2026-10-10T11:13:55+08:00",
+   "note": "注入器私有；检测器不读"
+  },
+  "detected_errors": [
+   {
+    "code": "HASH_MISMATCH",
+    "node": "run:B_bm25",
+    "path": "runs/B_bm25/judge/s3.json",
+    "expected": "1fef09611eb83fec",
+    "actual": "72c134e5684c7604"
+   },
+   {
+    "code": "MISSING_FILE",
+    "node": "run:B_dsh",
+    "path": "runs/B_dsh/q/C-041.s3.gen.json"
+   }
+  ],
+  "invalid_nodes": [
+   "analysis:B_bm25_vs_null",
+   "analysis:B_dsh_vs_null",
+   "badge:bm25(参照臂)",
+   "badge:dsh-memory",
+   "board:B_bm25_vs_null",
+   "board:B_dsh_vs_null",
+   "report:bm25_考卷B_参照",
+   "report:dsh-memory_考卷B_草稿",
+   "run:B_bm25",
+   "run:B_dsh"
+  ],
+  "recompute": {
+   "B_dsh_vs_null": {
+    "refused": true,
+    "errors": [
+     {
+      "code": "MISSING_FILE",
+      "node": "run:B_dsh",
+      "path": "runs/B_dsh/q/C-041.s3.gen.json"
+     }
+    ]
+   },
+   "B_bm25_vs_null": {
+    "refused": true,
+    "errors": [
+     {
+      "code": "HASH_MISMATCH",
+      "node": "run:B_bm25",
+      "path": "runs/B_bm25/judge/s3.json",
+      "expected": "1fef09611eb83fec",
+      "actual": "72c134e5684c7604"
+     }
+    ]
+   }
+  },
+  "board_valid": [],
+  "board_invalid": [
+   "board:B_bm25_vs_null",
+   "board:B_dsh_vs_null"
+  ],
+  "badges": {
+   "bm25(参照臂)": "revoked",
+   "dsh-memory": "revoked"
+  },
+  "report_pages_marked_invalid": {
+   "bm25_考卷B_参照": true,
+   "dsh-memory_考卷B_草稿": true
+  },
+  "missing_reported_exactly": true,
+  "hash_mismatch_reported_exactly": true,
+  "B_null_unaffected": true
+ },
+ "recovery": {
+  "sweep_errors_after_restore": [],
+  "reinstated": [
+   "board:B_bm25_vs_null",
+   "board:B_dsh_vs_null"
+  ],
+  "board_valid": [
+   "board:B_bm25_vs_null",
+   "board:B_dsh_vs_null"
+  ],
+  "board_invalid": [],
+  "badges": {
+   "bm25(参照臂)": "valid",
+   "dsh-memory": "valid"
+  },
+  "recompute_equals_original": {
+   "B_dsh_vs_null": true,
+   "B_bm25_vs_null": true
+  },
+  "invalidation_log_lines": 3
+ },
+ "originals_untouched": {
+  "R2_control": true,
+  "R2_fault": true
+ }
+}

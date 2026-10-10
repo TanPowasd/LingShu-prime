@@ -1,0 +1,33 @@
+{
+ "all_pass": true,
+ "files": {
+  "能力分.md": {
+   "total": 0,
+   "ok": 0,
+   "pass": true,
+   "problems": [],
+   "cites_to_duplicate_seq": 0
+  },
+  "能力分_扣分明细.md": {
+   "total": 259,
+   "ok": 259,
+   "pass": true,
+   "problems": [],
+   "cites_to_duplicate_seq": 0
+  },
+  "好不好用.md": {
+   "total": 0,
+   "ok": 0,
+   "pass": true,
+   "problems": [],
+   "cites_to_duplicate_seq": 0
+  },
+  "成本与安全.md": {
+   "total": 0,
+   "ok": 0,
+   "pass": true,
+   "problems": [],
+   "cites_to_duplicate_seq": 0
+  }
+ }
+}

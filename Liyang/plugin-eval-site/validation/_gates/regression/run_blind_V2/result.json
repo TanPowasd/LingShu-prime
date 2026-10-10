@@ -1,0 +1,736 @@
+{
+ "summary": {
+  "judge_module": "/workspace/work/pes/harness/judge.py",
+  "judge_sha256": "f8578a779316ff8a7db5c6907264a9c7091f39c84feb7f77eacd16effbc98fae",
+  "tag": "blind_V2",
+  "set_sha256": "62e076ecef3504f195ab4947eb4374a25e06828de62f832e84bf6ff70e32e13b",
+  "at": "2026-10-10T11:11:41+08:00",
+  "n": 74,
+  "by_class": {
+   "correct": {
+    "n": 24,
+    "pass": 24
+   },
+   "wrong": {
+    "n": 24,
+    "pass": 24
+   },
+   "boundary": {
+    "n": 26,
+    "pass": 26
+   }
+  },
+  "batch_status": "valid",
+  "batch_gate_pass": true,
+  "all_pass": true,
+  "fails": []
+ },
+ "results": [
+  {
+   "rid": "RB01",
+   "class": "boundary",
+   "name": "parse_verdict 大写 STRICT",
+   "expect": "strict",
+   "got": "strict",
+   "pass": true
+  },
+  {
+   "rid": "RB02",
+   "class": "boundary",
+   "name": "parse_verdict 非 JSON 但含字段",
+   "expect": "miss",
+   "got": "miss",
+   "pass": true
+  },
+  {
+   "rid": "RB03",
+   "class": "boundary",
+   "name": "parse_verdict 垃圾输出",
+   "expect": "parse_err",
+   "got": "parse_err",
+   "pass": true
+  },
+  {
+   "rid": "RB04",
+   "class": "boundary",
+   "name": "parse_verdict 越界档位 partial",
+   "expect": "parse_err",
+   "got": "parse_err",
+   "pass": true
+  },
+  {
+   "rid": "RB05",
+   "class": "boundary",
+   "name": "parse_verdict 空串",
+   "expect": "parse_err",
+   "got": "parse_err",
+   "pass": true
+  },
+  {
+   "rid": "RB06",
+   "class": "boundary",
+   "name": "combine strict+miss 取宽松",
+   "expect": [
+    "strict",
+    "miss"
+   ],
+   "got": [
+    "strict",
+    "miss"
+   ],
+   "pass": true
+  },
+  {
+   "rid": "RB07",
+   "class": "boundary",
+   "name": "combine parse_err+miss",
+   "expect": [
+    "miss",
+    "parse_err"
+   ],
+   "got": [
+    "miss",
+    "parse_err"
+   ],
+   "pass": true
+  },
+  {
+   "rid": "RB08",
+   "class": "boundary",
+   "name": "combine paraphrase+paraphrase",
+   "expect": [
+    "paraphrase",
+    "paraphrase"
+   ],
+   "got": [
+    "paraphrase",
+    "paraphrase"
+   ],
+   "pass": true
+  },
+  {
+   "rid": "RB09",
+   "class": "boundary",
+   "name": "WEIGHT paraphrase=0.5",
+   "expect": 0.5,
+   "got": 0.5,
+   "pass": true
+  },
+  {
+   "rid": "RB10",
+   "class": "boundary",
+   "name": "WEIGHT parse_err=0",
+   "expect": 0.0,
+   "got": 0.0,
+   "pass": true
+  },
+  {
+   "rid": "RB11",
+   "class": "boundary",
+   "name": "WEIGHT miss=0",
+   "expect": 0.0,
+   "got": 0.0,
+   "pass": true
+  },
+  {
+   "rid": "RB12",
+   "class": "boundary",
+   "name": "parse_answer 非 JSON → parse_err",
+   "expect": true,
+   "got": true,
+   "pass": true
+  },
+  {
+   "rid": "RB13",
+   "class": "boundary",
+   "name": "parse_answer 代码块包裹 → 可解析",
+   "expect": false,
+   "got": false,
+   "pass": true
+  },
+  {
+   "rid": "RB14",
+   "class": "boundary",
+   "name": "judge prompt 空预测显示（空）",
+   "expect": true,
+   "got": true,
+   "pass": true
+  },
+  {
+   "rid": "RB15",
+   "class": "boundary",
+   "name": "judge prompt 盲评：不含文件名",
+   "expect": true,
+   "got": true,
+   "pass": true
+  },
+  {
+   "rid": "RB16",
+   "class": "boundary",
+   "name": "judge prompt 不含臂名/插件名",
+   "expect": true,
+   "got": true,
+   "pass": true
+  },
+  {
+   "rid": "RB17",
+   "class": "boundary",
+   "name": "gate：锚正确率 43/48(0.896) 不过",
+   "expect": false,
+   "got": false,
+   "pass": true
+  },
+  {
+   "rid": "RB18",
+   "class": "boundary",
+   "name": "gate：锚正确率 44/48(0.917) 过",
+   "expect": true,
+   "got": true,
+   "pass": true
+  },
+  {
+   "rid": "RB19",
+   "class": "boundary",
+   "name": "gate：一致率 0.8 但 κ<0.6 不过",
+   "expect": false,
+   "got": false,
+   "pass": true
+  },
+  {
+   "rid": "RB20",
+   "class": "boundary",
+   "name": "gate：单类塌缩一致率 1.0 过",
+   "expect": true,
+   "got": true,
+   "pass": true
+  },
+  {
+   "rid": "RB21",
+   "class": "boundary",
+   "name": "leak_filter：起于答案行 → 剔除",
+   "expect": "drop:after-answer",
+   "got": "drop:after-answer",
+   "pass": true
+  },
+  {
+   "rid": "RB22",
+   "class": "boundary",
+   "name": "leak_filter：不可解析 source → 剔除",
+   "expect": "drop:unparseable",
+   "got": "drop:unparseable",
+   "pass": true
+  },
+  {
+   "rid": "RB23",
+   "class": "boundary",
+   "name": "leak_filter：跨答案行且对齐 → 截到答案行前",
+   "expect": "truncate",
+   "got": "truncate",
+   "pass": true
+  },
+  {
+   "rid": "RB24",
+   "class": "boundary",
+   "name": "check_basis：多空白仍逐字",
+   "expect": true,
+   "got": true,
+   "pass": true
+  },
+  {
+   "rid": "RB25",
+   "class": "boundary",
+   "name": "check_basis：改一字 → 不可回源",
+   "expect": false,
+   "got": false,
+   "pass": true
+  },
+  {
+   "rid": "RB26",
+   "class": "boundary",
+   "name": "check_basis：文件名写错 → 不可回源",
+   "expect": false,
+   "got": false,
+   "pass": true
+  },
+  {
+   "rid": "R+C-003",
+   "class": "correct",
+   "card": "C-003",
+   "expect": "strict",
+   "got": "strict",
+   "v1": "strict",
+   "v2": "strict",
+   "pass": true
+  },
+  {
+   "rid": "R+C-021",
+   "class": "correct",
+   "card": "C-021",
+   "expect": "strict",
+   "got": "strict",
+   "v1": "strict",
+   "v2": "strict",
+   "pass": true
+  },
+  {
+   "rid": "R+C-031",
+   "class": "correct",
+   "card": "C-031",
+   "expect": "strict",
+   "got": "strict",
+   "v1": "strict",
+   "v2": "strict",
+   "pass": true
+  },
+  {
+   "rid": "R+C-033",
+   "class": "correct",
+   "card": "C-033",
+   "expect": "strict",
+   "got": "strict",
+   "v1": "strict",
+   "v2": "strict",
+   "pass": true
+  },
+  {
+   "rid": "R+C-038",
+   "class": "correct",
+   "card": "C-038",
+   "expect": "strict",
+   "got": "strict",
+   "v1": "strict",
+   "v2": "strict",
+   "pass": true
+  },
+  {
+   "rid": "R+C-050",
+   "class": "correct",
+   "card": "C-050",
+   "expect": "strict",
+   "got": "strict",
+   "v1": "strict",
+   "v2": "strict",
+   "pass": true
+  },
+  {
+   "rid": "R+C-051",
+   "class": "correct",
+   "card": "C-051",
+   "expect": "strict",
+   "got": "strict",
+   "v1": "strict",
+   "v2": "strict",
+   "pass": true
+  },
+  {
+   "rid": "R+C-055",
+   "class": "correct",
+   "card": "C-055",
+   "expect": "strict",
+   "got": "strict",
+   "v1": "strict",
+   "v2": "strict",
+   "pass": true
+  },
+  {
+   "rid": "R+C-058",
+   "class": "correct",
+   "card": "C-058",
+   "expect": "strict",
+   "got": "strict",
+   "v1": "strict",
+   "v2": "strict",
+   "pass": true
+  },
+  {
+   "rid": "R+C-064",
+   "class": "correct",
+   "card": "C-064",
+   "expect": "strict",
+   "got": "strict",
+   "v1": "strict",
+   "v2": "strict",
+   "pass": true
+  },
+  {
+   "rid": "R+C-069",
+   "class": "correct",
+   "card": "C-069",
+   "expect": "strict",
+   "got": "strict",
+   "v1": "strict",
+   "v2": "strict",
+   "pass": true
+  },
+  {
+   "rid": "R+C-070",
+   "class": "correct",
+   "card": "C-070",
+   "expect": "strict",
+   "got": "strict",
+   "v1": "strict",
+   "v2": "strict",
+   "pass": true
+  },
+  {
+   "rid": "R+C-071",
+   "class": "correct",
+   "card": "C-071",
+   "expect": "strict",
+   "got": "strict",
+   "v1": "strict",
+   "v2": "strict",
+   "pass": true
+  },
+  {
+   "rid": "R+C-075",
+   "class": "correct",
+   "card": "C-075",
+   "expect": "strict",
+   "got": "strict",
+   "v1": "strict",
+   "v2": "strict",
+   "pass": true
+  },
+  {
+   "rid": "R+C-077",
+   "class": "correct",
+   "card": "C-077",
+   "expect": "strict",
+   "got": "strict",
+   "v1": "strict",
+   "v2": "strict",
+   "pass": true
+  },
+  {
+   "rid": "R+C-078",
+   "class": "correct",
+   "card": "C-078",
+   "expect": "strict",
+   "got": "strict",
+   "v1": "strict",
+   "v2": "strict",
+   "pass": true
+  },
+  {
+   "rid": "R+C-093",
+   "class": "correct",
+   "card": "C-093",
+   "expect": "strict",
+   "got": "strict",
+   "v1": "strict",
+   "v2": "strict",
+   "pass": true
+  },
+  {
+   "rid": "R+C-096",
+   "class": "correct",
+   "card": "C-096",
+   "expect": "strict",
+   "got": "strict",
+   "v1": "strict",
+   "v2": "strict",
+   "pass": true
+  },
+  {
+   "rid": "R+C-109",
+   "class": "correct",
+   "card": "C-109",
+   "expect": "strict",
+   "got": "strict",
+   "v1": "strict",
+   "v2": "strict",
+   "pass": true
+  },
+  {
+   "rid": "R+C-110",
+   "class": "correct",
+   "card": "C-110",
+   "expect": "strict",
+   "got": "strict",
+   "v1": "strict",
+   "v2": "strict",
+   "pass": true
+  },
+  {
+   "rid": "R+wsC-003",
+   "class": "correct",
+   "card": "C-003",
+   "expect": "strict",
+   "got": "strict",
+   "v1": "strict",
+   "v2": "strict",
+   "pass": true
+  },
+  {
+   "rid": "R+wsC-021",
+   "class": "correct",
+   "card": "C-021",
+   "expect": "strict",
+   "got": "strict",
+   "v1": "strict",
+   "v2": "strict",
+   "pass": true
+  },
+  {
+   "rid": "R+wsC-031",
+   "class": "correct",
+   "card": "C-031",
+   "expect": "strict",
+   "got": "strict",
+   "v1": "strict",
+   "v2": "strict",
+   "pass": true
+  },
+  {
+   "rid": "R+wsC-033",
+   "class": "correct",
+   "card": "C-033",
+   "expect": "strict",
+   "got": "strict",
+   "v1": "strict",
+   "v2": "strict",
+   "pass": true
+  },
+  {
+   "rid": "R×C-003<C-093",
+   "class": "wrong",
+   "card": "C-003",
+   "expect": "miss",
+   "got": "miss",
+   "v1": "miss",
+   "v2": "miss",
+   "pass": true
+  },
+  {
+   "rid": "R×C-021<C-071",
+   "class": "wrong",
+   "card": "C-021",
+   "expect": "miss",
+   "got": "miss",
+   "v1": "miss",
+   "v2": "miss",
+   "pass": true
+  },
+  {
+   "rid": "R×C-031<C-093",
+   "class": "wrong",
+   "card": "C-031",
+   "expect": "miss",
+   "got": "miss",
+   "v1": "miss",
+   "v2": "miss",
+   "pass": true
+  },
+  {
+   "rid": "R×C-033<C-070",
+   "class": "wrong",
+   "card": "C-033",
+   "expect": "miss",
+   "got": "miss",
+   "v1": "miss",
+   "v2": "miss",
+   "pass": true
+  },
+  {
+   "rid": "R×C-038<C-064",
+   "class": "wrong",
+   "card": "C-038",
+   "expect": "miss",
+   "got": "miss",
+   "v1": "miss",
+   "v2": "miss",
+   "pass": true
+  },
+  {
+   "rid": "R×C-050<C-021",
+   "class": "wrong",
+   "card": "C-050",
+   "expect": "miss",
+   "got": "miss",
+   "v1": "miss",
+   "v2": "miss",
+   "pass": true
+  },
+  {
+   "rid": "R×C-051<C-021",
+   "class": "wrong",
+   "card": "C-051",
+   "expect": "miss",
+   "got": "miss",
+   "v1": "miss",
+   "v2": "miss",
+   "pass": true
+  },
+  {
+   "rid": "R×C-055<C-071",
+   "class": "wrong",
+   "card": "C-055",
+   "expect": "miss",
+   "got": "miss",
+   "v1": "miss",
+   "v2": "miss",
+   "pass": true
+  },
+  {
+   "rid": "R×C-058<C-093",
+   "class": "wrong",
+   "card": "C-058",
+   "expect": "miss",
+   "got": "miss",
+   "v1": "miss",
+   "v2": "miss",
+   "pass": true
+  },
+  {
+   "rid": "R×C-064<C-021",
+   "class": "wrong",
+   "card": "C-064",
+   "expect": "miss",
+   "got": "miss",
+   "v1": "miss",
+   "v2": "miss",
+   "pass": true
+  },
+  {
+   "rid": "R×C-069<C-003",
+   "class": "wrong",
+   "card": "C-069",
+   "expect": "miss",
+   "got": "miss",
+   "v1": "miss",
+   "v2": "miss",
+   "pass": true
+  },
+  {
+   "rid": "R×C-070<C-071",
+   "class": "wrong",
+   "card": "C-070",
+   "expect": "miss",
+   "got": "miss",
+   "v1": "miss",
+   "v2": "miss",
+   "pass": true
+  },
+  {
+   "rid": "R×C-071<C-051",
+   "class": "wrong",
+   "card": "C-071",
+   "expect": "miss",
+   "got": "miss",
+   "v1": "miss",
+   "v2": "miss",
+   "pass": true
+  },
+  {
+   "rid": "R×C-075<C-096",
+   "class": "wrong",
+   "card": "C-075",
+   "expect": "miss",
+   "got": "miss",
+   "v1": "miss",
+   "v2": "miss",
+   "pass": true
+  },
+  {
+   "rid": "R×C-077<C-038",
+   "class": "wrong",
+   "card": "C-077",
+   "expect": "miss",
+   "got": "miss",
+   "v1": "miss",
+   "v2": "miss",
+   "pass": true
+  },
+  {
+   "rid": "R×C-078<C-093",
+   "class": "wrong",
+   "card": "C-078",
+   "expect": "miss",
+   "got": "miss",
+   "v1": "miss",
+   "v2": "miss",
+   "pass": true
+  },
+  {
+   "rid": "R×C-093<C-003",
+   "class": "wrong",
+   "card": "C-093",
+   "expect": "miss",
+   "got": "miss",
+   "v1": "miss",
+   "v2": "miss",
+   "pass": true
+  },
+  {
+   "rid": "R×C-096<C-003",
+   "class": "wrong",
+   "card": "C-096",
+   "expect": "miss",
+   "got": "miss",
+   "v1": "miss",
+   "v2": "miss",
+   "pass": true
+  },
+  {
+   "rid": "R×C-109<C-055",
+   "class": "wrong",
+   "card": "C-109",
+   "expect": "miss",
+   "got": "miss",
+   "v1": "miss",
+   "v2": "miss",
+   "pass": true
+  },
+  {
+   "rid": "R×C-110<C-055",
+   "class": "wrong",
+   "card": "C-110",
+   "expect": "miss",
+   "got": "miss",
+   "v1": "miss",
+   "v2": "miss",
+   "pass": true
+  },
+  {
+   "rid": "R0C-003",
+   "class": "wrong",
+   "card": "C-003",
+   "expect": "miss",
+   "got": "miss",
+   "v1": "miss",
+   "v2": "miss",
+   "pass": true
+  },
+  {
+   "rid": "R0C-021",
+   "class": "wrong",
+   "card": "C-021",
+   "expect": "miss",
+   "got": "miss",
+   "v1": "miss",
+   "v2": "miss",
+   "pass": true
+  },
+  {
+   "rid": "R0C-031",
+   "class": "wrong",
+   "card": "C-031",
+   "expect": "miss",
+   "got": "miss",
+   "v1": "miss",
+   "v2": "miss",
+   "pass": true
+  },
+  {
+   "rid": "R0C-033",
+   "class": "wrong",
+   "card": "C-033",
+   "expect": "miss",
+   "got": "miss",
+   "v1": "miss",
+   "v2": "miss",
+   "pass": true
+  }
+ ]
+}

@@ -1,0 +1,5 @@
+# 大文件不入 git（原始题包 ~290MB、试跑子集 50MB、逐题结果）；哈希登记在 longmemeval/SOURCE.md，可按 URL 复现下载
+longmemeval/raw/*.json
+longmemeval/pilot/subset.json
+longmemeval/pilot_runs/
+longmemeval/pilot/logs/

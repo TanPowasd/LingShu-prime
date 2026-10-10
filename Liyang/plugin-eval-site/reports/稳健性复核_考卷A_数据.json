@@ -1,0 +1,957 @@
+{
+ "hmb": "/workspace/work/ls/hmb",
+ "n_cards": 92,
+ "no_dep_cards": [],
+ "cuts": {
+  "0.4": {
+   "n_clusters": 9,
+   "sizes": [
+    81,
+    3,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "0.5": {
+   "n_clusters": 24,
+   "sizes": [
+    52,
+    5,
+    5,
+    3,
+    3,
+    3,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "0.6": {
+   "n_clusters": 64,
+   "sizes": [
+    7,
+    6,
+    4,
+    4,
+    3,
+    3,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "0.7": {
+   "n_clusters": 79,
+   "sizes": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  }
+ },
+ "comparisons": [
+  {
+   "plug": "A_dsh",
+   "base": "A_null",
+   "title": "dsh-memory vs 闭卷（本报告结论）",
+   "by_cut": {
+    "0.4": {
+     "item": {
+      "verdict": "✅",
+      "label": "真有用",
+      "reasons": [],
+      "items_gain": 3.0,
+      "per_seed_items": {
+       "1": 3.0,
+       "2": 5.0,
+       "3": 1.0
+      },
+      "ci_items_item": [
+       0.67,
+       6.0
+      ],
+      "ci_items_cluster": [
+       0.0,
+       7.08
+      ],
+      "eff_n": {
+       "n": 92,
+       "n_clusters": 9,
+       "se_iid": 0.015,
+       "se_cluster": 0.004,
+       "deff": 0.068,
+       "n_eff": 1343.502,
+       "icc": -0.174
+      }
+     },
+     "cluster": {
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0"
+      ],
+      "items_gain": 3.0,
+      "per_seed_items": {
+       "1": 3.0,
+       "2": 5.0,
+       "3": 1.0
+      },
+      "ci_items_item": [
+       0.67,
+       6.0
+      ],
+      "ci_items_cluster": [
+       0.0,
+       7.08
+      ],
+      "eff_n": {
+       "n": 92,
+       "n_clusters": 9,
+       "se_iid": 0.015,
+       "se_cluster": 0.004,
+       "deff": 0.068,
+       "n_eff": 1343.502,
+       "icc": -0.174
+      }
+     }
+    },
+    "0.5": {
+     "item": {
+      "verdict": "✅",
+      "label": "真有用",
+      "reasons": [],
+      "items_gain": 3.0,
+      "per_seed_items": {
+       "1": 3.0,
+       "2": 5.0,
+       "3": 1.0
+      },
+      "ci_items_item": [
+       0.67,
+       6.0
+      ],
+      "ci_items_cluster": [
+       0.68,
+       4.58
+      ],
+      "eff_n": {
+       "n": 92,
+       "n_clusters": 24,
+       "se_iid": 0.015,
+       "se_cluster": 0.007,
+       "deff": 0.247,
+       "n_eff": 373.137,
+       "icc": -0.257
+      }
+     },
+     "cluster": {
+      "verdict": "✅",
+      "label": "真有用",
+      "reasons": [],
+      "items_gain": 3.0,
+      "per_seed_items": {
+       "1": 3.0,
+       "2": 5.0,
+       "3": 1.0
+      },
+      "ci_items_item": [
+       0.67,
+       6.0
+      ],
+      "ci_items_cluster": [
+       0.68,
+       4.58
+      ],
+      "eff_n": {
+       "n": 92,
+       "n_clusters": 24,
+       "se_iid": 0.015,
+       "se_cluster": 0.007,
+       "deff": 0.247,
+       "n_eff": 373.137,
+       "icc": -0.257
+      }
+     }
+    },
+    "0.6": {
+     "item": {
+      "verdict": "✅",
+      "label": "真有用",
+      "reasons": [],
+      "items_gain": 3.0,
+      "per_seed_items": {
+       "1": 3.0,
+       "2": 5.0,
+       "3": 1.0
+      },
+      "ci_items_item": [
+       0.67,
+       6.0
+      ],
+      "ci_items_cluster": [
+       0.75,
+       5.48
+      ],
+      "eff_n": {
+       "n": 92,
+       "n_clusters": 64,
+       "se_iid": 0.015,
+       "se_cluster": 0.013,
+       "deff": 0.834,
+       "n_eff": 110.353,
+       "icc": -0.987
+      }
+     },
+     "cluster": {
+      "verdict": "✅",
+      "label": "真有用",
+      "reasons": [],
+      "items_gain": 3.0,
+      "per_seed_items": {
+       "1": 3.0,
+       "2": 5.0,
+       "3": 1.0
+      },
+      "ci_items_item": [
+       0.67,
+       6.0
+      ],
+      "ci_items_cluster": [
+       0.75,
+       5.48
+      ],
+      "eff_n": {
+       "n": 92,
+       "n_clusters": 64,
+       "se_iid": 0.015,
+       "se_cluster": 0.013,
+       "deff": 0.834,
+       "n_eff": 110.353,
+       "icc": -0.987
+      }
+     }
+    },
+    "0.7": {
+     "item": {
+      "verdict": "✅",
+      "label": "真有用",
+      "reasons": [],
+      "items_gain": 3.0,
+      "per_seed_items": {
+       "1": 3.0,
+       "2": 5.0,
+       "3": 1.0
+      },
+      "ci_items_item": [
+       0.67,
+       6.0
+      ],
+      "ci_items_cluster": [
+       0.69,
+       5.79
+      ],
+      "eff_n": {
+       "n": 92,
+       "n_clusters": 79,
+       "se_iid": 0.015,
+       "se_cluster": 0.014,
+       "deff": 0.956,
+       "n_eff": 96.186,
+       "icc": -1.839
+      }
+     },
+     "cluster": {
+      "verdict": "✅",
+      "label": "真有用",
+      "reasons": [],
+      "items_gain": 3.0,
+      "per_seed_items": {
+       "1": 3.0,
+       "2": 5.0,
+       "3": 1.0
+      },
+      "ci_items_item": [
+       0.67,
+       6.0
+      ],
+      "ci_items_cluster": [
+       0.69,
+       5.79
+      ],
+      "eff_n": {
+       "n": 92,
+       "n_clusters": 79,
+       "se_iid": 0.015,
+       "se_cluster": 0.014,
+       "deff": 0.956,
+       "n_eff": 96.186,
+       "icc": -1.839
+      }
+     }
+    }
+   }
+  },
+  {
+   "plug": "A_bm25",
+   "base": "A_null",
+   "title": "BM25 vs 闭卷（参照）",
+   "by_cut": {
+    "0.4": {
+     "item": {
+      "verdict": "✅",
+      "label": "真有用",
+      "reasons": [],
+      "items_gain": 5.67,
+      "per_seed_items": {
+       "1": 7.0,
+       "2": 5.0,
+       "3": 5.0
+      },
+      "ci_items_item": [
+       2.0,
+       10.0
+      ],
+      "ci_items_cluster": [
+       0.0,
+       33.45
+      ],
+      "eff_n": {
+       "n": 92,
+       "n_clusters": 9,
+       "se_iid": 0.024,
+       "se_cluster": 0.021,
+       "deff": 0.826,
+       "n_eff": 111.41,
+       "icc": 0.548
+      }
+     },
+     "cluster": {
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0"
+      ],
+      "items_gain": 5.67,
+      "per_seed_items": {
+       "1": 7.0,
+       "2": 5.0,
+       "3": 5.0
+      },
+      "ci_items_item": [
+       2.0,
+       10.0
+      ],
+      "ci_items_cluster": [
+       0.0,
+       33.45
+      ],
+      "eff_n": {
+       "n": 92,
+       "n_clusters": 9,
+       "se_iid": 0.024,
+       "se_cluster": 0.021,
+       "deff": 0.826,
+       "n_eff": 111.41,
+       "icc": 0.548
+      }
+     }
+    },
+    "0.5": {
+     "item": {
+      "verdict": "✅",
+      "label": "真有用",
+      "reasons": [],
+      "items_gain": 5.67,
+      "per_seed_items": {
+       "1": 7.0,
+       "2": 5.0,
+       "3": 5.0
+      },
+      "ci_items_item": [
+       2.0,
+       10.0
+      ],
+      "ci_items_cluster": [
+       2.36,
+       12.43
+      ],
+      "eff_n": {
+       "n": 92,
+       "n_clusters": 24,
+       "se_iid": 0.024,
+       "se_cluster": 0.018,
+       "deff": 0.554,
+       "n_eff": 165.924,
+       "icc": 0.122
+      }
+     },
+     "cluster": {
+      "verdict": "✅",
+      "label": "真有用",
+      "reasons": [],
+      "items_gain": 5.67,
+      "per_seed_items": {
+       "1": 7.0,
+       "2": 5.0,
+       "3": 5.0
+      },
+      "ci_items_item": [
+       2.0,
+       10.0
+      ],
+      "ci_items_cluster": [
+       2.36,
+       12.43
+      ],
+      "eff_n": {
+       "n": 92,
+       "n_clusters": 24,
+       "se_iid": 0.024,
+       "se_cluster": 0.018,
+       "deff": 0.554,
+       "n_eff": 165.924,
+       "icc": 0.122
+      }
+     }
+    },
+    "0.6": {
+     "item": {
+      "verdict": "✅",
+      "label": "真有用",
+      "reasons": [],
+      "items_gain": 5.67,
+      "per_seed_items": {
+       "1": 7.0,
+       "2": 5.0,
+       "3": 5.0
+      },
+      "ci_items_item": [
+       2.0,
+       10.0
+      ],
+      "ci_items_cluster": [
+       1.46,
+       10.33
+      ],
+      "eff_n": {
+       "n": 92,
+       "n_clusters": 64,
+       "se_iid": 0.024,
+       "se_cluster": 0.025,
+       "deff": 1.164,
+       "n_eff": 79.016,
+       "icc": -0.554
+      }
+     },
+     "cluster": {
+      "verdict": "✅",
+      "label": "真有用",
+      "reasons": [],
+      "items_gain": 5.67,
+      "per_seed_items": {
+       "1": 7.0,
+       "2": 5.0,
+       "3": 5.0
+      },
+      "ci_items_item": [
+       2.0,
+       10.0
+      ],
+      "ci_items_cluster": [
+       1.46,
+       10.33
+      ],
+      "eff_n": {
+       "n": 92,
+       "n_clusters": 64,
+       "se_iid": 0.024,
+       "se_cluster": 0.025,
+       "deff": 1.164,
+       "n_eff": 79.016,
+       "icc": -0.554
+      }
+     }
+    },
+    "0.7": {
+     "item": {
+      "verdict": "✅",
+      "label": "真有用",
+      "reasons": [],
+      "items_gain": 5.67,
+      "per_seed_items": {
+       "1": 7.0,
+       "2": 5.0,
+       "3": 5.0
+      },
+      "ci_items_item": [
+       2.0,
+       10.0
+      ],
+      "ci_items_cluster": [
+       1.94,
+       9.9
+      ],
+      "eff_n": {
+       "n": 92,
+       "n_clusters": 79,
+       "se_iid": 0.024,
+       "se_cluster": 0.023,
+       "deff": 0.917,
+       "n_eff": 100.336,
+       "icc": -1.69
+      }
+     },
+     "cluster": {
+      "verdict": "✅",
+      "label": "真有用",
+      "reasons": [],
+      "items_gain": 5.67,
+      "per_seed_items": {
+       "1": 7.0,
+       "2": 5.0,
+       "3": 5.0
+      },
+      "ci_items_item": [
+       2.0,
+       10.0
+      ],
+      "ci_items_cluster": [
+       1.94,
+       9.9
+      ],
+      "eff_n": {
+       "n": 92,
+       "n_clusters": 79,
+       "se_iid": 0.024,
+       "se_cluster": 0.023,
+       "deff": 0.917,
+       "n_eff": 100.336,
+       "icc": -1.69
+      }
+     }
+    }
+   }
+  },
+  {
+   "plug": "A_dsh",
+   "base": "A_bm25",
+   "title": "dsh-memory vs BM25（附录）",
+   "by_cut": {
+    "0.4": {
+     "item": {
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": -2.67,
+      "per_seed_items": {
+       "1": -4.0,
+       "2": 0.0,
+       "3": -4.0
+      },
+      "ci_items_item": [
+       -6.33,
+       0.33
+      ],
+      "ci_items_cluster": [
+       -27.88,
+       0.0
+      ],
+      "eff_n": {
+       "n": 92,
+       "n_clusters": 9,
+       "se_iid": 0.018,
+       "se_cluster": 0.02,
+       "deff": 1.236,
+       "n_eff": 74.445,
+       "icc": 0.593
+      }
+     },
+     "cluster": {
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": -2.67,
+      "per_seed_items": {
+       "1": -4.0,
+       "2": 0.0,
+       "3": -4.0
+      },
+      "ci_items_item": [
+       -6.33,
+       0.33
+      ],
+      "ci_items_cluster": [
+       -27.88,
+       0.0
+      ],
+      "eff_n": {
+       "n": 92,
+       "n_clusters": 9,
+       "se_iid": 0.018,
+       "se_cluster": 0.02,
+       "deff": 1.236,
+       "n_eff": 74.445,
+       "icc": 0.593
+      }
+     }
+    },
+    "0.5": {
+     "item": {
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": -2.67,
+      "per_seed_items": {
+       "1": -4.0,
+       "2": 0.0,
+       "3": -4.0
+      },
+      "ci_items_item": [
+       -6.33,
+       0.33
+      ],
+      "ci_items_cluster": [
+       -9.12,
+       -0.34
+      ],
+      "eff_n": {
+       "n": 92,
+       "n_clusters": 24,
+       "se_iid": 0.018,
+       "se_cluster": 0.017,
+       "deff": 0.852,
+       "n_eff": 107.999,
+       "icc": 0.228
+      }
+     },
+     "cluster": {
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": -2.67,
+      "per_seed_items": {
+       "1": -4.0,
+       "2": 0.0,
+       "3": -4.0
+      },
+      "ci_items_item": [
+       -6.33,
+       0.33
+      ],
+      "ci_items_cluster": [
+       -9.12,
+       -0.34
+      ],
+      "eff_n": {
+       "n": 92,
+       "n_clusters": 24,
+       "se_iid": 0.018,
+       "se_cluster": 0.017,
+       "deff": 0.852,
+       "n_eff": 107.999,
+       "icc": 0.228
+      }
+     }
+    },
+    "0.6": {
+     "item": {
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": -2.67,
+      "per_seed_items": {
+       "1": -4.0,
+       "2": 0.0,
+       "3": -4.0
+      },
+      "ci_items_item": [
+       -6.33,
+       0.33
+      ],
+      "ci_items_cluster": [
+       -5.89,
+       0.3
+      ],
+      "eff_n": {
+       "n": 92,
+       "n_clusters": 64,
+       "se_iid": 0.018,
+       "se_cluster": 0.017,
+       "deff": 0.89,
+       "n_eff": 103.425,
+       "icc": -0.648
+      }
+     },
+     "cluster": {
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": -2.67,
+      "per_seed_items": {
+       "1": -4.0,
+       "2": 0.0,
+       "3": -4.0
+      },
+      "ci_items_item": [
+       -6.33,
+       0.33
+      ],
+      "ci_items_cluster": [
+       -5.89,
+       0.3
+      ],
+      "eff_n": {
+       "n": 92,
+       "n_clusters": 64,
+       "se_iid": 0.018,
+       "se_cluster": 0.017,
+       "deff": 0.89,
+       "n_eff": 103.425,
+       "icc": -0.648
+      }
+     }
+    },
+    "0.7": {
+     "item": {
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": -2.67,
+      "per_seed_items": {
+       "1": -4.0,
+       "2": 0.0,
+       "3": -4.0
+      },
+      "ci_items_item": [
+       -6.33,
+       0.33
+      ],
+      "ci_items_cluster": [
+       -6.13,
+       0.33
+      ],
+      "eff_n": {
+       "n": 92,
+       "n_clusters": 79,
+       "se_iid": 0.018,
+       "se_cluster": 0.018,
+       "deff": 0.961,
+       "n_eff": 95.694,
+       "icc": -1.641
+      }
+     },
+     "cluster": {
+      "verdict": "😐",
+      "label": "看不出差别",
+      "reasons": [
+       "95% 区间跨 0",
+       "各种子方向不一致",
+       "效应不足 3 道题"
+      ],
+      "items_gain": -2.67,
+      "per_seed_items": {
+       "1": -4.0,
+       "2": 0.0,
+       "3": -4.0
+      },
+      "ci_items_item": [
+       -6.33,
+       0.33
+      ],
+      "ci_items_cluster": [
+       -6.13,
+       0.33
+      ],
+      "eff_n": {
+       "n": 92,
+       "n_clusters": 79,
+       "se_iid": 0.018,
+       "se_cluster": 0.018,
+       "deff": 0.961,
+       "n_eff": 95.694,
+       "icc": -1.641
+      }
+     }
+    }
+   }
+  }
+ ]
+}

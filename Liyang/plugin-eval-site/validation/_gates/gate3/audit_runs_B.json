@@ -1,0 +1,192 @@
+[
+ {
+  "arm": "B_null",
+  "check": "预登记字段（顺序种子/打乱列表/配对表/预算/补跑上限/快照契约）",
+  "missing": [
+   "order_seed",
+   "order",
+   "pairs",
+   "budget",
+   "rerun_cap",
+   "restore_contract"
+  ],
+  "pass": false
+ },
+ {
+  "arm": "B_dsh",
+  "check": "预登记字段（顺序种子/打乱列表/配对表/预算/补跑上限/快照契约）",
+  "missing": [
+   "order_seed",
+   "order",
+   "pairs",
+   "budget",
+   "rerun_cap",
+   "restore_contract"
+  ],
+  "pass": false
+ },
+ {
+  "arm": "B_bm25",
+  "check": "预登记字段（顺序种子/打乱列表/配对表/预算/补跑上限/快照契约）",
+  "missing": [
+   "order_seed",
+   "order",
+   "pairs",
+   "budget",
+   "rerun_cap",
+   "restore_contract"
+  ],
+  "pass": false
+ },
+ {
+  "arm": "B_null",
+  "check": "执行顺序是否按预登记随机列表",
+  "seed_major_fixed_order": false,
+  "local_inversions_from_threadpool": 33,
+  "pass": false,
+  "detail": "run.py 按 (种子, 题卡文件顺序) 固定提交线程池（并发 3 只造成相邻轻微乱序），无随机顺序生成器、无种子、无登记列表"
+ },
+ {
+  "arm": "B_dsh",
+  "check": "执行顺序是否按预登记随机列表",
+  "seed_major_fixed_order": true,
+  "local_inversions_from_threadpool": 2,
+  "pass": false,
+  "detail": "run.py 按 (种子, 题卡文件顺序) 固定提交线程池（并发 3 只造成相邻轻微乱序），无随机顺序生成器、无种子、无登记列表"
+ },
+ {
+  "arm": "B_bm25",
+  "check": "执行顺序是否按预登记随机列表",
+  "seed_major_fixed_order": false,
+  "local_inversions_from_threadpool": 50,
+  "pass": false,
+  "detail": "run.py 按 (种子, 题卡文件顺序) 固定提交线程池（并发 3 只造成相邻轻微乱序），无随机顺序生成器、无种子、无登记列表"
+ },
+ {
+  "arm": "B_dsh",
+  "check": "配对两侧（B_null vs B_dsh）同题同种子的生成时间差（分钟）",
+  "n_pairs": 267,
+  "median_min": 88.4,
+  "max_min": 91.8,
+  "pass": false,
+  "detail": "B0 与 P 不交错执行：两臂各自整臂跑完，配对两侧落在不同时段/网关状况，时间与网关漂移未被随机化抵消"
+ },
+ {
+  "arm": "B_bm25",
+  "check": "配对两侧（B_null vs B_bm25）同题同种子的生成时间差（分钟）",
+  "n_pairs": 267,
+  "median_min": 1.8,
+  "max_min": 12.4,
+  "pass": false,
+  "detail": "B0 与 P 不交错执行：两臂各自整臂跑完，配对两侧落在不同时段/网关状况，时间与网关漂移未被随机化抵消"
+ },
+ {
+  "arm": "B_null",
+  "check": "B0/P 两侧是否在同一判分批内盲混",
+  "batches": [
+   "B_null|s1",
+   "B_null|s2",
+   "B_null|s3"
+  ],
+  "pass": false,
+  "detail": "每臂每种子单独一批（同 48 锚），两侧由不同判官实例在不同时间判；盲于臂名，但未混批"
+ },
+ {
+  "arm": "B_dsh",
+  "check": "B0/P 两侧是否在同一判分批内盲混",
+  "batches": [
+   "B_dsh|s1",
+   "B_dsh|s2",
+   "B_dsh|s3"
+  ],
+  "pass": false,
+  "detail": "每臂每种子单独一批（同 48 锚），两侧由不同判官实例在不同时间判；盲于臂名，但未混批"
+ },
+ {
+  "arm": "B_bm25",
+  "check": "B0/P 两侧是否在同一判分批内盲混",
+  "batches": [
+   "B_bm25|s1",
+   "B_bm25|s2",
+   "B_bm25|s3"
+  ],
+  "pass": false,
+  "detail": "每臂每种子单独一批（同 48 锚），两侧由不同判官实例在不同时间判；盲于臂名，但未混批"
+ },
+ {
+  "arm": "B_null",
+  "check": "续跑/重跑痕迹（录像）",
+  "rec_resume_count": 3,
+  "resume_walls": [
+   "2026-10-10T01:30:04",
+   "2026-10-10T01:38:21",
+   "2026-10-10T01:55:40"
+  ],
+  "judge_batch_reentered": {
+   "B_null|s1#a1": 2,
+   "B_null|s2#a1": 2
+  },
+  "duplicate_gen_answers": {},
+  "pass": true,
+  "detail": "续跑由 --resume 断点续做；判分批重入时判词从缓存复用（不重判）；生成未见同题同种子重复作答"
+ },
+ {
+  "arm": "B_dsh",
+  "check": "续跑/重跑痕迹（录像）",
+  "rec_resume_count": 2,
+  "resume_walls": [
+   "2026-10-10T01:55:40",
+   "2026-10-10T03:26:16"
+  ],
+  "judge_batch_reentered": {
+   "B_dsh|s3#a1": 2
+  },
+  "duplicate_gen_answers": {},
+  "pass": true,
+  "detail": "续跑由 --resume 断点续做；判分批重入时判词从缓存复用（不重判）；生成未见同题同种子重复作答"
+ },
+ {
+  "arm": "B_bm25",
+  "check": "续跑/重跑痕迹（录像）",
+  "rec_resume_count": 3,
+  "resume_walls": [
+   "2026-10-10T01:30:04",
+   "2026-10-10T01:38:21",
+   "2026-10-10T01:55:40"
+  ],
+  "judge_batch_reentered": {
+   "B_bm25|s1#a1": 2,
+   "B_bm25|s2#a1": 2
+  },
+  "duplicate_gen_answers": {},
+  "pass": true,
+  "detail": "续跑由 --resume 断点续做；判分批重入时判词从缓存复用（不重判）；生成未见同题同种子重复作答"
+ },
+ {
+  "arm": "B_null",
+  "check": "恢复日志与独立恢复检查",
+  "sandbox_create_events": 1,
+  "independent_restore_checks": 0,
+  "has_install_footprint": true,
+  "pass": false,
+  "detail": "每臂一次 Sandbox(fresh=True)＋装后快照 diff；无逐对恢复、无独立恢复检查记录。插件状态在 89 题召回间不重置：实测 dsh 每次召回都会追加 MDCG_ROOT/_access.log 与 _heartbeat.jsonl（validation/_gates/gate3/recall_state_mutation.json；_index.json 未变），这些日志是否影响后续排序未验证——配对单位不是独立初始状态"
+ },
+ {
+  "arm": "B_dsh",
+  "check": "恢复日志与独立恢复检查",
+  "sandbox_create_events": 2,
+  "independent_restore_checks": 0,
+  "has_install_footprint": true,
+  "pass": false,
+  "detail": "每臂一次 Sandbox(fresh=True)＋装后快照 diff；无逐对恢复、无独立恢复检查记录。插件状态在 89 题召回间不重置：实测 dsh 每次召回都会追加 MDCG_ROOT/_access.log 与 _heartbeat.jsonl（validation/_gates/gate3/recall_state_mutation.json；_index.json 未变），这些日志是否影响后续排序未验证——配对单位不是独立初始状态"
+ },
+ {
+  "arm": "B_bm25",
+  "check": "恢复日志与独立恢复检查",
+  "sandbox_create_events": 1,
+  "independent_restore_checks": 0,
+  "has_install_footprint": true,
+  "pass": false,
+  "detail": "每臂一次 Sandbox(fresh=True)＋装后快照 diff；无逐对恢复、无独立恢复检查记录。插件状态在 89 题召回间不重置：实测 dsh 每次召回都会追加 MDCG_ROOT/_access.log 与 _heartbeat.jsonl（validation/_gates/gate3/recall_state_mutation.json；_index.json 未变），这些日志是否影响后续排序未验证——配对单位不是独立初始状态"
+ }
+]

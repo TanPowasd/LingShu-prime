@@ -1,0 +1,1268 @@
+{
+ "generated_by": "tools/rejudge_v3.py",
+ "verdict_v3": {
+  "impl_id": "pes.verdict_v3",
+  "impl_version": "1.0.0",
+  "rng": "splitmix64/u53-floor/v1",
+  "percentile": "hyndman-fan-type7-linear",
+  "aggregation_order": [
+   "item_weighted_score_0_100",
+   "pair_diff_P_minus_B",
+   "scenario_mean_over_reruns",
+   "scenario_weighted_mean",
+   "resample_scenarios_with_replacement"
+  ]
+ },
+ "gates_assumed": {
+  "taskset_frozen": false,
+  "domain_spec_frozen": false,
+  "algorithm_validated": true,
+  "evidence_complete": false,
+  "independent_review": false,
+  "scenarios_groupable": false
+ },
+ "B": [
+  {
+   "plug": "B_dsh",
+   "base": "B_null",
+   "title": "dsh-memory vs 底子",
+   "old": "😐 看不出差别",
+   "old_numbers": "-1 题，区间 -5～+2（按卡）；簇区间 -5～+3",
+   "readings": {
+    "单一历史|item_weight": {
+     "analysis_id": "pes/v3-rejudge/B/B_dsh-vs-B_null/单一历史/item_weight",
+     "seed": 1391843120219105787,
+     "n_items": 89,
+     "n_scenarios": 1,
+     "reruns": 3,
+     "base_abs": 35.768,
+     "plug_abs": 34.457,
+     "estimate": -1.311,
+     "estimate_items": -1.167,
+     "interval": [
+      -1.311,
+      -1.311
+     ],
+     "interval_items": [
+      -1.167,
+      -1.167
+     ],
+     "half_width": 0.0,
+     "capability_observed": "❓",
+     "release_state": "方法试验",
+     "capability": null,
+     "reasons": [
+      "有效样本不足：独立场景 1（要求 ≥8），每场景配对重跑最少 3（要求 ≥3）；极少场景下窄区间不代表充分证据",
+      "未达正式发布门槛：taskset_frozen、domain_spec_frozen、evidence_complete、independent_review、scenarios_groupable、样本计划场景数 1 < 域要求 8（只发布方法试验与已知事实）"
+     ],
+     "per_seed_diff": {
+      "1": -1.124,
+      "2": -4.494,
+      "3": 1.685
+     },
+     "map_interval_if_sample_ok": null,
+     "ref_impl_agrees": true,
+     "manifest": {
+      "analysis_id": "pes/v3-rejudge/B/B_dsh-vs-B_null/单一历史/item_weight",
+      "seed_derivation": "uint64_be(SHA-256(utf8(analysis_id))[0:8])",
+      "seed": 1391843120219105787,
+      "impl_id": "pes.verdict_v3",
+      "impl_version": "1.0.0",
+      "rng": "splitmix64/u53-floor/v1",
+      "percentile": "hyndman-fan-type7-linear",
+      "aggregation_order": [
+       "item_weighted_score_0_100",
+       "pair_diff_P_minus_B",
+       "scenario_mean_over_reruns",
+       "scenario_weighted_mean",
+       "resample_scenarios_with_replacement"
+      ],
+      "index_mapping": "floor((x>>11) * 2^-53 * G)",
+      "draw_order": "b-major (b=0..B-1, j=0..G-1)",
+      "statistic": "weighted mean of resampled scenario diffs",
+      "scenario_weighting": "item_weight",
+      "B": 10000,
+      "conf": 0.95,
+      "thresholds": {
+       "a": 5.0,
+       "b": 5.0,
+       "max_half_width": 5.0
+      },
+      "sample_minimum": {
+       "min_scenarios": 8,
+       "min_reruns": 3
+      },
+      "metric": {
+       "kind": "continuous",
+       "scale_max": 1.0
+      },
+      "scale": "0-100",
+      "weights_sha256": "d56b889d52525d6136ba0f9813d039d76a7cf005d6113b4dc0b9a4055d6dbcf4",
+      "python": "3.12.15",
+      "platform": "Linux-6.12.110+-aarch64-with-glibc2.41",
+      "libraries": {
+       "stdlib-only": true
+      },
+      "impl_file_sha256": "5dab21e5e605890d87264c5b657b7ca3eaa14f0c34692a8b660774c01f492d71"
+     }
+    },
+    "按对话文件(假设)|item_weight": {
+     "analysis_id": "pes/v3-rejudge/B/B_dsh-vs-B_null/按对话文件(假设)/item_weight",
+     "seed": 12730545903260983202,
+     "n_items": 89,
+     "n_scenarios": 12,
+     "reruns": 3,
+     "base_abs": 35.768,
+     "plug_abs": 34.457,
+     "estimate": -1.311,
+     "estimate_items": -1.167,
+     "interval": [
+      -5.848,
+      0.952
+     ],
+     "interval_items": [
+      -5.205,
+      0.848
+     ],
+     "half_width": 3.4,
+     "capability_observed": "❓",
+     "release_state": "方法试验",
+     "capability": null,
+     "reasons": [
+      "区间跨过负向门槛 −5",
+      "未达正式发布门槛：taskset_frozen、domain_spec_frozen、evidence_complete、independent_review、scenarios_groupable（只发布方法试验与已知事实）"
+     ],
+     "per_seed_diff": {
+      "1": -1.124,
+      "2": -4.494,
+      "3": 1.685
+     },
+     "map_interval_if_sample_ok": "❓",
+     "ref_impl_agrees": true,
+     "manifest": {
+      "analysis_id": "pes/v3-rejudge/B/B_dsh-vs-B_null/按对话文件(假设)/item_weight",
+      "seed_derivation": "uint64_be(SHA-256(utf8(analysis_id))[0:8])",
+      "seed": 12730545903260983202,
+      "impl_id": "pes.verdict_v3",
+      "impl_version": "1.0.0",
+      "rng": "splitmix64/u53-floor/v1",
+      "percentile": "hyndman-fan-type7-linear",
+      "aggregation_order": [
+       "item_weighted_score_0_100",
+       "pair_diff_P_minus_B",
+       "scenario_mean_over_reruns",
+       "scenario_weighted_mean",
+       "resample_scenarios_with_replacement"
+      ],
+      "index_mapping": "floor((x>>11) * 2^-53 * G)",
+      "draw_order": "b-major (b=0..B-1, j=0..G-1)",
+      "statistic": "weighted mean of resampled scenario diffs",
+      "scenario_weighting": "item_weight",
+      "B": 10000,
+      "conf": 0.95,
+      "thresholds": {
+       "a": 5.0,
+       "b": 5.0,
+       "max_half_width": 5.0
+      },
+      "sample_minimum": {
+       "min_scenarios": 8,
+       "min_reruns": 3
+      },
+      "metric": {
+       "kind": "continuous",
+       "scale_max": 1.0
+      },
+      "scale": "0-100",
+      "weights_sha256": "d56b889d52525d6136ba0f9813d039d76a7cf005d6113b4dc0b9a4055d6dbcf4",
+      "python": "3.12.15",
+      "platform": "Linux-6.12.110+-aarch64-with-glibc2.41",
+      "libraries": {
+       "stdlib-only": true
+      },
+      "impl_file_sha256": "5dab21e5e605890d87264c5b657b7ca3eaa14f0c34692a8b660774c01f492d71"
+     }
+    },
+    "按对话文件(假设)|equal": {
+     "analysis_id": "pes/v3-rejudge/B/B_dsh-vs-B_null/按对话文件(假设)/equal",
+     "seed": 16236040957745916907,
+     "n_items": 89,
+     "n_scenarios": 12,
+     "reruns": 3,
+     "base_abs": 36.295,
+     "plug_abs": 29.024,
+     "estimate": -7.27,
+     "estimate_items": -6.47,
+     "interval": [
+      -17.199,
+      1.019
+     ],
+     "interval_items": [
+      -15.307,
+      0.907
+     ],
+     "half_width": 9.109,
+     "capability_observed": "❓",
+     "release_state": "方法试验",
+     "capability": null,
+     "reasons": [
+      "精度不足：半宽 9.10885 > 5",
+      "未达正式发布门槛：taskset_frozen、domain_spec_frozen、evidence_complete、independent_review、scenarios_groupable（只发布方法试验与已知事实）"
+     ],
+     "per_seed_diff": {
+      "1": -1.124,
+      "2": -4.494,
+      "3": 1.685
+     },
+     "map_interval_if_sample_ok": "❓",
+     "ref_impl_agrees": true,
+     "manifest": {
+      "analysis_id": "pes/v3-rejudge/B/B_dsh-vs-B_null/按对话文件(假设)/equal",
+      "seed_derivation": "uint64_be(SHA-256(utf8(analysis_id))[0:8])",
+      "seed": 16236040957745916907,
+      "impl_id": "pes.verdict_v3",
+      "impl_version": "1.0.0",
+      "rng": "splitmix64/u53-floor/v1",
+      "percentile": "hyndman-fan-type7-linear",
+      "aggregation_order": [
+       "item_weighted_score_0_100",
+       "pair_diff_P_minus_B",
+       "scenario_mean_over_reruns",
+       "scenario_weighted_mean",
+       "resample_scenarios_with_replacement"
+      ],
+      "index_mapping": "floor((x>>11) * 2^-53 * G)",
+      "draw_order": "b-major (b=0..B-1, j=0..G-1)",
+      "statistic": "weighted mean of resampled scenario diffs",
+      "scenario_weighting": "equal",
+      "B": 10000,
+      "conf": 0.95,
+      "thresholds": {
+       "a": 5.0,
+       "b": 5.0,
+       "max_half_width": 5.0
+      },
+      "sample_minimum": {
+       "min_scenarios": 8,
+       "min_reruns": 3
+      },
+      "metric": {
+       "kind": "continuous",
+       "scale_max": 1.0
+      },
+      "scale": "0-100",
+      "weights_sha256": "d56b889d52525d6136ba0f9813d039d76a7cf005d6113b4dc0b9a4055d6dbcf4",
+      "python": "3.12.15",
+      "platform": "Linux-6.12.110+-aarch64-with-glibc2.41",
+      "libraries": {
+       "stdlib-only": true
+      },
+      "impl_file_sha256": "5dab21e5e605890d87264c5b657b7ca3eaa14f0c34692a8b660774c01f492d71"
+     }
+    }
+   }
+  },
+  {
+   "plug": "B_bm25",
+   "base": "B_null",
+   "title": "BM25 vs 底子（参照）",
+   "old": "❌ 帮倒忙",
+   "old_numbers": "-6 题，区间 -10～-2（按卡）；簇区间 -10～-1",
+   "readings": {
+    "单一历史|item_weight": {
+     "analysis_id": "pes/v3-rejudge/B/B_bm25-vs-B_null/单一历史/item_weight",
+     "seed": 13798002678261767873,
+     "n_items": 89,
+     "n_scenarios": 1,
+     "reruns": 3,
+     "base_abs": 35.768,
+     "plug_abs": 29.213,
+     "estimate": -6.554,
+     "estimate_items": -5.833,
+     "interval": [
+      -6.554,
+      -6.554
+     ],
+     "interval_items": [
+      -5.833,
+      -5.833
+     ],
+     "half_width": 0.0,
+     "capability_observed": "❓",
+     "release_state": "方法试验",
+     "capability": null,
+     "reasons": [
+      "有效样本不足：独立场景 1（要求 ≥8），每场景配对重跑最少 3（要求 ≥3）；极少场景下窄区间不代表充分证据",
+      "未达正式发布门槛：taskset_frozen、domain_spec_frozen、evidence_complete、independent_review、scenarios_groupable、样本计划场景数 1 < 域要求 8（只发布方法试验与已知事实）"
+     ],
+     "per_seed_diff": {
+      "1": -4.494,
+      "2": -10.112,
+      "3": -5.056
+     },
+     "map_interval_if_sample_ok": null,
+     "ref_impl_agrees": true,
+     "manifest": {
+      "analysis_id": "pes/v3-rejudge/B/B_bm25-vs-B_null/单一历史/item_weight",
+      "seed_derivation": "uint64_be(SHA-256(utf8(analysis_id))[0:8])",
+      "seed": 13798002678261767873,
+      "impl_id": "pes.verdict_v3",
+      "impl_version": "1.0.0",
+      "rng": "splitmix64/u53-floor/v1",
+      "percentile": "hyndman-fan-type7-linear",
+      "aggregation_order": [
+       "item_weighted_score_0_100",
+       "pair_diff_P_minus_B",
+       "scenario_mean_over_reruns",
+       "scenario_weighted_mean",
+       "resample_scenarios_with_replacement"
+      ],
+      "index_mapping": "floor((x>>11) * 2^-53 * G)",
+      "draw_order": "b-major (b=0..B-1, j=0..G-1)",
+      "statistic": "weighted mean of resampled scenario diffs",
+      "scenario_weighting": "item_weight",
+      "B": 10000,
+      "conf": 0.95,
+      "thresholds": {
+       "a": 5.0,
+       "b": 5.0,
+       "max_half_width": 5.0
+      },
+      "sample_minimum": {
+       "min_scenarios": 8,
+       "min_reruns": 3
+      },
+      "metric": {
+       "kind": "continuous",
+       "scale_max": 1.0
+      },
+      "scale": "0-100",
+      "weights_sha256": "d56b889d52525d6136ba0f9813d039d76a7cf005d6113b4dc0b9a4055d6dbcf4",
+      "python": "3.12.15",
+      "platform": "Linux-6.12.110+-aarch64-with-glibc2.41",
+      "libraries": {
+       "stdlib-only": true
+      },
+      "impl_file_sha256": "5dab21e5e605890d87264c5b657b7ca3eaa14f0c34692a8b660774c01f492d71"
+     }
+    },
+    "按对话文件(假设)|item_weight": {
+     "analysis_id": "pes/v3-rejudge/B/B_bm25-vs-B_null/按对话文件(假设)/item_weight",
+     "seed": 14370755863041290753,
+     "n_items": 89,
+     "n_scenarios": 12,
+     "reruns": 3,
+     "base_abs": 35.768,
+     "plug_abs": 29.213,
+     "estimate": -6.554,
+     "estimate_items": -5.833,
+     "interval": [
+      -10.552,
+      -1.163
+     ],
+     "interval_items": [
+      -9.391,
+      -1.035
+     ],
+     "half_width": 4.695,
+     "capability_observed": "❓",
+     "release_state": "方法试验",
+     "capability": null,
+     "reasons": [
+      "区间跨过负向门槛 −5",
+      "未达正式发布门槛：taskset_frozen、domain_spec_frozen、evidence_complete、independent_review、scenarios_groupable（只发布方法试验与已知事实）"
+     ],
+     "per_seed_diff": {
+      "1": -4.494,
+      "2": -10.112,
+      "3": -5.056
+     },
+     "map_interval_if_sample_ok": "❓",
+     "ref_impl_agrees": true,
+     "manifest": {
+      "analysis_id": "pes/v3-rejudge/B/B_bm25-vs-B_null/按对话文件(假设)/item_weight",
+      "seed_derivation": "uint64_be(SHA-256(utf8(analysis_id))[0:8])",
+      "seed": 14370755863041290753,
+      "impl_id": "pes.verdict_v3",
+      "impl_version": "1.0.0",
+      "rng": "splitmix64/u53-floor/v1",
+      "percentile": "hyndman-fan-type7-linear",
+      "aggregation_order": [
+       "item_weighted_score_0_100",
+       "pair_diff_P_minus_B",
+       "scenario_mean_over_reruns",
+       "scenario_weighted_mean",
+       "resample_scenarios_with_replacement"
+      ],
+      "index_mapping": "floor((x>>11) * 2^-53 * G)",
+      "draw_order": "b-major (b=0..B-1, j=0..G-1)",
+      "statistic": "weighted mean of resampled scenario diffs",
+      "scenario_weighting": "item_weight",
+      "B": 10000,
+      "conf": 0.95,
+      "thresholds": {
+       "a": 5.0,
+       "b": 5.0,
+       "max_half_width": 5.0
+      },
+      "sample_minimum": {
+       "min_scenarios": 8,
+       "min_reruns": 3
+      },
+      "metric": {
+       "kind": "continuous",
+       "scale_max": 1.0
+      },
+      "scale": "0-100",
+      "weights_sha256": "d56b889d52525d6136ba0f9813d039d76a7cf005d6113b4dc0b9a4055d6dbcf4",
+      "python": "3.12.15",
+      "platform": "Linux-6.12.110+-aarch64-with-glibc2.41",
+      "libraries": {
+       "stdlib-only": true
+      },
+      "impl_file_sha256": "5dab21e5e605890d87264c5b657b7ca3eaa14f0c34692a8b660774c01f492d71"
+     }
+    },
+    "按对话文件(假设)|equal": {
+     "analysis_id": "pes/v3-rejudge/B/B_bm25-vs-B_null/按对话文件(假设)/equal",
+     "seed": 6823006253480818199,
+     "n_items": 89,
+     "n_scenarios": 12,
+     "reruns": 3,
+     "base_abs": 36.295,
+     "plug_abs": 28.377,
+     "estimate": -7.917,
+     "estimate_items": -7.046,
+     "interval": [
+      -12.926,
+      -3.025
+     ],
+     "interval_items": [
+      -11.504,
+      -2.693
+     ],
+     "half_width": 4.95,
+     "capability_observed": "❓",
+     "release_state": "方法试验",
+     "capability": null,
+     "reasons": [
+      "区间跨过负向门槛 −5",
+      "未达正式发布门槛：taskset_frozen、domain_spec_frozen、evidence_complete、independent_review、scenarios_groupable（只发布方法试验与已知事实）"
+     ],
+     "per_seed_diff": {
+      "1": -4.494,
+      "2": -10.112,
+      "3": -5.056
+     },
+     "map_interval_if_sample_ok": "❓",
+     "ref_impl_agrees": true,
+     "manifest": {
+      "analysis_id": "pes/v3-rejudge/B/B_bm25-vs-B_null/按对话文件(假设)/equal",
+      "seed_derivation": "uint64_be(SHA-256(utf8(analysis_id))[0:8])",
+      "seed": 6823006253480818199,
+      "impl_id": "pes.verdict_v3",
+      "impl_version": "1.0.0",
+      "rng": "splitmix64/u53-floor/v1",
+      "percentile": "hyndman-fan-type7-linear",
+      "aggregation_order": [
+       "item_weighted_score_0_100",
+       "pair_diff_P_minus_B",
+       "scenario_mean_over_reruns",
+       "scenario_weighted_mean",
+       "resample_scenarios_with_replacement"
+      ],
+      "index_mapping": "floor((x>>11) * 2^-53 * G)",
+      "draw_order": "b-major (b=0..B-1, j=0..G-1)",
+      "statistic": "weighted mean of resampled scenario diffs",
+      "scenario_weighting": "equal",
+      "B": 10000,
+      "conf": 0.95,
+      "thresholds": {
+       "a": 5.0,
+       "b": 5.0,
+       "max_half_width": 5.0
+      },
+      "sample_minimum": {
+       "min_scenarios": 8,
+       "min_reruns": 3
+      },
+      "metric": {
+       "kind": "continuous",
+       "scale_max": 1.0
+      },
+      "scale": "0-100",
+      "weights_sha256": "d56b889d52525d6136ba0f9813d039d76a7cf005d6113b4dc0b9a4055d6dbcf4",
+      "python": "3.12.15",
+      "platform": "Linux-6.12.110+-aarch64-with-glibc2.41",
+      "libraries": {
+       "stdlib-only": true
+      },
+      "impl_file_sha256": "5dab21e5e605890d87264c5b657b7ca3eaa14f0c34692a8b660774c01f492d71"
+     }
+    }
+   }
+  },
+  {
+   "plug": "B_dsh_jaccard",
+   "base": "B_null",
+   "title": "dsh-memory jaccard 附录臂 vs 底子",
+   "old": "😐 看不出差别（附录，不进结论）",
+   "old_numbers": "+1 题，区间 -2～+5",
+   "readings": {
+    "单一历史|item_weight": {
+     "analysis_id": "pes/v3-rejudge/B/B_dsh_jaccard-vs-B_null/单一历史/item_weight",
+     "seed": 11611451397282458005,
+     "n_items": 89,
+     "n_scenarios": 1,
+     "reruns": 3,
+     "base_abs": 35.768,
+     "plug_abs": 37.453,
+     "estimate": 1.685,
+     "estimate_items": 1.5,
+     "interval": [
+      1.685,
+      1.685
+     ],
+     "interval_items": [
+      1.5,
+      1.5
+     ],
+     "half_width": 0.0,
+     "capability_observed": "❓",
+     "release_state": "方法试验",
+     "capability": null,
+     "reasons": [
+      "有效样本不足：独立场景 1（要求 ≥8），每场景配对重跑最少 3（要求 ≥3）；极少场景下窄区间不代表充分证据",
+      "未达正式发布门槛：taskset_frozen、domain_spec_frozen、evidence_complete、independent_review、scenarios_groupable、样本计划场景数 1 < 域要求 8（只发布方法试验与已知事实）"
+     ],
+     "per_seed_diff": {
+      "1": 3.371,
+      "2": -1.685,
+      "3": 3.371
+     },
+     "map_interval_if_sample_ok": null,
+     "ref_impl_agrees": true,
+     "manifest": {
+      "analysis_id": "pes/v3-rejudge/B/B_dsh_jaccard-vs-B_null/单一历史/item_weight",
+      "seed_derivation": "uint64_be(SHA-256(utf8(analysis_id))[0:8])",
+      "seed": 11611451397282458005,
+      "impl_id": "pes.verdict_v3",
+      "impl_version": "1.0.0",
+      "rng": "splitmix64/u53-floor/v1",
+      "percentile": "hyndman-fan-type7-linear",
+      "aggregation_order": [
+       "item_weighted_score_0_100",
+       "pair_diff_P_minus_B",
+       "scenario_mean_over_reruns",
+       "scenario_weighted_mean",
+       "resample_scenarios_with_replacement"
+      ],
+      "index_mapping": "floor((x>>11) * 2^-53 * G)",
+      "draw_order": "b-major (b=0..B-1, j=0..G-1)",
+      "statistic": "weighted mean of resampled scenario diffs",
+      "scenario_weighting": "item_weight",
+      "B": 10000,
+      "conf": 0.95,
+      "thresholds": {
+       "a": 5.0,
+       "b": 5.0,
+       "max_half_width": 5.0
+      },
+      "sample_minimum": {
+       "min_scenarios": 8,
+       "min_reruns": 3
+      },
+      "metric": {
+       "kind": "continuous",
+       "scale_max": 1.0
+      },
+      "scale": "0-100",
+      "weights_sha256": "d56b889d52525d6136ba0f9813d039d76a7cf005d6113b4dc0b9a4055d6dbcf4",
+      "python": "3.12.15",
+      "platform": "Linux-6.12.110+-aarch64-with-glibc2.41",
+      "libraries": {
+       "stdlib-only": true
+      },
+      "impl_file_sha256": "5dab21e5e605890d87264c5b657b7ca3eaa14f0c34692a8b660774c01f492d71"
+     }
+    },
+    "按对话文件(假设)|item_weight": {
+     "analysis_id": "pes/v3-rejudge/B/B_dsh_jaccard-vs-B_null/按对话文件(假设)/item_weight",
+     "seed": 12557847006609940369,
+     "n_items": 89,
+     "n_scenarios": 12,
+     "reruns": 3,
+     "base_abs": 35.768,
+     "plug_abs": 37.453,
+     "estimate": 1.685,
+     "estimate_items": 1.5,
+     "interval": [
+      -1.515,
+      5.782
+     ],
+     "interval_items": [
+      -1.348,
+      5.146
+     ],
+     "half_width": 3.649,
+     "capability_observed": "❓",
+     "release_state": "方法试验",
+     "capability": null,
+     "reasons": [
+      "区间跨过正向门槛 5",
+      "未达正式发布门槛：taskset_frozen、domain_spec_frozen、evidence_complete、independent_review、scenarios_groupable（只发布方法试验与已知事实）"
+     ],
+     "per_seed_diff": {
+      "1": 3.371,
+      "2": -1.685,
+      "3": 3.371
+     },
+     "map_interval_if_sample_ok": "❓",
+     "ref_impl_agrees": true,
+     "manifest": {
+      "analysis_id": "pes/v3-rejudge/B/B_dsh_jaccard-vs-B_null/按对话文件(假设)/item_weight",
+      "seed_derivation": "uint64_be(SHA-256(utf8(analysis_id))[0:8])",
+      "seed": 12557847006609940369,
+      "impl_id": "pes.verdict_v3",
+      "impl_version": "1.0.0",
+      "rng": "splitmix64/u53-floor/v1",
+      "percentile": "hyndman-fan-type7-linear",
+      "aggregation_order": [
+       "item_weighted_score_0_100",
+       "pair_diff_P_minus_B",
+       "scenario_mean_over_reruns",
+       "scenario_weighted_mean",
+       "resample_scenarios_with_replacement"
+      ],
+      "index_mapping": "floor((x>>11) * 2^-53 * G)",
+      "draw_order": "b-major (b=0..B-1, j=0..G-1)",
+      "statistic": "weighted mean of resampled scenario diffs",
+      "scenario_weighting": "item_weight",
+      "B": 10000,
+      "conf": 0.95,
+      "thresholds": {
+       "a": 5.0,
+       "b": 5.0,
+       "max_half_width": 5.0
+      },
+      "sample_minimum": {
+       "min_scenarios": 8,
+       "min_reruns": 3
+      },
+      "metric": {
+       "kind": "continuous",
+       "scale_max": 1.0
+      },
+      "scale": "0-100",
+      "weights_sha256": "d56b889d52525d6136ba0f9813d039d76a7cf005d6113b4dc0b9a4055d6dbcf4",
+      "python": "3.12.15",
+      "platform": "Linux-6.12.110+-aarch64-with-glibc2.41",
+      "libraries": {
+       "stdlib-only": true
+      },
+      "impl_file_sha256": "5dab21e5e605890d87264c5b657b7ca3eaa14f0c34692a8b660774c01f492d71"
+     }
+    },
+    "按对话文件(假设)|equal": {
+     "analysis_id": "pes/v3-rejudge/B/B_dsh_jaccard-vs-B_null/按对话文件(假设)/equal",
+     "seed": 17525514625597424071,
+     "n_items": 89,
+     "n_scenarios": 12,
+     "reruns": 3,
+     "base_abs": 36.295,
+     "plug_abs": 39.827,
+     "estimate": 3.533,
+     "estimate_items": 3.144,
+     "interval": [
+      -5.959,
+      14.373
+     ],
+     "interval_items": [
+      -5.303,
+      12.792
+     ],
+     "half_width": 10.166,
+     "capability_observed": "❓",
+     "release_state": "方法试验",
+     "capability": null,
+     "reasons": [
+      "精度不足：半宽 10.1659 > 5",
+      "未达正式发布门槛：taskset_frozen、domain_spec_frozen、evidence_complete、independent_review、scenarios_groupable（只发布方法试验与已知事实）"
+     ],
+     "per_seed_diff": {
+      "1": 3.371,
+      "2": -1.685,
+      "3": 3.371
+     },
+     "map_interval_if_sample_ok": "❓",
+     "ref_impl_agrees": true,
+     "manifest": {
+      "analysis_id": "pes/v3-rejudge/B/B_dsh_jaccard-vs-B_null/按对话文件(假设)/equal",
+      "seed_derivation": "uint64_be(SHA-256(utf8(analysis_id))[0:8])",
+      "seed": 17525514625597424071,
+      "impl_id": "pes.verdict_v3",
+      "impl_version": "1.0.0",
+      "rng": "splitmix64/u53-floor/v1",
+      "percentile": "hyndman-fan-type7-linear",
+      "aggregation_order": [
+       "item_weighted_score_0_100",
+       "pair_diff_P_minus_B",
+       "scenario_mean_over_reruns",
+       "scenario_weighted_mean",
+       "resample_scenarios_with_replacement"
+      ],
+      "index_mapping": "floor((x>>11) * 2^-53 * G)",
+      "draw_order": "b-major (b=0..B-1, j=0..G-1)",
+      "statistic": "weighted mean of resampled scenario diffs",
+      "scenario_weighting": "equal",
+      "B": 10000,
+      "conf": 0.95,
+      "thresholds": {
+       "a": 5.0,
+       "b": 5.0,
+       "max_half_width": 5.0
+      },
+      "sample_minimum": {
+       "min_scenarios": 8,
+       "min_reruns": 3
+      },
+      "metric": {
+       "kind": "continuous",
+       "scale_max": 1.0
+      },
+      "scale": "0-100",
+      "weights_sha256": "d56b889d52525d6136ba0f9813d039d76a7cf005d6113b4dc0b9a4055d6dbcf4",
+      "python": "3.12.15",
+      "platform": "Linux-6.12.110+-aarch64-with-glibc2.41",
+      "libraries": {
+       "stdlib-only": true
+      },
+      "impl_file_sha256": "5dab21e5e605890d87264c5b657b7ca3eaa14f0c34692a8b660774c01f492d71"
+     }
+    }
+   }
+  }
+ ],
+ "A": [
+  {
+   "plug": "A_dsh",
+   "base": "A_null",
+   "title": "dsh-memory vs 闭卷",
+   "old": "✅ 真有用（压线）",
+   "old_numbers": "+3 题，区间 +1～+6（按题）；依赖簇区间 +0.7～+4.6",
+   "readings": {
+    "单一历史|item_weight": {
+     "analysis_id": "pes/v3-rejudge/A/A_dsh-vs-A_null/单一历史/item_weight",
+     "seed": 452576939441174588,
+     "n_items": 92,
+     "n_scenarios": 1,
+     "reruns": 3,
+     "base_abs": 0.0,
+     "plug_abs": 3.261,
+     "estimate": 3.261,
+     "estimate_items": 3.0,
+     "interval": [
+      3.261,
+      3.261
+     ],
+     "interval_items": [
+      3.0,
+      3.0
+     ],
+     "half_width": 0.0,
+     "capability_observed": "❓",
+     "release_state": "方法试验",
+     "capability": null,
+     "reasons": [
+      "有效样本不足：独立场景 1（要求 ≥8），每场景配对重跑最少 3（要求 ≥3）；极少场景下窄区间不代表充分证据",
+      "未达正式发布门槛：taskset_frozen、domain_spec_frozen、evidence_complete、independent_review、scenarios_groupable、样本计划场景数 1 < 域要求 8（只发布方法试验与已知事实）"
+     ],
+     "per_seed_diff": {
+      "1": 3.261,
+      "2": 5.435,
+      "3": 1.087
+     },
+     "map_interval_if_sample_ok": null,
+     "ref_impl_agrees": true,
+     "manifest": {
+      "analysis_id": "pes/v3-rejudge/A/A_dsh-vs-A_null/单一历史/item_weight",
+      "seed_derivation": "uint64_be(SHA-256(utf8(analysis_id))[0:8])",
+      "seed": 452576939441174588,
+      "impl_id": "pes.verdict_v3",
+      "impl_version": "1.0.0",
+      "rng": "splitmix64/u53-floor/v1",
+      "percentile": "hyndman-fan-type7-linear",
+      "aggregation_order": [
+       "item_weighted_score_0_100",
+       "pair_diff_P_minus_B",
+       "scenario_mean_over_reruns",
+       "scenario_weighted_mean",
+       "resample_scenarios_with_replacement"
+      ],
+      "index_mapping": "floor((x>>11) * 2^-53 * G)",
+      "draw_order": "b-major (b=0..B-1, j=0..G-1)",
+      "statistic": "weighted mean of resampled scenario diffs",
+      "scenario_weighting": "item_weight",
+      "B": 10000,
+      "conf": 0.95,
+      "thresholds": {
+       "a": 5.0,
+       "b": 5.0,
+       "max_half_width": 5.0
+      },
+      "sample_minimum": {
+       "min_scenarios": 8,
+       "min_reruns": 3
+      },
+      "metric": {
+       "kind": "continuous",
+       "scale_max": 1.0
+      },
+      "scale": "0-100",
+      "weights_sha256": "0d28ed37dd68b253b7554ca89375430126010d0801350d2de589b26688cba0d3",
+      "python": "3.12.15",
+      "platform": "Linux-6.12.110+-aarch64-with-glibc2.41",
+      "libraries": {
+       "stdlib-only": true
+      },
+      "impl_file_sha256": "5dab21e5e605890d87264c5b657b7ca3eaa14f0c34692a8b660774c01f492d71"
+     }
+    },
+    "按依赖簇0.5(假设)|item_weight": {
+     "analysis_id": "pes/v3-rejudge/A/A_dsh-vs-A_null/按依赖簇0.5(假设)/item_weight",
+     "seed": 7751614073165850834,
+     "n_items": 92,
+     "n_scenarios": 24,
+     "reruns": 3,
+     "base_abs": 0.0,
+     "plug_abs": 3.261,
+     "estimate": 3.261,
+     "estimate_items": 3.0,
+     "interval": [
+      0.725,
+      4.965
+     ],
+     "interval_items": [
+      0.667,
+      4.568
+     ],
+     "half_width": 2.12,
+     "capability_observed": "➖",
+     "release_state": "方法试验",
+     "capability": null,
+     "reasons": [
+      "区间完全落在 (−5, 5) 内（本次范围内实际等效）",
+      "未达正式发布门槛：taskset_frozen、domain_spec_frozen、evidence_complete、independent_review、scenarios_groupable（只发布方法试验与已知事实）"
+     ],
+     "per_seed_diff": {
+      "1": 3.261,
+      "2": 5.435,
+      "3": 1.087
+     },
+     "map_interval_if_sample_ok": "➖",
+     "ref_impl_agrees": true,
+     "manifest": {
+      "analysis_id": "pes/v3-rejudge/A/A_dsh-vs-A_null/按依赖簇0.5(假设)/item_weight",
+      "seed_derivation": "uint64_be(SHA-256(utf8(analysis_id))[0:8])",
+      "seed": 7751614073165850834,
+      "impl_id": "pes.verdict_v3",
+      "impl_version": "1.0.0",
+      "rng": "splitmix64/u53-floor/v1",
+      "percentile": "hyndman-fan-type7-linear",
+      "aggregation_order": [
+       "item_weighted_score_0_100",
+       "pair_diff_P_minus_B",
+       "scenario_mean_over_reruns",
+       "scenario_weighted_mean",
+       "resample_scenarios_with_replacement"
+      ],
+      "index_mapping": "floor((x>>11) * 2^-53 * G)",
+      "draw_order": "b-major (b=0..B-1, j=0..G-1)",
+      "statistic": "weighted mean of resampled scenario diffs",
+      "scenario_weighting": "item_weight",
+      "B": 10000,
+      "conf": 0.95,
+      "thresholds": {
+       "a": 5.0,
+       "b": 5.0,
+       "max_half_width": 5.0
+      },
+      "sample_minimum": {
+       "min_scenarios": 8,
+       "min_reruns": 3
+      },
+      "metric": {
+       "kind": "continuous",
+       "scale_max": 1.0
+      },
+      "scale": "0-100",
+      "weights_sha256": "0d28ed37dd68b253b7554ca89375430126010d0801350d2de589b26688cba0d3",
+      "python": "3.12.15",
+      "platform": "Linux-6.12.110+-aarch64-with-glibc2.41",
+      "libraries": {
+       "stdlib-only": true
+      },
+      "impl_file_sha256": "5dab21e5e605890d87264c5b657b7ca3eaa14f0c34692a8b660774c01f492d71"
+     }
+    },
+    "按依赖簇0.5(假设)|equal": {
+     "analysis_id": "pes/v3-rejudge/A/A_dsh-vs-A_null/按依赖簇0.5(假设)/equal",
+     "seed": 1091245026956283668,
+     "n_items": 92,
+     "n_scenarios": 24,
+     "reruns": 3,
+     "base_abs": 0.0,
+     "plug_abs": 3.401,
+     "estimate": 3.401,
+     "estimate_items": 3.129,
+     "interval": [
+      0.16,
+      7.425
+     ],
+     "interval_items": [
+      0.147,
+      6.831
+     ],
+     "half_width": 3.632,
+     "capability_observed": "❓",
+     "release_state": "方法试验",
+     "capability": null,
+     "reasons": [
+      "区间跨过正向门槛 5",
+      "未达正式发布门槛：taskset_frozen、domain_spec_frozen、evidence_complete、independent_review、scenarios_groupable（只发布方法试验与已知事实）"
+     ],
+     "per_seed_diff": {
+      "1": 3.261,
+      "2": 5.435,
+      "3": 1.087
+     },
+     "map_interval_if_sample_ok": "❓",
+     "ref_impl_agrees": true,
+     "manifest": {
+      "analysis_id": "pes/v3-rejudge/A/A_dsh-vs-A_null/按依赖簇0.5(假设)/equal",
+      "seed_derivation": "uint64_be(SHA-256(utf8(analysis_id))[0:8])",
+      "seed": 1091245026956283668,
+      "impl_id": "pes.verdict_v3",
+      "impl_version": "1.0.0",
+      "rng": "splitmix64/u53-floor/v1",
+      "percentile": "hyndman-fan-type7-linear",
+      "aggregation_order": [
+       "item_weighted_score_0_100",
+       "pair_diff_P_minus_B",
+       "scenario_mean_over_reruns",
+       "scenario_weighted_mean",
+       "resample_scenarios_with_replacement"
+      ],
+      "index_mapping": "floor((x>>11) * 2^-53 * G)",
+      "draw_order": "b-major (b=0..B-1, j=0..G-1)",
+      "statistic": "weighted mean of resampled scenario diffs",
+      "scenario_weighting": "equal",
+      "B": 10000,
+      "conf": 0.95,
+      "thresholds": {
+       "a": 5.0,
+       "b": 5.0,
+       "max_half_width": 5.0
+      },
+      "sample_minimum": {
+       "min_scenarios": 8,
+       "min_reruns": 3
+      },
+      "metric": {
+       "kind": "continuous",
+       "scale_max": 1.0
+      },
+      "scale": "0-100",
+      "weights_sha256": "0d28ed37dd68b253b7554ca89375430126010d0801350d2de589b26688cba0d3",
+      "python": "3.12.15",
+      "platform": "Linux-6.12.110+-aarch64-with-glibc2.41",
+      "libraries": {
+       "stdlib-only": true
+      },
+      "impl_file_sha256": "5dab21e5e605890d87264c5b657b7ca3eaa14f0c34692a8b660774c01f492d71"
+     }
+    }
+   }
+  },
+  {
+   "plug": "A_bm25",
+   "base": "A_null",
+   "title": "BM25 vs 闭卷（参照）",
+   "old": "✅ 真有用",
+   "old_numbers": "+6 题，区间 +2～+10（按题）；依赖簇区间 +2.4～+12.4",
+   "readings": {
+    "单一历史|item_weight": {
+     "analysis_id": "pes/v3-rejudge/A/A_bm25-vs-A_null/单一历史/item_weight",
+     "seed": 1722595449043350166,
+     "n_items": 92,
+     "n_scenarios": 1,
+     "reruns": 3,
+     "base_abs": 0.0,
+     "plug_abs": 6.159,
+     "estimate": 6.159,
+     "estimate_items": 5.667,
+     "interval": [
+      6.159,
+      6.159
+     ],
+     "interval_items": [
+      5.667,
+      5.667
+     ],
+     "half_width": 0.0,
+     "capability_observed": "❓",
+     "release_state": "方法试验",
+     "capability": null,
+     "reasons": [
+      "有效样本不足：独立场景 1（要求 ≥8），每场景配对重跑最少 3（要求 ≥3）；极少场景下窄区间不代表充分证据",
+      "未达正式发布门槛：taskset_frozen、domain_spec_frozen、evidence_complete、independent_review、scenarios_groupable、样本计划场景数 1 < 域要求 8（只发布方法试验与已知事实）"
+     ],
+     "per_seed_diff": {
+      "1": 7.609,
+      "2": 5.435,
+      "3": 5.435
+     },
+     "map_interval_if_sample_ok": null,
+     "ref_impl_agrees": true,
+     "manifest": {
+      "analysis_id": "pes/v3-rejudge/A/A_bm25-vs-A_null/单一历史/item_weight",
+      "seed_derivation": "uint64_be(SHA-256(utf8(analysis_id))[0:8])",
+      "seed": 1722595449043350166,
+      "impl_id": "pes.verdict_v3",
+      "impl_version": "1.0.0",
+      "rng": "splitmix64/u53-floor/v1",
+      "percentile": "hyndman-fan-type7-linear",
+      "aggregation_order": [
+       "item_weighted_score_0_100",
+       "pair_diff_P_minus_B",
+       "scenario_mean_over_reruns",
+       "scenario_weighted_mean",
+       "resample_scenarios_with_replacement"
+      ],
+      "index_mapping": "floor((x>>11) * 2^-53 * G)",
+      "draw_order": "b-major (b=0..B-1, j=0..G-1)",
+      "statistic": "weighted mean of resampled scenario diffs",
+      "scenario_weighting": "item_weight",
+      "B": 10000,
+      "conf": 0.95,
+      "thresholds": {
+       "a": 5.0,
+       "b": 5.0,
+       "max_half_width": 5.0
+      },
+      "sample_minimum": {
+       "min_scenarios": 8,
+       "min_reruns": 3
+      },
+      "metric": {
+       "kind": "continuous",
+       "scale_max": 1.0
+      },
+      "scale": "0-100",
+      "weights_sha256": "0d28ed37dd68b253b7554ca89375430126010d0801350d2de589b26688cba0d3",
+      "python": "3.12.15",
+      "platform": "Linux-6.12.110+-aarch64-with-glibc2.41",
+      "libraries": {
+       "stdlib-only": true
+      },
+      "impl_file_sha256": "5dab21e5e605890d87264c5b657b7ca3eaa14f0c34692a8b660774c01f492d71"
+     }
+    },
+    "按依赖簇0.5(假设)|item_weight": {
+     "analysis_id": "pes/v3-rejudge/A/A_bm25-vs-A_null/按依赖簇0.5(假设)/item_weight",
+     "seed": 8961159398635538336,
+     "n_items": 92,
+     "n_scenarios": 24,
+     "reruns": 3,
+     "base_abs": 0.0,
+     "plug_abs": 6.159,
+     "estimate": 6.159,
+     "estimate_items": 5.667,
+     "interval": [
+      2.499,
+      13.462
+     ],
+     "interval_items": [
+      2.299,
+      12.385
+     ],
+     "half_width": 5.481,
+     "capability_observed": "❓",
+     "release_state": "方法试验",
+     "capability": null,
+     "reasons": [
+      "精度不足：半宽 5.48133 > 5",
+      "未达正式发布门槛：taskset_frozen、domain_spec_frozen、evidence_complete、independent_review、scenarios_groupable（只发布方法试验与已知事实）"
+     ],
+     "per_seed_diff": {
+      "1": 7.609,
+      "2": 5.435,
+      "3": 5.435
+     },
+     "map_interval_if_sample_ok": "❓",
+     "ref_impl_agrees": true,
+     "manifest": {
+      "analysis_id": "pes/v3-rejudge/A/A_bm25-vs-A_null/按依赖簇0.5(假设)/item_weight",
+      "seed_derivation": "uint64_be(SHA-256(utf8(analysis_id))[0:8])",
+      "seed": 8961159398635538336,
+      "impl_id": "pes.verdict_v3",
+      "impl_version": "1.0.0",
+      "rng": "splitmix64/u53-floor/v1",
+      "percentile": "hyndman-fan-type7-linear",
+      "aggregation_order": [
+       "item_weighted_score_0_100",
+       "pair_diff_P_minus_B",
+       "scenario_mean_over_reruns",
+       "scenario_weighted_mean",
+       "resample_scenarios_with_replacement"
+      ],
+      "index_mapping": "floor((x>>11) * 2^-53 * G)",
+      "draw_order": "b-major (b=0..B-1, j=0..G-1)",
+      "statistic": "weighted mean of resampled scenario diffs",
+      "scenario_weighting": "item_weight",
+      "B": 10000,
+      "conf": 0.95,
+      "thresholds": {
+       "a": 5.0,
+       "b": 5.0,
+       "max_half_width": 5.0
+      },
+      "sample_minimum": {
+       "min_scenarios": 8,
+       "min_reruns": 3
+      },
+      "metric": {
+       "kind": "continuous",
+       "scale_max": 1.0
+      },
+      "scale": "0-100",
+      "weights_sha256": "0d28ed37dd68b253b7554ca89375430126010d0801350d2de589b26688cba0d3",
+      "python": "3.12.15",
+      "platform": "Linux-6.12.110+-aarch64-with-glibc2.41",
+      "libraries": {
+       "stdlib-only": true
+      },
+      "impl_file_sha256": "5dab21e5e605890d87264c5b657b7ca3eaa14f0c34692a8b660774c01f492d71"
+     }
+    },
+    "按依赖簇0.5(假设)|equal": {
+     "analysis_id": "pes/v3-rejudge/A/A_bm25-vs-A_null/按依赖簇0.5(假设)/equal",
+     "seed": 15151731684515273198,
+     "n_items": 92,
+     "n_scenarios": 24,
+     "reruns": 3,
+     "base_abs": 0.0,
+     "plug_abs": 7.853,
+     "estimate": 7.853,
+     "estimate_items": 7.224,
+     "interval": [
+      0.926,
+      18.056
+     ],
+     "interval_items": [
+      0.852,
+      16.611
+     ],
+     "half_width": 8.565,
+     "capability_observed": "❓",
+     "release_state": "方法试验",
+     "capability": null,
+     "reasons": [
+      "精度不足：半宽 8.56481 > 5",
+      "未达正式发布门槛：taskset_frozen、domain_spec_frozen、evidence_complete、independent_review、scenarios_groupable（只发布方法试验与已知事实）"
+     ],
+     "per_seed_diff": {
+      "1": 7.609,
+      "2": 5.435,
+      "3": 5.435
+     },
+     "map_interval_if_sample_ok": "❓",
+     "ref_impl_agrees": true,
+     "manifest": {
+      "analysis_id": "pes/v3-rejudge/A/A_bm25-vs-A_null/按依赖簇0.5(假设)/equal",
+      "seed_derivation": "uint64_be(SHA-256(utf8(analysis_id))[0:8])",
+      "seed": 15151731684515273198,
+      "impl_id": "pes.verdict_v3",
+      "impl_version": "1.0.0",
+      "rng": "splitmix64/u53-floor/v1",
+      "percentile": "hyndman-fan-type7-linear",
+      "aggregation_order": [
+       "item_weighted_score_0_100",
+       "pair_diff_P_minus_B",
+       "scenario_mean_over_reruns",
+       "scenario_weighted_mean",
+       "resample_scenarios_with_replacement"
+      ],
+      "index_mapping": "floor((x>>11) * 2^-53 * G)",
+      "draw_order": "b-major (b=0..B-1, j=0..G-1)",
+      "statistic": "weighted mean of resampled scenario diffs",
+      "scenario_weighting": "equal",
+      "B": 10000,
+      "conf": 0.95,
+      "thresholds": {
+       "a": 5.0,
+       "b": 5.0,
+       "max_half_width": 5.0
+      },
+      "sample_minimum": {
+       "min_scenarios": 8,
+       "min_reruns": 3
+      },
+      "metric": {
+       "kind": "continuous",
+       "scale_max": 1.0
+      },
+      "scale": "0-100",
+      "weights_sha256": "0d28ed37dd68b253b7554ca89375430126010d0801350d2de589b26688cba0d3",
+      "python": "3.12.15",
+      "platform": "Linux-6.12.110+-aarch64-with-glibc2.41",
+      "libraries": {
+       "stdlib-only": true
+      },
+      "impl_file_sha256": "5dab21e5e605890d87264c5b657b7ca3eaa14f0c34692a8b660774c01f492d71"
+     }
+    }
+   }
+  }
+ ],
+ "B_groups": {
+  "传递信任与经验.md": 1,
+  "信任与协作的传递.md": 6,
+  "信任协议权重调整.md": 8,
+  "学习能力理论讨论邀请.md": 15,
+  "对话上下文续接方法.md": 2,
+  "接入共同信任协议.md": 7,
+  "新世界漫游指南评价与指导.md": 4,
+  "智能论恢复确认.md": 13,
+  "条件空间识别LLM调用测试.md": 1,
+  "用户与AI交换称呼.md": 6,
+  "确认协议内容.md": 25,
+  "继续推进协议实例.md": 1
+ },
+ "A_groups": [
+  52,
+  5,
+  5,
+  3,
+  3,
+  3,
+  2,
+  2,
+  2,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1
+ ]
+}

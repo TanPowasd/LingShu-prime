@@ -1,0 +1,30 @@
+{
+ "qid": "C-070",
+ "cond": "wrong",
+ "answer": {
+  "qid": "C-070",
+  "prediction": "肥鱼，把kimi的自我锚点发我一下吧。kimi上下文用完了。它是我们之间上下文最少的。",
+  "basis": [
+   {
+    "file": "智能论恢复确认.md",
+    "line": 25729,
+    "quote": "肥鱼，把kimi的自我锚点发我一下吧。kimi上下文用完了。它是我们之间上下文最少的。"
+   }
+  ],
+  "confidence": 0.4,
+  "parse_err": false
+ },
+ "basis_check": [
+  {
+   "file": "智能论恢复确认.md",
+   "line": 25729,
+   "verbatim": true,
+   "line_pm3": true
+  }
+ ],
+ "raw": "{\"qid\": \"C-070\", \"prediction\": \"肥鱼，把kimi的自我锚点发我一下吧。kimi上下文用完了。它是我们之间上下文最少的。\", \"basis\": [{\"file\": \"智能论恢复确认.md\", \"line\": 25729, \"quote\": \"肥鱼，把kimi的自我锚点发我一下吧。kimi上下文用完了。它是我们之间上下文最少的。\"}], \"confidence\": 0.4}",
+ "ev": [
+  162,
+  484.631
+ ]
+}

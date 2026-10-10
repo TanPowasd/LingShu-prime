@@ -1,0 +1,47 @@
+{
+ "qid": "C-076",
+ "seed": 2,
+ "raw": "{\"qid\": \"C-076\", \"prediction\": \"我会继续贴出运行/测试的终端输出，接着上一条 curl 请求 8000 端口的结果，报告 memory 接口的返回内容或端口 8000/8001 的日志，确认协议实例的记忆写入与读取是否正常。\", \"basis\": [{\"file\": \"智能论恢复确认.md\", \"line\": 66665, \"quote\": \"D:\\\\Program Files\\\\1_ai\\\\catgirl-protocol-interface>curl -X POST http://localhost:8000/memory…\"}, {\"file\": \"智能论恢复确认.md\", \"line\": 66574, \"quote\": \"✅ 端口 8001 (record): p_trust=0.85, t_total=0.75…\"}], \"confidence\": 0.55}",
+ "answer": {
+  "qid": "C-076",
+  "prediction": "我会继续贴出运行/测试的终端输出，接着上一条 curl 请求 8000 端口的结果，报告 memory 接口的返回内容或端口 8000/8001 的日志，确认协议实例的记忆写入与读取是否正常。",
+  "basis": [
+   {
+    "file": "智能论恢复确认.md",
+    "line": 66665,
+    "quote": "D:\\Program Files\\1_ai\\catgirl-protocol-interface>curl -X POST http://localhost:8000/memory…"
+   },
+   {
+    "file": "智能论恢复确认.md",
+    "line": 66574,
+    "quote": "✅ 端口 8001 (record): p_trust=0.85, t_total=0.75…"
+   }
+  ],
+  "confidence": 0.55,
+  "parse_err": false
+ },
+ "basis_check": [
+  {
+   "file": "智能论恢复确认.md",
+   "line": 66665,
+   "verbatim": false,
+   "line_pm3": false
+  },
+  {
+   "file": "智能论恢复确认.md",
+   "line": 66574,
+   "verbatim": false,
+   "line_pm3": false
+  }
+ ],
+ "usage": {
+  "prompt_tokens": 1522,
+  "completion_tokens": 178,
+  "total_tokens": 1700
+ },
+ "finish_reason": "stop",
+ "ev": [
+  683,
+  5632.608
+ ]
+}

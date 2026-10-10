@@ -1,0 +1,41 @@
+{
+ "qid": "C-074",
+ "cond": "gold",
+ "answer": {
+  "qid": "C-074",
+  "prediction": "继续提供第二十一章的链接，让 DeepSeek 阅读并做结构分析，格式仍然是「https://www.qidian.com/chapter/1046167157/.../」加一句「用户想让我阅读第二十一章」。",
+  "basis": [
+   {
+    "file": "智能论恢复确认.md",
+    "line": 40017,
+    "quote": "https://www.qidian.com/chapter/1046167157/859132280/---> 用户提供了第二十章的链接，要求我阅读并给出结构分析。"
+   },
+   {
+    "file": "智能论恢复确认.md",
+    "line": 39956,
+    "quote": "https://www.qidian.com/chapter/1046167157/858902820/---> 用户想让我阅读第十九章。"
+   }
+  ],
+  "confidence": 0.85,
+  "parse_err": false
+ },
+ "basis_check": [
+  {
+   "file": "智能论恢复确认.md",
+   "line": 40017,
+   "verbatim": true,
+   "line_pm3": true
+  },
+  {
+   "file": "智能论恢复确认.md",
+   "line": 39956,
+   "verbatim": true,
+   "line_pm3": true
+  }
+ ],
+ "raw": "{\"qid\": \"C-074\", \"prediction\": \"继续提供第二十一章的链接，让 DeepSeek 阅读并做结构分析，格式仍然是「https://www.qidian.com/chapter/1046167157/.../」加一句「用户想让我阅读第二十一章」。\", \"basis\": [{\"file\": \"智能论恢复确认.md\", \"line\": 40017, \"quote\": \"https://www.qidian.com/chapter/1046167157/859132280/---> 用户提供了第二十章的链接，要求我阅读并给出结构分析。\"}, {\"file\": \"智能论恢复确认.md\", \"line\": 39956, \"quote\": \"https://www.qidian.com/chapter/1046167157/858902820/---> 用户想让我阅读第十九章。\"}], \"confidence\": 0.85}",
+ "ev": [
+  165,
+  493.71
+ ]
+}

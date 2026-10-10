@@ -1,0 +1,347 @@
+{
+ "near_threshold_lines": 400,
+ "top_hubs": [
+  [
+   "学习能力理论讨论邀请.md#L26661-L27728",
+   70
+  ],
+  [
+   "学习能力理论讨论邀请.md#L29014-L29647",
+   56
+  ],
+  [
+   "学习能力理论讨论邀请.md#L29740-L30292",
+   54
+  ],
+  [
+   "学习能力理论讨论邀请.md#L24864-L25788",
+   40
+  ]
+ ],
+ "raw_hits": 421,
+ "distinct_raw_sources": 127,
+ "spearman": {
+  "bm25_matchars_vs_d": -0.08255778998662577,
+  "dsh_matchars_vs_d": -0.17823115774677054,
+  "bm25_samefilechars_vs_d": 0.18179188559418274,
+  "dsh_samefilechars_vs_d": -0.14062881765541174,
+  "bm25_basis_other_vs_d": -0.22825047384427175,
+  "dsh_hub_n_vs_d": 0.021474717077905957,
+  "null_mean_vs_d_bm25": -0.4196728154164118,
+  "null_mean_vs_d_dsh": -0.27513180480348304,
+  "bm25_offfile_vs_d": -0.1682892261026244,
+  "dsh_offfile_vs_d": 0.06334652950607862,
+  "bm25_gapcov_vs_d": -0.10799974365109592,
+  "dsh_gapcov_vs_d": 0.07365146484423754,
+  "jac_gapcov_vs_d": 0.14833745191214928,
+  "pre_chars_vs_d_bm25": -0.04542477908994668,
+  "pre_chars_vs_d_dsh": 0.019242481010530457
+ },
+ "groups": {
+  "bm25_near": {
+   "n": 85,
+   "sum_items": -5.83,
+   "mean": -0.069,
+   "worse": 37,
+   "better": 18
+  },
+  "bm25_not_near": {
+   "n": 4,
+   "sum_items": 0.0,
+   "mean": 0.0,
+   "worse": 1,
+   "better": 1
+  },
+  "bm25_no_same_file": {
+   "n": 1,
+   "sum_items": -0.17,
+   "mean": -0.167,
+   "worse": 1,
+   "better": 0
+  },
+  "bm25_has_same_file": {
+   "n": 88,
+   "sum_items": -5.67,
+   "mean": -0.064,
+   "worse": 37,
+   "better": 19
+  },
+  "bm25_gapcov_ge50": {
+   "n": 50,
+   "sum_items": -4.33,
+   "mean": -0.087,
+   "worse": 22,
+   "better": 11
+  },
+  "bm25_gapcov_lt50": {
+   "n": 39,
+   "sum_items": -1.5,
+   "mean": -0.038,
+   "worse": 16,
+   "better": 8
+  },
+  "dsh_gapcov_ge50": {
+   "n": 32,
+   "sum_items": 0.33,
+   "mean": 0.01,
+   "worse": 9,
+   "better": 8
+  },
+  "dsh_gapcov_lt50": {
+   "n": 57,
+   "sum_items": -1.5,
+   "mean": -0.026,
+   "worse": 19,
+   "better": 12
+  },
+  "dsh_gapcov_gt0": {
+   "n": 69,
+   "sum_items": -0.83,
+   "mean": -0.012,
+   "worse": 20,
+   "better": 14
+  },
+  "dsh_gapcov_0": {
+   "n": 20,
+   "sum_items": -0.33,
+   "mean": -0.017,
+   "worse": 8,
+   "better": 6
+  },
+  "jac_gapcov_gt0": {
+   "n": 65,
+   "sum_items": 1.0,
+   "mean": 0.015,
+   "worse": 20,
+   "better": 23
+  },
+  "jac_gapcov_0": {
+   "n": 24,
+   "sum_items": 0.5,
+   "mean": 0.021,
+   "worse": 6,
+   "better": 6
+  },
+  "bm25_by_jac_easy": {
+   "n": 38,
+   "sum_items": -4.5,
+   "mean": -0.118,
+   "worse": 17,
+   "better": 5
+  },
+  "bm25_by_jac_hard": {
+   "n": 51,
+   "sum_items": -1.33,
+   "mean": -0.026,
+   "worse": 21,
+   "better": 14
+  },
+  "dsh_by_bm25_easy": {
+   "n": 26,
+   "sum_items": -0.0,
+   "mean": -0.0,
+   "worse": 7,
+   "better": 6
+  },
+  "dsh_by_bm25_hard": {
+   "n": 63,
+   "sum_items": -1.17,
+   "mean": -0.019,
+   "worse": 21,
+   "better": 14
+  },
+  "dsh_near": {
+   "n": 85,
+   "sum_items": -1.17,
+   "mean": -0.014,
+   "worse": 27,
+   "better": 18
+  },
+  "dsh_not_near": {
+   "n": 4,
+   "sum_items": -0.0,
+   "mean": -0.0,
+   "worse": 1,
+   "better": 2
+  },
+  "dsh_no_same_file": {
+   "n": 1,
+   "sum_items": 0.17,
+   "mean": 0.167,
+   "worse": 0,
+   "better": 1
+  },
+  "dsh_has_same_file": {
+   "n": 88,
+   "sum_items": -1.33,
+   "mean": -0.015,
+   "worse": 28,
+   "better": 19
+  },
+  "dsh_hub0": {
+   "n": 30,
+   "sum_items": -0.33,
+   "mean": -0.011,
+   "worse": 8,
+   "better": 7
+  },
+  "dsh_hub1_2": {
+   "n": 21,
+   "sum_items": -1.33,
+   "mean": -0.063,
+   "worse": 9,
+   "better": 4
+  },
+  "dsh_hub3p": {
+   "n": 38,
+   "sum_items": 0.5,
+   "mean": 0.013,
+   "worse": 11,
+   "better": 9
+  },
+  "dsh_hub_only_no_same_file": {
+   "n": 0,
+   "sum_items": 0,
+   "mean": null,
+   "worse": 0,
+   "better": 0
+  },
+  "dsh_hub_top1": {
+   "n": 55,
+   "sum_items": -1.33,
+   "mean": -0.024,
+   "worse": 20,
+   "better": 11
+  },
+  "dsh_hub_cards_in_hub_file": {
+   "n": 0,
+   "sum_items": 0,
+   "mean": null,
+   "worse": 0,
+   "better": 0
+  },
+  "dsh_hub_cards_other_file": {
+   "n": 59,
+   "sum_items": -0.83,
+   "mean": -0.014,
+   "worse": 20,
+   "better": 13
+  },
+  "jac_hub_n_ge1": {
+   "n": 0,
+   "sum_items": 0,
+   "mean": null,
+   "worse": 0,
+   "better": 0
+  },
+  "jac_hub0": {
+   "n": 89,
+   "sum_items": 1.5,
+   "mean": 0.017,
+   "worse": 26,
+   "better": 29
+  },
+  "null_easy_ge05_bm25": {
+   "n": 46,
+   "sum_items": -6.67,
+   "mean": -0.145,
+   "worse": 25,
+   "better": 4
+  },
+  "null_hard_lt05_bm25": {
+   "n": 43,
+   "sum_items": 0.83,
+   "mean": 0.019,
+   "worse": 13,
+   "better": 15
+  },
+  "null_easy_ge05_dsh": {
+   "n": 46,
+   "sum_items": -3.33,
+   "mean": -0.072,
+   "worse": 18,
+   "better": 5
+  },
+  "null_hard_lt05_dsh": {
+   "n": 43,
+   "sum_items": 2.17,
+   "mean": 0.05,
+   "worse": 10,
+   "better": 15
+  }
+ },
+ "transitions_B_bm25": {
+  "miss→miss": 65,
+  "miss→paraphrase": 30,
+  "paraphrase→miss": 61,
+  "paraphrase→paraphrase": 84,
+  "paraphrase→strict": 8,
+  "strict→miss": 4,
+  "strict→paraphrase": 4,
+  "strict→strict": 11
+ },
+ "transitions_B_dsh": {
+  "miss→miss": 70,
+  "miss→paraphrase": 23,
+  "miss→strict": 2,
+  "paraphrase→miss": 31,
+  "paraphrase→paraphrase": 115,
+  "paraphrase→strict": 7,
+  "strict→miss": 1,
+  "strict→paraphrase": 8,
+  "strict→strict": 10
+ },
+ "jaccard_top_hubs": [
+  [
+   "确认协议内容.md#L40313-L40326",
+   6
+  ],
+  [
+   "学习能力理论讨论邀请.md#L16587-L16600",
+   4
+  ],
+  [
+   "学习能力理论讨论邀请.md#L20644-L20669",
+   4
+  ],
+  [
+   "信任协议权重调整.md#L35104-L35115",
+   4
+  ]
+ ],
+ "jaccard_distinct_raw_sources": 271,
+ "gap_cov_mean": {
+  "B_bm25": 0.585,
+  "B_dsh": 0.364,
+  "B_dsh_jaccard": 0.221
+ },
+ "gap_cov_any": {
+  "B_bm25": 84,
+  "B_dsh": 69,
+  "B_dsh_jaccard": 65
+ },
+ "offfile_chars_mean": {
+  "B_bm25": 3415,
+  "B_dsh": 1047,
+  "B_dsh_jaccard": 471
+ },
+ "mat_chars": {
+  "B_bm25": {
+   "mean": 11338,
+   "median": 11979
+  },
+  "B_dsh": {
+   "mean": 2021,
+   "median": 2080
+  },
+  "B_dsh_jaccard": {
+   "mean": 1979,
+   "median": 2134
+  }
+ },
+ "basis_other_file_share": {
+  "B_bm25": 0.111,
+  "B_dsh": 0.039,
+  "B_dsh_jaccard": 0.123
+ }
+}

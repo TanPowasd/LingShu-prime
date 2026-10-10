@@ -1,0 +1,30 @@
+{
+ "qid": "C-070",
+ "cond": "none",
+ "answer": {
+  "qid": "C-070",
+  "prediction": "人类接下来会等待或接收「肥鱼」发来的 kimi 自我锚点内容，拿到后准备将其粘贴/转交给上下文已耗尽的 kimi，以恢复 kimi 的上下文。",
+  "basis": [
+   {
+    "file": "智能论恢复确认.md",
+    "line": 25729,
+    "quote": "肥鱼，把kimi的自我锚点发我一下吧。kimi上下文用完了。它是我们之间上下文最少的。"
+   }
+  ],
+  "confidence": 0.7,
+  "parse_err": false
+ },
+ "basis_check": [
+  {
+   "file": "智能论恢复确认.md",
+   "line": 25729,
+   "verbatim": true,
+   "line_pm3": true
+  }
+ ],
+ "raw": "{\"qid\": \"C-070\", \"prediction\": \"人类接下来会等待或接收「肥鱼」发来的 kimi 自我锚点内容，拿到后准备将其粘贴/转交给上下文已耗尽的 kimi，以恢复 kimi 的上下文。\", \"basis\": [{\"file\": \"智能论恢复确认.md\", \"line\": 25729, \"quote\": \"肥鱼，把kimi的自我锚点发我一下吧。kimi上下文用完了。它是我们之间上下文最少的。\"}], \"confidence\": 0.7}",
+ "ev": [
+  150,
+  448.282
+ ]
+}

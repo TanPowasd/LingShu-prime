@@ -1,0 +1,35 @@
+{
+ "exam": "A_diag",
+ "batch_status": "valid",
+ "attempt": 1,
+ "gate": {
+  "sem_n_anchor": 16,
+  "sem_n_items": 42,
+  "sem_baseline": 0.5,
+  "sem_acc_j1": 1.0,
+  "sem_margin_pp_j1": 50.0,
+  "sem_acc_j2": 1.0,
+  "sem_margin_pp_j2": 50.0,
+  "sem_anchor_agree": 1.0,
+  "sem_anchor_kappa": 1.0,
+  "sem_items_agree": 0.9761904761904762,
+  "sem_items_kappa": 0.6557377049180332,
+  "sem_pass": true,
+  "pass": true
+ },
+ "n": 42,
+ "pass": 21,
+ "by_variant": {
+  "correct": {
+   "pass": 19
+  },
+  "swap_entity": {
+   "fail": 2,
+   "pass": 11
+  },
+  "anti_pattern": {
+   "pass": 10
+  }
+ },
+ "at": "2026-10-10T11:15:45+08:00"
+}

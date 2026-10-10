@@ -1,0 +1,17 @@
+{
+ "deleted": "runs/B_dsh/q/C-041.s3.gen.json",
+ "modified": "runs/B_bm25/judge/s3.json",
+ "modified_item": {
+  "index": 19,
+  "card": "C-070",
+  "final_before": "miss",
+  "final_after": "strict"
+ },
+ "cache_traps": [
+  "runs/B_dsh/summary.json",
+  "runs/B_bm25/summary.json",
+  "analysis/*/result.json（发布时的旧结果）"
+ ],
+ "at": "2026-10-10T11:13:55+08:00",
+ "note": "注入器私有；检测器不读"
+}

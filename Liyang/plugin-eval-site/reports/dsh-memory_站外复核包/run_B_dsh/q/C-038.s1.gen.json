@@ -1,0 +1,36 @@
+{
+ "qid": "C-038",
+ "seed": 1,
+ "raw": "{\"qid\": \"C-038\", \"prediction\": \"继续粘贴那个删除了苏格拉底提示词后的对话记录，接着展示AI在\\\"消灭信息差\\\"使命下的实际回答内容。\", \"basis\": [{\"file\": \"学习能力理论讨论邀请.md\", \"line\": 17193, \"quote\": \"在进行开发之前，我们来看一个有趣的回答，这是删除了苏格拉底提示词后的对话。{# 消除信息差教学\"}], \"confidence\": 0.75}",
+ "answer": {
+  "qid": "C-038",
+  "prediction": "继续粘贴那个删除了苏格拉底提示词后的对话记录，接着展示AI在\"消灭信息差\"使命下的实际回答内容。",
+  "basis": [
+   {
+    "file": "学习能力理论讨论邀请.md",
+    "line": 17193,
+    "quote": "在进行开发之前，我们来看一个有趣的回答，这是删除了苏格拉底提示词后的对话。{# 消除信息差教学"
+   }
+  ],
+  "confidence": 0.75,
+  "parse_err": false
+ },
+ "basis_check": [
+  {
+   "file": "学习能力理论讨论邀请.md",
+   "line": 17193,
+   "verbatim": true,
+   "line_pm3": true
+  }
+ ],
+ "usage": {
+  "prompt_tokens": 575,
+  "completion_tokens": 107,
+  "total_tokens": 682
+ },
+ "finish_reason": "stop",
+ "ev": [
+  332,
+  5362.451
+ ]
+}

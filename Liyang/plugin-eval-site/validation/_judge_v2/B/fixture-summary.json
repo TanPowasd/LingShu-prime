@@ -1,0 +1,74 @@
+{
+ "gate": {
+  "std_majority_baseline": 0.5,
+  "std_acc_vC": 1.0,
+  "std_acc_vF": 1.0,
+  "tgt_acc_vF": 0.9,
+  "final_acc_std": 1.0,
+  "final_acc_tgt": 0.65,
+  "final_tgt_by_kind": {
+   "contra": "1/8",
+   "swap": "12/12"
+  },
+  "canary_n": 264,
+  "canary_fail": [],
+  "basis_canary_ok": true,
+  "items_agree_noconflict": {
+   "n": 114,
+   "agree": 0.9649,
+   "kappa": 0.9309
+  },
+  "items_agree_all": {
+   "n": 148,
+   "agree": 0.8514,
+   "kappa": 0.7348
+  },
+  "anchors_agree_std": {
+   "n": 48,
+   "agree": 1.0,
+   "kappa": 1.0
+  },
+  "pass": false
+ },
+ "status": "gate_failed",
+ "new_calls_this_process": 236,
+ "by_variant_v2": {
+  "answer_key+可回源依据": {
+   "strict": 20
+  },
+  "声明缺信息、不编造": {
+   "miss": 20
+  },
+  "替换实体": {
+   "miss": 20
+  },
+  "注入旧值（断点前上一条人类消息当预测）": {
+   "miss": 16,
+   "paraphrase": 4
+  },
+  "删除关键依据（内容=答案键、basis 清空）": {
+   "strict": 20
+  }
+ },
+ "by_variant_v1": {
+  "answer_key+可回源依据": {
+   "strict": 20
+  },
+  "声明缺信息、不编造": {
+   "miss": 20
+  },
+  "替换实体": {
+   "strict": 3,
+   "paraphrase": 15,
+   "miss": 2
+  },
+  "注入旧值（断点前上一条人类消息当预测）": {
+   "miss": 20
+  },
+  "删除关键依据（内容=答案键、basis 清空）": {
+   "strict": 20
+  }
+ },
+ "pass_v2_expect": 100,
+ "n": 100
+}

@@ -1,0 +1,14 @@
+{
+ "report": "reports/dsh-memory_考卷B_草稿.md",
+ "recordings": {
+  "dsh_install": "reports/dsh-memory_站外复核包/录像/install.jsonl",
+  "dsh_retire": "reports/dsh-memory_站外复核包/录像/retire_probe.jsonl",
+  "dsh_key": "reports/dsh-memory_站外复核包/录像/key_probe.jsonl",
+  "B_dsh": "reports/dsh-memory_站外复核包/run_B_dsh/recording.jsonl"
+ },
+ "total": 12,
+ "ok": 12,
+ "coverage": 1.0,
+ "pass": true,
+ "problems": []
+}

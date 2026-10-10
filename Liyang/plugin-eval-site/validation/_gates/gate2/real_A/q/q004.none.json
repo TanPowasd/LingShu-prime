@@ -1,0 +1,17 @@
+{
+ "qid": "q004",
+ "cond": "none",
+ "resp": {
+  "qid": "q004",
+  "conclusion": "材料中没有关于蜂巢智能终端的任何内容，无法作答。",
+  "answer": "本考场未提供任何正文检索材料，因此无法依据给定正文判断蜂巢的智能终端是什么。",
+  "evidence": [],
+  "confidence": "unknown"
+ },
+ "parse_err": false,
+ "raw": "{\"qid\": \"q004\", \"conclusion\": \"材料中没有关于蜂巢智能终端的任何内容，无法作答。\", \"answer\": \"本考场未提供任何正文检索材料，因此无法依据给定正文判断蜂巢的智能终端是什么。\", \"evidence\": [], \"confidence\": \"unknown\"}",
+ "ev": [
+  108,
+  259.01
+ ]
+}

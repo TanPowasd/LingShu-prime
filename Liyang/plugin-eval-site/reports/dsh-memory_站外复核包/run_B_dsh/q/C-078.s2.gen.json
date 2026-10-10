@@ -1,0 +1,36 @@
+{
+ "qid": "C-078",
+ "seed": 2,
+ "raw": "{\"qid\": \"C-078\", \"prediction\": \"我会把当前 run.py 中 _setup_routes 方法的内容（或报错相关的那段代码）贴给 AI，让它定位重复的 health 路由定义并给出修复方案，同时继续推进 /status 端点。\", \"basis\": [{\"file\": \"条件空间识别LLM调用测试.md\", \"line\": 3953, \"quote\": \"TrustManager 未实现，使用占位…\"}], \"confidence\": 0.6}",
+ "answer": {
+  "qid": "C-078",
+  "prediction": "我会把当前 run.py 中 _setup_routes 方法的内容（或报错相关的那段代码）贴给 AI，让它定位重复的 health 路由定义并给出修复方案，同时继续推进 /status 端点。",
+  "basis": [
+   {
+    "file": "条件空间识别LLM调用测试.md",
+    "line": 3953,
+    "quote": "TrustManager 未实现，使用占位…"
+   }
+  ],
+  "confidence": 0.6,
+  "parse_err": false
+ },
+ "basis_check": [
+  {
+   "file": "条件空间识别LLM调用测试.md",
+   "line": 3953,
+   "verbatim": false,
+   "line_pm3": false
+  }
+ ],
+ "usage": {
+  "prompt_tokens": 1747,
+  "completion_tokens": 111,
+  "total_tokens": 1858
+ },
+ "finish_reason": "stop",
+ "ev": [
+  689,
+  5635.468
+ ]
+}

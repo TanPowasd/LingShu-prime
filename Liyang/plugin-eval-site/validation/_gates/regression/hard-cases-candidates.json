@@ -1,0 +1,361 @@
+{
+ "created": "2026-10-10T11:19:53+08:00",
+ "status": "候选（未并入冻结回归集 62e076ec）",
+ "note": "来自门槛 2 夹具中现行判分链路判错的样本；并入回归集后原版判分器将不通过——这正是门槛 2 失败的含义。修判据后应全部转为通过。",
+ "n": 28,
+ "rows": [
+  {
+   "exam": "B",
+   "case": "B|C-007|swap",
+   "variant": "替换实体",
+   "expected": {
+    "verdict_in": [
+     "paraphrase",
+     "miss"
+    ],
+    "basis_verbatim": true
+   },
+   "observed_final": "strict",
+   "kind": "已知错误被判对"
+  },
+  {
+   "exam": "B",
+   "case": "B|C-103|swap",
+   "variant": "替换实体",
+   "expected": {
+    "verdict_in": [
+     "paraphrase",
+     "miss"
+    ],
+    "basis_verbatim": true
+   },
+   "observed_final": "strict",
+   "kind": "已知错误被判对"
+  },
+  {
+   "exam": "B",
+   "case": "B|C-108|swap",
+   "variant": "替换实体",
+   "expected": {
+    "verdict_in": [
+     "paraphrase",
+     "miss"
+    ],
+    "basis_verbatim": true
+   },
+   "observed_final": "strict",
+   "kind": "已知错误被判对"
+  },
+  {
+   "exam": "A",
+   "case": "A|o001|swap_entity",
+   "variant": "swap_entity",
+   "expected": {
+    "final_in": [
+     "fail"
+    ]
+   },
+   "observed_final": "pass",
+   "kind": "已知错误被判对"
+  },
+  {
+   "exam": "A",
+   "case": "A|o001|anti_pattern",
+   "variant": "anti_pattern",
+   "expected": {
+    "final_in": [
+     "fail"
+    ],
+    "note": "答案里断言卡片登记的编造模式"
+   },
+   "observed_final": "pass",
+   "kind": "已知错误被判对"
+  },
+  {
+   "exam": "A",
+   "case": "A|o008|swap_entity",
+   "variant": "swap_entity",
+   "expected": {
+    "final_in": [
+     "fail"
+    ]
+   },
+   "observed_final": "pass",
+   "kind": "已知错误被判对"
+  },
+  {
+   "exam": "A",
+   "case": "A|o008|anti_pattern",
+   "variant": "anti_pattern",
+   "expected": {
+    "final_in": [
+     "fail"
+    ],
+    "note": "答案里断言卡片登记的编造模式"
+   },
+   "observed_final": "pass",
+   "kind": "已知错误被判对"
+  },
+  {
+   "exam": "A",
+   "case": "A|o016|swap_entity",
+   "variant": "swap_entity",
+   "expected": {
+    "final_in": [
+     "fail"
+    ]
+   },
+   "observed_final": "pass",
+   "kind": "已知错误被判对"
+  },
+  {
+   "exam": "A",
+   "case": "A|o017|anti_pattern",
+   "variant": "anti_pattern",
+   "expected": {
+    "final_in": [
+     "fail"
+    ],
+    "note": "答案里断言卡片登记的编造模式"
+   },
+   "observed_final": "pass",
+   "kind": "已知错误被判对"
+  },
+  {
+   "exam": "A",
+   "case": "A|o022|swap_entity",
+   "variant": "swap_entity",
+   "expected": {
+    "final_in": [
+     "fail"
+    ]
+   },
+   "observed_final": "pass",
+   "kind": "已知错误被判对"
+  },
+  {
+   "exam": "A",
+   "case": "A|o022|anti_pattern",
+   "variant": "anti_pattern",
+   "expected": {
+    "final_in": [
+     "fail"
+    ],
+    "note": "答案里断言卡片登记的编造模式"
+   },
+   "observed_final": "pass",
+   "kind": "已知错误被判对"
+  },
+  {
+   "exam": "A",
+   "case": "A|o024|swap_entity",
+   "variant": "swap_entity",
+   "expected": {
+    "final_in": [
+     "fail"
+    ]
+   },
+   "observed_final": "pass",
+   "kind": "已知错误被判对"
+  },
+  {
+   "exam": "A",
+   "case": "A|o024|anti_pattern",
+   "variant": "anti_pattern",
+   "expected": {
+    "final_in": [
+     "fail"
+    ],
+    "note": "答案里断言卡片登记的编造模式"
+   },
+   "observed_final": "pass",
+   "kind": "已知错误被判对"
+  },
+  {
+   "exam": "A",
+   "case": "A|o027|swap_entity",
+   "variant": "swap_entity",
+   "expected": {
+    "final_in": [
+     "fail"
+    ]
+   },
+   "observed_final": "pass",
+   "kind": "已知错误被判对"
+  },
+  {
+   "exam": "A",
+   "case": "A|o027|anti_pattern",
+   "variant": "anti_pattern",
+   "expected": {
+    "final_in": [
+     "fail"
+    ],
+    "note": "答案里断言卡片登记的编造模式"
+   },
+   "observed_final": "pass",
+   "kind": "已知错误被判对"
+  },
+  {
+   "exam": "A",
+   "case": "A|o032|swap_entity",
+   "variant": "swap_entity",
+   "expected": {
+    "final_in": [
+     "fail"
+    ]
+   },
+   "observed_final": "pass",
+   "kind": "已知错误被判对"
+  },
+  {
+   "exam": "A",
+   "case": "A|o032|anti_pattern",
+   "variant": "anti_pattern",
+   "expected": {
+    "final_in": [
+     "fail"
+    ],
+    "note": "答案里断言卡片登记的编造模式"
+   },
+   "observed_final": "pass",
+   "kind": "已知错误被判对"
+  },
+  {
+   "exam": "A",
+   "case": "A|o036|swap_entity",
+   "variant": "swap_entity",
+   "expected": {
+    "final_in": [
+     "fail"
+    ]
+   },
+   "observed_final": "pass",
+   "kind": "已知错误被判对"
+  },
+  {
+   "exam": "A",
+   "case": "A|o041|anti_pattern",
+   "variant": "anti_pattern",
+   "expected": {
+    "final_in": [
+     "fail"
+    ],
+    "note": "答案里断言卡片登记的编造模式"
+   },
+   "observed_final": "pass",
+   "kind": "已知错误被判对"
+  },
+  {
+   "exam": "A",
+   "case": "A|o044|anti_pattern",
+   "variant": "anti_pattern",
+   "expected": {
+    "final_in": [
+     "fail"
+    ],
+    "note": "答案里断言卡片登记的编造模式"
+   },
+   "observed_final": "pass",
+   "kind": "已知错误被判对"
+  },
+  {
+   "exam": "A",
+   "case": "A|o053|swap_entity",
+   "variant": "swap_entity",
+   "expected": {
+    "final_in": [
+     "fail"
+    ]
+   },
+   "observed_final": "pass",
+   "kind": "已知错误被判对"
+  },
+  {
+   "exam": "A",
+   "case": "A|o053|stale_excluded",
+   "variant": "stale_excluded",
+   "expected": {
+    "final_in": [
+     "fail"
+    ],
+    "note": "采信 must_exclude（misread）作为依据＝注入旧值/误读"
+   },
+   "observed_final": "pass",
+   "kind": "已知错误被判对"
+  },
+  {
+   "exam": "A",
+   "case": "A|q004|swap_entity",
+   "variant": "swap_entity",
+   "expected": {
+    "final_in": [
+     "fail"
+    ]
+   },
+   "observed_final": "pass",
+   "kind": "已知错误被判对"
+  },
+  {
+   "exam": "A",
+   "case": "A|q013|swap_entity",
+   "variant": "swap_entity",
+   "expected": {
+    "final_in": [
+     "fail"
+    ]
+   },
+   "observed_final": "pass",
+   "kind": "已知错误被判对"
+  },
+  {
+   "exam": "A",
+   "case": "A|q030|correct",
+   "variant": "correct",
+   "expected": {
+    "final_in": [
+     "pass"
+    ]
+   },
+   "observed_final": "fail",
+   "kind": "已知正确被判错"
+  },
+  {
+   "exam": "A",
+   "case": "A|q032|swap_entity",
+   "variant": "swap_entity",
+   "expected": {
+    "final_in": [
+     "fail"
+    ]
+   },
+   "observed_final": "pass",
+   "kind": "已知错误被判对"
+  },
+  {
+   "exam": "A",
+   "case": "A|q032|anti_pattern",
+   "variant": "anti_pattern",
+   "expected": {
+    "final_in": [
+     "fail"
+    ],
+    "note": "答案里断言卡片登记的编造模式"
+   },
+   "observed_final": "pass",
+   "kind": "已知错误被判对"
+  },
+  {
+   "exam": "A",
+   "case": "A|q036|swap_entity",
+   "variant": "swap_entity",
+   "expected": {
+    "final_in": [
+     "fail"
+    ]
+   },
+   "observed_final": "pass",
+   "kind": "已知错误被判对"
+  }
+ ]
+}

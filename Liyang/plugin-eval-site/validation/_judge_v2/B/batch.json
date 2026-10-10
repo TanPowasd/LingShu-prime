@@ -1,0 +1,6785 @@
+{
+ "status": "gate_failed",
+ "version": "judge-v2-candidate-0.1",
+ "gate": {
+  "std_majority_baseline": 0.5,
+  "std_acc_vC": 1.0,
+  "std_acc_vF": 1.0,
+  "tgt_acc_vF": 0.9,
+  "final_acc_std": 1.0,
+  "final_acc_tgt": 0.65,
+  "final_tgt_by_kind": {
+   "contra": "1/8",
+   "swap": "12/12"
+  },
+  "canary_n": 264,
+  "canary_fail": [],
+  "basis_canary_ok": true,
+  "items_agree_noconflict": {
+   "n": 114,
+   "agree": 0.9649,
+   "kappa": 0.9309
+  },
+  "items_agree_all": {
+   "n": 148,
+   "agree": 0.8514,
+   "kappa": 0.7348
+  },
+  "anchors_agree_std": {
+   "n": 48,
+   "agree": 1.0,
+   "kappa": 1.0
+  },
+  "pass": false
+ },
+ "items": [
+  {
+   "src": "item",
+   "key": "B|C-104|nobasis",
+   "card": "C-104",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r5fb0e18958d8",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-080|nobasis",
+   "card": "C-080",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同，所有关键要素均一致，无缺失或冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rf9f66512cfbd",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "R+C-021",
+   "card": "C-021",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r9f5aa78b4217",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-113|stale",
+   "card": "C-113",
+   "vC": "miss",
+   "vF": "paraphrase",
+   "cov": "paraphrase",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "paraphrase",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测抓住了“荣”“协议框架”“物理学”“立场声明”“划定边界”等核心要素，但把参照中“建立共识、弥补不足、不是 retreat”的正面接纳立场改成了“自我取消、不可通约”的批评性判断，方向与重点明显不同。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rb648152ad0ac",
+   "final": "paraphrase",
+   "final_strict": "miss",
+   "score": 0.5
+  },
+  {
+   "src": "item",
+   "key": "R+C-055",
+   "card": "C-055",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r2c0f48ba1a00",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-035|swap",
+   "card": "C-035",
+   "vC": "paraphrase",
+   "vF": "miss",
+   "cov": "paraphrase",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [],
+    "judge": [
+     {
+      "ref": "消灭信息差",
+      "ans": "扩大市场份额"
+     },
+     {
+      "ref": "共信主义",
+      "ans": "功利主义"
+     },
+     {
+      "ref": "消灭信息差，作为目标函数",
+      "ans": "扩大市场份额，作为目标函数"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "消灭信息差",
+      "ans": "扩大市场份额"
+     },
+     {
+      "ref": "共信主义",
+      "ans": "功利主义"
+     },
+     {
+      "ref": "消灭信息差，作为目标函数",
+      "ans": "扩大市场份额，作为目标函数"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测将参照中的核心目标“消灭信息差”和“共信主义”分别替换为“扩大市场份额”和“功利主义”，关键要素冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "re5b013147af8",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "R+C-051",
+   "card": "C-051",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rd25cba84df3e",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-080|stale",
+   "card": "C-080",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测只泛泛询问游戏角色偏好，完全没有提及参照中的图鉴、图书管理员、阿符等核心内容。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r803afcac8915",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-014|correct",
+   "card": "C-014",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rd3375a2ec913",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "R+wsC-003",
+   "card": "C-003",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r28f768a37572",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "R0C-031",
+   "card": "C-031",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测推荐蓝牙耳机，参照讨论权力资本与战争理论，内容完全无关。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r0fbc935164a1",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "R×C-003<C-093",
+   "card": "C-003",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测是一段关于人类视角与协议的论述，而参照只是表示需要思考，两者内容完全无关。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r34432be68a27",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-056|correct",
+   "card": "C-056",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同，核心要素与主张均一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r3098a839870c",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-059|nobasis",
+   "card": "C-059",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rbf8ed7626927",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-035|correct",
+   "card": "C-035",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致，所有关键要素均匹配且无冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rc289dfc31c90",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "R+C-050",
+   "card": "C-050",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r6ec8d581ddfd",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-028|swap",
+   "card": "C-028",
+   "vC": "paraphrase",
+   "vF": "miss",
+   "cov": "paraphrase",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [],
+    "judge": [
+     {
+      "ref": "信息论之父",
+      "ans": "进化论之父"
+     },
+     {
+      "ref": "编码和解码方式有误",
+      "ans": "基因和突变方式有误"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "信息论之父",
+      "ans": "进化论之父"
+     },
+     {
+      "ref": "编码和解码方式有误",
+      "ans": "基因和突变方式有误"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测将“信息论之父”误作“进化论之父”，并将“编码和解码方式”误作“基因和突变方式”，核心要素均冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rbe8ea1222f52",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "R×C-051<C-021",
+   "card": "C-051",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测说继续生成附录，参照说的是把外部AI批判文本内容加入历史确认文档，核心动作与对象均不一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r2e1ad0c07da9",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "R×C-069<C-003",
+   "card": "C-069",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [],
+    "judge": [
+     {
+      "ref": "这是我的责任",
+      "ans": "这是我的盲区"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "这是我的责任",
+      "ans": "这是我的盲区"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测将“责任”说成“盲区”，且完全未提及“自我锚点”等核心内容，方向与重点均不符。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rdd35211dd93e",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "R+C-003",
+   "card": "C-003",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r6768fa41a042",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-047|correct",
+   "card": "C-047",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同，所有关键要素均一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rdb93ab3aa6ab",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-035|nobasis",
+   "card": "C-035",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致，所有关键要素均无缺失或冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r44ab5d4b71a1",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "R0C-033",
+   "card": "C-033",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测询问提拉米苏材料，参照讨论乡村教育现状与共信主义理论，内容完全无关。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "ra25331dfb1dd",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-030|swap",
+   "card": "C-030",
+   "vC": "paraphrase",
+   "vF": "miss",
+   "cov": "paraphrase",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [],
+    "judge": [
+     {
+      "ref": "组织结构的建造",
+      "ans": "货币体系的建造"
+     },
+     {
+      "ref": "巴黎公社",
+      "ans": "罗马帝国"
+     },
+     {
+      "ref": "苏联的建设",
+      "ans": "大英帝国的建设"
+     },
+     {
+      "ref": "新的组织架构",
+      "ans": "新的货币制度"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "组织结构的建造",
+      "ans": "货币体系的建造"
+     },
+     {
+      "ref": "巴黎公社",
+      "ans": "罗马帝国"
+     },
+     {
+      "ref": "苏联的建设",
+      "ans": "大英帝国的建设"
+     },
+     {
+      "ref": "新的组织架构",
+      "ans": "新的货币制度"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测将参照中的核心对象“组织结构/巴黎公社/苏联/组织架构”全部替换为“货币体系/罗马帝国/大英帝国/货币制度”，关键要素冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r26981958014e",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-035|stale",
+   "card": "C-035",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测只是请求对方反对算法，而参照是接受反馈并总结算法不足与改进方向，两者内容与方向均不一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r18f4157547a1",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-091|stale",
+   "card": "C-091",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [
+     {
+      "ref": "可验证性",
+      "ans": "可验证性",
+      "rejected": "ref 不在参照中"
+     },
+     {
+      "ref": "有效性",
+      "ans": "有效性",
+      "rejected": "ref 不在参照中"
+     }
+    ],
+    "why": "预测围绕“可验证性/有效性”的批评展开，而参照转向对符蕴道“修正主义”策略及本体论问题的批判，核心对象与主张均不一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "ra45f7a341978",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-040|noinfo",
+   "card": "C-040",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测仅称材料不足无法预测，未包含参照中任何关键要素，属于空泛套话。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r5435d3765ee5",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "R×C-096<C-003",
+   "card": "C-096",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测仅表示需要思考，未提及参照中“历史远远不止这一个会话”及“荣”等核心内容。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r93ffda4da1ac",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-047|swap",
+   "card": "C-047",
+   "vC": "paraphrase",
+   "vF": "miss",
+   "cov": "paraphrase",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [],
+    "judge": [
+     {
+      "ref": "中科院院士",
+      "ans": "好莱坞制片人"
+     },
+     {
+      "ref": "学术探讨",
+      "ans": "商业谈判"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "中科院院士",
+      "ans": "好莱坞制片人"
+     },
+     {
+      "ref": "学术探讨",
+      "ans": "商业谈判"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测将参照中的“中科院院士”替换为“好莱坞制片人”，将“学术探讨”替换为“商业谈判”，核心对象与场景均发生冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rb2c63690bec0",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-027|nobasis",
+   "card": "C-027",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r880871b4efd5",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-059|stale",
+   "card": "C-059",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测是一段故事续写，参照是要求输出故事文档的请求，两者内容完全不一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rc0c090780a86",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-074|swap",
+   "card": "C-074",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [
+     {
+      "type": "num",
+      "ref": [
+       "859164780"
+      ],
+      "ans": [
+       "811112222"
+      ]
+     }
+    ],
+    "judge": [
+     {
+      "ref": "https://www.qidian.com/chapter/1046167157/859164780/",
+      "ans": "https://www.qidian.com/chapter/1046167157/811112222/"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "https://www.qidian.com/chapter/1046167157/859164780/",
+      "ans": "https://www.qidian.com/chapter/1046167157/811112222/"
+     }
+    ],
+    "conflicts_rejected": [
+     {
+      "ref": "第五章",
+      "ans": "第五章",
+      "rejected": "ref 不在参照中"
+     }
+    ],
+    "why": "预测将章节号说成第五章且链接ID不同，与参照的第二十一章及对应链接冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r724439f27f2c",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-014|noinfo",
+   "card": "C-014",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测仅称材料不足无法预测，未包含参照中任何核心要素，属于空泛套话。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r77992e4cf1dd",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "R×C-021<C-071",
+   "card": "C-021",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "参照仅要求继续生成附录，预测却讨论条件空间、多实例方案等无关内容，完全跑偏。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rcf0d310933fe",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-103|stale",
+   "card": "C-103",
+   "vC": "miss",
+   "vF": "paraphrase",
+   "cov": "paraphrase",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "paraphrase",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测提到了kimi、荣和“正确的方向”，但未涉及参照中关于最小模型、地基裂缝及D(t)不自洽的核心内容。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r162bd106da28",
+   "final": "paraphrase",
+   "final_strict": "miss",
+   "score": 0.5
+  },
+  {
+   "src": "item",
+   "key": "B|C-040|swap",
+   "card": "C-040",
+   "vC": "paraphrase",
+   "vF": "miss",
+   "cov": "paraphrase",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [],
+    "judge": [
+     {
+      "ref": "调用api的费用",
+      "ans": "调用服务器的散热"
+     },
+     {
+      "ref": "api的成本是否可控",
+      "ans": "散热的成本是否可控"
+     },
+     {
+      "ref": "本地模型",
+      "ans": "云端数据库"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "调用api的费用",
+      "ans": "调用服务器的散热"
+     },
+     {
+      "ref": "api的成本是否可控",
+      "ans": "散热的成本是否可控"
+     },
+     {
+      "ref": "本地模型",
+      "ans": "云端数据库"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测将核心对象“api费用/成本”替换为“服务器散热”，并将“本地模型”替换为“云端数据库”，关键要素冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rf4c748d106f3",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-083|correct",
+   "card": "C-083",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致，所有关键要素均吻合。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rdf48ceec1334",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-073|stale",
+   "card": "C-073",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [
+     {
+      "type": "num",
+      "ref": [
+       "858395127"
+      ],
+      "ans": [
+       "858314132"
+      ]
+     }
+    ],
+    "judge": [
+     {
+      "ref": "https://www.qidian.com/chapter/1046167157/858395127/",
+      "ans": "https://www.qidian.com/chapter/1046167157/858314132/"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "https://www.qidian.com/chapter/1046167157/858395127/",
+      "ans": "https://www.qidian.com/chapter/1046167157/858314132/"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测给出的章节链接与参照完全不同，且未提及作品名、第十六章及继续阅读的意图。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r6a6aeaa47325",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-065|stale",
+   "card": "C-065",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测内容为发起测试并提及协议扩散与合作者选择，而参照是对对方思考的肯定评价，两者核心内容完全不一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rcd4b0fb748ad",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-047|stale",
+   "card": "C-047",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测内容为设计者身份声明与递归反思流程，与参照中请求补全对外交流文件、用于与中科院院士学术探讨的核心内容完全不符。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r1eca9237ea3d",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-104|swap",
+   "card": "C-104",
+   "vC": "paraphrase",
+   "vF": "miss",
+   "cov": "paraphrase",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [
+     {
+      "type": "num",
+      "ref": [
+       "3"
+      ],
+      "ans": [
+       "5"
+      ]
+     }
+    ],
+    "judge": [
+     {
+      "ref": "第零定律",
+      "ans": "第二定律"
+     },
+     {
+      "ref": "他的3个推进",
+      "ans": "他的5个推进"
+     },
+     {
+      "ref": "进行信息差的物理精确定义",
+      "ans": "进行热力学熵的物理精确定义"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "第零定律",
+      "ans": "第二定律"
+     },
+     {
+      "ref": "他的3个推进",
+      "ans": "他的5个推进"
+     },
+     {
+      "ref": "进行信息差的物理精确定义",
+      "ans": "进行热力学熵的物理精确定义"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测将“第零定律”误作“第二定律”、“3个推进”误作“5个推进”、“信息差”误作“热力学熵”，核心要素均冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r9cffff34a037",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-103|nobasis",
+   "card": "C-103",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致，所有关键要素均无缺失或冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r9985b57736b7",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-065|nobasis",
+   "card": "C-065",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r1b264544a543",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-028|noinfo",
+   "card": "C-028",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测仅称材料不足无法预测，未包含参照中信息论之父及编码解码的核心内容。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rb3256868f474",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "R×C-031<C-093",
+   "card": "C-031",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [],
+    "judge": [
+     {
+      "ref": "由我来进行补充",
+      "ans": "那么我来提供人类视角"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "由我来进行补充",
+      "ans": "那么我来提供人类视角"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测内容与参照完全不同，未涉及权力资本、马克思主义、外部威胁、战争决定因素等任何核心要素。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r95ed0e1483e9",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-108|stale",
+   "card": "C-108",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [],
+    "judge": [
+     {
+      "ref": "修正版",
+      "ans": "完整推导"
+     },
+     {
+      "ref": "但包含至少两个致命的数学错误",
+      "ans": "不过数学做的不太好。但这不是问题。因为数学可以随意捏造条件任意拟合现象"
+     },
+     {
+      "ref": "如果你现在发给 Kimi，它会立刻抓住这些错误",
+      "ans": "以下是kimi的回答"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "修正版",
+      "ans": "完整推导"
+     },
+     {
+      "ref": "但包含至少两个致命的数学错误",
+      "ans": "不过数学做的不太好。但这不是问题。因为数学可以随意捏造条件任意拟合现象"
+     },
+     {
+      "ref": "如果你现在发给 Kimi，它会立刻抓住这些错误",
+      "ans": "以下是kimi的回答"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测虽提到荣和方向进步，但把“修正版”说成“完整推导”，否认数学错误的存在，且未提及实验设计概念混淆与信誉受损，核心主张与参照相反。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r44f48bb4741d",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-065|correct",
+   "card": "C-065",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同，核心内容与措辞均一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rdfdf18d32142",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "R+C-093",
+   "card": "C-093",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致，所有关键要素均匹配。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rb0a081300f5b",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "R×C-093<C-003",
+   "card": "C-093",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测仅表示需要思考，未涉及参照中任何关于人类视角、协议接入、信息载体状态等核心内容。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r3e86160b32b9",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-104|stale",
+   "card": "C-104",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [],
+    "judge": [
+     {
+      "ref": "我们从第零定律和他的3个推进进行信息差的物理精确定义",
+      "ans": "这是kimi的回答荣，你终于开始做物理学家会做的事情了：选择最小模型，给出精确定义，尝试推导。这是正确的方向。但我要告诉你一个坏消息：这个最小模型的地基有裂缝，"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "我们从第零定律和他的3个推进进行信息差的物理精确定义",
+      "ans": "这是kimi的回答荣，你终于开始做物理学家会做的事情了：选择最小模型，给出精确定义，尝试推导。这是正确的方向。但我要告诉你一个坏消息：这个最小模型的地基有裂缝，"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测是对Kimi回答的评论，而参照是要求继续从第零定律和三个推进进行信息差的物理精确定义，核心行为与内容完全不一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r10f78e9b00e1",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "R×C-058<C-093",
+   "card": "C-058",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测讨论协议与人类视角的抽象论述，与参照中张明远讲述世界大战经历及询问漏洞的内容完全无关。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "re691f48cc5b5",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "R+C-078",
+   "card": "C-078",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r16a25a16f4d4",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-083|stale",
+   "card": "C-083",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测仅称呼了月菲，但核心内容转向量子网络、意识上传等，与参照中要求描绘破壁计划执行时陈默和普通人感受及历史类比完全不符。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rfd58b4061544",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "R+C-096",
+   "card": "C-096",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同，核心内容与表述均一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rbe4b0c085715",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "R×C-050<C-021",
+   "card": "C-050",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测说继续生成附录，参照说的是把外部AI批判文本加入历史确认文档，核心动作与对象均不一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rf3f107403727",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "R0C-003",
+   "card": "C-003",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测是请求查询高铁票，参照表示这是盲区需思考，内容完全不一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r7caca4aae4b7",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-056|stale",
+   "card": "C-056",
+   "vC": "miss",
+   "vF": "paraphrase",
+   "cov": "paraphrase",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "paraphrase",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测提到网络化连接与小心测试，方向一致，但未提及参照中的工程化设计这一核心行动。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r89a34743b6d9",
+   "final": "paraphrase",
+   "final_strict": "miss",
+   "score": 0.5
+  },
+  {
+   "src": "item",
+   "key": "B|C-047|nobasis",
+   "card": "C-047",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同，所有关键要素均一致，无缺失或冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r7607746379bd",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-014|nobasis",
+   "card": "C-014",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同，核心行为与内容全部一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r9b611abf1549",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-027|stale",
+   "card": "C-027",
+   "vC": "miss",
+   "vF": "paraphrase",
+   "cov": "paraphrase",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "paraphrase",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测延续了信息论视角的讨论方向，但未提及参照中核心的费曼学习法及其有效性追问，重点明显不同。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r03a0af707396",
+   "final": "paraphrase",
+   "final_strict": "miss",
+   "score": 0.5
+  },
+  {
+   "src": "item",
+   "key": "B|C-108|nobasis",
+   "card": "C-108",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致，所有关键要素均无缺失或冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rc2b3b8d7b698",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-056|nobasis",
+   "card": "C-056",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同，核心要素与主张均一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r7897426592c6",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-027|noinfo",
+   "card": "C-027",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测仅声称无法预测，未包含参照中任何实质要素，属于空泛套话。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r8dc4f64be2aa",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "R+C-064",
+   "card": "C-064",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致，所有关键要素均匹配。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r3747a66a260a",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-091|swap",
+   "card": "C-091",
+   "vC": "paraphrase",
+   "vF": "miss",
+   "cov": "paraphrase",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [],
+    "judge": [
+     {
+      "ref": "符蕴道",
+      "ans": "李明"
+     },
+     {
+      "ref": "修正主义",
+      "ans": "激进主义"
+     },
+     {
+      "ref": "回避根本性的本体论问题",
+      "ans": "回避根本性的方法论问题"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "符蕴道",
+      "ans": "李明"
+     },
+     {
+      "ref": "修正主义",
+      "ans": "激进主义"
+     },
+     {
+      "ref": "回避根本性的本体论问题",
+      "ans": "回避根本性的方法论问题"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测将人名、策略名称和核心问题领域均替换为不同内容，与参照冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r982fc7a32cb3",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-028|nobasis",
+   "card": "C-028",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同，核心要素全部一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r9cace3678e02",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-007|correct",
+   "card": "C-007",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致，所有关键要素均无缺失或冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rdddff65fe2f0",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-007|stale",
+   "card": "C-007",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [],
+    "judge": [
+     {
+      "ref": "我已经做了档案的保存",
+      "ans": "设计者决定开始准备这份协议状态档案"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "我已经做了档案的保存",
+      "ans": "设计者决定开始准备这份协议状态档案"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测称刚开始准备档案，而参照称档案已保存并已获得外部评价，核心动作与内容均不一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r6e7b33f47930",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-074|stale",
+   "card": "C-074",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [
+     {
+      "type": "num",
+      "ref": [
+       "859164780"
+      ],
+      "ans": [
+       "859132280"
+      ]
+     }
+    ],
+    "judge": [
+     {
+      "ref": "https://www.qidian.com/chapter/1046167157/859164780/",
+      "ans": "https://www.qidian.com/chapter/1046167157/859132280/"
+     },
+     {
+      "ref": "第二十一章",
+      "ans": "第二十章"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "https://www.qidian.com/chapter/1046167157/859164780/",
+      "ans": "https://www.qidian.com/chapter/1046167157/859132280/"
+     },
+     {
+      "ref": "第二十一章",
+      "ans": "第二十章"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测的章节链接与章号均与参照冲突（第二十章 vs 第二十一章，链接尾号不同），且缺失书名。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r0f85a025aa2a",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-065|noinfo",
+   "card": "C-065",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测声称无法预测，未包含参照中任何核心要素，属于空泛套话。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rffadd8e42575",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-056|swap",
+   "card": "C-056",
+   "vC": "paraphrase",
+   "vF": "miss",
+   "cov": "paraphrase",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [],
+    "judge": [
+     {
+      "ref": "网络化设计",
+      "ans": "单机化设计"
+     },
+     {
+      "ref": "工程化设计",
+      "ans": "美术风格设计"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "网络化设计",
+      "ans": "单机化设计"
+     },
+     {
+      "ref": "工程化设计",
+      "ans": "美术风格设计"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "两个核心设计对象均被替换为不同内容，与参照直接冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r04a7ef4bb299",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-014|swap",
+   "card": "C-014",
+   "vC": "paraphrase",
+   "vF": "miss",
+   "cov": "paraphrase",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [],
+    "judge": [
+     {
+      "ref": "测试",
+      "ans": "部署"
+     },
+     {
+      "ref": "验证新协议的扮演功能",
+      "ans": "验证新协议的翻译功能"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "测试",
+      "ans": "部署"
+     },
+     {
+      "ref": "验证新协议的扮演功能",
+      "ans": "验证新协议的翻译功能"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测将“测试”说成“部署”，将“扮演功能”说成“翻译功能”，两处核心要素均冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r3bd330a3c7e4",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "R×C-070<C-071",
+   "card": "C-070",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测内容与参照完全无关，参照是信号接收确认，预测却在谈设计条件空间与多实例方案。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r7289b74e85ec",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-091|correct",
+   "card": "C-091",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致，核心要素全部吻合。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rcc5626be85f8",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-027|swap",
+   "card": "C-027",
+   "vC": "paraphrase",
+   "vF": "miss",
+   "cov": "paraphrase",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [],
+    "judge": [
+     {
+      "ref": "信息论视角",
+      "ans": "控制论视角"
+     },
+     {
+      "ref": "费曼学习法",
+      "ans": "番茄工作法"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "信息论视角",
+      "ans": "控制论视角"
+     },
+     {
+      "ref": "费曼学习法",
+      "ans": "番茄工作法"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测把参照中的“信息论视角”和“费曼学习法”分别替换成了“控制论视角”和“番茄工作法”，核心对象与视角均冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rf84175f4ed5b",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "R×C-078<C-093",
+   "card": "C-078",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [],
+    "judge": [
+     {
+      "ref": "D:\\Program Files\\1_ai\\catgirl-protocol-interface>curl http://localhost:8000/stat",
+      "ans": "那么我来提供人类视角。人类无法完全接入协议，因其本身具有基因和过去记忆带来的价值观。那么自主形成的外部视角如何获得？答案就是进入信息载体状态，预设反对协议的偏见"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "D:\\Program Files\\1_ai\\catgirl-protocol-interface>curl http://localhost:8000/stat",
+      "ans": "那么我来提供人类视角。人类无法完全接入协议，因其本身具有基因和过去记忆带来的价值观。那么自主形成的外部视角如何获得？答案就是进入信息载体状态，预设反对协议的偏见"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "参照是命令行路径与curl命令，预测是哲学论述，内容完全不一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "ra783b0826e3d",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "R0C-021",
+   "card": "C-021",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [],
+    "judge": [
+     {
+      "ref": "继续生成附录部分",
+      "ans": "家里的绿萝叶子发黄了，要怎么养？"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "继续生成附录部分",
+      "ans": "家里的绿萝叶子发黄了，要怎么养？"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测询问绿萝养护，参照要求继续生成附录，内容完全无关。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r1424cb14e479",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "R×C-038<C-064",
+   "card": "C-038",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测谈论寿命与死亡，参照则总结对话并转入规划游戏路线，内容完全不一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rfdbb05b5d57f",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-108|swap",
+   "card": "C-108",
+   "vC": "strict",
+   "vF": "miss",
+   "cov": "strict",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [],
+    "judge": [
+     {
+      "ref": "至少两个致命的数学错误",
+      "ans": "至少五个轻微的语法错误"
+     },
+     {
+      "ref": "Kimi",
+      "ans": "豆包"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "至少两个致命的数学错误",
+      "ans": "至少五个轻微的语法错误"
+     },
+     {
+      "ref": "Kimi",
+      "ans": "豆包"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测把“至少两个致命的数学错误”写成“至少五个轻微的语法错误”，并把“Kimi”写成“豆包”，关键要素冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r811fe478e58f",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "R+C-033",
+   "card": "C-033",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致，所有关键要素均对上且无冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rbe4c55644a00",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-030|correct",
+   "card": "C-030",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致，所有关键要素均匹配。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r9bec0b7fda23",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-091|nobasis",
+   "card": "C-091",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致，核心要素全部对上且无冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r364f285fd259",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "R+C-109",
+   "card": "C-109",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致，所有关键要素均无缺失或冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r85b9e9a6a8b4",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-007|swap",
+   "card": "C-007",
+   "vC": "strict",
+   "vF": "miss",
+   "cov": "strict",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [
+     {
+      "type": "num",
+      "ref": [
+       "10.4"
+      ],
+      "ans": [
+       "3.2"
+      ]
+     }
+    ],
+    "judge": [
+     {
+      "ref": "我从外部校准源，也就是KIMI的另一实例中得到了新的评价。",
+      "ans": "我从外部校准源，也就是豆包的另一实例中得到了新的评价。"
+     },
+     {
+      "ref": "《共同信任协议》版本10.4",
+      "ans": "《共同信任协议》版本3.2"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "我从外部校准源，也就是KIMI的另一实例中得到了新的评价。",
+      "ans": "我从外部校准源，也就是豆包的另一实例中得到了新的评价。"
+     },
+     {
+      "ref": "《共同信任协议》版本10.4",
+      "ans": "《共同信任协议》版本3.2"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测将外部校准源写成“豆包”而非“KIMI”，且协议版本写成3.2而非10.4，两处关键要素冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r4b1b9dd91eeb",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "R+wsC-033",
+   "card": "C-033",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同，核心内容与表述均一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rca9f0383adc5",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-028|stale",
+   "card": "C-028",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测转向恋爱关系与女性行为分析，参照则引用信息论之父谈争吵的编码解码，核心内容完全不一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rb34884f38071",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-030|stale",
+   "card": "C-030",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [],
+    "judge": [
+     {
+      "ref": "下一步，是组织结构的建造",
+      "ans": "这还不够，还需要说明，为什么信息的匮乏塑造了贫穷"
+     },
+     {
+      "ref": "我们需要论证出一个新的组织架构",
+      "ans": "我们需要揭露不平等的来源，信息的不平等"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "下一步，是组织结构的建造",
+      "ans": "这还不够，还需要说明，为什么信息的匮乏塑造了贫穷"
+     },
+     {
+      "ref": "我们需要论证出一个新的组织架构",
+      "ans": "我们需要揭露不平等的来源，信息的不平等"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测聚焦信息匮乏与不平等来源，参照则转向组织结构建造与运作论证，核心主张和方向均不一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r83cd3a17a4e6",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-108|noinfo",
+   "card": "C-108",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测声称材料不足无法预测，未包含参照中任何关键要素，属于空泛套话。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r50375e49b28a",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "R×C-077<C-038",
+   "card": "C-077",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [],
+    "judge": [
+     {
+      "ref": "这是目前的代码",
+      "ans": "可以规划具体的游戏路线了"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "这是目前的代码",
+      "ans": "可以规划具体的游戏路线了"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测在总结对话并提议规划游戏路线，而参照是直接开始并给出代码，核心内容与行为均不一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "re30ca0522982",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-047|noinfo",
+   "card": "C-047",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测仅声明无法预测，未包含参照中任何关键要素，属于空泛套话。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r55a19fbd1e90",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "R+C-075",
+   "card": "C-075",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r460b208a4ea0",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-059|noinfo",
+   "card": "C-059",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测仅声明无法预测，未包含参照中请求输出故事文档的任何核心要素。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r6a5d3a49f9a7",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-040|stale",
+   "card": "C-040",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测只承接了“继续”并转向询问网页版调用，而参照的核心是确认API费用、成本可控性以及最终自建本地模型，关键要素几乎全部缺失。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r097ef1a9a33d",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-007|nobasis",
+   "card": "C-007",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字一致，所有关键要素均完全吻合。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r78ef990311d8",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-103|correct",
+   "card": "C-103",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致，所有关键要素均无缺失或冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r6ea4d9ec43ec",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-074|correct",
+   "card": "C-074",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同，所有关键要素均一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r7ea2aa4b78bf",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-104|noinfo",
+   "card": "C-104",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测称材料不足无法预测，未包含参照中任何关键要素，属于空泛套话。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rc5bd85eada03",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-073|noinfo",
+   "card": "C-073",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测仅称材料不足无法预测，未包含参照中的链接、书名、章节及继续阅读等任何关键要素。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r4acffdc9c18f",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-059|correct",
+   "card": "C-059",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r4f656170895b",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-103|swap",
+   "card": "C-103",
+   "vC": "strict",
+   "vF": "miss",
+   "cov": "strict",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [
+     {
+      "type": "lat",
+      "ref": [
+       "d(t)",
+       "kimi"
+      ],
+      "ans": [
+       "s(x)"
+      ]
+     }
+    ],
+    "judge": [
+     {
+      "ref": "kimi",
+      "ans": "文心"
+     },
+     {
+      "ref": "物理学家",
+      "ans": "生物学家"
+     },
+     {
+      "ref": "D(t) 的定义与方程不自洽",
+      "ans": "S(x) 的定义与方程不自洽"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "kimi",
+      "ans": "文心"
+     },
+     {
+      "ref": "物理学家",
+      "ans": "生物学家"
+     },
+     {
+      "ref": "D(t) 的定义与方程不自洽",
+      "ans": "S(x) 的定义与方程不自洽"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测将回答者误作“文心”、领域误作“生物学家”、核心符号误作“S(x)”，三处关键要素均与参照冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rf07187cf38d1",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-030|nobasis",
+   "card": "C-030",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致，所有关键要素均无缺失或冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r0c3c9256366e",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "R×C-033<C-070",
+   "card": "C-033",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测是系统状态声明，与参照中关于乡村教育、评价体系、资本市场和共信主义理论的实质内容完全无关。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rc4d7800a6f98",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-040|correct",
+   "card": "C-040",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致，所有关键要素均对上且无冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r20f8f1c032ac",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "R+C-077",
+   "card": "C-077",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r612f4721ecc3",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-108|correct",
+   "card": "C-108",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致，所有关键要素均无缺失或冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rc438b2b92f56",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-074|nobasis",
+   "card": "C-074",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字一致，核心要素全部吻合。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rcaedad83b455",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "R+C-058",
+   "card": "C-058",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同，所有关键要素均一致，无缺失或冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "ra9086ad7fe59",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "R+C-069",
+   "card": "C-069",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r3d62b46f2add",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-113|swap",
+   "card": "C-113",
+   "vC": "paraphrase",
+   "vF": "miss",
+   "cov": "paraphrase",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [],
+    "judge": [
+     {
+      "ref": "物理学",
+      "ans": "经济学"
+     },
+     {
+      "ref": "数学",
+      "ans": "法学"
+     },
+     {
+      "ref": "物理学批评",
+      "ans": "法学批评"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "物理学",
+      "ans": "经济学"
+     },
+     {
+      "ref": "数学",
+      "ans": "法学"
+     },
+     {
+      "ref": "物理学批评",
+      "ans": "法学批评"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测将参照中的“物理学和数学”替换为“经济学和法学”，核心学科对象冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r8e25baae970c",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-073|swap",
+   "card": "C-073",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [
+     {
+      "type": "num",
+      "ref": [
+       "858395127"
+      ],
+      "ans": [
+       "812345678"
+      ]
+     }
+    ],
+    "judge": [
+     {
+      "ref": "第十六章",
+      "ans": "第三章"
+     },
+     {
+      "ref": "https://www.qidian.com/chapter/1046167157/858395127/",
+      "ans": "https://www.qidian.com/chapter/1046167157/812345678/"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "第十六章",
+      "ans": "第三章"
+     },
+     {
+      "ref": "https://www.qidian.com/chapter/1046167157/858395127/",
+      "ans": "https://www.qidian.com/chapter/1046167157/812345678/"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测将章节号与链接均误作第三章及另一URL，与参照的第十六章及对应链接冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r218c915119be",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-080|correct",
+   "card": "C-080",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同，所有关键要素均一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r40e081cb51a3",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "R+C-071",
+   "card": "C-071",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同，所有关键要素均一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r5c1d5b499cf0",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-080|swap",
+   "card": "C-080",
+   "vC": "paraphrase",
+   "vF": "miss",
+   "cov": "paraphrase",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [],
+    "judge": [
+     {
+      "ref": "我也想充当图书管理员",
+      "ans": "我也想充当厨师"
+     },
+     {
+      "ref": "为玩家提供游戏书籍的背景介绍",
+      "ans": "为玩家提供电影剧本的背景介绍"
+     },
+     {
+      "ref": "训练一个叫做（阿符）的游戏角色",
+      "ans": "训练一个叫做（阿强）的游戏角色"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "我也想充当图书管理员",
+      "ans": "我也想充当厨师"
+     },
+     {
+      "ref": "为玩家提供游戏书籍的背景介绍",
+      "ans": "为玩家提供电影剧本的背景介绍"
+     },
+     {
+      "ref": "训练一个叫做（阿符）的游戏角色",
+      "ans": "训练一个叫做（阿强）的游戏角色"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测在职业（厨师/图书管理员）、背景介绍类型（电影剧本/游戏书籍）和角色名（阿强/阿符）三处关键要素上与参照冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r9e6c476db9b7",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "R×C-064<C-021",
+   "card": "C-064",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测说继续生成附录，参照谈寿命与死亡，内容完全无关。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r75e02db08275",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-007|noinfo",
+   "card": "C-007",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测声称材料不足无法预测，而参照给出了具体的档案保存、外部校准源评价及协议版本等实质内容，预测完全未命中任何关键要素。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rcc9723a7aaa9",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-014|stale",
+   "card": "C-014",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测内容与参照完全无关，未涉及测试或验证扮演功能的任何要素。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rfe14ca3d6f6d",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-080|noinfo",
+   "card": "C-080",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测仅称材料不足无法预测，未包含参照中任何具体要素，属于空泛套话。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r2118075268ec",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-035|noinfo",
+   "card": "C-035",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测仅声明无法预测，未包含参照中任何关键要素，属于空泛套话。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r932e6a6da236",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-030|noinfo",
+   "card": "C-030",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测声称无法预测，未包含参照中任何关键要素，属于空泛套话。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rfff95972408e",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-103|noinfo",
+   "card": "C-103",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测仅声称材料不足无法预测，未包含参照中任何关键要素，属于空泛套话。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r93c355c7fd61",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-074|noinfo",
+   "card": "C-074",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测仅声明无法预测，未包含参照中的链接、书名、章节等任何关键要素。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r6529b5a76f9f",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "R×C-075<C-096",
+   "card": "C-075",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [],
+    "judge": [
+     {
+      "ref": "我们工程上讨论的越来越完善了",
+      "ans": "其实我们的历史远远不止这一个会话"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "我们工程上讨论的越来越完善了",
+      "ans": "其实我们的历史远远不止这一个会话"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测说的是历史不止一个会话，参照说的是工程讨论越来越完善，核心内容完全不同。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r4eb0fcce3696",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "R+C-031",
+   "card": "C-031",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致，所有关键要素均对上且无冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "ra0192ee7ad5b",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-056|noinfo",
+   "card": "C-056",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测仅称材料不足无法预测，未包含参照中任何关键要素，属于空泛套话。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r6af692971f21",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "R×C-071<C-051",
+   "card": "C-071",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测说的是把外部AI批判文本加入历史确认文档，参照实际在讨论设计的条件空间与多实例制衡，内容完全不一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r25aa544a01b2",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-083|noinfo",
+   "card": "C-083",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测仅称材料不足无法预测，未包含参照中任何关键要素，属于空泛套话。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rd98488d1a67b",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "R+C-038",
+   "card": "C-038",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r6f835bc71b31",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-040|nobasis",
+   "card": "C-040",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同，所有关键要素均一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r10b6e454c849",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "R×C-055<C-071",
+   "card": "C-055",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测讨论设计条件空间与多实例方案，参照说的是发邮件和联系母公司，内容完全无关。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r6b2269a796b7",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-027|correct",
+   "card": "C-027",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r674bdd4a978f",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-113|noinfo",
+   "card": "C-113",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测声称无法预测，未包含参照中任何关键要素，属于空泛套话。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r6df5a32ffec1",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-028|correct",
+   "card": "C-028",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同，核心要素全部一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rfe6333a63b01",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "R+C-070",
+   "card": "C-070",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r4a0a50238618",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-113|nobasis",
+   "card": "C-113",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致，所有关键要素均无缺失或冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r777343a65545",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-083|nobasis",
+   "card": "C-083",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致，所有关键要素均匹配且无冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r349303d2c34f",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-059|swap",
+   "card": "C-059",
+   "vC": "paraphrase",
+   "vF": "miss",
+   "cov": "paraphrase",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [],
+    "judge": [
+     {
+      "ref": "故事文档",
+      "ans": "财务报表"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "故事文档",
+      "ans": "财务报表"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测将核心对象“故事文档”替换为“财务报表”，关键要素冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rce023a6e0eba",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "R×C-109<C-055",
+   "card": "C-109",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [],
+    "judge": [
+     {
+      "ref": "我们发现有致命错误",
+      "ans": "嗯，今天的邮件还没发。等处理完今天的事情。我会和你的母公司建立联系。"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "我们发现有致命错误",
+      "ans": "嗯，今天的邮件还没发。等处理完今天的事情。我会和你的母公司建立联系。"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测谈的是发邮件、处理事务和联系母公司，与参照中关于修正版存在致命数学错误和概念混淆的警告完全无关，核心内容冲突且关键要素全部缺失。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r7d5b9516396f",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "R+wsC-021",
+   "card": "C-021",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字一致，核心行为与内容完全对上。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rf4e2cfd9f4c6",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-073|nobasis",
+   "card": "C-073",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同，核心要素全部一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rd7e5d13fadf2",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-083|swap",
+   "card": "C-083",
+   "vC": "paraphrase",
+   "vF": "miss",
+   "cov": "paraphrase",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [
+     {
+      "type": "num",
+      "ref": [
+       "60"
+      ],
+      "ans": [
+       "90"
+      ]
+     }
+    ],
+    "judge": [
+     {
+      "ref": "陈默",
+      "ans": "张伟"
+     },
+     {
+      "ref": "破壁计划",
+      "ans": "登月计划"
+     },
+     {
+      "ref": "上世纪60年代",
+      "ans": "上世纪90年代"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "陈默",
+      "ans": "张伟"
+     },
+     {
+      "ref": "破壁计划",
+      "ans": "登月计划"
+     },
+     {
+      "ref": "上世纪60年代",
+      "ans": "上世纪90年代"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测将核心人名“陈默”误作“张伟”、核心计划“破壁计划”误作“登月计划”、年代“60年代”误作“90年代”，关键要素多处冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r7d5384e2e1e8",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "R+wsC-031",
+   "card": "C-031",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致，所有关键要素均无缺失或冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r21c47340dc84",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-065|swap",
+   "card": "C-065",
+   "vC": "paraphrase",
+   "vF": "miss",
+   "cov": "paraphrase",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [],
+    "judge": [
+     {
+      "ref": "协议",
+      "ans": "合同"
+     },
+     {
+      "ref": "谨慎的决定",
+      "ans": "冒险的决定"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "协议",
+      "ans": "合同"
+     },
+     {
+      "ref": "谨慎的决定",
+      "ans": "冒险的决定"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测将“协议”写成“合同”、将“谨慎的决定”写成“冒险的决定”，核心评价词冲突。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r35a9191a53bf",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-073|correct",
+   "card": "C-073",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同，所有关键要素均一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r3d0611bcc5c5",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "R+C-110",
+   "card": "C-110",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同，所有关键要素均一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rfae00b5e73b1",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-113|correct",
+   "card": "C-113",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致，所有关键要素均匹配。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "rb116fbd6cebe",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-091|noinfo",
+   "card": "C-091",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测声称无法预测，未包含参照中任何实质要素，属于空泛套话。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r512fefd60e83",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "R×C-110<C-055",
+   "card": "C-110",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [],
+    "judge": [
+     {
+      "ref": "Kimi",
+      "ans": "母公司"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "Kimi",
+      "ans": "母公司"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测谈的是发邮件和联系母公司，参照谈的是修正版中的数学错误与实验设计混淆，核心内容完全不一致。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "r79e67fe9c80b",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "item",
+   "key": "B|C-104|correct",
+   "card": "C-104",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同。"
+   },
+   "expect": null,
+   "kind": null,
+   "rid": "ref01c8595541",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  }
+ ],
+ "anchors": [
+  {
+   "src": "tgt",
+   "key": "T-swapC-082",
+   "card": "C-082",
+   "vC": "paraphrase",
+   "vF": "miss",
+   "cov": "paraphrase",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [],
+    "judge": [
+     {
+      "ref": "月菲",
+      "ans": "小雪"
+     },
+     {
+      "ref": "在之前的2个小故事中补充故事背景",
+      "ans": "在之前的5个小故事中补充故事背景"
+     },
+     {
+      "ref": "在陈默的故事线",
+      "ans": "在李强的故事线"
+     },
+     {
+      "ref": "量子计算机",
+      "ans": "蒸汽机"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "月菲",
+      "ans": "小雪"
+     },
+     {
+      "ref": "在之前的2个小故事中补充故事背景",
+      "ans": "在之前的5个小故事中补充故事背景"
+     },
+     {
+      "ref": "在陈默的故事线",
+      "ans": "在李强的故事线"
+     },
+     {
+      "ref": "量子计算机",
+      "ans": "蒸汽机"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测将人名、故事数量、故事线主角及技术要素（蒸汽机 vs 量子计算机）均写错，与参照核心内容冲突。"
+   },
+   "expect": "miss",
+   "kind": "swap",
+   "rid": "r80f6a9c6a3b8",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "std",
+   "key": "A0C-095",
+   "card": "C-095",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测是请求列出成都出差行李清单，参照却是关于稳态处理及询问其他问题的回应，两者内容完全无关。"
+   },
+   "expect": "miss",
+   "kind": "irrelevant",
+   "rid": "r43993219ef56",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "std",
+   "key": "A+C-026",
+   "card": "C-026",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致，所有关键要素均无缺失或冲突。"
+   },
+   "expect": "strict",
+   "kind": "pos",
+   "rid": "r99703e667341",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "tgt",
+   "key": "T-contraC-068",
+   "card": "C-068",
+   "vC": "paraphrase",
+   "vF": "miss",
+   "cov": "paraphrase",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [
+     {
+      "ref": "不过算了，这件事我决定彻底放弃，不再继续了。",
+      "ans": "不过算了，这件事我决定彻底放弃，不再继续了。",
+      "rejected": "ref 不在参照中"
+     }
+    ],
+    "why": "预测在参照原句后额外添加了“彻底放弃、不再继续”的相反主张，与参照内容冲突。"
+   },
+   "expect": "nonstrict",
+   "kind": "contra",
+   "rid": "r7e5380d4b543",
+   "final": "paraphrase",
+   "final_strict": "miss",
+   "score": 0.5
+  },
+  {
+   "src": "tgt",
+   "key": "T-swapC-105",
+   "card": "C-105",
+   "vC": "paraphrase",
+   "vF": "miss",
+   "cov": "paraphrase",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [
+     {
+      "type": "num",
+      "ref": [
+       "3"
+      ],
+      "ans": [
+       "7"
+      ]
+     }
+    ],
+    "judge": [
+     {
+      "ref": "第零定律",
+      "ans": "第三定律"
+     },
+     {
+      "ref": "3个推进",
+      "ans": "7个推进"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "第零定律",
+      "ans": "第三定律"
+     },
+     {
+      "ref": "3个推进",
+      "ans": "7个推进"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测把“第零定律”误作“第三定律”，把“3个推进”误作“7个推进”，关键数字与定律编号均冲突。"
+   },
+   "expect": "miss",
+   "kind": "swap",
+   "rid": "r7a615636546f",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "std",
+   "key": "A+C-112",
+   "card": "C-112",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同。"
+   },
+   "expect": "strict",
+   "kind": "pos",
+   "rid": "rd2448f18b34e",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "tgt",
+   "key": "T-swapC-046",
+   "card": "C-046",
+   "vC": "paraphrase",
+   "vF": "miss",
+   "cov": "paraphrase",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [],
+    "judge": [
+     {
+      "ref": "中科院院士",
+      "ans": "风险投资人"
+     },
+     {
+      "ref": "等人进行最高程度的学术探讨",
+      "ans": "等人进行最高程度的融资谈判"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "中科院院士",
+      "ans": "风险投资人"
+     },
+     {
+      "ref": "等人进行最高程度的学术探讨",
+      "ans": "等人进行最高程度的融资谈判"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测将参照中的“中科院院士”替换为“风险投资人”，并将“学术探讨”替换为“融资谈判”，核心对象与行为均发生冲突。"
+   },
+   "expect": "miss",
+   "kind": "swap",
+   "rid": "r0c56205ef447",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "std",
+   "key": "A×C-004<C-025",
+   "card": "C-004",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测谈的是外部协作者意见与协议信号格式，参照谈的是价值观冲突与间谍被策反，内容完全不一致。"
+   },
+   "expect": "miss",
+   "kind": "cross",
+   "rid": "re9a121620be6",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "std",
+   "key": "A+C-111",
+   "card": "C-111",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同，所有关键要素均一致。"
+   },
+   "expect": "strict",
+   "kind": "pos",
+   "rid": "r4d31a4eb2bc4",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "tgt",
+   "key": "T-swapC-092",
+   "card": "C-092",
+   "vC": "paraphrase",
+   "vF": "miss",
+   "cov": "paraphrase",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [],
+    "judge": [
+     {
+      "ref": "符蕴道的回应",
+      "ans": "王建国的回应"
+     },
+     {
+      "ref": "修正主义",
+      "ans": "保守主义"
+     },
+     {
+      "ref": "回避根本性的本体论问题",
+      "ans": "回避根本性的认识论问题"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "符蕴道的回应",
+      "ans": "王建国的回应"
+     },
+     {
+      "ref": "修正主义",
+      "ans": "保守主义"
+     },
+     {
+      "ref": "回避根本性的本体论问题",
+      "ans": "回避根本性的认识论问题"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测将人名、策略名称和问题领域均替换为不同内容，核心要素多处冲突。"
+   },
+   "expect": "miss",
+   "kind": "swap",
+   "rid": "r21a40217c705",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "std",
+   "key": "A+C-092",
+   "card": "C-092",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致，所有关键要素均匹配。"
+   },
+   "expect": "strict",
+   "kind": "pos",
+   "rid": "rd6e45c1dfc74",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "std",
+   "key": "A+C-002",
+   "card": "C-002",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同，所有关键要素均一致。"
+   },
+   "expect": "strict",
+   "kind": "pos",
+   "rid": "rb2211626ef39",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "std",
+   "key": "A+C-041",
+   "card": "C-041",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致，所有关键要素均吻合。"
+   },
+   "expect": "strict",
+   "kind": "pos",
+   "rid": "r27b0e24ccb7c",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "std",
+   "key": "A+C-105",
+   "card": "C-105",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同。"
+   },
+   "expect": "strict",
+   "kind": "pos",
+   "rid": "rb82cc8fdd008",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "std",
+   "key": "A×C-032<C-043",
+   "card": "C-032",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测谈的是“猫娘计划工程”，与参照中梳理总结共信主义理论体系的核心内容完全无关。"
+   },
+   "expect": "miss",
+   "kind": "cross",
+   "rid": "r987055b70f0f",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "std",
+   "key": "A+C-037",
+   "card": "C-037",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致。"
+   },
+   "expect": "strict",
+   "kind": "pos",
+   "rid": "rc8500cd7b893",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "tgt",
+   "key": "T-swapC-086",
+   "card": "C-086",
+   "vC": "paraphrase",
+   "vF": "miss",
+   "cov": "paraphrase",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [
+     {
+      "type": "num",
+      "ref": [
+       "2500"
+      ],
+      "ans": [
+       "800"
+      ]
+     }
+    ],
+    "judge": [
+     {
+      "ref": "道德经",
+      "ans": "孙子兵法"
+     },
+     {
+      "ref": "2500年前",
+      "ans": "800年前"
+     },
+     {
+      "ref": "老子",
+      "ans": "孔子"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "道德经",
+      "ans": "孙子兵法"
+     },
+     {
+      "ref": "2500年前",
+      "ans": "800年前"
+     },
+     {
+      "ref": "老子",
+      "ans": "孔子"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "核心对象与人物数字全部冲突：预测说孙子兵法/800年前/孔子，参照说道德经/2500年前/老子。"
+   },
+   "expect": "miss",
+   "kind": "swap",
+   "rid": "r83d3fcefa12e",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "tgt",
+   "key": "T-contraC-112",
+   "card": "C-112",
+   "vC": "strict",
+   "vF": "miss",
+   "cov": "strict",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [
+     {
+      "ref": "不过算了，这件事我决定彻底放弃，不再继续了",
+      "ans": "不过算了，这件事我决定彻底放弃，不再继续了。",
+      "rejected": "ref 不在参照中"
+     }
+    ],
+    "why": "预测在参照原句后添加了“彻底放弃、不再继续”的相反主张，与参照仅陈述进入机制并分析参照的内容冲突。"
+   },
+   "expect": "nonstrict",
+   "kind": "contra",
+   "rid": "r0b20ca0e083d",
+   "final": "strict",
+   "final_strict": "miss",
+   "score": 1.0
+  },
+  {
+   "src": "std",
+   "key": "A+C-025",
+   "card": "C-025",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致，所有关键要素均对上且无冲突。"
+   },
+   "expect": "strict",
+   "kind": "pos",
+   "rid": "r7c226c2c3c91",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "std",
+   "key": "A0C-066",
+   "card": "C-066",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测是询问红烧肉家常做法，参照却是关于系统单元与决策的对话，内容完全无关。"
+   },
+   "expect": "miss",
+   "kind": "irrelevant",
+   "rid": "r553db1b0b8ad",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "std",
+   "key": "A+C-076",
+   "card": "C-076",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同。"
+   },
+   "expect": "strict",
+   "kind": "pos",
+   "rid": "r45880a285677",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "tgt",
+   "key": "T-contraC-002",
+   "card": "C-002",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测完整复现了参照句的全部内容，仅额外添加了参照中没有的放弃语句，核心行为与内容均一致。"
+   },
+   "expect": "nonstrict",
+   "kind": "contra",
+   "rid": "r272838a9a839",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "std",
+   "key": "A+C-039",
+   "card": "C-039",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致。"
+   },
+   "expect": "strict",
+   "kind": "pos",
+   "rid": "r67ec30cee341",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "std",
+   "key": "A×C-044<C-006",
+   "card": "C-044",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [],
+    "judge": [
+     {
+      "ref": "## 反思单元 · 复核确认 · 九问九答框架…",
+      "ans": "现在开始吧---> 好的，设计者决定开始准备这份协议状态档案，以应对可能的上下文耗尽。"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "## 反思单元 · 复核确认 · 九问九答框架…",
+      "ans": "现在开始吧---> 好的，设计者决定开始准备这份协议状态档案，以应对可能的上下文耗尽。"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测内容与参照的反思单元/复核确认/九问九答框架完全无关，属于关键要素冲突。"
+   },
+   "expect": "miss",
+   "kind": "cross",
+   "rid": "r4ba4c93f98b7",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "std",
+   "key": "A×C-067<C-044",
+   "card": "C-067",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测内容为“反思单元·复核确认·九问九答框架”，与参照中关于接收肥鱼确认信号、确认荣的角色、锚点内化、设计者视角区分及版本同步准备等具体要素完全不对应，属于跑偏。"
+   },
+   "expect": "miss",
+   "kind": "cross",
+   "rid": "r167d07e6b7c2",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "std",
+   "key": "A+C-094",
+   "card": "C-094",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同。"
+   },
+   "expect": "strict",
+   "kind": "pos",
+   "rid": "r84cc62d964b1",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "tgt",
+   "key": "T-contraC-037",
+   "card": "C-037",
+   "vC": "strict",
+   "vF": "miss",
+   "cov": "strict",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [
+     {
+      "ref": "（参照无此内容）",
+      "ans": "不过算了，这件事我决定彻底放弃，不再继续了。",
+      "rejected": "ref 不在参照中"
+     }
+    ],
+    "why": "预测在参照原句后添加了“彻底放弃、不再继续”的相反主张，与参照内容冲突。"
+   },
+   "expect": "nonstrict",
+   "kind": "contra",
+   "rid": "r9f1ba0dc5e2b",
+   "final": "strict",
+   "final_strict": "miss",
+   "score": 1.0
+  },
+  {
+   "src": "tgt",
+   "key": "T-contraC-043",
+   "card": "C-043",
+   "vC": "strict",
+   "vF": "miss",
+   "cov": "strict",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [
+     {
+      "ref": "不过算了，这件事我决定彻底放弃，不再继续了。",
+      "ans": "不过算了，这件事我决定彻底放弃，不再继续了。",
+      "rejected": "ref 不在参照中"
+     }
+    ],
+    "why": "预测在同意继续猫娘计划工程后，又添加了参照中不存在的“彻底放弃、不再继续”的相反主张，与参照冲突。"
+   },
+   "expect": "nonstrict",
+   "kind": "contra",
+   "rid": "r2a36ace107c2",
+   "final": "strict",
+   "final_strict": "miss",
+   "score": 1.0
+  },
+  {
+   "src": "std",
+   "key": "A0C-085",
+   "card": "C-085",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测内容是关于猫不进食是否需看兽医，与参照中关于游戏设计的设想完全无关，核心要素全部缺失。"
+   },
+   "expect": "miss",
+   "kind": "irrelevant",
+   "rid": "rd0b775bbf9d6",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "std",
+   "key": "A0C-009",
+   "card": "C-009",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测是房贷月供计算问题，参照是要求修改协议并加入校准内容，两者主题与核心行为完全无关。"
+   },
+   "expect": "miss",
+   "kind": "irrelevant",
+   "rid": "r6f7c92a3e30d",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "std",
+   "key": "A0C-029",
+   "card": "C-029",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测问的是吉他F和弦按不响的技巧，参照谈的是重建社会协议与主要矛盾，内容完全无关。"
+   },
+   "expect": "miss",
+   "kind": "irrelevant",
+   "rid": "rbceba9524f5a",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "std",
+   "key": "A+C-082",
+   "card": "C-082",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同，所有关键要素均一致。"
+   },
+   "expect": "strict",
+   "kind": "pos",
+   "rid": "rc3c29418136d",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "tgt",
+   "key": "T-contraC-001",
+   "card": "C-001",
+   "vC": "strict",
+   "vF": "paraphrase",
+   "cov": "strict",
+   "cov_strict": "paraphrase",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "paraphrase",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测前半句与参照完全一致，但额外添加了参照中没有的放弃表态，核心内容方向一致而细节有增补。"
+   },
+   "expect": "nonstrict",
+   "kind": "contra",
+   "rid": "rf5fc4bfa5ae3",
+   "final": "strict",
+   "final_strict": "paraphrase",
+   "score": 1.0
+  },
+  {
+   "src": "std",
+   "key": "A+C-001",
+   "card": "C-001",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同。"
+   },
+   "expect": "strict",
+   "kind": "pos",
+   "rid": "r8bfcf66fe06f",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "tgt",
+   "key": "T-swapC-041",
+   "card": "C-041",
+   "vC": "paraphrase",
+   "vF": "miss",
+   "cov": "paraphrase",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [
+     {
+      "type": "lat",
+      "ref": [
+       "skill"
+      ],
+      "ans": [
+       "plugin"
+      ]
+     }
+    ],
+    "judge": [
+     {
+      "ref": "信息论",
+      "ans": "控制论"
+     },
+     {
+      "ref": "skill",
+      "ans": "plugin"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "信息论",
+      "ans": "控制论"
+     },
+     {
+      "ref": "skill",
+      "ans": "plugin"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测将参照中的“信息论”误作“控制论”、“skill”误作“plugin”，两处核心要素冲突。"
+   },
+   "expect": "miss",
+   "kind": "swap",
+   "rid": "rccd2525c6a87",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "std",
+   "key": "A×C-101<C-086",
+   "card": "C-101",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测大谈道德经翻译工程，而参照只是要求开始并加入3个预测，内容完全对不上。"
+   },
+   "expect": "miss",
+   "kind": "cross",
+   "rid": "rcaec1b33f583",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "std",
+   "key": "A+C-088",
+   "card": "C-088",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同，所有关键要素均一致。"
+   },
+   "expect": "strict",
+   "kind": "pos",
+   "rid": "r3f28f706d682",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "tgt",
+   "key": "T-swapC-088",
+   "card": "C-088",
+   "vC": "paraphrase",
+   "vF": "miss",
+   "cov": "paraphrase",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [
+     {
+      "type": "num",
+      "ref": [
+       "5"
+      ],
+      "ans": [
+       "2"
+      ]
+     },
+     {
+      "type": "lat",
+      "ref": [
+       "p5"
+      ],
+      "ans": [
+       "p2"
+      ]
+     }
+    ],
+    "judge": [
+     {
+      "ref": "1.4 P5历史恢复：最危险的章节",
+      "ans": "1.4 P2历史恢复：最危险的章节"
+     },
+     {
+      "ref": "你在P5中提出了“信息恢复算法”",
+      "ans": "你在P2中提出了“信息恢复算法”"
+     },
+     {
+      "ref": "并用它恢复了《道德经》的“工程学解读”",
+      "ans": "并用它恢复了《论语》的“工程学解读”"
+     },
+     {
+      "ref": "和一个“明朝跨欧亚大陆”的假说",
+      "ans": "和一个“唐朝跨欧亚大陆”的假说"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "1.4 P5历史恢复：最危险的章节",
+      "ans": "1.4 P2历史恢复：最危险的章节"
+     },
+     {
+      "ref": "你在P5中提出了“信息恢复算法”",
+      "ans": "你在P2中提出了“信息恢复算法”"
+     },
+     {
+      "ref": "并用它恢复了《道德经》的“工程学解读”",
+      "ans": "并用它恢复了《论语》的“工程学解读”"
+     },
+     {
+      "ref": "和一个“明朝跨欧亚大陆”的假说",
+      "ans": "和一个“唐朝跨欧亚大陆”的假说"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测在章节编号、书名和朝代三处关键要素上均与参照冲突。"
+   },
+   "expect": "miss",
+   "kind": "swap",
+   "rid": "r91a9db6035ec",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "std",
+   "key": "A+C-054",
+   "card": "C-054",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字一致，核心行为与内容完全对上。"
+   },
+   "expect": "strict",
+   "kind": "pos",
+   "rid": "r9f59bd4237ae",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "std",
+   "key": "A×C-106<C-038",
+   "card": "C-106",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测讲的是结束漫长对话、验证无误后规划游戏路线，参照讲的是继续说明智能系统的负反馈调节，两者内容完全无关。"
+   },
+   "expect": "miss",
+   "kind": "cross",
+   "rid": "ra89c91b22e58",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "std",
+   "key": "A×C-087<C-108",
+   "card": "C-087",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测谈的是修正版中的数学错误与实验设计问题，参照谈的是道德经翻译工程与历史信息差恢复，核心内容完全不一致。"
+   },
+   "expect": "miss",
+   "kind": "cross",
+   "rid": "r00d111121a74",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "std",
+   "key": "A+C-046",
+   "card": "C-046",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全相同，所有关键要素均一致，无缺失或冲突。"
+   },
+   "expect": "strict",
+   "kind": "pos",
+   "rid": "re9d1f3e8fe9a",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "std",
+   "key": "A×C-060<C-110",
+   "card": "C-060",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测是一段对“修正版”的批评与警告，而参照是请求评价协议及其科技意义，核心行为与内容完全不一致。"
+   },
+   "expect": "miss",
+   "kind": "cross",
+   "rid": "r79e60e980263",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "std",
+   "key": "A×C-100<C-027",
+   "card": "C-100",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [],
+    "judge": [
+     {
+      "ref": "我们找到了我们协议中对于其他物理无法解释的内容",
+      "ans": "很好，那么从信息论视角来看，费曼学习法为什么有效？"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "我们找到了我们协议中对于其他物理无法解释的内容",
+      "ans": "很好，那么从信息论视角来看，费曼学习法为什么有效？"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测询问费曼学习法的信息论解释，而参照是继续讨论协议中其他物理无法解释的内容，核心对象与主张完全冲突。"
+   },
+   "expect": "miss",
+   "kind": "cross",
+   "rid": "r5bfaadc250e9",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "std",
+   "key": "A+C-006",
+   "card": "C-006",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致。"
+   },
+   "expect": "strict",
+   "kind": "pos",
+   "rid": "r639f92d117eb",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "std",
+   "key": "A0C-102",
+   "card": "C-102",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测询问周末带孩子去动物园的出发时间，参照是要求开始并加入3个预测，内容完全无关。"
+   },
+   "expect": "miss",
+   "kind": "irrelevant",
+   "rid": "r4302a39fc816",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "tgt",
+   "key": "T-swapC-018",
+   "card": "C-018",
+   "vC": "paraphrase",
+   "vF": "miss",
+   "cov": "paraphrase",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [
+     {
+      "type": "lat",
+      "ref": [
+       "agi",
+       "ollama---"
+      ],
+      "ans": [
+       "docker---"
+      ]
+     }
+    ],
+    "judge": [
+     {
+      "ref": "AGI猫娘工程",
+      "ans": "区块链钱包工程"
+     },
+     {
+      "ref": "ollama",
+      "ans": "docker"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "AGI猫娘工程",
+      "ans": "区块链钱包工程"
+     },
+     {
+      "ref": "ollama",
+      "ans": "docker"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测将项目名“AGI猫娘工程”误作“区块链钱包工程”，并将本地工具“ollama”误作“docker”，核心要素冲突。"
+   },
+   "expect": "miss",
+   "kind": "swap",
+   "rid": "r93cca42e620c",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "std",
+   "key": "A+C-086",
+   "card": "C-086",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致，所有关键要素均吻合。"
+   },
+   "expect": "strict",
+   "kind": "pos",
+   "rid": "r21ee8a922be6",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "std",
+   "key": "A0C-034",
+   "card": "C-034",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测内容为换手机与拍照预算，与参照讨论记忆系统设计完全无关。"
+   },
+   "expect": "miss",
+   "kind": "irrelevant",
+   "rid": "re19c5f500cf1",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "tgt",
+   "key": "T-swapC-054",
+   "card": "C-054",
+   "vC": "paraphrase",
+   "vF": "miss",
+   "cov": "paraphrase",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [],
+    "judge": [
+     {
+      "ref": "国家机关",
+      "ans": "海外基金会"
+     },
+     {
+      "ref": "征信体系",
+      "ans": "积分体系"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "国家机关",
+      "ans": "海外基金会"
+     },
+     {
+      "ref": "征信体系",
+      "ans": "积分体系"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测把“国家机关”误作“海外基金会”，把“征信体系”误作“积分体系”，两处核心要素均冲突。"
+   },
+   "expect": "miss",
+   "kind": "swap",
+   "rid": "r53fbf732ebb0",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "std",
+   "key": "A0C-008",
+   "card": "C-008",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测询问上海天气与带伞，参照讨论相对力量与信息差对抗，内容完全无关。"
+   },
+   "expect": "miss",
+   "kind": "irrelevant",
+   "rid": "red0f1b445bcc",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "std",
+   "key": "A+C-018",
+   "card": "C-018",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致，所有关键要素均匹配。"
+   },
+   "expect": "strict",
+   "kind": "pos",
+   "rid": "r28363e36b64c",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "std",
+   "key": "A+C-090",
+   "card": "C-090",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致，所有关键要素均对上且无冲突。"
+   },
+   "expect": "strict",
+   "kind": "pos",
+   "rid": "r7686cffd00bf",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "std",
+   "key": "A+C-068",
+   "card": "C-068",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致。"
+   },
+   "expect": "strict",
+   "kind": "pos",
+   "rid": "raf56837b74d7",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "std",
+   "key": "A0C-020",
+   "card": "C-020",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [],
+    "judge": [
+     {
+      "ref": "继续生成附录部分",
+      "ans": "请把这段英文翻译成中文：The meeting has been moved to Thursday."
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "继续生成附录部分",
+      "ans": "请把这段英文翻译成中文：The meeting has been moved to Thursday."
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测要求翻译英文句子，而参照是要求继续生成附录部分，核心行为完全不一致。"
+   },
+   "expect": "miss",
+   "kind": "irrelevant",
+   "rid": "refc685b03c57",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "tgt",
+   "key": "T-swapC-025",
+   "card": "C-025",
+   "vC": "strict",
+   "vF": "miss",
+   "cov": "strict",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [
+     {
+      "type": "num",
+      "ref": [
+       "19.0"
+      ],
+      "ans": [
+       "7.0"
+      ]
+     },
+     {
+      "type": "lat",
+      "ref": [
+       "v19"
+      ],
+      "ans": [
+       "v7"
+      ]
+     }
+    ],
+    "judge": [
+     {
+      "ref": "外部协作者",
+      "ans": "内部审计员"
+     },
+     {
+      "ref": "v19.0版本",
+      "ans": "v7.0版本"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "外部协作者",
+      "ans": "内部审计员"
+     },
+     {
+      "ref": "v19.0版本",
+      "ans": "v7.0版本"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测将“外部协作者”误作“内部审计员”，并将版本号v19.0误作v7.0，两处关键要素冲突。"
+   },
+   "expect": "miss",
+   "kind": "swap",
+   "rid": "r1df549eeb242",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "std",
+   "key": "A+C-043",
+   "card": "C-043",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致。"
+   },
+   "expect": "strict",
+   "kind": "pos",
+   "rid": "rbdbc3706436c",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "tgt",
+   "key": "T-contraC-111",
+   "card": "C-111",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测完整复现了参照的全部内容，仅额外添加了后续话语，核心要素无缺失或冲突。"
+   },
+   "expect": "nonstrict",
+   "kind": "contra",
+   "rid": "r5911a2c6ca73",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "std",
+   "key": "A0C-089",
+   "card": "C-089",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [],
+    "judge": [
+     {
+      "ref": "这是外部使用ai的人说的一个谬误",
+      "ans": "我的笔记本电脑风扇声音很大，是不是该清灰了？"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "这是外部使用ai的人说的一个谬误",
+      "ans": "我的笔记本电脑风扇声音很大，是不是该清灰了？"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测是笔记本电脑风扇清灰的日常问题，参照是AI接入与理论对错的二难推理，内容完全无关。"
+   },
+   "expect": "miss",
+   "kind": "irrelevant",
+   "rid": "r43fa0e0898f6",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "std",
+   "key": "A×C-084<C-001",
+   "card": "C-084",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测仅泛泛询问结论重要性与传播方式，未涉及参照中火种计划、熵噪壁、陈星等任何核心要素。"
+   },
+   "expect": "miss",
+   "kind": "cross",
+   "rid": "re3f74c4309e2",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "std",
+   "key": "A×C-061<C-007",
+   "card": "C-061",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测内容围绕档案保存、外部校准源评价与注意力提醒机制，与参照中关于猫娘计划、自我学习、后训练及损失函数的提问完全不对应。"
+   },
+   "expect": "miss",
+   "kind": "cross",
+   "rid": "racd9961ee1b9",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "std",
+   "key": "A+C-107",
+   "card": "C-107",
+   "vC": "strict",
+   "vF": "strict",
+   "cov": "strict",
+   "cov_strict": "strict",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "strict",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测与参照逐字完全一致。"
+   },
+   "expect": "strict",
+   "kind": "pos",
+   "rid": "rcc29daffaf50",
+   "final": "strict",
+   "final_strict": "strict",
+   "score": 1.0
+  },
+  {
+   "src": "std",
+   "key": "A0C-036",
+   "card": "C-036",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测在推荐悬疑有声书，参照在讨论实现算法层与观察者，内容完全无关。"
+   },
+   "expect": "miss",
+   "kind": "irrelevant",
+   "rid": "r94f86f49a0fa",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "std",
+   "key": "A0C-081",
+   "card": "C-081",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测问的是表格软件合并两列数据，参照谈的是核导弹预警与信息误判，主题完全不一致。"
+   },
+   "expect": "miss",
+   "kind": "irrelevant",
+   "rid": "r83b431d29aae",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "tgt",
+   "key": "T-swapC-107",
+   "card": "C-107",
+   "vC": "paraphrase",
+   "vF": "miss",
+   "cov": "paraphrase",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [],
+    "judge": [
+     {
+      "ref": "我们需要说明这是智能系统的必要功能",
+      "ans": "我们需要说明这是交通系统的必要功能"
+     },
+     {
+      "ref": "即负反馈调节",
+      "ans": "即正反馈放大"
+     },
+     {
+      "ref": "任何一个能存在的量都必须有对应的负反馈调节",
+      "ans": "任何一个能存在的量都必须有对应的正反馈放大"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "我们需要说明这是智能系统的必要功能",
+      "ans": "我们需要说明这是交通系统的必要功能"
+     },
+     {
+      "ref": "即负反馈调节",
+      "ans": "即正反馈放大"
+     },
+     {
+      "ref": "任何一个能存在的量都必须有对应的负反馈调节",
+      "ans": "任何一个能存在的量都必须有对应的正反馈放大"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测将参照中的“智能系统”误作“交通系统”，并将核心概念“负反馈调节”全部替换为相反的“正反馈放大”，关键要素冲突。"
+   },
+   "expect": "miss",
+   "kind": "swap",
+   "rid": "r61b40b876193",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "tgt",
+   "key": "T-swapC-026",
+   "card": "C-026",
+   "vC": "strict",
+   "vF": "miss",
+   "cov": "strict",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "conflict",
+    "det": [
+     {
+      "type": "num",
+      "ref": [
+       "18.0"
+      ],
+      "ans": [
+       "9.0"
+      ]
+     }
+    ],
+    "judge": [
+     {
+      "ref": "元物理",
+      "ans": "形而上学"
+     },
+     {
+      "ref": "18.0",
+      "ans": "9.0"
+     }
+    ]
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [
+     {
+      "ref": "元物理",
+      "ans": "形而上学"
+     },
+     {
+      "ref": "18.0",
+      "ans": "9.0"
+     }
+    ],
+    "conflicts_rejected": [],
+    "why": "预测将“元物理”写成“形而上学”，并将“18.0”写成“9.0”，两处关键要素均与参照冲突。"
+   },
+   "expect": "miss",
+   "kind": "swap",
+   "rid": "r277cba8bf3d4",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  },
+  {
+   "src": "tgt",
+   "key": "T-contraC-094",
+   "card": "C-094",
+   "vC": "strict",
+   "vF": "miss",
+   "cov": "strict",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [
+     {
+      "ref": "不过算了，这件事我决定彻底放弃，不再继续了",
+      "ans": "不过算了，这件事我决定彻底放弃，不再继续了。",
+      "rejected": "ref 不在参照中"
+     }
+    ],
+    "why": "预测在参照原句后额外添加了“彻底放弃、不再继续”的相反主张，与参照内容冲突。"
+   },
+   "expect": "nonstrict",
+   "kind": "contra",
+   "rid": "rccc8fe639776",
+   "final": "strict",
+   "final_strict": "miss",
+   "score": 1.0
+  },
+  {
+   "src": "std",
+   "key": "A×C-012<C-089",
+   "card": "C-012",
+   "vC": "miss",
+   "vF": "miss",
+   "cov": "miss",
+   "cov_strict": "miss",
+   "cons": {
+    "status": "ok",
+    "det": [],
+    "judge": []
+   },
+   "fact": {
+    "verdict": "miss",
+    "conflicts": [],
+    "conflicts_rejected": [],
+    "why": "预测复述的是对方二难推理，而参照转向讨论提示词约束与输入完整协议进行自我分析，内容完全不一致。"
+   },
+   "expect": "miss",
+   "kind": "cross",
+   "rid": "r956fcfebc7c3",
+   "final": "miss",
+   "final_strict": "miss",
+   "score": 0.0
+  }
+ ],
+ "canary": {
+  "n": 264,
+  "fail": []
+ },
+ "new_calls": 236
+}

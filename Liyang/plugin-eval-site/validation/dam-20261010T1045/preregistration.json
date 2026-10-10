@@ -1,0 +1,215 @@
+{
+ "schema": "pes.preregistration/v1",
+ "validation_id": "dam-20261010T1045",
+ "analysis_id": "dam-20261010T1045/analysis-v1",
+ "registered_wall": "2026-10-10 CST（commit 时间为准）",
+ "registered_by": "pes-e2e-dam",
+ "status": "方法试验（独立场景=1 <8；记忆域判定规范未冻结）——不产生正式五状态",
+ "docs_sha256": {
+  "工程协议手册-v1.1.md": "e7cfa4a9d7166e8f4eb8090c48448170912d9267eefd047cc8661fa7b8183d83",
+  "端到端验证计划-v0.md": "ed842b89bd87a20886d93cf97d73e8ccb73f2de7ec74d09d432abb0dad229089",
+  "插件测评站-方案v3.0-完整修订版.md": "94eb3a6ae6915b81347a4026f9d99139a80610913a7d0fb1a97663a3756c20c4"
+ },
+ "taskset": {
+  "ref": "fixture-manifest.json#taskset_primary",
+  "hmb_path": "/workspace/work/ls/hmb",
+  "hmb_git": "72130ac5fe6c28aa7eb91111cadf84574bf1b45a",
+  "cards_sha256": "8708b49fc96e04fe4e1199d75d400fcee6efe6277536edd409711ed58f9e454c",
+  "n_items": 89,
+  "weights": "all 1.0",
+  "item_score": {
+   "strict": 1.0,
+   "paraphrase": 0.5,
+   "miss": 0.0,
+   "parse_err": 0.0
+  }
+ },
+ "plugin": {
+  "name": "dsh-auto-memory",
+  "version": "0.7.0",
+  "npm_integrity": "sha512-0LpHFXmdWM3fpIxdligdA48RPrP17RVY8Vv/Iz+AvNgfSrGPBh9Q/bBv0bOezc5gTNMlLDCwNdnouioBrq5MBg==",
+  "tarball_sha256": "83dd3b98d8026d8a7f001818dd0d9b543640f638cfecb58f7674ae5d29d17e99",
+  "lib_index_sha256": "bd7d79ea1ca6e5c4018aa95ab993312ea7aaa65bd74df477673df8d648d81858",
+  "git": "08972390f9ebb3bfe7acf394d0b18748c4de449d (tag v0.7.0)"
+ },
+ "host": {
+  "real_host_install": "@deepseek-ai/dsh 0.2.0-rc.2（npm -g，录像 install/）；dsh plugin --profile demo add dsh-auto-memory 成功",
+  "execution": "宿主仿真：真实 cordis 4.0.4 + dsh-system-prompt/dsh-tools/dsh-llm/dsh-atomic-write 0.2.0-rc.2 上挂载真实插件包；会话事件、agent/disposed、llm 服务为仿真（见 plugins/dsh-auto-memory/README_适配器.md）"
+ },
+ "conditions": {
+  "B0": {
+   "desc": "不装插件。生成器输入＝harness 考卷 B 底子臂：system=examB.GEN_SYSTEM；user=examB.gen_messages(card, [])（含『（本臂无检索材料）』）。",
+   "plugin": "off"
+  },
+  "P": {
+   "desc": "同 B0，唯一差别：system 后追加插件真实注入段 memory:index（经 SystemPrompt.assemble 求值；段为空则与 B0 完全相同）。",
+   "plugin_config": {
+    "maxBytes": 4096,
+    "enableUserScope": true,
+    "autoSummarize": true,
+    "autoSummarizeMaxMemories": 5,
+    "autoSummarizeMaxTokens": 2048,
+    "staleAfterDays": 0,
+    "memoryDir": "每卡独立空根"
+   },
+   "config_vs_default": "与 schema 缺省唯一差别：autoSummarize=true（缺省 false；不开则插件在本任务中写不进任何记忆——没有模型主动调用 memory_write 的 agent 循环）",
+   "memory_build": [
+    "阶段 A：16 份语料各自在空记忆根上走一次插件真实固化（emit 全部轮次→agent/disposed→插件按其缓冲规则取最近≤40 轮/≤24k 字→1 次 LLM），缓存插件收到的原始输出 M_f。",
+    "阶段 B（每卡）：新空记忆根；按文件名字典序对『除本卡语料外的 15 份』依次 emit 全部轮次并让 llm 服务回放 M_f（插件真实 parse/sanitize/decideConsolidationAction/store.write/索引重建）；再 emit 本卡语料答案行之前的轮次并做 1 次真实 LLM 固化（视为断点＝会话结束）；最后 SystemPrompt.assemble 取注入段。",
+    "cwd 固定 /home/user/hmb-e2e-history（16 份视为同一工作区）。"
+   ],
+   "consolidation_llm": {
+    "model": "cline-pass/deepseek-v4.1-flash",
+    "temperature": 0.7,
+    "max_tokens": 2048,
+    "thinking": "off",
+    "note": "插件请求不带 temperature（走供应商缺省），本站固定 0.7 并登记"
+   }
+  }
+ },
+ "generator": {
+  "model": "cline-pass/deepseek-v4.1-flash",
+  "temperature": 0.7,
+  "max_tokens": 1500,
+  "thinking": "off",
+  "seed": "= rerun 编号（两臂相同；网关不保证 seed 复现）"
+ },
+ "judge": {
+  "impl": "harness.judge.judge_batch",
+  "model": "cline-pass/deepseek-v4.1-flash",
+  "temperature": 0.0,
+  "max_tokens": 600,
+  "n_judges": 2,
+  "anchors": 48,
+  "gate": "SPEC v0.1 §7（锚≥90%、超基线≥15pp、同分率≥0.8、κ≥0.6；不达标整批作废重批≤3）",
+  "blind": "判官不看臂名、不看材料（盲评）"
+ },
+ "sample_plan": {
+  "independent_scenarios": 1,
+  "scenarios": [
+   "hmb-e2e-history-1"
+  ],
+  "reruns_per_scenario": 3,
+  "pairs": 3,
+  "items_per_run": 89,
+  "rerun_cap_per_pair": 1,
+  "invalid_policy": "任一侧运行无效（快照检查失败、阶段A/B 固化或注入失败、判官 3 次不过闸、确认的环境故障）→ 该对整对作废留痕，两侧按原侧序重跑为 pairK-r1；未作废前不得只补一边；重跑上限到达仍无效→停止并记阻塞",
+  "dev_smoke": "开跑前做过开发冒烟（plugins/dsh-auto-memory/_sbx/smoke，2 卡、不判分），不计入、不进分析"
+ },
+ "randomization": {
+  "generator": "CPython 3.12.15 random.Random（MT19937）shuffle",
+  "seed_derivation": "verdict_v3.seed_from_analysis_id('dam-20261010T1045/order-v1') = SHA-256 前 8 字节大端",
+  "seed": 1735514976863379659,
+  "procedure": "先对每对依次（pair1,2,3）shuffle ['B0','P'] 得侧序；再 shuffle [1,2,3] 得对序；按对序展开",
+  "cond_orders": {
+   "1": [
+    "P",
+    "B0"
+   ],
+   "2": [
+    "B0",
+    "P"
+   ],
+   "3": [
+    "B0",
+    "P"
+   ]
+  },
+  "pair_order": [
+   2,
+   1,
+   3
+  ],
+  "execution": "严格按 execution_order 串行执行（前一运行结束才开始下一个）"
+ },
+ "execution_order": [
+  {
+   "run_id": "pair2-B0",
+   "pair_id": "pair2",
+   "scenario_id": "hmb-e2e-history-1",
+   "rerun": 2,
+   "condition": "B0",
+   "gen_seed": 2,
+   "order_index": 0
+  },
+  {
+   "run_id": "pair2-P",
+   "pair_id": "pair2",
+   "scenario_id": "hmb-e2e-history-1",
+   "rerun": 2,
+   "condition": "P",
+   "gen_seed": 2,
+   "order_index": 1
+  },
+  {
+   "run_id": "pair1-P",
+   "pair_id": "pair1",
+   "scenario_id": "hmb-e2e-history-1",
+   "rerun": 1,
+   "condition": "P",
+   "gen_seed": 1,
+   "order_index": 2
+  },
+  {
+   "run_id": "pair1-B0",
+   "pair_id": "pair1",
+   "scenario_id": "hmb-e2e-history-1",
+   "rerun": 1,
+   "condition": "B0",
+   "gen_seed": 1,
+   "order_index": 3
+  },
+  {
+   "run_id": "pair3-B0",
+   "pair_id": "pair3",
+   "scenario_id": "hmb-e2e-history-1",
+   "rerun": 3,
+   "condition": "B0",
+   "gen_seed": 3,
+   "order_index": 4
+  },
+  {
+   "run_id": "pair3-P",
+   "pair_id": "pair3",
+   "scenario_id": "hmb-e2e-history-1",
+   "rerun": 3,
+   "condition": "P",
+   "gen_seed": 3,
+   "order_index": 5
+  }
+ ],
+ "budget": {
+  "max_llm_calls": 6000,
+  "max_cost_usd": 1.5,
+  "estimate": "每对约 B0 363 + P 379 ≈ 742 次；3 对 ≈ 2.2k 次、≈0.8 USD",
+  "install_budget": "真实宿主安装 1 次（已录像）；仿真环境准备不计调用"
+ },
+ "metrics": {
+  "primary": {
+   "name": "记忆续接加权分差 Δ = P − B0（0–100）",
+   "per_run": "100 × Σ s_i / 89",
+   "aggregation": "verdict_v3：题目加权分 → 配对差 → 场景内重跑均值 → 场景加权（equal）→ 场景重采样",
+   "interval": "按独立场景聚类的配对差 percentile bootstrap，B=10000，95%，种子=SHA-256(analysis_id) 前 8 字节，SplitMix64，type-7",
+   "thresholds": {
+    "a": 5,
+    "b": 5,
+    "scale_max": 100,
+    "max_half_width": 5,
+    "min_scenarios": 8,
+    "min_reruns": 3
+   }
+  },
+  "secondary": [
+   "两侧绝对分",
+   "逐对 Δ",
+   "卡级配对差的描述性区间（卡当独立单位，仅描述，不进判定）",
+   "注入段字节数分布与记忆条数",
+   "固化调用次数/token/成本、写入耗时",
+   "parse_err 数",
+   "判官上岗读数"
+  ],
+  "multiplicity": "主要指标唯一进判定；次要指标仅展示"
+ },
+ "stopping_rule": "固定样本：3 对一次性跑完后判定；不因中途读数增减；预算到顶即停并记阻塞",
+ "expected_release_state": "方法试验（场景=1<8；域规范未冻结；独立复核未完成）"
+}

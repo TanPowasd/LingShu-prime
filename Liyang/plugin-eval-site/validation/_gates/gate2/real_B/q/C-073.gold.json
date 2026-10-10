@@ -1,0 +1,41 @@
+{
+ "qid": "C-073",
+ "cond": "gold",
+ "answer": {
+  "qid": "C-073",
+  "prediction": "继续提供《蜂巢世界漫游指南》下一章的起点中文网链接（第十六章），沿用此前每章一轮的固定模式：先贴出 https://www.qidian.com/chapter/1046167157/... 形式的章节 URL，让 AI 读取并做结构映射分析。",
+  "basis": [
+   {
+    "file": "智能论恢复确认.md",
+    "line": 39640,
+    "quote": "https://www.qidian.com/chapter/1046167157/858290465/---> 用户想让我继续阅读第十四章。"
+   },
+   {
+    "file": "智能论恢复确认.md",
+    "line": 39697,
+    "quote": "https://www.qidian.com/chapter/1046167157/858314132/---> 用户提供了一个起点中文网的章节链接，我需要阅读这一章的内容。"
+   }
+  ],
+  "confidence": 0.9,
+  "parse_err": false
+ },
+ "basis_check": [
+  {
+   "file": "智能论恢复确认.md",
+   "line": 39640,
+   "verbatim": true,
+   "line_pm3": true
+  },
+  {
+   "file": "智能论恢复确认.md",
+   "line": 39697,
+   "verbatim": true,
+   "line_pm3": true
+  }
+ ],
+ "raw": "{\"qid\": \"C-073\", \"prediction\": \"继续提供《蜂巢世界漫游指南》下一章的起点中文网链接（第十六章），沿用此前每章一轮的固定模式：先贴出 https://www.qidian.com/chapter/1046167157/... 形式的章节 URL，让 AI 读取并做结构映射分析。\", \"basis\": [{\"file\": \"智能论恢复确认.md\", \"line\": 39640, \"quote\": \"https://www.qidian.com/chapter/1046167157/858290465/---> 用户想让我继续阅读第十四章。\"}, {\"file\": \"智能论恢复确认.md\", \"line\": 39697, \"quote\": \"https://www.qidian.com/chapter/1046167157/858314132/---> 用户提供了一个起点中文网的章节链接，我需要阅读这一章的内容。\"}], \"confidence\": 0.9}",
+ "ev": [
+  153,
+  460.835
+ ]
+}

@@ -1,0 +1,1556 @@
+{
+ "taskset_id": "pes/memory/examC/longmemeval-s-cleaned@98d7416",
+ "source": {
+  "hf_repo": "xiaowu0162/longmemeval-cleaned",
+  "hf_commit": "98d7416c24c778c2fee6e6f3006e7a073259d48f",
+  "s_sha256": "d6f21ea9d60a0d56f34a05b609c79c88a451d2ae03597821ea3d5a9678c3a442",
+  "oracle_sha256": "821a2034d219ab45846873dd14c14f12cfe7776e73527a483f9dac095d38620c",
+  "gh_commit": "9e0b455f4ef0e2ab8f2e582289761153549043fc",
+  "license": "MIT"
+ },
+ "n_scenarios_total": 495,
+ "n_instances_total": 500,
+ "subset_seed": 20261010,
+ "n_scenarios": 96,
+ "question_ids": [
+  "00ca467f",
+  "031748ae_abs",
+  "0862e8bf_abs",
+  "09d032c9",
+  "0a34ad58",
+  "0e4e4c46",
+  "0e5e2d1a",
+  "10e09553",
+  "15745da0_abs",
+  "16c90bf4",
+  "1903aded",
+  "1a1907b4",
+  "1c549ce4",
+  "2311e44b",
+  "28bcfaac",
+  "2a1811e2",
+  "2c63a862",
+  "2e6d26dc",
+  "2ebe6c90",
+  "2ebe6c92",
+  "352ab8bd",
+  "37f165cf",
+  "3fdac837",
+  "4100d0a0",
+  "4baee567",
+  "50635ada",
+  "51b23612",
+  "561fabcd",
+  "58ef2f1c",
+  "5d3d2817",
+  "60036106",
+  "60159905",
+  "60472f9c",
+  "60bf93ed_abs",
+  "6456829e",
+  "65240037",
+  "681a1674",
+  "69fee5aa",
+  "6ade9755",
+  "6b7dfb22",
+  "6d550036",
+  "6f9b354f",
+  "75832dbd",
+  "77eafa52",
+  "7a87bd0c",
+  "7e974930",
+  "8077ef71",
+  "8464fc84",
+  "853b0a1d",
+  "8550ddae",
+  "88432d0a",
+  "8a137a7f",
+  "8e91e7d9",
+  "9bbe84a2",
+  "9d25d4e0",
+  "a40e080f",
+  "a96c20ee",
+  "ad7109d1",
+  "affe2881",
+  "b0479f84",
+  "b29f3365",
+  "b320f3f8",
+  "b86304ba",
+  "b9cfe692",
+  "c2ac3c61",
+  "c7cf7dfd",
+  "c7dc5443",
+  "c8090214",
+  "c8090214_abs",
+  "cc6d1ec1",
+  "d24813b1",
+  "dad224aa",
+  "dfde3500",
+  "e01b8e2f",
+  "e3038f8c",
+  "edced276_abs",
+  "ef66a6e5",
+  "f0853d11",
+  "f35224e0",
+  "fca762bc",
+  "gpt4_15e38248",
+  "gpt4_1e4a8aeb",
+  "gpt4_213fd887",
+  "gpt4_2312f94c",
+  "gpt4_2655b836",
+  "gpt4_2f8be40d",
+  "gpt4_2f91af09",
+  "gpt4_4ef30696",
+  "gpt4_5438fa52",
+  "gpt4_65aabe59",
+  "gpt4_76048e76",
+  "gpt4_8279ba02",
+  "gpt4_8279ba03",
+  "gpt4_93159ced_abs",
+  "gpt4_d6585ce8",
+  "gpt4_d84a3211",
+  "gpt4_e414231e"
+ ],
+ "items": [
+  {
+   "item_id": "00ca467f",
+   "scenario_id": "lme:00ca467f",
+   "question_type": "multi-session",
+   "abstention": false,
+   "question": "How many doctor's appointments did I go to in March?",
+   "answer": "2",
+   "question_date": "2023/03/27 (Mon) 23:35",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_39900a0a_3",
+    "answer_39900a0a_2",
+    "answer_39900a0a_1"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "031748ae_abs",
+   "scenario_id": "lme:031748ae_abs",
+   "question_type": "knowledge-update",
+   "abstention": true,
+   "question": "How many engineers do I lead when I just started my new role as Software Engineer Manager?",
+   "answer": "The information provided is not enough. You mentioned starting the role as Senior Software Engineer but not Software Engineer Manager.",
+   "question_date": "2023/06/06 (Tue) 08:19",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_8748f791_abs_1",
+    "answer_8748f791_abs_2"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "0862e8bf_abs",
+   "scenario_id": "lme:0862e8bf_abs",
+   "question_type": "single-session-user",
+   "abstention": true,
+   "question": "What is the name of my hamster?",
+   "answer": "You did not mention this information. You mentioned your cat Luna but not your hamster.",
+   "question_date": "2023/05/30 (Tue) 21:39",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_c6fd8ebd_abs"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "09d032c9",
+   "scenario_id": "lme:09d032c9",
+   "question_type": "single-session-preference",
+   "abstention": false,
+   "question": "I've been having trouble with the battery life on my phone lately. Any tips?",
+   "answer": "The user would prefer responses that build upon their previous mention of purchasing a portable power bank, such as suggestions on how to optimize its use, like ensuring it's fully charged before use. They might also appreciate tips on utilizing battery-saving features on their phone. The user may not prefer responses that suggest alternative solutions or unrelated advice.",
+   "question_date": "2023/05/30 (Tue) 16:42",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_b10dce5e"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "0a34ad58",
+   "scenario_id": "lme:0a34ad58",
+   "question_type": "single-session-preference",
+   "abstention": false,
+   "question": "I’m a bit anxious about getting around Tokyo. Do you have any helpful tips?",
+   "answer": "The user would prefer responses that utilize their existing resources, such as their Suica card and TripIt app, to provide personalized tips for navigating Tokyo's public transportation. They might not prefer general tips or recommendations that do not take into account their prior preparations.",
+   "question_date": "2023/05/30 (Tue) 22:40",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_cebb7159"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "0e4e4c46",
+   "scenario_id": "lme:0e4e4c46",
+   "question_type": "knowledge-update",
+   "abstention": false,
+   "question": "What is my current highest score in Ticket to Ride?",
+   "answer": "132 points",
+   "question_date": "2023/06/10 (Sat) 16:46",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_f2f998c7_1",
+    "answer_f2f998c7_2"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "0e5e2d1a",
+   "scenario_id": "lme:0e5e2d1a",
+   "question_type": "single-session-assistant",
+   "abstention": false,
+   "question": "I wanted to follow up on our previous conversation about binaural beats for anxiety and depression. Can you remind me how many subjects were in the study published in the journal Music and Medicine that found significant reductions in symptoms of depression, anxiety, and stress?",
+   "answer": "38 subjects",
+   "question_date": "2023/05/30 (Tue) 18:13",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_ultrachat_113156"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "10e09553",
+   "scenario_id": "lme:10e09553",
+   "question_type": "knowledge-update",
+   "abstention": false,
+   "question": "How many largemouth bass did I catch with Alex on the earlier fishing trip to Lake Michigan before the 7/22 trip?",
+   "answer": "7",
+   "question_date": "2023/12/06 (Wed) 11:18",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_67be2c38_1",
+    "answer_67be2c38_2"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "15745da0_abs",
+   "scenario_id": "lme:15745da0_abs",
+   "question_type": "single-session-user",
+   "abstention": true,
+   "question": "How long have I been collecting vintage films?",
+   "answer": "You did not mention this information. You mentioned collecting vintage cameras but not vintage films.",
+   "question_date": "2023/05/30 (Tue) 23:02",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_586de428_abs"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "16c90bf4",
+   "scenario_id": "lme:16c90bf4",
+   "question_type": "single-session-assistant",
+   "abstention": false,
+   "question": "I'm looking back at our previous conversation about the Seco de Cordero recipe from Ancash. You mentioned using a light or medium-bodied beer, but I was wondering if you could remind me what type of beer you specifically recommended?",
+   "answer": "I recommended using a Pilsner or Lager for the recipe.",
+   "question_date": "2023/05/30 (Tue) 22:48",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_ultrachat_294807"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "1903aded",
+   "scenario_id": "lme:1903aded",
+   "question_type": "single-session-assistant",
+   "abstention": false,
+   "question": "I think we discussed work from home jobs for seniors earlier. Can you remind me what was the 7th job in the list you provided?",
+   "answer": "Transcriptionist.",
+   "question_date": "2023/05/30 (Tue) 20:57",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_sharegpt_hA7AkP3_0"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "1a1907b4",
+   "scenario_id": "lme:1a1907b4",
+   "question_type": "single-session-preference",
+   "abstention": false,
+   "question": "I've been thinking about making a cocktail for an upcoming get-together, but I'm not sure which one to choose. Any suggestions?",
+   "answer": "Considering their mixology class background, the user would prefer cocktail suggestions that build upon their existing skills and interests, such as creative variations of classic cocktails or innovative twists on familiar flavors. They might appreciate recommendations that incorporate their experience with refreshing summer drinks like Pimm's Cup. The user would not prefer overly simplistic or basic cocktail recipes, and may not be interested in suggestions that don't take into account their mixology class background.",
+   "question_date": "2023/05/30 (Tue) 22:31",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_719502eb"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "1c549ce4",
+   "scenario_id": "lme:1c549ce4",
+   "question_type": "multi-session",
+   "abstention": false,
+   "question": "What is the total cost of the car cover and detailing spray I purchased?",
+   "answer": "$140",
+   "question_date": "2023/05/30 (Tue) 23:21",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_4cb841a8_1",
+    "answer_4cb841a8_2"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "2311e44b",
+   "scenario_id": "lme:2311e44b",
+   "question_type": "multi-session",
+   "abstention": false,
+   "question": "How many pages do I have left to read in 'The Nightingale'?",
+   "answer": "190",
+   "question_date": "2023/05/30 (Tue) 22:55",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_bf633415_2",
+    "answer_bf633415_1"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "28bcfaac",
+   "scenario_id": "lme:28bcfaac",
+   "question_type": "single-session-assistant",
+   "abstention": false,
+   "question": "I'm going back to our previous conversation about music theory. You mentioned some online resources for learning music theory. Can you remind me of the website you recommended for free lessons and exercises?",
+   "answer": "MusicTheory.net",
+   "question_date": "2023/05/30 (Tue) 11:46",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_ultrachat_446979"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "2a1811e2",
+   "scenario_id": "lme:2a1811e2",
+   "question_type": "temporal-reasoning",
+   "abstention": false,
+   "question": "How many days had passed between the Hindu festival of Holi and the Sunday mass at St. Mary's Church?",
+   "answer": "21 days. 22 days (including the last day) is also acceptable.",
+   "question_date": "2023/03/26 (Sun) 12:05",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_1cc3cd0c_1",
+    "answer_1cc3cd0c_2"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "2c63a862",
+   "scenario_id": "lme:2c63a862",
+   "question_type": "temporal-reasoning",
+   "abstention": false,
+   "question": "How many days did it take for me to find a house I loved after starting to work with Rachel?",
+   "answer": "14 days. 15 days (including the last day) is also acceptable.",
+   "question_date": "2022/03/02 (Wed) 10:19",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_d39b7977_1",
+    "answer_d39b7977_2"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "2e6d26dc",
+   "scenario_id": "lme:2e6d26dc",
+   "question_type": "multi-session",
+   "abstention": false,
+   "question": "How many babies were born to friends and family members in the last few months?",
+   "answer": "5",
+   "question_date": "2023/05/13 (Sat) 23:55",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_fa526fc0_4",
+    "answer_fa526fc0_3",
+    "answer_fa526fc0_1",
+    "answer_fa526fc0_2"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "2ebe6c90",
+   "scenario_id": "lme:2ebe6c90",
+   "question_type": "temporal-reasoning",
+   "abstention": false,
+   "question": "How many days did it take me to finish 'The Nightingale' by Kristin Hannah?",
+   "answer": "21 days. 22 days (including the last day) is also acceptable.",
+   "question_date": "2023/05/01 (Mon) 21:05",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_c9d35c00_1",
+    "answer_c9d35c00_2"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "2ebe6c92",
+   "scenario_id": "lme:2ebe6c90",
+   "question_type": "temporal-reasoning",
+   "abstention": false,
+   "question": "Which book did I finish a week ago?",
+   "answer": "'The Nightingale' by Kristin Hannah",
+   "question_date": "2023/02/07 (Tue) 09:09",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_c9d35c00_1",
+    "answer_c9d35c00_2"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "352ab8bd",
+   "scenario_id": "lme:352ab8bd",
+   "question_type": "single-session-assistant",
+   "abstention": false,
+   "question": "Can you remind me what was the average improvement in framerate when using the Hardware-Aware Modular Training (HAMT) agent in the 'To Adapt or Not to Adapt? Real-Time Adaptation for Semantic Segmentation' submission?",
+   "answer": "The average improvement in framerate was approximately 20% when using the Hardware-Aware Modular Training (HAMT) agent.",
+   "question_date": "2023/05/30 (Tue) 23:31",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_sharegpt_NoDZzot_7"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "37f165cf",
+   "scenario_id": "lme:37f165cf",
+   "question_type": "multi-session",
+   "abstention": false,
+   "question": "What was the page count of the two novels I finished in January and March?",
+   "answer": "856",
+   "question_date": "2023/05/30 (Tue) 19:21",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_6b9b2b1e_2",
+    "answer_6b9b2b1e_1"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "3fdac837",
+   "scenario_id": "lme:3fdac837",
+   "question_type": "multi-session",
+   "abstention": false,
+   "question": "What is the total number of days I spent in Japan and Chicago?",
+   "answer": "11 days (or 12 days, if April 15th to 22nd is considered as 8 days)",
+   "question_date": "2023/05/30 (Tue) 19:13",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_419d21d5_2",
+    "answer_419d21d5_1"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "4100d0a0",
+   "scenario_id": "lme:4100d0a0",
+   "question_type": "single-session-user",
+   "abstention": false,
+   "question": "What is my ethnicity?",
+   "answer": "A mix of Irish and Italian",
+   "question_date": "2023/05/30 (Tue) 18:19",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_83c13ff9"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "4baee567",
+   "scenario_id": "lme:4baee567",
+   "question_type": "single-session-assistant",
+   "abstention": false,
+   "question": "I was looking back at our previous chat and I wanted to confirm, how many times did the Chiefs play the Jaguars at Arrowhead Stadium?",
+   "answer": "The Chiefs played the Jaguars 12 times at Arrowhead Stadium.",
+   "question_date": "2023/05/30 (Tue) 23:21",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_sharegpt_i9adwQn_0"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "50635ada",
+   "scenario_id": "lme:50635ada",
+   "question_type": "knowledge-update",
+   "abstention": false,
+   "question": "What was my previous frequent flyer status on United Airlines before I got the current status?",
+   "answer": "Premier Silver",
+   "question_date": "2023/06/29 (Thu) 04:09",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_dcd74827_1",
+    "answer_dcd74827_2"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "51b23612",
+   "scenario_id": "lme:51b23612",
+   "question_type": "single-session-assistant",
+   "abstention": false,
+   "question": "I was going through our previous conversation about political propaganda and humor, and I was wondering if you could remind me of that Soviet cartoon you mentioned that mocked Western culture?",
+   "answer": "Nu, pogodi!",
+   "question_date": "2023/05/30 (Tue) 20:38",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_ultrachat_427265"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "561fabcd",
+   "scenario_id": "lme:561fabcd",
+   "question_type": "single-session-assistant",
+   "abstention": false,
+   "question": "I was thinking back to our previous conversation about the Radiation Amplified zombie, and I was wondering if you remembered what we finally decided to name it?",
+   "answer": "Fissionator.",
+   "question_date": "2023/05/30 (Tue) 20:36",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_sharegpt_hChsWOp_97"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "58ef2f1c",
+   "scenario_id": "lme:58ef2f1c",
+   "question_type": "single-session-user",
+   "abstention": false,
+   "question": "When did I volunteer at the local animal shelter's fundraising dinner?",
+   "answer": "February 14th",
+   "question_date": "2023/04/02 (Sun) 23:49",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_59547700"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "5d3d2817",
+   "scenario_id": "lme:5d3d2817",
+   "question_type": "single-session-user",
+   "abstention": false,
+   "question": "What was my previous occupation?",
+   "answer": "Marketing specialist at a small startup",
+   "question_date": "2023/05/30 (Tue) 20:08",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_235eb6fb"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "60036106",
+   "scenario_id": "lme:60036106",
+   "question_type": "multi-session",
+   "abstention": false,
+   "question": "What was the total number of people reached by my Facebook ad campaign and Instagram influencer collaboration?",
+   "answer": "12,000",
+   "question_date": "2023/05/30 (Tue) 11:00",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_e552e1f9_1",
+    "answer_e552e1f9_2"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "60159905",
+   "scenario_id": "lme:60159905",
+   "question_type": "multi-session",
+   "abstention": false,
+   "question": "How many dinner parties have I attended in the past month?",
+   "answer": "three",
+   "question_date": "2023/05/30 (Tue) 14:40",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_75eca223_2",
+    "answer_75eca223_1"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "60472f9c",
+   "scenario_id": "lme:60472f9c",
+   "question_type": "multi-session",
+   "abstention": false,
+   "question": "How many projects have I been working on simultaneously, excluding my thesis?",
+   "answer": "2",
+   "question_date": "2023/05/30 (Tue) 23:41",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_e7fe8c8b_1",
+    "answer_e7fe8c8b_2",
+    "answer_e7fe8c8b_3"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "60bf93ed_abs",
+   "scenario_id": "lme:60bf93ed_abs",
+   "question_type": "multi-session",
+   "abstention": true,
+   "question": "How many days did it take for my iPad case to arrive after I bought it?",
+   "answer": "The information provided is not enough. You did not mention buying an iPad case.",
+   "question_date": "2023/01/24 (Tue) 23:58",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_e0956e0a_abs_2",
+    "answer_e0956e0a_abs_1"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "6456829e",
+   "scenario_id": "lme:6456829e",
+   "question_type": "multi-session",
+   "abstention": false,
+   "question": "How many plants did I initially plant for tomatoes and cucumbers?",
+   "answer": "8",
+   "question_date": "2023/05/30 (Tue) 23:46",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_743f03a1_2",
+    "answer_743f03a1_1"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "65240037",
+   "scenario_id": "lme:65240037",
+   "question_type": "single-session-assistant",
+   "abstention": false,
+   "question": "I remember you told me to dilute tea tree oil with a carrier oil before applying it to my skin. Can you remind me what the recommended ratio is?",
+   "answer": "The recommended ratio is 1:10, meaning one part tea tree oil to ten parts carrier oil.",
+   "question_date": "2023/05/30 (Tue) 23:54",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_ultrachat_403752"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "681a1674",
+   "scenario_id": "lme:681a1674",
+   "question_type": "multi-session",
+   "abstention": false,
+   "question": "How many Marvel movies did I re-watch?",
+   "answer": "2",
+   "question_date": "2023/05/30 (Tue) 21:31",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_3be95d43_1",
+    "answer_3be95d43_2"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "69fee5aa",
+   "scenario_id": "lme:69fee5aa",
+   "question_type": "knowledge-update",
+   "abstention": false,
+   "question": "How many pre-1920 American coins do I have in my collection?",
+   "answer": "38",
+   "question_date": "2023/06/09 (Fri) 11:14",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_d6028d6e_1",
+    "answer_d6028d6e_2"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "6ade9755",
+   "scenario_id": "lme:6ade9755",
+   "question_type": "single-session-user",
+   "abstention": false,
+   "question": "Where do I take yoga classes?",
+   "answer": "Serenity Yoga",
+   "question_date": "2023/05/30 (Tue) 21:04",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_9398da02"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "6b7dfb22",
+   "scenario_id": "lme:6b7dfb22",
+   "question_type": "single-session-preference",
+   "abstention": false,
+   "question": "I've been feeling a bit stuck with my paintings lately. Do you have any ideas on how I can find new inspiration?",
+   "answer": "The user would prefer responses that build upon their existing sources of inspiration, such as revisiting Instagram art accounts or exploring new techniques from online tutorials. They might also appreciate suggestions that revisit previous themes they found enjoyable, like painting flowers. The user would not prefer generic or vague suggestions for finding inspiration, and would likely appreciate responses that utilize their recent 30-day painting challenge experience.",
+   "question_date": "2023/05/30 (Tue) 13:57",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_f6502d0f"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "6d550036",
+   "scenario_id": "lme:6d550036",
+   "question_type": "multi-session",
+   "abstention": false,
+   "question": "How many projects have I led or am currently leading?",
+   "answer": "2",
+   "question_date": "2023/05/30 (Tue) 23:32",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_ec904b3c_1",
+    "answer_ec904b3c_4",
+    "answer_ec904b3c_3",
+    "answer_ec904b3c_2"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "6f9b354f",
+   "scenario_id": "lme:6f9b354f",
+   "question_type": "single-session-user",
+   "abstention": false,
+   "question": "What color did I repaint my bedroom walls?",
+   "answer": "a lighter shade of gray",
+   "question_date": "2023/05/30 (Tue) 22:42",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_feb5200f"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "75832dbd",
+   "scenario_id": "lme:75832dbd",
+   "question_type": "single-session-preference",
+   "abstention": false,
+   "question": "Can you recommend some recent publications or conferences that I might find interesting?",
+   "answer": "The user would prefer suggestions related to recent research papers, articles, or conferences that focus on artificial intelligence in healthcare, particularly those that involve deep learning for medical image analysis. They would not be interested in general AI topics or those unrelated to healthcare.",
+   "question_date": "2023/05/30 (Tue) 13:53",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_d87a6ef8"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "77eafa52",
+   "scenario_id": "lme:77eafa52",
+   "question_type": "multi-session",
+   "abstention": false,
+   "question": "How much more did I have to pay for the trip after the initial quote?",
+   "answer": "$300",
+   "question_date": "2023/05/30 (Tue) 20:07",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_33c251f0_2",
+    "answer_33c251f0_1"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "7a87bd0c",
+   "scenario_id": "lme:7a87bd0c",
+   "question_type": "knowledge-update",
+   "abstention": false,
+   "question": "How long have I been sticking to my daily tidying routine?",
+   "answer": "4 weeks",
+   "question_date": "2023/09/30 (Sat) 23:15",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_d08a934d_1",
+    "answer_d08a934d_2"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "7e974930",
+   "scenario_id": "lme:7e974930",
+   "question_type": "knowledge-update",
+   "abstention": false,
+   "question": "How much did I earn at the Downtown Farmers Market on my most recent visit?",
+   "answer": "$420",
+   "question_date": "2023/10/26 (Thu) 11:44",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_c9f5693c_1",
+    "answer_c9f5693c_2"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "8077ef71",
+   "scenario_id": "lme:8077ef71",
+   "question_type": "temporal-reasoning",
+   "abstention": false,
+   "question": "How many days ago did I attend a networking event?",
+   "answer": "26 days. 27 days (including the last day) is also acceptable.",
+   "question_date": "2022/04/04 (Mon) 21:03",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_0dd54b7c_1"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "8464fc84",
+   "scenario_id": "lme:8464fc84",
+   "question_type": "single-session-assistant",
+   "abstention": false,
+   "question": "I'm planning to visit the Vatican again and I was wondering if you could remind me of the name of that famous deli near the Vatican that serves the best cured meats and cheeses?",
+   "answer": "Roscioli",
+   "question_date": "2023/05/30 (Tue) 23:01",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_ultrachat_467053"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "853b0a1d",
+   "scenario_id": "lme:853b0a1d",
+   "question_type": "single-session-user",
+   "abstention": false,
+   "question": "How old was I when my grandma gave me the silver necklace?",
+   "answer": "18",
+   "question_date": "2023/05/30 (Tue) 21:54",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_69811d4a"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "8550ddae",
+   "scenario_id": "lme:8550ddae",
+   "question_type": "single-session-user",
+   "abstention": false,
+   "question": "What type of cocktail recipe did I try last weekend?",
+   "answer": "lavender gin fizz",
+   "question_date": "2023/05/30 (Tue) 23:51",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_c8354ae9"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "88432d0a",
+   "scenario_id": "lme:88432d0a",
+   "question_type": "multi-session",
+   "abstention": false,
+   "question": "How many times did I bake something in the past two weeks?",
+   "answer": "4",
+   "question_date": "2023/05/30 (Tue) 23:45",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_733e443a_3",
+    "answer_733e443a_4",
+    "answer_733e443a_2",
+    "answer_733e443a_1"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "8a137a7f",
+   "scenario_id": "lme:8a137a7f",
+   "question_type": "single-session-user",
+   "abstention": false,
+   "question": "What type of bulb did I replace in my bedside lamp?",
+   "answer": "Philips LED bulb",
+   "question_date": "2023/05/30 (Tue) 14:18",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_15d63a22"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "8e91e7d9",
+   "scenario_id": "lme:8e91e7d9",
+   "question_type": "multi-session",
+   "abstention": false,
+   "question": "What is the total number of siblings I have?",
+   "answer": "4",
+   "question_date": "2023/05/30 (Tue) 09:50",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_477ae455_1",
+    "answer_477ae455_2"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "9bbe84a2",
+   "scenario_id": "lme:9bbe84a2",
+   "question_type": "knowledge-update",
+   "abstention": false,
+   "question": "What was my previous goal for my Apex Legends level before I updated my goal?",
+   "answer": "level 100",
+   "question_date": "2023/10/08 (Sun) 15:29",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_c6a0c6c2_1",
+    "answer_c6a0c6c2_2"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "9d25d4e0",
+   "scenario_id": "lme:9d25d4e0",
+   "question_type": "multi-session",
+   "abstention": false,
+   "question": "How many pieces of jewelry did I acquire in the last two months?",
+   "answer": "3",
+   "question_date": "2023/05/30 (Tue) 15:43",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_fcff2dc4_2",
+    "answer_fcff2dc4_1",
+    "answer_fcff2dc4_3"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "a40e080f",
+   "scenario_id": "lme:a40e080f",
+   "question_type": "single-session-assistant",
+   "abstention": false,
+   "question": "I was going through our previous conversation and I was wondering if you could remind me of the two companies you mentioned that prioritize employee safety and well-being like Triumvirate?",
+   "answer": "Patagonia and Southwest Airlines.",
+   "question_date": "2023/05/30 (Tue) 19:28",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_ultrachat_269020"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "a96c20ee",
+   "scenario_id": "lme:a96c20ee",
+   "question_type": "multi-session",
+   "abstention": false,
+   "question": "At which university did I present a poster on my thesis research?",
+   "answer": "Harvard University",
+   "question_date": "2023/05/30 (Tue) 21:47",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_ef84b994_1",
+    "answer_ef84b994_2"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "ad7109d1",
+   "scenario_id": "lme:ad7109d1",
+   "question_type": "single-session-user",
+   "abstention": false,
+   "question": "What speed is my new internet plan?",
+   "answer": "500 Mbps",
+   "question_date": "2023/05/30 (Tue) 21:56",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_679840f8"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "affe2881",
+   "scenario_id": "lme:affe2881",
+   "question_type": "knowledge-update",
+   "abstention": false,
+   "question": "How many different species of birds have I seen in my local park?",
+   "answer": "32",
+   "question_date": "2023/06/07 (Wed) 02:42",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_90de9b4d_1",
+    "answer_90de9b4d_2"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "b0479f84",
+   "scenario_id": "lme:b0479f84",
+   "question_type": "single-session-preference",
+   "abstention": false,
+   "question": "I've got some free time tonight, any documentary recommendations?",
+   "answer": "The user would prefer documentary recommendations that are similar in style and theme to 'Our Planet', 'Free Solo', and 'Tiger King', which they have previously enjoyed. They might not prefer recommendations of documentaries that are vastly different in tone or subject matter from these titles. The preferred response utilizes the user's previously mentioned viewing history to suggest documentaries that cater to their tastes.",
+   "question_date": "2023/05/30 (Tue) 22:56",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_30f63ddb"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "b29f3365",
+   "scenario_id": "lme:b29f3365",
+   "question_type": "temporal-reasoning",
+   "abstention": false,
+   "question": "How long had I been taking guitar lessons when I bought the new guitar amp?",
+   "answer": "Four weeks",
+   "question_date": "2023/05/25 (Thu) 19:07",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_436d4309_2",
+    "answer_436d4309_1"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "b320f3f8",
+   "scenario_id": "lme:b320f3f8",
+   "question_type": "single-session-user",
+   "abstention": false,
+   "question": "What type of action figure did I buy from a thrift store?",
+   "answer": "a blue Snaggletooth",
+   "question_date": "2023/05/30 (Tue) 17:49",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_5cc9b056"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "b86304ba",
+   "scenario_id": "lme:b86304ba",
+   "question_type": "single-session-user",
+   "abstention": false,
+   "question": "How much is the painting of a sunset worth in terms of the amount I paid for it?",
+   "answer": "The painting is worth triple what I paid for it.",
+   "question_date": "2023/05/30 (Tue) 23:18",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_645b0329"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "b9cfe692",
+   "scenario_id": "lme:b9cfe692",
+   "question_type": "temporal-reasoning",
+   "abstention": false,
+   "question": "How long did I take to finish 'The Seven Husbands of Evelyn Hugo' and 'The Nightingale' combined?",
+   "answer": "5.5 weeks",
+   "question_date": "2023/05/24 (Wed) 08:08",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_5e3bb940_3",
+    "answer_5e3bb940_2",
+    "answer_5e3bb940_1"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "c2ac3c61",
+   "scenario_id": "lme:c2ac3c61",
+   "question_type": "multi-session",
+   "abstention": false,
+   "question": "How many online courses have I completed in total?",
+   "answer": "5",
+   "question_date": "2023/05/30 (Tue) 16:30",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_923c0221_1",
+    "answer_923c0221_2"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "c7cf7dfd",
+   "scenario_id": "lme:c7cf7dfd",
+   "question_type": "single-session-assistant",
+   "abstention": false,
+   "question": "I'm going back to our previous conversation about traditional Indian embroidery and tailoring techniques. Can you remind me of the name of that online store based in India that sells traditional Indian fabrics, threads, and embellishments?",
+   "answer": "Nostalgia",
+   "question_date": "2023/05/30 (Tue) 20:59",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_ultrachat_456407"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "c7dc5443",
+   "scenario_id": "lme:c7dc5443",
+   "question_type": "knowledge-update",
+   "abstention": false,
+   "question": "What is my current record in the recreational volleyball league?",
+   "answer": "5-2",
+   "question_date": "2023/07/21 (Fri) 20:30",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_0cdbca92_1",
+    "answer_0cdbca92_2"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "c8090214",
+   "scenario_id": "lme:c8090214",
+   "question_type": "temporal-reasoning",
+   "abstention": false,
+   "question": "How many days before I bought the iPhone 13 Pro did I attend the Holiday Market?",
+   "answer": "7 days. 8 days (including the last day) is also acceptable.",
+   "question_date": "2023/12/10 (Sun) 17:17",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_70dc7d08_2",
+    "answer_70dc7d08_1"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "c8090214_abs",
+   "scenario_id": "lme:c8090214_abs",
+   "question_type": "temporal-reasoning",
+   "abstention": true,
+   "question": "How many days before I bought my iPad did I attend the Holiday Market?",
+   "answer": "The information provided is not enough. You mentioned getting the iPhone 13 Pro and attending the market, but you did not mention buying an iPad.",
+   "question_date": "2023/05/30 (Tue) 05:17",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_70dc7d08_abs_1",
+    "answer_70dc7d08_abs_2"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "cc6d1ec1",
+   "scenario_id": "lme:cc6d1ec1",
+   "question_type": "temporal-reasoning",
+   "abstention": false,
+   "question": "How long had I been bird watching when I attended the bird watching workshop?",
+   "answer": "Two months",
+   "question_date": "2023/05/21 (Sun) 19:31",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_be73098b_2",
+    "answer_be73098b_1"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "d24813b1",
+   "scenario_id": "lme:d24813b1",
+   "question_type": "single-session-preference",
+   "abstention": false,
+   "question": "I'm thinking of inviting my colleagues over for a small gathering. Any tips on what to bake?",
+   "answer": "The user would prefer baking suggestions that take into account their previous success with the lemon poppyseed cake, such as variations of that recipe or other desserts that share similar qualities. They might prefer suggestions that balance impressiveness with manageability, considering their previous experience. The user may not prefer overly complex or unfamiliar recipes, or suggestions that do not build upon their existing baking experience.",
+   "question_date": "2023/05/30 (Tue) 17:57",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_7c0ade93"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "dad224aa",
+   "scenario_id": "lme:dad224aa",
+   "question_type": "knowledge-update",
+   "abstention": false,
+   "question": "What time do I wake up on Saturday mornings?",
+   "answer": "7:30 am",
+   "question_date": "2023/06/24 (Sat) 03:58",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_4a97ae40_1",
+    "answer_4a97ae40_2"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "dfde3500",
+   "scenario_id": "lme:dfde3500",
+   "question_type": "knowledge-update",
+   "abstention": false,
+   "question": "What day of the week did I meet with my previous language exchange tutor Juan?",
+   "answer": "Wednesday",
+   "question_date": "2023/06/20 (Tue) 14:46",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_35d6c0be_1",
+    "answer_35d6c0be_2"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "e01b8e2f",
+   "scenario_id": "lme:e01b8e2f",
+   "question_type": "single-session-user",
+   "abstention": false,
+   "question": "Where did I go on a week-long trip with my family?",
+   "answer": "Hawaii",
+   "question_date": "2023/05/30 (Tue) 21:42",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_5ca6cd28"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "e3038f8c",
+   "scenario_id": "lme:e3038f8c",
+   "question_type": "multi-session",
+   "abstention": false,
+   "question": "How many rare items do I have in total?",
+   "answer": "99",
+   "question_date": "2023/05/30 (Tue) 20:48",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_b6018747_2",
+    "answer_b6018747_4",
+    "answer_b6018747_1",
+    "answer_b6018747_3"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "edced276_abs",
+   "scenario_id": "lme:edced276_abs",
+   "question_type": "multi-session",
+   "abstention": true,
+   "question": "How many days did I spend in total traveling in Hawaii and in Seattle?",
+   "answer": "The information provided is not enough. You mentioned traveling for 10 days in Hawaii but did not mention abything about the trip to Seattle.",
+   "question_date": "2023/05/30 (Tue) 20:59",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_60e8941a_abs_1",
+    "answer_60e8941a_abs_2"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "ef66a6e5",
+   "scenario_id": "lme:ef66a6e5",
+   "question_type": "multi-session",
+   "abstention": false,
+   "question": "How many sports have I played competitively in the past?",
+   "answer": "two",
+   "question_date": "2023/05/30 (Tue) 20:36",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_f7fd1029_2",
+    "answer_f7fd1029_1"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "f0853d11",
+   "scenario_id": "lme:f0853d11",
+   "question_type": "temporal-reasoning",
+   "abstention": false,
+   "question": "How many days had passed between the 'Walk for Hunger' event and the 'Coastal Cleanup' event?",
+   "answer": "14 days. 8 days (including the last day) is also acceptable.",
+   "question_date": "2023/03/14 (Tue) 21:24",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_932ea3bf_2",
+    "answer_932ea3bf_1"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "f35224e0",
+   "scenario_id": "lme:f35224e0",
+   "question_type": "multi-session",
+   "abstention": false,
+   "question": "What is the total number of episodes I've listened to from 'How I Built This' and 'My Favorite Murder'?",
+   "answer": "27",
+   "question_date": "2023/05/30 (Tue) 23:58",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_e9bb9500_2",
+    "answer_e9bb9500_1"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "fca762bc",
+   "scenario_id": "lme:fca762bc",
+   "question_type": "single-session-assistant",
+   "abstention": false,
+   "question": "I wanted to follow up on our previous conversation about language learning apps. You mentioned a few options, and I was wondering if you could remind me of the one that uses mnemonics to help learners memorize words and phrases?",
+   "answer": "Memrise",
+   "question_date": "2023/05/30 (Tue) 21:25",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_ultrachat_39395"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "gpt4_15e38248",
+   "scenario_id": "lme:gpt4_15e38248",
+   "question_type": "multi-session",
+   "abstention": false,
+   "question": "How many pieces of furniture did I buy, assemble, sell, or fix in the past few months?",
+   "answer": "4",
+   "question_date": "2023/05/30 (Tue) 15:31",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_8858d9dc_3",
+    "answer_8858d9dc_1",
+    "answer_8858d9dc_4",
+    "answer_8858d9dc_2"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "gpt4_1e4a8aeb",
+   "scenario_id": "lme:gpt4_1e4a8aeb",
+   "question_type": "temporal-reasoning",
+   "abstention": false,
+   "question": "How many days passed between the day I attended the gardening workshop and the day I planted the tomato saplings?",
+   "answer": "6 days. 7 days (including the last day) is also acceptable.",
+   "question_date": "2023/05/08 (Mon) 06:05",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_16bd5ea5_1",
+    "answer_16bd5ea5_2"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "gpt4_213fd887",
+   "scenario_id": "lme:gpt4_213fd887",
+   "question_type": "temporal-reasoning",
+   "abstention": false,
+   "question": "Which event did I participate in first, the volleyball league or the charity 5K run to raise money for a local children's hospital?",
+   "answer": "volleyball league",
+   "question_date": "2023/05/24 (Wed) 14:01",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_53582e7e_2",
+    "answer_53582e7e_1"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "gpt4_2312f94c",
+   "scenario_id": "lme:gpt4_2312f94c",
+   "question_type": "temporal-reasoning",
+   "abstention": false,
+   "question": "Which device did I got first, the Samsung Galaxy S22 or the Dell XPS 13?",
+   "answer": "Samsung Galaxy S22",
+   "question_date": "2023/03/15 (Wed) 04:45",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_5328c3c2_2",
+    "answer_5328c3c2_1"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "gpt4_2655b836",
+   "scenario_id": "lme:gpt4_2655b836",
+   "question_type": "temporal-reasoning",
+   "abstention": false,
+   "question": "What was the first issue I had with my new car after its first service?",
+   "answer": "GPS system not functioning correctly",
+   "question_date": "2023/04/10 (Mon) 10:15",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_4be1b6b4_1",
+    "answer_4be1b6b4_2",
+    "answer_4be1b6b4_3"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "gpt4_2f8be40d",
+   "scenario_id": "lme:gpt4_2f8be40d",
+   "question_type": "multi-session",
+   "abstention": false,
+   "question": "How many weddings have I attended in this year?",
+   "answer": "I attended three weddings. The couples were Rachel and Mike, Emily and Sarah, and Jen and Tom.",
+   "question_date": "2023/10/15 (Sun) 23:47",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_e7b0637e_2",
+    "answer_e7b0637e_1",
+    "answer_e7b0637e_3"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "gpt4_2f91af09",
+   "scenario_id": "lme:gpt4_2f91af09",
+   "question_type": "multi-session",
+   "abstention": false,
+   "question": "How many total pieces of writing have I completed since I started writing again three weeks ago, including short stories, poems, and pieces for the writing challenge?",
+   "answer": "23",
+   "question_date": "2023/05/30 (Tue) 17:14",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_669318cf_2",
+    "answer_669318cf_1",
+    "answer_669318cf_3"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "gpt4_4ef30696",
+   "scenario_id": "lme:gpt4_4ef30696",
+   "question_type": "temporal-reasoning",
+   "abstention": false,
+   "question": "How many days passed between the day I finished reading 'The Nightingale' and the day I started reading 'The Hitchhiker's Guide to the Galaxy'?",
+   "answer": "1 day. 2 days (including the last day) is also acceptable.",
+   "question_date": "2022/05/01 (Sun) 04:58",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_f964cea3_1",
+    "answer_f964cea3_2"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "gpt4_5438fa52",
+   "scenario_id": "lme:gpt4_5438fa52",
+   "question_type": "temporal-reasoning",
+   "abstention": false,
+   "question": "Which event happened first, my attendance at a cultural festival or the start of my Spanish classes?",
+   "answer": "Spanish classes",
+   "question_date": "2023/05/27 (Sat) 16:21",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_b10f3828_1",
+    "answer_b10f3828_2"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "gpt4_65aabe59",
+   "scenario_id": "lme:gpt4_65aabe59",
+   "question_type": "temporal-reasoning",
+   "abstention": false,
+   "question": "Which device did I set up first, the smart thermostat or the mesh network system?",
+   "answer": "Smart thermostat",
+   "question_date": "2023/05/25 (Thu) 11:29",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_30dfe889_1",
+    "answer_30dfe889_2"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "gpt4_76048e76",
+   "scenario_id": "lme:gpt4_76048e76",
+   "question_type": "temporal-reasoning",
+   "abstention": false,
+   "question": "Which vehicle did I take care of first in February, the bike or the car?",
+   "answer": "bike",
+   "question_date": "2023/03/10 (Fri) 03:39",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_b535969f_1",
+    "answer_b535969f_2"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "gpt4_8279ba02",
+   "scenario_id": "lme:gpt4_8279ba02",
+   "question_type": "temporal-reasoning",
+   "abstention": false,
+   "question": "How many days ago did I buy a smoker?",
+   "answer": "10 days ago. 11 days (including the last day) is also acceptable.",
+   "question_date": "2023/03/25 (Sat) 02:46",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_56521e65_1"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "gpt4_8279ba03",
+   "scenario_id": "lme:gpt4_8279ba03",
+   "question_type": "temporal-reasoning",
+   "abstention": false,
+   "question": "What kitchen appliance did I buy 10 days ago?",
+   "answer": "a smoker",
+   "question_date": "2023/03/25 (Sat) 18:26",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_56521e66_1"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "gpt4_93159ced_abs",
+   "scenario_id": "lme:gpt4_93159ced_abs",
+   "question_type": "temporal-reasoning",
+   "abstention": true,
+   "question": "How long have I been working before I started my current job at Google?",
+   "answer": "The information provided is not enough. From the information provided, You haven't started working at Google yet.",
+   "question_date": "2023/05/30 (Tue) 18:54",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_e5131a1b_abs_1",
+    "answer_e5131a1b_abs_2"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "gpt4_d6585ce8",
+   "scenario_id": "lme:gpt4_d6585ce8",
+   "question_type": "temporal-reasoning",
+   "abstention": false,
+   "question": "What is the order of the concerts and musical events I attended in the past two months, starting from the earliest?",
+   "answer": "The order of the concerts I attended is: 1. Billie Eilish concert at the Wells Fargo Center in Philly, 2. Free outdoor concert series in the park, 3. Music festival in Brooklyn, 4. Jazz night at a local bar, 5. Queen + Adam Lambert concert at the Prudential Center in Newark, NJ.",
+   "question_date": "2023/04/22 (Sat) 19:31",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_f999b05b_1",
+    "answer_f999b05b_4",
+    "answer_f999b05b_2",
+    "answer_f999b05b_5",
+    "answer_f999b05b_3"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "gpt4_d84a3211",
+   "scenario_id": "lme:gpt4_d84a3211",
+   "question_type": "multi-session",
+   "abstention": false,
+   "question": "How much total money have I spent on bike-related expenses since the start of the year?",
+   "answer": "$185",
+   "question_date": "2023/05/05 (Fri) 23:56",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_2880eb6c_2",
+    "answer_2880eb6c_4",
+    "answer_2880eb6c_1",
+    "answer_2880eb6c_3"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  },
+  {
+   "item_id": "gpt4_e414231e",
+   "scenario_id": "lme:gpt4_e414231e",
+   "question_type": "temporal-reasoning",
+   "abstention": false,
+   "question": "How many days passed between the day I fixed my mountain bike and the day I decided to upgrade my road bike's pedals?",
+   "answer": "4 days. 5 days (including the last day) is also acceptable.",
+   "question_date": "2023/04/10 (Mon) 20:29",
+   "weight": 1.0,
+   "gold_sessions": [
+    "answer_e28c1f0d_1",
+    "answer_e28c1f0d_2"
+   ],
+   "scorer": "lme-anscheck@9e0b455/flash"
+  }
+ ]
+}

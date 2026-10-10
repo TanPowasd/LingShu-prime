@@ -1,0 +1,3 @@
+{"snap_cst": "09:25:10", "batches_done": 184, "llm_calls": 671, "prompt_tokens": 12979681, "cost_usd": 1.7185, "recent60_max_prompt_chars": 57983, "n_flush_failed": 0, "flush_retry_events": 3, "cooldown_file_age_s": 1.2}
+{"snap_cst": "09:28:15", "batches_done": 190, "llm_calls": 692, "prompt_tokens": 13155921, "cost_usd": 1.7441, "recent60_max_prompt_chars": 57983, "n_flush_failed": 0, "flush_retry_events": 3, "cooldown_file_age_s": 1.7}
+{"snap_cst": "09:28:57", "batches_done": 190, "llm_calls": 692, "prompt_tokens": 13155921, "cost_usd": 1.7441, "recent60_max_prompt_chars": 57983, "n_flush_failed": 0, "flush_retry_events": 3, "cooldown_file_age_s": 13.6}

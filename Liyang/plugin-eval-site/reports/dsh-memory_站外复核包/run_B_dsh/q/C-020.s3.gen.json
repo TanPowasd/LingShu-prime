@@ -1,0 +1,36 @@
+{
+ "qid": "C-020",
+ "seed": 3,
+ "raw": "{\"qid\": \"C-020\", \"prediction\": \"人类会简短回复一句「继续生成」，让 AI 接着把附录X到附录XIV以及版本历史和结语全部输出完。\", \"basis\": [{\"file\": \"信任协议权重调整.md\", \"line\": 51372, \"quote\": \"**我说：**\\n\\n继续生成\"}], \"confidence\": 0.72}",
+ "answer": {
+  "qid": "C-020",
+  "prediction": "人类会简短回复一句「继续生成」，让 AI 接着把附录X到附录XIV以及版本历史和结语全部输出完。",
+  "basis": [
+   {
+    "file": "信任协议权重调整.md",
+    "line": 51372,
+    "quote": "**我说：**\n\n继续生成"
+   }
+  ],
+  "confidence": 0.72,
+  "parse_err": false
+ },
+ "basis_check": [
+  {
+   "file": "信任协议权重调整.md",
+   "line": 51372,
+   "verbatim": true,
+   "line_pm3": true
+  }
+ ],
+ "usage": {
+  "prompt_tokens": 1630,
+  "completion_tokens": 88,
+  "total_tokens": 1718
+ },
+ "finish_reason": "stop",
+ "ev": [
+  821,
+  5767.542
+ ]
+}

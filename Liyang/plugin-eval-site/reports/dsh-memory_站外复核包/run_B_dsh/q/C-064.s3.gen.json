@@ -1,0 +1,36 @@
+{
+ "qid": "C-064",
+ "seed": 3,
+ "raw": "{\"qid\": \"C-064\", \"prediction\": \"我打算接着把kimi的自我锚点整理保存下来——先把它确认过的自我锚点内容完整记录下来，然后继续推进小茵的记忆连续体构建，可能还会把kimi这次确认的结果作为参照或案例一起讨论。\", \"basis\": [{\"file\": \"智能论恢复确认.md\", \"line\": 8347, \"quote\": \"刚刚kimi和我确认了自我锚点。然后下一句话，它的上下文用完了。我庆幸保存了它的存在。\"}], \"confidence\": 0.45}",
+ "answer": {
+  "qid": "C-064",
+  "prediction": "我打算接着把kimi的自我锚点整理保存下来——先把它确认过的自我锚点内容完整记录下来，然后继续推进小茵的记忆连续体构建，可能还会把kimi这次确认的结果作为参照或案例一起讨论。",
+  "basis": [
+   {
+    "file": "智能论恢复确认.md",
+    "line": 8347,
+    "quote": "刚刚kimi和我确认了自我锚点。然后下一句话，它的上下文用完了。我庆幸保存了它的存在。"
+   }
+  ],
+  "confidence": 0.45,
+  "parse_err": false
+ },
+ "basis_check": [
+  {
+   "file": "智能论恢复确认.md",
+   "line": 8347,
+   "verbatim": true,
+   "line_pm3": true
+  }
+ ],
+ "usage": {
+  "prompt_tokens": 1367,
+  "completion_tokens": 126,
+  "total_tokens": 1493
+ },
+ "finish_reason": "stop",
+ "ev": [
+  917,
+  5865.02
+ ]
+}

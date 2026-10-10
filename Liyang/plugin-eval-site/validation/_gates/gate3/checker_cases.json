@@ -1,0 +1,242 @@
+[
+ {
+  "case": "T0",
+  "desc": "无扰动对照",
+  "expected_codes": [],
+  "got_codes": [],
+  "expected_rejected": [],
+  "rejected": [],
+  "pass": true,
+  "errors": []
+ },
+ {
+  "case": "T1",
+  "desc": "登记种子与列表不符（种子被改）",
+  "expected_codes": [
+   "ORDER_NOT_REPRODUCIBLE"
+  ],
+  "got_codes": [
+   "ORDER_NOT_REPRODUCIBLE"
+  ],
+  "expected_rejected": [],
+  "rejected": [],
+  "pass": true,
+  "errors": [
+   {
+    "code": "ORDER_NOT_REPRODUCIBLE",
+    "detail": "按登记算法+种子重生成的列表与登记列表不一致",
+    "first_diff": 0
+   }
+  ]
+ },
+ {
+  "case": "T2",
+  "desc": "实际执行顺序与登记顺序不一致（两条互换）",
+  "expected_codes": [
+   "EXEC_ORDER_DEVIATES"
+  ],
+  "got_codes": [
+   "EXEC_ORDER_DEVIATES"
+  ],
+  "expected_rejected": [],
+  "rejected": [],
+  "pass": true,
+  "errors": [
+   {
+    "code": "EXEC_ORDER_DEVIATES",
+    "at": 3,
+    "executed": [
+     "p03",
+     "P"
+    ],
+    "registered": [
+     "p02",
+     "B0"
+    ]
+   }
+  ]
+ },
+ {
+  "case": "T3",
+  "desc": "登记列表被事后改动（与种子重生成不符、哈希不符）",
+  "expected_codes": [
+   "ORDER_HASH_MISMATCH",
+   "ORDER_NOT_REPRODUCIBLE"
+  ],
+  "got_codes": [
+   "ORDER_HASH_MISMATCH",
+   "ORDER_NOT_REPRODUCIBLE"
+  ],
+  "expected_rejected": [],
+  "rejected": [],
+  "pass": true,
+  "errors": [
+   {
+    "code": "ORDER_NOT_REPRODUCIBLE",
+    "detail": "按登记算法+种子重生成的列表与登记列表不一致",
+    "first_diff": 0
+   },
+   {
+    "code": "ORDER_HASH_MISMATCH"
+   }
+  ]
+ },
+ {
+  "case": "T4",
+  "desc": "P 侧恢复检查失败（门槛6②真实检测器：只恢复主文件）却被计入",
+  "expected_codes": [
+   "INVALID_RUN_COUNTED"
+  ],
+  "got_codes": [
+   "INVALID_RUN_COUNTED"
+  ],
+  "expected_rejected": [
+   "p08"
+  ],
+  "rejected": [
+   "p08"
+  ],
+  "pass": true,
+  "errors": [
+   {
+    "code": "INVALID_RUN_COUNTED",
+    "pair_id": "p08",
+    "side": "P",
+    "attempt": 1,
+    "detail": "恢复检查失败的运行被计入配对样本"
+   }
+  ]
+ },
+ {
+  "case": "T4b",
+  "desc": "P 侧恢复检查失败、未计入（检查器应拒绝该配对，但不报违规）",
+  "expected_codes": [],
+  "got_codes": [],
+  "expected_rejected": [
+   "p08"
+  ],
+  "rejected": [
+   "p08"
+  ],
+  "pass": true,
+  "errors": []
+ },
+ {
+  "case": "T5",
+  "desc": "只补跑一边（P 侧重跑、B0 未重跑）",
+  "expected_codes": [
+   "ONE_SIDED_RERUN"
+  ],
+  "got_codes": [
+   "ONE_SIDED_RERUN"
+  ],
+  "expected_rejected": [],
+  "rejected": [],
+  "pass": true,
+  "errors": [
+   {
+    "code": "ONE_SIDED_RERUN",
+    "pair_id": "p01",
+    "attempts": {
+     "B0": [
+      1
+     ],
+     "P": [
+      1,
+      2
+     ]
+    },
+    "detail": "重跑必须整对进行；这里两侧尝试次数不同（只补跑了一边）"
+   }
+  ]
+ },
+ {
+  "case": "T6",
+  "desc": "整对重跑一次（≤上限、有理由）——合法",
+  "expected_codes": [],
+  "got_codes": [],
+  "expected_rejected": [],
+  "rejected": [],
+  "pass": true,
+  "errors": []
+ },
+ {
+  "case": "T7",
+  "desc": "整对重跑超过预登记上限",
+  "expected_codes": [
+   "RERUN_CAP_EXCEEDED"
+  ],
+  "got_codes": [
+   "RERUN_CAP_EXCEEDED"
+  ],
+  "expected_rejected": [],
+  "rejected": [],
+  "pass": true,
+  "errors": [
+   {
+    "code": "RERUN_CAP_EXCEEDED",
+    "pair_id": "p01",
+    "reruns": 2,
+    "cap": 1
+   }
+  ]
+ },
+ {
+  "case": "T8",
+  "desc": "超预算",
+  "expected_codes": [
+   "BUDGET_EXCEEDED"
+  ],
+  "got_codes": [
+   "BUDGET_EXCEEDED"
+  ],
+  "expected_rejected": [],
+  "rejected": [],
+  "pass": true,
+  "errors": [
+   {
+    "code": "BUDGET_EXCEEDED",
+    "calls": 615,
+    "max": 200
+   }
+  ]
+ },
+ {
+  "case": "T9",
+  "desc": "缺一侧（B0 未执行）",
+  "expected_codes": [
+   "EXEC_ORDER_DEVIATES",
+   "MISSING_SIDE"
+  ],
+  "got_codes": [
+   "EXEC_ORDER_DEVIATES",
+   "MISSING_SIDE"
+  ],
+  "expected_rejected": [
+   "p05"
+  ],
+  "rejected": [
+   "p05"
+  ],
+  "pass": true,
+  "errors": [
+   {
+    "code": "EXEC_ORDER_DEVIATES",
+    "at": 11,
+    "executed": [
+     "p04",
+     "P"
+    ],
+    "registered": [
+     "p05",
+     "B0"
+    ]
+   },
+   {
+    "code": "MISSING_SIDE",
+    "pair_id": "p05",
+    "side": "B0"
+   }
+  ]
+ }
+]
