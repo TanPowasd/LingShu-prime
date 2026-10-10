@@ -378,9 +378,13 @@ def main():
                     return ([({'id': n.id}, sc) for n, sc in st.search_content(q, limit=k)], None)
             lm = _ST()
         dm_cache = {}
-        if arm in ('rrf3', 'rrf3_dm'):
-            import rrf3 as R
-            rm = R.RRF3Memory()
+        if arm in ('rrf3', 'rrf3_dm') or arm.startswith('rrf3t'):
+            import rrf3 as R                      # rrf3t<NN>＝v1.1 相关近因第四路，门限 NN/100
+            # rrf3/rrf3_dm 钉在 v1.0 参数（复现旧读数）；rrf3t<T>c<C>：temporal=T/100，df_cap=C/100（缺省＝v1.0 截断）
+            # v1.1 默认＝rrf3t0c100
+            _t, _, _c = arm[5:].partition('c')
+            rm = R.RRF3Memory(temporal=int(_t) / 100, df_cap=int(_c) / 100 if _c else R.BM25_DF_CAP_V10) \
+                if arm.startswith('rrf3t') else R.RRF3Memory(df_cap=R.BM25_DF_CAP_V10)
             owner = []
             for c in corpus:
                 for i in rm.add_turn('doc', c['text']):

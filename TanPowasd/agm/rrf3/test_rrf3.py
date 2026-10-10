@@ -62,3 +62,16 @@ def test_context_chronological():
     m = mem([("user", "甲乙丙丁"), ("ai", "戊己庚辛"), ("user", "甲乙")])
     c = m.context("甲乙", budget=100)
     assert c.index("甲乙丙丁") < c.index("戊己庚辛")
+
+
+def test_v11_versioned_subject_recall():
+    """v1.1 回归：同一主体每段都出现主体名/槽位名时，v1.0 截断把它们全跳过；v1.1 应能召回该主体的段。"""
+    m = R.RRF3Memory()
+    old = R.RRF3Memory(df_cap=R.BM25_DF_CAP_V10)
+    for k in range(40):
+        for mem in (m, old):
+            mem.add_turn("doc", f"第{k}次提交。甲项目的依赖名调整为v{k}。")
+            mem.add_turn("doc", f"无关记录{k}号，天气晴，会议照常。")
+    q = "甲项目的依赖名当前是什么"
+    assert all("甲项目" in h.text for h in m.retrieve(q, budget=200))
+    assert not old.bm25(q)          # v1.0：所有查询二元组都超 df 截断，BM25 全零

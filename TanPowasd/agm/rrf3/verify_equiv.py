@@ -28,7 +28,7 @@ def main():
         allc = [c for t in turns for c in chunk_turn(t)]
         dfc = collections.Counter(g for _, x in allc for g in bset(x))
         capf = max(2, int(0.02 * len(allc)))
-        st, agm, mem = Store(), None, R.RRF3Memory()
+        st, agm, mem = Store(), None, R.RRF3Memory(df_cap=R.BM25_DF_CAP_V10)  # 对照臂是 v1.0 参数
         agm = AgmX(st, False)
         last = None
         for ti, t in enumerate(turns):

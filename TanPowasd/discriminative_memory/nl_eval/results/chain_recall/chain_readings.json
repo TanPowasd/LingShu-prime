@@ -1,0 +1,376 @@
+{
+ "bench_commit": "426a86a",
+ "prereg": "chain_prereg.md",
+ "dev_docs": [
+  "A1",
+  "B1"
+ ],
+ "readings": [
+  {
+   "arm": "rrf3",
+   "all": {
+    "arm": "rrf3",
+    "present": 0.617,
+    "history": 0.8757,
+    "chain": 0.8571,
+    "chain_row_recall": 0.7228,
+    "stale": 0.2553,
+    "future": 0.0,
+    "subject_confusion": 0.0,
+    "four_state": 0.8731,
+    "reason": 1.0,
+    "verbatim": 0.904,
+    "n": 625,
+    "counts": {
+     "present": 47,
+     "history": 177,
+     "chain": 56,
+     "chain_row_recall": 56,
+     "stale": 47,
+     "future": 202,
+     "subject_confusion": 239,
+     "four_state": 197,
+     "reason": 63,
+     "verbatim": 625
+    },
+    "bucket_main": {
+     "long": 0.3448,
+     "mid": 0.7745,
+     "short": 0.9597
+    },
+    "bucket_main_n": {
+     "long": 29,
+     "mid": 102,
+     "short": 149
+    }
+   },
+   "test": {
+    "arm": "rrf3",
+    "present": 0.6129,
+    "history": 0.8824,
+    "chain": 0.8718,
+    "chain_row_recall": 0.8137,
+    "stale": 0.2581,
+    "future": 0.0,
+    "subject_confusion": 0.0,
+    "four_state": 0.8712,
+    "reason": 1.0,
+    "verbatim": 0.9021,
+    "n": 419,
+    "counts": {
+     "present": 31,
+     "history": 119,
+     "chain": 39,
+     "chain_row_recall": 39,
+     "stale": 31,
+     "future": 140,
+     "subject_confusion": 170,
+     "four_state": 132,
+     "reason": 42,
+     "verbatim": 419
+    },
+    "bucket_main": {
+     "long": 0.35,
+     "mid": 0.7941,
+     "short": 0.9604
+    },
+    "bucket_main_n": {
+     "long": 20,
+     "mid": 68,
+     "short": 101
+    }
+   },
+   "dev": {
+    "arm": "rrf3",
+    "present": 0.625,
+    "history": 0.8621,
+    "chain": 0.8235,
+    "chain_row_recall": 0.4878,
+    "stale": 0.25,
+    "future": 0.0,
+    "subject_confusion": 0.0,
+    "four_state": 0.8769,
+    "reason": 1.0,
+    "verbatim": 0.9078,
+    "n": 206,
+    "counts": {
+     "present": 16,
+     "history": 58,
+     "chain": 17,
+     "chain_row_recall": 17,
+     "stale": 16,
+     "future": 62,
+     "subject_confusion": 69,
+     "four_state": 65,
+     "reason": 21,
+     "verbatim": 206
+    },
+    "bucket_main": {
+     "long": 0.3333,
+     "mid": 0.7353,
+     "short": 0.9583
+    },
+    "bucket_main_n": {
+     "long": 9,
+     "mid": 34,
+     "short": 48
+    }
+   }
+  },
+  {
+   "arm": "rrf3t0c100",
+   "all": {
+    "arm": "rrf3t0c100",
+    "present": 0.9574,
+    "history": 0.9266,
+    "chain": 0.9286,
+    "chain_row_recall": 0.9048,
+    "stale": 0.0,
+    "future": 0.0,
+    "subject_confusion": 0.0,
+    "four_state": 0.9746,
+    "reason": 1.0,
+    "verbatim": 0.9696,
+    "n": 625,
+    "counts": {
+     "present": 47,
+     "history": 177,
+     "chain": 56,
+     "chain_row_recall": 56,
+     "stale": 47,
+     "future": 202,
+     "subject_confusion": 239,
+     "four_state": 197,
+     "reason": 63,
+     "verbatim": 625
+    },
+    "bucket_main": {
+     "long": 0.8276,
+     "mid": 0.8627,
+     "short": 1.0
+    },
+    "bucket_main_n": {
+     "long": 29,
+     "mid": 102,
+     "short": 149
+    }
+   },
+   "test": {
+    "arm": "rrf3t0c100",
+    "present": 0.9677,
+    "history": 0.9496,
+    "chain": 0.9487,
+    "chain_row_recall": 0.9057,
+    "stale": 0.0,
+    "future": 0.0,
+    "subject_confusion": 0.0,
+    "four_state": 0.9848,
+    "reason": 1.0,
+    "verbatim": 0.9737,
+    "n": 419,
+    "counts": {
+     "present": 31,
+     "history": 119,
+     "chain": 39,
+     "chain_row_recall": 39,
+     "stale": 31,
+     "future": 140,
+     "subject_confusion": 170,
+     "four_state": 132,
+     "reason": 42,
+     "verbatim": 419
+    },
+    "bucket_main": {
+     "long": 0.85,
+     "mid": 0.9118,
+     "short": 1.0
+    },
+    "bucket_main_n": {
+     "long": 20,
+     "mid": 68,
+     "short": 101
+    }
+   },
+   "dev": {
+    "arm": "rrf3t0c100",
+    "present": 0.9375,
+    "history": 0.8793,
+    "chain": 0.8824,
+    "chain_row_recall": 0.9024,
+    "stale": 0.0,
+    "future": 0.0,
+    "subject_confusion": 0.0,
+    "four_state": 0.9538,
+    "reason": 1.0,
+    "verbatim": 0.9612,
+    "n": 206,
+    "counts": {
+     "present": 16,
+     "history": 58,
+     "chain": 17,
+     "chain_row_recall": 17,
+     "stale": 16,
+     "future": 62,
+     "subject_confusion": 69,
+     "four_state": 65,
+     "reason": 21,
+     "verbatim": 206
+    },
+    "bucket_main": {
+     "long": 0.7778,
+     "mid": 0.7647,
+     "short": 1.0
+    },
+    "bucket_main_n": {
+     "long": 9,
+     "mid": 34,
+     "short": 48
+    }
+   }
+  },
+  {
+   "arm": "rrf3t50c100",
+   "all": {
+    "arm": "rrf3t50c100",
+    "present": 0.9574,
+    "history": 0.9379,
+    "chain": 0.9286,
+    "chain_row_recall": 0.9048,
+    "stale": 0.0,
+    "future": 0.0,
+    "subject_confusion": 0.0,
+    "four_state": 0.9746,
+    "reason": 1.0,
+    "verbatim": 0.9696,
+    "n": 625,
+    "counts": {
+     "present": 47,
+     "history": 177,
+     "chain": 56,
+     "chain_row_recall": 56,
+     "stale": 47,
+     "future": 202,
+     "subject_confusion": 239,
+     "four_state": 197,
+     "reason": 63,
+     "verbatim": 625
+    },
+    "bucket_main": {
+     "long": 0.8276,
+     "mid": 0.8824,
+     "short": 1.0
+    },
+    "bucket_main_n": {
+     "long": 29,
+     "mid": 102,
+     "short": 149
+    }
+   },
+   "test": {
+    "arm": "rrf3t50c100",
+    "present": 0.9677,
+    "history": 0.9496,
+    "chain": 0.9487,
+    "chain_row_recall": 0.9057,
+    "stale": 0.0,
+    "future": 0.0,
+    "subject_confusion": 0.0,
+    "four_state": 0.9848,
+    "reason": 1.0,
+    "verbatim": 0.969,
+    "n": 419,
+    "counts": {
+     "present": 31,
+     "history": 119,
+     "chain": 39,
+     "chain_row_recall": 39,
+     "stale": 31,
+     "future": 140,
+     "subject_confusion": 170,
+     "four_state": 132,
+     "reason": 42,
+     "verbatim": 419
+    },
+    "bucket_main": {
+     "long": 0.85,
+     "mid": 0.9118,
+     "short": 1.0
+    },
+    "bucket_main_n": {
+     "long": 20,
+     "mid": 68,
+     "short": 101
+    }
+   },
+   "dev": {
+    "arm": "rrf3t50c100",
+    "present": 0.9375,
+    "history": 0.9138,
+    "chain": 0.8824,
+    "chain_row_recall": 0.9024,
+    "stale": 0.0,
+    "future": 0.0,
+    "subject_confusion": 0.0,
+    "four_state": 0.9538,
+    "reason": 1.0,
+    "verbatim": 0.9709,
+    "n": 206,
+    "counts": {
+     "present": 16,
+     "history": 58,
+     "chain": 17,
+     "chain_row_recall": 17,
+     "stale": 16,
+     "future": 62,
+     "subject_confusion": 69,
+     "four_state": 65,
+     "reason": 21,
+     "verbatim": 206
+    },
+    "bucket_main": {
+     "long": 0.7778,
+     "mid": 0.8235,
+     "short": 1.0
+    },
+    "bucket_main_n": {
+     "long": 9,
+     "mid": 34,
+     "short": 48
+    }
+   }
+  }
+ ],
+ "calibration": {
+  "version_blind": {
+   "present": 0.0,
+   "history": 0.0,
+   "chain": 0.0
+  },
+  "closed_book": 0.0,
+  "chain_length_monotonic": true,
+  "sut_arm": "rrf3",
+  "sut_buckets": {
+   "long": {
+    "rate": 0.3448,
+    "n": 29
+   },
+   "mid": {
+    "rate": 0.7745,
+    "n": 102
+   },
+   "short": {
+    "rate": 0.9597,
+    "n": 149
+   }
+  },
+  "gate_stage": "full",
+  "criteria": {
+   "c1": false,
+   "c2": false,
+   "c3": true,
+   "c4": true
+  },
+  "passed": false,
+  "details": "① 版本盲指纹：现值 None（要求 ≥0.5）、历史 None、变更链 None（要求 ≤0.15）、现值分母 0（要求 ≥20）→ 不过；② 闭卷核心：现值 None / 历史 None / 变更链 None（各 ≤0.2）、答题量 0（≥100）→ 不过；③ 链长单调（**被测系统臂**）：被测臂 rrf3 桶 ['short', 'mid', 'long']＝[0.9597, 0.7745, 0.3448]，短链 0.9597 ≥ 下界 0.3 且 ≥ 结构基线 0.2676+0.1；结构基线 {'long': 0.0787, 'mid': 0.1536, 'short': 0.2676}（仅诊断，不作判据）→ 过；④ 读数自洽：值域合法、答卷同源完整、且读数可由答卷独立复算 → 过。（本次 limit=全量；阶段=full；口径：可推题不进主读数，历史叙述豁免须状态判对。）"
+ }
+}

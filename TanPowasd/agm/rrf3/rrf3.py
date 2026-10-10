@@ -16,7 +16,19 @@ AGM 记忆系统当前的主实现（2026-10-10 定稿）。只用标准库，�
         按融合顺序装块直到预算（首块总要；装不下就停）。
 
 测评读数（hive-memory-bench e2e，16 份真实对话、4041 次查询、预算 4000 字，零 LLM）：
-  覆盖 0.1559（近因+AGM 0.1562，持平）；窗口外 0.0522（近因+AGM 0.0416，16/16 文件胜）。
+  v1.0 覆盖 0.1559（近因+AGM 0.1562，持平）；窗口外 0.0522（近因+AGM 0.0416，16/16 文件胜）。
+
+v1.1（2026-10-11）召回瓶颈修复
+  病因  v1.0 的 BM25 跳过 df>5% 的字二元组。对话语料里这能去掉口头禅；但在「同一主体反复改版」
+        的记忆里，主体名和槽位名（如「流明项目」「依赖名」）恰恰出现在该主体的每一段，全被跳过，
+        问「X 的 Y 现在是什么」时 BM25 对正确段打 0 分，只剩「60」这类数字二元组在乱配。
+  修复  取消硬截断（BM25_DF_CAP=1.0），高频词只靠 BM25 的 idf 自然降权。
+  读数  状态链轨 v0.2 测试集 419 题（零模型机械读者）：金标版本段召回 359/420 → 415/420，
+        现值 .613→.968、历史 .882→.950、变更 .872→.949、四态 .871→.985、滞后 .258→.000；
+        hive e2e：覆盖 0.1559→0.1559、窗口外 0.0522→0.0523（逐文件 7 胜 9 负，持平）。
+  可选  temporal>0 打开第四路「相关近因」（默认关）：hive 上 temporal=0.5 配 v1.0 截断时窗口外
+        0.0556（16/0 胜）但覆盖 0.1531；与 v1.1 同开则无增益，故不默认。
+  旧行为  RRF3Memory(df_cap=BM25_DF_CAP_V10) 与 v1.0 逐位等价。
 """
 from __future__ import annotations
 
@@ -25,13 +37,14 @@ import math
 import re
 from dataclasses import dataclass
 
-__all__ = ["RRF3Memory", "Hit"]
-__version__ = "1.0.0"
+__all__ = ["RRF3Memory", "Hit", "BM25_DF_CAP_V10"]
+__version__ = "1.1.0"
 
 CHUNK = 300
 SEEDS, DECAY, THETA, KWTA, STEPS = 8, 0.35, 0.05, 80, 2
 W_FWD, W_BWD, W_QA = 0.5, 0.25, 0.4
-BM25_DF_CAP, RRF_K, RRF_LIMIT = 0.05, 60, 400
+BM25_DF_CAP, RRF_K, RRF_LIMIT = 1.0, 60, 400   # v1.1：df 硬截断取消（1.0）；v1.0 为 0.05
+BM25_DF_CAP_V10 = 0.05
 
 
 def norm(s: str) -> str:
@@ -73,8 +86,11 @@ class Hit:
 
 
 class RRF3Memory:
-    def __init__(self, chunk: int = CHUNK):
+    def __init__(self, chunk: int = CHUNK, temporal: float = 0.0, df_cap: float = BM25_DF_CAP):
+        """temporal>0 打开第四路「相关近因」（v1.1，默认关＝与 v1.0 逐位等价）。"""
         self.chunk = chunk
+        self.temporal = temporal
+        self.df_cap = df_cap
         self.raw: list[str] = []
         self.size: list[int] = []
         self.turn_of: list[int] = []
@@ -122,7 +138,7 @@ class RRF3Memory:
         N = self.N
         if not N:
             return {}
-        cap = max(5, int(BM25_DF_CAP * N))
+        cap = max(5, int(self.df_cap * N))
         avg = sum(self.size) / N
         sc = collections.defaultdict(float)
         for g in bigrams(query):
@@ -155,11 +171,28 @@ class RRF3Memory:
         rest = sorted((i for i in sc if i not in a), key=lambda i: -sc[i])
         return sorted(a, key=lambda i: -a[i]) + rest
 
+    def rank_recent_relevant(self, sc: dict[int, float]) -> list[int]:
+        """相关近因：BM25 分 ≥ temporal×最高分 的块按新→旧排（同一事物的最新说法先出），其余按 BM25 接后。
+
+        全局近因只看写入先后，多主题交错时最新的往往是别的主题；这一路先按相关性圈定
+        「在说同一件事」的块，再在圈内取最新——针对「当前值/最新状态」被旧版本淹没。
+        """
+        if not sc:
+            return []
+        m = max(sc.values())
+        gate = [i for i in sc if sc[i] >= self.temporal * m]
+        gate.sort(key=lambda i: -i)
+        g = set(gate)
+        return gate + sorted((i for i in sc if i not in g), key=lambda i: -sc[i])
+
     def rank(self, query: str) -> list[int]:
         """融合排序（块号）。"""
         sc = self.bm25(query)
         o_bm = sorted(sc, key=lambda i: -sc[i])
-        return rrf([self.rank_recent(), o_bm, self.rank_agm(sc)])
+        ways = [self.rank_recent(), o_bm, self.rank_agm(sc)]
+        if self.temporal > 0:
+            ways.append(self.rank_recent_relevant(sc))
+        return rrf(ways)
 
     # ---------- 取上下文 ----------
     def retrieve(self, query: str, budget: int = 4000) -> list[Hit]:
