@@ -42,7 +42,8 @@ class AgmX(Agm):
 
 ARMS = ["最近窗口", "BM25", "AGM-静态", "AGM-学习v1", "AGM-学习v2", "后缀自动机", "AGM-SAM种子", "AGM-AC种子",
         "近因+BM25", "近因+AGM-静态", "近因+AGM-学习v2", "近因+后缀自动机", "近因+AGM-SAM种子", "近因+AGM-AC种子",
-        "近因+AGM-二分θ", "近因+AGM+ACT-R", "RRF3(近因,BM25,AGM)", "RRF4(+SAM)", "RRF5(+ACT-R)", "AC图", "近因+AC图", "AC图-全字典", "近因+AC图-全字典", "SAM图", "近因+SAM图"]
+        "近因+AGM-二分θ", "近因+AGM+ACT-R", "RRF3(近因,BM25,AGM)", "RRF4(+SAM)", "RRF5(+ACT-R)", "AC图", "近因+AC图", "AC图-全字典", "近因+AC图-全字典", "SAM图", "近因+SAM图",
+        "近因+RRF(AGM,SAM图)", "近因+RRF(AGM,SAM)", "近因+AGM+SAM图(三等分)"]
 
 
 def run_file(path, cards, budget):
@@ -137,6 +138,14 @@ def run_file(path, cards, budget):
             return [], take(X.rrf([C["rec"], C["bm"], C["agm"], C["sam"], actr_rrf.ranking(t_idx)]), st, budget), actr_rrf
         if arm == "AC图":
             return [], take(C["acg"], st, budget), None
+        if arm == "近因+RRF(AGM,SAM图)":
+            return rec_half, fill(rec_half, X.rrf([C["agm"], C["samg"]]), budget), None
+        if arm == "近因+RRF(AGM,SAM)":
+            return rec_half, fill(rec_half, X.rrf([C["agm"], C["sam"]]), budget), None
+        if arm == "近因+AGM+SAM图(三等分)":
+            r3 = take(C["rec"], st, budget // 3)
+            a3 = fill(r3, C["agm"], 2 * budget // 3)
+            return r3, a3 + fill(r3 + a3, C["samg"], budget), None
         if arm == "SAM图":
             return [], take(C["samg"], st, budget), None
         if arm == "近因+SAM图":
