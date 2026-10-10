@@ -356,6 +356,16 @@ def main():
             for c in corpus:
                 i = lm.add(c['cid'].replace('#', '@'), f"# {c['cid']}\n{c['text']}")
                 nid[i] = c['cid']
+        if arm == 'lingshu_ng':                   # Liyang/lingshu_ng MemoryEngine.perceive/search（默认 M5 去重）
+            sys.path.insert(0, str(TAN.parent / 'Liyang'))
+            from lingshu_ng.engine import MemoryEngine
+            ng = MemoryEngine(); nid = {}
+            for c in corpus:
+                nid[ng.perceive(c['text']).node_id] = c['cid']
+            class _NG:
+                def search(self, q, k):
+                    return ([({'id': n.id}, sc) for n, sc in ng.search(q, limit=k)], None)
+            lm = _NG()
         dm_cache = {}
         if arm in ('rrf3', 'rrf3_dm'):
             import rrf3 as R
