@@ -238,7 +238,7 @@ def cap_material(hits, cap):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('bench')
-    ap.add_argument('--arms', default='disc_frozen,disc_ext,bm25,rrf3,lingshu,versionblind,closed')
+    ap.add_argument('--arms', default='disc_frozen,disc_ext,bm25,rrf3,lingshu,lingshu_ng,versionblind,closed')
     ap.add_argument('--dsh', default=str(TAN.parent.parent / 'dsh-memory'))
     ap.add_argument('--out', default=str(HERE / 'results' / 'chain'))
     args = ap.parse_args()
@@ -301,6 +301,16 @@ def main():
             for c in corpus:
                 i = lm.add(c['cid'].replace('#', '@'), f"# {c['cid']}\n{c['text']}")
                 nid[i] = c['cid']
+        if arm == 'lingshu_ng':                   # Liyang/lingshu_ng MemoryEngine.perceive/search（默认 M5 去重）
+            sys.path.insert(0, str(TAN.parent / 'Liyang'))
+            from lingshu_ng.engine import MemoryEngine
+            ng = MemoryEngine(); nid = {}
+            for c in corpus:
+                nid[ng.perceive(c['text']).node_id] = c['cid']
+            class _NG:
+                def search(self, q, k):
+                    return ([({'id': n.id}, sc) for n, sc in ng.search(q, limit=k)], None)
+            lm = _NG()
         if arm == 'rrf3':
             import rrf3 as R
             rm = R.RRF3Memory()
