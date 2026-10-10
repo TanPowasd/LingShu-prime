@@ -1,0 +1,1 @@
+{"qid":"B2-030-present-0331","value":"释然","state":"active","at_seq":10,"chain":[],"basis":[{"file":"雾港#10","line":2,"quote":"杜衡 的情绪转为 释然，起因是共同的外敌。"},{"file":"雾港#3","line":3,"quote":"杜衡 的情绪转为 戒备，起因是一桩旧账。"},{"file":"雾港#1","line":6,"quote":"杜衡 的情绪首次确立为 低落。"}],"confidence":"certain"}

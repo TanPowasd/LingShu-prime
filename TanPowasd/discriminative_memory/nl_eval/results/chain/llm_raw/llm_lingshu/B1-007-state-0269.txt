@@ -1,0 +1,1 @@
+{"qid":"B1-007-state-0269","value":null,"state":"retired","at_seq":null,"chain":[],"basis":[{"file":"青石镇#7","line":1,"quote":"老陈 的立场被撤销，此后不再保留取值，起因是旧事重提。"}],"confidence":"certain"}

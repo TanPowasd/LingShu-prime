@@ -1,0 +1,1 @@
+{"qid":"B3-001-history-0513","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"孤山驿#1","line":1,"quote":"白芨 的信任对象首次确立为 程雪。"},{"file":"孤山驿#1","line":1,"quote":"陆平 的信任对象首次确立为 程雪。"}],"confidence":"probable"}

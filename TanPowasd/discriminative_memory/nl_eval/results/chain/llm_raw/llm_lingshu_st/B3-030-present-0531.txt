@@ -1,0 +1,1 @@
+{"qid":"B3-030-present-0531","value":"戒备","state":"active","at_seq":21,"chain":[],"basis":[{"file":"孤山驿#21","line":21,"quote":"程雪 的情绪转为 戒备，起因是一场误会。"},{"file":"孤山驿#29","line":29,"quote":"程雪 的情绪早先一度为 欣慰。"}],"confidence":"certain"}

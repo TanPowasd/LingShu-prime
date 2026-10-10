@@ -1,0 +1,1 @@
+{"qid":"B1-005-state-0160","value":"码头","state":"active","at_seq":5,"chain":[],"basis":[{"file":"青石镇#5","line":5,"quote":"周舟 移到了 码头，起因是共同的外敌。"}],"confidence":"certain"}

@@ -1,0 +1,1 @@
+{"qid":"A3-004-state-0119","value":null,"state":"unresolved","at_seq":null,"chain":[],"basis":[{"file":"织女项目#7","line":7,"quote":"织女项目 的函数签名调整为 load(key, ttl)，起因是容量评估结论。"}],"confidence":"unknown"}

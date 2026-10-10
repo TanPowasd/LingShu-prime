@@ -1,0 +1,1 @@
+{"qid":"B2-007-state-0360","value":"祠堂","state":"active","at_seq":1,"chain":[],"basis":[{"file":"雾港#1","line":1,"quote":"林昭 的位置首次确立为 祠堂。"},{"file":"雾港#25","line":25,"quote":"林昭 的位置被撤销，此后不再保留取值，起因是一场误会。"}],"confidence":"certain"}

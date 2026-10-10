@@ -1,0 +1,1 @@
+{"qid":"A1-016-history-0013","value":"get(id, key, ttl)","state":"retired","at_seq":16,"chain":[],"basis":[{"file":"猎户项目#16","line":16,"quote":"猎户项目 的函数签名首次确立为 get(id, key, ttl)。"},{"file":"猎户项目#18","line":18,"quote":"猎户项目 的函数签名调整为 get(key)，起因是安全审计要求。"}],"confidence":"certain"}

@@ -1,0 +1,1 @@
+{"qid":"A2-014-state-0099","value":"21600","state":"active","at_seq":1,"chain":[],"basis":[{"file":"流明项目#1","line":1,"quote":"流明项目·缓存模块 的有效期秒数首次确立为 21600。"},{"file":"流明项目#51","line":51,"quote":"流明项目·缓存模块 的有效期秒数调整为 600，起因是压测暴露并发缺陷。"}],"confidence":"probable"}

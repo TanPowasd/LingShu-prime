@@ -1,0 +1,1 @@
+{"qid":"B3-009-history-0534","value":"欣慰","state":"active","at_seq":9,"chain":[],"basis":[{"file":"孤山驿#9","line":9,"quote":"程雪 的情绪转为 欣慰，起因是利益冲突。"}],"confidence":"certain"}

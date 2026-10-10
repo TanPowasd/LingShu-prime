@@ -1,0 +1,1 @@
+{"qid":"B1-017-history-0204","value":"周舟","state":"active","at_seq":17,"chain":[],"basis":[{"file":"青石镇#17","line":17,"quote":"小满 的信任对象此后确立为 周舟，起因是旧事重提。"}],"confidence":"certain"}

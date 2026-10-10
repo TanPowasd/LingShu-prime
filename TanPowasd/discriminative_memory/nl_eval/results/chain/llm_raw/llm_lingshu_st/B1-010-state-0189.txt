@@ -1,0 +1,1 @@
+{"qid":"B1-010-state-0189","value":null,"state":"retired","at_seq":null,"chain":[],"basis":[{"file":"青石镇#10","line":10,"quote":"周舟 的立场被撤销，此后不再保留取值，起因是旧事重提。"}],"confidence":"certain"}

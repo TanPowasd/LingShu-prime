@@ -1,0 +1,1 @@
+{"qid":"B1-020-reason-0278","value":"旧事重提","state":"active","at_seq":20,"chain":[],"basis":[{"file":"青石镇#20","line":20,"quote":"阿禾 移到了 渡口，起因是旧事重提。"}],"confidence":"certain"}

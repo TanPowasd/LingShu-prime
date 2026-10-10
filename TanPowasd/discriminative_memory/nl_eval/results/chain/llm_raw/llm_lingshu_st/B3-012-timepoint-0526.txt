@@ -1,0 +1,1 @@
+{"qid":"B3-012-timepoint-0526","value":null,"state":"unresolved","at_seq":null,"chain":[],"basis":[{"file":"孤山驿#12","line":12,"quote":"程雪 的信任对象出现两种并存的取值：顾九 与 陆平，尚未裁定，起因是私下承诺。"}],"confidence":"certain"}

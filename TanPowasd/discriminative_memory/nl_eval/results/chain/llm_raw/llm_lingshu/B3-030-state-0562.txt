@@ -1,0 +1,1 @@
+{"qid":"B3-030-state-0562","value":"无人","state":"active","at_seq":3,"chain":[],"basis":[{"file":"孤山驿#3","line":3,"quote":"陆平 的信任对象转为 无人，起因是一次救助。"}],"confidence":"probable"}

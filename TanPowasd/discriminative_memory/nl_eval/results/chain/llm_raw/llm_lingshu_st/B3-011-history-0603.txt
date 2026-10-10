@@ -1,0 +1,1 @@
+{"qid":"B3-011-history-0603","value":"无人","state":"active","at_seq":11,"chain":[],"basis":[{"file":"孤山驿#11","line":2,"quote":"九爷 的信任对象首次确立为 无人。"},{"file":"孤山驿#14","line":3,"quote":"九爷 自第 14 章起改名为 顾九。"}],"confidence":"certain"}

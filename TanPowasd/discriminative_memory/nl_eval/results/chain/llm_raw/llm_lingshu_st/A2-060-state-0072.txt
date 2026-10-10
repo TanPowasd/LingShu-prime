@@ -1,0 +1,1 @@
+{"qid":"A2-060-state-0072","value":"1800","state":"active","at_seq":50,"chain":[],"basis":[{"file":"流明项目#50","line":50,"quote":"流明项目 的有效期秒数调整为 1800，起因是容量评估结论。"}],"confidence":"certain"}

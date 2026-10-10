@@ -1,0 +1,1 @@
+{"qid":"B2-023-history-0345","value":null,"state":"retired","at_seq":23,"chain":[],"basis":[{"file":"雾港#23","line":23,"quote":"杜衡 的立场被撤销，此后不再保留取值，起因是一次救助。"}],"confidence":"certain"}

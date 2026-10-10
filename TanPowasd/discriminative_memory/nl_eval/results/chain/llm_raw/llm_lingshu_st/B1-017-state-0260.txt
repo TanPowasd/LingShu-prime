@@ -1,0 +1,1 @@
+{"qid":"B1-017-state-0260","value":"欣慰","state":"active","at_seq":17,"chain":[],"basis":[{"file":"青石镇#17","line":17,"quote":"老陈 的情绪转为 欣慰，起因是利益冲突。"}],"confidence":"certain"}

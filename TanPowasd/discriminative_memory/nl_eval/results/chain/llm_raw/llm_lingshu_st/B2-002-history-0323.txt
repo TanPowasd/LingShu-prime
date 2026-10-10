@@ -1,0 +1,1 @@
+{"qid":"B2-002-history-0323","value":"外人","state":"active","at_seq":2,"chain":[],"basis":[{"file":"雾港#2","line":4,"quote":"杜衡 的信任对象首次确立为 外人。"}],"confidence":"certain"}

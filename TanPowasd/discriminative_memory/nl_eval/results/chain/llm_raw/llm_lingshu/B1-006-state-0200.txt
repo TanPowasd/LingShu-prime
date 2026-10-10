@@ -1,0 +1,1 @@
+{"qid":"B1-006-state-0200","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"青石镇#6","line":6,"quote":"满儿 移到了 磨坊，起因是一场误会。"},{"file":"青石镇#23","line":23,"quote":"小满 的情绪转为 释然，起因是利益冲突。"},{"file":"青石镇#28","line":28,"quote":"小满 的情绪转为 戒备，起因是一场误会。"}],"confidence":"unknown"}

@@ -1,0 +1,1 @@
+{"qid":"A3-031-reason-0118","value":"安全审计要求","state":"active","at_seq":31,"chain":[],"basis":[{"file":"织女项目#31","line":31,"quote":"织女项目 的函数签名调整为 fn_476700()，起因是安全审计要求。"}],"confidence":"certain"}

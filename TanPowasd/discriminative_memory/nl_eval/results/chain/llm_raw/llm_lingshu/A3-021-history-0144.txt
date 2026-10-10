@@ -1,0 +1,1 @@
+{"qid":"A3-021-history-0144","value":"3600","state":"active","at_seq":21,"chain":[],"basis":[{"file":"织女项目#21","line":1,"quote":"织女项目·缓存模块 的有效期秒数调整为 3600，起因是线上故障复盘。"}],"confidence":"certain"}

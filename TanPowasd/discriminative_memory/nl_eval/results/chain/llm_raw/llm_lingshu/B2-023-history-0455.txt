@@ -1,0 +1,1 @@
+{"qid":"B2-023-history-0455","value":"平静","state":"active","at_seq":23,"chain":[],"basis":[{"file":"雾港#23","line":23,"quote":"阿桑 的情绪转为 平静，起因是私下承诺。"}],"confidence":"certain"}

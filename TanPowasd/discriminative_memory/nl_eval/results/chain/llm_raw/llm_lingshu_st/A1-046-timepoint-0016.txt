@@ -1,0 +1,1 @@
+{"qid":"A1-046-timepoint-0016","value":"sync(key, ttl, tag, refresh) 与 sync(key, ttl)","state":"unresolved","at_seq":null,"chain":[],"basis":[{"file":"猎户项目#46","line":6,"quote":"猎户项目 的函数签名出现两种并存的取值：sync(key, ttl, tag, refresh) 与 sync(key, ttl)，尚未裁定，起因是线上故障复盘。"}],"confidence":"certain"}

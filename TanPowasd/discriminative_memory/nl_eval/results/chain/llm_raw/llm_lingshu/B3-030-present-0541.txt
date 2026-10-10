@@ -1,0 +1,1 @@
+{"qid":"B3-030-present-0541","value":"暧昧","state":"active","at_seq":25,"chain":[],"basis":[{"file":"孤山驿#25","line":25,"quote":"程雪 的立场此后确立为 暧昧，起因是私下承诺。"}],"confidence":"certain"}

@@ -1,0 +1,1 @@
+{"qid":"B3-030-state-0532","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"孤山驿#20","line":20,"quote":"程雪 移到了 磨坊，起因是共同的外敌。"},{"file":"孤山驿#20","line":20,"quote":"程雪 的信任对象转为 顾九，起因是旧事重提。"}],"confidence":"certain"}

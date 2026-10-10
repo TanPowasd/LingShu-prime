@@ -1,0 +1,1 @@
+{"qid":"A3-060-state-0102","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"织女项目#27","line":27,"quote":"织女项目 的函数签名调整为 resolve(key, ttl, refresh)，起因是安全审计要求。"},{"file":"织女项目#22","line":22,"quote":"织女项目 的函数签名调整为 resolve(key)，起因是灰度观测数据。"}],"confidence":"probable"}

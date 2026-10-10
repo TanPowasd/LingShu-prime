@@ -1,0 +1,1 @@
+{"qid":"B2-008-history-0393","value":"粮仓","state":"active","at_seq":8,"chain":[],"basis":[{"file":"雾港#8","line":8,"quote":"沈砚 的位置首次确立为 粮仓。"}],"confidence":"certain"}

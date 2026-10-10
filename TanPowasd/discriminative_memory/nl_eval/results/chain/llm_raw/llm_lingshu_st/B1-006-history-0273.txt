@@ -1,0 +1,1 @@
+{"qid":"B1-006-history-0273","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"青石镇#6","line":6,"quote":"第 6 章（青石镇）。"},{"file":"雾港#6","line":6,"quote":"第 6 章（雾港）。"},{"file":"青石镇#12","line":12,"quote":"阿禾 的位置被撤销，此后不再保留取值，起因是一场误会。"}],"confidence":"certain"}

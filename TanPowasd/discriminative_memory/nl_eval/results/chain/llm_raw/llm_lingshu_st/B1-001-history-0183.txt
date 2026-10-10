@@ -1,0 +1,1 @@
+{"qid":"B1-001-history-0183","value":null,"state":"unresolved","at_seq":null,"chain":[],"basis":[{"file":"青石镇#10","line":2,"quote":"周舟 的立场被撤销，此后不再保留取值，起因是旧事重提。"},{"file":"青石镇#1","line":4,"quote":"第 1 章（青石镇）。"}],"confidence":"probable"}

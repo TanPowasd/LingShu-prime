@@ -1,0 +1,1 @@
+{"qid":"A1-040-state-0030","value":"21600","state":"active","at_seq":40,"chain":[],"basis":[{"file":"猎户项目#40","line":40,"quote":"猎户项目 的有效期秒数调整为 21600，起因是依赖库升级。"}],"confidence":"certain"}

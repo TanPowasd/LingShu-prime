@@ -1,0 +1,1 @@
+{"qid":"B3-018-state-0610","value":"白芨 与 无人","state":"unresolved","at_seq":18,"chain":[],"basis":[{"file":"孤山驿#18","line":1,"quote":"顾九 的信任对象出现两种并存的取值：白芨 与 无人，尚未裁定，起因是一场误会。"}],"confidence":"certain"}

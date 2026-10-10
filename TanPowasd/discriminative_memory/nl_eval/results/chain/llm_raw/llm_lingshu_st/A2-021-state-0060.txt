@@ -1,0 +1,1 @@
+{"qid":"A2-021-state-0060","value":null,"state":"retired","at_seq":11,"chain":[],"basis":[{"file":"流明项目#11","line":11,"quote":"流明项目 的依赖名被撤销，此后不再保留取值，起因是依赖库升级。"}],"confidence":"certain"}

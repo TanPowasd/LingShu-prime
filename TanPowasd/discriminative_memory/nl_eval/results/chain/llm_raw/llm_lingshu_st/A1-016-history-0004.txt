@@ -1,0 +1,1 @@
+{"qid":"A1-016-history-0004","value":"redis","state":"active","at_seq":11,"chain":[],"basis":[{"file":"猎户项目#11","line":11,"quote":"猎户项目 的依赖名调整为 redis，起因是代码评审意见。"},{"file":"猎户项目#19","line":19,"quote":"猎户项目 的依赖名调整为 redis，起因是代码评审意见。"}],"confidence":"probable"}

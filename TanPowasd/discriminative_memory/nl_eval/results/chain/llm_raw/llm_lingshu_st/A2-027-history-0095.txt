@@ -1,0 +1,1 @@
+{"qid":"A2-027-history-0095","value":10800,"state":"active","at_seq":23,"chain":[],"basis":[{"file":"流明项目#23","line":23,"quote":"流明项目·缓存模块 的有效期秒数调整为 10800，起因是依赖库升级。"},{"file":"流明项目#51","line":51,"quote":"流明项目·缓存模块 的有效期秒数调整为 600，起因是压测暴露并发缺陷。"}],"confidence":"probable"}

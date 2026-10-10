@@ -1,0 +1,1 @@
+{"qid":"B1-013-timepoint-0206","value":null,"state":"retired","at_seq":null,"chain":[],"basis":[{"file":"青石镇#13","line":13,"quote":"小满 的信任对象被撤销，此后不再保留取值，起因是一桩旧账。"}],"confidence":"certain"}

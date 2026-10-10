@@ -1,0 +1,1 @@
+{"qid":"B1-030-state-0282","value":"小满","state":"active","at_seq":20,"chain":[],"basis":[{"file":"青石镇#20","line":20,"quote":"阿禾 的信任对象转为 小满，起因是私下承诺。"}],"confidence":"certain"}

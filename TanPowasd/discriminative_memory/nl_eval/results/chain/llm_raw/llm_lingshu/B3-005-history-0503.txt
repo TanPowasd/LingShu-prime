@@ -1,0 +1,1 @@
+{"qid":"B3-005-history-0503","value":"反对","state":"active","at_seq":5,"chain":[],"basis":[{"file":"孤山驿#5","line":5,"quote":"白芨 的立场首次确立为 反对。"}],"confidence":"certain"}

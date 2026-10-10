@@ -1,0 +1,1 @@
+{"qid":"A1-046-reason-0028","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[],"confidence":"unknown"}

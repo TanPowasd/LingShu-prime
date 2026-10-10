@@ -1,0 +1,1 @@
+{"qid":"B1-007-history-0284","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"孤山驿#7","line":7,"quote":"第 7 章（孤山驿）。"},{"file":"雾港#7","line":7,"quote":"第 7 章（雾港）。"}],"confidence":"unknown"}

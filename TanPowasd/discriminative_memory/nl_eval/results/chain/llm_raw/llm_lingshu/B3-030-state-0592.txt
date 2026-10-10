@@ -1,0 +1,1 @@
+{"qid":"B3-030-state-0592","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"孤山驿#15","line":15,"quote":"顾九 的情绪转为 愤怒，起因是一场误会。"},{"file":"孤山驿#19","line":19,"quote":"顾九 的情绪转为 戒备，起因是私下承诺。"}],"confidence":"probable"}

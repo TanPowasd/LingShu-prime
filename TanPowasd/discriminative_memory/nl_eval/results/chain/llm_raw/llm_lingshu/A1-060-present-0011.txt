@@ -1,0 +1,1 @@
+{"qid":"A1-060-present-0011","value":"fetch(key, ttl, refresh)","state":"active","at_seq":43,"chain":[],"basis":[{"file":"猎户项目#43","line":43,"quote":"猎户项目 的函数签名调整为 fetch(key, ttl, refresh)，起因是安全审计要求。"}],"confidence":"certain"}

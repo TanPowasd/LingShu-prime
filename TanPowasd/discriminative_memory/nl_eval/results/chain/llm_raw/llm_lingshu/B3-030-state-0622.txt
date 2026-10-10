@@ -1,0 +1,1 @@
+{"qid":"B3-030-state-0622","value":"反对","state":"active","at_seq":14,"chain":[],"basis":[{"file":"孤山驿#14","line":14,"quote":"顾九 的立场转为 反对，起因是共同的外敌。"},{"file":"孤山驿#14","line":14,"quote":"九爷 自第 14 章起改名为 顾九。"}],"confidence":"probable"}

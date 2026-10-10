@@ -1,0 +1,1 @@
+{"qid":"B1-012-state-0310","value":"支持","state":"active","at_seq":12,"chain":[],"basis":[{"file":"青石镇#12","line":1,"quote":"阿禾 的立场此后确立为 支持，起因是利益冲突。"}],"confidence":"certain"}

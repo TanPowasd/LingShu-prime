@@ -1,0 +1,1 @@
+{"qid":"B2-021-reason-0398","value":"旧事重提","state":"active","at_seq":21,"chain":[],"basis":[{"file":"雾港#21","line":21,"quote":"沈砚 移到了 粮仓，起因是旧事重提。"}],"confidence":"certain"}

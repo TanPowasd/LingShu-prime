@@ -1,0 +1,1 @@
+{"qid":"A1-055-state-0029","value":null,"state":"retired","at_seq":55,"chain":[],"basis":[{"file":"猎户项目#55","line":55,"quote":"猎户项目 的有效期秒数被撤销，此后不再保留取值，起因是灰度观测数据。"}],"confidence":"certain"}

@@ -1,0 +1,1 @@
+{"qid":"A1-001-history-0003","value":null,"state":"unresolved","at_seq":null,"chain":[],"basis":[{"file":"猎户项目#7","line":7,"quote":"第 7 次提交（猎户项目）。"}],"confidence":"unknown"}

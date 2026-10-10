@@ -1,0 +1,1 @@
+{"qid":"B2-016-reason-0358","value":"一场误会","state":"active","at_seq":16,"chain":[],"basis":[{"file":"雾港#16","line":16,"quote":"林昭 移到了 驿站，起因是一场误会。"}],"confidence":"certain"}

@@ -1,0 +1,1 @@
+{"qid":"A3-030-history-0103","value":"lmdb","state":"active","at_seq":30,"chain":[],"basis":[{"file":"织女项目#30","line":30,"quote":"织女项目 的依赖名首次确立为 lmdb。"}],"confidence":"certain"}

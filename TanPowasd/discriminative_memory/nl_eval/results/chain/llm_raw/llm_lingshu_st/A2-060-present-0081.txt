@@ -1,0 +1,1 @@
+{"qid":"A2-060-present-0081","value":"cfg_925891","state":"active","at_seq":47,"chain":[],"basis":[{"file":"流明项目#47","line":47,"quote":"流明项目 的配置值调整为 cfg_925891，起因是安全审计要求。"}],"confidence":"certain"}

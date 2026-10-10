@@ -1,0 +1,1 @@
+{"qid":"A2-060-present-0091","value":"300","state":"active","at_seq":21,"chain":[],"basis":[{"file":"流明项目#21","line":21,"quote":"流明项目·缓存模块 的有效期秒数调整为 300，起因是代码评审意见。"}],"confidence":"certain"}

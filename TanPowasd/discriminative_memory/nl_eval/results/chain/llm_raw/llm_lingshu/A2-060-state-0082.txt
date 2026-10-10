@@ -1,0 +1,1 @@
+{"qid":"A2-060-state-0082","value":"cfg_710970","state":"active","at_seq":30,"chain":[],"basis":[{"file":"流明项目#30","line":30,"quote":"流明项目 的配置值调整为 cfg_710970，起因是安全审计要求。"}],"confidence":"probable"}

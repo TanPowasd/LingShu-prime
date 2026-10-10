@@ -1,0 +1,1 @@
+{"qid":"B1-022-history-0205","value":"老陈","state":"active","at_seq":22,"chain":[],"basis":[{"file":"青石镇#22","line":22,"quote":"小满 的信任对象转为 老陈，起因是第三方的劝说。"}],"confidence":"certain"}

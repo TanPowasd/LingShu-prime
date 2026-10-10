@@ -1,0 +1,1 @@
+{"qid":"A3-023-state-0149","value":null,"state":"unresolved","at_seq":null,"chain":[],"basis":[{"file":"织女项目#40","line":40,"quote":"织女项目·缓存模块 的有效期秒数调整为 21600，起因是安全审计要求。"}],"confidence":"unknown"}

@@ -1,0 +1,1 @@
+{"qid":"B1-021-history-0245","value":"周舟","state":"active","at_seq":21,"chain":[],"basis":[{"file":"青石镇#21","line":1,"quote":"老陈 的信任对象转为 周舟，起因是私下承诺。"}],"confidence":"certain"}

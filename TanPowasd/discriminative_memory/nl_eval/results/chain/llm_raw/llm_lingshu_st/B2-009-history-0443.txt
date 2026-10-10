@@ -1,0 +1,1 @@
+{"qid":"B2-009-history-0443","value":"无人","state":"active","at_seq":9,"chain":[],"basis":[{"file":"雾港#9","line":9,"quote":"阿桑 的信任对象首次确立为 无人。"}],"confidence":"certain"}

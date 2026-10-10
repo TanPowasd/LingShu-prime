@@ -1,0 +1,1 @@
+{"qid":"B1-016-history-0285","value":"无人","state":"active","at_seq":16,"chain":[],"basis":[{"file":"青石镇#16","line":16,"quote":"阿禾 的信任对象的争议就此裁定为 无人，起因是私下承诺。"}],"confidence":"certain"}

@@ -1,0 +1,1 @@
+{"qid":"B3-023-reason-0618","value":"一次救助","state":"active","at_seq":23,"chain":[],"basis":[{"file":"孤山驿#23","line":23,"quote":"顾九 的情绪被撤销，此后不再保留取值，起因是一次救助。"}],"confidence":"certain"}

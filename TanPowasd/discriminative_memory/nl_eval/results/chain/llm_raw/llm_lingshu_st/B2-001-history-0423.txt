@@ -1,0 +1,1 @@
+{"qid":"B2-001-history-0423","value":"沉默","state":"retired","at_seq":1,"chain":[],"basis":[{"file":"雾港#1","line":1,"quote":"沈砚 的立场首次确立为 沉默。"},{"file":"雾港#26","line":26,"quote":"沈砚 的立场转为 观望"}],"confidence":"certain"}

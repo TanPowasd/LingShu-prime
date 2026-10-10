@@ -1,0 +1,1 @@
+{"qid":"B1-014-state-0219","value":null,"state":"retired","at_seq":null,"chain":[],"basis":[{"file":"青石镇#14","line":14,"quote":"小满 的情绪被撤销，此后不再保留取值，起因是旧事重提。"}],"confidence":"certain"}

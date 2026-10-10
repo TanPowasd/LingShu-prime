@@ -1,0 +1,1 @@
+{"qid":"B1-023-state-0159","value":null,"state":"retired","at_seq":23,"chain":[],"basis":[{"file":"青石镇#23","line":23,"quote":"周舟 的位置被撤销，此后不再保留取值，起因是一场误会。"}],"confidence":"certain"}

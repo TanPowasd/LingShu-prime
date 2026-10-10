@@ -1,0 +1,1 @@
+{"qid":"B2-030-change-0457","value":null,"state":"retired","at_seq":null,"chain":[{"seq":5,"from":null,"to":"欣慰"},{"seq":9,"from":"欣慰","to":"释然"},{"seq":14,"from":"释然","to":"欣慰"},{"seq":18,"from":"欣慰","to":"犹豫"},{"seq":23,"from":"犹豫","to":"平静"},{"seq":28,"from":"平静","to":null}],"basis":[{"file":"雾港#5","line":9,"quote":"阿桑 的情绪首次确立为 欣慰。"},{"file":"雾港#18","line":26,"

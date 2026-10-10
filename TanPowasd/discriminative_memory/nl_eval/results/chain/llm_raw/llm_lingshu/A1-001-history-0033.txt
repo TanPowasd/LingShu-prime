@@ -1,0 +1,1 @@
+{"qid":"A1-001-history-0033","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"猎户项目#1","line":2,"quote":"猎户服务 的配置值首次确立为 max_conn=256。"},{"file":"猎户项目#1","line":2,"quote":"猎户项目·缓存模块 的有效期秒数首次确立为 10800。"}],"confidence":"certain"}

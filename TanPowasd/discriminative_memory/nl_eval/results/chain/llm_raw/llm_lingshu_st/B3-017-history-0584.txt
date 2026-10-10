@@ -1,0 +1,1 @@
+{"qid":"B3-017-history-0584","value":"沉默","state":"active","at_seq":17,"chain":[],"basis":[{"file":"孤山驿#17","line":17,"quote":"陆平 的立场转为 沉默，起因是第三方的劝说。"}],"confidence":"certain"}

@@ -1,0 +1,1 @@
+{"qid":"B3-011-history-0623","value":"暧昧","state":"active","at_seq":11,"chain":[],"basis":[{"file":"孤山驿#11","line":11,"quote":"九爷 的立场首次确立为 暧昧。"},{"file":"孤山驿#14","line":14,"quote":"九爷 自第 14 章起改名为 顾九。"}],"confidence":"certain"}

@@ -1,0 +1,1 @@
+{"qid":"B2-017-state-0380","value":"欣慰","state":"active","at_seq":17,"chain":[],"basis":[{"file":"雾港#17","line":17,"quote":"林昭 的情绪转为 欣慰，起因是利益冲突。"},{"file":"雾港#12","line":12,"quote":"林昭 的情绪转为 戒备，起因是一桩旧账。"}],"confidence":"certain"}

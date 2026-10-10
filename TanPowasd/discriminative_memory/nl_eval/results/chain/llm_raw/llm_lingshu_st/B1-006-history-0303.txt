@@ -1,0 +1,1 @@
+{"qid":"B1-006-history-0303","value":null,"state":"unresolved","at_seq":null,"chain":[],"basis":[{"file":"青石镇#8","line":8,"quote":"阿禾 的立场被撤销，此后不再保留取值，起因是私下承诺。"},{"file":"青石镇#8","line":8,"quote":"禾生 自第 8 章起改名为 阿禾。"}],"confidence":"unknown"}

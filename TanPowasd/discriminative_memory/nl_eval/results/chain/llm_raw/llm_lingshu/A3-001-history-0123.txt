@@ -1,0 +1,1 @@
+{"qid":"A3-001-history-0123","value":"10800","state":"active","at_seq":1,"chain":[],"basis":[{"file":"织女项目#1","line":1,"quote":"织女组件 的有效期秒数首次确立为 10800。"}],"confidence":"probable"}

@@ -1,0 +1,1 @@
+{"qid":"B3-016-history-0535","value":"愤怒","state":"active","at_seq":16,"chain":[],"basis":[{"file":"孤山驿#16","line":16,"quote":"程雪 的情绪转为 愤怒，起因是一桩旧账。"}],"confidence":"certain"}

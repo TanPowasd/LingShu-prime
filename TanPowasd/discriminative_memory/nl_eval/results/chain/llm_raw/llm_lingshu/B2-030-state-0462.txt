@@ -1,0 +1,1 @@
+{"qid":"B2-030-state-0462","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"流明项目#30","line":30,"quote":"第 30 次提交（流明项目）。这一批改动排在发布队列里。"},{"file":"猎户项目#30","line":30,"quote":"第 30 次提交（猎户项目）。发布单上列着几项待办。"}],"confidence":"certain"}

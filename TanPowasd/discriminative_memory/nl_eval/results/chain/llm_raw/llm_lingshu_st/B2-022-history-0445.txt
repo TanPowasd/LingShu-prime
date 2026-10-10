@@ -1,0 +1,1 @@
+{"qid":"B2-022-history-0445","value":"林昭","state":"retired","at_seq":22,"chain":[],"basis":[{"file":"雾港#22","line":22,"quote":"阿桑 的信任对象的争议就此裁定为 林昭，起因是私下承诺。"},{"file":"雾港#27","line":27,"quote":"阿桑 的信任对象转为 无人，起因是一场误会。"}],"confidence":"certain"}

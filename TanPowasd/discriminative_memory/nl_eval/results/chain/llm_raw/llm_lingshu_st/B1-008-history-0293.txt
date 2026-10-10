@@ -1,0 +1,1 @@
+{"qid":"B1-008-history-0293","value":"低落","state":"active","at_seq":8,"chain":[],"basis":[{"file":"青石镇#8","line":8,"quote":"阿禾 的情绪首次确立为 低落。"}],"confidence":"certain"}

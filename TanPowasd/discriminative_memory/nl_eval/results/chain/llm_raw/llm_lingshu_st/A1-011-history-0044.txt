@@ -1,0 +1,1 @@
+{"qid":"A1-011-history-0044","value":"21600","state":"active","at_seq":7,"chain":[],"basis":[{"file":"猎户项目#7","line":7,"quote":"猎户项目·缓存模块 的有效期秒数调整为 21600，起因是线上故障复盘。"},{"file":"猎户项目#19","line":19,"quote":"猎户项目·缓存模块 的有效期秒数调整为 1800，起因是线上故障复盘。"}],"confidence":"certain"}

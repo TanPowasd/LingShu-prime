@@ -1,0 +1,1 @@
+{"qid":"B2-006-history-0434","value":"祠堂","state":"active","at_seq":6,"chain":[],"basis":[{"file":"雾港#6","line":6,"quote":"阿桑 移到了 祠堂，起因是共同的外敌。"}],"confidence":"certain"}

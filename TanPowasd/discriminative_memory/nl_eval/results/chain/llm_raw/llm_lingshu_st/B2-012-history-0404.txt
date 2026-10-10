@@ -1,0 +1,1 @@
+{"qid":"B2-012-history-0404","value":"无人","state":"active","at_seq":12,"chain":[],"basis":[{"file":"雾港#12","line":12,"quote":"沈砚 的信任对象的争议就此裁定为 无人，起因是共同的外敌。"}],"confidence":"certain"}

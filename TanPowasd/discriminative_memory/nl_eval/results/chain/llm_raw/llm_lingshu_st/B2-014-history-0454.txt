@@ -1,0 +1,1 @@
+{"qid":"B2-014-history-0454","value":"欣慰","state":"retired","at_seq":14,"chain":[],"basis":[{"file":"雾港#14","line":1,"quote":"阿桑 的情绪转为 欣慰，起因是私下承诺。"},{"file":"雾港#18","line":5,"quote":"阿桑 的情绪转为 犹豫，起因是私下承诺。"}],"confidence":"certain"}

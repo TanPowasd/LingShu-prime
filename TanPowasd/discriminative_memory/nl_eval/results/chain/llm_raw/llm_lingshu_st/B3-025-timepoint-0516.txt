@@ -1,0 +1,1 @@
+{"qid":"B3-025-timepoint-0516","value":null,"state":"retired","at_seq":null,"chain":[],"basis":[{"file":"孤山驿#25","line":25,"quote":"程雪 的位置被撤销，此后不再保留取值，起因是利益冲突。"}],"confidence":"certain"}

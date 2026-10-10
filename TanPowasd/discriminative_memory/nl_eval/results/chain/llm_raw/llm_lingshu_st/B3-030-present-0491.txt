@@ -1,0 +1,1 @@
+{"qid":"B3-030-present-0491","value":"欣慰","state":"active","at_seq":27,"chain":[],"basis":[{"file":"孤山驿#27","line":27,"quote":"白芨 的情绪的争议就此裁定为 欣慰，起因是一桩旧账。"}],"confidence":"certain"}

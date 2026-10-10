@@ -1,0 +1,1 @@
+{"qid":"B2-030-present-0431","value":"集市","state":"active","at_seq":3,"chain":[],"basis":[{"file":"雾港#1","line":1,"quote":"阿桑 的位置首次确立为 渡口。"},{"file":"雾港#3","line":3,"quote":"阿桑 移到了 集市，起因是一次救助。"}],"confidence":"certain"}

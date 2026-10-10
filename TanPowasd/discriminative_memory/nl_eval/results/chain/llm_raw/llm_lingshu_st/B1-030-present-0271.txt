@@ -1,0 +1,1 @@
+{"qid":"B1-030-present-0271","value":"祠堂","state":"active","at_seq":16,"chain":[],"basis":[{"file":"青石镇#16","line":16,"quote":"阿禾 的位置此后确立为 祠堂，起因是利益冲突。"},{"file":"青石镇#26","line":26,"quote":"阿禾 的位置早先一度为 祠堂。"}],"confidence":"certain"}

@@ -1,0 +1,1 @@
+{"qid":"A2-026-state-0070","value":"resolve(key, ttl)","state":"active","at_seq":26,"chain":[],"basis":[{"file":"流明项目#26","line":26,"quote":"流明项目 的函数签名调整为 resolve(key, ttl)，起因是容量评估结论。"}],"confidence":"certain"}

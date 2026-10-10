@@ -1,0 +1,1 @@
+{"qid":"B3-026-timepoint-0586","value":null,"state":"retired","at_seq":26,"chain":[],"basis":[{"file":"孤山驿#26","line":26,"quote":"陆平 的立场被撤销，此后不再保留取值，起因是共同的外敌。"}],"confidence":"certain"}

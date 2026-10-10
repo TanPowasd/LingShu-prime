@@ -1,0 +1,1 @@
+{"qid":"A3-039-history-0104","value":"redis","state":"active","at_seq":39,"chain":[],"basis":[{"file":"织女项目#39","line":39,"quote":"织女项目 的依赖名调整为 redis，起因是依赖库升级。"}],"confidence":"certain"}

@@ -1,0 +1,1 @@
+{"qid":"B3-022-history-0505","value":"反对","state":"active","at_seq":22,"chain":[],"basis":[{"file":"孤山驿#22","line":22,"quote":"白芨 的立场转为 反对，起因是一桩旧账。"}],"confidence":"certain"}

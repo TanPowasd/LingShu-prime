@@ -1,0 +1,1 @@
+{"qid":"A1-060-present-0031","value":"cfg_241943","state":"active","at_seq":60,"chain":[],"basis":[{"file":"猎户项目#60","line":60,"quote":"猎户项目 的配置值调整为 cfg_241943，起因是依赖库升级。"}],"confidence":"certain"}

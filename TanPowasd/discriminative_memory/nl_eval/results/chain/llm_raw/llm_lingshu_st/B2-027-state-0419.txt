@@ -1,0 +1,1 @@
+{"qid":"B2-027-state-0419","value":null,"state":"retired","at_seq":27,"chain":[],"basis":[{"file":"雾港#27","line":27,"quote":"沈砚 的情绪被撤销，此后不再保留取值，起因是利益冲突。"}],"confidence":"certain"}

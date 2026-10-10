@@ -1,0 +1,1 @@
+{"qid":"B1-009-history-0203","value":null,"state":"unresolved","at_seq":null,"chain":[],"basis":[{"file":"雾港#9","line":9,"quote":"第 9 章（雾港）。"},{"file":"青石镇#27","line":27,"quote":"小满 的信任对象转为 外人，起因是利益冲突。"}],"confidence":"unknown"}

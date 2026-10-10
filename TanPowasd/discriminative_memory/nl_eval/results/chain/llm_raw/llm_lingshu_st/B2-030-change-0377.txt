@@ -1,0 +1,1 @@
+{"qid":"B2-030-change-0377","value":"犹豫","state":"active","at_seq":26,"chain":[{"seq":7,"from":null,"to":"犹豫"},{"seq":12,"from":"犹豫","to":"戒备"},{"seq":17,"from":"戒备","to":"欣慰"},{"seq":21,"from":"欣慰","to":"愤怒 与 欣慰（尚未裁定）"},{"seq":26,"from":"愤怒 与 欣慰（尚未裁定）","to":"犹豫"}],"basis":[{"file":"雾港#7","line":11,"quote":"林昭 的情绪首次确立为 犹豫。"},{"file":"雾港#21","line":1,"quote":"

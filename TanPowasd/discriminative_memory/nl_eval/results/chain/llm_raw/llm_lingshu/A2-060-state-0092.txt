@@ -1,0 +1,1 @@
+{"qid":"A2-060-state-0092","value":"10800","state":"active","at_seq":10,"chain":[],"basis":[{"file":"流明项目#10","line":10,"quote":"流明项目·缓存模块 的有效期秒数调整为 10800，起因是线上故障复盘。"},{"file":"流明项目#5","line":5,"quote":"流明项目·缓存模块 的有效期秒数调整为 3600，起因是压测暴露并发缺陷。"}],"confidence":"probable"}

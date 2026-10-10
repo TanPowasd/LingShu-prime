@@ -1,0 +1,1 @@
+{"qid":"B1-009-history-0203","value":null,"state":"unresolved","at_seq":null,"chain":[],"basis":[{"file":"青石镇#13","line":13,"quote":"满儿 自第 13 章起改名为 小满。"},{"file":"青石镇#13","line":13,"quote":"小满 的信任对象被撤销，此后不再保留取值，起因是一桩旧账。"}],"confidence":"unknown"}

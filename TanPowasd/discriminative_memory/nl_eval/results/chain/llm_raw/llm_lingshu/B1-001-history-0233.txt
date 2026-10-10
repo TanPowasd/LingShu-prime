@@ -1,0 +1,1 @@
+{"qid":"B1-001-history-0233","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"青石镇#12","line":12,"quote":"老陈 的信任对象转为 小满，起因是一次救助。"},{"file":"青石镇#16","line":16,"quote":"老陈 的信任对象转为 阿禾，起因是共同的外敌。"}],"confidence":"unknown"}

@@ -1,0 +1,1 @@
+{"qid":"B2-010-history-0435","value":"粮仓","state":"active","at_seq":10,"chain":[],"basis":[{"file":"雾港#10","line":10,"quote":"阿桑 移到了 粮仓，起因是旧事重提。"}],"confidence":"certain"}

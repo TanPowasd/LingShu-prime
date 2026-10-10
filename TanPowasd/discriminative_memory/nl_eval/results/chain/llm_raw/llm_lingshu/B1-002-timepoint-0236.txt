@@ -1,0 +1,1 @@
+{"qid":"B1-002-timepoint-0236","value":null,"state":"retired","at_seq":null,"chain":[],"basis":[{"file":"青石镇#2","line":2,"quote":"老陈 的位置被撤销，此后不再保留取值，起因是一桩旧账。"},{"file":"青石镇#2","line":2,"quote":"陈伯 自第 2 章起改名为 老陈。"}],"confidence":"certain"}

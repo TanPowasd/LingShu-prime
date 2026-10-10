@@ -1,0 +1,1 @@
+{"qid":"A2-036-state-0089","value":null,"state":"unresolved","at_seq":null,"chain":[],"basis":[{"file":"流明项目#36","line":36,"quote":"流明项目 的配置值出现两种并存的取值：cfg_795010 与 batch_size=256，尚未裁定，起因是灰度观测数据。"}],"confidence":"certain"}

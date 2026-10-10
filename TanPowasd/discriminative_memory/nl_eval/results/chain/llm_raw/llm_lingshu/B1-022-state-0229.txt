@@ -1,0 +1,1 @@
+{"qid":"B1-022-state-0229","value":null,"state":"retired","at_seq":22,"chain":[],"basis":[{"file":"青石镇#22","line":22,"quote":"小满 的立场被撤销，此后不再保留取值，起因是旧事重提。"}],"confidence":"certain"}

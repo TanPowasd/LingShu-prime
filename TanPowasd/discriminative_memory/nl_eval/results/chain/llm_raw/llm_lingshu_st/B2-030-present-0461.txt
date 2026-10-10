@@ -1,0 +1,1 @@
+{"qid":"B2-030-present-0461","value":"沉默","state":"active","at_seq":27,"chain":[],"basis":[{"file":"雾港#27","line":27,"quote":"阿桑 的立场转为 沉默，起因是旧事重提。"},{"file":"雾港#9","line":9,"quote":"阿桑 的立场首次确立为 反对。"}],"confidence":"certain"}

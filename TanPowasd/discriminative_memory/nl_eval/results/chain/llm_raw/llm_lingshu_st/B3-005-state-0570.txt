@@ -1,0 +1,1 @@
+{"qid":"B3-005-state-0570","value":"外人","state":"active","at_seq":5,"chain":[],"basis":[{"file":"孤山驿#5","line":5,"quote":"陆平 的信任对象转为 外人，起因是一次救助。"},{"file":"孤山驿#1","line":1,"quote":"陆平 的信任对象首次确立为 程雪。"}],"confidence":"certain"}

@@ -1,0 +1,1 @@
+{"qid":"B3-028-timepoint-0626","value":null,"state":"retired","at_seq":28,"chain":[],"basis":[{"file":"孤山驿#28","line":28,"quote":"顾九 的立场被撤销，此后不再保留取值，起因是一桩旧账。"}],"confidence":"certain"}

@@ -1,0 +1,1 @@
+{"qid":"A3-040-history-0135","value":"max_conn=32","state":"active","at_seq":40,"chain":[],"basis":[{"file":"织女项目#40","line":1,"quote":"织女项目 的配置值调整为 max_conn=32，起因是接口兼容性调整。"}],"confidence":"certain"}

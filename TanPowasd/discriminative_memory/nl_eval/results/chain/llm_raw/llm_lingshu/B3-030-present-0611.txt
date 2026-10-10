@@ -1,0 +1,1 @@
+{"qid":"B3-030-present-0611","value":"愤怒","state":"active","at_seq":15,"chain":[],"basis":[{"file":"孤山驿#15","line":15,"quote":"顾九 的情绪转为 愤怒，起因是一场误会。"},{"file":"孤山驿#30","line":30,"quote":"顾九·同名者 的情绪转为 焦虑，起因是一次救助。"}],"confidence":"certain"}

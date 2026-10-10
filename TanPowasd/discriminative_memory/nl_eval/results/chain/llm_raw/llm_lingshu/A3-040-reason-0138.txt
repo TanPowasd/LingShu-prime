@@ -1,0 +1,1 @@
+{"qid":"A3-040-reason-0138","value":"接口兼容性调整","state":"active","at_seq":40,"chain":[],"basis":[{"file":"织女项目#40","line":40,"quote":"织女项目 的配置值调整为 max_conn=32，起因是接口兼容性调整。"}],"confidence":"certain"}

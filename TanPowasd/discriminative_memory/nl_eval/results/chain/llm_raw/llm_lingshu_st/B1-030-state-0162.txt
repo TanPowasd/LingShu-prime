@@ -1,0 +1,1 @@
+{"qid":"B1-030-state-0162","value":"无人","state":"active","at_seq":28,"chain":[],"basis":[{"file":"青石镇#28","line":28,"quote":"周舟 的信任对象此后确立为 无人，起因是一场误会。"},{"file":"青石镇#10","line":10,"quote":"周舟 的信任对象首次确立为 小满。"}],"confidence":"certain"}

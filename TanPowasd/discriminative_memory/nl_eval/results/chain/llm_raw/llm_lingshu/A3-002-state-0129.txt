@@ -1,0 +1,1 @@
+{"qid":"A3-002-state-0129","value":null,"state":"retired","at_seq":2,"chain":[],"basis":[{"file":"织女项目#2","line":2,"quote":"织女项目 的有效期秒数被撤销，此后不再保留取值，起因是安全审计要求。"}],"confidence":"certain"}

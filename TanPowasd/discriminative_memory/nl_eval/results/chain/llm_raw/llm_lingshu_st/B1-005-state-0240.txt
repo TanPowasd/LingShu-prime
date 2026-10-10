@@ -1,0 +1,1 @@
+{"qid":"B1-005-state-0240","value":"渡口","state":"active","at_seq":5,"chain":[],"basis":[{"file":"青石镇#5","line":5,"quote":"老陈 移到了 渡口，起因是旧事重提。"}],"confidence":"certain"}

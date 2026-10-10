@@ -1,0 +1,1 @@
+{"qid":"B3-030-state-0572","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"青石镇#30","line":30,"quote":"第 30 章（青石镇）。"},{"file":"青石镇#30","line":30,"quote":"小满·同名者 的情绪被撤销，此后不再保留取值，起因是私下承诺。"}],"confidence":"unknown"}

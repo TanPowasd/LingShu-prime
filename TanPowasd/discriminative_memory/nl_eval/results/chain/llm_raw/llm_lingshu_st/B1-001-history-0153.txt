@@ -1,0 +1,1 @@
+{"qid":"B1-001-history-0153","value":"祠堂","state":"active","at_seq":1,"chain":[],"basis":[{"file":"青石镇#1","line":2,"quote":"舟子 的位置首次确立为 祠堂。"}],"confidence":"probable"}

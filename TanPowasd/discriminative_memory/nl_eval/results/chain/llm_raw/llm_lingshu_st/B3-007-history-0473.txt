@@ -1,0 +1,1 @@
+{"qid":"B3-007-history-0473","value":"磨坊","state":"active","at_seq":7,"chain":[],"basis":[{"file":"孤山驿#7","line":7,"quote":"白芨 的位置首次确立为 磨坊。"}],"confidence":"certain"}

@@ -1,0 +1,1 @@
+{"qid":"A2-048-history-0075","value":"7200","state":"active","at_seq":48,"chain":[],"basis":[{"file":"流明项目#48","line":48,"quote":"流明项目 的有效期秒数调整为 7200，起因是线上故障复盘。"}],"confidence":"certain"}

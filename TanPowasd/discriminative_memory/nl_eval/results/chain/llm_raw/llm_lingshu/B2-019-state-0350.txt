@@ -1,0 +1,1 @@
+{"qid":"B2-019-state-0350","value":"暧昧","state":"active","at_seq":19,"chain":[],"basis":[{"file":"雾港#19","line":19,"quote":"杜衡 的立场转为 暧昧，起因是第三方的劝说。"}],"confidence":"certain"}

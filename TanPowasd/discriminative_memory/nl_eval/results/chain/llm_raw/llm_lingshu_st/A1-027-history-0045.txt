@@ -1,0 +1,1 @@
+{"qid":"A1-027-history-0045","value":"1800","state":"active","at_seq":19,"chain":[],"basis":[{"file":"猎户项目#19","line":19,"quote":"猎户项目·缓存模块 的有效期秒数调整为 1800，起因是线上故障复盘。"},{"file":"猎户项目#57","line":57,"quote":"猎户项目·缓存模块 的有效期秒数被撤销，此后不再保留取值，起因是接口兼容性调整。"}],"confidence":"probable"}

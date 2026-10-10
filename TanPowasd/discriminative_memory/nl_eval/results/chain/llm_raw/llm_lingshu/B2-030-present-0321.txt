@@ -1,0 +1,1 @@
+{"qid":"B2-030-present-0321","value":"沈砚","state":"active","at_seq":14,"chain":[],"basis":[{"file":"雾港#14","line":14,"quote":"杜衡 的信任对象转为 沈砚，起因是第三方的劝说。"}],"confidence":"certain"}

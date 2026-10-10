@@ -1,0 +1,1 @@
+{"qid":"B2-016-reason-0368","value":"旧事重提","state":"active","at_seq":16,"chain":[],"basis":[{"file":"雾港#16","line":16,"quote":"林昭 的信任对象转为 外人，起因是旧事重提。"}],"confidence":"certain"}

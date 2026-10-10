@@ -1,0 +1,1 @@
+{"qid":"B1-030-present-0181","value":"反对","state":"active","at_seq":29,"chain":[],"basis":[{"file":"青石镇#29","line":29,"quote":"周舟 的立场转为 反对，起因是私下承诺。"}],"confidence":"certain"}

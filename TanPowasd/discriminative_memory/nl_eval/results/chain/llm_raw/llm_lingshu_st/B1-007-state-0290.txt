@@ -1,0 +1,1 @@
+{"qid":"B1-007-state-0290","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"青石镇#8","line":8,"quote":"禾生 自第 8 章起改名为 阿禾。"}],"confidence":"certain"}

@@ -1,0 +1,1 @@
+{"qid":"B3-030-state-0641","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"流明项目#30","line":30,"quote":"流明项目 的配置值调整为 cfg_710970，起因是安全审计要求。"},{"file":"猎户项目#30","line":30,"quote":"猎户项目 的配置值调整为 cfg_803135，起因是安全审计要求。"},{"file":"织女项目#22","line":22,"quote":"织女项目 的配置值调整为 batch_size=32，起因是接口兼容性调整。"}],"confidence":"certain"}

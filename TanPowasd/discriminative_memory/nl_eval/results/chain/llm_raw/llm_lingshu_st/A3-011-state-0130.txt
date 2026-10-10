@@ -1,0 +1,1 @@
+{"qid":"A3-011-state-0130","value":"3600","state":"active","at_seq":11,"chain":[],"basis":[{"file":"织女项目#11","line":11,"quote":"织女项目 的有效期秒数调整为 3600，起因是安全审计要求。"}],"confidence":"certain"}

@@ -1,0 +1,1 @@
+{"qid":"B3-011-history-0593","value":"祠堂","state":"active","at_seq":11,"chain":[],"basis":[{"file":"孤山驿#11","line":11,"quote":"九爷 的位置首次确立为 祠堂。"}],"confidence":"probable"}

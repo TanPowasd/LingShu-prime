@@ -1,0 +1,1 @@
+{"qid":"B2-030-state-0342","value":"观望","state":"active","at_seq":10,"chain":[],"basis":[{"file":"雾港#10","line":10,"quote":"杜衡 的立场首次确立为 观望。"}],"confidence":"certain"}

@@ -1,0 +1,1 @@
+{"qid":"B1-002-history-0283","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"孤山驿#2","line":2,"quote":"第 2 章（孤山驿）。"},{"file":"孤山驿#2","line":2,"quote":"陆平 的信任对象转为 顾九，起因是旧事重提。"}],"confidence":"certain"}

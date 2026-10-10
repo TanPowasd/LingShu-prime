@@ -1,0 +1,1 @@
+{"qid":"B1-030-present-0231","value":"磨坊","state":"active","at_seq":26,"chain":[],"basis":[{"file":"青石镇#26","line":26,"quote":"老陈 移到了 磨坊，起因是一次救助。"}],"confidence":"certain"}

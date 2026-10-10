@@ -1,0 +1,1 @@
+{"qid":"B2-018-state-0470","value":"暧昧","state":"active","at_seq":18,"chain":[],"basis":[{"file":"雾港#18","line":1,"quote":"阿桑 的立场的争议就此裁定为 暧昧，起因是共同的外敌。"}],"confidence":"certain"}

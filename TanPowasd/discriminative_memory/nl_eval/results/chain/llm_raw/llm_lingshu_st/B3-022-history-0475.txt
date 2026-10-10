@@ -1,0 +1,1 @@
+{"qid":"B3-022-history-0475","value":null,"state":"unresolved","at_seq":null,"chain":[],"basis":[{"file":"孤山驿#22","line":22,"quote":"白芨 的位置出现两种并存的取值：后山 与 驿站，尚未裁定，起因是一场误会。"}],"confidence":"certain"}

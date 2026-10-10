@@ -1,0 +1,1 @@
+{"qid":"B2-030-state-0382","value":"暧昧","state":"active","at_seq":3,"chain":[],"basis":[{"file":"雾港#3","line":3,"quote":"林昭 的立场转为 暧昧，起因是利益冲突。"}],"confidence":"certain"}

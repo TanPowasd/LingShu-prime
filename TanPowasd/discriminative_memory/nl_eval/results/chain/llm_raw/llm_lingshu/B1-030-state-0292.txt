@@ -1,0 +1,1 @@
+{"qid":"B1-030-state-0292","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"孤山驿#30","line":30,"quote":"顾九·同名者 的情绪转为 焦虑，起因是一次救助。"},{"file":"雾港#30","line":30,"quote":"沈砚·同名者 的情绪转为 愤怒，起因是私下承诺。"},{"file":"雾港#30","line":30,"quote":"阿桑·同名者 的信任对象转为 阿桑，起因是共同的外敌。"}],"confidence":"probable"}

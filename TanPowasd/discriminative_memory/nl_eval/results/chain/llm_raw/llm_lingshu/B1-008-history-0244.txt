@@ -1,0 +1,1 @@
+{"qid":"B1-008-history-0244","value":"无人","state":"active","at_seq":8,"chain":[],"basis":[{"file":"青石镇#8","line":8,"quote":"老陈 的信任对象此后确立为 无人，起因是共同的外敌。"}],"confidence":"certain"}

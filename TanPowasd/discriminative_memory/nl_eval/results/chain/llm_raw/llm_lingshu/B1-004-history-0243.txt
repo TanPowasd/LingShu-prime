@@ -1,0 +1,1 @@
+{"qid":"B1-004-history-0243","value":"外人","state":"active","at_seq":4,"chain":[],"basis":[{"file":"青石镇#4","line":4,"quote":"老陈 的信任对象首次确立为 外人。"}],"confidence":"certain"}

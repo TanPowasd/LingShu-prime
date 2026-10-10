@@ -1,0 +1,1 @@
+{"qid":"B2-017-state-0400","value":"后山","state":"active","at_seq":17,"chain":[],"basis":[{"file":"雾港#17","line":17,"quote":"沈砚 移到了 后山，起因是第三方的劝说。"},{"file":"雾港#13","line":13,"quote":"沈砚 移到了 磨坊，起因是私下承诺。"}],"confidence":"certain"}

@@ -1,0 +1,1 @@
+{"qid":"B1-001-history-0183","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"孤山驿#1","line":1,"quote":"第 1 章（孤山驿）。"},{"file":"青石镇#10","line":10,"quote":"周舟 的立场被撤销，此后不再保留取值，起因是旧事重提。"}],"confidence":"unknown"}

@@ -1,0 +1,1 @@
+{"qid":"A3-002-state-0129","value":null,"state":"unresolved","at_seq":null,"chain":[],"basis":[{"file":"织女项目#22","line":22,"quote":"第 22 次提交（织女项目）。"},{"file":"织女项目#22","line":22,"quote":"织女项目·缓存模块 的有效期秒数调整为 300，起因是依赖库升级。"}],"confidence":"unknown"}

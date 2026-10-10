@@ -1,0 +1,1 @@
+{"qid":"B1-002-timepoint-0196","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"青石镇#2","line":2,"quote":"禾生 的信任对象首次确立为 小满。"}],"confidence":"probable"}

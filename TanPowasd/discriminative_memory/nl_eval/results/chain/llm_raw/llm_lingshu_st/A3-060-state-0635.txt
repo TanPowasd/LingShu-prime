@@ -1,0 +1,1 @@
+{"qid":"A3-060-state-0635","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"织女项目#60","line":60,"quote":"第 60 次提交（织女项目）。这一批改动排在发布队列里。"}],"confidence":"certain"}

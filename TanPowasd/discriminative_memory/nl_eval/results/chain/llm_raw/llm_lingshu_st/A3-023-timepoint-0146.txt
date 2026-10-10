@@ -1,0 +1,1 @@
+{"qid":"A3-023-timepoint-0146","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"织女项目#40","line":40,"quote":"第 40 次提交（织女项目）。"}],"confidence":"unknown"}

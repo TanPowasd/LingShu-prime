@@ -1,0 +1,1 @@
+{"qid":"B3-030-present-0591","value":"粮仓","state":"active","at_seq":28,"chain":[],"basis":[{"file":"孤山驿#28","line":28,"quote":"顾九 的位置的争议就此裁定为 粮仓，起因是一桩旧账。"},{"file":"孤山驿#23","line":23,"quote":"顾九 的位置出现两种并存的取值：集市 与 渡口，尚未裁定，起因是一场误会。"}],"confidence":"certain"}

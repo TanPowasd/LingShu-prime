@@ -1,0 +1,1 @@
+{"qid":"B2-029-state-0339","value":null,"state":"retired","at_seq":29,"chain":[],"basis":[{"file":"雾港#29","line":29,"quote":"杜衡 的情绪被撤销，此后不再保留取值，起因是一桩旧账。"},{"file":"雾港#19","line":19,"quote":"杜衡 的情绪转为 低落，起因是旧事重提。"}],"confidence":"certain"}

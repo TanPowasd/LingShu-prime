@@ -1,0 +1,1 @@
+{"qid":"A2-054-timepoint-0076","value":null,"state":"retired","at_seq":54,"chain":[],"basis":[{"file":"流明项目#50","line":50,"quote":"流明项目 的有效期秒数调整为 1800，起因是容量评估结论。"},{"file":"流明项目#54","line":54,"quote":"流明项目 的有效期秒数被撤销，此后不再保留取值，起因是接口兼容性调整。"}],"confidence":"certain"}

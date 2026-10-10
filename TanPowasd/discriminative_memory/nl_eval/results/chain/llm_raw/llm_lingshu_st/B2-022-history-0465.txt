@@ -1,0 +1,1 @@
+{"qid":"B2-022-history-0465","value":"反对","state":"retired","at_seq":22,"chain":[],"basis":[{"file":"雾港#22","line":1,"quote":"阿桑 的立场转为 反对，起因是旧事重提。"},{"file":"雾港#27","line":2,"quote":"阿桑 的立场转为 沉默，起因是旧事重提。"}],"confidence":"certain"}

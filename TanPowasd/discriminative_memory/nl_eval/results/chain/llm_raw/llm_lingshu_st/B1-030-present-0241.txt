@@ -1,0 +1,1 @@
+{"qid":"B1-030-present-0241","value":"阿禾","state":"active","at_seq":25,"chain":[{"seq":8,"from":null,"to":"无人"},{"seq":25,"from":"无人","to":"阿禾"}],"basis":[{"file":"青石镇#8","line":4,"quote":"老陈 的信任对象此后确立为 无人，起因是共同的外敌。"},{"file":"青石镇#25","line":3,"quote":"老陈 的信任对象转为 阿禾，起因是共同的外敌。"}],"confidence":"certain"}

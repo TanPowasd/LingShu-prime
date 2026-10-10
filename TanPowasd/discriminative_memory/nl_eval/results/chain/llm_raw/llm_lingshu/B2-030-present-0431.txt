@@ -1,0 +1,20 @@
+{
+  "qid": "B2-030-present-0431",
+  "value": "渡口",
+  "state": "active",
+  "at_seq": 18,
+  "chain": [],
+  "basis": [
+    {
+      "file": "雾港#1",
+      "line": 1,
+      "quote": "阿桑 的位置首次确立为 渡口。"
+    },
+    {
+      "file": "雾港#18",
+      "line": 4,
+      "quote": "阿桑 的位置的争议就此裁定为 渡口，起因是第三方的劝说。"
+    }
+  ],
+  "confidence": "certain"
+}

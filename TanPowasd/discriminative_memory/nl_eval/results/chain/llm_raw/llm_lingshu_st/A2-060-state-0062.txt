@@ -1,0 +1,1 @@
+{"qid":"A2-060-state-0062","value":"active","state":"active","at_seq":30,"chain":[],"basis":[{"file":"流明项目#30","line":30,"quote":"流明项目 的函数签名调整为 resolve(key, ttl, force)，起因是灰度观测数据。"}],"confidence":"probable"}

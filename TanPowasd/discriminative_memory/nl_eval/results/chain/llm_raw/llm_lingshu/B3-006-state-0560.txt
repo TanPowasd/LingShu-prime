@@ -1,0 +1,1 @@
+{"qid":"B3-006-state-0560","value":"集市","state":"active","at_seq":6,"chain":[],"basis":[{"file":"孤山驿#6","line":6,"quote":"陆平 移到了 集市，起因是私下承诺。"}],"confidence":"certain"}

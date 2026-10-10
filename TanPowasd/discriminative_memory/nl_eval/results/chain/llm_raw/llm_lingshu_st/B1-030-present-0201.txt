@@ -1,0 +1,1 @@
+{"qid":"B1-030-present-0201","value":"外人","state":"active","at_seq":27,"chain":[],"basis":[{"file":"青石镇#27","line":27,"quote":"小满 的信任对象转为 外人，起因是利益冲突。"}],"confidence":"certain"}

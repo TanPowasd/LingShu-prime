@@ -1,0 +1,1 @@
+{"qid":"B1-011-history-0173","value":"欣慰","state":"active","at_seq":11,"chain":[],"basis":[{"file":"青石镇#11","line":11,"quote":"周舟 的情绪首次确立为 欣慰。"}],"confidence":"certain"}

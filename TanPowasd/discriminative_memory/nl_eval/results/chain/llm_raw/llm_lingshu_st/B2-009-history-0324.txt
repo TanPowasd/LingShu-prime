@@ -1,0 +1,1 @@
+{"qid":"B2-009-history-0324","value":"阿桑","state":"active","at_seq":9,"chain":[],"basis":[{"file":"雾港#9","line":9,"quote":"杜衡 的信任对象转为 阿桑，起因是一次救助。"}],"confidence":"certain"}

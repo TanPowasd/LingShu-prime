@@ -1,0 +1,1 @@
+{"qid":"B2-010-history-0313","value":"祠堂","state":"active","at_seq":10,"chain":[],"basis":[{"file":"雾港#10","line":10,"quote":"杜衡 的位置首次确立为 祠堂。"}],"confidence":"certain"}

@@ -1,0 +1,1 @@
+{"qid":"B2-001-history-0433","value":"渡口","state":"active","at_seq":1,"chain":[],"basis":[{"file":"雾港#1","line":1,"quote":"第 1 章（雾港）。"},{"file":"雾港#1","line":1,"quote":"阿桑 的位置首次确立为 渡口。"}],"confidence":"certain"}

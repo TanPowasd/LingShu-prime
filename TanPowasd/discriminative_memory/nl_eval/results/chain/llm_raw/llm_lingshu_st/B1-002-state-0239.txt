@@ -1,0 +1,1 @@
+{"qid":"B1-002-state-0239","value":null,"state":"retired","at_seq":2,"chain":[],"basis":[{"file":"青石镇#2","line":2,"quote":"老陈 的位置被撤销，此后不再保留取值，起因是一桩旧账。"}],"confidence":"certain"}

@@ -1,0 +1,1 @@
+{"qid":"A1-060-state-0032","value":"cfg_202750","state":"active","at_seq":51,"chain":[],"basis":[{"file":"猎户项目#51","line":51,"quote":"猎户项目 的配置值调整为 cfg_202750，起因是安全审计要求。"}],"confidence":"probable"}

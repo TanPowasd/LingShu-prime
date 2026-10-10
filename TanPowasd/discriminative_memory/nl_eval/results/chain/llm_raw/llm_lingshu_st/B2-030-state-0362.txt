@@ -1,0 +1,1 @@
+{"qid":"B2-030-state-0362","value":"阿桑","state":"active","at_seq":20,"chain":[],"basis":[{"file":"雾港#20","line":20,"quote":"林昭 的信任对象转为 阿桑，起因是一场误会。"}],"confidence":"certain"}

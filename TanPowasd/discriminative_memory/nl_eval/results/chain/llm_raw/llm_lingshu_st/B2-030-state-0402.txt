@@ -1,0 +1,1 @@
+{"qid":"B2-030-state-0402","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"雾港#30","line":30,"quote":"沈砚·同名者 的情绪转为 愤怒，起因是私下承诺。"},{"file":"雾港#27","line":27,"quote":"沈砚 的情绪被撤销，此后不再保留取值，起因是利益冲突。"}],"confidence":"certain"}

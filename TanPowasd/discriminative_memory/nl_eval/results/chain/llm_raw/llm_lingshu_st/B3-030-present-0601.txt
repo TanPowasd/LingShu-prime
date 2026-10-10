@@ -1,0 +1,1 @@
+{"qid":"B3-030-present-0601","value":"外人","state":"active","at_seq":28,"chain":[],"basis":[{"file":"孤山驿#28","line":28,"quote":"顾九 的信任对象转为 外人，起因是旧事重提。"}],"confidence":"certain"}

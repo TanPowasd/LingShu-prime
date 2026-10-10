@@ -1,0 +1,1 @@
+{"qid":"B1-005-history-0234","value":"祠堂","state":"active","at_seq":3,"chain":[],"basis":[{"file":"青石镇#3","line":6,"quote":"老陈 的位置此后确立为 祠堂，起因是旧事重提。"},{"file":"青石镇#26","line":5,"quote":"老陈 移到了 磨坊，起因是一次救助。"}],"confidence":"certain"}

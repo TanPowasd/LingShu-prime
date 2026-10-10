@@ -1,0 +1,1 @@
+{"qid":"B2-009-history-0463","value":"反对","state":"active","at_seq":9,"chain":[],"basis":[{"file":"雾港#9","line":9,"quote":"阿桑 的立场首次确立为 反对。"}],"confidence":"certain"}

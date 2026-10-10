@@ -1,0 +1,1 @@
+{"qid":"A3-060-present-0131","value":"batch_size=16","state":"active","at_seq":46,"chain":[],"basis":[{"file":"织女项目#46","line":46,"quote":"织女项目 的配置值调整为 batch_size=16，起因是压测暴露并发缺陷。"}],"confidence":"certain"}

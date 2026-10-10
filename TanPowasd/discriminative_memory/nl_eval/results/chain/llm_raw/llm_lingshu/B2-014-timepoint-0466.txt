@@ -1,0 +1,1 @@
+{"qid":"B2-014-timepoint-0466","value":"中立 与 暧昧","state":"unresolved","at_seq":14,"chain":[],"basis":[{"file":"雾港#14","line":14,"quote":"阿桑 的立场出现两种并存的取值：中立 与 暧昧，尚未裁定，起因是利益冲突。"}],"confidence":"certain"}

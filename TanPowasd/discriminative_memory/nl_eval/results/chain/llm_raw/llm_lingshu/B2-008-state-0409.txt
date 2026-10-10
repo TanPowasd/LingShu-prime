@@ -1,0 +1,1 @@
+{"qid":"B2-008-state-0409","value":null,"state":"unresolved","at_seq":8,"chain":[],"basis":[{"file":"雾港#8","line":8,"quote":"沈砚 的信任对象出现两种并存的取值：林昭 与 杜衡，尚未裁定，起因是一桩旧账。"}],"confidence":"certain"}

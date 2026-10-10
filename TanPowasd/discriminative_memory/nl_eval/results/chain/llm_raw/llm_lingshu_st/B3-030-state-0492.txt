@@ -1,0 +1,1 @@
+{"qid":"B3-030-state-0492","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"孤山驿#30","line":30,"quote":"白芨·同名者 移到了 集市，起因是私下承诺。"}],"confidence":"certain"}

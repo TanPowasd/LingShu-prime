@@ -1,0 +1,1 @@
+{"qid":"B2-030-present-0411","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"雾港#30","line":30,"quote":"沈砚·同名者 的情绪转为 愤怒，起因是私下承诺。"},{"file":"雾港#1","line":1,"quote":"沈砚 的立场首次确立为 沉默。"},{"file":"雾港#3","line":3,"quote":"沈砚 的立场转为 支持，起因是共同的外敌。"}],"confidence":"probable"}

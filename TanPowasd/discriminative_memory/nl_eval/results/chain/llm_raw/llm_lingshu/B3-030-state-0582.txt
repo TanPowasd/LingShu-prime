@@ -1,0 +1,1 @@
+{"qid":"B3-030-state-0582","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"孤山驿#1","line":1,"quote":"陆平 的位置首次确立为 磨坊。"},{"file":"孤山驿#3","line":3,"quote":"陆平 的位置的争议就此裁定为 粮仓"}],"confidence":"certain"}

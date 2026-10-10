@@ -1,0 +1,1 @@
+{"qid":"A3-060-present-0101","value":"lmdb","state":"active","at_seq":48,"chain":[],"basis":[{"file":"织女项目#48","line":48,"quote":"织女项目 的依赖名此后确立为 lmdb，起因是线上故障复盘。"},{"file":"织女项目#45","line":45,"quote":"织女项目 的依赖名被撤销，此后不再保留取值，起因是依赖库升级。"}],"confidence":"certain"}

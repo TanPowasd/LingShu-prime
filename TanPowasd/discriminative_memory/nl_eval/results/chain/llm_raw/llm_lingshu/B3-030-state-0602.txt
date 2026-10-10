@@ -1,0 +1,1 @@
+{"qid":"B3-030-state-0602","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"雾港#30","line":30,"quote":"阿桑·同名者 的信任对象转为 阿桑，起因是共同的外敌。"},{"file":"青石镇#30","line":30,"quote":"周舟·同名者 的信任对象转为 老陈，起因是一次救助。"}],"confidence":"certain"}

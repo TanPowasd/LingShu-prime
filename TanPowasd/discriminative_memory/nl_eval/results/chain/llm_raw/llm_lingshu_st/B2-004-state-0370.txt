@@ -1,0 +1,1 @@
+{"qid":"B2-004-state-0370","value":"阿桑","state":"active","at_seq":4,"chain":[],"basis":[{"file":"雾港#4","line":4,"quote":"林昭 的信任对象此后确立为 阿桑，起因是一桩旧账。"}],"confidence":"certain"}

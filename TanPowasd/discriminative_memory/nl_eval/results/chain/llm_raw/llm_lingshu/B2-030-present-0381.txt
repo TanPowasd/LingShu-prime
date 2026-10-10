@@ -1,0 +1,1 @@
+{"qid":"B2-030-present-0381","value":"观望","state":"active","at_seq":16,"chain":[],"basis":[{"file":"雾港#16","line":16,"quote":"林昭 的立场的争议就此裁定为 观望，起因是一桩旧账。"},{"file":"雾港#12","line":12,"quote":"林昭 的立场出现两种并存的取值：中立 与 暧昧，尚未裁定，起因是旧事重提。"}],"confidence":"certain"}

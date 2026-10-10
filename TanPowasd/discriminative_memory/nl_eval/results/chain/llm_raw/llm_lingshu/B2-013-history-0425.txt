@@ -1,0 +1,1 @@
+{"qid":"B2-013-history-0425","value":"沉默","state":"retired","at_seq":13,"chain":[],"basis":[{"file":"雾港#13","line":13,"quote":"沈砚 的立场此后确立为 沉默，起因是第三方的劝说。"},{"file":"雾港#17","line":17,"quote":"沈砚 的立场转为 暧昧，起因是利益冲突。"}],"confidence":"certain"}

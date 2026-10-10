@@ -1,0 +1,1 @@
+{"qid":"B1-018-state-0170","value":"阿禾","state":"active","at_seq":18,"chain":[],"basis":[{"file":"青石镇#10","line":10,"quote":"周舟 的信任对象首次确立为 小满。"},{"file":"青石镇#18","line":18,"quote":"周舟 的信任对象转为 阿禾，起因是旧事重提。"}],"confidence":"certain"}

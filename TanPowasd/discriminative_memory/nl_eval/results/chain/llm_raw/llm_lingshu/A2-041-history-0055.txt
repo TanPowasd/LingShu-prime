@@ -1,0 +1,1 @@
+{"qid":"A2-041-history-0055","value":"lmdb","state":"active","at_seq":41,"chain":[],"basis":[{"file":"流明项目#41","line":41,"quote":"流明项目 的依赖名调整为 lmdb，起因是安全审计要求。"}],"confidence":"certain"}

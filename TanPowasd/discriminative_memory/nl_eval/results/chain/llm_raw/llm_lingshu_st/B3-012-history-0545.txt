@@ -1,0 +1,1 @@
+{"qid":"B3-012-history-0545","value":"支持","state":"active","at_seq":12,"chain":[],"basis":[{"file":"孤山驿#12","line":12,"quote":"程雪 的立场转为 支持，起因是一场误会。"}],"confidence":"certain"}

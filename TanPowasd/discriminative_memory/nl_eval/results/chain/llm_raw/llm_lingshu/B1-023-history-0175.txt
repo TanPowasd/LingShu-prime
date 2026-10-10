@@ -1,0 +1,1 @@
+{"qid":"B1-023-history-0175","value":"愤怒","state":"active","at_seq":23,"chain":[],"basis":[{"file":"青石镇#23","line":23,"quote":"周舟 的情绪转为 愤怒，起因是一桩旧账。"}],"confidence":"certain"}

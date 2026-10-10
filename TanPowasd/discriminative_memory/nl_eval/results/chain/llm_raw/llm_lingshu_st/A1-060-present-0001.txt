@@ -1,0 +1,1 @@
+{"qid":"A1-060-present-0001","value":"redis","state":"active","at_seq":56,"chain":[],"basis":[{"file":"猎户项目#56","line":56,"quote":"猎户项目 的依赖名调整为 redis，起因是线上故障复盘。"}],"confidence":"certain"}

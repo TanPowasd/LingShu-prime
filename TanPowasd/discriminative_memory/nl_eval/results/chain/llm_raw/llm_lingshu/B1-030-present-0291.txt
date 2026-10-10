@@ -1,0 +1,1 @@
+{"qid":"B1-030-present-0291","value":"释然","state":"active","at_seq":16,"chain":[],"basis":[{"file":"青石镇#16","line":16,"quote":"阿禾 的情绪转为 释然，起因是第三方的劝说。"}],"confidence":"certain"}

@@ -1,0 +1,1 @@
+{"qid":"B1-030-present-0171","value":"欣慰","state":"active","at_seq":11,"chain":[],"basis":[{"file":"青石镇#11","line":11,"quote":"周舟 的情绪首次确立为 欣慰。"},{"file":"青石镇#11","line":11,"quote":"需要说明的是，周舟·同名者 与 周舟 同名但并非同一主体。"}],"confidence":"certain"}

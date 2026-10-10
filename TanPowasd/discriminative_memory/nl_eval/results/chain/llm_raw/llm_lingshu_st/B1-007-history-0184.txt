@@ -1,0 +1,1 @@
+{"qid":"B1-007-history-0184","value":"支持","state":"active","at_seq":7,"chain":[],"basis":[{"file":"青石镇#7","line":7,"quote":"周舟 的立场转为 支持，起因是利益冲突。"}],"confidence":"certain"}

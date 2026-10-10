@@ -1,0 +1,1 @@
+{"qid":"B3-030-present-0561","value":"无人","state":"active","at_seq":21,"chain":[],"basis":[{"file":"孤山驿#21","line":21,"quote":"陆平 的信任对象转为 无人，起因是一桩旧账。"}],"confidence":"certain"}

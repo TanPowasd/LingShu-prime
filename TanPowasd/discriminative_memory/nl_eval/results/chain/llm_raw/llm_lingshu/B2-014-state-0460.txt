@@ -1,0 +1,1 @@
+{"qid":"B2-014-state-0460","value":"欣慰","state":"active","at_seq":14,"chain":[],"basis":[{"file":"雾港#14","line":14,"quote":"阿桑 的情绪转为 欣慰，起因是私下承诺。"}],"confidence":"certain"}

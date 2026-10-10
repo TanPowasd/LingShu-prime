@@ -1,0 +1,1 @@
+{"qid":"B3-030-state-0502","value":"中立","state":"active","at_seq":10,"chain":[],"basis":[{"file":"孤山驿#10","line":10,"quote":"白芨 的立场的争议就此裁定为 中立，起因是利益冲突。"}],"confidence":"probable"}

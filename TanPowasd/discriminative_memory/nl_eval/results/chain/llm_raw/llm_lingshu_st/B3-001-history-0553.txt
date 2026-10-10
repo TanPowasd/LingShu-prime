@@ -1,0 +1,1 @@
+{"qid":"B3-001-history-0553","value":"磨坊","state":"retired","at_seq":1,"chain":[],"basis":[{"file":"孤山驿#1","line":1,"quote":"陆平 的位置首次确立为 磨坊。"}],"confidence":"certain"}

@@ -1,0 +1,1 @@
+{"qid":"B1-030-state-0262","value":"中立","state":"active","at_seq":3,"chain":[],"basis":[{"file":"青石镇#3","line":3,"quote":"老陈 的立场转为 中立，起因是一次救助。"}],"confidence":"probable"}

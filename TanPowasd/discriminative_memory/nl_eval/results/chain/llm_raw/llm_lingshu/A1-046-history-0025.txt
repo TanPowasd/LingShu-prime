@@ -1,0 +1,1 @@
+{"qid":"A1-046-history-0025","value":"900","state":"active","at_seq":46,"chain":[],"basis":[{"file":"猎户项目#46","line":46,"quote":"猎户项目 的有效期秒数调整为 900，起因是代码评审意见。"}],"confidence":"certain"}

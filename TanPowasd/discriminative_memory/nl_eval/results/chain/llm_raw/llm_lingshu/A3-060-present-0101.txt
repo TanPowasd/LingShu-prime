@@ -1,0 +1,1 @@
+{"qid":"A3-060-present-0101","value":"bbolt","state":"active","at_seq":52,"chain":[],"basis":[{"file":"织女项目#52","line":52,"quote":"织女项目 的依赖名调整为 bbolt，起因是接口兼容性调整。"}],"confidence":"certain"}

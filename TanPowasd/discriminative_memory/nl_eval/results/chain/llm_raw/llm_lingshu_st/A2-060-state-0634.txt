@@ -1,0 +1,1 @@
+{"qid":"A2-060-state-0634","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"流明项目#9","line":9,"quote":"流明项目·缓存模块 的有效期秒数调整为 21600，起因是代码评审意见。"},{"file":"流明项目#51","line":51,"quote":"流明项目 的依赖名调整为 rocksdb，起因是接口兼容性调整。"}],"confidence":"certain"}

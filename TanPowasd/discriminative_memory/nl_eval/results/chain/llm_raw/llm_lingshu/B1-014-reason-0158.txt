@@ -1,0 +1,1 @@
+{"qid":"B1-014-reason-0158","value":"一桩旧账","state":"active","at_seq":14,"chain":[],"basis":[{"file":"青石镇#14","line":14,"quote":"周舟 移到了 码头，起因是一桩旧账。"}],"confidence":"certain"}

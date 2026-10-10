@@ -1,0 +1,1 @@
+{"qid":"A1-060-state-0012","value":"resolve(key, ttl, refresh)","state":"active","at_seq":30,"chain":[],"basis":[{"file":"猎户项目#30","line":30,"quote":"猎户项目 的函数签名调整为 resolve(key, ttl, refresh)，起因是容量评估结论。"}],"confidence":"probable"}

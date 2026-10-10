@@ -1,0 +1,1 @@
+{"qid":"B2-030-present-0451","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"雾港#1","line":1,"quote":"阿桑 的位置首次确立为 渡口。"},{"file":"雾港#10","line":10,"quote":"阿桑 移到了 粮仓，起因是旧事重提。"},{"file":"雾港#13","line":13,"quote":"阿桑 的信任对象转为 林昭，起因是旧事重提。"}],"confidence":"certain"}

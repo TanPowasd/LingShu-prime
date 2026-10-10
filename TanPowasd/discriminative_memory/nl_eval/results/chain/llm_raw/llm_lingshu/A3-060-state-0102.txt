@@ -1,0 +1,1 @@
+{"qid":"A3-060-state-0102","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"织女项目#12","line":12,"quote":"织女项目 的函数签名调整为 resolve(key, ttl, force)，起因是灰度观测数据。"},{"file":"织女项目#13","line":13,"quote":"织女项目 的有效期秒数调整为 7200，起因是安全审计要求。"},{"file":"织女项目#19","line":19,"quote":"织女项目 的有效期秒数调整为 21600，起因是依赖库升级。"}],"confidence":"certain"}

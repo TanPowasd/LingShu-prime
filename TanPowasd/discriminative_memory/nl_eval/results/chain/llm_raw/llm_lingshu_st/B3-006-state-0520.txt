@@ -1,0 +1,1 @@
+{"qid":"B3-006-state-0520","value":"码头","state":"active","at_seq":6,"chain":[],"basis":[{"file":"孤山驿#6","line":6,"quote":"程雪 移到了 码头，起因是共同的外敌。"}],"confidence":"certain"}

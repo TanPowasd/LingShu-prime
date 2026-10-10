@@ -1,0 +1,1 @@
+{"qid":"A2-011-state-0100","value":"21600","state":"active","at_seq":11,"chain":[],"basis":[{"file":"流明项目#11","line":11,"quote":"流明项目·缓存模块 的有效期秒数调整为 21600，起因是依赖库升级。"}],"confidence":"certain"}

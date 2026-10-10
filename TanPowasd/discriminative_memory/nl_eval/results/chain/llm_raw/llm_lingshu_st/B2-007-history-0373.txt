@@ -1,0 +1,1 @@
+{"qid":"B2-007-history-0373","value":"犹豫","state":"active","at_seq":7,"chain":[],"basis":[{"file":"雾港#7","line":1,"quote":"林昭 的情绪首次确立为 犹豫。"}],"confidence":"certain"}

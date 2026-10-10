@@ -1,0 +1,1 @@
+{"qid":"B1-006-history-0303","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[],"confidence":"certain"}

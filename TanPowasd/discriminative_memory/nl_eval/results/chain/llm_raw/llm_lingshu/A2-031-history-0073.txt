@@ -1,0 +1,1 @@
+{"qid":"A2-031-history-0073","value":"7200","state":"active","at_seq":31,"chain":[],"basis":[{"file":"流明项目#31","line":31,"quote":"流明项目 的有效期秒数首次确立为 7200。"}],"confidence":"certain"}

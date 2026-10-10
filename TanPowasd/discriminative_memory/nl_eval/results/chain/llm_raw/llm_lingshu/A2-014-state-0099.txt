@@ -1,0 +1,1 @@
+{"qid":"A2-014-state-0099","value":null,"state":"retired","at_seq":14,"chain":[],"basis":[{"file":"流明项目#14","line":14,"quote":"流明项目·缓存模块 的有效期秒数被撤销，此后不再保留取值，起因是线上故障复盘。"}],"confidence":"certain"}

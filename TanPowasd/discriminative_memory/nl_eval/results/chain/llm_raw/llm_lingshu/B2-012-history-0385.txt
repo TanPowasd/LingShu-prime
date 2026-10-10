@@ -1,0 +1,1 @@
+{"qid":"B2-012-history-0385","value":null,"state":"unresolved","at_seq":null,"chain":[],"basis":[{"file":"雾港#12","line":12,"quote":"林昭 的立场出现两种并存的取值：中立 与 暧昧，尚未裁定，起因是旧事重提。"}],"confidence":"certain"}

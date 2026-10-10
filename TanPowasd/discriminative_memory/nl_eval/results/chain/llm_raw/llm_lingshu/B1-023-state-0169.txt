@@ -1,0 +1,1 @@
+{"qid":"B1-023-state-0169","value":null,"state":"retired","at_seq":null,"chain":[],"basis":[{"file":"青石镇#23","line":1,"quote":"周舟 的信任对象被撤销，此后不再保留取值，起因是旧事重提。"}],"confidence":"certain"}

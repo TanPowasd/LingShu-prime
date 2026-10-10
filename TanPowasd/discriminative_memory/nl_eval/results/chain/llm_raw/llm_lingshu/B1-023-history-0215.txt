@@ -1,0 +1,1 @@
+{"qid":"B1-023-history-0215","value":"释然","state":"active","at_seq":23,"chain":[],"basis":[{"file":"青石镇#23","line":23,"quote":"小满 的情绪转为 释然，起因是利益冲突。"}],"confidence":"certain"}

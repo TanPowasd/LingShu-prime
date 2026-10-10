@@ -1,0 +1,1 @@
+{"qid":"B2-005-history-0453","value":"欣慰","state":"active","at_seq":5,"chain":[],"basis":[{"file":"雾港#5","line":5,"quote":"阿桑 的情绪首次确立为 欣慰。"}],"confidence":"certain"}

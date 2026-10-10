@@ -1,0 +1,1 @@
+{"qid":"A1-020-timepoint-0006","value":"bbolt 与 lmdb","state":"unresolved","at_seq":20,"chain":[],"basis":[{"file":"猎户项目#20","line":20,"quote":"猎户项目 的依赖名出现两种并存的取值：bbolt 与 lmdb，尚未裁定，起因是灰度观测数据。"}],"confidence":"certain"}

@@ -1,0 +1,1 @@
+{"qid":"B2-018-state-0329","value":null,"state":"unresolved","at_seq":18,"chain":[],"basis":[{"file":"雾港#18","line":18,"quote":"杜衡 的信任对象出现两种并存的取值：林昭 与 外人，尚未裁定，起因是旧事重提。"}],"confidence":"certain"}

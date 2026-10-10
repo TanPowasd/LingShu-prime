@@ -1,0 +1,1 @@
+{"qid":"A3-026-history-0134","value":"timeout_ms=256","state":"active","at_seq":26,"chain":[],"basis":[{"file":"织女项目#26","line":26,"quote":"第 26 次提交（织女项目）。"},{"file":"织女项目#26","line":26,"quote":"织女项目 的配置值调整为 timeout_ms=256，起因是线上故障复盘。"}],"confidence":"certain"}

@@ -1,0 +1,1 @@
+{"qid":"A2-001-history-0083","value":"batch_size=16","state":"active","at_seq":1,"chain":[],"basis":[{"file":"流明项目#1","line":1,"quote":"流明项目 的配置值首次确立为 batch_size=16。"}],"confidence":"certain"}

@@ -1,0 +1,1 @@
+{"qid":"B1-001-history-0263","value":"中立","state":"retired","at_seq":1,"chain":[],"basis":[{"file":"青石镇#1","line":1,"quote":"陈伯 的立场首次确立为 中立。"}],"confidence":"probable"}

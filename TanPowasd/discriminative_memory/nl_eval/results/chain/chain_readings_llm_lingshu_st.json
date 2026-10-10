@@ -1,0 +1,100 @@
+{
+ "model": "cline-pass/deepseek-v4.1-flash",
+ "readings": [
+  {
+   "arm": "llm_lingshu_st",
+   "all": {
+    "arm": "llm_lingshu_st",
+    "present": 0.6596,
+    "history": 0.7853,
+    "chain": 0.5357,
+    "chain_row_recall": 0.3724,
+    "stale": 0.2766,
+    "future": 0.005,
+    "subject_confusion": 0.0,
+    "four_state": 0.7411,
+    "reason": 0.9365,
+    "verbatim": 0.0,
+    "n": 625,
+    "counts": {
+     "present": 47,
+     "history": 177,
+     "chain": 56,
+     "chain_row_recall": 56,
+     "stale": 47,
+     "future": 202,
+     "subject_confusion": 239,
+     "four_state": 197,
+     "reason": 63,
+     "verbatim": 625
+    },
+    "bucket_main": {
+     "long": 0.5172,
+     "mid": 0.6765,
+     "short": 0.7785
+    },
+    "bucket_main_n": {
+     "long": 29,
+     "mid": 102,
+     "short": 149
+    }
+   },
+   "test": {
+    "arm": "llm_lingshu_st",
+    "present": 0.5161,
+    "history": 0.8151,
+    "chain": 0.5385,
+    "chain_row_recall": 0.3726,
+    "stale": 0.4194,
+    "future": 0.0071,
+    "subject_confusion": 0.0,
+    "four_state": 0.7424,
+    "reason": 0.9524,
+    "verbatim": 0.0,
+    "n": 419,
+    "counts": {
+     "present": 31,
+     "history": 119,
+     "chain": 39,
+     "chain_row_recall": 39,
+     "stale": 31,
+     "future": 140,
+     "subject_confusion": 170,
+     "four_state": 132,
+     "reason": 42,
+     "verbatim": 419
+    },
+    "bucket_main": {
+     "long": 0.5,
+     "mid": 0.7059,
+     "short": 0.7525
+    },
+    "bucket_main_n": {
+     "long": 20,
+     "mid": 68,
+     "short": 101
+    }
+   }
+  }
+ ],
+ "calibration": {
+  "version_blind": {
+   "present": 0.0,
+   "history": 0.0,
+   "chain": 0.0
+  },
+  "closed_book": 0.0,
+  "chain_length_monotonic": false,
+  "sut_arm": null,
+  "sut_buckets": {},
+  "gate_stage": "controls-only",
+  "criteria": {
+   "c1": false,
+   "c2": false,
+   "c3": null,
+   "c4": false
+  },
+  "passed": false,
+  "details": "① 版本盲指纹：现值 None（要求 ≥0.5）、历史 None、变更链 None（要求 ≤0.15）、现值分母 0（要求 ≥20）→ 不过；② 闭卷核心：现值 None / 历史 None / 变更链 None（各 ≤0.2）、答题量 0（≥100）→ 不过；③ 链长单调（**被测系统臂**）：未评：本轮读数只有对照臂（versionblind/closed），链长压力轴无被测对象；结构基线 {'long': 0.0787, 'mid': 0.1536, 'short': 0.2676}（仅诊断，不作判据）→ 未评；④ 读数自洽：答卷与当前 keys 不同源（manifest.keys_fp 不符，或 manifest 缺失） → 不过。（本次 limit=全量；阶段=controls-only；口径：可推题不进主读数，历史叙述豁免须状态判对。）"
+ }
+}

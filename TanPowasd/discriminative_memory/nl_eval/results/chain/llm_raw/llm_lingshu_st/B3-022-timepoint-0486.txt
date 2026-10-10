@@ -1,0 +1,15 @@
+{
+  "qid": "B3-022-timepoint-0486",
+  "value": "无人 与 程雪",
+  "state": "unresolved",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "孤山驿#22",
+      "line": 22,
+      "quote": "白芨 的信任对象出现两种并存的取值：无人 与 程雪，尚未裁定，起因是一桩旧账。"
+    }
+  ],
+  "confidence": "certain"
+}

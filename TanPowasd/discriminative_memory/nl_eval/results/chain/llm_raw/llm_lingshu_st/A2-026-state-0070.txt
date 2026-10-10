@@ -1,0 +1,15 @@
+{
+  "qid": "A2-026-state-0070",
+  "value": "load(key, ttl, refresh)",
+  "state": "active",
+  "at_seq": 18,
+  "chain": [],
+  "basis": [
+    {
+      "file": "流明项目#18",
+      "line": 6,
+      "quote": "流明项目 的函数签名调整为 load(key, ttl, refresh)，起因是灰度观测数据。"
+    }
+  ],
+  "confidence": "certain"
+}

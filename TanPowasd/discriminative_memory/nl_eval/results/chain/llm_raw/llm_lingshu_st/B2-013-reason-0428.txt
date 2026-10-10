@@ -1,0 +1,1 @@
+{"qid":"B2-013-reason-0428","value":"第三方的劝说","state":"active","at_seq":13,"chain":[],"basis":[{"file":"雾港#13","line":13,"quote":"沈砚 的立场此后确立为 沉默，起因是第三方的劝说。"}],"confidence":"certain"}

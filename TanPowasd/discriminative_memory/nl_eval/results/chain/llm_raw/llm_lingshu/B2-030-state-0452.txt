@@ -1,0 +1,1 @@
+{"qid":"B2-030-state-0452","value":null,"state":"absent","at_seq":null,"chain":[],"basis":[{"file":"雾港#30","line":30,"quote":"阿桑·同名者 移到了 磨坊，起因是一桩旧账。"},{"file":"雾港#30","line":30,"quote":"阿桑·同名者 的信任对象转为 阿桑，起因是共同的外敌。"}],"confidence":"certain"}

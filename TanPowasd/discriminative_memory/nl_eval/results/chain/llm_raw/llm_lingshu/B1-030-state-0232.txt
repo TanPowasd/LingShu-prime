@@ -1,0 +1,1 @@
+{"qid":"B1-030-state-0232","value":"祠堂","state":"active","at_seq":3,"chain":[],"basis":[{"file":"青石镇#3","line":3,"quote":"老陈 的位置此后确立为 祠堂，起因是旧事重提。"}],"confidence":"certain"}

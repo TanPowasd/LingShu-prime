@@ -1,0 +1,1 @@
+{"qid":"A3-060-present-0111","value":"fn_62062()","state":"active","at_seq":40,"chain":[],"basis":[{"file":"织女项目#40","line":40,"quote":"织女项目 的函数签名调整为 fn_62062()，起因是安全审计要求。"},{"file":"织女项目#13","line":13,"quote":"织女项目 的函数签名调整为 resolve(id, key, ttl)，起因是容量评估结论。"},{"file":"织女项目#11","line":11,"quote":"织女项目 的函数签名调整为 get(key, ttl, force)，起因是线上故障复盘。"}],"confidence":"probable"}

@@ -1,0 +1,1 @@
+{"qid":"B3-001-history-0483","value":"程雪","state":"active","at_seq":1,"chain":[],"basis":[{"file":"孤山驿#1","line":1,"quote":"白芨 的信任对象首次确立为 程雪。"}],"confidence":"certain"}

@@ -1,0 +1,1 @@
+{"qid":"B3-007-timepoint-0506","value":"暧昧 与 反对","state":"unresolved","at_seq":null,"chain":[],"basis":[{"file":"孤山驿#7","line":7,"quote":"白芨 的立场出现两种并存的取值：暧昧 与 反对，尚未裁定，起因是私下承诺。"}],"confidence":"certain"}

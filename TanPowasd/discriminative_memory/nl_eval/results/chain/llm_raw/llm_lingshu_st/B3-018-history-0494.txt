@@ -1,0 +1,1 @@
+{"qid":"B3-018-history-0494","value":"欣慰","state":"active","at_seq":18,"chain":[],"basis":[{"file":"孤山驿#18","line":18,"quote":"白芨 的情绪转为 欣慰，起因是旧事重提。"}],"confidence":"certain"}

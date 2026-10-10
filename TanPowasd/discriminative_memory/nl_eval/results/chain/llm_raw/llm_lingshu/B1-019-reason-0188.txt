@@ -1,0 +1,1 @@
+{"qid":"B1-019-reason-0188","value":"旧事重提","state":"active","at_seq":19,"chain":[],"basis":[{"file":"青石镇#19","line":19,"quote":"周舟 的立场转为 支持，起因是旧事重提。"}],"confidence":"certain"}
