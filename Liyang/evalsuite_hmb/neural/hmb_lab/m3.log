@@ -1,0 +1,3 @@
+enc s 83.3
+bge-m3 inst                            cid 0.7037 (dev 0.7164 / test 0.6911) full 0.402 quote 0.3237 point 0.5677 excl 0.3423 | interv cid 0.6852 quote 0.3878
+bge-m3 noinst                          cid 0.7037 (dev 0.7164 / test 0.6911) full 0.402 quote 0.3237 point 0.5677 excl 0.3423 | interv cid 0.6852 quote 0.3878

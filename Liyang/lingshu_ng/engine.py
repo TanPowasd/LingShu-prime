@@ -113,6 +113,26 @@ class MemoryEngine:
             except Exception as e:  # 外部依赖件（onnxruntime 等）的异常类型不可枚举：记录后退回纯词面
                 self.semantic_error = f"{type(e).__name__}: {e}"
 
+        #: 可选读路径第三阶段（混合池 + 交叉编码重排 + 写入流多样化，见 :mod:`lingshu_ng.neural`）；默认无
+        self.neural_error: Optional[str] = None
+        if os.environ.get("LINGSHU_NG_RERANK_MODEL", "").strip() or os.environ.get("LINGSHU_NG_NEURAL", "") == "1":
+            try:
+                cross = None
+                if os.environ.get("LINGSHU_NG_RERANK_MODEL", "").strip():
+                    from .embed.cross import from_env as cross_from_env
+                    cross = cross_from_env()
+                top = os.environ.get("LINGSHU_NG_RERANK_TOPN", "").strip()
+                self.set_reranker(cross, enable=True, **({"cross_top": int(top)} if top else {}))
+            except Exception as e:  # 同上：外部依赖件失败 ⇒ 记录并保持默认召回
+                self.neural_error = f"{type(e).__name__}: {e}"
+
+    def set_reranker(self, cross=None, enable: bool = True, **params) -> None:
+        """启用/撤除读路径第三阶段。``cross``：交叉编码提供者（``score(query, texts)``，可 None）；
+        ``enable=False`` 撤除（召回回到 c2/语义交错）。params 透传 :class:`lingshu_ng.neural.NeuralStage`。
+        只影响读路径：写入、去重、主库内容不变。"""
+        from .neural import NeuralStage
+        self.retriever.neural = NeuralStage(cross, **params) if enable else None
+
     def set_embedding_provider(self, provider) -> None:
         """注入语义检索提供者（D-005 duck-typed：``add``+``search`` 或 ``encode``）；None 撤除。
         向量只是派生索引：写入照旧存原文、零 LLM，编码在后台线程或查询前补齐（semindex S1–S4）。"""

@@ -203,6 +203,31 @@ class SemanticIndex:
             return []
         return [(r, 0.0) if isinstance(r, str) else (str(r[0]), float(r[1])) for r in res]
 
+    def similarity(self, query: str, ids: Sequence[str]) -> Dict[str, float]:
+        """指定节点与查询的余弦 {id: cos}（供 :mod:`lingshu_ng.neural` 给混合池补齐语义分）。
+        提供者需实现 ``score_ids(query, ids)``；否则（或出错）返回 {}。"""
+        if self.error is not None or not ids or not hasattr(self.provider, "score_ids"):
+            return {}
+        self.sync()
+        try:
+            with self._plock:
+                return {str(k): float(v) for k, v in self.provider.score_ids(query, list(ids)).items()}
+        except Exception as e:  # 同 search：退回
+            self.error = f"{type(e).__name__}: {e}"
+            return {}
+
+    def sentence_similarity(self, query: str, ids: Sequence[str]) -> Dict[str, float]:
+        """句级证据分 {id: 最贴题一句的余弦}；提供者需实现 ``sent_scores``（且开了句级索引），否则返回 {}。"""
+        if self.error is not None or not ids or not hasattr(self.provider, "sent_scores"):
+            return {}
+        self.sync()
+        try:
+            with self._plock:
+                return {str(k): float(v) for k, v in self.provider.sent_scores(query, list(ids)).items()}
+        except Exception as e:  # 同 search：退回
+            self.error = f"{type(e).__name__}: {e}"
+            return {}
+
     def stats(self) -> Dict:
         """编码计数与累计耗时（摊销成本报告用）。"""
         return {"encoded": self.encoded, "encode_sec": round(self.encode_sec, 4), "pending": len(self._pending),

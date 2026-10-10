@@ -5,6 +5,8 @@
 > 同步范围：`lingshu_ng/`、`lingshu/`、`tests_ng/`、`evalsuite*/`、`REWRITE_REPORT_core.md`、`ARCH_SCALE_LOG.md`、`tools/scale/`。不含模型文件、SQLite 库、缓存与 `__pycache__`。
 > 发布副本专有、与 ng 源仓库不同的文件：`README.md`、`REWRITE_PLAN.md`（措辞按 §6.1 改写）、`pyproject.toml`（新增 `semantic` 可选依赖、改了一行注释，见 §6.2）。`tests_ng/nn/test_quality_nn.py` 的审查修订（§6.2）已在 ng 源仓库提交 `a3fb0ae`，本快照包含它。
 
+> **2026-10-10 增补：读路径第三阶段（neural，可选，默认关）**。在本快照上叠加 3 个提交（新增 `lingshu_ng/neural.py`、`lingshu_ng/embed/cross.py`、`tests_ng/test_neural.py`，改 `engine.py`/`retrieval.py`/`semindex.py`/`compat_engine.py`/`embed/__init__.py`）。不设环境变量时行为与 875d838 相同、仍为纯标准库。HMB 检索轨生产路径读数（184 问，自行跑分）：精档 bge-m3 + bge-reranker-base cid 0.7826 / 全召回 0.522，对照 BM25 0.6683 / 0.326，代价是干扰项 must_exclude 0.28→0.39、每问约 5.3 s（2 核 CPU）。详见 [`REPORT_neural.md`](REPORT_neural.md)，原始输出与实验台在 `evalsuite_hmb/neural/`。本目录内 `python -m pytest tests_ng -q`：**2815 passed, 1 skipped**。
+
 ## 1. 这是什么
 
 `lingshu_ng` 是从零写的新实现（独立包，不 import 旧 `lingshu.core`），并带 `lingshu_ng.compat` 兼容门面，让旧 API 的调用方无需改代码即可切换。重写坚持原作者的设计意图：

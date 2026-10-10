@@ -32,10 +32,11 @@ SELF 快照参与竞争(#201)、召回不看置信度(#29)。
 from __future__ import annotations
 
 import json
+import math
 import re
 from typing import Callable, Dict, Iterable, List, Optional, Sequence, Set, Tuple
 
-from .dedup import bigrams
+from .dedup import bigrams, normalize
 from .layers import LayerPolicy
 from .store import Store
 from .store.schema import chunks, placeholders
@@ -149,6 +150,8 @@ class Retriever:
         self.reranker = Reranker(store.db)
         #: 可选第二路召回（:class:`lingshu_ng.semindex.SemanticIndex`；engine 注入，默认无）
         self.semantic = None
+        #: 可选读路径第三阶段（:class:`lingshu_ng.neural.NeuralStage`；engine 注入，默认无 ⇒ 召回与 c2 逐项相同）
+        self.neural = None
         #: 最近一次检索的展开计划（诊断/测试用）：terms/expanded/rows/approx
         self.last_plan: Dict = {}
 
@@ -235,6 +238,8 @@ class Retriever:
         q = (query or "").strip()
         if not q:
             return []
+        if self.neural is not None:
+            return self._recall_neural(q, limit, exclude)
         hits = self._ranked(q, None, max(50, limit * 5))
         light: Dict[str, tuple] = {}
         rows: Dict[str, tuple] = {}
@@ -266,6 +271,70 @@ class Retriever:
         if self.semantic is not None:
             scored = self._fuse_semantic(q, scored, limit, exclude)
         picked = self._with_opposites(scored[:limit], limit, exclude)
+        nodes = self.store.nodes.get_many([nid for nid, _ in picked])
+        top = [(nodes[nid], s) for nid, s in picked if nid in nodes]
+        if top:
+            self.store.nodes.touch([n.id for n, _ in top])
+            if self.on_hit:
+                self.on_hit([n.id for n, _ in top])
+        return top
+
+    def _recall_neural(self, q: str, limit: int, exclude: Set[str]) -> List[Tuple[Node, float]]:
+        """N1–N3（:mod:`lingshu_ng.neural`）：混合候选池 → 三路 z 分数融合 → 写入流多样化 → Q6 对侧补全。
+        exclude / 退役 / 可检索层 / 已取代（Q9）规则与 :meth:`recall` 相同。"""
+        from .neural import fuse, stream_diversify, blend_sentence, LONG_GRAMS
+        st = self.neural
+        hits = self._ranked(q, None, max(st.pool_lex, limit))
+        cos: Dict[str, float] = {}
+        if self.semantic is not None:
+            cos = {nid: c for nid, c in self.semantic.search(q, st.pool_sem + len(exclude))}
+        pool = list(dict.fromkeys([nid for nid, _ in hits] + list(cos)))
+        use = _layer_values(None)
+        rows: Dict[str, tuple] = {}
+        for part in chunks(pool):
+            for r in self.store.db.all(f"SELECT n.id, n.content, i.grams, n.rowid, n.importance, n.tags, n.layer "
+                                       f"FROM nodes n LEFT JOIN node_index i ON i.node_id = n.id "
+                                       f"WHERE n.id IN ({placeholders(len(part))})", part):
+                if r[0] in exclude or r[6] not in use or _retired(r[4], r[5]):
+                    continue
+                rows[r[0]] = (r[1] or "", r[2] or 0, r[3])
+        pool = [nid for nid in pool if nid in rows]
+        if not pool:
+            return []
+        texts = {nid: normalize(rows[nid][0]) for nid in pool}
+        lex = self.reranker.bm25(sorted(bigrams(q)), self.store.text.df(bigrams(q)), texts,
+                                 {nid: rows[nid][1] for nid in pool})
+        sem = None
+        if self.semantic is not None:
+            missing = [nid for nid in pool if nid not in cos]
+            if missing:
+                cos.update(self.semantic.similarity(q, missing))
+            sem = {nid: cos[nid] for nid in pool if nid in cos} or None
+        scope = pool
+        if st.cross is not None and 0 < st.cross_top < len(pool):
+            pre = fuse(pool, lex, sem, None)
+            scope = sorted(pool, key=lambda i: (-pre[i], rows[i][2] if rows[i][2] is not None else 0, i))[:st.cross_top]
+        cross = st.cross_scores(q, {nid: rows[nid][0] for nid in scope})
+        if sem and cross is not None and st.ws > 0 and self.semantic is not None:
+            sem = blend_sentence(sem, self.semantic.sentence_similarity(q, list(sem)), st.ws)
+        fused = fuse(pool, lex, sem, cross, st.a_cross)
+        for nid in self._superseded(pool):          # Q9：被取代的旧值降一个标准差，仍可随新值交付
+            if nid in fused:
+                fused[nid] -= 1.0
+        seq = {nid: rows[nid][2] for nid in pool}
+        order = sorted(pool, key=lambda i: (-fused[i], seq[i] if seq[i] is not None else 0, i))
+        longs = {nid for nid in pool if rows[nid][1] >= LONG_GRAMS}
+        picked_ids = stream_diversify(order, fused, seq, longs, limit, st.span, st.pen)[:limit]
+        st.last = {"pool": len(pool), "lex": len(hits), "sem": len(cos), "cross": cross is not None,
+                   "sent": bool(sem) and cross is not None and st.ws > 0}
+        ranked: List[Tuple[str, float]] = []
+        for nid in picked_ids:                       # 分数：logistic(融合分)，按输出序非增
+            s_ = round(1.0 / (1.0 + math.exp(-fused[nid])), 6)
+            ranked.append((nid, min(s_, ranked[-1][1]) if ranked else s_))
+        return self._deliver(self._with_opposites(ranked, limit, exclude))
+
+    def _deliver(self, picked: List[Tuple[str, float]]) -> List[Tuple[Node, float]]:
+        """取节点、记命中（touch / on_hit），按 picked 顺序交付。"""
         nodes = self.store.nodes.get_many([nid for nid, _ in picked])
         top = [(nodes[nid], s) for nid, s in picked if nid in nodes]
         if top:

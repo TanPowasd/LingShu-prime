@@ -223,6 +223,10 @@ class SpacetimeMemoryEngine(WorldFacade, WorldSimFacade, FrameMixin, StubsMixin)
         """无语义提供者时退化为内容检索（与旧版一致）。"""
         return self.ng.search(query, limit=limit)
 
+    def set_reranker(self, cross: Any = None, enable: bool = True, **params: Any) -> None:
+        """ng 扩展：读路径第三阶段（混合池 + 交叉编码重排 + 写入流多样化），转发 ng 引擎。"""
+        self.ng.set_reranker(cross, enable, **params)
+
     def set_embedding_provider(self, provider: Any) -> None:
         """注入嵌入提供者（M1 · D-005）：转给 ng 引擎作为可选第二路召回（lingshu_ng.semindex）。"""
         self._embedding_provider = provider
