@@ -2,6 +2,7 @@
 
   llm_dm_reader         记忆核心 = discriminative_memory.Memory
   llm_chronicle_reader  记忆核心 = chronicle.ChronicleMemory（编年）
+  llm_chronicle_dm_reader 记忆核心 = chronicle_dm.ChronicleDM（编年判别记忆，合体）
 
 读者材料 = 记忆核心的查询结果（一段「记忆查询」摘要）+ 写入事件对应的原文片段（按序号）。
 读者提示与 llm_rrf3 完全相同（probe_runner.CHAIN_SYS + build_prompt），只换材料。
@@ -37,6 +38,22 @@ def _events_text(events):
 
 def material_for(arm, events, q, n_seq, by_cid):
     typ, T, ent, fac = CB.parse_q(q['question'], n_seq)
+    if arm == 'llm_chronicle_dm_reader':
+        from chain_chronicle_dm_replay import build
+        import math as _m
+        m, _ = build(events, q, ent, fac, by_cid)
+        at = float(T) if T is not None else _m.inf
+        mode = 'reason' if typ == '缘由' else 'chain' if typ in ('变更', '历史') else 'at'
+        summary = '记忆核心：编年判别记忆 ChronicleDM\n' + m.render(m.ask(ent, fac, mode, at=at, event_at=at if mode == 'reason' else None)) \
+            + '\n已写入的版本事件：\n' + _events_text(events)
+        mat = [{'cid': '记忆查询', 'text': summary}]
+        seen = set()
+        for e in sorted(events, key=lambda e: e['seq']):
+            c = by_cid.get(e.get('cid'))
+            if c and c['cid'] not in seen:
+                seen.add(c['cid'])
+                mat.append({'cid': c['cid'], 'text': c['text']})
+        return mat
     if arm == 'llm_dm_reader':
         a = dm_from_events(events, q, n_seq, by_cid)
         core = 'discriminative_memory.Memory'
