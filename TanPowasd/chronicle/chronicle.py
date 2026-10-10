@@ -126,7 +126,7 @@ class Query:
             raise ValueError("query.conditions must be a mapping")
 
 
-class VersionChainMemory:
+class ChronicleMemory:
     """Append-only state chains with hard temporal query constraints."""
 
     def __init__(self) -> None:
@@ -366,4 +366,6 @@ class VersionChainMemory:
                 "raw_sources": len(self._raw), "aliases": sum(len(x) for x in self._aliases.values())}
 
 
-__all__ = ["Event", "Query", "VersionChainMemory"]
+VersionChainMemory = ChronicleMemory  # 旧名兼容
+
+__all__ = ["Event", "Query", "ChronicleMemory", "VersionChainMemory"]

@@ -1,4 +1,4 @@
-# 版本链记忆算法
+# 编年（Chronicle）：版本链记忆算法
 
 这是一个独立的通用版本链核心，用于反复修改、撤回、恢复、冲突和按时间查询的记忆。
 它把记忆从“相似文本排名”改成“不可变事件链 + 查询路由”。核心不包含人物、地点、小说或测试集字段。
@@ -23,7 +23,7 @@
 
 ```powershell
 & 'E:/DF/liyang-hive-eval/.venv/Scripts/python.exe' -B -X utf8 `
-  'E:/DF/liyang-hive-eval/LingShu-prime/TanPowasd/version_chain_memory/bench_chain.py' `
+  'E:/DF/liyang-hive-eval/LingShu-prime/TanPowasd/chronicle/bench_chain.py' `
   'E:/DF/liyang-hive-eval/hive-memory-bench' `
   --out 'E:/DF/liyang-hive-eval/runs/version-chain-426a86a'
 ```
@@ -32,7 +32,7 @@
 
 ```powershell
 & 'E:/DF/liyang-hive-eval/.venv/Scripts/python.exe' -B -X utf8 -m unittest `
-  discover -s 'E:/DF/liyang-hive-eval/LingShu-prime/TanPowasd/version_chain_memory' `
+  discover -s 'E:/DF/liyang-hive-eval/LingShu-prime/TanPowasd/chronicle' `
   -p 'test_*.py'
 ```
 
@@ -40,7 +40,7 @@
 
 ## 文件
 
-- `version_chain_memory.py`：事件日志、别名、时间区间、四态和查询路由。
-- `test_version_chain_memory.py`：重复值、迟到事件、撤回/恢复、冲突、别名和原文回退测试。
+- `chronicle.py`：事件日志、别名、时间区间、四态和查询路由。
+- `test_chronicle.py`：重复值、迟到事件、撤回/恢复、冲突、别名和原文回退测试。
 - `bench_chain.py`：新版状态链轨的零模型结构化控制。
 - `results/chain_control_426a86a.json`：已保存的 642/642 控制读数。

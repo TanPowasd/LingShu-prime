@@ -2,12 +2,12 @@ import json
 import math
 import unittest
 
-from version_chain_memory import Query, VersionChainMemory
+from chronicle import Query, ChronicleMemory
 
 
 class VersionChainTests(unittest.TestCase):
     def setUp(self):
-        self.m = VersionChainMemory()
+        self.m = ChronicleMemory()
 
     def test_repeated_change_and_time_interval(self):
         self.m.set("e1", "s1", "person", "residence", "A", effective_at=1, recorded_at=1,
@@ -89,12 +89,12 @@ class VersionChainTests(unittest.TestCase):
 
 class QueryRoutingTests(unittest.TestCase):
     def test_empty_slot_is_absent_and_reason_missing_is_unknown(self):
-        m = VersionChainMemory()
+        m = ChronicleMemory()
         self.assertEqual(m.query(Query("none", "field", mode="state", at=9))["state"], "absent")
         self.assertEqual(m.query(Query("none", "field", mode="reason", event_at=1))["status"], "unknown")
 
     def test_same_effective_time_uses_recorded_order(self):
-        m = VersionChainMemory()
+        m = ChronicleMemory()
         m.set("a", "s1", "x", "v", "first", effective_at=2, recorded_at=1)
         m.set("b", "s2", "x", "v", "second", effective_at=2, recorded_at=2)
         self.assertEqual(m.query(Query("x", "v", at=2))["value"], "second")

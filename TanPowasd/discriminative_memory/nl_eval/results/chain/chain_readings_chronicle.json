@@ -1,10 +1,10 @@
 {
- "arm": "llm_vcm",
+ "arm": "llm_chronicle",
  "llm_calls": 0,
  "missing_cache": 0,
  "events_written": 3061,
  "all": {
-  "arm": "llm_vcm",
+  "arm": "llm_chronicle",
   "present": 0.617,
   "history": 0.8983,
   "chain": 0.8929,
@@ -40,7 +40,7 @@
   }
  },
  "test": {
-  "arm": "llm_vcm",
+  "arm": "llm_chronicle",
   "present": 0.6129,
   "history": 0.8992,
   "chain": 0.9231,

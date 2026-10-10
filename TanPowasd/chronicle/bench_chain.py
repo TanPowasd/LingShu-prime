@@ -16,16 +16,16 @@ import subprocess
 import sys
 from unittest.mock import patch
 
-from version_chain_memory import Event, Query, VersionChainMemory
+from chronicle import Event, Query, ChronicleMemory
 
 
-def load_memory(root: Path) -> tuple[VersionChainMemory, list[dict], dict[str, int]]:
+def load_memory(root: Path) -> tuple[ChronicleMemory, list[dict], dict[str, int]]:
     chain = root / "chain"
     keys = json.loads((chain / "keys/keys.json").read_text(encoding="utf-8"))
     log = json.loads((chain / "keys/synth_log.json").read_text(encoding="utf-8"))
     corpus = json.loads((chain / "corpus/corpus.json").read_text(encoding="utf-8"))
     by_source = {(row["doc"], row["seq"]): row for row in corpus}
-    memory = VersionChainMemory()
+    memory = ChronicleMemory()
     operations = {"create": "set", "change": "set", "restore": "restore",
                   "retire": "retire", "unresolve": "unresolved", "resolve": "resolve"}
     count = 0
@@ -69,7 +69,7 @@ def equal_chain(pred: list[dict], expected: list[dict]) -> bool:
     )
 
 
-def score(memory: VersionChainMemory, keys: list[dict]) -> dict:
+def score(memory: ChronicleMemory, keys: list[dict]) -> dict:
     by_type = {}
     exact = 0
     for question in keys:
@@ -93,7 +93,7 @@ def score(memory: VersionChainMemory, keys: list[dict]) -> dict:
                          for k, v in sorted(by_type.items())}}
 
 
-def interval_control(memory: VersionChainMemory) -> dict:
+def interval_control(memory: ChronicleMemory) -> dict:
     memory.set("control-1", "control", "control", "field", "A", effective_at=1, recorded_at=1)
     memory.set("control-2", "control", "control", "field", "B", effective_at=4, recorded_at=2)
     memory.set("control-3", "control", "control", "field", "C", effective_at=8, recorded_at=3)
@@ -118,7 +118,7 @@ def main() -> None:
          patch.object(socket, "create_connection", deny):
         memory, keys, counts = load_memory(args.bench.resolve())
         readings = score(memory, keys)
-        interval = interval_control(VersionChainMemory())
+        interval = interval_control(ChronicleMemory())
     assert not attempts
     assert readings["exact"] == readings["questions"]
     assert interval["passed"]
