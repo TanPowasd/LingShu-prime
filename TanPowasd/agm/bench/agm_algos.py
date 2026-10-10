@@ -76,6 +76,7 @@ class AC:
     def __init__(self, patterns):
         self.goto = [{}]
         olen = [0]
+        self.term = {}
         for p in patterns:
             s = 0
             for c in p:
@@ -84,6 +85,7 @@ class AC:
                     t = len(self.goto); self.goto[s][c] = t; self.goto.append({}); olen.append(0)
                 s = t
             olen[s] = max(olen[s], len(p))
+            self.term[s] = len(p)
         fail = [0] * len(self.goto)
         dq = collections.deque()
         for c, t in self.goto[0].items():
@@ -98,6 +100,20 @@ class AC:
                 olen[t] = max(olen[t], olen[fail[t]])
                 dq.append(t)
         self.fail, self.olen = fail, olen
+
+    def all_matches(self, q):
+        """所有命中的模式（含重叠、含被包含的短模式）。"""
+        s, out = 0, set()
+        for i, c in enumerate(q):
+            while s and c not in self.goto[s]:
+                s = self.fail[s]
+            s = self.goto[s].get(c, 0)
+            t = s
+            while t:
+                if t in self.term:
+                    out.add(q[i - self.term[t] + 1: i + 1])
+                t = self.fail[t]
+        return out
 
     def longest_matches(self, q):
         """最左最长、互不重叠的命中短语。"""
@@ -126,7 +142,7 @@ def phrases_of(text, df, n_chunks, hi, top=8, ns=(2, 3, 4)):
             d = df.get(g, 0)
             if 2 <= d <= hi:
                 cand[g] = n * math.log(1 + n_chunks / d)
-    return sorted(cand, key=lambda g: -cand[g])[:top]
+    return sorted(cand, key=lambda g: -cand[g])[:top] if top else list(cand)
 
 
 # ---------------- 短语 → 块 的定位与打分 ----------------
@@ -257,3 +273,85 @@ def compare(a, b, B=10000, seed=0):
     return {"均值差": round(m, 4), "胜": w, "负": l, "符号p": round(sign_p(w, l), 4),
             "CI95": [round(bs[int(0.025 * B)], 4), round(bs[int(0.975 * B) - 1], 4)],
             "dz": round(m / sd, 2) if sd else None}
+
+
+# ---------------- 纯 AC 图（不依赖 BM25 / AGM） ----------------
+class ACGraph:
+    """AC 自动机 + 双向带权连通图。
+
+    节点：短语（AC 字典里的模式）与块。边成对存在、两个方向权重不同：
+      短语 → 块   w = 1/df(p)                    （短语越专一，指向每块越强）
+      块 → 短语   w = idf(p) / Σ_{p'∈块} idf(p')  （块里越稀有的短语，分到的越多）
+    短语↔短语的共现关系由「短语→块→短语」两跳隐式给出（同样非对称）。
+    查询：AC 最左最长匹配得到入口短语，初始激活 = 长度×idf；
+      第 1 跳 短语→块；第 2 跳 块→短语（只留前 HOP_P 个新短语）；第 3 跳 短语→块，乘 DECAY。
+    不用 BM25 兜底：字典里没有的东西，这个系统就看不见。
+    """
+    TOP, HOP_C, HOP_P, DECAY = 8, 30, 20, 0.5
+
+    def __init__(self, cap_frac, top=8):
+        self.cap_frac, self.TOP = cap_frac, top
+        self.ngdf = collections.Counter()
+        self.texts = []
+        self.pats = set()
+        self.ac = None
+        self.p2c = collections.defaultdict(set)
+        self.c2p = []
+        self.pending = []
+
+    def add_chunk(self, s):
+        """新块：计 n 元组 df；用当前字典扫一遍，立即接入图（新短语等睡眠时再进字典）。"""
+        i = len(self.texts)
+        self.texts.append(s)
+        self.ngdf.update({s[k:k + n] for n in (2, 3, 4) for k in range(len(s) - n + 1)})
+        self.c2p.append(set())
+        if self.ac:
+            self._link(i, self.ac.all_matches(s))
+        self.pending.append(i)
+        return i
+
+    def _link(self, i, ps):
+        for p in ps:
+            self.p2c[p].add(i); self.c2p[i].add(p)
+
+    def sleep(self):
+        """睡眠：新块的显著短语进字典，重建 AC；新短语回扫全部块补边。"""
+        N = len(self.texts)
+        cap = max(2, int(self.cap_frac * N))
+        new = set()
+        for i in self.pending:
+            new.update(p for p in phrases_of(self.texts[i], self.ngdf, N, cap, self.TOP) if p not in self.pats)
+        self.pending.clear()
+        if not new:
+            return
+        self.pats |= new
+        self.ac = AC(self.pats)
+        nac = AC(new)
+        for i, s in enumerate(self.texts):
+            self._link(i, nac.all_matches(s))
+
+    def rank(self, q):
+        if not self.ac:
+            return []
+        N = len(self.texts)
+        cap = max(2, int(self.cap_frac * N))
+        idf = lambda p: math.log(1 + N / max(1, len(self.p2c[p])))
+        live = lambda p: 0 < len(self.p2c[p]) <= cap
+        a0 = {p: len(p) * idf(p) for p in self.ac.longest_matches(q) if live(p)}
+        c1 = collections.defaultdict(float)
+        for p, v in a0.items():
+            for c in self.p2c[p]:
+                c1[c] += v / len(self.p2c[p])
+        top_c = sorted(c1, key=lambda c: -c1[c])[: self.HOP_C]
+        p2 = collections.defaultdict(float)
+        for c in top_c:
+            ps = [p for p in self.c2p[c] if live(p)]
+            tot = sum(idf(p) for p in ps) or 1.0
+            for p in ps:
+                if p not in a0:
+                    p2[p] += c1[c] * idf(p) / tot
+        sc = dict(c1)
+        for p in sorted(p2, key=lambda p: -p2[p])[: self.HOP_P]:
+            for c in self.p2c[p]:
+                sc[c] = sc.get(c, 0.0) + self.DECAY * p2[p] / len(self.p2c[p])
+        return sorted(sc, key=lambda c: -sc[c])

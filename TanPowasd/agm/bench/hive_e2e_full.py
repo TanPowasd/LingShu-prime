@@ -42,7 +42,7 @@ class AgmX(Agm):
 
 ARMS = ["最近窗口", "BM25", "AGM-静态", "AGM-学习v1", "AGM-学习v2", "后缀自动机", "AGM-SAM种子", "AGM-AC种子",
         "近因+BM25", "近因+AGM-静态", "近因+AGM-学习v2", "近因+后缀自动机", "近因+AGM-SAM种子", "近因+AGM-AC种子",
-        "近因+AGM-二分θ", "近因+AGM+ACT-R", "RRF3(近因,BM25,AGM)", "RRF4(+SAM)", "RRF5(+ACT-R)"]
+        "近因+AGM-二分θ", "近因+AGM+ACT-R", "RRF3(近因,BM25,AGM)", "RRF4(+SAM)", "RRF5(+ACT-R)", "AC图", "近因+AC图", "AC图-全字典", "近因+AC图-全字典"]
 
 
 def run_file(path, cards, budget):
@@ -59,6 +59,8 @@ def run_file(path, cards, budget):
     ngdf = collections.Counter()
     pats, pending, ac = set(), [], None
     actr_dual, actr_rrf = X.Actr(), X.Actr()
+    acg = X.ACGraph(0.05)
+    acg2 = X.ACGraph(0.05, top=None)
     n_q = 0
     sums = {a: collections.defaultdict(float) for a in ARMS}
     cnt = {a: collections.Counter() for a in ARMS}
@@ -75,7 +77,7 @@ def run_file(path, cards, budget):
         o_sam = sorted(s_sam, key=lambda i: -s_sam[i])
         s_ac = X.phrase_scores(ac.longest_matches(qtext), st.text, st.inv, cap(), st.N) if ac else {}
         o_rec = list(range(st.N - 1, -1, -1))
-        return {"sc": sc, "bm": o_bm, "agm": o_agm, "s_sam": s_sam, "sam": o_sam, "s_ac": s_ac, "rec": o_rec}
+        return {"acg": acg.rank(qtext), "acg2": acg2.rank(qtext), "sc": sc, "bm": o_bm, "agm": o_agm, "s_sam": s_sam, "sam": o_sam, "s_ac": s_ac, "rec": o_rec}
 
     def fill(recent, order, B):
         R = set(recent)
@@ -132,6 +134,14 @@ def run_file(path, cards, budget):
             return [], take(X.rrf([C["rec"], C["bm"], C["agm"], C["sam"]]), st, budget), None
         if arm == "RRF5(+ACT-R)":
             return [], take(X.rrf([C["rec"], C["bm"], C["agm"], C["sam"], actr_rrf.ranking(t_idx)]), st, budget), actr_rrf
+        if arm == "AC图":
+            return [], take(C["acg"], st, budget), None
+        if arm == "AC图-全字典":
+            return [], take(C["acg2"], st, budget), None
+        if arm == "近因+AC图-全字典":
+            return rec_half, fill(rec_half, C["acg2"], budget), None
+        if arm == "近因+AC图":
+            return rec_half, fill(rec_half, C["acg"], budget), None
         raise KeyError(arm)
 
     def seeded(sdict, C):
@@ -192,6 +202,10 @@ def run_file(path, cards, budget):
                         for i in pool:
                             if sum(1 for g in st.bs[i] & tgt if cc[g] == 1) >= 2:
                                 learner.use(i, t_idx)
+                if acg.ac is None or n_q % SLEEP == 0:
+                    acg.sleep()
+                if acg2.ac is None or n_q % SLEEP == 0:
+                    acg2.sleep()
                 if n_q % SLEEP == 0:          # 睡眠：把新块的显著短语收进 AC，重建
                     for i in pending:
                         pats.update(X.phrases_of(st.text[i], ngdf, st.N, cap()))
@@ -205,13 +219,14 @@ def run_file(path, cards, budget):
             sam.add(s)
             ngdf.update({s[k:k + n] for n in (2, 3, 4) for k in range(len(s) - n + 1)})
             pending.append(i)
+            acg.add_chunk(s); acg2.add_chunk(s)
             for g in graphs:
                 g.link_new(i, prev, last_chunk if prev is None else None)
             prev = i
         if prev is not None:
             last_chunk = prev
     return {a: {m: {"均值": sums[a][m] / cnt[a][m], "n": cnt[a][m]} for m in cnt[a] if cnt[a][m]} for a in ARMS}, \
-        {"轮": len(turns), "块": st.N, "查询": n_q, "SAM状态": len(sam.ln), "AC模式": len(pats)}
+        {"轮": len(turns), "块": st.N, "查询": n_q, "SAM状态": len(sam.ln), "AC模式": len(pats), "AC图字典": len(acg.pats), "AC图全字典": len(acg2.pats)}
 
 
 def main():

@@ -6,7 +6,7 @@ import pathlib
 import agm_algos as X
 from hive_e2e_full import ARMS
 
-REFS = ("最近窗口", "近因+AGM-静态", "近因+BM25")
+REFS = ("最近窗口", "近因+AGM-静态", "近因+BM25", "AGM-静态", "BM25")
 METRICS = ("覆盖", "窗口外", "在线覆盖", "题卡覆盖")
 
 

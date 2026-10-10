@@ -74,6 +74,14 @@ def main():
     for t in texts:
         pats.update(X.phrases_of(t, df, N, cap))
     ac = X.AC(pats)
+    acg = X.ACGraph(CAP_FRAC)
+    for t in texts:
+        acg.add_chunk(t)
+    acg.sleep()
+    acg2 = X.ACGraph(CAP_FRAC, top=None)          # 全字典变体：块里所有合格短语都进字典
+    for t in texts:
+        acg2.add_chunk(t)
+    acg2.sleep()
 
     orders = collections.defaultdict(dict)          # 臂 → qid → 排序（与预算无关的臂）
     budget_orders = collections.defaultdict(dict)   # 依赖预算的臂：(臂, B) → qid → 排序
@@ -98,6 +106,9 @@ def main():
         orders["AC"][qid] = o_ac
         orders["AGM-SAM种子"][qid] = o_agm_sam
         orders["AGM-AC种子"][qid] = agm.rank_seeds(s_ac) if s_ac else o_agm
+        orders["AC图"][qid] = acg.rank(qn)
+        orders["AC图-全字典"][qid] = acg2.rank(qn)
+        orders["RRF(BM25,AC图)"][qid] = X.rrf([o_bm, orders["AC图"][qid]])
         orders["RRF(BM25,AGM)"][qid] = X.rrf([o_bm, o_agm])
         orders["RRF(BM25,AGM,SAM)"][qid] = X.rrf([o_bm, o_agm, o_sam])
         orders["RRF(BM25,AGM,SAM,AC)"][qid] = X.rrf([o_bm, o_agm, o_sam, o_ac])
@@ -143,7 +154,7 @@ def main():
         res[str(B)] = {"汇总": summ, "配对_primary召回_按题": cmp}
         print(B, json.dumps(summ, ensure_ascii=False), flush=True)
     out = {"说明": "检索面全臂；92 题中有 primary 证据的题参与；配对按题；参数跑前写死", "语料块": N,
-           "AC模式数": len(pats), "SAM状态数": len(sam.ln), "按预算": res}
+           "AC模式数": len(pats), "AC图字典": len(acg.pats), "AC图全字典": len(acg2.pats), "SAM状态数": len(sam.ln), "按预算": res}
     txt = json.dumps(out, ensure_ascii=False, indent=1)
     if A.json:
         pathlib.Path(A.json).write_text(txt, encoding="utf-8")
