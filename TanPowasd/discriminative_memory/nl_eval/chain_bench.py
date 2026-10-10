@@ -188,6 +188,61 @@ def answer(ledger, doc, q, n_seq):
     return a, used
 
 
+# ------------------------------------------------------------------ 通用判别记忆（用户 Memory）+ 解释器
+def dm_build(material):
+    """material 按序号写入 NLMemory（nl_interpret.interpret → discriminative_memory.Memory）。"""
+    from discriminative_memory import Memory
+    nm = NL.NLMemory(Memory())
+    sid2cid = {}
+    for m in sorted(material, key=lambda m: m['seq']):
+        for i, sent in enumerate(x for x in SENT.split(m['text']) if x.strip()):
+            sid = f"{m['cid']}/{i}"
+            sid2cid[sid] = m
+            try:
+                nm.ingest(sid, sent.strip(), recorded_at=m['seq'])
+            except Exception:
+                pass
+    return nm, sid2cid
+
+
+def dm_state(nm, slot, T):
+    r = nm.m.query(NL.Query((NL.Need('v', slot),), T), 10 ** 9)
+    a = r['answers']['v']
+    if a['status'] == 'known':
+        return ('active', a['value']) if a['value'] is not None else ('retired', None)
+    if a['status'] == 'conflict':
+        return 'unresolved', (a['value'] or [None])[0]
+    return 'absent', None
+
+
+def dm_answer(nm, mats, doc, q, n_seq):
+    typ, T, ent, fac = parse_q(q['question'], n_seq)
+    a = dict(qid=q['qid'], value=None, state='absent', at_seq=None, chain=[], basis=[], confidence='unknown')
+    facs = nm.known.get(ent, {}) if ent else {}
+    best, sc = NL._best(fac, list(facs)) if facs else (None, 0)
+    if best is None or sc < .5:
+        return a, []
+    slot = facs[best][0]
+    seqs = sorted({m['seq'] for m in mats if m['seq'] <= T})
+    trans, prev = [], ('absent', None)
+    for t in seqs:
+        st = dm_state(nm, slot, t)
+        if st != prev:
+            trans.append((t, prev, st))
+            prev = st
+    used = [next(m for m in mats if m['seq'] == t) for t, _, _ in trans]
+    if typ == '变更':
+        a['chain'] = [{'seq': t, 'from': p[1], 'to': n[1]} for t, p, n in trans]
+    st = dm_state(nm, slot, T)
+    a['state'], a['value'] = st
+    a['at_seq'] = trans[-1][0] if trans else None
+    if typ == '缘由':
+        a['value'] = None                       # Memory 不存缘由
+    a['confidence'] = 'certain' if trans else 'unknown'
+    a['basis'] = [{'file': m['cid'], 'line': m['seq'], 'quote': m['text'][:200]} for m in used[-3:]]
+    return a, used
+
+
 # ------------------------------------------------------------------ retrieval
 def bigr(s):
     s = re.sub(r'\s+', '', s)
@@ -238,7 +293,7 @@ def cap_material(hits, cap):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('bench')
-    ap.add_argument('--arms', default='disc_frozen,disc_ext,bm25,rrf3,lingshu,lingshu_ng,versionblind,closed')
+    ap.add_argument('--arms', default='disc_frozen,disc_ext,bm25,rrf3,lingshu,versionblind,closed')
     ap.add_argument('--dsh', default=str(TAN.parent.parent / 'dsh-memory'))
     ap.add_argument('--out', default=str(HERE / 'results' / 'chain'))
     args = ap.parse_args()
@@ -301,17 +356,8 @@ def main():
             for c in corpus:
                 i = lm.add(c['cid'].replace('#', '@'), f"# {c['cid']}\n{c['text']}")
                 nid[i] = c['cid']
-        if arm == 'lingshu_ng':                   # Liyang/lingshu_ng MemoryEngine.perceive/search（默认 M5 去重）
-            sys.path.insert(0, str(TAN.parent / 'Liyang'))
-            from lingshu_ng.engine import MemoryEngine
-            ng = MemoryEngine(); nid = {}
-            for c in corpus:
-                nid[ng.perceive(c['text']).node_id] = c['cid']
-            class _NG:
-                def search(self, q, k):
-                    return ([({'id': n.id}, sc) for n, sc in ng.search(q, limit=k)], None)
-            lm = _NG()
-        if arm == 'rrf3':
+        dm_cache = {}
+        if arm in ('rrf3', 'rrf3_dm'):
             import rrf3 as R
             rm = R.RRF3Memory()
             owner = []
@@ -324,6 +370,23 @@ def main():
             if arm == 'closed':
                 a, mat = dict(qid=q['qid'], value=None, state='absent', at_seq=None, chain=[], basis=[],
                               confidence='unknown'), []
+            elif arm in ('rrf3_dm', 'dm_full'):
+                if arm == 'dm_full':
+                    mats = [c for c in corpus if c['cid'].split('#')[0] == q['doc']]
+                else:
+                    mats, seen = [], set()
+                    for h in rm.retrieve(q['question'], budget=CHAIN_CAP if chq else CAP):
+                        cid = owner[h.id]
+                        if cid not in seen:
+                            seen.add(cid); mats.append(by_cid[cid])
+                key = (q['doc'],) if arm == 'dm_full' else None
+                if key and key in dm_cache:
+                    nm = dm_cache[key]
+                else:
+                    nm, _ = dm_build(mats)
+                    if key: dm_cache[key] = nm
+                a, used = dm_answer(nm, mats, q['doc'], q, n_seq[q['doc']])
+                mat = [{'cid': m['cid'], 'text': m['text']} for m in sorted(used, key=lambda m: m['seq'])]
             elif led is not None:
                 a, used = answer(led, q['doc'], q, n_seq[q['doc']])
                 cids = sorted({e['cid'] for e in used}, key=lambda c: by_cid[c]['seq'])
