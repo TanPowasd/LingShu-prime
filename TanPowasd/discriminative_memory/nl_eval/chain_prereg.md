@@ -71,3 +71,9 @@ Liyang/lingshu_ng（83e0234）`MemoryEngine().perceive(text)`（默认 M5 去重
 | llm_bm25 | .645 | .849 | .744 | .773 | .976 | .290 |
 | llm_lingshu_ng | .581 | .857 | .718 | .765 | 1.000 | .387 |
 未跑版本盲/闭卷校准臂（用户未授权），校准门未判定。少量 HTTP 500 缺答按错计；llm_rrf3/llm_bm25 原始缓存因沙盒重置丢失，读数来自运行日志。
+
+## 零 key 重放：RRF3 → LLM 抽取（复用 llm_dm 缓存）→ version_chain_memory（2026-10-11）
+`python chain_vcm_replay.py <bench>`，0 次调用，3061 个事件写入 VersionChainMemory。
+测试集 419 题：现值 .613 历史 .899 变更链 .923 四态 .864 缘由 .000 滞后 .290 —— 与 llm_dm 完全相同。
+642 题中仅 4 题输出不同（VCM 保留同值重复事件，如 lmdb→lmdb；at_seq 指向同值重设），不影响汇总。
+结论：同一批事件下两个记忆核心等价；瓶颈在 RRF3 召回与抽取，不在存储层。缘由 0 是因抽取提示未取缘由。

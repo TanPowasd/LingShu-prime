@@ -1,0 +1,78 @@
+{
+ "arm": "llm_vcm",
+ "llm_calls": 0,
+ "missing_cache": 0,
+ "events_written": 3061,
+ "all": {
+  "arm": "llm_vcm",
+  "present": 0.617,
+  "history": 0.8983,
+  "chain": 0.8929,
+  "chain_row_recall": 0.7925,
+  "stale": 0.2766,
+  "future": 0.0,
+  "subject_confusion": 0.0,
+  "four_state": 0.8731,
+  "reason": 0.0,
+  "verbatim": 0.0,
+  "n": 625,
+  "counts": {
+   "present": 47,
+   "history": 177,
+   "chain": 56,
+   "chain_row_recall": 56,
+   "stale": 47,
+   "future": 202,
+   "subject_confusion": 239,
+   "four_state": 197,
+   "reason": 63,
+   "verbatim": 625
+  },
+  "bucket_main": {
+   "long": 0.3793,
+   "mid": 0.8235,
+   "short": 0.9597
+  },
+  "bucket_main_n": {
+   "long": 29,
+   "mid": 102,
+   "short": 149
+  }
+ },
+ "test": {
+  "arm": "llm_vcm",
+  "present": 0.6129,
+  "history": 0.8992,
+  "chain": 0.9231,
+  "chain_row_recall": 0.908,
+  "stale": 0.2903,
+  "future": 0.0,
+  "subject_confusion": 0.0,
+  "four_state": 0.8636,
+  "reason": 0.0,
+  "verbatim": 0.0,
+  "n": 419,
+  "counts": {
+   "present": 31,
+   "history": 119,
+   "chain": 39,
+   "chain_row_recall": 39,
+   "stale": 31,
+   "future": 140,
+   "subject_confusion": 170,
+   "four_state": 132,
+   "reason": 42,
+   "verbatim": 419
+  },
+  "bucket_main": {
+   "long": 0.4,
+   "mid": 0.8382,
+   "short": 0.9604
+  },
+  "bucket_main_n": {
+   "long": 20,
+   "mid": 68,
+   "short": 101
+  }
+ }
+}
