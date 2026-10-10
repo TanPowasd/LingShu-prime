@@ -1,0 +1,48 @@
+{
+  "tests_run": 48,
+  "failures": 0,
+  "errors": 0,
+  "network_attempts": 0,
+  "model_calls": 0,
+  "packaged_hashes_match": {
+    ".gitignore": true,
+    "__init__.py": true,
+    "bench_discriminative.py": true,
+    "demo_discriminative.py": true,
+    "DESIGN.md": true,
+    "discriminative_memory.py": true,
+    "IMPLEMENTATION_AND_RESULTS.md": true,
+    "parameters.json": true,
+    "README.md": true,
+    "requirements-bench.txt": true,
+    "results/original-20261010/demo.json": true,
+    "results/original-20261010/frozen_sources/bench_discriminative.py": true,
+    "results/original-20261010/frozen_sources/discriminative_memory.py": true,
+    "results/original-20261010/frozen_sources/parameters.json": true,
+    "results/original-20261010/frozen_sources/temporal_facts.py": true,
+    "results/original-20261010/parameters.json": true,
+    "results/original-20261010/readings.json": true,
+    "results/original-20261010/README.md": true,
+    "results/original-20261010/summary.json": true,
+    "results/original-20261010/test_output.txt": true,
+    "results/original-20261010/verification.json": true,
+    "temporal_facts.py": true,
+    "test_discriminative_memory.py": true,
+    "verify_discriminative.py": true,
+    ".gitattributes": true
+  },
+  "reference_hashes_match_after_lf_normalization": {
+    "../agm/bench/hive_retrieval.py": true
+  },
+  "historical_frozen_hashes_match": {
+    "discriminative_memory.py": true,
+    "bench_discriminative.py": true,
+    "parameters.json": true,
+    "temporal_facts.py": true
+  },
+  "historical_test_count_not_rerun": 177,
+  "independently_rebuilt_contexts": 84,
+  "sampled_contexts_match_historical_results": true,
+  "core_diff_is_only_module_lookup": true,
+  "note": "48 bundled tests and targeted artifact checks only; no new full benchmark or natural-language memory score."
+}

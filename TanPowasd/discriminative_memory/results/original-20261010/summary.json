@@ -1,0 +1,186 @@
+{
+  "packing": {
+    "512": {
+      "判别记忆": {
+        "mean_weighted_requirement_coverage": 0.6211502756502757,
+        "complete_queries": 23,
+        "queries": 150,
+        "mean_budget_used": 409.14666666666665,
+        "query_median_ms": 0.7005000043136533
+      },
+      "判别记忆-无替换": {
+        "mean_weighted_requirement_coverage": 0.6105312280312281,
+        "complete_queries": 20,
+        "queries": 150,
+        "mean_budget_used": 401.35333333333335,
+        "query_median_ms": 0.40425000042887405
+      },
+      "SQL直接取证": {
+        "mean_weighted_requirement_coverage": 0.4267956302956303,
+        "complete_queries": 11,
+        "queries": 150,
+        "mean_budget_used": 408.94666666666666,
+        "query_median_ms": 0.17069999739760533
+      },
+      "最短证据包": {
+        "mean_weighted_requirement_coverage": 0.3467371147371147,
+        "complete_queries": 0,
+        "queries": 150,
+        "mean_budget_used": 372.58666666666664,
+        "query_median_ms": 0.5504999971890356
+      },
+      "BM25证据包": {
+        "mean_weighted_requirement_coverage": 0.5578080438080438,
+        "complete_queries": 22,
+        "queries": 150,
+        "mean_budget_used": 414.62666666666667,
+        "query_median_ms": 0.4963999999745283
+      },
+      "AGM证据包": {
+        "mean_weighted_requirement_coverage": 0.5075377215377216,
+        "complete_queries": 19,
+        "queries": 150,
+        "mean_budget_used": 421.03333333333336,
+        "query_median_ms": 1.0922500005108304
+      },
+      "RRF三路证据包": {
+        "mean_weighted_requirement_coverage": 0.5215937580937581,
+        "complete_queries": 20,
+        "queries": 150,
+        "mean_budget_used": 417.11333333333334,
+        "query_median_ms": 1.018149996525608
+      }
+    },
+    "1024": {
+      "判别记忆": {
+        "mean_weighted_requirement_coverage": 0.9143766233766234,
+        "complete_queries": 85,
+        "queries": 150,
+        "mean_budget_used": 757.9066666666666,
+        "query_median_ms": 1.2410000017553102
+      },
+      "判别记忆-无替换": {
+        "mean_weighted_requirement_coverage": 0.9022073112073112,
+        "complete_queries": 81,
+        "queries": 150,
+        "mean_budget_used": 744.9666666666667,
+        "query_median_ms": 0.503999999637017
+      },
+      "SQL直接取证": {
+        "mean_weighted_requirement_coverage": 0.7542637547637547,
+        "complete_queries": 39,
+        "queries": 150,
+        "mean_budget_used": 782.1333333333333,
+        "query_median_ms": 0.1817499978642445
+      },
+      "最短证据包": {
+        "mean_weighted_requirement_coverage": 0.6656012876012876,
+        "complete_queries": 19,
+        "queries": 150,
+        "mean_budget_used": 762.02,
+        "query_median_ms": 0.9283500003220979
+      },
+      "BM25证据包": {
+        "mean_weighted_requirement_coverage": 0.8539797424797425,
+        "complete_queries": 68,
+        "queries": 150,
+        "mean_budget_used": 812.7,
+        "query_median_ms": 0.47914999595377594
+      },
+      "AGM证据包": {
+        "mean_weighted_requirement_coverage": 0.8218568283568284,
+        "complete_queries": 61,
+        "queries": 150,
+        "mean_budget_used": 826.82,
+        "query_median_ms": 1.0734999996202532
+      },
+      "RRF三路证据包": {
+        "mean_weighted_requirement_coverage": 0.8408539423539424,
+        "complete_queries": 66,
+        "queries": 150,
+        "mean_budget_used": 818.2333333333333,
+        "query_median_ms": 1.0413000018161256
+      }
+    },
+    "2048": {
+      "判别记忆": {
+        "mean_weighted_requirement_coverage": 1.0,
+        "complete_queries": 150,
+        "queries": 150,
+        "mean_budget_used": 982.8133333333334,
+        "query_median_ms": 1.9290499985800125
+      },
+      "判别记忆-无替换": {
+        "mean_weighted_requirement_coverage": 0.9991666666666666,
+        "complete_queries": 149,
+        "queries": 150,
+        "mean_budget_used": 994.4066666666666,
+        "query_median_ms": 0.5644000011670869
+      },
+      "SQL直接取证": {
+        "mean_weighted_requirement_coverage": 0.9774194324194324,
+        "complete_queries": 128,
+        "queries": 150,
+        "mean_budget_used": 1152.3866666666668,
+        "query_median_ms": 0.13715000022784807
+      },
+      "最短证据包": {
+        "mean_weighted_requirement_coverage": 0.9647445887445888,
+        "complete_queries": 119,
+        "queries": 150,
+        "mean_budget_used": 1190.56,
+        "query_median_ms": 1.208599998790305
+      },
+      "BM25证据包": {
+        "mean_weighted_requirement_coverage": 0.9973809523809524,
+        "complete_queries": 147,
+        "queries": 150,
+        "mean_budget_used": 1148.7933333333333,
+        "query_median_ms": 0.4507999983616173
+      },
+      "AGM证据包": {
+        "mean_weighted_requirement_coverage": 0.9937328042328042,
+        "complete_queries": 143,
+        "queries": 150,
+        "mean_budget_used": 1162.76,
+        "query_median_ms": 1.0346000017307233
+      },
+      "RRF三路证据包": {
+        "mean_weighted_requirement_coverage": 0.991468253968254,
+        "complete_queries": 141,
+        "queries": 150,
+        "mean_budget_used": 1136.94,
+        "query_median_ms": 0.9910500011756085
+      }
+    }
+  },
+  "temporal_correct": 800,
+  "new_tests": 48,
+  "all_tests": 177,
+  "exact_matches": 38,
+  "exact_cases": 39,
+  "paired_1024": {
+    "SQL直接取证": {
+      "higher": 85,
+      "lower": 2,
+      "tied": 63
+    },
+    "BM25证据包": {
+      "higher": 51,
+      "lower": 8,
+      "tied": 91
+    },
+    "AGM证据包": {
+      "higher": 57,
+      "lower": 6,
+      "tied": 87
+    },
+    "RRF三路证据包": {
+      "higher": 48,
+      "lower": 5,
+      "tied": 97
+    }
+  },
+  "model_calls": 0,
+  "network_attempts": 0
+}

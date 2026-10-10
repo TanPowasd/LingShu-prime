@@ -1,0 +1,26 @@
+{
+  "tests_run": 177,
+  "test_counts": {
+    "guarded-agm-20261010": 63,
+    "fused-agm-20261010": 13,
+    "calibrated-agm-20261010": 25,
+    "recent-sam-agm-20261010": 28,
+    "discriminative-memory-20261010": 48
+  },
+  "failures": 0,
+  "errors": 0,
+  "network_attempts": 0,
+  "model_calls": 0,
+  "frozen_hashes_match": {
+    "E:\\DF\\liyang-hive-eval\\runs\\discriminative-memory-20261010\\discriminative_memory.py": true,
+    "E:\\DF\\liyang-hive-eval\\runs\\discriminative-memory-20261010\\bench_discriminative.py": true,
+    "E:\\DF\\liyang-hive-eval\\runs\\discriminative-memory-20261010\\parameters.json": true,
+    "E:\\DF\\liyang-hive-eval\\runs\\guarded-agm-20261010\\temporal_facts.py": true
+  },
+  "independently_rebuilt_packing_contexts": 12,
+  "bounded_cache_and_reference_guard_preserve_fixture_deliveries": true,
+  "temporal_oracle_correct": 800,
+  "schema_renaming_checks": 60,
+  "duplicate_case_checks": 150,
+  "note": "Structured input and query frames are shared by all methods. No claim of arbitrary natural-language parsing accuracy."
+}

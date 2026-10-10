@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-10",
+  "repository": "https://github.com/TanPowasd/LingShu-prime",
+  "base_commit": "7360208",
+  "experiment": "discriminative-memory-20261010",
+  "packaged_sha256": {
+    ".gitignore": "b1af7882c82d8e0b5900343a9bb8963de76b41746254fcc36e98e11e49d44f65",
+    "__init__.py": "5089479709ba56497efdf74312a019088514a507c9516b8dbc9dec13b8489dd8",
+    "bench_discriminative.py": "251332b847f5405dc59786fc011ed90b5a68d34e751c0727f553c3b88a192d59",
+    "demo_discriminative.py": "40ce9434190cfa5d5f58bfee3238d08e43f0e38d2d436f25e94ca7e66183907b",
+    "DESIGN.md": "2ebc68990ff6847a2056e5dd73ce18aff1d735ee623b92ed85892da9ba6ea5c2",
+    "discriminative_memory.py": "14415861f5336cdbd6b0a5bbdafae2cb2b3d924a8b704b1abec947fcc6b56936",
+    "IMPLEMENTATION_AND_RESULTS.md": "037c5ef2f09de63446c441f286566c70913627ea223d7e33e7b77db946458c60",
+    "parameters.json": "76fd1d63790c20781a80db5738d1b16c21c33bae0f422b7772760357c7e69385",
+    "README.md": "8626fe663d44052f22667e57e60ff3ffdbca864775514d2449cb4f3bbbdcc05d",
+    "requirements-bench.txt": "0969da99a0bc2a1b71ed50584560f4588a37567ac63af3ddbaf3c4617ca5621a",
+    "results/original-20261010/demo.json": "0d0a595821b5588133b5412f6727dc2f33f3b7fa4ccd1685d45e5d721d4df0a4",
+    "results/original-20261010/frozen_sources/bench_discriminative.py": "04c762c585cead38149c6fa6f25ead9fdb79940d09cb447718d9e9898c6c4ad1",
+    "results/original-20261010/frozen_sources/discriminative_memory.py": "58a6ec2d2a268197ba6e2fbf6b4e67c3adeaa9eebd0d44944910368e397e6d7d",
+    "results/original-20261010/frozen_sources/parameters.json": "76fd1d63790c20781a80db5738d1b16c21c33bae0f422b7772760357c7e69385",
+    "results/original-20261010/frozen_sources/temporal_facts.py": "4639246701ccf9912a41f58d14f772251eddd83f4f49c5af6bd2b9692249db62",
+    "results/original-20261010/parameters.json": "76fd1d63790c20781a80db5738d1b16c21c33bae0f422b7772760357c7e69385",
+    "results/original-20261010/readings.json": "b2a2e19a250f036b4c5e57d1790406d6da5f8e2fa003d9c1ee56eea9f25d54b8",
+    "results/original-20261010/README.md": "33dab58f4fd3f07699345f83507b417d1ea0abe4f549bfc339c14be9c69d758d",
+    "results/original-20261010/summary.json": "ba15a640041163e8ae5797fd04ab5ab8ec22ba2d1978b4cac85b5820aca50820",
+    "results/original-20261010/test_output.txt": "9c5718746c3afb05997faac3a2d387f13349d92fa3732c8150b1abb52ed21d26",
+    "results/original-20261010/verification.json": "c2e6f28f1054c8ccb9a4171239a6282dd0b8867e4ee62dc0756c0c367561a571",
+    "temporal_facts.py": "4639246701ccf9912a41f58d14f772251eddd83f4f49c5af6bd2b9692249db62",
+    "test_discriminative_memory.py": "c0149dd41d8b982a5eb79381cca6bd83bf766497bc1007dad5b56f0b4a5018b7",
+    "verify_discriminative.py": "037e1a1265ea77eeae46592778df7ed8ac4e08423118514bdc4dc9a9809750b9",
+    ".gitattributes": "9ad92e887fce38018b1e8903dffc002a0ac7bfa17405647d344096dc29e54c2e"
+  },
+  "changes_from_frozen_experiment": [
+    "Core: module and static AGM path lookup only; verified by normalized source equality.",
+    "Benchmark: portable repository lookup, explicit optional local Hive path, isolated output directory and forwarded CLI arguments.",
+    "Verification: run 48 bundled tests and 84 sampled planner contexts against historical readings; historical 177 tests are not rerun.",
+    "Report: preserve conclusions and scores; update reproduction commands and publication provenance."
+  ],
+  "model_calls": 0,
+  "full_model_evaluation_authorized": false,
+  "historical_result_scope": "Structured evidence selection and time semantics; Hive is raw-interface smoke testing, not end-to-end accuracy.",
+  "byte_preservation": "Module .gitattributes disables line-ending conversion so archived and published SHA256 digests survive Windows/Linux checkout. Existing sibling AGM reference is hashed with LF normalization, matching its preexisting Git line-ending policy.",
+  "reference_sha256_lf": {
+    "../agm/bench/hive_retrieval.py": "f8556b66d8e084f924725e2c1b0b249309db186237d418429b18e31b5f4871a6"
+  }
+}

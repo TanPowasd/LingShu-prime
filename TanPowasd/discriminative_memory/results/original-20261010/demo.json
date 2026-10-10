@@ -1,0 +1,291 @@
+{
+  "structured_time_example": {
+    "current": {
+      "status": "complete",
+      "answers": {
+        "value": {
+          "status": "known",
+          "value": "v1"
+        }
+      },
+      "covered": [
+        "value"
+      ],
+      "missing": [],
+      "weighted_coverage": 1.0,
+      "selected": [
+        "e3"
+      ],
+      "context": "{\"effective_at\":6.0,\"id\":\"e3\",\"kind\":\"state\",\"recorded_at\":6.0,\"scope\":\"default\"}\n{\"attribute_1\":\"v1\"}\n",
+      "budget_used": 103,
+      "budget_limit": 4000,
+      "mandatory_search_truncated": false,
+      "evidence": [
+        {
+          "id": "e3",
+          "text": "{\"attribute_1\":\"v1\"}"
+        }
+      ]
+    },
+    "past_using_current_knowledge": {
+      "status": "complete",
+      "answers": {
+        "value": {
+          "status": "known",
+          "value": "v4"
+        }
+      },
+      "covered": [
+        "value"
+      ],
+      "missing": [],
+      "weighted_coverage": 1.0,
+      "selected": [
+        "e2",
+        "revision"
+      ],
+      "context": "{\"effective_at\":3.0,\"id\":\"e2\",\"kind\":\"state\",\"recorded_at\":3.0,\"scope\":\"default\"}\n{\"attribute_1\":\"v2\"}\n{\"annotations\":{\"[\\\"object_1\\\",\\\"attribute_1\\\",\\\"role_A\\\",{\\\"context\\\":\\\"C\\\"}]\":{\"revises\":\"e2\"}},\"effective_at\":3.0,\"id\":\"revision\",\"kind\":\"correction\",\"recorded_at\":8.0,\"scope\":\"default\"}\n{\"corrected_attribute_1\":\"v4\"}\n",
+      "budget_used": 324,
+      "budget_limit": 4000,
+      "mandatory_search_truncated": false,
+      "evidence": [
+        {
+          "id": "e2",
+          "text": "{\"attribute_1\":\"v2\"}"
+        },
+        {
+          "id": "revision",
+          "text": "{\"corrected_attribute_1\":\"v4\"}"
+        }
+      ]
+    },
+    "past_using_then_known": {
+      "status": "complete",
+      "answers": {
+        "value": {
+          "status": "known",
+          "value": "v2"
+        }
+      },
+      "covered": [
+        "value"
+      ],
+      "missing": [],
+      "weighted_coverage": 1.0,
+      "selected": [
+        "e2"
+      ],
+      "context": "{\"effective_at\":3.0,\"id\":\"e2\",\"kind\":\"state\",\"recorded_at\":3.0,\"scope\":\"default\"}\n{\"attribute_1\":\"v2\"}\n",
+      "budget_used": 103,
+      "budget_limit": 4000,
+      "mandatory_search_truncated": false,
+      "evidence": [
+        {
+          "id": "e2",
+          "text": "{\"attribute_1\":\"v2\"}"
+        }
+      ]
+    },
+    "history": {
+      "status": "complete",
+      "answers": {
+        "value": {
+          "status": "history",
+          "value": [
+            {
+              "alternatives": [],
+              "at": 1.0,
+              "episodes": [
+                "e1#50b0cd219f3d0269"
+              ],
+              "status": "known",
+              "value": "v1"
+            },
+            {
+              "alternatives": [],
+              "at": 3.0,
+              "episodes": [
+                "e2#50b0cd219f3d0269"
+              ],
+              "status": "known",
+              "value": "v4"
+            },
+            {
+              "alternatives": [],
+              "at": 6.0,
+              "episodes": [
+                "e3#50b0cd219f3d0269"
+              ],
+              "status": "known",
+              "value": "v1"
+            }
+          ]
+        }
+      },
+      "covered": [
+        "value"
+      ],
+      "missing": [],
+      "weighted_coverage": 1.0,
+      "selected": [
+        "e1",
+        "e2",
+        "e3",
+        "revision"
+      ],
+      "context": "{\"effective_at\":1.0,\"id\":\"e1\",\"kind\":\"state\",\"recorded_at\":1.0,\"scope\":\"default\"}\n{\"attribute_1\":\"v1\"}\n{\"effective_at\":3.0,\"id\":\"e2\",\"kind\":\"state\",\"recorded_at\":3.0,\"scope\":\"default\"}\n{\"attribute_1\":\"v2\"}\n{\"effective_at\":6.0,\"id\":\"e3\",\"kind\":\"state\",\"recorded_at\":6.0,\"scope\":\"default\"}\n{\"attribute_1\":\"v1\"}\n{\"annotations\":{\"[\\\"object_1\\\",\\\"attribute_1\\\",\\\"role_A\\\",{\\\"context\\\":\\\"C\\\"}]\":{\"revises\":\"e2\"}},\"effective_at\":3.0,\"id\":\"revision\",\"kind\":\"correction\",\"recorded_at\":8.0,\"scope\":\"default\"}\n{\"corrected_attribute_1\":\"v4\"}\n",
+      "budget_used": 530,
+      "budget_limit": 4000,
+      "mandatory_search_truncated": false,
+      "evidence": [
+        {
+          "id": "e1",
+          "text": "{\"attribute_1\":\"v1\"}"
+        },
+        {
+          "id": "e2",
+          "text": "{\"attribute_1\":\"v2\"}"
+        },
+        {
+          "id": "e3",
+          "text": "{\"attribute_1\":\"v1\"}"
+        },
+        {
+          "id": "revision",
+          "text": "{\"corrected_attribute_1\":\"v4\"}"
+        }
+      ]
+    },
+    "plans": {
+      "status": "complete",
+      "answers": {
+        "value": {
+          "status": "planned",
+          "value": [
+            "v3"
+          ]
+        }
+      },
+      "covered": [
+        "value"
+      ],
+      "missing": [],
+      "weighted_coverage": 1.0,
+      "selected": [
+        "proposal"
+      ],
+      "context": "{\"effective_at\":null,\"id\":\"proposal\",\"kind\":\"plan\",\"recorded_at\":7.0,\"scope\":\"default\"}\n{\"proposed\":\"v3\"}\n",
+      "budget_used": 106,
+      "budget_limit": 4000,
+      "mandatory_search_truncated": false,
+      "evidence": [
+        {
+          "id": "proposal",
+          "text": "{\"proposed\":\"v3\"}"
+        }
+      ]
+    },
+    "missing_relation": {
+      "status": "unknown",
+      "answers": {
+        "value": {
+          "status": "unknown",
+          "value": null
+        }
+      },
+      "covered": [],
+      "missing": [
+        "value"
+      ],
+      "weighted_coverage": 0.0,
+      "selected": [],
+      "context": "",
+      "budget_used": 0,
+      "budget_limit": 4000,
+      "mandatory_search_truncated": false,
+      "evidence": []
+    }
+  },
+  "dependent_evidence_example": {
+    "before": {
+      "status": "complete",
+      "answers": {
+        "result": {
+          "status": "known",
+          "value": {
+            "code": 7,
+            "options": [
+              "a",
+              "b"
+            ]
+          }
+        }
+      },
+      "covered": [
+        "result"
+      ],
+      "missing": [],
+      "weighted_coverage": 1.0,
+      "selected": [
+        "guard",
+        "payload"
+      ],
+      "context": "{\"effective_at\":1.0,\"id\":\"guard\",\"kind\":\"state\",\"recorded_at\":1.0,\"scope\":\"default\"}\n{\"flag\":true}\n{\"annotations\":{\"[\\\"component_3\\\",\\\"payload\\\",\\\"primary\\\",{}]\":{\"requires\":[{\"episode\":\"guard\",\"slot\":\"[\\\"component_2\\\",\\\"flag\\\",\\\"primary\\\",{}]\",\"value\":true}]}},\"effective_at\":1.0,\"id\":\"payload\",\"kind\":\"state\",\"recorded_at\":2.0,\"scope\":\"default\"}\n{\"payload\":{\"code\":7,\"options\":[\"a\",\"b\"]}}\n",
+      "budget_used": 391,
+      "budget_limit": 2000,
+      "mandatory_search_truncated": false,
+      "evidence": [
+        {
+          "id": "guard",
+          "text": "{\"flag\":true}"
+        },
+        {
+          "id": "payload",
+          "text": "{\"payload\":{\"code\":7,\"options\":[\"a\",\"b\"]}}"
+        }
+      ]
+    },
+    "tiny_budget": {
+      "status": "insufficient_budget",
+      "answers": {
+        "result": {
+          "status": "insufficient_evidence",
+          "value": null
+        }
+      },
+      "covered": [],
+      "missing": [
+        "result"
+      ],
+      "weighted_coverage": 0.0,
+      "selected": [],
+      "context": "",
+      "budget_used": 0,
+      "budget_limit": 80,
+      "mandatory_search_truncated": false,
+      "evidence": []
+    },
+    "after_correction": {
+      "status": "defer",
+      "answers": {
+        "result": {
+          "status": "defer",
+          "value": null
+        }
+      },
+      "covered": [],
+      "missing": [
+        "result"
+      ],
+      "weighted_coverage": 0.0,
+      "selected": [],
+      "context": "",
+      "budget_used": 0,
+      "budget_limit": 2000,
+      "mandatory_search_truncated": false,
+      "evidence": []
+    }
+  },
+  "note": "All assertions/requirements are supplied through the generic API. This demo does not parse natural-language text.",
+  "model_calls": 0
+}

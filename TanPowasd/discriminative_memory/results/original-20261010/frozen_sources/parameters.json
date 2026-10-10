@@ -1,0 +1,26 @@
+{
+  "seed": 917281,
+  "packing_cases": 150,
+  "formats": 5,
+  "budgets": [
+    512,
+    1024,
+    2048
+  ],
+  "requirements": [
+    4,
+    7
+  ],
+  "composite_records": [
+    4,
+    6
+  ],
+  "copy_records_per_case": 8,
+  "exact_every": 10,
+  "exact_max_sources": 12,
+  "renaming_cases": 20,
+  "temporal_entities": 24,
+  "facets_per_entity": 3,
+  "episodes_per_facet": 8,
+  "temporal_queries": 800
+}
