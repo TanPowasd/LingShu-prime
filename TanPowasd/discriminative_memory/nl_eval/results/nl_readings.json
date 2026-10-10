@@ -1,0 +1,1363 @@
+{
+ "dev": {
+  "claims": {
+   "tp": 15,
+   "fp": 0,
+   "fn": 0,
+   "precision": 1.0,
+   "recall": 1.0
+  },
+  "questions": {
+   "n": 11,
+   "answer_ok": 11,
+   "binding_ok": 11,
+   "error_causes": {}
+  },
+  "claim_rows": [
+   {
+    "case": "d01",
+    "text": "服务器甲的内存是16GB。它的磁盘为512G，还不错。",
+    "gold": [
+     [
+      "state",
+      "服务器甲",
+      "内存",
+      "16GB"
+     ],
+     [
+      "state",
+      "服务器甲",
+      "磁盘",
+      "512G"
+     ]
+    ],
+    "pred": [
+     [
+      "state",
+      "服务器甲",
+      "内存",
+      "16GB"
+     ],
+     [
+      "state",
+      "服务器甲",
+      "磁盘",
+      "512G"
+     ]
+    ]
+   },
+   {
+    "case": "d01",
+    "text": "把服务器甲的内存改成32GB。",
+    "gold": [
+     [
+      "state",
+      "服务器甲",
+      "内存",
+      "32GB"
+     ]
+    ],
+    "pred": [
+     [
+      "state",
+      "服务器甲",
+      "内存",
+      "32GB"
+     ]
+    ]
+   },
+   {
+    "case": "d02",
+    "text": "The speed of car-1 is 60.",
+    "gold": [
+     [
+      "state",
+      "car-1",
+      "speed",
+      60
+     ]
+    ],
+    "pred": [
+     [
+      "state",
+      "car-1",
+      "speed",
+      60
+     ]
+    ]
+   },
+   {
+    "case": "d02",
+    "text": "car-1's speed is now 70 and rising.",
+    "gold": [
+     [
+      "state",
+      "car-1",
+      "speed",
+      70
+     ]
+    ],
+    "pred": [
+     [
+      "state",
+      "car-1",
+      "speed",
+      70
+     ]
+    ]
+   },
+   {
+    "case": "d02",
+    "text": "Correction: car-1's speed is 75.",
+    "gold": [
+     [
+      "correct",
+      "car-1",
+      "speed",
+      75
+     ]
+    ],
+    "pred": [
+     [
+      "correct",
+      "car-1",
+      "speed",
+      75
+     ]
+    ]
+   },
+   {
+    "case": "d03",
+    "text": "我们计划把服务器乙的系统改成Linux。",
+    "gold": [
+     [
+      "plan",
+      "服务器乙",
+      "系统",
+      "Linux"
+     ]
+    ],
+    "pred": [
+     [
+      "plan",
+      "服务器乙",
+      "系统",
+      "Linux"
+     ]
+    ]
+   },
+   {
+    "case": "d03",
+    "text": "服务器乙的系统可能是Windows。",
+    "gold": [
+     [
+      "uncertain",
+      "服务器乙",
+      "系统",
+      "Windows"
+     ]
+    ],
+    "pred": [
+     [
+      "uncertain",
+      "服务器乙",
+      "系统",
+      "Windows"
+     ]
+    ]
+   },
+   {
+    "case": "d04",
+    "text": "仓位K的状态是空闲。",
+    "gold": [
+     [
+      "state",
+      "仓位K",
+      "状态",
+      "空闲"
+     ]
+    ],
+    "pred": [
+     [
+      "state",
+      "仓位K",
+      "状态",
+      "空闲"
+     ]
+    ]
+   },
+   {
+    "case": "d04",
+    "text": "仓位K的状态不是空闲。",
+    "gold": [
+     [
+      "negate",
+      "仓位K",
+      "状态",
+      "空闲"
+     ]
+    ],
+    "pred": [
+     [
+      "negate",
+      "仓位K",
+      "状态",
+      "空闲"
+     ]
+    ]
+   },
+   {
+    "case": "d05",
+    "text": "The owner of Drone-4 is Kim.",
+    "gold": [
+     [
+      "state",
+      "Drone-4",
+      "owner",
+      "Kim"
+     ]
+    ],
+    "pred": [
+     [
+      "state",
+      "Drone-4",
+      "owner",
+      "Kim"
+     ]
+    ]
+   },
+   {
+    "case": "d05",
+    "text": "Scratch that.",
+    "gold": [
+     [
+      "retract",
+      "Drone-4",
+      "owner",
+      null
+     ]
+    ],
+    "pred": [
+     [
+      "retract",
+      "Drone-4",
+      "owner",
+      null
+     ]
+    ]
+   },
+   {
+    "case": "d06",
+    "text": "2026-01-05，服务器甲的位置是机房2。",
+    "gold": [
+     [
+      "state",
+      "服务器甲",
+      "位置",
+      "机房2"
+     ]
+    ],
+    "pred": [
+     [
+      "state",
+      "服务器甲",
+      "位置",
+      "机房2"
+     ]
+    ]
+   },
+   {
+    "case": "d06",
+    "text": "2026-02-10，服务器甲的位置是机房5。",
+    "gold": [
+     [
+      "state",
+      "服务器甲",
+      "位置",
+      "机房5"
+     ]
+    ],
+    "pred": [
+     [
+      "state",
+      "服务器甲",
+      "位置",
+      "机房5"
+     ]
+    ]
+   },
+   {
+    "case": "d07",
+    "text": "好的，谢谢。",
+    "gold": [],
+    "pred": []
+   },
+   {
+    "case": "d07",
+    "text": "Let's talk about something else.",
+    "gold": [],
+    "pred": []
+   },
+   {
+    "case": "d08",
+    "text": "接口P在生产环境下的超时为30秒。",
+    "gold": [
+     [
+      "state",
+      "接口P",
+      "超时",
+      "30秒"
+     ]
+    ],
+    "pred": [
+     [
+      "state",
+      "接口P",
+      "超时",
+      "30秒"
+     ]
+    ]
+   }
+  ],
+  "question_rows": [
+   {
+    "case": "d01",
+    "q": "服务器甲的内存现在是多少？",
+    "mode": "state",
+    "gold": "32GB",
+    "got": "32GB",
+    "bound_ok": true,
+    "ok": true,
+    "cause": null
+   },
+   {
+    "case": "d01",
+    "q": "服务器甲的内存在t=2时是多少？",
+    "mode": "state",
+    "gold": "16GB",
+    "got": "16GB",
+    "bound_ok": true,
+    "ok": true,
+    "cause": null
+   },
+   {
+    "case": "d01",
+    "q": "服务器甲的磁盘是多少",
+    "mode": "state",
+    "gold": "512G",
+    "got": "512G",
+    "bound_ok": true,
+    "ok": true,
+    "cause": null
+   },
+   {
+    "case": "d02",
+    "q": "What is the speed of car-1?",
+    "mode": "state",
+    "gold": 75,
+    "got": 75,
+    "bound_ok": true,
+    "ok": true,
+    "cause": null
+   },
+   {
+    "case": "d02",
+    "q": "What is the history of car-1's speed?",
+    "mode": "history",
+    "gold": [
+     60,
+     75
+    ],
+    "got": [
+     60,
+     75
+    ],
+    "bound_ok": true,
+    "ok": true,
+    "cause": null
+   },
+   {
+    "case": "d03",
+    "q": "服务器乙的系统是什么？",
+    "mode": "state",
+    "gold": null,
+    "got": null,
+    "bound_ok": true,
+    "ok": true,
+    "cause": null
+   },
+   {
+    "case": "d03",
+    "q": "服务器乙的系统有什么计划？",
+    "mode": "plans",
+    "gold": "Linux",
+    "got": "Linux",
+    "bound_ok": true,
+    "ok": true,
+    "cause": null
+   },
+   {
+    "case": "d04",
+    "q": "仓位K的状态是什么？",
+    "mode": "state",
+    "gold": null,
+    "got": null,
+    "bound_ok": true,
+    "ok": true,
+    "cause": null
+   },
+   {
+    "case": "d05",
+    "q": "Who is the owner of Drone-4?",
+    "mode": "state",
+    "gold": null,
+    "got": null,
+    "bound_ok": true,
+    "ok": true,
+    "cause": null
+   },
+   {
+    "case": "d06",
+    "q": "2026-01-20服务器甲的位置是什么？",
+    "mode": "state",
+    "gold": "机房2",
+    "got": "机房2",
+    "bound_ok": true,
+    "ok": true,
+    "cause": null
+   },
+   {
+    "case": "d08",
+    "q": "接口P在生产环境下的超时是多少？",
+    "mode": "state",
+    "gold": "30秒",
+    "got": "30秒",
+    "bound_ok": true,
+    "ok": true,
+    "cause": null
+   }
+  ]
+ },
+ "heldout": {
+  "claims": {
+   "tp": 30,
+   "fp": 0,
+   "fn": 2,
+   "precision": 1.0,
+   "recall": 0.9375
+  },
+  "questions": {
+   "n": 25,
+   "answer_ok": 23,
+   "binding_ok": 23,
+   "error_causes": {
+    "interpretation": 2
+   }
+  },
+  "claim_rows": [
+   {
+    "case": "h01",
+    "text": "仓库B的容量是500。",
+    "gold": [
+     [
+      "state",
+      "仓库B",
+      "容量",
+      500
+     ]
+    ],
+    "pred": [
+     [
+      "state",
+      "仓库B",
+      "容量",
+      500
+     ]
+    ]
+   },
+   {
+    "case": "h02",
+    "text": "Server-7's port is 8080.",
+    "gold": [
+     [
+      "state",
+      "Server-7",
+      "port",
+      8080
+     ]
+    ],
+    "pred": [
+     [
+      "state",
+      "Server-7",
+      "port",
+      8080
+     ]
+    ]
+   },
+   {
+    "case": "h02",
+    "text": "Actually, Server-7's port is 9090.",
+    "gold": [
+     [
+      "correct",
+      "Server-7",
+      "port",
+      9090
+     ]
+    ],
+    "pred": [
+     [
+      "correct",
+      "Server-7",
+      "port",
+      9090
+     ]
+    ]
+   },
+   {
+    "case": "h03",
+    "text": "项目X的负责人是王敏。它的截止日期是2026-12-01。",
+    "gold": [
+     [
+      "state",
+      "项目X",
+      "负责人",
+      "王敏"
+     ],
+     [
+      "state",
+      "项目X",
+      "截止日期",
+      "2026-12-01"
+     ]
+    ],
+    "pred": [
+     [
+      "state",
+      "项目X",
+      "负责人",
+      "王敏"
+     ],
+     [
+      "state",
+      "项目X",
+      "截止日期",
+      "2026-12-01"
+     ]
+    ]
+   },
+   {
+    "case": "h04",
+    "text": "我们打算把会议室的容量改成30。",
+    "gold": [
+     [
+      "plan",
+      "会议室",
+      "容量",
+      30
+     ]
+    ],
+    "pred": [
+     [
+      "plan",
+      "会议室",
+      "容量",
+      30
+     ]
+    ]
+   },
+   {
+    "case": "h05",
+    "text": "Pump-3 的状态是运行。",
+    "gold": [
+     [
+      "state",
+      "Pump-3",
+      "状态",
+      "运行"
+     ]
+    ],
+    "pred": [
+     [
+      "state",
+      "Pump-3",
+      "状态",
+      "运行"
+     ]
+    ]
+   },
+   {
+    "case": "h05",
+    "text": "撤回刚才那条。",
+    "gold": [
+     [
+      "retract",
+      "Pump-3",
+      "状态",
+      null
+     ]
+    ],
+    "pred": [
+     [
+      "retract",
+      "Pump-3",
+      "状态",
+      null
+     ]
+    ]
+   },
+   {
+    "case": "h06",
+    "text": "The color of the banner was red.",
+    "gold": [
+     [
+      "state",
+      "banner",
+      "color",
+      "red"
+     ]
+    ],
+    "pred": [
+     [
+      "state",
+      "banner",
+      "color",
+      "red"
+     ]
+    ]
+   },
+   {
+    "case": "h06",
+    "text": "The color of the banner is now blue.",
+    "gold": [
+     [
+      "state",
+      "banner",
+      "color",
+      "blue"
+     ]
+    ],
+    "pred": [
+     [
+      "state",
+      "banner",
+      "color",
+      "blue"
+     ]
+    ]
+   },
+   {
+    "case": "h07",
+    "text": "账户A的余额可能是200。",
+    "gold": [
+     [
+      "uncertain",
+      "账户A",
+      "余额",
+      200
+     ]
+    ],
+    "pred": [
+     [
+      "uncertain",
+      "账户A",
+      "余额",
+      200
+     ]
+    ]
+   },
+   {
+    "case": "h08",
+    "text": "城市C的人口不是100万。",
+    "gold": [
+     [
+      "negate",
+      "城市C",
+      "人口",
+      "100万"
+     ]
+    ],
+    "pred": [
+     [
+      "negate",
+      "城市C",
+      "人口",
+      "100万"
+     ]
+    ]
+   },
+   {
+    "case": "h09",
+    "text": "今天天气不错，我们聊聊别的。",
+    "gold": [],
+    "pred": []
+   },
+   {
+    "case": "h09",
+    "text": "Thanks, that helps a lot.",
+    "gold": [],
+    "pred": []
+   },
+   {
+    "case": "h10",
+    "text": "设备Q在测试模式下的电压为5V。",
+    "gold": [
+     [
+      "state",
+      "设备Q",
+      "电压",
+      "5V"
+     ]
+    ],
+    "pred": [
+     [
+      "state",
+      "设备Q",
+      "电压",
+      "5V"
+     ]
+    ]
+   },
+   {
+    "case": "h11",
+    "text": "Set the timeout of job-12 to 45.",
+    "gold": [
+     [
+      "state",
+      "job-12",
+      "timeout",
+      45
+     ]
+    ],
+    "pred": [
+     [
+      "state",
+      "job-12",
+      "timeout",
+      45
+     ]
+    ]
+   },
+   {
+    "case": "h12",
+    "text": "把机器人R2的速度调整为1.5。",
+    "gold": [
+     [
+      "state",
+      "机器人R2",
+      "速度",
+      1.5
+     ]
+    ],
+    "pred": [
+     [
+      "state",
+      "机器人R2",
+      "速度",
+      1.5
+     ]
+    ]
+   },
+   {
+    "case": "h13",
+    "text": "灯L1的亮度是10。",
+    "gold": [
+     [
+      "state",
+      "灯L1",
+      "亮度",
+      10
+     ]
+    ],
+    "pred": [
+     [
+      "state",
+      "灯L1",
+      "亮度",
+      10
+     ]
+    ]
+   },
+   {
+    "case": "h13",
+    "text": "灯L1的亮度改为20。",
+    "gold": [
+     [
+      "state",
+      "灯L1",
+      "亮度",
+      20
+     ]
+    ],
+    "pred": [
+     [
+      "state",
+      "灯L1",
+      "亮度",
+      20
+     ]
+    ]
+   },
+   {
+    "case": "h13",
+    "text": "灯L1的亮度改为35。",
+    "gold": [
+     [
+      "state",
+      "灯L1",
+      "亮度",
+      35
+     ]
+    ],
+    "pred": [
+     [
+      "state",
+      "灯L1",
+      "亮度",
+      35
+     ]
+    ]
+   },
+   {
+    "case": "h14",
+    "text": "2026年3月1日，库存S的数量是40。",
+    "gold": [
+     [
+      "state",
+      "库存S",
+      "数量",
+      40
+     ]
+    ],
+    "pred": [
+     [
+      "state",
+      "库存S",
+      "数量",
+      40
+     ]
+    ]
+   },
+   {
+    "case": "h14",
+    "text": "2026年5月1日，库存S的数量是15。",
+    "gold": [
+     [
+      "state",
+      "库存S",
+      "数量",
+      15
+     ]
+    ],
+    "pred": [
+     [
+      "state",
+      "库存S",
+      "数量",
+      15
+     ]
+    ]
+   },
+   {
+    "case": "h15",
+    "text": "The owner of Robot-Alpha is Lee. Its battery level is 80.",
+    "gold": [
+     [
+      "state",
+      "Robot-Alpha",
+      "owner",
+      "Lee"
+     ],
+     [
+      "state",
+      "Robot-Alpha",
+      "battery level",
+      80
+     ]
+    ],
+    "pred": [
+     [
+      "state",
+      "Robot-Alpha",
+      "owner",
+      "Lee"
+     ],
+     [
+      "state",
+      "Robot-Alpha",
+      "battery level",
+      80
+     ]
+    ]
+   },
+   {
+    "case": "h16",
+    "text": "Node-5's role is leader.",
+    "gold": [
+     [
+      "state",
+      "Node-5",
+      "role",
+      "leader"
+     ]
+    ],
+    "pred": [
+     [
+      "state",
+      "Node-5",
+      "role",
+      "leader"
+     ]
+    ]
+   },
+   {
+    "case": "h16",
+    "text": "Please disregard that.",
+    "gold": [
+     [
+      "retract",
+      "Node-5",
+      "role",
+      null
+     ]
+    ],
+    "pred": [
+     [
+      "retract",
+      "Node-5",
+      "role",
+      null
+     ]
+    ]
+   },
+   {
+    "case": "h17",
+    "text": "用户Mia的语言偏好是中文。后来她说她更喜欢英文。",
+    "gold": [
+     [
+      "state",
+      "用户Mia",
+      "语言偏好",
+      "中文"
+     ],
+     [
+      "state",
+      "用户Mia",
+      "语言偏好",
+      "英文"
+     ]
+    ],
+    "pred": [
+     [
+      "state",
+      "用户Mia",
+      "语言偏好",
+      "中文"
+     ]
+    ]
+   },
+   {
+    "case": "h18",
+    "text": "The status of gateway-9 is ONLINE.",
+    "gold": [
+     [
+      "state",
+      "gateway-9",
+      "status",
+      "ONLINE"
+     ]
+    ],
+    "pred": [
+     [
+      "state",
+      "gateway-9",
+      "status",
+      "ONLINE"
+     ]
+    ]
+   },
+   {
+    "case": "h19",
+    "text": "系统S的缓存的大小是2GB。",
+    "gold": [
+     [
+      "state",
+      "系统S",
+      "缓存的大小",
+      "2GB"
+     ]
+    ],
+    "pred": [
+     [
+      "state",
+      "系统S",
+      "缓存的大小",
+      "2GB"
+     ]
+    ]
+   },
+   {
+    "case": "h20",
+    "text": "传感器T的读数是37，比昨天高。",
+    "gold": [
+     [
+      "state",
+      "传感器T",
+      "读数",
+      37
+     ]
+    ],
+    "pred": [
+     [
+      "state",
+      "传感器T",
+      "读数",
+      37
+     ]
+    ]
+   },
+   {
+    "case": "h21",
+    "text": "Team Blue will move its standup to 10am.",
+    "gold": [
+     [
+      "plan",
+      "Team Blue",
+      "standup",
+      "10am"
+     ]
+    ],
+    "pred": []
+   },
+   {
+    "case": "h22",
+    "text": "阀门V3的开度为40%。",
+    "gold": [
+     [
+      "state",
+      "阀门V3",
+      "开度",
+      "40%"
+     ]
+    ],
+    "pred": [
+     [
+      "state",
+      "阀门V3",
+      "开度",
+      "40%"
+     ]
+    ]
+   },
+   {
+    "case": "h22",
+    "text": "更正：阀门V3的开度应该是45%。",
+    "gold": [
+     [
+      "correct",
+      "阀门V3",
+      "开度",
+      "45%"
+     ]
+    ],
+    "pred": [
+     [
+      "correct",
+      "阀门V3",
+      "开度",
+      "45%"
+     ]
+    ]
+   }
+  ],
+  "question_rows": [
+   {
+    "case": "h01",
+    "q": "仓库B的容量是多少？",
+    "mode": "state",
+    "gold": 500,
+    "got": 500,
+    "bound_ok": true,
+    "ok": true,
+    "cause": null
+   },
+   {
+    "case": "h02",
+    "q": "What is the port of Server-7?",
+    "mode": "state",
+    "gold": 9090,
+    "got": 9090,
+    "bound_ok": true,
+    "ok": true,
+    "cause": null
+   },
+   {
+    "case": "h03",
+    "q": "项目X的截止日期是什么？",
+    "mode": "state",
+    "gold": "2026-12-01",
+    "got": "2026-12-01",
+    "bound_ok": true,
+    "ok": true,
+    "cause": null
+   },
+   {
+    "case": "h03",
+    "q": "项目X的负责人是谁？",
+    "mode": "state",
+    "gold": "王敏",
+    "got": "王敏",
+    "bound_ok": true,
+    "ok": true,
+    "cause": null
+   },
+   {
+    "case": "h04",
+    "q": "会议室的容量现在是多少？",
+    "mode": "state",
+    "gold": null,
+    "got": null,
+    "bound_ok": true,
+    "ok": true,
+    "cause": null
+   },
+   {
+    "case": "h04",
+    "q": "会议室的容量有什么计划？",
+    "mode": "plans",
+    "gold": 30,
+    "got": 30,
+    "bound_ok": true,
+    "ok": true,
+    "cause": null
+   },
+   {
+    "case": "h05",
+    "q": "Pump-3 的状态是什么？",
+    "mode": "state",
+    "gold": null,
+    "got": null,
+    "bound_ok": true,
+    "ok": true,
+    "cause": null
+   },
+   {
+    "case": "h06",
+    "q": "What was the color of the banner at t=3?",
+    "mode": "state",
+    "gold": "red",
+    "got": "red",
+    "bound_ok": true,
+    "ok": true,
+    "cause": null
+   },
+   {
+    "case": "h06",
+    "q": "What is the color of the banner?",
+    "mode": "state",
+    "gold": "blue",
+    "got": "blue",
+    "bound_ok": true,
+    "ok": true,
+    "cause": null
+   },
+   {
+    "case": "h07",
+    "q": "账户A的余额是多少？",
+    "mode": "state",
+    "gold": null,
+    "got": null,
+    "bound_ok": true,
+    "ok": true,
+    "cause": null
+   },
+   {
+    "case": "h08",
+    "q": "城市C的人口是多少？",
+    "mode": "state",
+    "gold": null,
+    "got": null,
+    "bound_ok": false,
+    "ok": true,
+    "cause": null
+   },
+   {
+    "case": "h10",
+    "q": "设备Q在测试模式下的电压是多少？",
+    "mode": "state",
+    "gold": "5V",
+    "got": "5V",
+    "bound_ok": true,
+    "ok": true,
+    "cause": null
+   },
+   {
+    "case": "h11",
+    "q": "What's job-12's timeout?",
+    "mode": "state",
+    "gold": 45,
+    "got": 45,
+    "bound_ok": true,
+    "ok": true,
+    "cause": null
+   },
+   {
+    "case": "h12",
+    "q": "机器人R2的速度是多少",
+    "mode": "state",
+    "gold": 1.5,
+    "got": 1.5,
+    "bound_ok": true,
+    "ok": true,
+    "cause": null
+   },
+   {
+    "case": "h13",
+    "q": "灯L1的亮度变过哪些值？",
+    "mode": "history",
+    "gold": [
+     10,
+     20,
+     35
+    ],
+    "got": [
+     10,
+     20,
+     35
+    ],
+    "bound_ok": true,
+    "ok": true,
+    "cause": null
+   },
+   {
+    "case": "h13",
+    "q": "灯L1的亮度是多少？",
+    "mode": "state",
+    "gold": 35,
+    "got": 35,
+    "bound_ok": true,
+    "ok": true,
+    "cause": null
+   },
+   {
+    "case": "h14",
+    "q": "2026年4月1日库存S的数量是多少？",
+    "mode": "state",
+    "gold": 40,
+    "got": 40,
+    "bound_ok": true,
+    "ok": true,
+    "cause": null
+   },
+   {
+    "case": "h15",
+    "q": "What is the battery level of Robot-Alpha?",
+    "mode": "state",
+    "gold": 80,
+    "got": 80,
+    "bound_ok": true,
+    "ok": true,
+    "cause": null
+   },
+   {
+    "case": "h16",
+    "q": "What is the role of Node-5?",
+    "mode": "state",
+    "gold": null,
+    "got": null,
+    "bound_ok": true,
+    "ok": true,
+    "cause": null
+   },
+   {
+    "case": "h17",
+    "q": "用户Mia的语言偏好是什么？",
+    "mode": "state",
+    "gold": "英文",
+    "got": "中文",
+    "bound_ok": true,
+    "ok": false,
+    "cause": "interpretation"
+   },
+   {
+    "case": "h18",
+    "q": "what is the status of Gateway-9?",
+    "mode": "state",
+    "gold": "ONLINE",
+    "got": "ONLINE",
+    "bound_ok": true,
+    "ok": true,
+    "cause": null
+   },
+   {
+    "case": "h19",
+    "q": "系统S的缓存的大小是多少？",
+    "mode": "state",
+    "gold": "2GB",
+    "got": "2GB",
+    "bound_ok": true,
+    "ok": true,
+    "cause": null
+   },
+   {
+    "case": "h20",
+    "q": "传感器T的读数是多少？",
+    "mode": "state",
+    "gold": 37,
+    "got": 37,
+    "bound_ok": true,
+    "ok": true,
+    "cause": null
+   },
+   {
+    "case": "h21",
+    "q": "What is planned for the standup of Team Blue?",
+    "mode": "plans",
+    "gold": "10am",
+    "got": null,
+    "bound_ok": false,
+    "ok": false,
+    "cause": "interpretation"
+   },
+   {
+    "case": "h22",
+    "q": "阀门V3的开度是多少？",
+    "mode": "state",
+    "gold": "45%",
+    "got": "45%",
+    "bound_ok": true,
+    "ok": true,
+    "cause": null
+   }
+  ]
+ },
+ "bench_structured": {
+  "claims": {
+   "tp": 3511,
+   "fp": 0,
+   "fn": 0
+  },
+  "coverage": {
+   "512": {
+    "confirmed": 0.6212,
+    "confirmed_recorded_clock": 0.4109,
+    "interpreted": 0.4109
+   },
+   "1024": {
+    "confirmed": 0.9144,
+    "confirmed_recorded_clock": 0.791,
+    "interpreted": 0.791
+   },
+   "2048": {
+    "confirmed": 1.0,
+    "confirmed_recorded_clock": 0.9821,
+    "interpreted": 0.9821
+   }
+  },
+  "note": "confirmed_recorded_clock = gold assertions but each record effective at its receipt clock and no dependencies, the only clock a raw text gives. anchor claim and its dependencies plus effective_at=100 are not in the raw text; interpreted memory uses recorded clocks and no dependencies."
+ },
+ "heldout_sha256": "3de04c68f8f56da55e83bf221f3b989f33914e12288a3ce24ba810fca5e0ba54",
+ "network_attempts": 0,
+ "model_calls": 0
+}
