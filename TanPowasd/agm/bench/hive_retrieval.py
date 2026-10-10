@@ -9,6 +9,7 @@ supporting_evidence（证据句，带 primary/corroborating 权重）与 must_ex
   BM25      字二元组 BM25（基准里「朴素 BM25」的同类基线，非其原实现）
   AGM       AGM v0.5 联想图：BM25 种子 → 有向边（时序前强后弱 + 术语联想，非对称）上扩散激活，
             放电阈值 + k-WTA，跨章复现的术语给边加固化权重
+  AGM+反射  AGM 加非条件关键词反射：题面显著关键词直接点亮含它的块作为额外种子（v0.6 §4D）
   AGM-退火  同上，扩散时按温度对弱边做 Boltzmann 抽样（v0.5 §4C；固定种子，取 5 次平均）
   随机      随机取块（下限）
 读数：
@@ -110,6 +111,7 @@ class AGM:
         # 再按 tf·idf 取前 TOP_TERMS
         df = collections.Counter(t for tf in bm25.tf for t in tf)
         hi = max(2, int(0.08 * self.N))
+        self.df, self.hi = df, hi
         self.T = []
         for tf in bm25.tf:
             ranked = sorted((t for t in tf if 2 <= df[t] <= hi), key=lambda t: -tf[t] * idf[t])
@@ -146,11 +148,32 @@ class AGM:
                 self.out[i + 1][i] = max(self.out[i + 1].get(i, 0), self.W_BWD)
         self.n_edges = sum(len(o) for o in self.out)
 
-    def rank(self, q, T=0.0, rng=None):
+    REFLEX_THETA = 0.5
+
+    def reflex(self, q):
+        """非条件关键词反射（v0.6 §4D）：题面里的显著关键词直接点亮含它的块，不经 BM25 排名。
+        增益按习惯化：关键词出现在越多块里，增益越低 1/(1+ln(1+df))；同一块多个关键词叠加，归一化后 ≥ 阈值才放电。"""
+        r = collections.defaultdict(float)
+        for t in set(bigrams(q)):
+            d = self.df.get(t, 0)
+            if 2 <= d <= self.hi:
+                g = 1 / (1 + math.log1p(d))
+                for j, tf in enumerate(self.bm25.tf):
+                    if t in tf:
+                        r[j] += g
+        if not r:
+            return {}
+        m = max(r.values())
+        return {j: v / m for j, v in r.items() if v / m >= self.REFLEX_THETA}
+
+    def rank(self, q, T=0.0, rng=None, reflex=False):
         s = self.bm25.scores(q)
         top = sorted(range(self.N), key=lambda i: -s[i])[: self.SEEDS]
         m = s[top[0]] or 1.0
         x = {i: s[i] / m for i in top}
+        if reflex:
+            for j, v in self.reflex(q).items():
+                x[j] = max(x.get(j, 0.0), v * 0.9)    # 反射直达，作为额外种子；略低于 BM25 头名
         a = dict(x)
         for _ in range(self.STEPS):
             nxt = collections.defaultdict(float)
@@ -219,6 +242,7 @@ def main():
     orders = {
         "BM25": {c["qid"]: sorted(range(len(chunks)), key=lambda i, s=bm.scores(q(c)): -s[i]) for c in cards},
         "AGM": {c["qid"]: agm.rank(q(c)) for c in cards},
+        "AGM+反射": {c["qid"]: agm.rank(q(c), reflex=True) for c in cards},
     }
     out = {"语料": {"块": len(chunks), "平均块长": round(statistics.mean(len(c["n"]) for c in chunks)),
                   "总字数": sum(len(c["n"]) for c in chunks), "AGM边数": agm.n_edges}, "读数": {}}
@@ -244,12 +268,18 @@ def main():
             ps = [norm(e["quote"]) for e in c.get("supporting_evidence") or [] if e.get("weight") == "primary"]
             if not ps:
                 continue
-            ca, cb = take(orders["AGM"][c["qid"]], chunks, B), take(orders["BM25"][c["qid"]], chunks, B)
-            d = sum(x in ca for x in ps) - sum(x in cb for x in ps)
-            w += d > 0; l += d < 0
-        n = w + l
-        p = min(1.0, 2 * sum(math.comb(n, k) for k in range(0, min(w, l) + 1)) / 2 ** n) if n else 1.0
-        row["配对_AGM对BM25"] = {"AGM多": w, "BM25多": l, "打平": sum(1 for c in cards if any(e.get("weight") == "primary" for e in c.get("supporting_evidence") or [])) - n, "符号检验p": round(p, 3)}
+        for A, Bn in (("AGM", "BM25"), ("AGM+反射", "BM25"), ("AGM+反射", "AGM")):
+            w = l = t = 0
+            for c in cards:
+                ps = [norm(e["quote"]) for e in c.get("supporting_evidence") or [] if e.get("weight") == "primary"]
+                if not ps:
+                    continue
+                ca, cb = take(orders[A][c["qid"]], chunks, B), take(orders[Bn][c["qid"]], chunks, B)
+                d = sum(x in ca for x in ps) - sum(x in cb for x in ps)
+                w += d > 0; l += d < 0; t += d == 0
+            n = w + l
+            p = min(1.0, 2 * sum(math.comb(n, k) for k in range(0, min(w, l) + 1)) / 2 ** n) if n else 1.0
+            row[f"配对_{A}对{Bn}"] = {"胜": w, "负": l, "平": t, "符号检验p": round(p, 3)}
         out["读数"][f"预算{B}字"] = row
     txt = json.dumps(out, ensure_ascii=False, indent=1)
     print(txt)
