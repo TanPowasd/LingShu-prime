@@ -245,3 +245,6 @@ python bench/hive_e2e_full_merge.py a.json [b.json] --json readings_bench_hive_e
 | 近因+RRF(AGM,SAM)（原后缀自动机列表） | 0.1553 | 0.0415 | 6/10 ns |
 | 近因+AGM+SAM图（各 1/3 预算） | 0.1535 | 0.0513 | 2/14；窗口外 16/0 |
 结论：加 SAM 不提高覆盖；三等分换来窗口外收益，但 RRF3(近因,BM25,AGM) 覆盖 0.1559、窗口外 0.0522，两项都更好。
+
+### 定稿：RRF3 作为主实现（2026-10-10）
+正式实现在 `../rrf3/rrf3.py`（v1.0.0），与本目录 RRF3 臂逐条一致（`rrf3/verify_equiv.py`：4041 次查询 0 不一致）。
