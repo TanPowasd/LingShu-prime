@@ -26,9 +26,12 @@ MODEL = "cline-pass/deepseek-v4.1-flash"
 BUDGET = 8000
 
 
-def chat(prompt, model, max_tokens=8000, tries=4):
-    body = json.dumps({"model": model, "messages": [{"role": "user", "content": prompt}],
-                       "max_tokens": max_tokens, "temperature": 0}).encode()
+def chat(prompt, model, max_tokens=None, tries=4):
+    """max_tokens=None：不传上限，用模型/代理自身的最大输出（用户 2026-10-12 要求尽量不限制）。"""
+    req = {"model": model, "messages": [{"role": "user", "content": prompt}], "temperature": 0}
+    if max_tokens:
+        req["max_tokens"] = max_tokens
+    body = json.dumps(req).encode()
     for k in range(tries):
         try:
             req = urllib.request.Request(API, data=body, headers={"Content-Type": "application/json"})
@@ -61,6 +64,10 @@ def contexts(bench, arm, questions):
     if arm == "直读":
         full = (bench / "corpus" / "语料.md").read_text(encoding="utf-8")
         return {q["qid"]: full for q in questions}
+    if arm == "汇流多维":                                     # 汇流多维 v3×3（LLM 中文源图缓存，见 confluence/hive_mdllm.py）
+        sys.path.insert(0, str(pathlib.Path(__file__).parent.parent / "confluence"))
+        import hive_mdllm
+        return hive_mdllm.contexts(bench, questions)
     chunks = HR.load_chunks(bench)
     if arm.startswith("TriCue"):
         return tricue_contexts(chunks, arm, questions)
