@@ -1,0 +1,16 @@
+{
+  "qid": "B3-028-timepoint-0626",
+  "value": null,
+  "state": "retired",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "孤山驿#latest",
+      "line": 1,
+      "quote": "顾九 的立场当前已撤销，不再保留取值。"
+    }
+  ],
+  "confidence": "probable",
+  "_json_ok": true
+}

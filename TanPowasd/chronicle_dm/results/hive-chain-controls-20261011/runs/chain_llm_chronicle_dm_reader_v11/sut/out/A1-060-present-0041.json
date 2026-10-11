@@ -1,0 +1,21 @@
+{
+  "qid": "A1-060-present-0041",
+  "value": null,
+  "state": "retired",
+  "at_seq": 57,
+  "chain": [],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "状态：已撤销；取值：None；自第57起"
+    },
+    {
+      "file": "猎户项目#57",
+      "line": 57,
+      "quote": "猎户项目·缓存模块 的有效期秒数被撤销，此后不再保留取值，起因是接口兼容性调整。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

@@ -1,0 +1,47 @@
+{
+  "qid": "B2-030-change-0417",
+  "value": null,
+  "state": "retired",
+  "at_seq": 27,
+  "chain": [
+    {
+      "seq": 8,
+      "from": null,
+      "to": "戒备"
+    },
+    {
+      "seq": 13,
+      "from": "戒备",
+      "to": "平静"
+    },
+    {
+      "seq": 17,
+      "from": "平静",
+      "to": "低落"
+    },
+    {
+      "seq": 22,
+      "from": "低落",
+      "to": "焦虑"
+    },
+    {
+      "seq": 27,
+      "from": "焦虑",
+      "to": null
+    }
+  ],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 30,
+      "quote": "状态：已撤销；取值：None；自第27起"
+    },
+    {
+      "file": "记忆查询",
+      "line": 30,
+      "quote": "版本链：\n- 第8：None → 戒备（有效）\n- 第13：戒备 → 平静（有效）\n- 第17：平静 → 低落（有效）\n- 第22：低落 → 焦虑（有效）\n- 第27：焦虑 → None（已撤销）"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

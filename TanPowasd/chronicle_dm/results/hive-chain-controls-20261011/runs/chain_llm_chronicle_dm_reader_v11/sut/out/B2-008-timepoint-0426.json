@@ -1,0 +1,26 @@
+{
+  "qid": "B2-008-timepoint-0426",
+  "value": null,
+  "state": "retired",
+  "at_seq": 8,
+  "chain": [],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "状态：已撤销；取值：None；自第8起"
+    },
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "- 第8：retire"
+    },
+    {
+      "file": "雾港#8",
+      "line": 9,
+      "quote": "沈砚 的立场被撤销，此后不再保留取值，起因是旧事重提。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

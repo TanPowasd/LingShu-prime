@@ -1,0 +1,16 @@
+{
+  "qid": "B3-023-timepoint-0596",
+  "value": null,
+  "state": "unresolved",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "孤山驿#latest",
+      "line": 1,
+      "quote": "顾九 的位置当前为 粮仓（第 28 章生效）。"
+    }
+  ],
+  "confidence": "unknown",
+  "_json_ok": true
+}

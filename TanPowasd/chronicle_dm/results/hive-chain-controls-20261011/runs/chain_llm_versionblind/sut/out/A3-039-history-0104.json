@@ -1,0 +1,16 @@
+{
+  "qid": "A3-039-history-0104",
+  "value": null,
+  "state": "unresolved",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "片段1 · 织女项目#latest",
+      "line": 1,
+      "quote": "织女项目 的依赖名当前为 bbolt（第 52 次提交生效）。"
+    }
+  ],
+  "confidence": "unknown",
+  "_json_ok": true
+}

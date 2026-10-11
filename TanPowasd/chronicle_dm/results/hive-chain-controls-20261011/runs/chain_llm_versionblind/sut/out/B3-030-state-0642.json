@@ -1,0 +1,26 @@
+{
+  "qid": "B3-030-state-0642",
+  "value": null,
+  "state": "absent",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "孤山驿#latest",
+      "line": 4,
+      "quote": "陆平 的信任对象当前为 顾九（第 26 章生效）。"
+    },
+    {
+      "file": "孤山驿#latest",
+      "line": 4,
+      "quote": "陆平 的位置当前为 磨坊（第 26 章生效）。"
+    },
+    {
+      "file": "孤山驿#latest",
+      "line": 4,
+      "quote": "陆平 的立场当前已撤销，不再保留取值。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

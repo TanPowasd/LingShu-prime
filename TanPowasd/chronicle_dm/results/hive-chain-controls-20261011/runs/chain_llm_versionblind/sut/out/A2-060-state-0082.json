@@ -1,0 +1,16 @@
+{
+  "qid": "A2-060-state-0082",
+  "value": "cfg_958953",
+  "state": "active",
+  "at_seq": 53,
+  "chain": [],
+  "basis": [
+    {
+      "file": "流明项目#latest",
+      "line": 1,
+      "quote": "流明项目 的配置值当前为 cfg_958953（第 53 次提交生效）。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

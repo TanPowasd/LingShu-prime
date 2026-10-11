@@ -1,0 +1,22 @@
+{
+  "qid": "B3-030-change-0577",
+  "value": "释然",
+  "state": "active",
+  "at_seq": 26,
+  "chain": [
+    {
+      "seq": 26,
+      "from": null,
+      "to": "释然"
+    }
+  ],
+  "basis": [
+    {
+      "file": "孤山驿#latest",
+      "line": 1,
+      "quote": "陆平 的情绪当前为 释然（第 26 章生效）。"
+    }
+  ],
+  "confidence": "probable",
+  "_json_ok": true
+}

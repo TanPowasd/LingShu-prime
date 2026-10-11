@@ -1,0 +1,21 @@
+{
+  "qid": "B3-011-history-0613",
+  "value": "平静",
+  "state": "active",
+  "at_seq": 11,
+  "chain": [],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "状态：有效；取值：平静；自第11起"
+    },
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "- 第11：None → 平静（有效）"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

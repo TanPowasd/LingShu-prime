@@ -1,0 +1,16 @@
+{
+  "qid": "B1-017-history-0235",
+  "value": null,
+  "state": "unresolved",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "青石镇#latest",
+      "line": 1,
+      "quote": "老陈 的位置当前为 磨坊（第 26 章生效）。"
+    }
+  ],
+  "confidence": "unknown",
+  "_json_ok": true
+}

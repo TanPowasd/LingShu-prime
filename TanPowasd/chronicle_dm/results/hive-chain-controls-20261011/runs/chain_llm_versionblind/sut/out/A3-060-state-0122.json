@@ -1,0 +1,16 @@
+{
+  "qid": "A3-060-state-0122",
+  "value": "21600",
+  "state": "active",
+  "at_seq": 54,
+  "chain": [],
+  "basis": [
+    {
+      "file": "织女项目#latest",
+      "line": 54,
+      "quote": "织女项目 的有效期秒数当前为 21600（第 54 次提交生效）"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

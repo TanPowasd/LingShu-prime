@@ -1,0 +1,6 @@
+{
+  "arm": "llm_versionblind",
+  "keys_fp": "bda3d94b7f29526a",
+  "limit": 0,
+  "model": "cline-pass/deepseek-v4.1-flash"
+}

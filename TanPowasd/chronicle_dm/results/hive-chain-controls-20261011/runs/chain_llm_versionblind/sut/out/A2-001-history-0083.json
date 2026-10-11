@@ -1,0 +1,16 @@
+{
+  "qid": "A2-001-history-0083",
+  "value": null,
+  "state": "unresolved",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "流明项目#latest",
+      "line": 1,
+      "quote": "流明项目 的配置值当前为 cfg_958953（第 53 次提交生效）。"
+    }
+  ],
+  "confidence": "unknown",
+  "_json_ok": true
+}

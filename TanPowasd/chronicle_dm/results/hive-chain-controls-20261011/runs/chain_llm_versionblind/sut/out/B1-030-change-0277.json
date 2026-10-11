@@ -1,0 +1,22 @@
+{
+  "qid": "B1-030-change-0277",
+  "value": "祠堂",
+  "state": "active",
+  "at_seq": 25,
+  "chain": [
+    {
+      "seq": 25,
+      "from": null,
+      "to": "祠堂"
+    }
+  ],
+  "basis": [
+    {
+      "file": "青石镇#latest",
+      "line": 1,
+      "quote": "阿禾 的位置当前为 祠堂（第 25 章生效）。"
+    }
+  ],
+  "confidence": "probable",
+  "_json_ok": true
+}

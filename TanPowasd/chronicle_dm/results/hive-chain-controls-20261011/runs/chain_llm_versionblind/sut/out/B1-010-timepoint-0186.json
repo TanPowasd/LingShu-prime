@@ -1,0 +1,16 @@
+{
+  "qid": "B1-010-timepoint-0186",
+  "value": null,
+  "state": "unresolved",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "青石镇#latest",
+      "line": 1,
+      "quote": "周舟 的立场当前为 反对（第 29 章生效）。"
+    }
+  ],
+  "confidence": "unknown",
+  "_json_ok": true
+}

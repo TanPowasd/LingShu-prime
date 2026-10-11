@@ -1,0 +1,8 @@
+{
+  "arm": "llm_chronicle_dm_reader_v11",
+  "keys_fp": "bda3d94b7f29526a",
+  "limit": 0,
+  "llm_calls": 1386,
+  "failures": 0,
+  "model": "cline-pass/deepseek-v4.1-flash"
+}

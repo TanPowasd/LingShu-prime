@@ -1,0 +1,16 @@
+{
+  "qid": "A2-048-history-0075",
+  "value": null,
+  "state": "unresolved",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "流明项目#latest",
+      "line": 1,
+      "quote": "流明项目 的有效期秒数当前已撤销，不再保留取值。"
+    }
+  ],
+  "confidence": "unknown",
+  "_json_ok": true
+}

@@ -1,0 +1,26 @@
+{
+  "qid": "B1-006-history-0303",
+  "value": "中立",
+  "state": "active",
+  "at_seq": 6,
+  "chain": [],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "状态：有效；取值：中立；自第6起"
+    },
+    {
+      "file": "青石镇#6",
+      "line": 6,
+      "quote": "禾生 的立场首次确立为 中立。"
+    },
+    {
+      "file": "青石镇#8",
+      "line": 8,
+      "quote": "禾生 自第 8 章起改名为 阿禾。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

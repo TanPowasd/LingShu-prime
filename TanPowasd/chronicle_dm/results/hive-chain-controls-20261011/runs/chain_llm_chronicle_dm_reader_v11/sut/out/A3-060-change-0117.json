@@ -1,0 +1,252 @@
+{
+  "qid": "A3-060-change-0117",
+  "value": "fn_894291()",
+  "state": "active",
+  "at_seq": 53,
+  "chain": [
+    {
+      "seq": 1,
+      "from": null,
+      "to": "load(key, ttl, tag, refresh)"
+    },
+    {
+      "seq": 2,
+      "from": "load(key, ttl, tag, refresh)",
+      "to": "fetch(key, ttl, refresh)"
+    },
+    {
+      "seq": 3,
+      "from": "fetch(key, ttl, refresh)",
+      "to": "load(key)"
+    },
+    {
+      "seq": 4,
+      "from": "load(key)",
+      "to": "sync(key, ttl, refresh) 与 resolve(key, ttl, tag, refresh)（未裁定）"
+    },
+    {
+      "seq": 5,
+      "from": "sync(key, ttl, refresh) 与 resolve(key, ttl, tag, refresh)（未裁定）",
+      "to": "fetch(key, ttl)"
+    },
+    {
+      "seq": 6,
+      "from": "fetch(key, ttl)",
+      "to": "get(key)"
+    },
+    {
+      "seq": 7,
+      "from": "get(key)",
+      "to": "load(key, ttl)"
+    },
+    {
+      "seq": 8,
+      "from": "load(key, ttl)",
+      "to": "get(id, key, ttl)"
+    },
+    {
+      "seq": 9,
+      "from": "get(id, key, ttl)",
+      "to": "fetch(key)"
+    },
+    {
+      "seq": 10,
+      "from": "fetch(key)",
+      "to": "get(key, ttl, tag, refresh)"
+    },
+    {
+      "seq": 11,
+      "from": "get(key, ttl, tag, refresh)",
+      "to": "get(key, ttl, force)"
+    },
+    {
+      "seq": 12,
+      "from": "get(key, ttl, force)",
+      "to": "resolve(key, ttl, force)"
+    },
+    {
+      "seq": 13,
+      "from": "resolve(key, ttl, force)",
+      "to": "resolve(id, key, ttl)"
+    },
+    {
+      "seq": 14,
+      "from": "resolve(id, key, ttl)",
+      "to": "fetch(id, key, ttl)"
+    },
+    {
+      "seq": 15,
+      "from": "fetch(id, key, ttl)",
+      "to": "get(key, ttl, refresh)"
+    },
+    {
+      "seq": 16,
+      "from": "get(key, ttl, refresh)",
+      "to": "fetch(key, ttl, tag, refresh)"
+    },
+    {
+      "seq": 17,
+      "from": "fetch(key, ttl, tag, refresh)",
+      "to": "sync(key, ttl, force)"
+    },
+    {
+      "seq": 18,
+      "from": "sync(key, ttl, force)",
+      "to": "fetch(key, ttl, force)"
+    },
+    {
+      "seq": 19,
+      "from": "fetch(key, ttl, force)",
+      "to": "resolve(key, ttl)"
+    },
+    {
+      "seq": 20,
+      "from": "resolve(key, ttl)",
+      "to": "get(key, ttl)"
+    },
+    {
+      "seq": 21,
+      "from": "get(key, ttl)",
+      "to": "sync(key, ttl, tag, refresh)"
+    },
+    {
+      "seq": 22,
+      "from": "sync(key, ttl, tag, refresh)",
+      "to": "resolve(key)"
+    },
+    {
+      "seq": 23,
+      "from": "resolve(key)",
+      "to": "sync(key, ttl)"
+    },
+    {
+      "seq": 24,
+      "from": "sync(key, ttl)",
+      "to": "load(key, ttl, force)"
+    },
+    {
+      "seq": 25,
+      "from": "load(key, ttl, force)",
+      "to": "resolve(key, ttl, tag, refresh)"
+    },
+    {
+      "seq": 26,
+      "from": "resolve(key, ttl, tag, refresh)",
+      "to": "sync(id, key, ttl)"
+    },
+    {
+      "seq": 27,
+      "from": "sync(id, key, ttl)",
+      "to": "resolve(key, ttl, refresh)"
+    },
+    {
+      "seq": 28,
+      "from": "resolve(key, ttl, refresh)",
+      "to": "sync(key)"
+    },
+    {
+      "seq": 29,
+      "from": "sync(key)",
+      "to": "load(key, ttl, refresh)"
+    },
+    {
+      "seq": 30,
+      "from": "load(key, ttl, refresh)",
+      "to": "load(id, key, ttl)"
+    },
+    {
+      "seq": 31,
+      "from": "load(id, key, ttl)",
+      "to": "fn_476700()"
+    },
+    {
+      "seq": 32,
+      "from": "fn_476700()",
+      "to": "fn_939630()"
+    },
+    {
+      "seq": 33,
+      "from": "fn_939630()",
+      "to": "fn_552067()"
+    },
+    {
+      "seq": 34,
+      "from": "fn_552067()",
+      "to": "fn_681269()"
+    },
+    {
+      "seq": 35,
+      "from": "fn_681269()",
+      "to": "fn_563774()"
+    },
+    {
+      "seq": 36,
+      "from": "fn_563774()",
+      "to": "fn_927158()"
+    },
+    {
+      "seq": 37,
+      "from": "fn_927158()",
+      "to": "fn_702817()"
+    },
+    {
+      "seq": 38,
+      "from": "fn_702817()",
+      "to": "fn_840883()"
+    },
+    {
+      "seq": 39,
+      "from": "fn_840883()",
+      "to": "fn_248668()"
+    },
+    {
+      "seq": 40,
+      "from": "fn_248668()",
+      "to": "fn_62062()"
+    },
+    {
+      "seq": 41,
+      "from": "fn_62062()",
+      "to": "fn_100751()"
+    },
+    {
+      "seq": 44,
+      "from": "fn_100751()",
+      "to": "fn_99241()"
+    },
+    {
+      "seq": 46,
+      "from": "fn_99241()",
+      "to": "fn_344620()"
+    },
+    {
+      "seq": 49,
+      "from": "fn_344620()",
+      "to": "fn_312531()"
+    },
+    {
+      "seq": 53,
+      "from": "fn_312531()",
+      "to": "fn_894291()"
+    }
+  ],
+  "basis": [
+    {
+      "file": "织女项目#1",
+      "line": 1,
+      "quote": "织女组件 的函数签名首次确立为 load(key, ttl, tag, refresh)。"
+    },
+    {
+      "file": "织女项目#4",
+      "line": 4,
+      "quote": "织女项目 的函数签名出现两种并存的取值：sync(key, ttl, refresh) 与 resolve(key, ttl, tag, refresh)，尚未裁定，起因是接口兼容性调整。"
+    },
+    {
+      "file": "织女项目#53",
+      "line": 53,
+      "quote": "织女项目 的函数签名调整为 fn_894291()，起因是安全审计要求。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

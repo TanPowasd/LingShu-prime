@@ -1,0 +1,21 @@
+{
+  "qid": "B3-013-timepoint-0566",
+  "value": "顾九 / 白芨",
+  "state": "unresolved",
+  "at_seq": 13,
+  "chain": [],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "状态：未裁定；取值：顾九 / 白芨（并存）；自第13起"
+    },
+    {
+      "file": "孤山驿#13",
+      "line": 9,
+      "quote": "陆平 的信任对象出现两种并存的取值：顾九 与 白芨，尚未裁定，起因是一场误会。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

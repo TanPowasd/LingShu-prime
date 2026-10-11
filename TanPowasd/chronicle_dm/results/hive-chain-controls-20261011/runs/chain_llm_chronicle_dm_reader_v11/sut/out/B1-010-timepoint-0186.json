@@ -1,0 +1,26 @@
+{
+  "qid": "B1-010-timepoint-0186",
+  "value": null,
+  "state": "retired",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "片段1 · 记忆查询",
+      "line": 1,
+      "quote": "槽位：周舟 · 立场　查询时点：第10"
+    },
+    {
+      "file": "片段1 · 记忆查询",
+      "line": 1,
+      "quote": "状态：已撤销；取值：None；自第10起"
+    },
+    {
+      "file": "片段1 · 记忆查询",
+      "line": 1,
+      "quote": "- 第10：retire"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

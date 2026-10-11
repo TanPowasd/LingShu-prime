@@ -1,0 +1,22 @@
+{
+  "qid": "B3-030-change-0477",
+  "value": "驿站",
+  "state": "active",
+  "at_seq": 27,
+  "chain": [
+    {
+      "seq": 27,
+      "from": null,
+      "to": "驿站"
+    }
+  ],
+  "basis": [
+    {
+      "file": "孤山驿#latest",
+      "line": 1,
+      "quote": "白芨 的位置当前为 驿站（第 27 章生效）。"
+    }
+  ],
+  "confidence": "probable",
+  "_json_ok": true
+}

@@ -1,0 +1,52 @@
+{
+  "qid": "B1-030-change-0307",
+  "value": "观望",
+  "state": "active",
+  "at_seq": 25,
+  "chain": [
+    {
+      "seq": 6,
+      "from": null,
+      "to": "中立"
+    },
+    {
+      "seq": 8,
+      "from": "中立",
+      "to": null
+    },
+    {
+      "seq": 12,
+      "from": null,
+      "to": "支持"
+    },
+    {
+      "seq": 16,
+      "from": "支持",
+      "to": "观望"
+    },
+    {
+      "seq": 20,
+      "from": "观望",
+      "to": "暧昧"
+    },
+    {
+      "seq": 25,
+      "from": "暧昧",
+      "to": "观望"
+    }
+  ],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "版本链：\n- 第6：None → 中立（有效）\n- 第8：中立 → None（已撤销）\n- 第12：None → 支持（有效）\n- 第16：支持 → 观望（有效）\n- 第20：观望 → 暧昧（有效）\n- 第25：暧昧 → 观望（有效）"
+    },
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "状态：有效；取值：观望；自第25起"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

@@ -1,0 +1,21 @@
+{
+  "qid": "A1-060-state-0022",
+  "value": "900",
+  "state": "active",
+  "at_seq": 46,
+  "chain": [],
+  "basis": [
+    {
+      "file": "片段1",
+      "line": 60,
+      "quote": "状态：有效；取值：900；自第46起"
+    },
+    {
+      "file": "片段3",
+      "line": 46,
+      "quote": "猎户项目 的有效期秒数调整为 900，起因是代码评审意见。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

@@ -1,0 +1,21 @@
+{
+  "qid": "B1-030-state-0272",
+  "value": "祠堂",
+  "state": "active",
+  "at_seq": 25,
+  "chain": [],
+  "basis": [
+    {
+      "file": "青石镇#25",
+      "line": 25,
+      "quote": "阿禾 移到了 祠堂，起因是第三方的劝说。"
+    },
+    {
+      "file": "记忆查询",
+      "line": 30,
+      "quote": "状态：有效；取值：祠堂；自第25起"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

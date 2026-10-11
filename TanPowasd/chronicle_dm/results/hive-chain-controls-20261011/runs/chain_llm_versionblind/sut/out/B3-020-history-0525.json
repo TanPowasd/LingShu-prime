@@ -1,0 +1,16 @@
+{
+  "qid": "B3-020-history-0525",
+  "value": null,
+  "state": "unresolved",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "孤山驿#latest",
+      "line": 1,
+      "quote": "程雪 的信任对象当前为 白芨（第 25 章生效）。"
+    }
+  ],
+  "confidence": "unknown",
+  "_json_ok": true
+}

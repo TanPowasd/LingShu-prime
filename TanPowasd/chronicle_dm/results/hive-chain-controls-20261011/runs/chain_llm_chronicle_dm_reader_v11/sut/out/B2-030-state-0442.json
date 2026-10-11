@@ -1,0 +1,21 @@
+{
+  "qid": "B2-030-state-0442",
+  "value": "无人",
+  "state": "active",
+  "at_seq": 27,
+  "chain": [],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "状态：有效；取值：无人；自第27起"
+    },
+    {
+      "file": "雾港#27",
+      "line": 27,
+      "quote": "阿桑 的信任对象转为 无人，起因是一场误会。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

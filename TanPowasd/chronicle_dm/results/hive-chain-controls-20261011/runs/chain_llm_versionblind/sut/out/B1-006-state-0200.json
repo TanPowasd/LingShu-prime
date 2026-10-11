@@ -1,0 +1,16 @@
+{
+  "qid": "B1-006-state-0200",
+  "value": null,
+  "state": "unresolved",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "青石镇#latest",
+      "line": 1,
+      "quote": "小满 的位置当前为 后山（第 27 章生效）。"
+    }
+  ],
+  "confidence": "unknown",
+  "_json_ok": true
+}

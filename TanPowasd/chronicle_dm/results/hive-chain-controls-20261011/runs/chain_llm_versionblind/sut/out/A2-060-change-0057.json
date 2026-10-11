@@ -1,0 +1,22 @@
+{
+  "qid": "A2-060-change-0057",
+  "value": "lmdb",
+  "state": "active",
+  "at_seq": 60,
+  "chain": [
+    {
+      "seq": 60,
+      "from": null,
+      "to": "lmdb"
+    }
+  ],
+  "basis": [
+    {
+      "file": "流明项目#latest",
+      "line": 1,
+      "quote": "流明项目 的依赖名当前为 lmdb（第 60 次提交生效）。"
+    }
+  ],
+  "confidence": "probable",
+  "_json_ok": true
+}

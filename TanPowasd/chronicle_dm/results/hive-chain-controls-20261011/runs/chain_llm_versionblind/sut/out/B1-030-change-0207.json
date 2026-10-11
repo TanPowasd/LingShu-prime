@@ -1,0 +1,22 @@
+{
+  "qid": "B1-030-change-0207",
+  "value": "外人",
+  "state": "active",
+  "at_seq": 27,
+  "chain": [
+    {
+      "seq": 27,
+      "from": null,
+      "to": "外人"
+    }
+  ],
+  "basis": [
+    {
+      "file": "青石镇#latest",
+      "line": 1,
+      "quote": "小满 的信任对象当前为 外人（第 27 章生效）。"
+    }
+  ],
+  "confidence": "probable",
+  "_json_ok": true
+}

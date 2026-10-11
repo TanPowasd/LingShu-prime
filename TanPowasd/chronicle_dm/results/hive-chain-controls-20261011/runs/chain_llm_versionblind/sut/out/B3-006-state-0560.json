@@ -1,0 +1,16 @@
+{
+  "qid": "B3-006-state-0560",
+  "value": null,
+  "state": "absent",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "孤山驿#latest",
+      "line": 1,
+      "quote": "陆平 的位置当前为 磨坊（第 26 章生效）。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

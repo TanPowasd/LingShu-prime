@@ -1,0 +1,16 @@
+{
+  "qid": "B1-006-history-0194",
+  "value": "磨坊",
+  "state": "active",
+  "at_seq": 6,
+  "chain": [],
+  "basis": [
+    {
+      "file": "青石镇#6",
+      "line": 6,
+      "quote": "满儿 移到了 磨坊，起因是一场误会。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

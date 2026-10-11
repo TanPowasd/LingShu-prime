@@ -1,0 +1,22 @@
+{
+  "qid": "B3-030-change-0617",
+  "value": "低落",
+  "state": "active",
+  "at_seq": 28,
+  "chain": [
+    {
+      "seq": 28,
+      "from": null,
+      "to": "低落"
+    }
+  ],
+  "basis": [
+    {
+      "file": "孤山驿#latest",
+      "line": 1,
+      "quote": "顾九 的情绪当前为 低落（第 28 章生效）。"
+    }
+  ],
+  "confidence": "probable",
+  "_json_ok": true
+}

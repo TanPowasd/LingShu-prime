@@ -1,0 +1,22 @@
+{
+  "qid": "B2-030-change-0437",
+  "value": "集市",
+  "state": "active",
+  "at_seq": 27,
+  "chain": [
+    {
+      "seq": 27,
+      "from": null,
+      "to": "集市"
+    }
+  ],
+  "basis": [
+    {
+      "file": "雾港#latest",
+      "line": 1,
+      "quote": "阿桑 的位置当前为 集市（第 27 章生效）。"
+    }
+  ],
+  "confidence": "probable",
+  "_json_ok": true
+}

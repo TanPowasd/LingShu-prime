@@ -1,0 +1,16 @@
+{
+  "qid": "B1-023-reason-0168",
+  "value": null,
+  "state": "absent",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "青石镇#latest",
+      "line": 1,
+      "quote": "周舟 的信任对象当前为 无人（第 28 章生效）。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

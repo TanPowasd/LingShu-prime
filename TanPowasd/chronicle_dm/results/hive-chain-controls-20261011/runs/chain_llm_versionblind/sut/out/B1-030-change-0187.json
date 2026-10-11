@@ -1,0 +1,22 @@
+{
+  "qid": "B1-030-change-0187",
+  "value": "反对",
+  "state": "active",
+  "at_seq": 29,
+  "chain": [
+    {
+      "seq": 29,
+      "from": null,
+      "to": "反对"
+    }
+  ],
+  "basis": [
+    {
+      "file": "青石镇#latest",
+      "line": 1,
+      "quote": "周舟 的立场当前为 反对（第 29 章生效）。"
+    }
+  ],
+  "confidence": "probable",
+  "_json_ok": true
+}

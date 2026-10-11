@@ -1,0 +1,22 @@
+{
+  "qid": "B1-030-change-0167",
+  "value": "无人",
+  "state": "active",
+  "at_seq": 28,
+  "chain": [
+    {
+      "seq": 28,
+      "from": null,
+      "to": "无人"
+    }
+  ],
+  "basis": [
+    {
+      "file": "青石镇#latest",
+      "line": 1,
+      "quote": "周舟 的信任对象当前为 无人（第 28 章生效）。"
+    }
+  ],
+  "confidence": "probable",
+  "_json_ok": true
+}

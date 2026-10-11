@@ -1,0 +1,52 @@
+{
+  "qid": "B1-030-change-0257",
+  "value": "犹豫",
+  "state": "active",
+  "at_seq": 26,
+  "chain": [
+    {
+      "seq": 9,
+      "from": null,
+      "to": "愤怒"
+    },
+    {
+      "seq": 13,
+      "from": "愤怒",
+      "to": "戒备"
+    },
+    {
+      "seq": 17,
+      "from": "戒备",
+      "to": "欣慰"
+    },
+    {
+      "seq": 22,
+      "from": "欣慰",
+      "to": null
+    },
+    {
+      "seq": 26,
+      "from": null,
+      "to": "犹豫"
+    }
+  ],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 30,
+      "quote": "- 第9：None → 愤怒（有效）\n- 第13：愤怒 → 戒备（有效）\n- 第17：戒备 → 欣慰（有效）\n- 第22：欣慰 → None（已撤销）\n- 第26：None → 犹豫（有效）"
+    },
+    {
+      "file": "青石镇#9",
+      "line": 9,
+      "quote": "老陈 的情绪首次确立为 愤怒。"
+    },
+    {
+      "file": "青石镇#26",
+      "line": 26,
+      "quote": "老陈 的情绪此后确立为 犹豫，起因是利益冲突。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

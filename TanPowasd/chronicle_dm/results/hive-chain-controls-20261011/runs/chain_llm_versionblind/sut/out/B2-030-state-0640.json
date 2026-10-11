@@ -1,0 +1,26 @@
+{
+  "qid": "B2-030-state-0640",
+  "value": null,
+  "state": "absent",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "片段4 · 雾港#latest",
+      "line": 4,
+      "quote": "沈砚 的信任对象当前为 阿桑（第 26 章生效）。"
+    },
+    {
+      "file": "片段4 · 雾港#latest",
+      "line": 4,
+      "quote": "沈砚 的位置当前已撤销，不再保留取值。"
+    },
+    {
+      "file": "片段4 · 雾港#latest",
+      "line": 4,
+      "quote": "沈砚 的立场当前为 观望（第 26 章生效）。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

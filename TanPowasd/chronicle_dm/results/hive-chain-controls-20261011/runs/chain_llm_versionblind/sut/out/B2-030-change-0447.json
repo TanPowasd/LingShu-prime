@@ -1,0 +1,22 @@
+{
+  "qid": "B2-030-change-0447",
+  "value": "无人",
+  "state": "active",
+  "at_seq": 27,
+  "chain": [
+    {
+      "seq": 27,
+      "from": null,
+      "to": "无人"
+    }
+  ],
+  "basis": [
+    {
+      "file": "雾港#latest",
+      "line": 1,
+      "quote": "阿桑 的信任对象当前为 无人（第 27 章生效）。"
+    }
+  ],
+  "confidence": "probable",
+  "_json_ok": true
+}

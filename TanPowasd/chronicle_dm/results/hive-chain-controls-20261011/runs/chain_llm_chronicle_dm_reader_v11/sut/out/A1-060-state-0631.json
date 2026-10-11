@@ -1,0 +1,21 @@
+{
+  "qid": "A1-060-state-0631",
+  "value": null,
+  "state": "absent",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "片段1",
+      "line": 1,
+      "quote": "状态：不存在；取值：None"
+    },
+    {
+      "file": "片段1",
+      "line": 1,
+      "quote": "已写入的版本事件：\n（无事件）"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

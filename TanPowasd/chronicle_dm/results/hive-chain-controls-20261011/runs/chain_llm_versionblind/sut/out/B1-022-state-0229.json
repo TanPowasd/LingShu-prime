@@ -1,0 +1,16 @@
+{
+  "qid": "B1-022-state-0229",
+  "value": null,
+  "state": "unresolved",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "青石镇#latest",
+      "line": 1,
+      "quote": "小满 的立场当前为 暧昧（第 27 章生效）。"
+    }
+  ],
+  "confidence": "unknown",
+  "_json_ok": true
+}

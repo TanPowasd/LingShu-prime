@@ -1,0 +1,16 @@
+{
+  "qid": "A2-021-state-0060",
+  "value": null,
+  "state": "unresolved",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "流明项目#latest",
+      "line": 1,
+      "quote": "流明项目 的依赖名当前为 lmdb（第 60 次提交生效）。"
+    }
+  ],
+  "confidence": "unknown",
+  "_json_ok": true
+}

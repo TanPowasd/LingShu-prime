@@ -1,0 +1,22 @@
+{
+  "qid": "B3-030-change-0557",
+  "value": "磨坊",
+  "state": "active",
+  "at_seq": 26,
+  "chain": [
+    {
+      "seq": 26,
+      "from": null,
+      "to": "磨坊"
+    }
+  ],
+  "basis": [
+    {
+      "file": "孤山驿#latest",
+      "line": 1,
+      "quote": "陆平 的位置当前为 磨坊（第 26 章生效）。"
+    }
+  ],
+  "confidence": "probable",
+  "_json_ok": true
+}

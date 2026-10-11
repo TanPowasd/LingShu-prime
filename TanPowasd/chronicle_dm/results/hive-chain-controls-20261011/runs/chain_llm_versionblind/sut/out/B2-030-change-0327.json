@@ -1,0 +1,16 @@
+{
+  "qid": "B2-030-change-0327",
+  "value": "林昭",
+  "state": "unresolved",
+  "at_seq": 28,
+  "chain": [],
+  "basis": [
+    {
+      "file": "雾港#latest",
+      "line": 1,
+      "quote": "杜衡 的信任对象当前为 林昭（第 28 章生效）。"
+    }
+  ],
+  "confidence": "unknown",
+  "_json_ok": true
+}

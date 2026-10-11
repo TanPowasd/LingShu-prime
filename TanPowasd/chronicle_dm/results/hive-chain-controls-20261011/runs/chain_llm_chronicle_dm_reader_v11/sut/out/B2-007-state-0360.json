@@ -1,0 +1,21 @@
+{
+  "qid": "B2-007-state-0360",
+  "value": "磨坊",
+  "state": "active",
+  "at_seq": 7,
+  "chain": [],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "状态：有效；取值：磨坊；自第7起"
+    },
+    {
+      "file": "雾港#7",
+      "line": 5,
+      "quote": "林昭 移到了 磨坊，起因是第三方的劝说。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

@@ -1,0 +1,22 @@
+{
+  "qid": "B1-030-change-0267",
+  "value": "支持",
+  "state": "active",
+  "at_seq": 26,
+  "chain": [
+    {
+      "seq": 26,
+      "from": null,
+      "to": "支持"
+    }
+  ],
+  "basis": [
+    {
+      "file": "青石镇#latest",
+      "line": 1,
+      "quote": "老陈 的立场当前为 支持（第 26 章生效）。"
+    }
+  ],
+  "confidence": "probable",
+  "_json_ok": true
+}

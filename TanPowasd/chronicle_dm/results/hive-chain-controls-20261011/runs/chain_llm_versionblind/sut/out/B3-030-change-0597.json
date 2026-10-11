@@ -1,0 +1,22 @@
+{
+  "qid": "B3-030-change-0597",
+  "value": "粮仓",
+  "state": "active",
+  "at_seq": 28,
+  "chain": [
+    {
+      "seq": 28,
+      "from": null,
+      "to": "粮仓"
+    }
+  ],
+  "basis": [
+    {
+      "file": "孤山驿#latest",
+      "line": 1,
+      "quote": "顾九 的位置当前为 粮仓（第 28 章生效）。"
+    }
+  ],
+  "confidence": "probable",
+  "_json_ok": true
+}

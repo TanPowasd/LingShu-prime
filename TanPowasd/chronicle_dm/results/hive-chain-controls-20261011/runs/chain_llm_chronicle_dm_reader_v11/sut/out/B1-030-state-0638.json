@@ -1,0 +1,26 @@
+{
+  "qid": "B1-030-state-0638",
+  "value": null,
+  "state": "absent",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "片段1",
+      "line": 1,
+      "quote": "槽位：老陈 · 有效期秒数　查询时点：第30"
+    },
+    {
+      "file": "片段1",
+      "line": 1,
+      "quote": "状态：不存在；取值：None"
+    },
+    {
+      "file": "片段1",
+      "line": 1,
+      "quote": "（无事件）"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

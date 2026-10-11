@@ -1,0 +1,102 @@
+{
+  "qid": "A2-060-change-0067",
+  "value": "sync(key, ttl, tag, refresh)",
+  "state": "active",
+  "at_seq": 52,
+  "chain": [
+    {
+      "seq": 16,
+      "from": null,
+      "to": "load(key, ttl)"
+    },
+    {
+      "seq": 18,
+      "from": "load(key, ttl)",
+      "to": "load(key, ttl, refresh)"
+    },
+    {
+      "seq": 20,
+      "from": "load(key, ttl, refresh)",
+      "to": "get(key, ttl, tag, refresh)"
+    },
+    {
+      "seq": 22,
+      "from": "get(key, ttl, tag, refresh)",
+      "to": "get(id, key, ttl)"
+    },
+    {
+      "seq": 24,
+      "from": "get(id, key, ttl)",
+      "to": "load(key, ttl, tag, refresh)"
+    },
+    {
+      "seq": 26,
+      "from": "load(key, ttl, tag, refresh)",
+      "to": "resolve(key, ttl)"
+    },
+    {
+      "seq": 28,
+      "from": "resolve(key, ttl)",
+      "to": "resolve(key, ttl, refresh)"
+    },
+    {
+      "seq": 30,
+      "from": "resolve(key, ttl, refresh)",
+      "to": "resolve(key, ttl, force)"
+    },
+    {
+      "seq": 33,
+      "from": "resolve(key, ttl, force)",
+      "to": "load(key)"
+    },
+    {
+      "seq": 36,
+      "from": "load(key)",
+      "to": null
+    },
+    {
+      "seq": 39,
+      "from": null,
+      "to": "get(key, ttl)"
+    },
+    {
+      "seq": 42,
+      "from": "get(key, ttl)",
+      "to": "fetch(key, ttl)"
+    },
+    {
+      "seq": 46,
+      "from": "fetch(key, ttl)",
+      "to": "fetch(id, key, ttl)"
+    },
+    {
+      "seq": 49,
+      "from": "fetch(id, key, ttl)",
+      "to": "get(key, ttl, refresh)"
+    },
+    {
+      "seq": 52,
+      "from": "get(key, ttl, refresh)",
+      "to": "sync(key, ttl, tag, refresh)"
+    }
+  ],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 60,
+      "quote": "版本链：\n- 第16：None → load(key, ttl)（有效）\n- 第18：load(key, ttl) → load(key, ttl, refresh)（有效）\n- 第20：load(key, ttl, refresh) → get(key, ttl, tag, refresh)（有效）\n- 第22：get(key, ttl, tag, refresh) → get(id, key, ttl)（有效）\n- 第24：get(id, key, ttl) → load(key, ttl, tag, refresh)（有效）\n- 第26：load(key, ttl, tag, refresh) → resolve(key, ttl)（有效）\n- 第28：resolve(key, ttl) → resolve(key, ttl, refresh)（有效）\n- 第30：resolve(key, ttl, refresh) → resolve(key, ttl, force)（有效）\n- 第33：resolve(key, ttl, force) → load(key)（有效）\n- 第36：load(key) → None（已撤销）\n- 第39：None → get(key, ttl)（有效）\n- 第42：get(key, ttl) → fetch(key, ttl)（有效）\n- 第46：fetch(key, ttl) → fetch(id, key, ttl)（有效）\n- 第49：fetch(id, key, ttl) → get(key, ttl, refresh)（有效）\n- 第52：get(key, ttl, refresh) → sync(key, ttl, tag, refresh)（有效）"
+    },
+    {
+      "file": "流明项目#16",
+      "line": 16,
+      "quote": "流明项目 的函数签名首次确立为 load(key, ttl)。"
+    },
+    {
+      "file": "流明项目#52",
+      "line": 52,
+      "quote": "流明项目 的函数签名调整为 sync(key, ttl, tag, refresh)，起因是依赖库升级。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

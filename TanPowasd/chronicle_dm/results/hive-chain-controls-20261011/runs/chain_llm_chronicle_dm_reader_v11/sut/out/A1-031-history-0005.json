@@ -1,0 +1,21 @@
+{
+  "qid": "A1-031-history-0005",
+  "value": "redis",
+  "state": "active",
+  "at_seq": 31,
+  "chain": [],
+  "basis": [
+    {
+      "file": "片段1",
+      "line": 1,
+      "quote": "状态：有效；取值：redis；自第31起"
+    },
+    {
+      "file": "片段1",
+      "line": 1,
+      "quote": "- 第31：lmdb → redis（有效）"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

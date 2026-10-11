@@ -1,0 +1,22 @@
+{
+  "qid": "B2-030-change-0347",
+  "value": "暧昧",
+  "state": "active",
+  "at_seq": 28,
+  "chain": [
+    {
+      "seq": 28,
+      "from": null,
+      "to": "暧昧"
+    }
+  ],
+  "basis": [
+    {
+      "file": "雾港#latest",
+      "line": 1,
+      "quote": "杜衡 的立场当前为 暧昧（第 28 章生效）。"
+    }
+  ],
+  "confidence": "unknown",
+  "_json_ok": true
+}

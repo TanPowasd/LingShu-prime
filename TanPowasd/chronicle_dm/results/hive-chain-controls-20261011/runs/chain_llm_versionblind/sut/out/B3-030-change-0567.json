@@ -1,0 +1,22 @@
+{
+  "qid": "B3-030-change-0567",
+  "value": "顾九",
+  "state": "active",
+  "at_seq": 26,
+  "chain": [
+    {
+      "seq": 26,
+      "from": null,
+      "to": "顾九"
+    }
+  ],
+  "basis": [
+    {
+      "file": "孤山驿#latest",
+      "line": 1,
+      "quote": "陆平 的信任对象当前为 顾九（第 26 章生效）。"
+    }
+  ],
+  "confidence": "probable",
+  "_json_ok": true
+}

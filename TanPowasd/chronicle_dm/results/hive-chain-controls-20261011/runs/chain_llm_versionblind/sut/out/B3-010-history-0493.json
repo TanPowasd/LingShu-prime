@@ -1,0 +1,16 @@
+{
+  "qid": "B3-010-history-0493",
+  "value": null,
+  "state": "unresolved",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "孤山驿#latest",
+      "line": 1,
+      "quote": "白芨 的情绪当前为 欣慰（第 27 章生效）。"
+    }
+  ],
+  "confidence": "unknown",
+  "_json_ok": true
+}

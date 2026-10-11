@@ -1,0 +1,21 @@
+{
+  "qid": "A2-060-present-0061",
+  "value": "sync(key, ttl, tag, refresh)",
+  "state": "active",
+  "at_seq": 52,
+  "chain": [],
+  "basis": [
+    {
+      "file": "片段1 · 记忆查询",
+      "line": 60,
+      "quote": "状态：有效；取值：sync(key, ttl, tag, refresh)；自第52起"
+    },
+    {
+      "file": "片段16 · 流明项目#52",
+      "line": 52,
+      "quote": "流明项目 的函数签名调整为 sync(key, ttl, tag, refresh)，起因是依赖库升级。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

@@ -1,0 +1,16 @@
+{
+  "qid": "B3-022-timepoint-0476",
+  "value": null,
+  "state": "unresolved",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "孤山驿#latest",
+      "line": 1,
+      "quote": "白芨 的位置当前为 驿站（第 27 章生效）。"
+    }
+  ],
+  "confidence": "probable",
+  "_json_ok": true
+}

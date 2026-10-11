@@ -1,0 +1,16 @@
+{
+  "qid": "B3-001-history-0483",
+  "value": null,
+  "state": "unresolved",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "孤山驿#latest",
+      "line": 1,
+      "quote": "白芨 的信任对象当前为 外人（第 27 章生效）。"
+    }
+  ],
+  "confidence": "unknown",
+  "_json_ok": true
+}

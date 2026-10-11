@@ -1,0 +1,16 @@
+{
+  "qid": "B1-030-state-0282",
+  "value": "active",
+  "state": "active",
+  "at_seq": 25,
+  "chain": [],
+  "basis": [
+    {
+      "file": "青石镇#latest",
+      "line": 1,
+      "quote": "阿禾 的信任对象当前为 无人（第 25 章生效）。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

@@ -1,0 +1,16 @@
+{
+  "qid": "B2-030-state-0639",
+  "value": null,
+  "state": "absent",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "片段1",
+      "line": 1,
+      "quote": "状态：不存在；取值：None"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

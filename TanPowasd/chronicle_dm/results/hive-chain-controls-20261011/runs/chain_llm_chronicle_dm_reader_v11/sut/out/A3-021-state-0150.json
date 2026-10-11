@@ -1,0 +1,21 @@
+{
+  "qid": "A3-021-state-0150",
+  "value": "3600",
+  "state": "active",
+  "at_seq": 21,
+  "chain": [],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "状态：有效；取值：3600；自第21起"
+    },
+    {
+      "file": "织女项目#21",
+      "line": 10,
+      "quote": "织女项目·缓存模块 的有效期秒数调整为 3600，起因是线上故障复盘。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

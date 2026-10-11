@@ -1,0 +1,16 @@
+{
+  "qid": "B2-030-present-0371",
+  "value": "犹豫",
+  "state": "active",
+  "at_seq": 26,
+  "chain": [],
+  "basis": [
+    {
+      "file": "雾港#latest",
+      "line": 1,
+      "quote": "林昭 的情绪当前为 犹豫（第 26 章生效）。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

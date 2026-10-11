@@ -1,0 +1,16 @@
+{
+  "qid": "A3-049-timepoint-0136",
+  "value": null,
+  "state": "unresolved",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "织女项目#latest",
+      "line": 1,
+      "quote": "织女项目 的配置值当前为 timeout_ms=128（第 53 次提交生效）。"
+    }
+  ],
+  "confidence": "unknown",
+  "_json_ok": true
+}

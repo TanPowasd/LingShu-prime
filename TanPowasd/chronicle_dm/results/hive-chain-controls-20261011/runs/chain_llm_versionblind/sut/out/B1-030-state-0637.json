@@ -1,0 +1,16 @@
+{
+  "qid": "B1-030-state-0637",
+  "value": null,
+  "state": "absent",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "青石镇#latest",
+      "line": 3,
+      "quote": "阿禾 的信任对象当前为 无人（第 25 章生效）。阿禾 的位置当前为 祠堂（第 25 章生效）。阿禾 的立场当前为 观望（第 25 章生效）。阿禾 的情绪当前已撤销，不再保留取值。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

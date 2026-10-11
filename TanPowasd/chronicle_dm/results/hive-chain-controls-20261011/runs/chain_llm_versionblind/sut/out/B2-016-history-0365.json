@@ -1,0 +1,16 @@
+{
+  "qid": "B2-016-history-0365",
+  "value": null,
+  "state": "unresolved",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "雾港#latest",
+      "line": 1,
+      "quote": "林昭 的信任对象当前为 无人（第 25 章生效）。"
+    }
+  ],
+  "confidence": "unknown",
+  "_json_ok": true
+}

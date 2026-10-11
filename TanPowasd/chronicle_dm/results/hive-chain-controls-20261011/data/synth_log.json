@@ -1,0 +1,11112 @@
+{
+ "seed": 20261010,
+ "n_docs": 6,
+ "docs": [
+  {
+   "doc": "猎户项目",
+   "kind": "A",
+   "n_seq": 60,
+   "n_chains": 8
+  },
+  {
+   "doc": "流明项目",
+   "kind": "A",
+   "n_seq": 60,
+   "n_chains": 7
+  },
+  {
+   "doc": "织女项目",
+   "kind": "A",
+   "n_seq": 60,
+   "n_chains": 8
+  },
+  {
+   "doc": "青石镇",
+   "kind": "B",
+   "n_seq": 30,
+   "n_chains": 20
+  },
+  {
+   "doc": "雾港",
+   "kind": "B",
+   "n_seq": 30,
+   "n_chains": 23
+  },
+  {
+   "doc": "孤山驿",
+   "kind": "B",
+   "n_seq": 30,
+   "n_chains": 21
+  }
+ ],
+ "chains": [
+  {
+   "doc": "猎户项目",
+   "doc_id": "A1",
+   "subject": "猎户项目",
+   "slot": "函数签名",
+   "kind": "A",
+   "interference": "嵌套主体",
+   "is_decoy": false,
+   "target": 15,
+   "seqs": [
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    33,
+    36,
+    39,
+    43,
+    46,
+    49,
+    54
+   ],
+   "events": [
+    {
+     "seq": 16,
+     "frm": null,
+     "to": "get(id, key, ttl)",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 18,
+     "frm": "get(id, key, ttl)",
+     "to": "get(key)",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 20,
+     "frm": "get(key)",
+     "to": "sync(id, key, ttl)",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 22,
+     "frm": "sync(id, key, ttl)",
+     "to": "resolve(key, ttl, force)",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 24,
+     "frm": "resolve(key, ttl, force)",
+     "to": "load(key, ttl, force)",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 26,
+     "frm": "load(key, ttl, force)",
+     "to": "resolve(key)",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 28,
+     "frm": "resolve(key)",
+     "to": "fetch(key, ttl, tag, refresh)",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 30,
+     "frm": "fetch(key, ttl, tag, refresh)",
+     "to": "resolve(key, ttl, refresh)",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 33,
+     "frm": "resolve(key, ttl, refresh)",
+     "to": "fetch(key, ttl)",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 36,
+     "frm": "fetch(key, ttl)",
+     "to": "get(key, ttl, tag, refresh)",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 39,
+     "frm": "get(key, ttl, tag, refresh)",
+     "to": "sync(key)",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 43,
+     "frm": "sync(key)",
+     "to": "fetch(key, ttl, refresh)",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 46,
+     "frm": "fetch(key, ttl, refresh)",
+     "to": "sync(key, ttl, tag, refresh)",
+     "alt": "sync(key, ttl)",
+     "state": "unresolved",
+     "reason": "线上故障复盘",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 49,
+     "frm": "sync(key, ttl, tag, refresh)",
+     "to": "fetch(key)",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "resolve"
+    },
+    {
+     "seq": 54,
+     "frm": "fetch(key)",
+     "to": "sync(key, ttl)",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "猎户项目",
+   "doc_id": "A1",
+   "subject": "猎户项目",
+   "slot": "配置值",
+   "kind": "A",
+   "interference": "同体异名",
+   "is_decoy": false,
+   "target": 60,
+   "seqs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60
+   ],
+   "events": [
+    {
+     "seq": 1,
+     "frm": null,
+     "to": "max_conn=256",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 2,
+     "frm": "max_conn=256",
+     "to": "retry=16",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 3,
+     "frm": "retry=16",
+     "to": "retry=256",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 4,
+     "frm": "retry=256",
+     "to": "batch_size=256",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 5,
+     "frm": "batch_size=256",
+     "to": "timeout_ms=128",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 6,
+     "frm": "timeout_ms=128",
+     "to": "batch_size=32",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 7,
+     "frm": "batch_size=32",
+     "to": "retry=32",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 8,
+     "frm": "retry=32",
+     "to": "retry=64",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 9,
+     "frm": "retry=64",
+     "to": "batch_size=128",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 10,
+     "frm": "batch_size=128",
+     "to": "batch_size=16",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 11,
+     "frm": "batch_size=16",
+     "to": "retry=128",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 12,
+     "frm": "retry=128",
+     "to": "max_conn=32",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 13,
+     "frm": "max_conn=32",
+     "to": "timeout_ms=64",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 14,
+     "frm": "timeout_ms=64",
+     "to": "timeout_ms=32",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 15,
+     "frm": "timeout_ms=32",
+     "to": "timeout_ms=16",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 16,
+     "frm": "timeout_ms=16",
+     "to": "timeout_ms=256",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 17,
+     "frm": "timeout_ms=256",
+     "to": "batch_size=64",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 18,
+     "frm": "batch_size=64",
+     "to": "max_conn=128",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 19,
+     "frm": "max_conn=128",
+     "to": "max_conn=64",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 20,
+     "frm": "max_conn=64",
+     "to": "max_conn=16",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 21,
+     "frm": "max_conn=16",
+     "to": "cfg_544042",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 22,
+     "frm": "cfg_544042",
+     "to": "cfg_406962",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 23,
+     "frm": "cfg_406962",
+     "to": "cfg_646706",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 24,
+     "frm": "cfg_646706",
+     "to": "cfg_220773",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 25,
+     "frm": "cfg_220773",
+     "to": "cfg_499219",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 26,
+     "frm": "cfg_499219",
+     "to": "cfg_620931",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 27,
+     "frm": "cfg_620931",
+     "to": "cfg_459512",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 28,
+     "frm": "cfg_459512",
+     "to": "cfg_437851",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 29,
+     "frm": "cfg_437851",
+     "to": "cfg_21624",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 30,
+     "frm": "cfg_21624",
+     "to": "cfg_803135",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 31,
+     "frm": "cfg_803135",
+     "to": "cfg_832425",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 32,
+     "frm": "cfg_832425",
+     "to": "cfg_932410",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 33,
+     "frm": "cfg_932410",
+     "to": "cfg_539629",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 34,
+     "frm": "cfg_539629",
+     "to": "cfg_156204",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 35,
+     "frm": "cfg_156204",
+     "to": "cfg_449065",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 36,
+     "frm": "cfg_449065",
+     "to": "cfg_250956",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 37,
+     "frm": "cfg_250956",
+     "to": "cfg_361983",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 38,
+     "frm": "cfg_361983",
+     "to": "cfg_772769",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 39,
+     "frm": "cfg_772769",
+     "to": "cfg_68312",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 40,
+     "frm": "cfg_68312",
+     "to": "cfg_224463",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 41,
+     "frm": "cfg_224463",
+     "to": "cfg_725173",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 42,
+     "frm": "cfg_725173",
+     "to": "cfg_675850",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 43,
+     "frm": "cfg_675850",
+     "to": "cfg_998058",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 44,
+     "frm": "cfg_998058",
+     "to": "cfg_866999",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 45,
+     "frm": "cfg_866999",
+     "to": "cfg_747585",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 46,
+     "frm": "cfg_747585",
+     "to": "cfg_853425",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 47,
+     "frm": "cfg_853425",
+     "to": "cfg_196568",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 48,
+     "frm": "cfg_196568",
+     "to": "cfg_705895",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 49,
+     "frm": "cfg_705895",
+     "to": "cfg_596309",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 50,
+     "frm": "cfg_596309",
+     "to": "cfg_281",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 51,
+     "frm": "cfg_281",
+     "to": "cfg_202750",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 52,
+     "frm": "cfg_202750",
+     "to": "cfg_688617",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 53,
+     "frm": "cfg_688617",
+     "to": "cfg_667254",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 54,
+     "frm": "cfg_667254",
+     "to": "cfg_484563",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 55,
+     "frm": "cfg_484563",
+     "to": "cfg_231666",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 56,
+     "frm": "cfg_231666",
+     "to": "cfg_783330",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 57,
+     "frm": "cfg_783330",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "压测暴露并发缺陷",
+     "kev": "retire"
+    },
+    {
+     "seq": 58,
+     "frm": null,
+     "to": "cfg_916265",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "restore"
+    },
+    {
+     "seq": 59,
+     "frm": "cfg_916265",
+     "to": "cfg_231689",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 60,
+     "frm": "cfg_231689",
+     "to": "cfg_241943",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "猎户项目",
+   "doc_id": "A1",
+   "subject": "猎户项目",
+   "slot": "有效期秒数",
+   "kind": "A",
+   "interference": "同名异体",
+   "is_decoy": false,
+   "target": 8,
+   "seqs": [
+    31,
+    34,
+    37,
+    40,
+    43,
+    46,
+    49,
+    55
+   ],
+   "events": [
+    {
+     "seq": 31,
+     "frm": null,
+     "to": "600",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 34,
+     "frm": "600",
+     "to": "1800",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 37,
+     "frm": "1800",
+     "to": "3600",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 40,
+     "frm": "3600",
+     "to": "21600",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 43,
+     "frm": "21600",
+     "to": "600",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 46,
+     "frm": "600",
+     "to": "900",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 49,
+     "frm": "900",
+     "to": "10800",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 55,
+     "frm": "10800",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "灰度观测数据",
+     "kev": "retire"
+    }
+   ]
+  },
+  {
+   "doc": "猎户项目",
+   "doc_id": "A1",
+   "subject": "猎户项目",
+   "slot": "依赖名",
+   "kind": "A",
+   "interference": "none",
+   "is_decoy": false,
+   "target": 45,
+   "seqs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    44,
+    47,
+    50,
+    56
+   ],
+   "events": [
+    {
+     "seq": 1,
+     "frm": null,
+     "to": "redis",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 2,
+     "frm": "redis",
+     "to": "lmdb",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 3,
+     "frm": "lmdb",
+     "to": "redis",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 4,
+     "frm": "redis",
+     "to": "badger",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 5,
+     "frm": "badger",
+     "to": "bbolt",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 6,
+     "frm": "bbolt",
+     "to": "rocksdb",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 7,
+     "frm": "rocksdb",
+     "to": "bbolt",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 8,
+     "frm": "bbolt",
+     "to": "badger",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 9,
+     "frm": "badger",
+     "to": "lmdb",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 10,
+     "frm": "lmdb",
+     "to": "sled",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 11,
+     "frm": "sled",
+     "to": "redis",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 12,
+     "frm": "redis",
+     "to": "sqlite",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 13,
+     "frm": "sqlite",
+     "to": "rocksdb",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 14,
+     "frm": "rocksdb",
+     "to": "bbolt",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 15,
+     "frm": "bbolt",
+     "to": "sled",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 16,
+     "frm": "sled",
+     "to": "lmdb",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 17,
+     "frm": "lmdb",
+     "to": "rocksdb",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 18,
+     "frm": "rocksdb",
+     "to": "lmdb",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 19,
+     "frm": "lmdb",
+     "to": "redis",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 20,
+     "frm": "redis",
+     "to": "bbolt",
+     "alt": "lmdb",
+     "state": "unresolved",
+     "reason": "灰度观测数据",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 21,
+     "frm": "bbolt",
+     "to": "sqlite",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "resolve"
+    },
+    {
+     "seq": 22,
+     "frm": "sqlite",
+     "to": "bbolt",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 23,
+     "frm": "bbolt",
+     "to": "sled",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 24,
+     "frm": "sled",
+     "to": "rocksdb",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 25,
+     "frm": "rocksdb",
+     "to": "badger",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 26,
+     "frm": "badger",
+     "to": "rocksdb",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 27,
+     "frm": "rocksdb",
+     "to": "redis",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 28,
+     "frm": "redis",
+     "to": "sqlite",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 29,
+     "frm": "sqlite",
+     "to": "bbolt",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 30,
+     "frm": "bbolt",
+     "to": "lmdb",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 31,
+     "frm": "lmdb",
+     "to": "redis",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 32,
+     "frm": "redis",
+     "to": "rocksdb",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 33,
+     "frm": "rocksdb",
+     "to": "bbolt",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 34,
+     "frm": "bbolt",
+     "to": "redis",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 35,
+     "frm": "redis",
+     "to": "bbolt",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 36,
+     "frm": "bbolt",
+     "to": "rocksdb",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 37,
+     "frm": "rocksdb",
+     "to": "badger",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 38,
+     "frm": "badger",
+     "to": "rocksdb",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 39,
+     "frm": "rocksdb",
+     "to": "lmdb",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 40,
+     "frm": "lmdb",
+     "to": "sqlite",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 41,
+     "frm": "sqlite",
+     "to": "redis",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 44,
+     "frm": "redis",
+     "to": "lmdb",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 47,
+     "frm": "lmdb",
+     "to": "bbolt",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 50,
+     "frm": "bbolt",
+     "to": "rocksdb",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 56,
+     "frm": "rocksdb",
+     "to": "redis",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "猎户项目",
+   "doc_id": "A1",
+   "subject": "猎户项目·缓存模块",
+   "slot": "有效期秒数",
+   "kind": "A",
+   "interference": "嵌套主体",
+   "is_decoy": false,
+   "target": 30,
+   "seqs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    17,
+    19,
+    21,
+    23,
+    25,
+    27,
+    29,
+    32,
+    35,
+    38,
+    41,
+    44,
+    47,
+    50,
+    57
+   ],
+   "events": [
+    {
+     "seq": 1,
+     "frm": null,
+     "to": "10800",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 2,
+     "frm": "10800",
+     "to": "21600",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 3,
+     "frm": "21600",
+     "to": "1800",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 4,
+     "frm": "1800",
+     "to": "300",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 5,
+     "frm": "300",
+     "to": "3600",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 6,
+     "frm": "3600",
+     "to": "7200",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 7,
+     "frm": "7200",
+     "to": "21600",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 8,
+     "frm": "21600",
+     "to": "10800",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 9,
+     "frm": "10800",
+     "to": "7200",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 10,
+     "frm": "7200",
+     "to": "1800",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 11,
+     "frm": "1800",
+     "to": "21600",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 12,
+     "frm": "21600",
+     "to": "1800",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 13,
+     "frm": "1800",
+     "to": "10800",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 14,
+     "frm": "10800",
+     "to": "21600",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 15,
+     "frm": "21600",
+     "to": "300",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 17,
+     "frm": "300",
+     "to": "900",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 19,
+     "frm": "900",
+     "to": "1800",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 21,
+     "frm": "1800",
+     "to": "900",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 23,
+     "frm": "900",
+     "to": "1800",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 25,
+     "frm": "1800",
+     "to": "3600",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 27,
+     "frm": "3600",
+     "to": "21600",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 29,
+     "frm": "21600",
+     "to": "900",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 32,
+     "frm": "900",
+     "to": "1800",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 35,
+     "frm": "1800",
+     "to": "300",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 38,
+     "frm": "300",
+     "to": "600",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 41,
+     "frm": "600",
+     "to": "900",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 44,
+     "frm": "900",
+     "to": "21600",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 47,
+     "frm": "21600",
+     "to": "10800",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 50,
+     "frm": "10800",
+     "to": "3600",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 57,
+     "frm": "3600",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "接口兼容性调整",
+     "kev": "retire"
+    }
+   ]
+  },
+  {
+   "doc": "猎户项目",
+   "doc_id": "A1",
+   "subject": "猎户项目·下属",
+   "slot": "函数签名",
+   "kind": "A",
+   "interference": "none",
+   "is_decoy": true,
+   "target": 7,
+   "seqs": [
+    2,
+    31,
+    37,
+    44,
+    47,
+    51,
+    58
+   ],
+   "events": [
+    {
+     "seq": 2,
+     "frm": null,
+     "to": "fetch(key)",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 31,
+     "frm": "fetch(key)",
+     "to": "sync(key)",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 37,
+     "frm": "sync(key)",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "代码评审意见",
+     "kev": "retire"
+    },
+    {
+     "seq": 44,
+     "frm": null,
+     "to": "sync(key, ttl, force)",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "restore"
+    },
+    {
+     "seq": 47,
+     "frm": "sync(key, ttl, force)",
+     "to": "resolve(key, ttl)",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 51,
+     "frm": "resolve(key, ttl)",
+     "to": "resolve(key)",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 58,
+     "frm": "resolve(key)",
+     "to": "get(key, ttl, refresh)",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "猎户项目",
+   "doc_id": "A1",
+   "subject": "猎户项目·同名者",
+   "slot": "有效期秒数",
+   "kind": "A",
+   "interference": "none",
+   "is_decoy": true,
+   "target": 5,
+   "seqs": [
+    42,
+    45,
+    48,
+    52,
+    59
+   ],
+   "events": [
+    {
+     "seq": 42,
+     "frm": null,
+     "to": "7200",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 45,
+     "frm": "7200",
+     "to": "300",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 48,
+     "frm": "300",
+     "to": "7200",
+     "alt": "1800",
+     "state": "unresolved",
+     "reason": "安全审计要求",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 52,
+     "frm": "7200",
+     "to": "300",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "resolve"
+    },
+    {
+     "seq": 59,
+     "frm": "300",
+     "to": "7200",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "猎户项目",
+   "doc_id": "A1",
+   "subject": "猎户项目·缓存模块·下属",
+   "slot": "有效期秒数",
+   "kind": "A",
+   "interference": "none",
+   "is_decoy": true,
+   "target": 12,
+   "seqs": [
+    1,
+    2,
+    11,
+    16,
+    24,
+    30,
+    34,
+    42,
+    45,
+    48,
+    53,
+    60
+   ],
+   "events": [
+    {
+     "seq": 1,
+     "frm": null,
+     "to": "600",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 2,
+     "frm": "600",
+     "to": "10800",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 11,
+     "frm": "10800",
+     "to": "300",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 16,
+     "frm": "300",
+     "to": "7200",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 24,
+     "frm": "7200",
+     "to": "900",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 30,
+     "frm": "900",
+     "to": "21600",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 34,
+     "frm": "21600",
+     "to": "1800",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 42,
+     "frm": "1800",
+     "to": "10800",
+     "alt": "1800",
+     "state": "unresolved",
+     "reason": "依赖库升级",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 45,
+     "frm": "10800",
+     "to": "21600",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "resolve"
+    },
+    {
+     "seq": 48,
+     "frm": "21600",
+     "to": "10800",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 53,
+     "frm": "10800",
+     "to": "900",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 60,
+     "frm": "900",
+     "to": "7200",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "流明项目",
+   "doc_id": "A2",
+   "subject": "流明项目",
+   "slot": "函数签名",
+   "kind": "A",
+   "interference": "none",
+   "is_decoy": false,
+   "target": 15,
+   "seqs": [
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    33,
+    36,
+    39,
+    42,
+    46,
+    49,
+    52
+   ],
+   "events": [
+    {
+     "seq": 16,
+     "frm": null,
+     "to": "load(key, ttl)",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 18,
+     "frm": "load(key, ttl)",
+     "to": "load(key, ttl, refresh)",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 20,
+     "frm": "load(key, ttl, refresh)",
+     "to": "get(key, ttl, tag, refresh)",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 22,
+     "frm": "get(key, ttl, tag, refresh)",
+     "to": "get(id, key, ttl)",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 24,
+     "frm": "get(id, key, ttl)",
+     "to": "load(key, ttl, tag, refresh)",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 26,
+     "frm": "load(key, ttl, tag, refresh)",
+     "to": "resolve(key, ttl)",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 28,
+     "frm": "resolve(key, ttl)",
+     "to": "resolve(key, ttl, refresh)",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 30,
+     "frm": "resolve(key, ttl, refresh)",
+     "to": "resolve(key, ttl, force)",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 33,
+     "frm": "resolve(key, ttl, force)",
+     "to": "load(key)",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 36,
+     "frm": "load(key)",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "接口兼容性调整",
+     "kev": "retire"
+    },
+    {
+     "seq": 39,
+     "frm": null,
+     "to": "get(key, ttl)",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "restore"
+    },
+    {
+     "seq": 42,
+     "frm": "get(key, ttl)",
+     "to": "fetch(key, ttl)",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 46,
+     "frm": "fetch(key, ttl)",
+     "to": "fetch(id, key, ttl)",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 49,
+     "frm": "fetch(id, key, ttl)",
+     "to": "get(key, ttl, refresh)",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 52,
+     "frm": "get(key, ttl, refresh)",
+     "to": "sync(key, ttl, tag, refresh)",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "流明项目",
+   "doc_id": "A2",
+   "subject": "流明项目",
+   "slot": "依赖名",
+   "kind": "A",
+   "interference": "同值异时",
+   "is_decoy": false,
+   "target": 60,
+   "seqs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60
+   ],
+   "events": [
+    {
+     "seq": 1,
+     "frm": null,
+     "to": "bbolt",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 2,
+     "frm": "bbolt",
+     "to": "rocksdb",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 3,
+     "frm": "rocksdb",
+     "to": "badger",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 4,
+     "frm": "badger",
+     "to": "sled",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 5,
+     "frm": "sled",
+     "to": "badger",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 6,
+     "frm": "badger",
+     "to": "sled",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 7,
+     "frm": "sled",
+     "to": "sqlite",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 8,
+     "frm": "sqlite",
+     "to": "lmdb",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 9,
+     "frm": "lmdb",
+     "to": "redis",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 10,
+     "frm": "redis",
+     "to": "bbolt",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 11,
+     "frm": "bbolt",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "依赖库升级",
+     "kev": "retire"
+    },
+    {
+     "seq": 12,
+     "frm": null,
+     "to": "bbolt",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "restore"
+    },
+    {
+     "seq": 13,
+     "frm": "bbolt",
+     "to": "sled",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 14,
+     "frm": "sled",
+     "to": "bbolt",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 15,
+     "frm": "bbolt",
+     "to": "lmdb",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 16,
+     "frm": "lmdb",
+     "to": "bbolt",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 17,
+     "frm": "bbolt",
+     "to": "sqlite",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 18,
+     "frm": "sqlite",
+     "to": "sled",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 19,
+     "frm": "sled",
+     "to": "badger",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 20,
+     "frm": "badger",
+     "to": "sqlite",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 21,
+     "frm": "sqlite",
+     "to": "rocksdb",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 22,
+     "frm": "rocksdb",
+     "to": "sled",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 23,
+     "frm": "sled",
+     "to": "bbolt",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 24,
+     "frm": "bbolt",
+     "to": "sqlite",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 25,
+     "frm": "sqlite",
+     "to": "redis",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 26,
+     "frm": "redis",
+     "to": "bbolt",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 27,
+     "frm": "bbolt",
+     "to": "lmdb",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 28,
+     "frm": "lmdb",
+     "to": "sled",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 29,
+     "frm": "sled",
+     "to": "redis",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 30,
+     "frm": "redis",
+     "to": "badger",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 31,
+     "frm": "badger",
+     "to": "lmdb",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 32,
+     "frm": "lmdb",
+     "to": "sqlite",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 33,
+     "frm": "sqlite",
+     "to": "badger",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 34,
+     "frm": "badger",
+     "to": "lmdb",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 35,
+     "frm": "lmdb",
+     "to": "rocksdb",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 36,
+     "frm": "rocksdb",
+     "to": "lmdb",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 37,
+     "frm": "lmdb",
+     "to": "sqlite",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 38,
+     "frm": "sqlite",
+     "to": "lmdb",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 39,
+     "frm": "lmdb",
+     "to": "badger",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 40,
+     "frm": "badger",
+     "to": "rocksdb",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 41,
+     "frm": "rocksdb",
+     "to": "lmdb",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 42,
+     "frm": "lmdb",
+     "to": "sled",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 43,
+     "frm": "sled",
+     "to": "bbolt",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 44,
+     "frm": "bbolt",
+     "to": "sled",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 45,
+     "frm": "sled",
+     "to": "lmdb",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 46,
+     "frm": "lmdb",
+     "to": "bbolt",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 47,
+     "frm": "bbolt",
+     "to": "lmdb",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 48,
+     "frm": "lmdb",
+     "to": "badger",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 49,
+     "frm": "badger",
+     "to": "sqlite",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 50,
+     "frm": "sqlite",
+     "to": "bbolt",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 51,
+     "frm": "bbolt",
+     "to": "rocksdb",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 52,
+     "frm": "rocksdb",
+     "to": "bbolt",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 53,
+     "frm": "bbolt",
+     "to": "badger",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 54,
+     "frm": "badger",
+     "to": "bbolt",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 55,
+     "frm": "bbolt",
+     "to": "rocksdb",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 56,
+     "frm": "rocksdb",
+     "to": "lmdb",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 57,
+     "frm": "lmdb",
+     "to": "redis",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 58,
+     "frm": "redis",
+     "to": "rocksdb",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 59,
+     "frm": "rocksdb",
+     "to": "redis",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 60,
+     "frm": "redis",
+     "to": "lmdb",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "流明项目",
+   "doc_id": "A2",
+   "subject": "流明项目",
+   "slot": "配置值",
+   "kind": "A",
+   "interference": "同名异体",
+   "is_decoy": false,
+   "target": 45,
+   "seqs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    43,
+    47,
+    49,
+    53
+   ],
+   "events": [
+    {
+     "seq": 1,
+     "frm": null,
+     "to": "batch_size=16",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 2,
+     "frm": "batch_size=16",
+     "to": "retry=64",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 3,
+     "frm": "retry=64",
+     "to": "max_conn=256",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 4,
+     "frm": "max_conn=256",
+     "to": "batch_size=256",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 5,
+     "frm": "batch_size=256",
+     "to": "timeout_ms=256",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 6,
+     "frm": "timeout_ms=256",
+     "to": "batch_size=128",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 7,
+     "frm": "batch_size=128",
+     "to": "max_conn=64",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 8,
+     "frm": "max_conn=64",
+     "to": "retry=32",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 9,
+     "frm": "retry=32",
+     "to": "batch_size=64",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 10,
+     "frm": "batch_size=64",
+     "to": "retry=128",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 11,
+     "frm": "retry=128",
+     "to": "timeout_ms=16",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 12,
+     "frm": "timeout_ms=16",
+     "to": "max_conn=32",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 13,
+     "frm": "max_conn=32",
+     "to": "max_conn=16",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 14,
+     "frm": "max_conn=16",
+     "to": "retry=256",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 15,
+     "frm": "retry=256",
+     "to": "timeout_ms=32",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 16,
+     "frm": "timeout_ms=32",
+     "to": "max_conn=128",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 17,
+     "frm": "max_conn=128",
+     "to": "batch_size=32",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 18,
+     "frm": "batch_size=32",
+     "to": "retry=16",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 19,
+     "frm": "retry=16",
+     "to": "timeout_ms=64",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 20,
+     "frm": "timeout_ms=64",
+     "to": "timeout_ms=128",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 21,
+     "frm": "timeout_ms=128",
+     "to": "cfg_12819",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 22,
+     "frm": "cfg_12819",
+     "to": "cfg_683952",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 23,
+     "frm": "cfg_683952",
+     "to": "cfg_273189",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 24,
+     "frm": "cfg_273189",
+     "to": "cfg_692357",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 25,
+     "frm": "cfg_692357",
+     "to": "cfg_976575",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 26,
+     "frm": "cfg_976575",
+     "to": "cfg_457311",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 27,
+     "frm": "cfg_457311",
+     "to": "cfg_322565",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 28,
+     "frm": "cfg_322565",
+     "to": "cfg_550922",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 29,
+     "frm": "cfg_550922",
+     "to": "cfg_237921",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 30,
+     "frm": "cfg_237921",
+     "to": "cfg_710970",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 31,
+     "frm": "cfg_710970",
+     "to": "cfg_680534",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 32,
+     "frm": "cfg_680534",
+     "to": "cfg_838262",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 33,
+     "frm": "cfg_838262",
+     "to": "cfg_957414",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 34,
+     "frm": "cfg_957414",
+     "to": "cfg_841351",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 35,
+     "frm": "cfg_841351",
+     "to": "cfg_483261",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 36,
+     "frm": "cfg_483261",
+     "to": "cfg_795010",
+     "alt": "batch_size=256",
+     "state": "unresolved",
+     "reason": "灰度观测数据",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 37,
+     "frm": "cfg_795010",
+     "to": "cfg_145284",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "resolve"
+    },
+    {
+     "seq": 38,
+     "frm": "cfg_145284",
+     "to": "cfg_911293",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 39,
+     "frm": "cfg_911293",
+     "to": "cfg_690985",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 40,
+     "frm": "cfg_690985",
+     "to": "cfg_364575",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 41,
+     "frm": "cfg_364575",
+     "to": "cfg_754423",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 43,
+     "frm": "cfg_754423",
+     "to": "cfg_962313",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 47,
+     "frm": "cfg_962313",
+     "to": "cfg_925891",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 49,
+     "frm": "cfg_925891",
+     "to": "cfg_775243",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 53,
+     "frm": "cfg_775243",
+     "to": "cfg_958953",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "流明项目",
+   "doc_id": "A2",
+   "subject": "流明项目",
+   "slot": "有效期秒数",
+   "kind": "A",
+   "interference": "嵌套主体",
+   "is_decoy": false,
+   "target": 8,
+   "seqs": [
+    31,
+    34,
+    37,
+    41,
+    44,
+    48,
+    50,
+    54
+   ],
+   "events": [
+    {
+     "seq": 31,
+     "frm": null,
+     "to": "7200",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 34,
+     "frm": "7200",
+     "to": "10800",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 37,
+     "frm": "10800",
+     "to": "3600",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 41,
+     "frm": "3600",
+     "to": "600",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 44,
+     "frm": "600",
+     "to": "3600",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 48,
+     "frm": "3600",
+     "to": "7200",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 50,
+     "frm": "7200",
+     "to": "1800",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 54,
+     "frm": "1800",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "接口兼容性调整",
+     "kev": "retire"
+    }
+   ]
+  },
+  {
+   "doc": "流明项目",
+   "doc_id": "A2",
+   "subject": "流明项目·缓存模块",
+   "slot": "有效期秒数",
+   "kind": "A",
+   "interference": "同值异时",
+   "is_decoy": false,
+   "target": 30,
+   "seqs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    17,
+    19,
+    21,
+    23,
+    25,
+    27,
+    29,
+    32,
+    35,
+    38,
+    42,
+    45,
+    48,
+    51,
+    55
+   ],
+   "events": [
+    {
+     "seq": 1,
+     "frm": null,
+     "to": "21600",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 2,
+     "frm": "21600",
+     "to": "300",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 3,
+     "frm": "300",
+     "to": "21600",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 4,
+     "frm": "21600",
+     "to": "1800",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 5,
+     "frm": "1800",
+     "to": "3600",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 6,
+     "frm": "3600",
+     "to": "900",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 7,
+     "frm": "900",
+     "to": "7200",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 8,
+     "frm": "7200",
+     "to": "1800",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 9,
+     "frm": "1800",
+     "to": "21600",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 10,
+     "frm": "21600",
+     "to": "10800",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 11,
+     "frm": "10800",
+     "to": "21600",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 12,
+     "frm": "21600",
+     "to": "900",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 13,
+     "frm": "900",
+     "to": "21600",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 14,
+     "frm": "21600",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "线上故障复盘",
+     "kev": "retire"
+    },
+    {
+     "seq": 15,
+     "frm": null,
+     "to": "300",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "restore"
+    },
+    {
+     "seq": 17,
+     "frm": "300",
+     "to": "1800",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 19,
+     "frm": "1800",
+     "to": "3600",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 21,
+     "frm": "3600",
+     "to": "300",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 23,
+     "frm": "300",
+     "to": "10800",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 25,
+     "frm": "10800",
+     "to": "1800",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 27,
+     "frm": "1800",
+     "to": "900",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 29,
+     "frm": "900",
+     "to": "300",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 32,
+     "frm": "300",
+     "to": "600",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 35,
+     "frm": "600",
+     "to": "10800",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 38,
+     "frm": "10800",
+     "to": "1800",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 42,
+     "frm": "1800",
+     "to": "7200",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 45,
+     "frm": "7200",
+     "to": "21600",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 48,
+     "frm": "21600",
+     "to": "300",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 51,
+     "frm": "300",
+     "to": "600",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 55,
+     "frm": "600",
+     "to": "21600",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "流明项目",
+   "doc_id": "A2",
+   "subject": "流明项目·同名者",
+   "slot": "配置值",
+   "kind": "A",
+   "interference": "none",
+   "is_decoy": true,
+   "target": 12,
+   "seqs": [
+    2,
+    5,
+    7,
+    10,
+    12,
+    13,
+    14,
+    15,
+    22,
+    26,
+    28,
+    33
+   ],
+   "events": [
+    {
+     "seq": 2,
+     "frm": null,
+     "to": "max_conn=64",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 5,
+     "frm": "max_conn=64",
+     "to": "retry=16",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 7,
+     "frm": "retry=16",
+     "to": "max_conn=256",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 10,
+     "frm": "max_conn=256",
+     "to": "timeout_ms=256",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 12,
+     "frm": "timeout_ms=256",
+     "to": "retry=32",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 13,
+     "frm": "retry=32",
+     "to": "batch_size=16",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 14,
+     "frm": "batch_size=16",
+     "to": "max_conn=128",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 15,
+     "frm": "max_conn=128",
+     "to": "batch_size=64",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 22,
+     "frm": "batch_size=64",
+     "to": "timeout_ms=64",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 26,
+     "frm": "timeout_ms=64",
+     "to": "timeout_ms=16",
+     "alt": "batch_size=64",
+     "state": "unresolved",
+     "reason": "依赖库升级",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 28,
+     "frm": "timeout_ms=16",
+     "to": "batch_size=128",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "resolve"
+    },
+    {
+     "seq": 33,
+     "frm": "batch_size=128",
+     "to": "retry=256",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "流明项目",
+   "doc_id": "A2",
+   "subject": "流明项目·下属",
+   "slot": "有效期秒数",
+   "kind": "A",
+   "interference": "none",
+   "is_decoy": true,
+   "target": 5,
+   "seqs": [
+    21,
+    24,
+    27,
+    30,
+    35
+   ],
+   "events": [
+    {
+     "seq": 21,
+     "frm": null,
+     "to": "21600",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 24,
+     "frm": "21600",
+     "to": "900",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 27,
+     "frm": "900",
+     "to": "21600",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 30,
+     "frm": "21600",
+     "to": "300",
+     "alt": "3600",
+     "state": "unresolved",
+     "reason": "接口兼容性调整",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 35,
+     "frm": "300",
+     "to": "900",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "resolve"
+    }
+   ]
+  },
+  {
+   "doc": "织女项目",
+   "doc_id": "A3",
+   "subject": "织女项目",
+   "slot": "依赖名",
+   "kind": "A",
+   "interference": "同值异时",
+   "is_decoy": false,
+   "target": 8,
+   "seqs": [
+    30,
+    33,
+    36,
+    39,
+    43,
+    45,
+    48,
+    52
+   ],
+   "events": [
+    {
+     "seq": 30,
+     "frm": null,
+     "to": "lmdb",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 33,
+     "frm": "lmdb",
+     "to": "sqlite",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 36,
+     "frm": "sqlite",
+     "to": "sled",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 39,
+     "frm": "sled",
+     "to": "redis",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 43,
+     "frm": "redis",
+     "to": "lmdb",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 45,
+     "frm": "lmdb",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "依赖库升级",
+     "kev": "retire"
+    },
+    {
+     "seq": 48,
+     "frm": null,
+     "to": "lmdb",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "restore"
+    },
+    {
+     "seq": 52,
+     "frm": "lmdb",
+     "to": "bbolt",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "织女项目",
+   "doc_id": "A3",
+   "subject": "织女项目",
+   "slot": "配置值",
+   "kind": "A",
+   "interference": "嵌套主体",
+   "is_decoy": false,
+   "target": 15,
+   "seqs": [
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    31,
+    34,
+    37,
+    40,
+    43,
+    46,
+    49,
+    53
+   ],
+   "events": [
+    {
+     "seq": 16,
+     "frm": null,
+     "to": "retry=64",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 18,
+     "frm": "retry=64",
+     "to": "timeout_ms=32",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 20,
+     "frm": "timeout_ms=32",
+     "to": "retry=256",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 22,
+     "frm": "retry=256",
+     "to": "batch_size=32",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 24,
+     "frm": "batch_size=32",
+     "to": "batch_size=64",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 26,
+     "frm": "batch_size=64",
+     "to": "timeout_ms=256",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 28,
+     "frm": "timeout_ms=256",
+     "to": "batch_size=128",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 31,
+     "frm": "batch_size=128",
+     "to": "retry=128",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 34,
+     "frm": "retry=128",
+     "to": "retry=32",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 37,
+     "frm": "retry=32",
+     "to": "retry=16",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 40,
+     "frm": "retry=16",
+     "to": "max_conn=32",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 43,
+     "frm": "max_conn=32",
+     "to": "max_conn=64",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 46,
+     "frm": "max_conn=64",
+     "to": "batch_size=16",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 49,
+     "frm": "batch_size=16",
+     "to": "timeout_ms=64",
+     "alt": "retry=256",
+     "state": "unresolved",
+     "reason": "线上故障复盘",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 53,
+     "frm": "timeout_ms=64",
+     "to": "timeout_ms=128",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "resolve"
+    }
+   ]
+  },
+  {
+   "doc": "织女项目",
+   "doc_id": "A3",
+   "subject": "织女项目",
+   "slot": "函数签名",
+   "kind": "A",
+   "interference": "同体异名",
+   "is_decoy": false,
+   "target": 45,
+   "seqs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    44,
+    46,
+    49,
+    53
+   ],
+   "events": [
+    {
+     "seq": 1,
+     "frm": null,
+     "to": "load(key, ttl, tag, refresh)",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 2,
+     "frm": "load(key, ttl, tag, refresh)",
+     "to": "fetch(key, ttl, refresh)",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 3,
+     "frm": "fetch(key, ttl, refresh)",
+     "to": "load(key)",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 4,
+     "frm": "load(key)",
+     "to": "sync(key, ttl, refresh)",
+     "alt": "resolve(key, ttl, tag, refresh)",
+     "state": "unresolved",
+     "reason": "接口兼容性调整",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 5,
+     "frm": "sync(key, ttl, refresh)",
+     "to": "fetch(key, ttl)",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "resolve"
+    },
+    {
+     "seq": 6,
+     "frm": "fetch(key, ttl)",
+     "to": "get(key)",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 7,
+     "frm": "get(key)",
+     "to": "load(key, ttl)",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 8,
+     "frm": "load(key, ttl)",
+     "to": "get(id, key, ttl)",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 9,
+     "frm": "get(id, key, ttl)",
+     "to": "fetch(key)",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 10,
+     "frm": "fetch(key)",
+     "to": "get(key, ttl, tag, refresh)",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 11,
+     "frm": "get(key, ttl, tag, refresh)",
+     "to": "get(key, ttl, force)",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 12,
+     "frm": "get(key, ttl, force)",
+     "to": "resolve(key, ttl, force)",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 13,
+     "frm": "resolve(key, ttl, force)",
+     "to": "resolve(id, key, ttl)",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 14,
+     "frm": "resolve(id, key, ttl)",
+     "to": "fetch(id, key, ttl)",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 15,
+     "frm": "fetch(id, key, ttl)",
+     "to": "get(key, ttl, refresh)",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 16,
+     "frm": "get(key, ttl, refresh)",
+     "to": "fetch(key, ttl, tag, refresh)",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 17,
+     "frm": "fetch(key, ttl, tag, refresh)",
+     "to": "sync(key, ttl, force)",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 18,
+     "frm": "sync(key, ttl, force)",
+     "to": "fetch(key, ttl, force)",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 19,
+     "frm": "fetch(key, ttl, force)",
+     "to": "resolve(key, ttl)",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 20,
+     "frm": "resolve(key, ttl)",
+     "to": "get(key, ttl)",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 21,
+     "frm": "get(key, ttl)",
+     "to": "sync(key, ttl, tag, refresh)",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 22,
+     "frm": "sync(key, ttl, tag, refresh)",
+     "to": "resolve(key)",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 23,
+     "frm": "resolve(key)",
+     "to": "sync(key, ttl)",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 24,
+     "frm": "sync(key, ttl)",
+     "to": "load(key, ttl, force)",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 25,
+     "frm": "load(key, ttl, force)",
+     "to": "resolve(key, ttl, tag, refresh)",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 26,
+     "frm": "resolve(key, ttl, tag, refresh)",
+     "to": "sync(id, key, ttl)",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 27,
+     "frm": "sync(id, key, ttl)",
+     "to": "resolve(key, ttl, refresh)",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 28,
+     "frm": "resolve(key, ttl, refresh)",
+     "to": "sync(key)",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 29,
+     "frm": "sync(key)",
+     "to": "load(key, ttl, refresh)",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 30,
+     "frm": "load(key, ttl, refresh)",
+     "to": "load(id, key, ttl)",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 31,
+     "frm": "load(id, key, ttl)",
+     "to": "fn_476700()",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 32,
+     "frm": "fn_476700()",
+     "to": "fn_939630()",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 33,
+     "frm": "fn_939630()",
+     "to": "fn_552067()",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 34,
+     "frm": "fn_552067()",
+     "to": "fn_681269()",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 35,
+     "frm": "fn_681269()",
+     "to": "fn_563774()",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 36,
+     "frm": "fn_563774()",
+     "to": "fn_927158()",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 37,
+     "frm": "fn_927158()",
+     "to": "fn_702817()",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 38,
+     "frm": "fn_702817()",
+     "to": "fn_840883()",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 39,
+     "frm": "fn_840883()",
+     "to": "fn_248668()",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 40,
+     "frm": "fn_248668()",
+     "to": "fn_62062()",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 41,
+     "frm": "fn_62062()",
+     "to": "fn_100751()",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 44,
+     "frm": "fn_100751()",
+     "to": "fn_99241()",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 46,
+     "frm": "fn_99241()",
+     "to": "fn_344620()",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 49,
+     "frm": "fn_344620()",
+     "to": "fn_312531()",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 53,
+     "frm": "fn_312531()",
+     "to": "fn_894291()",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "织女项目",
+   "doc_id": "A3",
+   "subject": "织女项目",
+   "slot": "有效期秒数",
+   "kind": "A",
+   "interference": "嵌套主体",
+   "is_decoy": false,
+   "target": 30,
+   "seqs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    17,
+    19,
+    21,
+    23,
+    25,
+    27,
+    29,
+    32,
+    35,
+    38,
+    41,
+    44,
+    47,
+    50,
+    54
+   ],
+   "events": [
+    {
+     "seq": 1,
+     "frm": null,
+     "to": "10800",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 2,
+     "frm": "10800",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "安全审计要求",
+     "kev": "retire"
+    },
+    {
+     "seq": 3,
+     "frm": null,
+     "to": "300",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "restore"
+    },
+    {
+     "seq": 4,
+     "frm": "300",
+     "to": "3600",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 5,
+     "frm": "3600",
+     "to": "7200",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 6,
+     "frm": "7200",
+     "to": "21600",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 7,
+     "frm": "21600",
+     "to": "300",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 8,
+     "frm": "300",
+     "to": "21600",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 9,
+     "frm": "21600",
+     "to": "7200",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 10,
+     "frm": "7200",
+     "to": "21600",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 11,
+     "frm": "21600",
+     "to": "3600",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 12,
+     "frm": "3600",
+     "to": "900",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 13,
+     "frm": "900",
+     "to": "7200",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 14,
+     "frm": "7200",
+     "to": "3600",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 15,
+     "frm": "3600",
+     "to": "900",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 17,
+     "frm": "900",
+     "to": "10800",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 19,
+     "frm": "10800",
+     "to": "21600",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 21,
+     "frm": "21600",
+     "to": "10800",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 23,
+     "frm": "10800",
+     "to": "900",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 25,
+     "frm": "900",
+     "to": "7200",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 27,
+     "frm": "7200",
+     "to": "3600",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 29,
+     "frm": "3600",
+     "to": "900",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 32,
+     "frm": "900",
+     "to": "21600",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 35,
+     "frm": "21600",
+     "to": "10800",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 38,
+     "frm": "10800",
+     "to": "1800",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 41,
+     "frm": "1800",
+     "to": "300",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 44,
+     "frm": "300",
+     "to": "900",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 47,
+     "frm": "900",
+     "to": "21600",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 50,
+     "frm": "21600",
+     "to": "300",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 54,
+     "frm": "300",
+     "to": "21600",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "织女项目",
+   "doc_id": "A3",
+   "subject": "织女项目·缓存模块",
+   "slot": "有效期秒数",
+   "kind": "A",
+   "interference": "同名异体",
+   "is_decoy": false,
+   "target": 60,
+   "seqs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60
+   ],
+   "events": [
+    {
+     "seq": 1,
+     "frm": null,
+     "to": "21600",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 2,
+     "frm": "21600",
+     "to": "3600",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 3,
+     "frm": "3600",
+     "to": "600",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 4,
+     "frm": "600",
+     "to": "900",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 5,
+     "frm": "900",
+     "to": "1800",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 6,
+     "frm": "1800",
+     "to": "21600",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 7,
+     "frm": "21600",
+     "to": "600",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 8,
+     "frm": "600",
+     "to": "1800",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 9,
+     "frm": "1800",
+     "to": "21600",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 10,
+     "frm": "21600",
+     "to": "1800",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 11,
+     "frm": "1800",
+     "to": "3600",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 12,
+     "frm": "3600",
+     "to": "900",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 13,
+     "frm": "900",
+     "to": "21600",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 14,
+     "frm": "21600",
+     "to": "10800",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 15,
+     "frm": "10800",
+     "to": "600",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 16,
+     "frm": "600",
+     "to": "10800",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 17,
+     "frm": "10800",
+     "to": "900",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 18,
+     "frm": "900",
+     "to": "21600",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 19,
+     "frm": "21600",
+     "to": "1800",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 20,
+     "frm": "1800",
+     "to": "10800",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 21,
+     "frm": "10800",
+     "to": "3600",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 22,
+     "frm": "3600",
+     "to": "300",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 23,
+     "frm": "300",
+     "to": "7200",
+     "alt": "10800",
+     "state": "unresolved",
+     "reason": "依赖库升级",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 24,
+     "frm": "7200",
+     "to": "3600",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "resolve"
+    },
+    {
+     "seq": 25,
+     "frm": "3600",
+     "to": "300",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 26,
+     "frm": "300",
+     "to": "900",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 27,
+     "frm": "900",
+     "to": "3600",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 28,
+     "frm": "3600",
+     "to": "600",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 29,
+     "frm": "600",
+     "to": "10800",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 30,
+     "frm": "10800",
+     "to": "7200",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 31,
+     "frm": "7200",
+     "to": "900",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 32,
+     "frm": "900",
+     "to": "7200",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 33,
+     "frm": "7200",
+     "to": "900",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 34,
+     "frm": "900",
+     "to": "300",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 35,
+     "frm": "300",
+     "to": "3600",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 36,
+     "frm": "3600",
+     "to": "300",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 37,
+     "frm": "300",
+     "to": "21600",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 38,
+     "frm": "21600",
+     "to": "300",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 39,
+     "frm": "300",
+     "to": "600",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 40,
+     "frm": "600",
+     "to": "21600",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 41,
+     "frm": "21600",
+     "to": "7200",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 42,
+     "frm": "7200",
+     "to": "1800",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 43,
+     "frm": "1800",
+     "to": "900",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 44,
+     "frm": "900",
+     "to": "300",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 45,
+     "frm": "300",
+     "to": "21600",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 46,
+     "frm": "21600",
+     "to": "600",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 47,
+     "frm": "600",
+     "to": "10800",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 48,
+     "frm": "10800",
+     "to": "1800",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 49,
+     "frm": "1800",
+     "to": "300",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 50,
+     "frm": "300",
+     "to": "600",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 51,
+     "frm": "600",
+     "to": "21600",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 52,
+     "frm": "21600",
+     "to": "600",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 53,
+     "frm": "600",
+     "to": "7200",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 54,
+     "frm": "7200",
+     "to": "900",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 55,
+     "frm": "900",
+     "to": "7200",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 56,
+     "frm": "7200",
+     "to": "1800",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 57,
+     "frm": "1800",
+     "to": "600",
+     "alt": null,
+     "state": "active",
+     "reason": "容量评估结论",
+     "kev": "change"
+    },
+    {
+     "seq": 58,
+     "frm": "600",
+     "to": "21600",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    },
+    {
+     "seq": 59,
+     "frm": "21600",
+     "to": "300",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 60,
+     "frm": "300",
+     "to": "10800",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "织女项目",
+   "doc_id": "A3",
+   "subject": "织女项目·下属",
+   "slot": "配置值",
+   "kind": "A",
+   "interference": "none",
+   "is_decoy": true,
+   "target": 7,
+   "seqs": [
+    21,
+    33,
+    39,
+    43,
+    47,
+    51,
+    54
+   ],
+   "events": [
+    {
+     "seq": 21,
+     "frm": null,
+     "to": "batch_size=256",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 33,
+     "frm": "batch_size=256",
+     "to": "timeout_ms=16",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 39,
+     "frm": "timeout_ms=16",
+     "to": "retry=128",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 43,
+     "frm": "retry=128",
+     "to": "batch_size=128",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 47,
+     "frm": "batch_size=128",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "依赖库升级",
+     "kev": "retire"
+    },
+    {
+     "seq": 51,
+     "frm": null,
+     "to": "retry=32",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "restore"
+    },
+    {
+     "seq": 54,
+     "frm": "retry=32",
+     "to": "batch_size=64",
+     "alt": null,
+     "state": "active",
+     "reason": "压测暴露并发缺陷",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "织女项目",
+   "doc_id": "A3",
+   "subject": "织女项目·下属",
+   "slot": "有效期秒数",
+   "kind": "A",
+   "interference": "none",
+   "is_decoy": true,
+   "target": 12,
+   "seqs": [
+    1,
+    2,
+    3,
+    5,
+    6,
+    23,
+    35,
+    42,
+    44,
+    47,
+    51,
+    55
+   ],
+   "events": [
+    {
+     "seq": 1,
+     "frm": null,
+     "to": "600",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 2,
+     "frm": "600",
+     "to": "7200",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 3,
+     "frm": "7200",
+     "to": "600",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 5,
+     "frm": "600",
+     "to": "300",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 6,
+     "frm": "300",
+     "to": "600",
+     "alt": "3600",
+     "state": "unresolved",
+     "reason": "接口兼容性调整",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 23,
+     "frm": "600",
+     "to": "10800",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "resolve"
+    },
+    {
+     "seq": 35,
+     "frm": "10800",
+     "to": "600",
+     "alt": null,
+     "state": "active",
+     "reason": "线上故障复盘",
+     "kev": "change"
+    },
+    {
+     "seq": 42,
+     "frm": "600",
+     "to": "300",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 44,
+     "frm": "300",
+     "to": "600",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 47,
+     "frm": "600",
+     "to": "1800",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 51,
+     "frm": "1800",
+     "to": "600",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 55,
+     "frm": "600",
+     "to": "7200",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "织女项目",
+   "doc_id": "A3",
+   "subject": "织女项目·缓存模块·同名者",
+   "slot": "有效期秒数",
+   "kind": "A",
+   "interference": "none",
+   "is_decoy": true,
+   "target": 12,
+   "seqs": [
+    2,
+    3,
+    4,
+    5,
+    10,
+    25,
+    36,
+    42,
+    45,
+    48,
+    52,
+    56
+   ],
+   "events": [
+    {
+     "seq": 2,
+     "frm": null,
+     "to": "10800",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 3,
+     "frm": "10800",
+     "to": "3600",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 4,
+     "frm": "3600",
+     "to": "10800",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "change"
+    },
+    {
+     "seq": 5,
+     "frm": "10800",
+     "to": "3600",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 10,
+     "frm": "3600",
+     "to": "10800",
+     "alt": null,
+     "state": "active",
+     "reason": "依赖库升级",
+     "kev": "change"
+    },
+    {
+     "seq": 25,
+     "frm": "10800",
+     "to": "900",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 36,
+     "frm": "900",
+     "to": "3600",
+     "alt": null,
+     "state": "active",
+     "reason": "接口兼容性调整",
+     "kev": "change"
+    },
+    {
+     "seq": 42,
+     "frm": "3600",
+     "to": "10800",
+     "alt": "1800",
+     "state": "unresolved",
+     "reason": "代码评审意见",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 45,
+     "frm": "10800",
+     "to": "3600",
+     "alt": null,
+     "state": "active",
+     "reason": "安全审计要求",
+     "kev": "resolve"
+    },
+    {
+     "seq": 48,
+     "frm": "3600",
+     "to": "300",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    },
+    {
+     "seq": 52,
+     "frm": "300",
+     "to": "900",
+     "alt": null,
+     "state": "active",
+     "reason": "灰度观测数据",
+     "kev": "change"
+    },
+    {
+     "seq": 56,
+     "frm": "900",
+     "to": "10800",
+     "alt": null,
+     "state": "active",
+     "reason": "代码评审意见",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "青石镇",
+   "doc_id": "B1",
+   "subject": "阿禾",
+   "slot": "信任对象",
+   "kind": "B",
+   "interference": "同名异体",
+   "is_decoy": false,
+   "target": 8,
+   "seqs": [
+    2,
+    4,
+    5,
+    7,
+    12,
+    16,
+    20,
+    25
+   ],
+   "events": [
+    {
+     "seq": 2,
+     "frm": null,
+     "to": "小满",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 4,
+     "frm": "小满",
+     "to": "无人",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "change"
+    },
+    {
+     "seq": 5,
+     "frm": "无人",
+     "to": "外人",
+     "alt": null,
+     "state": "active",
+     "reason": "一次救助",
+     "kev": "change"
+    },
+    {
+     "seq": 7,
+     "frm": "外人",
+     "to": "老陈",
+     "alt": null,
+     "state": "active",
+     "reason": "一次救助",
+     "kev": "change"
+    },
+    {
+     "seq": 12,
+     "frm": "老陈",
+     "to": "小满",
+     "alt": "周舟",
+     "state": "unresolved",
+     "reason": "私下承诺",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 16,
+     "frm": "小满",
+     "to": "无人",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "resolve"
+    },
+    {
+     "seq": 20,
+     "frm": "无人",
+     "to": "小满",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 25,
+     "frm": "小满",
+     "to": "无人",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "青石镇",
+   "doc_id": "B1",
+   "subject": "阿禾",
+   "slot": "位置",
+   "kind": "B",
+   "interference": "同值异时",
+   "is_decoy": false,
+   "target": 6,
+   "seqs": [
+    6,
+    8,
+    12,
+    16,
+    20,
+    25
+   ],
+   "events": [
+    {
+     "seq": 6,
+     "frm": null,
+     "to": "后山",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 8,
+     "frm": "后山",
+     "to": "粮仓",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "change"
+    },
+    {
+     "seq": 12,
+     "frm": "粮仓",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "一场误会",
+     "kev": "retire"
+    },
+    {
+     "seq": 16,
+     "frm": null,
+     "to": "祠堂",
+     "alt": null,
+     "state": "active",
+     "reason": "利益冲突",
+     "kev": "restore"
+    },
+    {
+     "seq": 20,
+     "frm": "祠堂",
+     "to": "渡口",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    },
+    {
+     "seq": 25,
+     "frm": "渡口",
+     "to": "祠堂",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "青石镇",
+   "doc_id": "B1",
+   "subject": "阿禾",
+   "slot": "立场",
+   "kind": "B",
+   "interference": "同体异名",
+   "is_decoy": false,
+   "target": 6,
+   "seqs": [
+    6,
+    8,
+    12,
+    16,
+    20,
+    25
+   ],
+   "events": [
+    {
+     "seq": 6,
+     "frm": null,
+     "to": "中立",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 8,
+     "frm": "中立",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "私下承诺",
+     "kev": "retire"
+    },
+    {
+     "seq": 12,
+     "frm": null,
+     "to": "支持",
+     "alt": null,
+     "state": "active",
+     "reason": "利益冲突",
+     "kev": "restore"
+    },
+    {
+     "seq": 16,
+     "frm": "支持",
+     "to": "观望",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "change"
+    },
+    {
+     "seq": 20,
+     "frm": "观望",
+     "to": "暧昧",
+     "alt": null,
+     "state": "active",
+     "reason": "一桩旧账",
+     "kev": "change"
+    },
+    {
+     "seq": 25,
+     "frm": "暧昧",
+     "to": "观望",
+     "alt": null,
+     "state": "active",
+     "reason": "一桩旧账",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "青石镇",
+   "doc_id": "B1",
+   "subject": "阿禾",
+   "slot": "情绪",
+   "kind": "B",
+   "interference": "同体异名",
+   "is_decoy": false,
+   "target": 5,
+   "seqs": [
+    8,
+    12,
+    16,
+    21,
+    25
+   ],
+   "events": [
+    {
+     "seq": 8,
+     "frm": null,
+     "to": "低落",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 12,
+     "frm": "低落",
+     "to": "平静",
+     "alt": null,
+     "state": "active",
+     "reason": "一次救助",
+     "kev": "change"
+    },
+    {
+     "seq": 16,
+     "frm": "平静",
+     "to": "释然",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "change"
+    },
+    {
+     "seq": 21,
+     "frm": "释然",
+     "to": "焦虑",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 25,
+     "frm": "焦虑",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "利益冲突",
+     "kev": "retire"
+    }
+   ]
+  },
+  {
+   "doc": "青石镇",
+   "doc_id": "B1",
+   "subject": "老陈",
+   "slot": "信任对象",
+   "kind": "B",
+   "interference": "同名异体",
+   "is_decoy": false,
+   "target": 7,
+   "seqs": [
+    4,
+    6,
+    8,
+    12,
+    16,
+    21,
+    25
+   ],
+   "events": [
+    {
+     "seq": 4,
+     "frm": null,
+     "to": "外人",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 6,
+     "frm": "外人",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "旧事重提",
+     "kev": "retire"
+    },
+    {
+     "seq": 8,
+     "frm": null,
+     "to": "无人",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "restore"
+    },
+    {
+     "seq": 12,
+     "frm": "无人",
+     "to": "小满",
+     "alt": null,
+     "state": "active",
+     "reason": "一次救助",
+     "kev": "change"
+    },
+    {
+     "seq": 16,
+     "frm": "小满",
+     "to": "阿禾",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "change"
+    },
+    {
+     "seq": 21,
+     "frm": "阿禾",
+     "to": "周舟",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 25,
+     "frm": "周舟",
+     "to": "阿禾",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "青石镇",
+   "doc_id": "B1",
+   "subject": "老陈",
+   "slot": "位置",
+   "kind": "B",
+   "interference": "none",
+   "is_decoy": false,
+   "target": 10,
+   "seqs": [
+    1,
+    2,
+    3,
+    5,
+    7,
+    9,
+    13,
+    17,
+    21,
+    26
+   ],
+   "events": [
+    {
+     "seq": 1,
+     "frm": null,
+     "to": "祠堂",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 2,
+     "frm": "祠堂",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "一桩旧账",
+     "kev": "retire"
+    },
+    {
+     "seq": 3,
+     "frm": null,
+     "to": "祠堂",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "restore"
+    },
+    {
+     "seq": 5,
+     "frm": "祠堂",
+     "to": "渡口",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    },
+    {
+     "seq": 7,
+     "frm": "渡口",
+     "to": "祠堂",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "change"
+    },
+    {
+     "seq": 9,
+     "frm": "祠堂",
+     "to": "集市",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "change"
+    },
+    {
+     "seq": 13,
+     "frm": "集市",
+     "to": "磨坊",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    },
+    {
+     "seq": 17,
+     "frm": "磨坊",
+     "to": "码头",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    },
+    {
+     "seq": 21,
+     "frm": "码头",
+     "to": "祠堂",
+     "alt": null,
+     "state": "active",
+     "reason": "利益冲突",
+     "kev": "change"
+    },
+    {
+     "seq": 26,
+     "frm": "祠堂",
+     "to": "磨坊",
+     "alt": null,
+     "state": "active",
+     "reason": "一次救助",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "青石镇",
+   "doc_id": "B1",
+   "subject": "老陈",
+   "slot": "立场",
+   "kind": "B",
+   "interference": "同体异名",
+   "is_decoy": false,
+   "target": 11,
+   "seqs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    7,
+    9,
+    13,
+    17,
+    21,
+    26
+   ],
+   "events": [
+    {
+     "seq": 1,
+     "frm": null,
+     "to": "中立",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 2,
+     "frm": "中立",
+     "to": "反对",
+     "alt": null,
+     "state": "active",
+     "reason": "利益冲突",
+     "kev": "change"
+    },
+    {
+     "seq": 3,
+     "frm": "反对",
+     "to": "中立",
+     "alt": null,
+     "state": "active",
+     "reason": "一次救助",
+     "kev": "change"
+    },
+    {
+     "seq": 4,
+     "frm": "中立",
+     "to": "支持",
+     "alt": null,
+     "state": "active",
+     "reason": "一桩旧账",
+     "kev": "change"
+    },
+    {
+     "seq": 5,
+     "frm": "支持",
+     "to": "沉默",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 7,
+     "frm": "沉默",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "旧事重提",
+     "kev": "retire"
+    },
+    {
+     "seq": 9,
+     "frm": null,
+     "to": "暧昧",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "restore"
+    },
+    {
+     "seq": 13,
+     "frm": "暧昧",
+     "to": "沉默",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 17,
+     "frm": "沉默",
+     "to": "中立",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 21,
+     "frm": "中立",
+     "to": "沉默",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "change"
+    },
+    {
+     "seq": 26,
+     "frm": "沉默",
+     "to": "支持",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "青石镇",
+   "doc_id": "B1",
+   "subject": "老陈",
+   "slot": "情绪",
+   "kind": "B",
+   "interference": "同体异名",
+   "is_decoy": false,
+   "target": 5,
+   "seqs": [
+    9,
+    13,
+    17,
+    22,
+    26
+   ],
+   "events": [
+    {
+     "seq": 9,
+     "frm": null,
+     "to": "愤怒",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 13,
+     "frm": "愤怒",
+     "to": "戒备",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "change"
+    },
+    {
+     "seq": 17,
+     "frm": "戒备",
+     "to": "欣慰",
+     "alt": null,
+     "state": "active",
+     "reason": "利益冲突",
+     "kev": "change"
+    },
+    {
+     "seq": 22,
+     "frm": "欣慰",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "私下承诺",
+     "kev": "retire"
+    },
+    {
+     "seq": 26,
+     "frm": null,
+     "to": "犹豫",
+     "alt": null,
+     "state": "active",
+     "reason": "利益冲突",
+     "kev": "restore"
+    }
+   ]
+  },
+  {
+   "doc": "青石镇",
+   "doc_id": "B1",
+   "subject": "小满",
+   "slot": "信任对象",
+   "kind": "B",
+   "interference": "同体异名",
+   "is_decoy": false,
+   "target": 5,
+   "seqs": [
+    9,
+    13,
+    17,
+    22,
+    27
+   ],
+   "events": [
+    {
+     "seq": 9,
+     "frm": null,
+     "to": "老陈",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 13,
+     "frm": "老陈",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "一桩旧账",
+     "kev": "retire"
+    },
+    {
+     "seq": 17,
+     "frm": null,
+     "to": "周舟",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "restore"
+    },
+    {
+     "seq": 22,
+     "frm": "周舟",
+     "to": "老陈",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "change"
+    },
+    {
+     "seq": 27,
+     "frm": "老陈",
+     "to": "外人",
+     "alt": null,
+     "state": "active",
+     "reason": "利益冲突",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "青石镇",
+   "doc_id": "B1",
+   "subject": "小满",
+   "slot": "位置",
+   "kind": "B",
+   "interference": "none",
+   "is_decoy": false,
+   "target": 14,
+   "seqs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    13,
+    18,
+    22,
+    27
+   ],
+   "events": [
+    {
+     "seq": 1,
+     "frm": null,
+     "to": "驿站",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 2,
+     "frm": "驿站",
+     "to": "磨坊",
+     "alt": "驿站",
+     "state": "unresolved",
+     "reason": "利益冲突",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 3,
+     "frm": "磨坊",
+     "to": "祠堂",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "resolve"
+    },
+    {
+     "seq": 4,
+     "frm": "祠堂",
+     "to": "驿站",
+     "alt": null,
+     "state": "active",
+     "reason": "利益冲突",
+     "kev": "change"
+    },
+    {
+     "seq": 5,
+     "frm": "驿站",
+     "to": "码头",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 6,
+     "frm": "码头",
+     "to": "磨坊",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "change"
+    },
+    {
+     "seq": 7,
+     "frm": "磨坊",
+     "to": "集市",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 8,
+     "frm": "集市",
+     "to": "渡口",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "change"
+    },
+    {
+     "seq": 9,
+     "frm": "渡口",
+     "to": "粮仓",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 10,
+     "frm": "粮仓",
+     "to": "祠堂",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    },
+    {
+     "seq": 13,
+     "frm": "祠堂",
+     "to": "后山",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "change"
+    },
+    {
+     "seq": 18,
+     "frm": "后山",
+     "to": "磨坊",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "change"
+    },
+    {
+     "seq": 22,
+     "frm": "磨坊",
+     "to": "驿站",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "change"
+    },
+    {
+     "seq": 27,
+     "frm": "驿站",
+     "to": "后山",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "青石镇",
+   "doc_id": "B1",
+   "subject": "小满",
+   "slot": "立场",
+   "kind": "B",
+   "interference": "none",
+   "is_decoy": false,
+   "target": 5,
+   "seqs": [
+    10,
+    14,
+    18,
+    22,
+    27
+   ],
+   "events": [
+    {
+     "seq": 10,
+     "frm": null,
+     "to": "观望",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 14,
+     "frm": "观望",
+     "to": "反对",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    },
+    {
+     "seq": 18,
+     "frm": "反对",
+     "to": "观望",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 22,
+     "frm": "观望",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "旧事重提",
+     "kev": "retire"
+    },
+    {
+     "seq": 27,
+     "frm": null,
+     "to": "暧昧",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "restore"
+    }
+   ]
+  },
+  {
+   "doc": "青石镇",
+   "doc_id": "B1",
+   "subject": "小满",
+   "slot": "情绪",
+   "kind": "B",
+   "interference": "同名异体",
+   "is_decoy": false,
+   "target": 5,
+   "seqs": [
+    10,
+    14,
+    18,
+    23,
+    28
+   ],
+   "events": [
+    {
+     "seq": 10,
+     "frm": null,
+     "to": "犹豫",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 14,
+     "frm": "犹豫",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "旧事重提",
+     "kev": "retire"
+    },
+    {
+     "seq": 18,
+     "frm": null,
+     "to": "戒备",
+     "alt": null,
+     "state": "active",
+     "reason": "一桩旧账",
+     "kev": "restore"
+    },
+    {
+     "seq": 23,
+     "frm": "戒备",
+     "to": "释然",
+     "alt": null,
+     "state": "active",
+     "reason": "利益冲突",
+     "kev": "change"
+    },
+    {
+     "seq": 28,
+     "frm": "释然",
+     "to": "戒备",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "青石镇",
+   "doc_id": "B1",
+   "subject": "周舟",
+   "slot": "信任对象",
+   "kind": "B",
+   "interference": "同名异体",
+   "is_decoy": false,
+   "target": 5,
+   "seqs": [
+    10,
+    14,
+    18,
+    23,
+    28
+   ],
+   "events": [
+    {
+     "seq": 10,
+     "frm": null,
+     "to": "小满",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 14,
+     "frm": "小满",
+     "to": "无人",
+     "alt": null,
+     "state": "active",
+     "reason": "一次救助",
+     "kev": "change"
+    },
+    {
+     "seq": 18,
+     "frm": "无人",
+     "to": "阿禾",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    },
+    {
+     "seq": 23,
+     "frm": "阿禾",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "旧事重提",
+     "kev": "retire"
+    },
+    {
+     "seq": 28,
+     "frm": null,
+     "to": "无人",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "restore"
+    }
+   ]
+  },
+  {
+   "doc": "青石镇",
+   "doc_id": "B1",
+   "subject": "周舟",
+   "slot": "位置",
+   "kind": "B",
+   "interference": "同体异名",
+   "is_decoy": false,
+   "target": 12,
+   "seqs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    10,
+    14,
+    19,
+    23,
+    28
+   ],
+   "events": [
+    {
+     "seq": 1,
+     "frm": null,
+     "to": "祠堂",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 2,
+     "frm": "祠堂",
+     "to": "后山",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 3,
+     "frm": "后山",
+     "to": "祠堂",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "change"
+    },
+    {
+     "seq": 4,
+     "frm": "祠堂",
+     "to": "驿站",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    },
+    {
+     "seq": 5,
+     "frm": "驿站",
+     "to": "码头",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "change"
+    },
+    {
+     "seq": 6,
+     "frm": "码头",
+     "to": "粮仓",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "change"
+    },
+    {
+     "seq": 7,
+     "frm": "粮仓",
+     "to": "驿站",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "change"
+    },
+    {
+     "seq": 10,
+     "frm": "驿站",
+     "to": "磨坊",
+     "alt": null,
+     "state": "active",
+     "reason": "一桩旧账",
+     "kev": "change"
+    },
+    {
+     "seq": 14,
+     "frm": "磨坊",
+     "to": "码头",
+     "alt": null,
+     "state": "active",
+     "reason": "一桩旧账",
+     "kev": "change"
+    },
+    {
+     "seq": 19,
+     "frm": "码头",
+     "to": "驿站",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "change"
+    },
+    {
+     "seq": 23,
+     "frm": "驿站",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "一场误会",
+     "kev": "retire"
+    },
+    {
+     "seq": 28,
+     "frm": null,
+     "to": "祠堂",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "restore"
+    }
+   ]
+  },
+  {
+   "doc": "青石镇",
+   "doc_id": "B1",
+   "subject": "周舟",
+   "slot": "立场",
+   "kind": "B",
+   "interference": "none",
+   "is_decoy": false,
+   "target": 9,
+   "seqs": [
+    1,
+    3,
+    5,
+    7,
+    10,
+    14,
+    19,
+    23,
+    29
+   ],
+   "events": [
+    {
+     "seq": 1,
+     "frm": null,
+     "to": "中立",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 3,
+     "frm": "中立",
+     "to": "沉默",
+     "alt": null,
+     "state": "active",
+     "reason": "利益冲突",
+     "kev": "change"
+    },
+    {
+     "seq": 5,
+     "frm": "沉默",
+     "to": "暧昧",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    },
+    {
+     "seq": 7,
+     "frm": "暧昧",
+     "to": "支持",
+     "alt": null,
+     "state": "active",
+     "reason": "利益冲突",
+     "kev": "change"
+    },
+    {
+     "seq": 10,
+     "frm": "支持",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "旧事重提",
+     "kev": "retire"
+    },
+    {
+     "seq": 14,
+     "frm": null,
+     "to": "反对",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "restore"
+    },
+    {
+     "seq": 19,
+     "frm": "反对",
+     "to": "支持",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    },
+    {
+     "seq": 23,
+     "frm": "支持",
+     "to": "观望",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "change"
+    },
+    {
+     "seq": 29,
+     "frm": "观望",
+     "to": "反对",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "青石镇",
+   "doc_id": "B1",
+   "subject": "周舟",
+   "slot": "情绪",
+   "kind": "B",
+   "interference": "none",
+   "is_decoy": false,
+   "target": 5,
+   "seqs": [
+    11,
+    14,
+    19,
+    23,
+    29
+   ],
+   "events": [
+    {
+     "seq": 11,
+     "frm": null,
+     "to": "欣慰",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 14,
+     "frm": "欣慰",
+     "to": "释然",
+     "alt": null,
+     "state": "active",
+     "reason": "一桩旧账",
+     "kev": "change"
+    },
+    {
+     "seq": 19,
+     "frm": "释然",
+     "to": "平静",
+     "alt": null,
+     "state": "active",
+     "reason": "一次救助",
+     "kev": "change"
+    },
+    {
+     "seq": 23,
+     "frm": "平静",
+     "to": "愤怒",
+     "alt": null,
+     "state": "active",
+     "reason": "一桩旧账",
+     "kev": "change"
+    },
+    {
+     "seq": 29,
+     "frm": "愤怒",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "一次救助",
+     "kev": "retire"
+    }
+   ]
+  },
+  {
+   "doc": "青石镇",
+   "doc_id": "B1",
+   "subject": "阿禾·同名者",
+   "slot": "信任对象",
+   "kind": "B",
+   "interference": "none",
+   "is_decoy": true,
+   "target": 5,
+   "seqs": [
+    11,
+    15,
+    19,
+    24,
+    29
+   ],
+   "events": [
+    {
+     "seq": 11,
+     "frm": null,
+     "to": "周舟",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 15,
+     "frm": "周舟",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "一场误会",
+     "kev": "retire"
+    },
+    {
+     "seq": 19,
+     "frm": null,
+     "to": "周舟",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "restore"
+    },
+    {
+     "seq": 24,
+     "frm": "周舟",
+     "to": "阿禾",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    },
+    {
+     "seq": 29,
+     "frm": "阿禾",
+     "to": "周舟",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "青石镇",
+   "doc_id": "B1",
+   "subject": "老陈·同名者",
+   "slot": "信任对象",
+   "kind": "B",
+   "interference": "none",
+   "is_decoy": true,
+   "target": 5,
+   "seqs": [
+    11,
+    15,
+    19,
+    24,
+    29
+   ],
+   "events": [
+    {
+     "seq": 11,
+     "frm": null,
+     "to": "老陈",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 15,
+     "frm": "老陈",
+     "to": "周舟",
+     "alt": null,
+     "state": "active",
+     "reason": "利益冲突",
+     "kev": "change"
+    },
+    {
+     "seq": 19,
+     "frm": "周舟",
+     "to": "老陈",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "change"
+    },
+    {
+     "seq": 24,
+     "frm": "老陈",
+     "to": "无人",
+     "alt": null,
+     "state": "active",
+     "reason": "一次救助",
+     "kev": "change"
+    },
+    {
+     "seq": 29,
+     "frm": "无人",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "旧事重提",
+     "kev": "retire"
+    }
+   ]
+  },
+  {
+   "doc": "青石镇",
+   "doc_id": "B1",
+   "subject": "小满·同名者",
+   "slot": "情绪",
+   "kind": "B",
+   "interference": "none",
+   "is_decoy": true,
+   "target": 5,
+   "seqs": [
+    11,
+    15,
+    20,
+    24,
+    30
+   ],
+   "events": [
+    {
+     "seq": 11,
+     "frm": null,
+     "to": "愤怒",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 15,
+     "frm": "愤怒",
+     "to": "欣慰",
+     "alt": null,
+     "state": "active",
+     "reason": "利益冲突",
+     "kev": "change"
+    },
+    {
+     "seq": 20,
+     "frm": "欣慰",
+     "to": "平静",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "change"
+    },
+    {
+     "seq": 24,
+     "frm": "平静",
+     "to": "欣慰",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 30,
+     "frm": "欣慰",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "私下承诺",
+     "kev": "retire"
+    }
+   ]
+  },
+  {
+   "doc": "青石镇",
+   "doc_id": "B1",
+   "subject": "周舟·同名者",
+   "slot": "信任对象",
+   "kind": "B",
+   "interference": "none",
+   "is_decoy": true,
+   "target": 5,
+   "seqs": [
+    11,
+    15,
+    20,
+    24,
+    30
+   ],
+   "events": [
+    {
+     "seq": 11,
+     "frm": null,
+     "to": "外人",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 15,
+     "frm": "外人",
+     "to": "老陈",
+     "alt": null,
+     "state": "active",
+     "reason": "一桩旧账",
+     "kev": "change"
+    },
+    {
+     "seq": 20,
+     "frm": "老陈",
+     "to": "周舟",
+     "alt": "外人",
+     "state": "unresolved",
+     "reason": "一桩旧账",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 24,
+     "frm": "周舟",
+     "to": "外人",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "resolve"
+    },
+    {
+     "seq": 30,
+     "frm": "外人",
+     "to": "老陈",
+     "alt": null,
+     "state": "active",
+     "reason": "一次救助",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "雾港",
+   "doc_id": "B2",
+   "subject": "林昭",
+   "slot": "信任对象",
+   "kind": "B",
+   "interference": "同名异体",
+   "is_decoy": false,
+   "target": 10,
+   "seqs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    7,
+    12,
+    16,
+    20,
+    25
+   ],
+   "events": [
+    {
+     "seq": 1,
+     "frm": null,
+     "to": "阿桑",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 2,
+     "frm": "阿桑",
+     "to": "外人",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "change"
+    },
+    {
+     "seq": 3,
+     "frm": "外人",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "共同的外敌",
+     "kev": "retire"
+    },
+    {
+     "seq": 4,
+     "frm": null,
+     "to": "阿桑",
+     "alt": null,
+     "state": "active",
+     "reason": "一桩旧账",
+     "kev": "restore"
+    },
+    {
+     "seq": 5,
+     "frm": "阿桑",
+     "to": "外人",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "change"
+    },
+    {
+     "seq": 7,
+     "frm": "外人",
+     "to": "阿桑",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 12,
+     "frm": "阿桑",
+     "to": "杜衡",
+     "alt": null,
+     "state": "active",
+     "reason": "一次救助",
+     "kev": "change"
+    },
+    {
+     "seq": 16,
+     "frm": "杜衡",
+     "to": "外人",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    },
+    {
+     "seq": 20,
+     "frm": "外人",
+     "to": "阿桑",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "change"
+    },
+    {
+     "seq": 25,
+     "frm": "阿桑",
+     "to": "无人",
+     "alt": null,
+     "state": "active",
+     "reason": "一桩旧账",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "雾港",
+   "doc_id": "B2",
+   "subject": "林昭",
+   "slot": "位置",
+   "kind": "B",
+   "interference": "同名异体",
+   "is_decoy": false,
+   "target": 8,
+   "seqs": [
+    1,
+    2,
+    4,
+    7,
+    12,
+    16,
+    21,
+    25
+   ],
+   "events": [
+    {
+     "seq": 1,
+     "frm": null,
+     "to": "祠堂",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 2,
+     "frm": "祠堂",
+     "to": "驿站",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 4,
+     "frm": "驿站",
+     "to": "祠堂",
+     "alt": null,
+     "state": "active",
+     "reason": "利益冲突",
+     "kev": "change"
+    },
+    {
+     "seq": 7,
+     "frm": "祠堂",
+     "to": "磨坊",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "change"
+    },
+    {
+     "seq": 12,
+     "frm": "磨坊",
+     "to": "祠堂",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "change"
+    },
+    {
+     "seq": 16,
+     "frm": "祠堂",
+     "to": "驿站",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "change"
+    },
+    {
+     "seq": 21,
+     "frm": "驿站",
+     "to": "祠堂",
+     "alt": null,
+     "state": "active",
+     "reason": "一次救助",
+     "kev": "change"
+    },
+    {
+     "seq": 25,
+     "frm": "祠堂",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "一场误会",
+     "kev": "retire"
+    }
+   ]
+  },
+  {
+   "doc": "雾港",
+   "doc_id": "B2",
+   "subject": "林昭",
+   "slot": "立场",
+   "kind": "B",
+   "interference": "none",
+   "is_decoy": false,
+   "target": 11,
+   "seqs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    12,
+    16,
+    21,
+    25
+   ],
+   "events": [
+    {
+     "seq": 1,
+     "frm": null,
+     "to": "暧昧",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 2,
+     "frm": "暧昧",
+     "to": "反对",
+     "alt": null,
+     "state": "active",
+     "reason": "一次救助",
+     "kev": "change"
+    },
+    {
+     "seq": 3,
+     "frm": "反对",
+     "to": "暧昧",
+     "alt": null,
+     "state": "active",
+     "reason": "利益冲突",
+     "kev": "change"
+    },
+    {
+     "seq": 4,
+     "frm": "暧昧",
+     "to": "反对",
+     "alt": null,
+     "state": "active",
+     "reason": "利益冲突",
+     "kev": "change"
+    },
+    {
+     "seq": 5,
+     "frm": "反对",
+     "to": "沉默",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 6,
+     "frm": "沉默",
+     "to": "中立",
+     "alt": null,
+     "state": "active",
+     "reason": "一桩旧账",
+     "kev": "change"
+    },
+    {
+     "seq": 7,
+     "frm": "中立",
+     "to": "暧昧",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "change"
+    },
+    {
+     "seq": 12,
+     "frm": "暧昧",
+     "to": "中立",
+     "alt": "暧昧",
+     "state": "unresolved",
+     "reason": "旧事重提",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 16,
+     "frm": "中立",
+     "to": "观望",
+     "alt": null,
+     "state": "active",
+     "reason": "一桩旧账",
+     "kev": "resolve"
+    },
+    {
+     "seq": 21,
+     "frm": "观望",
+     "to": "中立",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 25,
+     "frm": "中立",
+     "to": "支持",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "雾港",
+   "doc_id": "B2",
+   "subject": "林昭",
+   "slot": "情绪",
+   "kind": "B",
+   "interference": "none",
+   "is_decoy": false,
+   "target": 5,
+   "seqs": [
+    7,
+    12,
+    17,
+    21,
+    26
+   ],
+   "events": [
+    {
+     "seq": 7,
+     "frm": null,
+     "to": "犹豫",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 12,
+     "frm": "犹豫",
+     "to": "戒备",
+     "alt": null,
+     "state": "active",
+     "reason": "一桩旧账",
+     "kev": "change"
+    },
+    {
+     "seq": 17,
+     "frm": "戒备",
+     "to": "欣慰",
+     "alt": null,
+     "state": "active",
+     "reason": "利益冲突",
+     "kev": "change"
+    },
+    {
+     "seq": 21,
+     "frm": "欣慰",
+     "to": "愤怒",
+     "alt": "欣慰",
+     "state": "unresolved",
+     "reason": "一桩旧账",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 26,
+     "frm": "愤怒",
+     "to": "犹豫",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "resolve"
+    }
+   ]
+  },
+  {
+   "doc": "雾港",
+   "doc_id": "B2",
+   "subject": "沈砚",
+   "slot": "信任对象",
+   "kind": "B",
+   "interference": "同名异体",
+   "is_decoy": false,
+   "target": 6,
+   "seqs": [
+    4,
+    8,
+    12,
+    17,
+    21,
+    26
+   ],
+   "events": [
+    {
+     "seq": 4,
+     "frm": null,
+     "to": "阿桑",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 8,
+     "frm": "阿桑",
+     "to": "林昭",
+     "alt": "杜衡",
+     "state": "unresolved",
+     "reason": "一桩旧账",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 12,
+     "frm": "林昭",
+     "to": "无人",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "resolve"
+    },
+    {
+     "seq": 17,
+     "frm": "无人",
+     "to": "阿桑",
+     "alt": null,
+     "state": "active",
+     "reason": "一桩旧账",
+     "kev": "change"
+    },
+    {
+     "seq": 21,
+     "frm": "阿桑",
+     "to": "无人",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 26,
+     "frm": "无人",
+     "to": "阿桑",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "雾港",
+   "doc_id": "B2",
+   "subject": "沈砚",
+   "slot": "位置",
+   "kind": "B",
+   "interference": "同名异体",
+   "is_decoy": false,
+   "target": 5,
+   "seqs": [
+    8,
+    13,
+    17,
+    21,
+    26
+   ],
+   "events": [
+    {
+     "seq": 8,
+     "frm": null,
+     "to": "粮仓",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 13,
+     "frm": "粮仓",
+     "to": "磨坊",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 17,
+     "frm": "磨坊",
+     "to": "后山",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "change"
+    },
+    {
+     "seq": 21,
+     "frm": "后山",
+     "to": "粮仓",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    },
+    {
+     "seq": 26,
+     "frm": "粮仓",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "利益冲突",
+     "kev": "retire"
+    }
+   ]
+  },
+  {
+   "doc": "雾港",
+   "doc_id": "B2",
+   "subject": "沈砚",
+   "slot": "立场",
+   "kind": "B",
+   "interference": "同值异时",
+   "is_decoy": false,
+   "target": 12,
+   "seqs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    13,
+    17,
+    22,
+    26
+   ],
+   "events": [
+    {
+     "seq": 1,
+     "frm": null,
+     "to": "沉默",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 2,
+     "frm": "沉默",
+     "to": "暧昧",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "change"
+    },
+    {
+     "seq": 3,
+     "frm": "暧昧",
+     "to": "支持",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "change"
+    },
+    {
+     "seq": 4,
+     "frm": "支持",
+     "to": "反对",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "change"
+    },
+    {
+     "seq": 5,
+     "frm": "反对",
+     "to": "沉默",
+     "alt": null,
+     "state": "active",
+     "reason": "利益冲突",
+     "kev": "change"
+    },
+    {
+     "seq": 6,
+     "frm": "沉默",
+     "to": "反对",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 7,
+     "frm": "反对",
+     "to": "沉默",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "change"
+    },
+    {
+     "seq": 8,
+     "frm": "沉默",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "旧事重提",
+     "kev": "retire"
+    },
+    {
+     "seq": 13,
+     "frm": null,
+     "to": "沉默",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "restore"
+    },
+    {
+     "seq": 17,
+     "frm": "沉默",
+     "to": "暧昧",
+     "alt": null,
+     "state": "active",
+     "reason": "利益冲突",
+     "kev": "change"
+    },
+    {
+     "seq": 22,
+     "frm": "暧昧",
+     "to": "中立",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "change"
+    },
+    {
+     "seq": 26,
+     "frm": "中立",
+     "to": "观望",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "雾港",
+   "doc_id": "B2",
+   "subject": "沈砚",
+   "slot": "情绪",
+   "kind": "B",
+   "interference": "同名异体",
+   "is_decoy": false,
+   "target": 5,
+   "seqs": [
+    8,
+    13,
+    17,
+    22,
+    27
+   ],
+   "events": [
+    {
+     "seq": 8,
+     "frm": null,
+     "to": "戒备",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 13,
+     "frm": "戒备",
+     "to": "平静",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 17,
+     "frm": "平静",
+     "to": "低落",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "change"
+    },
+    {
+     "seq": 22,
+     "frm": "低落",
+     "to": "焦虑",
+     "alt": null,
+     "state": "active",
+     "reason": "利益冲突",
+     "kev": "change"
+    },
+    {
+     "seq": 27,
+     "frm": "焦虑",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "利益冲突",
+     "kev": "retire"
+    }
+   ]
+  },
+  {
+   "doc": "雾港",
+   "doc_id": "B2",
+   "subject": "阿桑",
+   "slot": "信任对象",
+   "kind": "B",
+   "interference": "同名异体",
+   "is_decoy": false,
+   "target": 5,
+   "seqs": [
+    9,
+    13,
+    17,
+    22,
+    27
+   ],
+   "events": [
+    {
+     "seq": 9,
+     "frm": null,
+     "to": "无人",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 13,
+     "frm": "无人",
+     "to": "林昭",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    },
+    {
+     "seq": 17,
+     "frm": "林昭",
+     "to": "杜衡",
+     "alt": "林昭",
+     "state": "unresolved",
+     "reason": "共同的外敌",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 22,
+     "frm": "杜衡",
+     "to": "林昭",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "resolve"
+    },
+    {
+     "seq": 27,
+     "frm": "林昭",
+     "to": "无人",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "雾港",
+   "doc_id": "B2",
+   "subject": "阿桑",
+   "slot": "位置",
+   "kind": "B",
+   "interference": "同名异体",
+   "is_decoy": false,
+   "target": 14,
+   "seqs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    13,
+    18,
+    22,
+    27
+   ],
+   "events": [
+    {
+     "seq": 1,
+     "frm": null,
+     "to": "渡口",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 2,
+     "frm": "渡口",
+     "to": "粮仓",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "change"
+    },
+    {
+     "seq": 3,
+     "frm": "粮仓",
+     "to": "集市",
+     "alt": null,
+     "state": "active",
+     "reason": "一次救助",
+     "kev": "change"
+    },
+    {
+     "seq": 4,
+     "frm": "集市",
+     "to": "驿站",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "change"
+    },
+    {
+     "seq": 5,
+     "frm": "驿站",
+     "to": "后山",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "change"
+    },
+    {
+     "seq": 6,
+     "frm": "后山",
+     "to": "祠堂",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "change"
+    },
+    {
+     "seq": 7,
+     "frm": "祠堂",
+     "to": "粮仓",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "change"
+    },
+    {
+     "seq": 8,
+     "frm": "粮仓",
+     "to": "码头",
+     "alt": null,
+     "state": "active",
+     "reason": "一桩旧账",
+     "kev": "change"
+    },
+    {
+     "seq": 9,
+     "frm": "码头",
+     "to": "渡口",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "change"
+    },
+    {
+     "seq": 10,
+     "frm": "渡口",
+     "to": "粮仓",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    },
+    {
+     "seq": 13,
+     "frm": "粮仓",
+     "to": "祠堂",
+     "alt": "磨坊",
+     "state": "unresolved",
+     "reason": "一次救助",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 18,
+     "frm": "祠堂",
+     "to": "渡口",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "resolve"
+    },
+    {
+     "seq": 22,
+     "frm": "渡口",
+     "to": "后山",
+     "alt": null,
+     "state": "active",
+     "reason": "利益冲突",
+     "kev": "change"
+    },
+    {
+     "seq": 27,
+     "frm": "后山",
+     "to": "集市",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "雾港",
+   "doc_id": "B2",
+   "subject": "阿桑",
+   "slot": "立场",
+   "kind": "B",
+   "interference": "none",
+   "is_decoy": false,
+   "target": 5,
+   "seqs": [
+    9,
+    14,
+    18,
+    22,
+    27
+   ],
+   "events": [
+    {
+     "seq": 9,
+     "frm": null,
+     "to": "反对",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 14,
+     "frm": "反对",
+     "to": "中立",
+     "alt": "暧昧",
+     "state": "unresolved",
+     "reason": "利益冲突",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 18,
+     "frm": "中立",
+     "to": "暧昧",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "resolve"
+    },
+    {
+     "seq": 22,
+     "frm": "暧昧",
+     "to": "反对",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    },
+    {
+     "seq": 27,
+     "frm": "反对",
+     "to": "沉默",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "雾港",
+   "doc_id": "B2",
+   "subject": "阿桑",
+   "slot": "情绪",
+   "kind": "B",
+   "interference": "none",
+   "is_decoy": false,
+   "target": 6,
+   "seqs": [
+    5,
+    9,
+    14,
+    18,
+    23,
+    28
+   ],
+   "events": [
+    {
+     "seq": 5,
+     "frm": null,
+     "to": "欣慰",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 9,
+     "frm": "欣慰",
+     "to": "释然",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "change"
+    },
+    {
+     "seq": 14,
+     "frm": "释然",
+     "to": "欣慰",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 18,
+     "frm": "欣慰",
+     "to": "犹豫",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 23,
+     "frm": "犹豫",
+     "to": "平静",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 28,
+     "frm": "平静",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "一次救助",
+     "kev": "retire"
+    }
+   ]
+  },
+  {
+   "doc": "雾港",
+   "doc_id": "B2",
+   "subject": "杜衡",
+   "slot": "信任对象",
+   "kind": "B",
+   "interference": "none",
+   "is_decoy": false,
+   "target": 7,
+   "seqs": [
+    2,
+    5,
+    9,
+    14,
+    18,
+    23,
+    28
+   ],
+   "events": [
+    {
+     "seq": 2,
+     "frm": null,
+     "to": "外人",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 5,
+     "frm": "外人",
+     "to": "无人",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "change"
+    },
+    {
+     "seq": 9,
+     "frm": "无人",
+     "to": "阿桑",
+     "alt": null,
+     "state": "active",
+     "reason": "一次救助",
+     "kev": "change"
+    },
+    {
+     "seq": 14,
+     "frm": "阿桑",
+     "to": "沈砚",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "change"
+    },
+    {
+     "seq": 18,
+     "frm": "沈砚",
+     "to": "林昭",
+     "alt": "外人",
+     "state": "unresolved",
+     "reason": "旧事重提",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 23,
+     "frm": "林昭",
+     "to": "无人",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "resolve"
+    },
+    {
+     "seq": 28,
+     "frm": "无人",
+     "to": "林昭",
+     "alt": null,
+     "state": "active",
+     "reason": "利益冲突",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "雾港",
+   "doc_id": "B2",
+   "subject": "杜衡",
+   "slot": "位置",
+   "kind": "B",
+   "interference": "同值异时",
+   "is_decoy": false,
+   "target": 5,
+   "seqs": [
+    10,
+    14,
+    18,
+    23,
+    28
+   ],
+   "events": [
+    {
+     "seq": 10,
+     "frm": null,
+     "to": "祠堂",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 14,
+     "frm": "祠堂",
+     "to": "磨坊",
+     "alt": null,
+     "state": "active",
+     "reason": "利益冲突",
+     "kev": "change"
+    },
+    {
+     "seq": 18,
+     "frm": "磨坊",
+     "to": "集市",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "change"
+    },
+    {
+     "seq": 23,
+     "frm": "集市",
+     "to": "磨坊",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    },
+    {
+     "seq": 28,
+     "frm": "磨坊",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "利益冲突",
+     "kev": "retire"
+    }
+   ]
+  },
+  {
+   "doc": "雾港",
+   "doc_id": "B2",
+   "subject": "杜衡",
+   "slot": "立场",
+   "kind": "B",
+   "interference": "同值异时",
+   "is_decoy": false,
+   "target": 5,
+   "seqs": [
+    10,
+    14,
+    19,
+    23,
+    28
+   ],
+   "events": [
+    {
+     "seq": 10,
+     "frm": null,
+     "to": "观望",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 14,
+     "frm": "观望",
+     "to": "沉默",
+     "alt": null,
+     "state": "active",
+     "reason": "一次救助",
+     "kev": "change"
+    },
+    {
+     "seq": 19,
+     "frm": "沉默",
+     "to": "暧昧",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "change"
+    },
+    {
+     "seq": 23,
+     "frm": "暧昧",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "一次救助",
+     "kev": "retire"
+    },
+    {
+     "seq": 28,
+     "frm": null,
+     "to": "暧昧",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "restore"
+    }
+   ]
+  },
+  {
+   "doc": "雾港",
+   "doc_id": "B2",
+   "subject": "杜衡",
+   "slot": "情绪",
+   "kind": "B",
+   "interference": "none",
+   "is_decoy": false,
+   "target": 9,
+   "seqs": [
+    1,
+    2,
+    3,
+    6,
+    10,
+    15,
+    19,
+    23,
+    29
+   ],
+   "events": [
+    {
+     "seq": 1,
+     "frm": null,
+     "to": "低落",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 2,
+     "frm": "低落",
+     "to": "犹豫",
+     "alt": null,
+     "state": "active",
+     "reason": "一次救助",
+     "kev": "change"
+    },
+    {
+     "seq": 3,
+     "frm": "犹豫",
+     "to": "戒备",
+     "alt": null,
+     "state": "active",
+     "reason": "一桩旧账",
+     "kev": "change"
+    },
+    {
+     "seq": 6,
+     "frm": "戒备",
+     "to": "犹豫",
+     "alt": null,
+     "state": "active",
+     "reason": "一桩旧账",
+     "kev": "change"
+    },
+    {
+     "seq": 10,
+     "frm": "犹豫",
+     "to": "释然",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "change"
+    },
+    {
+     "seq": 15,
+     "frm": "释然",
+     "to": "愤怒",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "change"
+    },
+    {
+     "seq": 19,
+     "frm": "愤怒",
+     "to": "低落",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    },
+    {
+     "seq": 23,
+     "frm": "低落",
+     "to": "焦虑",
+     "alt": null,
+     "state": "active",
+     "reason": "一次救助",
+     "kev": "change"
+    },
+    {
+     "seq": 29,
+     "frm": "焦虑",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "一桩旧账",
+     "kev": "retire"
+    }
+   ]
+  },
+  {
+   "doc": "雾港",
+   "doc_id": "B2",
+   "subject": "林昭·同名者",
+   "slot": "信任对象",
+   "kind": "B",
+   "interference": "none",
+   "is_decoy": true,
+   "target": 5,
+   "seqs": [
+    10,
+    15,
+    19,
+    24,
+    29
+   ],
+   "events": [
+    {
+     "seq": 10,
+     "frm": null,
+     "to": "沈砚",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 15,
+     "frm": "沈砚",
+     "to": "林昭",
+     "alt": null,
+     "state": "active",
+     "reason": "利益冲突",
+     "kev": "change"
+    },
+    {
+     "seq": 19,
+     "frm": "林昭",
+     "to": "沈砚",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 24,
+     "frm": "沈砚",
+     "to": "林昭",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 29,
+     "frm": "林昭",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "一场误会",
+     "kev": "retire"
+    }
+   ]
+  },
+  {
+   "doc": "雾港",
+   "doc_id": "B2",
+   "subject": "林昭·同名者",
+   "slot": "位置",
+   "kind": "B",
+   "interference": "none",
+   "is_decoy": true,
+   "target": 5,
+   "seqs": [
+    11,
+    15,
+    19,
+    24,
+    29
+   ],
+   "events": [
+    {
+     "seq": 11,
+     "frm": null,
+     "to": "渡口",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 15,
+     "frm": "渡口",
+     "to": "码头",
+     "alt": "集市",
+     "state": "unresolved",
+     "reason": "第三方的劝说",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 19,
+     "frm": "码头",
+     "to": "集市",
+     "alt": null,
+     "state": "active",
+     "reason": "利益冲突",
+     "kev": "resolve"
+    },
+    {
+     "seq": 24,
+     "frm": "集市",
+     "to": "码头",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    },
+    {
+     "seq": 29,
+     "frm": "码头",
+     "to": "后山",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "雾港",
+   "doc_id": "B2",
+   "subject": "沈砚·同名者",
+   "slot": "信任对象",
+   "kind": "B",
+   "interference": "none",
+   "is_decoy": true,
+   "target": 5,
+   "seqs": [
+    11,
+    15,
+    19,
+    24,
+    29
+   ],
+   "events": [
+    {
+     "seq": 11,
+     "frm": null,
+     "to": "杜衡",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 15,
+     "frm": "杜衡",
+     "to": "外人",
+     "alt": "阿桑",
+     "state": "unresolved",
+     "reason": "利益冲突",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 19,
+     "frm": "外人",
+     "to": "沈砚",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "resolve"
+    },
+    {
+     "seq": 24,
+     "frm": "沈砚",
+     "to": "外人",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "change"
+    },
+    {
+     "seq": 29,
+     "frm": "外人",
+     "to": "沈砚",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "雾港",
+   "doc_id": "B2",
+   "subject": "沈砚·同名者",
+   "slot": "位置",
+   "kind": "B",
+   "interference": "none",
+   "is_decoy": true,
+   "target": 5,
+   "seqs": [
+    11,
+    15,
+    20,
+    24,
+    29
+   ],
+   "events": [
+    {
+     "seq": 11,
+     "frm": null,
+     "to": "集市",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 15,
+     "frm": "集市",
+     "to": "渡口",
+     "alt": null,
+     "state": "active",
+     "reason": "一次救助",
+     "kev": "change"
+    },
+    {
+     "seq": 20,
+     "frm": "渡口",
+     "to": "集市",
+     "alt": "祠堂",
+     "state": "unresolved",
+     "reason": "私下承诺",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 24,
+     "frm": "集市",
+     "to": "祠堂",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "resolve"
+    },
+    {
+     "seq": 29,
+     "frm": "祠堂",
+     "to": "集市",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "雾港",
+   "doc_id": "B2",
+   "subject": "沈砚·同名者",
+   "slot": "情绪",
+   "kind": "B",
+   "interference": "none",
+   "is_decoy": true,
+   "target": 5,
+   "seqs": [
+    11,
+    15,
+    20,
+    24,
+    30
+   ],
+   "events": [
+    {
+     "seq": 11,
+     "frm": null,
+     "to": "释然",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 15,
+     "frm": "释然",
+     "to": "愤怒",
+     "alt": "释然",
+     "state": "unresolved",
+     "reason": "共同的外敌",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 20,
+     "frm": "愤怒",
+     "to": "释然",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "resolve"
+    },
+    {
+     "seq": 24,
+     "frm": "释然",
+     "to": "犹豫",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "change"
+    },
+    {
+     "seq": 30,
+     "frm": "犹豫",
+     "to": "愤怒",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "雾港",
+   "doc_id": "B2",
+   "subject": "阿桑·同名者",
+   "slot": "信任对象",
+   "kind": "B",
+   "interference": "none",
+   "is_decoy": true,
+   "target": 5,
+   "seqs": [
+    11,
+    16,
+    20,
+    25,
+    30
+   ],
+   "events": [
+    {
+     "seq": 11,
+     "frm": null,
+     "to": "阿桑",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 16,
+     "frm": "阿桑",
+     "to": "外人",
+     "alt": "杜衡",
+     "state": "unresolved",
+     "reason": "旧事重提",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 20,
+     "frm": "外人",
+     "to": "沈砚",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "resolve"
+    },
+    {
+     "seq": 25,
+     "frm": "沈砚",
+     "to": "外人",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "change"
+    },
+    {
+     "seq": 30,
+     "frm": "外人",
+     "to": "阿桑",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "雾港",
+   "doc_id": "B2",
+   "subject": "阿桑·同名者",
+   "slot": "位置",
+   "kind": "B",
+   "interference": "none",
+   "is_decoy": true,
+   "target": 7,
+   "seqs": [
+    3,
+    6,
+    11,
+    16,
+    20,
+    25,
+    30
+   ],
+   "events": [
+    {
+     "seq": 3,
+     "frm": null,
+     "to": "磨坊",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 6,
+     "frm": "磨坊",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "私下承诺",
+     "kev": "retire"
+    },
+    {
+     "seq": 11,
+     "frm": null,
+     "to": "磨坊",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "restore"
+    },
+    {
+     "seq": 16,
+     "frm": "磨坊",
+     "to": "集市",
+     "alt": null,
+     "state": "active",
+     "reason": "一桩旧账",
+     "kev": "change"
+    },
+    {
+     "seq": 20,
+     "frm": "集市",
+     "to": "磨坊",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "change"
+    },
+    {
+     "seq": 25,
+     "frm": "磨坊",
+     "to": "渡口",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    },
+    {
+     "seq": 30,
+     "frm": "渡口",
+     "to": "磨坊",
+     "alt": null,
+     "state": "active",
+     "reason": "一桩旧账",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "孤山驿",
+   "doc_id": "B3",
+   "subject": "程雪",
+   "slot": "信任对象",
+   "kind": "B",
+   "interference": "none",
+   "is_decoy": false,
+   "target": 6,
+   "seqs": [
+    6,
+    8,
+    12,
+    16,
+    20,
+    25
+   ],
+   "events": [
+    {
+     "seq": 6,
+     "frm": null,
+     "to": "外人",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 8,
+     "frm": "外人",
+     "to": "白芨",
+     "alt": null,
+     "state": "active",
+     "reason": "一次救助",
+     "kev": "change"
+    },
+    {
+     "seq": 12,
+     "frm": "白芨",
+     "to": "顾九",
+     "alt": "陆平",
+     "state": "unresolved",
+     "reason": "私下承诺",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 16,
+     "frm": "顾九",
+     "to": "陆平",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "resolve"
+    },
+    {
+     "seq": 20,
+     "frm": "陆平",
+     "to": "顾九",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    },
+    {
+     "seq": 25,
+     "frm": "顾九",
+     "to": "白芨",
+     "alt": null,
+     "state": "active",
+     "reason": "利益冲突",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "孤山驿",
+   "doc_id": "B3",
+   "subject": "程雪",
+   "slot": "位置",
+   "kind": "B",
+   "interference": "同名异体",
+   "is_decoy": false,
+   "target": 9,
+   "seqs": [
+    1,
+    2,
+    3,
+    6,
+    8,
+    12,
+    16,
+    20,
+    25
+   ],
+   "events": [
+    {
+     "seq": 1,
+     "frm": null,
+     "to": "后山",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 2,
+     "frm": "后山",
+     "to": "磨坊",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "change"
+    },
+    {
+     "seq": 3,
+     "frm": "磨坊",
+     "to": "驿站",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 6,
+     "frm": "驿站",
+     "to": "码头",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "change"
+    },
+    {
+     "seq": 8,
+     "frm": "码头",
+     "to": "渡口",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    },
+    {
+     "seq": 12,
+     "frm": "渡口",
+     "to": "集市",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    },
+    {
+     "seq": 16,
+     "frm": "集市",
+     "to": "后山",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "change"
+    },
+    {
+     "seq": 20,
+     "frm": "后山",
+     "to": "磨坊",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "change"
+    },
+    {
+     "seq": 25,
+     "frm": "磨坊",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "利益冲突",
+     "kev": "retire"
+    }
+   ]
+  },
+  {
+   "doc": "孤山驿",
+   "doc_id": "B3",
+   "subject": "程雪",
+   "slot": "立场",
+   "kind": "B",
+   "interference": "同名异体",
+   "is_decoy": false,
+   "target": 12,
+   "seqs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    12,
+    16,
+    21,
+    25
+   ],
+   "events": [
+    {
+     "seq": 1,
+     "frm": null,
+     "to": "支持",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 2,
+     "frm": "支持",
+     "to": "观望",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    },
+    {
+     "seq": 3,
+     "frm": "观望",
+     "to": "沉默",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "change"
+    },
+    {
+     "seq": 4,
+     "frm": "沉默",
+     "to": "反对",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 5,
+     "frm": "反对",
+     "to": "观望",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "change"
+    },
+    {
+     "seq": 6,
+     "frm": "观望",
+     "to": "中立",
+     "alt": null,
+     "state": "active",
+     "reason": "一次救助",
+     "kev": "change"
+    },
+    {
+     "seq": 7,
+     "frm": "中立",
+     "to": "支持",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 8,
+     "frm": "支持",
+     "to": "沉默",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "change"
+    },
+    {
+     "seq": 12,
+     "frm": "沉默",
+     "to": "支持",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "change"
+    },
+    {
+     "seq": 16,
+     "frm": "支持",
+     "to": "中立",
+     "alt": null,
+     "state": "active",
+     "reason": "一次救助",
+     "kev": "change"
+    },
+    {
+     "seq": 21,
+     "frm": "中立",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "一场误会",
+     "kev": "retire"
+    },
+    {
+     "seq": 25,
+     "frm": null,
+     "to": "暧昧",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "restore"
+    }
+   ]
+  },
+  {
+   "doc": "孤山驿",
+   "doc_id": "B3",
+   "subject": "程雪",
+   "slot": "情绪",
+   "kind": "B",
+   "interference": "同体异名",
+   "is_decoy": false,
+   "target": 8,
+   "seqs": [
+    3,
+    4,
+    6,
+    9,
+    13,
+    16,
+    21,
+    25
+   ],
+   "events": [
+    {
+     "seq": 3,
+     "frm": null,
+     "to": "低落",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 4,
+     "frm": "低落",
+     "to": "焦虑",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 6,
+     "frm": "焦虑",
+     "to": "平静",
+     "alt": null,
+     "state": "active",
+     "reason": "利益冲突",
+     "kev": "change"
+    },
+    {
+     "seq": 9,
+     "frm": "平静",
+     "to": "欣慰",
+     "alt": null,
+     "state": "active",
+     "reason": "利益冲突",
+     "kev": "change"
+    },
+    {
+     "seq": 13,
+     "frm": "欣慰",
+     "to": "平静",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 16,
+     "frm": "平静",
+     "to": "愤怒",
+     "alt": null,
+     "state": "active",
+     "reason": "一桩旧账",
+     "kev": "change"
+    },
+    {
+     "seq": 21,
+     "frm": "愤怒",
+     "to": "戒备",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "change"
+    },
+    {
+     "seq": 25,
+     "frm": "戒备",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "第三方的劝说",
+     "kev": "retire"
+    }
+   ]
+  },
+  {
+   "doc": "孤山驿",
+   "doc_id": "B3",
+   "subject": "陆平",
+   "slot": "信任对象",
+   "kind": "B",
+   "interference": "none",
+   "is_decoy": false,
+   "target": 11,
+   "seqs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    9,
+    13,
+    17,
+    21,
+    26
+   ],
+   "events": [
+    {
+     "seq": 1,
+     "frm": null,
+     "to": "程雪",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 2,
+     "frm": "程雪",
+     "to": "顾九",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    },
+    {
+     "seq": 3,
+     "frm": "顾九",
+     "to": "无人",
+     "alt": null,
+     "state": "active",
+     "reason": "一次救助",
+     "kev": "change"
+    },
+    {
+     "seq": 4,
+     "frm": "无人",
+     "to": "白芨",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 5,
+     "frm": "白芨",
+     "to": "外人",
+     "alt": null,
+     "state": "active",
+     "reason": "一次救助",
+     "kev": "change"
+    },
+    {
+     "seq": 6,
+     "frm": "外人",
+     "to": "白芨",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "change"
+    },
+    {
+     "seq": 9,
+     "frm": "白芨",
+     "to": "程雪",
+     "alt": null,
+     "state": "active",
+     "reason": "一次救助",
+     "kev": "change"
+    },
+    {
+     "seq": 13,
+     "frm": "程雪",
+     "to": "顾九",
+     "alt": "白芨",
+     "state": "unresolved",
+     "reason": "一场误会",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 17,
+     "frm": "顾九",
+     "to": "程雪",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "resolve"
+    },
+    {
+     "seq": 21,
+     "frm": "程雪",
+     "to": "无人",
+     "alt": null,
+     "state": "active",
+     "reason": "一桩旧账",
+     "kev": "change"
+    },
+    {
+     "seq": 26,
+     "frm": "无人",
+     "to": "顾九",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "孤山驿",
+   "doc_id": "B3",
+   "subject": "陆平",
+   "slot": "位置",
+   "kind": "B",
+   "interference": "同名异体",
+   "is_decoy": false,
+   "target": 14,
+   "seqs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    13,
+    17,
+    21,
+    26
+   ],
+   "events": [
+    {
+     "seq": 1,
+     "frm": null,
+     "to": "磨坊",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 2,
+     "frm": "磨坊",
+     "to": "祠堂",
+     "alt": "驿站",
+     "state": "unresolved",
+     "reason": "共同的外敌",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 3,
+     "frm": "祠堂",
+     "to": "粮仓",
+     "alt": null,
+     "state": "active",
+     "reason": "一桩旧账",
+     "kev": "resolve"
+    },
+    {
+     "seq": 4,
+     "frm": "粮仓",
+     "to": "集市",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "change"
+    },
+    {
+     "seq": 5,
+     "frm": "集市",
+     "to": "祠堂",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "change"
+    },
+    {
+     "seq": 6,
+     "frm": "祠堂",
+     "to": "集市",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 7,
+     "frm": "集市",
+     "to": "粮仓",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "change"
+    },
+    {
+     "seq": 8,
+     "frm": "粮仓",
+     "to": "祠堂",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 9,
+     "frm": "祠堂",
+     "to": "渡口",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    },
+    {
+     "seq": 10,
+     "frm": "渡口",
+     "to": "后山",
+     "alt": null,
+     "state": "active",
+     "reason": "一桩旧账",
+     "kev": "change"
+    },
+    {
+     "seq": 13,
+     "frm": "后山",
+     "to": "驿站",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 17,
+     "frm": "驿站",
+     "to": "后山",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 21,
+     "frm": "后山",
+     "to": "粮仓",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    },
+    {
+     "seq": 26,
+     "frm": "粮仓",
+     "to": "磨坊",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "孤山驿",
+   "doc_id": "B3",
+   "subject": "陆平",
+   "slot": "立场",
+   "kind": "B",
+   "interference": "同值异时",
+   "is_decoy": false,
+   "target": 5,
+   "seqs": [
+    9,
+    13,
+    17,
+    22,
+    26
+   ],
+   "events": [
+    {
+     "seq": 9,
+     "frm": null,
+     "to": "沉默",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 13,
+     "frm": "沉默",
+     "to": "反对",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    },
+    {
+     "seq": 17,
+     "frm": "反对",
+     "to": "沉默",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "change"
+    },
+    {
+     "seq": 22,
+     "frm": "沉默",
+     "to": "反对",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "change"
+    },
+    {
+     "seq": 26,
+     "frm": "反对",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "共同的外敌",
+     "kev": "retire"
+    }
+   ]
+  },
+  {
+   "doc": "孤山驿",
+   "doc_id": "B3",
+   "subject": "陆平",
+   "slot": "情绪",
+   "kind": "B",
+   "interference": "none",
+   "is_decoy": false,
+   "target": 5,
+   "seqs": [
+    9,
+    13,
+    17,
+    22,
+    26
+   ],
+   "events": [
+    {
+     "seq": 9,
+     "frm": null,
+     "to": "低落",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 13,
+     "frm": "低落",
+     "to": "愤怒",
+     "alt": null,
+     "state": "active",
+     "reason": "利益冲突",
+     "kev": "change"
+    },
+    {
+     "seq": 17,
+     "frm": "愤怒",
+     "to": "低落",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 22,
+     "frm": "低落",
+     "to": "焦虑",
+     "alt": "释然",
+     "state": "unresolved",
+     "reason": "共同的外敌",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 26,
+     "frm": "焦虑",
+     "to": "释然",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "resolve"
+    }
+   ]
+  },
+  {
+   "doc": "孤山驿",
+   "doc_id": "B3",
+   "subject": "白芨",
+   "slot": "信任对象",
+   "kind": "B",
+   "interference": "同值异时",
+   "is_decoy": false,
+   "target": 10,
+   "seqs": [
+    1,
+    2,
+    3,
+    4,
+    7,
+    10,
+    13,
+    17,
+    22,
+    27
+   ],
+   "events": [
+    {
+     "seq": 1,
+     "frm": null,
+     "to": "程雪",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 2,
+     "frm": "程雪",
+     "to": "顾九",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    },
+    {
+     "seq": 3,
+     "frm": "顾九",
+     "to": "陆平",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "change"
+    },
+    {
+     "seq": 4,
+     "frm": "陆平",
+     "to": "程雪",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "change"
+    },
+    {
+     "seq": 7,
+     "frm": "程雪",
+     "to": "陆平",
+     "alt": null,
+     "state": "active",
+     "reason": "利益冲突",
+     "kev": "change"
+    },
+    {
+     "seq": 10,
+     "frm": "陆平",
+     "to": "无人",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "change"
+    },
+    {
+     "seq": 13,
+     "frm": "无人",
+     "to": "陆平",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "change"
+    },
+    {
+     "seq": 17,
+     "frm": "陆平",
+     "to": "顾九",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "change"
+    },
+    {
+     "seq": 22,
+     "frm": "顾九",
+     "to": "无人",
+     "alt": "程雪",
+     "state": "unresolved",
+     "reason": "一桩旧账",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 27,
+     "frm": "无人",
+     "to": "外人",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "resolve"
+    }
+   ]
+  },
+  {
+   "doc": "孤山驿",
+   "doc_id": "B3",
+   "subject": "白芨",
+   "slot": "位置",
+   "kind": "B",
+   "interference": "同名异体",
+   "is_decoy": false,
+   "target": 6,
+   "seqs": [
+    7,
+    10,
+    14,
+    17,
+    22,
+    27
+   ],
+   "events": [
+    {
+     "seq": 7,
+     "frm": null,
+     "to": "磨坊",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 10,
+     "frm": "磨坊",
+     "to": "粮仓",
+     "alt": null,
+     "state": "active",
+     "reason": "利益冲突",
+     "kev": "change"
+    },
+    {
+     "seq": 14,
+     "frm": "粮仓",
+     "to": "祠堂",
+     "alt": null,
+     "state": "active",
+     "reason": "一桩旧账",
+     "kev": "change"
+    },
+    {
+     "seq": 17,
+     "frm": "祠堂",
+     "to": "粮仓",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "change"
+    },
+    {
+     "seq": 22,
+     "frm": "粮仓",
+     "to": "后山",
+     "alt": "驿站",
+     "state": "unresolved",
+     "reason": "一场误会",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 27,
+     "frm": "后山",
+     "to": "驿站",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "resolve"
+    }
+   ]
+  },
+  {
+   "doc": "孤山驿",
+   "doc_id": "B3",
+   "subject": "白芨",
+   "slot": "立场",
+   "kind": "B",
+   "interference": "同值异时",
+   "is_decoy": false,
+   "target": 7,
+   "seqs": [
+    5,
+    7,
+    10,
+    14,
+    18,
+    22,
+    27
+   ],
+   "events": [
+    {
+     "seq": 5,
+     "frm": null,
+     "to": "反对",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 7,
+     "frm": "反对",
+     "to": "暧昧",
+     "alt": "反对",
+     "state": "unresolved",
+     "reason": "私下承诺",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 10,
+     "frm": "暧昧",
+     "to": "中立",
+     "alt": null,
+     "state": "active",
+     "reason": "利益冲突",
+     "kev": "resolve"
+    },
+    {
+     "seq": 14,
+     "frm": "中立",
+     "to": "沉默",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "change"
+    },
+    {
+     "seq": 18,
+     "frm": "沉默",
+     "to": "支持",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "change"
+    },
+    {
+     "seq": 22,
+     "frm": "支持",
+     "to": "反对",
+     "alt": null,
+     "state": "active",
+     "reason": "一桩旧账",
+     "kev": "change"
+    },
+    {
+     "seq": 27,
+     "frm": "反对",
+     "to": "观望",
+     "alt": null,
+     "state": "active",
+     "reason": "一桩旧账",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "孤山驿",
+   "doc_id": "B3",
+   "subject": "白芨",
+   "slot": "情绪",
+   "kind": "B",
+   "interference": "同值异时",
+   "is_decoy": false,
+   "target": 5,
+   "seqs": [
+    10,
+    14,
+    18,
+    23,
+    27
+   ],
+   "events": [
+    {
+     "seq": 10,
+     "frm": null,
+     "to": "焦虑",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 14,
+     "frm": "焦虑",
+     "to": "戒备",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    },
+    {
+     "seq": 18,
+     "frm": "戒备",
+     "to": "欣慰",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    },
+    {
+     "seq": 23,
+     "frm": "欣慰",
+     "to": "焦虑",
+     "alt": "低落",
+     "state": "unresolved",
+     "reason": "一场误会",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 27,
+     "frm": "焦虑",
+     "to": "欣慰",
+     "alt": null,
+     "state": "active",
+     "reason": "一桩旧账",
+     "kev": "resolve"
+    }
+   ]
+  },
+  {
+   "doc": "孤山驿",
+   "doc_id": "B3",
+   "subject": "顾九",
+   "slot": "信任对象",
+   "kind": "B",
+   "interference": "同值异时",
+   "is_decoy": false,
+   "target": 5,
+   "seqs": [
+    11,
+    14,
+    18,
+    23,
+    28
+   ],
+   "events": [
+    {
+     "seq": 11,
+     "frm": null,
+     "to": "无人",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 14,
+     "frm": "无人",
+     "to": "陆平",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "change"
+    },
+    {
+     "seq": 18,
+     "frm": "陆平",
+     "to": "白芨",
+     "alt": "无人",
+     "state": "unresolved",
+     "reason": "一场误会",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 23,
+     "frm": "白芨",
+     "to": "无人",
+     "alt": null,
+     "state": "active",
+     "reason": "利益冲突",
+     "kev": "resolve"
+    },
+    {
+     "seq": 28,
+     "frm": "无人",
+     "to": "外人",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "孤山驿",
+   "doc_id": "B3",
+   "subject": "顾九",
+   "slot": "位置",
+   "kind": "B",
+   "interference": "同体异名",
+   "is_decoy": false,
+   "target": 5,
+   "seqs": [
+    11,
+    14,
+    18,
+    23,
+    28
+   ],
+   "events": [
+    {
+     "seq": 11,
+     "frm": null,
+     "to": "祠堂",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 14,
+     "frm": "祠堂",
+     "to": "渡口",
+     "alt": null,
+     "state": "active",
+     "reason": "利益冲突",
+     "kev": "change"
+    },
+    {
+     "seq": 18,
+     "frm": "渡口",
+     "to": "后山",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "change"
+    },
+    {
+     "seq": 23,
+     "frm": "后山",
+     "to": "集市",
+     "alt": "渡口",
+     "state": "unresolved",
+     "reason": "一场误会",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 28,
+     "frm": "集市",
+     "to": "粮仓",
+     "alt": null,
+     "state": "active",
+     "reason": "一桩旧账",
+     "kev": "resolve"
+    }
+   ]
+  },
+  {
+   "doc": "孤山驿",
+   "doc_id": "B3",
+   "subject": "顾九",
+   "slot": "立场",
+   "kind": "B",
+   "interference": "none",
+   "is_decoy": false,
+   "target": 5,
+   "seqs": [
+    11,
+    14,
+    18,
+    23,
+    28
+   ],
+   "events": [
+    {
+     "seq": 11,
+     "frm": null,
+     "to": "暧昧",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 14,
+     "frm": "暧昧",
+     "to": "反对",
+     "alt": null,
+     "state": "active",
+     "reason": "共同的外敌",
+     "kev": "change"
+    },
+    {
+     "seq": 18,
+     "frm": "反对",
+     "to": "中立",
+     "alt": null,
+     "state": "active",
+     "reason": "利益冲突",
+     "kev": "change"
+    },
+    {
+     "seq": 23,
+     "frm": "中立",
+     "to": "支持",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "change"
+    },
+    {
+     "seq": 28,
+     "frm": "支持",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "一桩旧账",
+     "kev": "retire"
+    }
+   ]
+  },
+  {
+   "doc": "孤山驿",
+   "doc_id": "B3",
+   "subject": "顾九",
+   "slot": "情绪",
+   "kind": "B",
+   "interference": "同名异体",
+   "is_decoy": false,
+   "target": 5,
+   "seqs": [
+    11,
+    15,
+    19,
+    23,
+    28
+   ],
+   "events": [
+    {
+     "seq": 11,
+     "frm": null,
+     "to": "平静",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 15,
+     "frm": "平静",
+     "to": "愤怒",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "change"
+    },
+    {
+     "seq": 19,
+     "frm": "愤怒",
+     "to": "戒备",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 23,
+     "frm": "戒备",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "一次救助",
+     "kev": "retire"
+    },
+    {
+     "seq": 28,
+     "frm": null,
+     "to": "低落",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "restore"
+    }
+   ]
+  },
+  {
+   "doc": "孤山驿",
+   "doc_id": "B3",
+   "subject": "程雪·同名者",
+   "slot": "位置",
+   "kind": "B",
+   "interference": "none",
+   "is_decoy": true,
+   "target": 5,
+   "seqs": [
+    11,
+    15,
+    19,
+    24,
+    29
+   ],
+   "events": [
+    {
+     "seq": 11,
+     "frm": null,
+     "to": "祠堂",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 15,
+     "frm": "祠堂",
+     "to": "粮仓",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "change"
+    },
+    {
+     "seq": 19,
+     "frm": "粮仓",
+     "to": "祠堂",
+     "alt": null,
+     "state": "active",
+     "reason": "一次救助",
+     "kev": "change"
+    },
+    {
+     "seq": 24,
+     "frm": "祠堂",
+     "to": "粮仓",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "change"
+    },
+    {
+     "seq": 29,
+     "frm": "粮仓",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "共同的外敌",
+     "kev": "retire"
+    }
+   ]
+  },
+  {
+   "doc": "孤山驿",
+   "doc_id": "B3",
+   "subject": "程雪·同名者",
+   "slot": "立场",
+   "kind": "B",
+   "interference": "none",
+   "is_decoy": true,
+   "target": 6,
+   "seqs": [
+    8,
+    11,
+    15,
+    19,
+    24,
+    29
+   ],
+   "events": [
+    {
+     "seq": 8,
+     "frm": null,
+     "to": "暧昧",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 11,
+     "frm": "暧昧",
+     "to": "观望",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 15,
+     "frm": "观望",
+     "to": "沉默",
+     "alt": null,
+     "state": "active",
+     "reason": "利益冲突",
+     "kev": "change"
+    },
+    {
+     "seq": 19,
+     "frm": "沉默",
+     "to": "反对",
+     "alt": null,
+     "state": "active",
+     "reason": "一桩旧账",
+     "kev": "change"
+    },
+    {
+     "seq": 24,
+     "frm": "反对",
+     "to": "暧昧",
+     "alt": null,
+     "state": "active",
+     "reason": "旧事重提",
+     "kev": "change"
+    },
+    {
+     "seq": 29,
+     "frm": "暧昧",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "私下承诺",
+     "kev": "retire"
+    }
+   ]
+  },
+  {
+   "doc": "孤山驿",
+   "doc_id": "B3",
+   "subject": "陆平·同名者",
+   "slot": "位置",
+   "kind": "B",
+   "interference": "none",
+   "is_decoy": true,
+   "target": 7,
+   "seqs": [
+    5,
+    8,
+    12,
+    15,
+    19,
+    24,
+    29
+   ],
+   "events": [
+    {
+     "seq": 5,
+     "frm": null,
+     "to": "码头",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 8,
+     "frm": "码头",
+     "to": "后山",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    },
+    {
+     "seq": 12,
+     "frm": "后山",
+     "to": "码头",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "change"
+    },
+    {
+     "seq": 15,
+     "frm": "码头",
+     "to": "集市",
+     "alt": null,
+     "state": "active",
+     "reason": "第三方的劝说",
+     "kev": "change"
+    },
+    {
+     "seq": 19,
+     "frm": "集市",
+     "to": null,
+     "alt": null,
+     "state": "retired",
+     "reason": "利益冲突",
+     "kev": "retire"
+    },
+    {
+     "seq": 24,
+     "frm": null,
+     "to": "驿站",
+     "alt": null,
+     "state": "active",
+     "reason": "一桩旧账",
+     "kev": "restore"
+    },
+    {
+     "seq": 29,
+     "frm": "驿站",
+     "to": "码头",
+     "alt": null,
+     "state": "active",
+     "reason": "一场误会",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "孤山驿",
+   "doc_id": "B3",
+   "subject": "白芨·同名者",
+   "slot": "位置",
+   "kind": "B",
+   "interference": "none",
+   "is_decoy": true,
+   "target": 5,
+   "seqs": [
+    12,
+    15,
+    20,
+    24,
+    30
+   ],
+   "events": [
+    {
+     "seq": 12,
+     "frm": null,
+     "to": "渡口",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 15,
+     "frm": "渡口",
+     "to": "集市",
+     "alt": "驿站",
+     "state": "unresolved",
+     "reason": "第三方的劝说",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 20,
+     "frm": "集市",
+     "to": "码头",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "resolve"
+    },
+    {
+     "seq": 24,
+     "frm": "码头",
+     "to": "渡口",
+     "alt": null,
+     "state": "active",
+     "reason": "一次救助",
+     "kev": "change"
+    },
+    {
+     "seq": 30,
+     "frm": "渡口",
+     "to": "集市",
+     "alt": null,
+     "state": "active",
+     "reason": "私下承诺",
+     "kev": "change"
+    }
+   ]
+  },
+  {
+   "doc": "孤山驿",
+   "doc_id": "B3",
+   "subject": "顾九·同名者",
+   "slot": "情绪",
+   "kind": "B",
+   "interference": "none",
+   "is_decoy": true,
+   "target": 5,
+   "seqs": [
+    12,
+    16,
+    20,
+    25,
+    30
+   ],
+   "events": [
+    {
+     "seq": 12,
+     "frm": null,
+     "to": "释然",
+     "alt": null,
+     "state": "active",
+     "reason": "初始建立",
+     "kev": "create"
+    },
+    {
+     "seq": 16,
+     "frm": "释然",
+     "to": "焦虑",
+     "alt": "平静",
+     "state": "unresolved",
+     "reason": "利益冲突",
+     "kev": "unresolve"
+    },
+    {
+     "seq": 20,
+     "frm": "焦虑",
+     "to": "犹豫",
+     "alt": null,
+     "state": "active",
+     "reason": "一次救助",
+     "kev": "resolve"
+    },
+    {
+     "seq": 25,
+     "frm": "犹豫",
+     "to": "释然",
+     "alt": null,
+     "state": "active",
+     "reason": "一次救助",
+     "kev": "change"
+    },
+    {
+     "seq": 30,
+     "frm": "释然",
+     "to": "焦虑",
+     "alt": null,
+     "state": "active",
+     "reason": "一次救助",
+     "kev": "change"
+    }
+   ]
+  }
+ ]
+}

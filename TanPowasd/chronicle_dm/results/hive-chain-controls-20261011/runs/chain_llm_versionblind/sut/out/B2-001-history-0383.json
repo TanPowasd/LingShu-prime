@@ -1,0 +1,16 @@
+{
+  "qid": "B2-001-history-0383",
+  "value": null,
+  "state": "absent",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "雾港#latest",
+      "line": 1,
+      "quote": "林昭 的立场当前为 支持（第 25 章生效）。"
+    }
+  ],
+  "confidence": "unknown",
+  "_json_ok": true
+}

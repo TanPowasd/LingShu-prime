@@ -1,0 +1,22 @@
+{
+  "qid": "A1-060-change-0007",
+  "value": "redis",
+  "state": "active",
+  "at_seq": 56,
+  "chain": [
+    {
+      "seq": 56,
+      "from": null,
+      "to": "redis"
+    }
+  ],
+  "basis": [
+    {
+      "file": "猎户项目#latest",
+      "line": 1,
+      "quote": "猎户项目 的依赖名当前为 redis（第 56 次提交生效）。"
+    }
+  ],
+  "confidence": "unknown",
+  "_json_ok": true
+}

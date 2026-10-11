@@ -1,0 +1,17 @@
+{
+  "verified": true,
+  "arms": 3,
+  "questions_per_arm": 642,
+  "scored_test": 419,
+  "control_placeholders": 0,
+  "network_attempts": 0,
+  "model_calls": 0,
+  "criteria": {
+    "c1": true,
+    "c2": true,
+    "c3": true,
+    "c4": true
+  },
+  "passed": true,
+  "length_gate_tolerance": 0.05
+}

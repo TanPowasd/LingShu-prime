@@ -1,0 +1,16 @@
+{
+  "qid": "B1-005-history-0154",
+  "value": null,
+  "state": "unresolved",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "青石镇#latest",
+      "line": 1,
+      "quote": "周舟 的位置当前为 祠堂（第 28 章生效）。"
+    }
+  ],
+  "confidence": "unknown",
+  "_json_ok": true
+}

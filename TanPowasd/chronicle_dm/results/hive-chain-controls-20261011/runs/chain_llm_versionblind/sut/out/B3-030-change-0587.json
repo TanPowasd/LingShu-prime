@@ -1,0 +1,16 @@
+{
+  "qid": "B3-030-change-0587",
+  "value": null,
+  "state": "retired",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "孤山驿#latest",
+      "line": 1,
+      "quote": "陆平 的立场当前已撤销，不再保留取值。"
+    }
+  ],
+  "confidence": "unknown",
+  "_json_ok": true
+}

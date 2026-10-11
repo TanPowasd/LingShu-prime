@@ -1,0 +1,21 @@
+{
+  "qid": "A2-060-state-0082",
+  "value": "cfg_775243",
+  "state": "active",
+  "at_seq": 49,
+  "chain": [],
+  "basis": [
+    {
+      "file": "片段1",
+      "line": 1,
+      "quote": "状态：有效；取值：cfg_775243；自第49起"
+    },
+    {
+      "file": "片段19 · 流明项目#49",
+      "line": 49,
+      "quote": "流明项目 的配置值调整为 cfg_775243，起因是安全审计要求。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

@@ -1,0 +1,22 @@
+{
+  "qid": "B3-030-change-0547",
+  "value": "暧昧",
+  "state": "active",
+  "at_seq": 25,
+  "chain": [
+    {
+      "seq": 25,
+      "from": null,
+      "to": "暧昧"
+    }
+  ],
+  "basis": [
+    {
+      "file": "孤山驿#latest",
+      "line": 1,
+      "quote": "程雪 的立场当前为 暧昧（第 25 章生效）。"
+    }
+  ],
+  "confidence": "probable",
+  "_json_ok": true
+}

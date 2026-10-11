@@ -1,0 +1,22 @@
+{
+  "arms": [
+    "llm_closed",
+    "llm_versionblind"
+  ],
+  "questions_per_arm": 642,
+  "scored_all": 625,
+  "scored_test": 419,
+  "logical_reader_calls": 1284,
+  "model": "cline-pass/deepseek-v4.1-flash",
+  "per_key_concurrency": 4,
+  "token_limits": [
+    8000,
+    16000,
+    32000
+  ],
+  "versionblind_protocol": "official latest snapshot + BM25 + official LLM reader",
+  "closed_protocol": "official closed-book prompt",
+  "sut": "saved RRF3 v1.1 -> LLM extraction -> ChronicleDM -> official reader",
+  "sut_rerun": false,
+  "strict_internal_pipeline_ablation": false
+}

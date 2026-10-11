@@ -1,0 +1,26 @@
+{
+  "qid": "A1-016-history-0004",
+  "value": "lmdb",
+  "state": "active",
+  "at_seq": 16,
+  "chain": [],
+  "basis": [
+    {
+      "file": "片段1",
+      "line": 1,
+      "quote": "状态：有效；取值：lmdb；自第16起"
+    },
+    {
+      "file": "片段1",
+      "line": 1,
+      "quote": "- 第16：sled → lmdb（有效）"
+    },
+    {
+      "file": "片段1",
+      "line": 1,
+      "quote": "- 第16：set lmdb"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

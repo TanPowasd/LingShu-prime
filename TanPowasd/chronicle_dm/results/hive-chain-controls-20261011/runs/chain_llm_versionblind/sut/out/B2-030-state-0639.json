@@ -1,0 +1,16 @@
+{
+  "qid": "B2-030-state-0639",
+  "value": null,
+  "state": "absent",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "片段3",
+      "line": 3,
+      "quote": "林昭 的信任对象当前为 无人（第 25 章生效）。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

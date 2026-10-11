@@ -1,0 +1,22 @@
+{
+  "qid": "B1-030-change-0197",
+  "value": "后山",
+  "state": "active",
+  "at_seq": 27,
+  "chain": [
+    {
+      "seq": 27,
+      "from": null,
+      "to": "后山"
+    }
+  ],
+  "basis": [
+    {
+      "file": "青石镇#latest",
+      "line": 1,
+      "quote": "小满 的位置当前为 后山（第 27 章生效）。"
+    }
+  ],
+  "confidence": "probable",
+  "_json_ok": true
+}

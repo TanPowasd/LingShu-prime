@@ -1,0 +1,16 @@
+{
+  "qid": "A2-060-state-0633",
+  "value": null,
+  "state": "absent",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "流明项目#latest",
+      "line": 1,
+      "quote": "流明项目 的函数签名当前为 sync(key, ttl, tag, refresh)（第 52 次提交生效）。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

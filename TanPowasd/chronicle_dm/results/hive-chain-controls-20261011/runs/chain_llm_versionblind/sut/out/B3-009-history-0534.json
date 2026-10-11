@@ -1,0 +1,16 @@
+{
+  "qid": "B3-009-history-0534",
+  "value": null,
+  "state": "unresolved",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "孤山驿#latest",
+      "line": 1,
+      "quote": "程雪 的情绪当前已撤销，不再保留取值。"
+    }
+  ],
+  "confidence": "unknown",
+  "_json_ok": true
+}

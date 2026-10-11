@@ -1,0 +1,21 @@
+{
+  "qid": "B2-013-timepoint-0436",
+  "value": "祠堂 / 磨坊（并存）",
+  "state": "unresolved",
+  "at_seq": 13,
+  "chain": [],
+  "basis": [
+    {
+      "file": "片段1 · 记忆查询",
+      "line": 1,
+      "quote": "状态：未裁定；取值：祠堂 / 磨坊（并存）；自第13起"
+    },
+    {
+      "file": "片段1 · 记忆查询",
+      "line": 1,
+      "quote": "- 第13：unresolve 祠堂 / 磨坊（并存）"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

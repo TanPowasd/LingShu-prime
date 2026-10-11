@@ -1,0 +1,16 @@
+{
+  "qid": "A2-036-timepoint-0066",
+  "value": null,
+  "state": "unresolved",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "流明项目#latest",
+      "line": 1,
+      "quote": "流明项目 的函数签名当前为 sync(key, ttl, tag, refresh)（第 52 次提交生效）。"
+    }
+  ],
+  "confidence": "unknown",
+  "_json_ok": true
+}

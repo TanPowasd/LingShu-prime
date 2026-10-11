@@ -1,0 +1,22 @@
+{
+  "qid": "B3-030-change-0527",
+  "value": "白芨",
+  "state": "active",
+  "at_seq": 25,
+  "chain": [
+    {
+      "seq": 25,
+      "from": null,
+      "to": "白芨"
+    }
+  ],
+  "basis": [
+    {
+      "file": "孤山驿#latest",
+      "line": 1,
+      "quote": "程雪 的信任对象当前为 白芨（第 25 章生效）。"
+    }
+  ],
+  "confidence": "probable",
+  "_json_ok": true
+}

@@ -1,0 +1,16 @@
+{
+  "qid": "B2-025-timepoint-0356",
+  "value": null,
+  "state": "unresolved",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "雾港#latest",
+      "line": 1,
+      "quote": "林昭 的位置当前已撤销，不再保留取值。"
+    }
+  ],
+  "confidence": "unknown",
+  "_json_ok": true
+}

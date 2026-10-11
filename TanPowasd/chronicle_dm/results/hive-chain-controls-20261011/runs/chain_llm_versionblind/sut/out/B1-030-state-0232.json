@@ -1,0 +1,16 @@
+{
+  "qid": "B1-030-state-0232",
+  "value": "磨坊",
+  "state": "active",
+  "at_seq": 26,
+  "chain": [],
+  "basis": [
+    {
+      "file": "青石镇#latest",
+      "line": 1,
+      "quote": "老陈 的位置当前为 磨坊（第 26 章生效）。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

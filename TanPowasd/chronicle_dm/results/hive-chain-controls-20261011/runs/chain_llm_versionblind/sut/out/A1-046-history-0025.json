@@ -1,0 +1,16 @@
+{
+  "qid": "A1-046-history-0025",
+  "value": null,
+  "state": "absent",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "猎户项目#latest",
+      "line": 1,
+      "quote": "猎户项目 的有效期秒数当前已撤销，不再保留取值。"
+    }
+  ],
+  "confidence": "unknown",
+  "_json_ok": true
+}

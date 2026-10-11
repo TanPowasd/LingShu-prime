@@ -1,0 +1,16 @@
+{
+  "qid": "B3-020-reason-0528",
+  "value": null,
+  "state": "absent",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "孤山驿#latest",
+      "line": 1,
+      "quote": "程雪 的信任对象当前为 白芨（第 25 章生效）。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

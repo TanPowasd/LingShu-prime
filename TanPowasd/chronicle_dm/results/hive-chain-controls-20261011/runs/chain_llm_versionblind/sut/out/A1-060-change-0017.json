@@ -1,0 +1,16 @@
+{
+  "qid": "A1-060-change-0017",
+  "value": "sync(key, ttl)",
+  "state": "unresolved",
+  "at_seq": 54,
+  "chain": [],
+  "basis": [
+    {
+      "file": "猎户项目#latest",
+      "line": 1,
+      "quote": "猎户项目 的函数签名当前为 sync(key, ttl)（第 54 次提交生效）。"
+    }
+  ],
+  "confidence": "unknown",
+  "_json_ok": true
+}

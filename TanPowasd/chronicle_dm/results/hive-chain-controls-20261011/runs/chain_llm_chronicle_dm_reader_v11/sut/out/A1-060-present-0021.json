@@ -1,0 +1,16 @@
+{
+  "qid": "A1-060-present-0021",
+  "value": null,
+  "state": "retired",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "猎户项目#55",
+      "line": 55,
+      "quote": "猎户项目 的有效期秒数被撤销，此后不再保留取值，起因是灰度观测数据。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

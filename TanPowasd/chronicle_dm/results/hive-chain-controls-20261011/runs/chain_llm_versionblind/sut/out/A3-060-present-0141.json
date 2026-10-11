@@ -1,0 +1,16 @@
+{
+  "qid": "A3-060-present-0141",
+  "value": "10800",
+  "state": "active",
+  "at_seq": 60,
+  "chain": [],
+  "basis": [
+    {
+      "file": "片段1 · 织女项目#latest",
+      "line": 1,
+      "quote": "织女项目·缓存模块 的有效期秒数当前为 10800（第 60 次提交生效）。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

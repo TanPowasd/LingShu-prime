@@ -1,0 +1,16 @@
+{
+  "qid": "A3-001-history-0123",
+  "value": null,
+  "state": "unresolved",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "织女项目#latest",
+      "line": 1,
+      "quote": "织女项目 的有效期秒数当前为 21600（第 54 次提交生效）。"
+    }
+  ],
+  "confidence": "unknown",
+  "_json_ok": true
+}

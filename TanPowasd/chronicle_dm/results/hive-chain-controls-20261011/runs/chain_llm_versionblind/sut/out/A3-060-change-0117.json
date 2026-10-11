@@ -1,0 +1,16 @@
+{
+  "qid": "A3-060-change-0117",
+  "value": "fn_894291()",
+  "state": "unresolved",
+  "at_seq": 53,
+  "chain": [],
+  "basis": [
+    {
+      "file": "织女项目#latest",
+      "line": 1,
+      "quote": "织女项目 的函数签名当前为 fn_894291()（第 53 次提交生效）。"
+    }
+  ],
+  "confidence": "unknown",
+  "_json_ok": true
+}

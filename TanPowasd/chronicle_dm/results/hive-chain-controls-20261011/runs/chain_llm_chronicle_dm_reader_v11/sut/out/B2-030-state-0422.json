@@ -1,0 +1,21 @@
+{
+  "qid": "B2-030-state-0422",
+  "value": "active",
+  "state": "active",
+  "at_seq": 26,
+  "chain": [],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 30,
+      "quote": "状态：有效；取值：观望；自第26起"
+    },
+    {
+      "file": "雾港#26",
+      "line": 26,
+      "quote": "沈砚 的立场转为 观望，起因是一场误会。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

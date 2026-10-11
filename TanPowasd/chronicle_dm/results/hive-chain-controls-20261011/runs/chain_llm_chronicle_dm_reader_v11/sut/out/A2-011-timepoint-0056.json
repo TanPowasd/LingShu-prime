@@ -1,0 +1,21 @@
+{
+  "qid": "A2-011-timepoint-0056",
+  "value": null,
+  "state": "retired",
+  "at_seq": 11,
+  "chain": [],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "状态：已撤销；取值：None；自第11起"
+    },
+    {
+      "file": "流明项目#11",
+      "line": 11,
+      "quote": "流明项目 的依赖名被撤销，此后不再保留取值，起因是依赖库升级。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

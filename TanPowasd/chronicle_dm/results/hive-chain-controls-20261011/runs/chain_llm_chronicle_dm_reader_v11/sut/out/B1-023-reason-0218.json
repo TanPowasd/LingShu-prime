@@ -1,0 +1,16 @@
+{
+  "qid": "B1-023-reason-0218",
+  "value": "利益冲突",
+  "state": "active",
+  "at_seq": 23,
+  "chain": [],
+  "basis": [
+    {
+      "file": "青石镇#23",
+      "line": 5,
+      "quote": "小满 的情绪转为 释然，起因是利益冲突。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

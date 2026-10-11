@@ -1,0 +1,16 @@
+{
+  "qid": "B1-022-reason-0258",
+  "value": null,
+  "state": "absent",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "青石镇#latest",
+      "line": 1,
+      "quote": "老陈 的情绪当前为 犹豫（第 26 章生效）。"
+    }
+  ],
+  "confidence": "unknown",
+  "_json_ok": true
+}

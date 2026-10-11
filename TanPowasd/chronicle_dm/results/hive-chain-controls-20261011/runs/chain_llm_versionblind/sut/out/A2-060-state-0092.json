@@ -1,0 +1,16 @@
+{
+  "qid": "A2-060-state-0092",
+  "value": "21600",
+  "state": "active",
+  "at_seq": 55,
+  "chain": [],
+  "basis": [
+    {
+      "file": "流明项目#latest",
+      "line": 1,
+      "quote": "流明项目·缓存模块 的有效期秒数当前为 21600（第 55 次提交生效）。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

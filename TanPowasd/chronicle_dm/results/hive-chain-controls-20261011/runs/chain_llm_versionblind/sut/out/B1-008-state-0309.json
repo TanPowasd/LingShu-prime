@@ -1,0 +1,16 @@
+{
+  "qid": "B1-008-state-0309",
+  "value": null,
+  "state": "unresolved",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "青石镇#latest",
+      "line": 1,
+      "quote": "阿禾 的立场当前为 观望（第 25 章生效）。"
+    }
+  ],
+  "confidence": "unknown",
+  "_json_ok": true
+}

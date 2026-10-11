@@ -1,0 +1,22 @@
+{
+  "qid": "B2-030-change-0427",
+  "value": "观望",
+  "state": "active",
+  "at_seq": 26,
+  "chain": [
+    {
+      "seq": 26,
+      "from": null,
+      "to": "观望"
+    }
+  ],
+  "basis": [
+    {
+      "file": "雾港#latest",
+      "line": 1,
+      "quote": "沈砚 的立场当前为 观望（第 26 章生效）。"
+    }
+  ],
+  "confidence": "probable",
+  "_json_ok": true
+}

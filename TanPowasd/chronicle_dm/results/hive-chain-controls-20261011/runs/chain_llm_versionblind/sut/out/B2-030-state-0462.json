@@ -1,0 +1,16 @@
+{
+  "qid": "B2-030-state-0462",
+  "value": "沉默",
+  "state": "active",
+  "at_seq": 27,
+  "chain": [],
+  "basis": [
+    {
+      "file": "雾港#latest",
+      "line": 1,
+      "quote": "阿桑 的立场当前为 沉默（第 27 章生效）。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

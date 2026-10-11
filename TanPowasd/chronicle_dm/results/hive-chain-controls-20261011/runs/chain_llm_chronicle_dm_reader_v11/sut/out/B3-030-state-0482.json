@@ -1,0 +1,21 @@
+{
+  "qid": "B3-030-state-0482",
+  "value": "外人",
+  "state": "active",
+  "at_seq": 27,
+  "chain": [],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "状态：有效；取值：外人；自第27起"
+    },
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "第27：set 外人"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}
