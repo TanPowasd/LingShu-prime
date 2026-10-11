@@ -220,7 +220,7 @@ def cards_run(split):
     return rows
 
 
-def stream_one(path):
+def stream_one(path, shard=0, nshard=1):
     from hive_e2e_stream import bset, chunk_turn, parse
     path = pathlib.Path(path)
     turns = parse(path)
@@ -228,12 +228,18 @@ def stream_one(path):
     dfc = collections.Counter(g for _, x in allc for g in bset(x))
     capf = max(2, int(0.02 * len(allc)))
     mm, budget = Mems(), 4000
-    s = {a: [0.0, 0.0] for a in ARMS}; n = 0
+    s = {a: [0.0, 0.0] for a in ARMS}; n = qi = 0
     for ti, t in enumerate(turns):
+        tgt = None
         if t["who"] == "human" and ti + 1 < len(turns) and turns[ti + 1]["who"] == "ai" and mm.B.N:
             tgt = {g for g in bset(turns[ti + 1]["text"]) if dfc.get(g, 0) <= capf} - bset(t["text"])
             if tgt:
-                n += 1
+                qi += 1
+                if (qi - 1) % nshard != shard:  # 分片：所有轮照常写入，只评本片的查询
+                    tgt = None
+                else:
+                    n += 1
+            if tgt:
                 rec, used = set(), 0
                 for i in mm.B.rank_recent():
                     if used + mm.B.size[i] > budget and used:
