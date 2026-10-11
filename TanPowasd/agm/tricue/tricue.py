@@ -43,7 +43,7 @@ import re
 from dataclasses import dataclass
 
 __all__ = ["TriCueMemory", "RRF3Memory", "Hit", "BM25_DF_CAP_V10", "TEMPORAL_FAR"]
-__version__ = "2.0.0"
+__version__ = "3.0.0"
 
 CHUNK = 300
 SEEDS, DECAY, THETA, KWTA, STEPS = 8, 0.35, 0.05, 80, 2
@@ -90,15 +90,20 @@ def mixed_tokens(s: str) -> set[str]:
     return out
 
 
-def seq_tokens(s: str) -> list[str]:
-    """v2 词项序列：中日韩逐字为词项，其余字母数字串取小写整词（SDM 需要有序位置）。"""
+def seq_tokens(s: str, cjk: str = "char") -> list[str]:
+    """v2 词项序列：中日韩逐字为词项（cjk="bigram" 时取重叠字二元组，单字段取单字），
+    其余字母数字串取小写整词（SDM 需要有序位置）。"""
     out = []
     for w in _WORD.findall(s):
         pos = 0
         for m in _CJK.finditer(w):
             if m.start() > pos:
                 out.append(w[pos:m.start()].lower())
-            out.extend(m.group())
+            run = m.group()
+            if cjk == "bigram" and len(run) > 1:
+                out.extend(run[i:i + 2] for i in range(len(run) - 1))
+            else:
+                out.extend(run)
             pos = m.end()
         if pos < len(w):
             out.append(w[pos:].lower())
@@ -118,7 +123,9 @@ class BM25PlusSDM:
     无序对的 tf/df 在查询时由位置表现算，只对同时含两个词项的文档计算。
     """
 
-    def __init__(self):
+    def __init__(self, uw_top: int = 0):
+        """uw_top>0：无序窗口特征只对单词项+有序对得分前 uw_top 的文档计算（提速的重排近似）。"""
+        self.uw_top = uw_top
         self.tf: list[collections.Counter] = []
         self.tf2: list[collections.Counter] = []
         self.pos: list[dict[str, list[int]]] = []
@@ -181,11 +188,15 @@ class BM25PlusSDM:
                 df = len(post)
                 for d in post:
                     sc[d] += wo * self._part(self.tf2[d][pr], df, self.dl[d], avg)
+        cand = set(sorted(sc, key=lambda d: -sc[d])[: self.uw_top]) if self.uw_top else None
+        for pr in pairs:
             a, b = pr
             pa_, pb_ = self.inv.get(a), self.inv.get(b)
             if not pa_ or not pb_:
                 continue
             both = set(pa_).intersection(pb_) if len(pa_) < len(pb_) else set(pb_).intersection(pa_)
+            if cand is not None:
+                both &= cand
             hits = {}
             for d in both:
                 n = self._uw(self.pos[d][a], self.pos[d][b])
@@ -229,7 +240,7 @@ class Hit:
 class TriCueMemory:
     def __init__(self, chunk: int = CHUNK, temporal: float = 0.0, df_cap: float = BM25_DF_CAP,
                  tokenizer: str = "bigram", turn_cue: bool = False, relrec: bool = False, recency: bool = True,
-                 scorer: str = "bm25"):
+                 scorer: str = "bm25", cjk: str = "char", uw_top: int = 0, cues: str = "fuse"):
         """temporal>0 打开第四路「相关近因」（v1.1，默认关＝与 v1.0 逐位等价）。
 
         v2 开关（默认全关＝v1.1 逐位等价；TriCueMemory.v2() 给出 v2 组合）：
@@ -238,9 +249,15 @@ class TriCueMemory:
           relrec=True        无门限相关近因：块 BM25 前 SEEDS 名按新→旧，其余按 BM25
           recency=False      去掉全局近因路
           scorer="bm25p_sdm" 块级与整轮打分都换成 BM25PlusSDM（分词改用 seq_tokens）
+        v3 开关：
+          cjk="bigram"       SDM 的中日韩词项取重叠字二元组（默认 "char" 逐字＝v2）
+          uw_top=1000        无序窗口只在单词项+有序对前 1000 篇内计算
+          cues="agm"         不做多路融合，直接用 AGM 扩散排序（种子＝块级打分，其余按块级打分接续）
         """
+        self.cues = cues
         self.sdm = scorer == "bm25p_sdm"
-        self.c_sdm, self.t_sdm = BM25PlusSDM(), BM25PlusSDM()
+        self.cjk = cjk
+        self.c_sdm, self.t_sdm = BM25PlusSDM(uw_top), BM25PlusSDM(uw_top)
         self.tok = mixed_tokens if tokenizer == "mixed" else bigrams
         self.turn_cue, self.relrec, self.recency = turn_cue, relrec, recency
         self.t_inv: dict[str, list[int]] = collections.defaultdict(list)
@@ -280,7 +297,7 @@ class TriCueMemory:
         if prev is not None:
             self._last_chunk = prev
         if self.turn_cue and self.sdm:
-            self.t_sdm.add(seq_tokens(text)); self.t_size.append(0); self.t_chunks.append(ids)
+            self.t_sdm.add(seq_tokens(text, self.cjk)); self.t_size.append(0); self.t_chunks.append(ids)
         elif self.turn_cue:
             toks = self.tok(text)
             self.t_size.append(len(norm(text)))
@@ -295,12 +312,18 @@ class TriCueMemory:
         kw.setdefault("scorer", "bm25p_sdm")
         return cls(tokenizer="mixed", turn_cue=True, relrec=True, recency=recency, **kw)
 
+    @classmethod
+    def v3(cls, **kw) -> "TriCueMemory":
+        """TriCue v3：BM25+×SDM（中文字二元组词项）为种子的 AGM 扩散单路。"""
+        kw.setdefault("uw_top", 1000)
+        return cls(tokenizer="mixed", scorer="bm25p_sdm", cjk="bigram", recency=False, cues="agm", **kw)
+
     def _add_chunk(self, t, role, piece):
         i = self.N
         self.raw.append(piece); self.size.append(len(norm(piece)))
         self.turn_of.append(t); self.role_of.append(role)
         if self.sdm:
-            self.c_sdm.add(seq_tokens(piece))
+            self.c_sdm.add(seq_tokens(piece, self.cjk))
             return i
         for g in self.tok(piece):
             self.inv[g].append(i)
@@ -312,7 +335,7 @@ class TriCueMemory:
 
     def bm25(self, query: str) -> dict[int, float]:
         if self.sdm:
-            return self.c_sdm.score(seq_tokens(query))
+            return self.c_sdm.score(seq_tokens(query, self.cjk))
         N = self.N
         if not N:
             return {}
@@ -366,7 +389,7 @@ class TriCueMemory:
     def turn_bm25(self, query: str) -> dict[int, float]:
         """整轮 BM25（同一公式，文档＝整轮）。"""
         if self.sdm:
-            return self.t_sdm.score(seq_tokens(query))
+            return self.t_sdm.score(seq_tokens(query, self.cjk))
         T = len(self.t_size)
         if not T:
             return {}
@@ -398,6 +421,8 @@ class TriCueMemory:
     def rank(self, query: str) -> list[int]:
         """融合排序（块号）。"""
         sc = self.bm25(query)
+        if self.cues == "agm":
+            return self.rank_agm(sc)
         o_bm = sorted(sc, key=lambda i: -sc[i])
         ways = [o_bm, self.rank_agm(sc)]
         if self.recency:

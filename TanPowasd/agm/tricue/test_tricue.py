@@ -75,3 +75,14 @@ def test_v11_versioned_subject_recall():
     q = "甲项目的依赖名当前是什么"
     assert all("甲项目" in h.text for h in m.retrieve(q, budget=200))
     assert not old.bm25(q)          # v1.0：所有查询二元组都超 df 截断，BM25 全零
+
+
+def test_v3_agm_only():
+    m = R.TriCueMemory.v3()
+    for i in range(30):
+        m.add_turn("user", f"第{i}轮 闲聊天气 {i}")
+    m.add_turn("user", "我的猫叫团子，喜欢吃三文鱼")
+    m.add_turn("assistant", "团子真可爱")
+    hits = m.retrieve("猫叫什么名字", 60)
+    assert (any("团子" in h.text for h in hits))
+    assert m.rank("猫叫什么") == m.rank_agm(m.bm25("猫叫什么"))
