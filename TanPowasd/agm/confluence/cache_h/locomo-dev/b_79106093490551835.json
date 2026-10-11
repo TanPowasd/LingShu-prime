@@ -1,0 +1,34 @@
+{
+"conv-47#14": {
+"found": true,
+"follow": []
+},
+"conv-47#15": {
+"found": true,
+"follow": []
+},
+"conv-47#16": {
+"found": false,
+"follow": [
+"multi-colored cards numbers same color or number game",
+"John James board game multi-colored cards",
+"game where you place same color or number card"
+]
+},
+"conv-47#17": {
+"found": false,
+"follow": [
+"John James board game find the imposter",
+"board game where you find the imposter John mentions",
+"social deduction board game imposter John James"
+]
+},
+"conv-47#18": {
+"found": false,
+"follow": [
+"John recommended books to James",
+"John book suggestions James fantasy",
+"book that helped John create puzzles"
+]
+}
+}

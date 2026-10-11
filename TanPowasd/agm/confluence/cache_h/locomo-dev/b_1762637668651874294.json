@@ -1,0 +1,30 @@
+{
+"conv-47#54": {
+"found": false,
+"follow": [
+"John hosted programming event",
+"John organized online programming competition",
+"John programming workshop"
+]
+},
+"conv-47#55": {
+"found": true,
+"follow": []
+},
+"conv-47#56": {
+"found": false,
+"follow": [
+"James sister visited him",
+"James father visited him",
+"James family visited him last year"
+]
+},
+"conv-47#57": {
+"found": true,
+"follow": []
+},
+"conv-47#58": {
+"found": true,
+"follow": []
+}
+}

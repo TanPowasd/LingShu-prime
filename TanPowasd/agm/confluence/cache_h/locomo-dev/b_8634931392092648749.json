@@ -1,0 +1,30 @@
+{
+"conv-47#44": {
+"found": true,
+"follow": []
+},
+"conv-47#45": {
+"found": true,
+"follow": []
+},
+"conv-47#46": {
+"found": false,
+"follow": [
+"John James McGee's Pub tomorrow",
+"when did John and James meet at McGee's bar",
+"D21 date"
+]
+},
+"conv-47#47": {
+"found": true,
+"follow": []
+},
+"conv-47#48": {
+"found": false,
+"follow": [
+"baseball game next Sunday John Samantha James",
+"did John join James and Samantha at the baseball game",
+"D23 next Sunday baseball game"
+]
+}
+}

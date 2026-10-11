@@ -1,0 +1,38 @@
+{
+"conv-47#9": {
+"found": true,
+"follow": []
+},
+"conv-47#10": {
+"found": false,
+"follow": [
+"James adopted Ned last week",
+"Ned adoption Stamford shelter date",
+"When did James adopt Ned"
+]
+},
+"conv-47#11": {
+"found": false,
+"follow": [
+"John feeling April 10 2022",
+"John overwhelmed stressed determined passionate April 2022",
+"John emotional rollercoaster April 10 2022"
+]
+},
+"conv-47#12": {
+"found": false,
+"follow": [
+"James Samantha girlfriend theater April 2022",
+"James asked Samantha to be girlfriend date",
+"Did James have a girlfriend April 2022"
+]
+},
+"conv-47#13": {
+"found": false,
+"follow": [
+"James visited Italy last year",
+"When did James visit Italy",
+"James Italy trip date"
+]
+}
+}

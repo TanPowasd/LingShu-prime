@@ -1,0 +1,30 @@
+{
+"conv-47#109": {
+"found": true,
+"follow": []
+},
+"conv-47#110": {
+"found": true,
+"follow": []
+},
+"conv-47#111": {
+"found": false,
+"follow": [
+"John The Witcher 3 10 August 2022",
+"John playing RPG game August 10 2022",
+"John The Witcher 3 date"
+]
+},
+"conv-47#112": {
+"found": true,
+"follow": []
+},
+"conv-47#113": {
+"found": false,
+"follow": [
+"James beautiful girl beach outing phone number name",
+"James met girl at beach outing her name",
+"John asked what's her name James beach"
+]
+}
+}

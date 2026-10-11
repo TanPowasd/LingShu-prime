@@ -1,0 +1,34 @@
+{
+"conv-30#20": {
+"found": false,
+"follow": [
+"Gina accepted fashion internship date",
+"Gina design internship interview yesterday",
+"when did Gina get accepted for the design internship"
+]
+},
+"conv-30#21": {
+"found": false,
+"follow": [
+"Jon started reading The Lean Startup date",
+"Jon The Lean Startup when",
+"Jon reading The Lean Startup"
+]
+},
+"conv-30#22": {
+"found": false,
+"follow": [
+"Gina developed video presentation styling fashion pieces date",
+"Gina video presentation fashion pieces when",
+"Gina fashion styling video presentation"
+]
+},
+"conv-30#23": {
+"found": true,
+"follow": []
+},
+"conv-30#24": {
+"found": true,
+"follow": []
+}
+}

@@ -1,0 +1,30 @@
+{
+"conv-30#40": {
+"found": false,
+"follow": [
+"Jon favorite style of dance",
+"Jon dance style contemporary hip-hop",
+"Jon favorite dance genre"
+]
+},
+"conv-30#41": {
+"found": true,
+"follow": []
+},
+"conv-30#42": {
+"found": true,
+"follow": []
+},
+"conv-30#43": {
+"found": false,
+"follow": [
+"Jon Gina dancers photo represent",
+"dancers on stage arms in the air represent",
+"dancers in white dresses represent"
+]
+},
+"conv-30#44": {
+"found": true,
+"follow": []
+}
+}

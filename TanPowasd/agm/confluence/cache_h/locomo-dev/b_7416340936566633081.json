@@ -1,0 +1,42 @@
+{
+"conv-47#4": {
+"found": false,
+"follow": [
+"John resume playing drums adulthood",
+"John started playing drums again",
+"John playing drums for a month"
+]
+},
+"conv-47#5": {
+"found": false,
+"follow": [
+"John favorite game",
+"John favorite video game",
+"James favorite game Apex Legends"
+]
+},
+"conv-47#6": {
+"found": false,
+"follow": [
+"James lives in Connecticut",
+"McGee's bar location",
+"James apartment Stamford Connecticut"
+]
+},
+"conv-47#7": {
+"found": false,
+"follow": [
+"Stamford shelter state",
+"Stamford Connecticut shelter",
+"shelter in Stamford state"
+]
+},
+"conv-47#8": {
+"found": false,
+"follow": [
+"James pets Max Daisy Ned",
+"how many pets does James have",
+"James dogs Max Daisy Ned"
+]
+}
+}

@@ -1,0 +1,38 @@
+{
+"conv-30#5": {
+"found": true,
+"follow": []
+},
+"conv-30#6": {
+"found": false,
+"follow": [
+"festival next month date",
+"Jon dance group festival performance date",
+"nearby festival next month"
+]
+},
+"conv-30#7": {
+"found": false,
+"follow": [
+"Gina ad campaign launch date",
+"just launched ad campaign clothing store",
+"when did Gina launch ad campaign"
+]
+},
+"conv-30#8": {
+"found": false,
+"follow": [
+"Jon Paris yesterday date",
+"when did Jon go to Paris",
+"Jon trip to Paris"
+]
+},
+"conv-30#9": {
+"found": false,
+"follow": [
+"Jon Rome visit",
+"Gina Paris visit",
+"Jean John visited city"
+]
+}
+}

@@ -1,0 +1,38 @@
+{
+"conv-47#49": {
+"found": false,
+"follow": [
+"John refurbished gaming equipment",
+"John bought other gaming devices",
+"John Sennheiser Logitech gaming equipment"
+]
+},
+"conv-47#50": {
+"found": true,
+"follow": []
+},
+"conv-47#51": {
+"found": false,
+"follow": [
+"John started playing new games",
+"John tried Cyberpunk 2077",
+"John new game during conversation with James"
+]
+},
+"conv-47#52": {
+"found": false,
+"follow": [
+"John 2D adventure mobile game start date",
+"John first mobile game development start",
+"John working on mobile game past few months"
+]
+},
+"conv-47#53": {
+"found": false,
+"follow": [
+"James Witcher-inspired game how long to complete",
+"James game development duration Witcher 3",
+"James finished game Witcher 3 time"
+]
+}
+}

@@ -1,0 +1,33 @@
+{
+"conv-30#25": {
+"found": false,
+"follow": [
+"Jon one-on-one mentoring and training dancers",
+"dance studio mentoring training offerings"
+]
+},
+"conv-30#26": {
+"found": false,
+"follow": [
+"Jon received mentorship for venture",
+"mentor helped Jon promote dance studio",
+"Jon got mentor for business"
+]
+},
+"conv-30#27": {
+"found": true,
+"follow": []
+},
+"conv-30#28": {
+"found": true,
+"follow": []
+},
+"conv-30#29": {
+"found": false,
+"follow": [
+"Jon trip to Rome",
+"Jon visited Rome",
+"cities Jon has visited Paris Rome"
+]
+}
+}

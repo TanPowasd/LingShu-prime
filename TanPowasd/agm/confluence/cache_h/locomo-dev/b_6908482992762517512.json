@@ -1,0 +1,42 @@
+{
+"conv-47#34": {
+"found": false,
+"follow": [
+"James Toronto Nuuk July 2022",
+"James Canada Greenland July 2022",
+"James trip July 20 2022"
+]
+},
+"conv-47#35": {
+"found": false,
+"follow": [
+"Nuuk country",
+"Nuuk Greenland",
+"James Nuuk Canada trip"
+]
+},
+"conv-47#36": {
+"found": false,
+"follow": [
+"Jill John relationship",
+"John Jill wife",
+"John Jill girlfriend"
+]
+},
+"conv-47#37": {
+"found": false,
+"follow": [
+"John sister dogs when",
+"John spent time with sister and dogs",
+"John sister dogs yesterday"
+]
+},
+"conv-47#38": {
+"found": false,
+"follow": [
+"John job situation 2022",
+"John left IT job 2022",
+"John new job 2022"
+]
+}
+}

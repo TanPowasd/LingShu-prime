@@ -1,0 +1,30 @@
+{
+"conv-30#80": {
+"found": true,
+"follow": []
+},
+"conv-47#0": {
+"found": false,
+"follow": [
+"John suspected health problems",
+"John health issues",
+"John medical condition"
+]
+},
+"conv-47#1": {
+"found": false,
+"follow": [
+"James March 16 2022 activity",
+"James March 16 2022 skateboarding",
+"James March 16 2022 drum kit"
+]
+},
+"conv-47#2": {
+"found": true,
+"follow": []
+},
+"conv-47#3": {
+"found": true,
+"follow": []
+}
+}

@@ -1,0 +1,26 @@
+{
+"conv-30#45": {
+"found": true,
+"follow": []
+},
+"conv-30#46": {
+"found": true,
+"follow": []
+},
+"conv-30#47": {
+"found": false,
+"follow": [
+"Gina found fashion piece for clothing store 1 February 2023",
+"Gina clothing store 1 February 2023",
+"Gina new fashion piece store February 2023"
+]
+},
+"conv-30#48": {
+"found": true,
+"follow": []
+},
+"conv-30#49": {
+"found": true,
+"follow": []
+}
+}

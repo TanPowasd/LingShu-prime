@@ -1,0 +1,26 @@
+{
+"conv-47#89": {
+"found": true,
+"follow": []
+},
+"conv-47#90": {
+"found": false,
+"follow": [
+"May 2022 charity tournament John dog shelter",
+"John May 2022 CS:GO tournament charity main goal",
+"when did John and friends organize charity tournament for dog shelter"
+]
+},
+"conv-47#91": {
+"found": true,
+"follow": []
+},
+"conv-47#92": {
+"found": true,
+"follow": []
+},
+"conv-47#93": {
+"found": true,
+"follow": []
+}
+}

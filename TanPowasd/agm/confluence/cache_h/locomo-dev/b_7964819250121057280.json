@@ -1,0 +1,34 @@
+{
+"conv-30#15": {
+"found": false,
+"follow": [
+"Jon hosting dance competition next month date",
+"dance competition showcase local talent date",
+"Jon dance competition next month"
+]
+},
+"conv-30#16": {
+"found": false,
+"follow": [
+"Jon went to fair to show off dance studio yesterday date",
+"Jon fair dance studio yesterday",
+"D10 fair dance studio date"
+]
+},
+"conv-30#17": {
+"found": true,
+"follow": []
+},
+"conv-30#18": {
+"found": true,
+"follow": []
+},
+"conv-30#19": {
+"found": false,
+"follow": [
+"Gina design internship interview yesterday date",
+"Gina interview for design internship yesterday",
+"Gina fashion internship interview date"
+]
+}
+}

@@ -1,0 +1,34 @@
+{
+"conv-47#64": {
+"found": false,
+"follow": [
+"John chess practice duration before regional chess tournament",
+"how long did John practice chess before winning",
+"John joined chess club practice tournament"
+]
+},
+"conv-47#65": {
+"found": false,
+"follow": [
+"James family road trip visited Josh and Mark date",
+"when did James visit Mark and Josh",
+"road trip started yesterday Josh Mark"
+]
+},
+"conv-47#66": {
+"found": false,
+"follow": [
+"John game developer project weekend date",
+"John worked with game developer online board game when",
+"John super fun weekend game developer"
+]
+},
+"conv-47#67": {
+"found": true,
+"follow": []
+},
+"conv-47#68": {
+"found": true,
+"follow": []
+}
+}

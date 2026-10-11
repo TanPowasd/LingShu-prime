@@ -1,0 +1,26 @@
+{
+"conv-47#39": {
+"found": false,
+"follow": [
+"John started IT job",
+"John IT job start date",
+"John left IT job after 3 years"
+]
+},
+"conv-47#40": {
+"found": true,
+"follow": []
+},
+"conv-47#41": {
+"found": true,
+"follow": []
+},
+"conv-47#42": {
+"found": true,
+"follow": []
+},
+"conv-47#43": {
+"found": true,
+"follow": []
+}
+}

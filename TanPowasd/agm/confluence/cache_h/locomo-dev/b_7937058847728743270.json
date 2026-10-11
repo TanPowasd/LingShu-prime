@@ -1,0 +1,26 @@
+{
+"conv-30#30": {
+"found": true,
+"follow": []
+},
+"conv-30#31": {
+"found": false,
+"follow": [
+"When did Jon start looking for a dance studio?",
+"When did Jon open his dance studio?",
+"How long did Jon work on his dance studio?"
+]
+},
+"conv-30#32": {
+"found": true,
+"follow": []
+},
+"conv-30#33": {
+"found": true,
+"follow": []
+},
+"conv-30#34": {
+"found": true,
+"follow": []
+}
+}

@@ -1,0 +1,34 @@
+{
+"conv-47#19": {
+"found": false,
+"follow": [
+"James lonely before meeting Samantha",
+"James felt lonely before Samantha",
+"James dogs joy before Samantha"
+]
+},
+"conv-47#20": {
+"found": false,
+"follow": [
+"John charity tournament",
+"John organized charity tournaments",
+"John charity CS:GO dog shelter"
+]
+},
+"conv-47#21": {
+"found": true,
+"follow": []
+},
+"conv-47#22": {
+"found": false,
+"follow": [
+"John charity tournament beneficiaries",
+"John charity dog shelter other organizations",
+"John charity tournaments for"
+]
+},
+"conv-47#23": {
+"found": true,
+"follow": []
+}
+}
