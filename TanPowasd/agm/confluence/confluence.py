@@ -24,7 +24,7 @@ DEFAULT = dict(
     syn=.5,                    # 近义边（双向，乘词重合度）
     e2t=.8, t2e=.5,            # 出处边 实体→轮（再乘特异度 1/ln(e+df)）/ 轮→实体
     tmp_f=.3, tmp_b=.15,       # 时序边 同会话 前→后 / 后→前
-    seeds=8, qent=1.0, fuse=0, fan=0.0, steps=2, decay=.35, theta=.03, kwta=80, syn_min=.5)
+    seeds=8, qent=1.0, fuse=0, fan=0.0, hub=0.0, coinc=0, pool=0, steps=2, decay=.35, theta=.03, kwta=80, syn_min=.5)
 
 
 class Confluence:
@@ -53,6 +53,14 @@ class Confluence:
                         prov[x].add(ti)
                 if a is not None and b is not None and a != b:
                     pred.append((a, b))
+        if P0 := self.p["hub"]:                  # 中枢抑制（习惯化）：出现在超过 hub 比例轮次里的实体不连任何边
+            hubs = {e for e, ts in prov.items() if len(ts) > P0 * self.n}
+            pred = [(a, b) for a, b in pred if a not in hubs and b not in hubs]
+            for e in hubs:
+                del prov[e]
+            self.hubs = hubs
+        else:
+            self.hubs = set()
         ne = len(self.ename)
         self.N = self.n + ne                      # 0..n-1 轮节点；n.. 实体节点
         out = [collections.defaultdict(float) for _ in range(self.N)]
@@ -74,7 +82,7 @@ class Confluence:
             for j, sh in cand.items():
                 jac = sh / len(ws | cw[j])
                 sub = ws <= cw[j] or cw[j] <= ws
-                if jac >= P["syn_min"] or sub:
+                if (jac >= P["syn_min"] or sub) and e not in self.hubs and j not in self.hubs:
                     add(self.n + e, self.n + j, P["syn"] * max(jac, .5)); self.n_syn += 1
         for e, ts in prov.items():
             spec = 1 / math.log(math.e + len(ts))
@@ -115,18 +123,26 @@ class Confluence:
         for e, v in self.q_entities(q).items():
             x[self.n + e] = max(x.get(self.n + e, 0), P["qent"] * v)
         a = dict(x)
+        src = collections.defaultdict(set)          # 巧合检测：记录每个轮节点的不同来源
         for _ in range(P["steps"]):
             nxt = collections.defaultdict(float)
             for i, ai in a.items():
                 fo = (len(self.out[i]) ** P["fan"]) if P["fan"] else 1.0   # 扇出效应（ACT-R fan）
                 for j, w in self.out[i].items():
                     nxt[j] += ai * w / fo
+                    if j < self.n and i >= self.n:
+                        src[j].add(i)
             for i, v in x.items():
                 nxt[i] += v
             nxt = {i: (v if i in x else (1 - P["decay"]) * v) for i, v in nxt.items()}
             nxt = {i: v for i, v in nxt.items() if v >= P["theta"]}
             a = dict(sorted(nxt.items(), key=lambda kv: -kv[1])[: P["kwta"]])
+        if P["coinc"]:
+            a = {i: v for i, v in a.items() if i >= self.n or i in x or len(src[i]) >= P["coinc"]}
         tt = sorted((i for i in a if i < self.n), key=lambda i: -a[i])
+        if P["pool"]:                                 # 先认后忆：只在 v3 前 pool 名内重排
+            k = P["pool"]; ps = set(base[:k])
+            return T.rrf([base[:k], [t for t in tt if t in ps]], limit=10**9) + base[k:]
         if P["fuse"]:
             gt = sorted((i for i in a if i < self.n and i not in x), key=lambda i: -a[i])
             return T.rrf([base, gt], limit=10**9)
