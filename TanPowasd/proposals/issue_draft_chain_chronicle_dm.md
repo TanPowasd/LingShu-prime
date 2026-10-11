@@ -61,7 +61,7 @@ git -C hive-memory-bench checkout 426a86a      # 状态链轨 v0.2，本次判�
 export REPO=$PWD/LingShu-prime BENCH=$PWD/hive-memory-bench
 ```
 
-> LingShu-prime 根目录的 LICENSE 为「需授权」声明：允许查看、fork 和复现评测，其他用途请先联系作者。发布包里的基准数据保留 CC BY 4.0，判分器保留 MIT（见包内 NOTICE.md）。
+> LingShu-prime 根目录的 LICENSE 为「需授权」声明（默认仅允许查看与 fork），使用前请先阅读。发布包里的基准数据保留 CC BY 4.0，判分器保留 MIT（见包内 NOTICE.md）。
 
 ### A. 零 key 复算（约 1 分钟，不联网、不调用模型）
 
