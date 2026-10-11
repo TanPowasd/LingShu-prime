@@ -1,0 +1,9 @@
+{
+  "qid": "A1-031-history-0005",
+  "material": [
+    {
+      "cid": "记忆查询",
+      "text": "记忆核心：编年判别记忆 ChronicleDM\n槽位：猎户项目 · 依赖名　查询时点：第31\n状态：有效；取值：redis；自第31起\n两核心一致：—\n版本链：\n- 第1：None → redis（有效）\n- 第3：redis → redis（有效）\n- 第11：redis → redis（有效）\n- 第18：redis → lmdb（有效）\n- 第20：lmdb → bbolt（未裁定）\n- 第21：bbolt → sqlite（有效）\n- 第22：sqlite → bbolt（有效）\n- 第25：bbolt → badger（有效）\n- 第26：badger → rocksdb（有效）\n- 第27：rocksdb → redis（有效）\n- 第28：redis → sqlite（有效）\n- 第29：sqlite → bbolt（有效）\n- 第30：bbolt → lmdb（有效）\n- 第31：lmdb → redis（有效）\n已写入的版本事件：\n- 第1：set redis\n- 第3：set redis\n- 第11：set redis\n- 第18：set lmdb\n- 第20：unresolve bbolt / lmdb（并存）\n- 第21：set sqlite\n- 第22：set bbolt\n- 第25：set badger\n- 第26：set rocksdb\n- 第27：set redis\n- 第28：set sqlite\n- 第29：set bbolt\n- 第30：set lmdb\n- 第31：set redis\n- 第32：set rocksdb\n- 第33：set bbolt\n- 第34：set redis\n- 第35：set bbolt\n- 第36：set rocksdb\n- 第37：set badger\n- 第38：set rocksdb\n- 第39：set lmdb\n- 第40：set sqlite\n- 第41：set redis\n- 第56：set redis"
+    }
+  ]
+}

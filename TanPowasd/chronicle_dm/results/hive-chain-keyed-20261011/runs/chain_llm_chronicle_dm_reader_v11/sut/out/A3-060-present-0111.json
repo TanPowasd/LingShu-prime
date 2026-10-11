@@ -1,0 +1,21 @@
+{
+  "qid": "A3-060-present-0111",
+  "value": "fn_894291()",
+  "state": "active",
+  "at_seq": 53,
+  "chain": [],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 60,
+      "quote": "状态：有效；取值：fn_894291()；自第53起"
+    },
+    {
+      "file": "织女项目#53",
+      "line": 53,
+      "quote": "织女项目 的函数签名调整为 fn_894291()，起因是安全审计要求。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

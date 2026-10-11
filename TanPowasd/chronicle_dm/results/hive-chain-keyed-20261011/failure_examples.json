@@ -1,0 +1,132 @@
+[
+  {
+    "qid": "A2-026-history-0064",
+    "type": "历史",
+    "question": "在第 26 次提交时，流明项目 的函数签名是什么值？",
+    "expected_value": "resolve(key, ttl)",
+    "expected_state": "active",
+    "predicted_value": "load(key, ttl, tag, refresh)",
+    "predicted_state": "active",
+    "gold_version_segment_retrieved": true
+  },
+  {
+    "qid": "A3-060-state-0132",
+    "type": "状态归属",
+    "question": "截至第 60 次提交，织女项目 的配置值处于什么状态？（现行 active / 退役 retired / 未决 unresolved / 不存在 absent）",
+    "expected_value": "timeout_ms=128",
+    "expected_state": "active",
+    "predicted_value": "unresolved",
+    "predicted_state": "unresolved",
+    "gold_version_segment_retrieved": false
+  },
+  {
+    "qid": "B2-021-history-0375",
+    "type": "历史",
+    "question": "在第 21 章时，林昭 的情绪是什么值？",
+    "expected_value": "愤怒",
+    "expected_state": "unresolved",
+    "predicted_value": "愤怒 与 欣慰（并存）",
+    "predicted_state": "unresolved",
+    "gold_version_segment_retrieved": true
+  },
+  {
+    "qid": "B2-012-history-0385",
+    "type": "历史",
+    "question": "在第 12 章时，林昭 的立场是什么值？",
+    "expected_value": "中立",
+    "expected_state": "unresolved",
+    "predicted_value": "中立 / 暧昧（并存）",
+    "predicted_state": "unresolved",
+    "gold_version_segment_retrieved": true
+  },
+  {
+    "qid": "B2-017-history-0444",
+    "type": "历史",
+    "question": "在第 17 章时，阿桑 的信任对象是什么值？",
+    "expected_value": "杜衡",
+    "expected_state": "unresolved",
+    "predicted_value": "杜衡 与 林昭",
+    "predicted_state": "unresolved",
+    "gold_version_segment_retrieved": true
+  },
+  {
+    "qid": "B3-022-history-0475",
+    "type": "历史",
+    "question": "在第 22 章时，白芨 的位置是什么值？",
+    "expected_value": "后山",
+    "expected_state": "unresolved",
+    "predicted_value": "后山 / 驿站",
+    "predicted_state": "unresolved",
+    "gold_version_segment_retrieved": true
+  },
+  {
+    "qid": "B3-023-history-0495",
+    "type": "历史",
+    "question": "在第 23 章时，白芨 的情绪是什么值？",
+    "expected_value": "焦虑",
+    "expected_state": "unresolved",
+    "predicted_value": "焦虑 与 低落",
+    "predicted_state": "unresolved",
+    "gold_version_segment_retrieved": true
+  },
+  {
+    "qid": "B3-012-history-0524",
+    "type": "历史",
+    "question": "在第 12 章时，程雪 的信任对象是什么值？",
+    "expected_value": "顾九",
+    "expected_state": "unresolved",
+    "predicted_value": "顾九 / 陆平（并存）",
+    "predicted_state": "unresolved",
+    "gold_version_segment_retrieved": true
+  },
+  {
+    "qid": "B3-030-state-0542",
+    "type": "状态归属",
+    "question": "截至第 30 章，程雪 的立场处于什么状态？（现行 active / 退役 retired / 未决 unresolved / 不存在 absent）",
+    "expected_value": "暧昧",
+    "expected_state": "active",
+    "predicted_value": null,
+    "predicted_state": "retired",
+    "gold_version_segment_retrieved": true
+  },
+  {
+    "qid": "B3-013-history-0565",
+    "type": "历史",
+    "question": "在第 13 章时，陆平 的信任对象是什么值？",
+    "expected_value": "顾九",
+    "expected_state": "unresolved",
+    "predicted_value": "顾九 / 白芨",
+    "predicted_state": "unresolved",
+    "gold_version_segment_retrieved": true
+  },
+  {
+    "qid": "B3-022-history-0575",
+    "type": "历史",
+    "question": "在第 22 章时，陆平 的情绪是什么值？",
+    "expected_value": "焦虑",
+    "expected_state": "unresolved",
+    "predicted_value": "焦虑 / 释然（并存）",
+    "predicted_state": "unresolved",
+    "gold_version_segment_retrieved": true
+  },
+  {
+    "qid": "B3-023-history-0595",
+    "type": "历史",
+    "question": "在第 23 章时，顾九 的位置是什么值？",
+    "expected_value": "集市",
+    "expected_state": "unresolved",
+    "predicted_value": "集市 / 渡口",
+    "predicted_state": "unresolved",
+    "gold_version_segment_retrieved": true
+  },
+  {
+    "qid": "B3-018-history-0604",
+    "type": "历史",
+    "question": "在第 18 章时，顾九 的信任对象是什么值？",
+    "expected_value": "白芨",
+    "expected_state": "unresolved",
+    "predicted_value": "白芨 / 无人（并存）",
+    "predicted_state": "unresolved",
+    "gold_version_segment_retrieved": true
+  }
+]

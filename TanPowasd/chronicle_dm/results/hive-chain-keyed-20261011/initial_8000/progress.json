@@ -1,0 +1,18 @@
+{
+  "extraction_cache_hits": 331,
+  "reader_cache_hits": 276,
+  "reader_new_responses": 354,
+  "extraction_new_responses": 309,
+  "completed": 642,
+  "total": 642,
+  "failed": 16,
+  "actual_http_attempts": 1350,
+  "per_key_attempts": {
+    "key1": 379,
+    "key2": 388,
+    "key3": 220,
+    "key4": 363
+  },
+  "attempt_count_is_lower_bound": true,
+  "elapsed_seconds": 1318.9
+}

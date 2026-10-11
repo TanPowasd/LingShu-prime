@@ -1,0 +1,26 @@
+{
+  "qid": "B3-001-history-0513",
+  "value": "后山",
+  "state": "active",
+  "at_seq": 1,
+  "chain": [],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "状态：有效；取值：后山；自第1起"
+    },
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "第1：None → 后山（有效）"
+    },
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "- 第1：set 后山"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

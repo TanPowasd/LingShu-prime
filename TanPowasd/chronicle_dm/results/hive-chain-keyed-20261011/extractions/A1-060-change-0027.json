@@ -1,0 +1,58 @@
+[
+  {
+    "seq": 31,
+    "op": "set",
+    "value": "600",
+    "alt": null,
+    "cid": "猎户项目#31"
+  },
+  {
+    "seq": 34,
+    "op": "set",
+    "value": "1800",
+    "alt": null,
+    "cid": "猎户项目#34"
+  },
+  {
+    "seq": 37,
+    "op": "set",
+    "value": "3600",
+    "alt": null,
+    "cid": "猎户项目#37"
+  },
+  {
+    "seq": 40,
+    "op": "set",
+    "value": "21600",
+    "alt": null,
+    "cid": "猎户项目#40"
+  },
+  {
+    "seq": 43,
+    "op": "set",
+    "value": "600",
+    "alt": null,
+    "cid": "猎户项目#43"
+  },
+  {
+    "seq": 46,
+    "op": "set",
+    "value": "900",
+    "alt": null,
+    "cid": "猎户项目#46"
+  },
+  {
+    "seq": 49,
+    "op": "set",
+    "value": "10800",
+    "alt": null,
+    "cid": "猎户项目#49"
+  },
+  {
+    "seq": 55,
+    "op": "retire",
+    "value": null,
+    "alt": null,
+    "cid": "猎户项目#55"
+  }
+]

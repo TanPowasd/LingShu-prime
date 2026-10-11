@@ -1,0 +1,13 @@
+{
+  "verified": true,
+  "questions": 642,
+  "scored_all": 625,
+  "scored_test": 419,
+  "final_and_initial_scores_recomputed": true,
+  "raw_source_citation_hits": 330,
+  "source_snapshots_verified": 32,
+  "artifact_files_verified": 2019,
+  "response_records_verified": 1230,
+  "network_attempts": 0,
+  "model_calls": 0
+}

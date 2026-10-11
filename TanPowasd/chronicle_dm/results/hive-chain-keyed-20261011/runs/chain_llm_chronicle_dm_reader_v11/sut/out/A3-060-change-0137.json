@@ -1,0 +1,102 @@
+{
+  "qid": "A3-060-change-0137",
+  "value": "timeout_ms=128",
+  "state": "active",
+  "at_seq": 53,
+  "chain": [
+    {
+      "seq": 16,
+      "from": null,
+      "to": "retry=64"
+    },
+    {
+      "seq": 18,
+      "from": "retry=64",
+      "to": "timeout_ms=32"
+    },
+    {
+      "seq": 20,
+      "from": "timeout_ms=32",
+      "to": "retry=256"
+    },
+    {
+      "seq": 22,
+      "from": "retry=256",
+      "to": "batch_size=32"
+    },
+    {
+      "seq": 24,
+      "from": "batch_size=32",
+      "to": "batch_size=64"
+    },
+    {
+      "seq": 26,
+      "from": "batch_size=64",
+      "to": "timeout_ms=256"
+    },
+    {
+      "seq": 28,
+      "from": "timeout_ms=256",
+      "to": "batch_size=128"
+    },
+    {
+      "seq": 31,
+      "from": "batch_size=128",
+      "to": "retry=128"
+    },
+    {
+      "seq": 34,
+      "from": "retry=128",
+      "to": "retry=32"
+    },
+    {
+      "seq": 37,
+      "from": "retry=32",
+      "to": "retry=16"
+    },
+    {
+      "seq": 40,
+      "from": "retry=16",
+      "to": "max_conn=32"
+    },
+    {
+      "seq": 43,
+      "from": "max_conn=32",
+      "to": "max_conn=64"
+    },
+    {
+      "seq": 46,
+      "from": "max_conn=64",
+      "to": "batch_size=16"
+    },
+    {
+      "seq": 49,
+      "from": "batch_size=16",
+      "to": "timeout_ms=64（未裁定；retry=256 并存）"
+    },
+    {
+      "seq": 53,
+      "from": "timeout_ms=64（未裁定；retry=256 并存）",
+      "to": "timeout_ms=128"
+    }
+  ],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "状态：有效；取值：timeout_ms=128；自第53起"
+    },
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "版本链：\n- 第16：None → retry=64（有效）\n- 第18：retry=64 → timeout_ms=32（有效）\n- 第20：timeout_ms=32 → retry=256（有效）\n- 第22：retry=256 → batch_size=32（有效）\n- 第24：batch_size=32 → batch_size=64（有效）\n- 第26：batch_size=64 → timeout_ms=256（有效）\n- 第28：timeout_ms=256 → batch_size=128（有效）\n- 第31：batch_size=128 → retry=128（有效）\n- 第34：retry=128 → retry=32（有效）\n- 第37：retry=32 → retry=16（有效）\n- 第40：retry=16 → max_conn=32（有效）\n- 第43：max_conn=32 → max_conn=64（有效）\n- 第46：max_conn=64 → batch_size=16（有效）\n- 第49：batch_size=16 → timeout_ms=64（未裁定）\n- 第53：timeout_ms=64 → timeout_ms=128（有效）"
+    },
+    {
+      "file": "织女项目#49",
+      "line": 49,
+      "quote": "织女项目 的配置值出现两种并存的取值：timeout_ms=64 与 retry=256，尚未裁定，起因是线上故障复盘。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

@@ -1,0 +1,21 @@
+{
+  "qid": "B1-007-state-0290",
+  "value": "老陈",
+  "state": "active",
+  "at_seq": 7,
+  "chain": [],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "状态：有效；取值：老陈；自第7起"
+    },
+    {
+      "file": "青石镇#7",
+      "line": 2,
+      "quote": "禾生 的信任对象转为 老陈，起因是一次救助。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

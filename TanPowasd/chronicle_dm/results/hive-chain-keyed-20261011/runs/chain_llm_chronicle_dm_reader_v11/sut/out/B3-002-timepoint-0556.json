@@ -1,0 +1,21 @@
+{
+  "qid": "B3-002-timepoint-0556",
+  "value": "祠堂 / 驿站",
+  "state": "unresolved",
+  "at_seq": 2,
+  "chain": [],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "状态：未裁定；取值：祠堂 / 驿站（并存）；自第2起"
+    },
+    {
+      "file": "孤山驿#2",
+      "line": 3,
+      "quote": "陆平 的位置出现两种并存的取值：祠堂 与 驿站，尚未裁定，起因是共同的外敌。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

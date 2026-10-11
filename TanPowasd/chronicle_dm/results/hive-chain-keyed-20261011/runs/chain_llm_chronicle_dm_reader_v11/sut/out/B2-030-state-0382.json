@@ -1,0 +1,21 @@
+{
+  "qid": "B2-030-state-0382",
+  "value": "支持",
+  "state": "active",
+  "at_seq": 25,
+  "chain": [],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "状态：有效；取值：支持；自第25起"
+    },
+    {
+      "file": "雾港#25",
+      "line": 25,
+      "quote": "林昭 的立场转为 支持，起因是旧事重提。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

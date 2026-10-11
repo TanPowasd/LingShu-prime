@@ -1,0 +1,21 @@
+{
+  "qid": "A2-060-present-0081",
+  "value": "cfg_958953",
+  "state": "active",
+  "at_seq": 53,
+  "chain": [],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 60,
+      "quote": "状态：有效；取值：cfg_958953；自第53起"
+    },
+    {
+      "file": "流明项目#53",
+      "line": 53,
+      "quote": "流明项目 的配置值调整为 cfg_958953，起因是容量评估结论。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

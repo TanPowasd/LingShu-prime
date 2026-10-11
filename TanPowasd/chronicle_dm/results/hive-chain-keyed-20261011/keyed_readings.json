@@ -1,0 +1,147 @@
+{
+  "model": "cline-pass/deepseek-v4.1-flash",
+  "arm": "llm_chronicle_dm_reader_v11",
+  "readings": {
+    "all": {
+      "arm": "llm_chronicle_dm_reader_v11",
+      "present": 0.9787,
+      "history": 0.9266,
+      "chain": 0.9821,
+      "chain_row_recall": 0.9932,
+      "stale": 0.0213,
+      "future": 0.0,
+      "subject_confusion": 0.0,
+      "four_state": 0.9797,
+      "reason": 1.0,
+      "verbatim": 0.8656,
+      "n": 625,
+      "counts": {
+        "present": 47,
+        "history": 177,
+        "chain": 56,
+        "chain_row_recall": 56,
+        "stale": 47,
+        "future": 202,
+        "subject_confusion": 239,
+        "four_state": 197,
+        "reason": 63,
+        "verbatim": 625
+      },
+      "bucket_main": {
+        "long": 0.9655,
+        "mid": 0.9412,
+        "short": 0.9463
+      },
+      "bucket_main_n": {
+        "long": 29,
+        "mid": 102,
+        "short": 149
+      }
+    },
+    "test": {
+      "arm": "llm_chronicle_dm_reader_v11",
+      "present": 1.0,
+      "history": 0.9076,
+      "chain": 1.0,
+      "chain_row_recall": 1.0,
+      "stale": 0.0,
+      "future": 0.0,
+      "subject_confusion": 0.0,
+      "four_state": 0.9848,
+      "reason": 1.0,
+      "verbatim": 0.8687,
+      "n": 419,
+      "counts": {
+        "present": 31,
+        "history": 119,
+        "chain": 39,
+        "chain_row_recall": 39,
+        "stale": 31,
+        "future": 140,
+        "subject_confusion": 170,
+        "four_state": 132,
+        "reason": 42,
+        "verbatim": 419
+      },
+      "bucket_main": {
+        "long": 1.0,
+        "mid": 0.9559,
+        "short": 0.9208
+      },
+      "bucket_main_n": {
+        "long": 20,
+        "mid": 68,
+        "short": 101
+      }
+    },
+    "dev": {
+      "arm": "llm_chronicle_dm_reader_v11",
+      "present": 0.9375,
+      "history": 0.9655,
+      "chain": 0.9412,
+      "chain_row_recall": 0.9756,
+      "stale": 0.0625,
+      "future": 0.0,
+      "subject_confusion": 0.0,
+      "four_state": 0.9692,
+      "reason": 1.0,
+      "verbatim": 0.8592,
+      "n": 206,
+      "counts": {
+        "present": 16,
+        "history": 58,
+        "chain": 17,
+        "chain_row_recall": 17,
+        "stale": 16,
+        "future": 62,
+        "subject_confusion": 69,
+        "four_state": 65,
+        "reason": 21,
+        "verbatim": 206
+      },
+      "bucket_main": {
+        "long": 0.8889,
+        "mid": 0.9118,
+        "short": 1.0
+      },
+      "bucket_main_n": {
+        "long": 9,
+        "mid": 34,
+        "short": 48
+      }
+    }
+  },
+  "failures": 0,
+  "actual_http_attempts": 1386,
+  "attempt_count_is_lower_bound": true,
+  "successful_unique_cached_responses": 1230,
+  "usage_successful_responses_only": {
+    "cache_creation_input_tokens": 0,
+    "completion_tokens": 3654763,
+    "cost": 3.622750917000002,
+    "gateway_cost": 3.076366395000001,
+    "market_cost": 3.622750917000002,
+    "prompt_tokens": 10637609,
+    "total_tokens": 14292372
+  },
+  "per_key_attempts": {
+    "key1": 388,
+    "key2": 397,
+    "key3": 229,
+    "key4": 372
+  },
+  "elapsed_seconds": 4110.7,
+  "calibration": "No keyed control arms; no claim of passing the full calibration gate",
+  "truncation_repair": {
+    "questions": 16,
+    "repaired": 16,
+    "http_attempts": 36,
+    "truncated_questions": 12,
+    "transport_questions": 4,
+    "max_tokens_schedule": [
+      8000,
+      16000,
+      32000
+    ]
+  }
+}

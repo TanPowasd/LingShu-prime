@@ -1,0 +1,23 @@
+[
+  {
+    "seq": 30,
+    "op": "set",
+    "value": "lmdb",
+    "alt": null,
+    "cid": "织女项目#30"
+  },
+  {
+    "seq": 39,
+    "op": "set",
+    "value": "redis",
+    "alt": null,
+    "cid": "织女项目#39"
+  },
+  {
+    "seq": 52,
+    "op": "set",
+    "value": "bbolt",
+    "alt": null,
+    "cid": "织女项目#52"
+  }
+]

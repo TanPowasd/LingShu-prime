@@ -1,0 +1,21 @@
+{
+  "qid": "B2-017-state-0400",
+  "value": "后山",
+  "state": "active",
+  "at_seq": 17,
+  "chain": [],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "状态：有效；取值：后山；自第17起"
+    },
+    {
+      "file": "雾港#17",
+      "line": 17,
+      "quote": "沈砚 移到了 后山，起因是第三方的劝说。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

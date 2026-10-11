@@ -1,0 +1,21 @@
+{
+  "qid": "B2-016-history-0365",
+  "value": "外人",
+  "state": "active",
+  "at_seq": 16,
+  "chain": [],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "状态：有效；取值：外人；自第16起"
+    },
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "第16：杜衡 → 外人（有效）"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

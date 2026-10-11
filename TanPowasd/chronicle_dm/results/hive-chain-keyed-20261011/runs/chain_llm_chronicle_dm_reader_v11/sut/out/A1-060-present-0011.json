@@ -1,0 +1,21 @@
+{
+  "qid": "A1-060-present-0011",
+  "value": "sync(key, ttl)",
+  "state": "active",
+  "at_seq": 54,
+  "chain": [],
+  "basis": [
+    {
+      "file": "猎户项目#54",
+      "line": 54,
+      "quote": "猎户项目 的函数签名调整为 sync(key, ttl)，起因是容量评估结论。"
+    },
+    {
+      "file": "记忆查询#60",
+      "line": 60,
+      "quote": "状态：有效；取值：sync(key, ttl)；自第54起"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

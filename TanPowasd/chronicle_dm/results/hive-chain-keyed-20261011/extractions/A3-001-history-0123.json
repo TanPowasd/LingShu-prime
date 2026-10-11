@@ -1,0 +1,100 @@
+[
+  {
+    "seq": 1,
+    "op": "set",
+    "value": "10800",
+    "alt": null,
+    "cid": "织女项目#1"
+  },
+  {
+    "seq": 9,
+    "op": "set",
+    "value": "7200",
+    "alt": null,
+    "cid": "织女项目#9"
+  },
+  {
+    "seq": 10,
+    "op": "set",
+    "value": "21600",
+    "alt": null,
+    "cid": "织女项目#10"
+  },
+  {
+    "seq": 11,
+    "op": "set",
+    "value": "3600",
+    "alt": null,
+    "cid": "织女项目#11"
+  },
+  {
+    "seq": 12,
+    "op": "set",
+    "value": "900",
+    "alt": null,
+    "cid": "织女项目#12"
+  },
+  {
+    "seq": 13,
+    "op": "set",
+    "value": "7200",
+    "alt": null,
+    "cid": "织女项目#13"
+  },
+  {
+    "seq": 14,
+    "op": "set",
+    "value": "3600",
+    "alt": null,
+    "cid": "织女项目#14"
+  },
+  {
+    "seq": 15,
+    "op": "set",
+    "value": "900",
+    "alt": null,
+    "cid": "织女项目#15"
+  },
+  {
+    "seq": 17,
+    "op": "set",
+    "value": "10800",
+    "alt": null,
+    "cid": "织女项目#17"
+  },
+  {
+    "seq": 19,
+    "op": "set",
+    "value": "21600",
+    "alt": null,
+    "cid": "织女项目#19"
+  },
+  {
+    "seq": 21,
+    "op": "set",
+    "value": "10800",
+    "alt": null,
+    "cid": "织女项目#21"
+  },
+  {
+    "seq": 32,
+    "op": "set",
+    "value": "21600",
+    "alt": null,
+    "cid": "织女项目#32"
+  },
+  {
+    "seq": 41,
+    "op": "set",
+    "value": "300",
+    "alt": null,
+    "cid": "织女项目#41"
+  },
+  {
+    "seq": 50,
+    "op": "set",
+    "value": "300",
+    "alt": null,
+    "cid": "织女项目#50"
+  }
+]

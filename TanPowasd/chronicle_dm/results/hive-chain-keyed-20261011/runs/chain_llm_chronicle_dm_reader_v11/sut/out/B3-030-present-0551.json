@@ -1,0 +1,21 @@
+{
+  "qid": "B3-030-present-0551",
+  "value": "磨坊",
+  "state": "active",
+  "at_seq": 26,
+  "chain": [],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "状态：有效；取值：磨坊；自第26起"
+    },
+    {
+      "file": "孤山驿#26",
+      "line": 26,
+      "quote": "陆平 移到了 磨坊，起因是第三方的劝说。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

@@ -1,0 +1,21 @@
+{
+  "qid": "B1-030-state-0282",
+  "value": "无人",
+  "state": "active",
+  "at_seq": 25,
+  "chain": [],
+  "basis": [
+    {
+      "file": "青石镇#25",
+      "line": 25,
+      "quote": "阿禾 的信任对象转为 无人，起因是一场误会。"
+    },
+    {
+      "file": "记忆查询",
+      "line": 30,
+      "quote": "状态：有效；取值：无人；自第25起"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

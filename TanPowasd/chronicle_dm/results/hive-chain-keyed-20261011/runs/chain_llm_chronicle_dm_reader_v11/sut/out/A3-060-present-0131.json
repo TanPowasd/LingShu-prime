@@ -1,0 +1,21 @@
+{
+  "qid": "A3-060-present-0131",
+  "value": "timeout_ms=128",
+  "state": "active",
+  "at_seq": 53,
+  "chain": [],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "状态：有效；取值：timeout_ms=128；自第53起"
+    },
+    {
+      "file": "织女项目#53",
+      "line": 53,
+      "quote": "织女项目 的配置值的争议就此裁定为 timeout_ms=128，起因是灰度观测数据。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

@@ -1,0 +1,21 @@
+{
+  "qid": "B1-018-state-0230",
+  "value": "观望",
+  "state": "active",
+  "at_seq": 18,
+  "chain": [],
+  "basis": [
+    {
+      "file": "青石镇#18",
+      "line": 18,
+      "quote": "小满 的立场转为 观望，起因是私下承诺。"
+    },
+    {
+      "file": "青石镇#22",
+      "line": 22,
+      "quote": "小满 的立场被撤销，此后不再保留取值，起因是旧事重提。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

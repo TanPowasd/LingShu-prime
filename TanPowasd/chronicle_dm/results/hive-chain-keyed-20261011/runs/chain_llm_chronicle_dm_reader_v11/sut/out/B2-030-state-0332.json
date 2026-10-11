@@ -1,0 +1,21 @@
+{
+  "qid": "B2-030-state-0332",
+  "value": null,
+  "state": "retired",
+  "at_seq": 29,
+  "chain": [],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "状态：已撤销；取值：None；自第29起"
+    },
+    {
+      "file": "雾港#29",
+      "line": 10,
+      "quote": "杜衡 的情绪被撤销，此后不再保留取值，起因是一桩旧账。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

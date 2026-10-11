@@ -1,0 +1,21 @@
+{
+  "qid": "B1-007-history-0284",
+  "value": "老陈",
+  "state": "active",
+  "at_seq": 7,
+  "chain": [],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "状态：有效；取值：老陈；自第7起"
+    },
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "- 第7：None → 老陈（有效）"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

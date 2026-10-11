@@ -1,0 +1,21 @@
+{
+  "qid": "B1-030-state-0262",
+  "value": "支持",
+  "state": "active",
+  "at_seq": 26,
+  "chain": [],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "状态：有效；取值：支持；自第26起"
+    },
+    {
+      "file": "青石镇#26",
+      "line": 26,
+      "quote": "老陈 的立场转为 支持，起因是共同的外敌。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

@@ -1,0 +1,21 @@
+{
+  "qid": "B1-006-state-0200",
+  "value": "磨坊",
+  "state": "active",
+  "at_seq": 6,
+  "chain": [],
+  "basis": [
+    {
+      "file": "青石镇#6",
+      "line": 3,
+      "quote": "满儿 移到了 磨坊，起因是一场误会。"
+    },
+    {
+      "file": "青石镇#13",
+      "line": 4,
+      "quote": "满儿 自第 13 章起改名为 小满。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

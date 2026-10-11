@@ -1,0 +1,16 @@
+{
+  "qid": "B1-001-history-0233",
+  "value": "祠堂",
+  "state": "active",
+  "at_seq": 1,
+  "chain": [],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "状态：有效；取值：祠堂；自第1起"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

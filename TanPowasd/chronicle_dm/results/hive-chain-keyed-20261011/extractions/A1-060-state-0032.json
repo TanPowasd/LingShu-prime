@@ -1,0 +1,177 @@
+[
+  {
+    "seq": 3,
+    "op": "set",
+    "value": "retry=256",
+    "alt": null,
+    "cid": "猎户项目#3"
+  },
+  {
+    "seq": 5,
+    "op": "set",
+    "value": "timeout_ms=128",
+    "alt": null,
+    "cid": "猎户项目#5"
+  },
+  {
+    "seq": 7,
+    "op": "set",
+    "value": "retry=32",
+    "alt": null,
+    "cid": "猎户项目#7"
+  },
+  {
+    "seq": 14,
+    "op": "set",
+    "value": "timeout_ms=32",
+    "alt": null,
+    "cid": "猎户项目#14"
+  },
+  {
+    "seq": 22,
+    "op": "set",
+    "value": "cfg_406962",
+    "alt": null,
+    "cid": "猎户项目#22"
+  },
+  {
+    "seq": 23,
+    "op": "set",
+    "value": "cfg_646706",
+    "alt": null,
+    "cid": "猎户项目#23"
+  },
+  {
+    "seq": 25,
+    "op": "set",
+    "value": "cfg_499219",
+    "alt": null,
+    "cid": "猎户项目#25"
+  },
+  {
+    "seq": 26,
+    "op": "set",
+    "value": "cfg_620931",
+    "alt": null,
+    "cid": "猎户项目#26"
+  },
+  {
+    "seq": 27,
+    "op": "set",
+    "value": "cfg_459512",
+    "alt": null,
+    "cid": "猎户项目#27"
+  },
+  {
+    "seq": 28,
+    "op": "set",
+    "value": "cfg_437851",
+    "alt": null,
+    "cid": "猎户项目#28"
+  },
+  {
+    "seq": 29,
+    "op": "set",
+    "value": "cfg_21624",
+    "alt": null,
+    "cid": "猎户项目#29"
+  },
+  {
+    "seq": 30,
+    "op": "set",
+    "value": "cfg_803135",
+    "alt": null,
+    "cid": "猎户项目#30"
+  },
+  {
+    "seq": 31,
+    "op": "set",
+    "value": "cfg_832425",
+    "alt": null,
+    "cid": "猎户项目#31"
+  },
+  {
+    "seq": 36,
+    "op": "set",
+    "value": "cfg_250956",
+    "alt": null,
+    "cid": "猎户项目#36"
+  },
+  {
+    "seq": 43,
+    "op": "set",
+    "value": "cfg_998058",
+    "alt": null,
+    "cid": "猎户项目#43"
+  },
+  {
+    "seq": 46,
+    "op": "set",
+    "value": "cfg_853425",
+    "alt": null,
+    "cid": "猎户项目#46"
+  },
+  {
+    "seq": 47,
+    "op": "set",
+    "value": "cfg_196568",
+    "alt": null,
+    "cid": "猎户项目#47"
+  },
+  {
+    "seq": 48,
+    "op": "set",
+    "value": "cfg_705895",
+    "alt": null,
+    "cid": "猎户项目#48"
+  },
+  {
+    "seq": 50,
+    "op": "set",
+    "value": "cfg_281",
+    "alt": null,
+    "cid": "猎户项目#50"
+  },
+  {
+    "seq": 51,
+    "op": "set",
+    "value": "cfg_202750",
+    "alt": null,
+    "cid": "猎户项目#51"
+  },
+  {
+    "seq": 52,
+    "op": "set",
+    "value": "cfg_688617",
+    "alt": null,
+    "cid": "猎户项目#52"
+  },
+  {
+    "seq": 56,
+    "op": "set",
+    "value": "cfg_783330",
+    "alt": null,
+    "cid": "猎户项目#56"
+  },
+  {
+    "seq": 58,
+    "op": "set",
+    "value": "cfg_916265",
+    "alt": null,
+    "cid": "猎户项目#58"
+  },
+  {
+    "seq": 59,
+    "op": "set",
+    "value": "cfg_231689",
+    "alt": null,
+    "cid": "猎户项目#59"
+  },
+  {
+    "seq": 60,
+    "op": "set",
+    "value": "cfg_241943",
+    "alt": null,
+    "cid": "猎户项目#60"
+  }
+]

@@ -19,3 +19,11 @@ License: LicenseRef-TanPowasd-Proprietary（见仓库根 LICENSE）
 python chronicle_dm/test_chronicle_dm.py          # 9 项
 python discriminative_memory/nl_eval/chain_chronicle_dm_replay.py <hive-memory-bench>
 ```
+
+## RRF3 v1.1 + 模型读者评测（2026-10-11）
+
+[完整报告与离线复算包](results/hive-chain-keyed-20261011/README.md)：固定请求
+`cline-pass/deepseek-v4.1-flash`，覆盖 642 题，主读数为 419 道测试题。
+补完截断及接口失败题后无缺答：现值 100%、历史 90.76%、完整变更链 100%、四态 98.48%、缘由 100%。
+额外的原文 file/line/quote 核验为 78.76%；历史扣分 11 题中 10 题属于未决双值的输出格式。
+结果同时包含召回升级与模型读者，不能把增益单独归因于双核心；完整校准门未通过，自由对话泛化仍需验证。

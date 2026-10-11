@@ -1,0 +1,98 @@
+[
+  {
+    "qid": "A1-060-change-0007",
+    "stage": "extraction",
+    "error_type": "RuntimeError",
+    "message": "Model output reached token limit"
+  },
+  {
+    "qid": "A1-060-change-0037",
+    "stage": "extraction",
+    "error_type": "RuntimeError",
+    "message": "Model output reached token limit"
+  },
+  {
+    "qid": "A1-057-state-0039",
+    "stage": "extraction",
+    "error_type": "RuntimeError",
+    "message": "Model output reached token limit"
+  },
+  {
+    "qid": "A1-060-change-0017",
+    "stage": "reader",
+    "error_type": "RuntimeError",
+    "message": "Model output reached token limit"
+  },
+  {
+    "qid": "A2-001-history-0083",
+    "stage": "extraction",
+    "error_type": "RuntimeError",
+    "message": "Model output reached token limit"
+  },
+  {
+    "qid": "A2-060-change-0087",
+    "stage": "extraction",
+    "error_type": "RuntimeError",
+    "message": "Model output reached token limit"
+  },
+  {
+    "qid": "A3-060-present-0121",
+    "stage": "extraction",
+    "error_type": "RuntimeError",
+    "message": "Model output reached token limit"
+  },
+  {
+    "qid": "A3-060-present-0141",
+    "stage": "extraction",
+    "error_type": "RuntimeError",
+    "message": "Model output reached token limit"
+  },
+  {
+    "qid": "A3-060-change-0147",
+    "stage": "extraction",
+    "error_type": "RuntimeError",
+    "message": "Model output reached token limit"
+  },
+  {
+    "qid": "A3-060-change-0117",
+    "stage": "reader",
+    "error_type": "RuntimeError",
+    "message": "Model output reached token limit"
+  },
+  {
+    "qid": "B2-030-change-0407",
+    "stage": "reader",
+    "error_type": "RuntimeError",
+    "message": "chat failed: URLError"
+  },
+  {
+    "qid": "B3-030-present-0491",
+    "stage": "extraction",
+    "error_type": "RuntimeError",
+    "message": "chat failed: URLError"
+  },
+  {
+    "qid": "B3-030-state-0492",
+    "stage": "extraction",
+    "error_type": "RuntimeError",
+    "message": "chat failed: URLError"
+  },
+  {
+    "qid": "B3-030-change-0487",
+    "stage": "reader",
+    "error_type": "RuntimeError",
+    "message": "chat failed: HTTP 500"
+  },
+  {
+    "qid": "B3-030-change-0557",
+    "stage": "reader",
+    "error_type": "RuntimeError",
+    "message": "Model output reached token limit"
+  },
+  {
+    "qid": "B3-030-change-0607",
+    "stage": "reader",
+    "error_type": "RuntimeError",
+    "message": "Model output reached token limit"
+  }
+]

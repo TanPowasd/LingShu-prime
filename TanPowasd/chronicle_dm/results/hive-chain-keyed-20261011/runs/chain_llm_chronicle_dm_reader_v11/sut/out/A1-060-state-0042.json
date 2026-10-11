@@ -1,0 +1,21 @@
+{
+  "qid": "A1-060-state-0042",
+  "value": "3600",
+  "state": "active",
+  "at_seq": 50,
+  "chain": [],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 60,
+      "quote": "状态：有效；取值：3600；自第50起"
+    },
+    {
+      "file": "猎户项目#50",
+      "line": 50,
+      "quote": "猎户项目·缓存模块 的有效期秒数调整为 3600，起因是代码评审意见。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

@@ -1,0 +1,67 @@
+{
+  "qid": "A3-060-change-0107",
+  "value": "bbolt",
+  "state": "active",
+  "at_seq": 52,
+  "chain": [
+    {
+      "seq": 30,
+      "from": null,
+      "to": "lmdb"
+    },
+    {
+      "seq": 33,
+      "from": "lmdb",
+      "to": "sqlite"
+    },
+    {
+      "seq": 36,
+      "from": "sqlite",
+      "to": "sled"
+    },
+    {
+      "seq": 39,
+      "from": "sled",
+      "to": "redis"
+    },
+    {
+      "seq": 43,
+      "from": "redis",
+      "to": "lmdb"
+    },
+    {
+      "seq": 45,
+      "from": "lmdb",
+      "to": null
+    },
+    {
+      "seq": 48,
+      "from": null,
+      "to": "lmdb"
+    },
+    {
+      "seq": 52,
+      "from": "lmdb",
+      "to": "bbolt"
+    }
+  ],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 60,
+      "quote": "版本链：\n- 第30：None → lmdb（有效）\n- 第33：lmdb → sqlite（有效）\n- 第36：sqlite → sled（有效）\n- 第39：sled → redis（有效）\n- 第43：redis → lmdb（有效）\n- 第45：lmdb → None（已撤销）\n- 第48：None → lmdb（有效）\n- 第52：lmdb → bbolt（有效）"
+    },
+    {
+      "file": "织女项目#30",
+      "line": 30,
+      "quote": "织女项目 的依赖名首次确立为 lmdb。"
+    },
+    {
+      "file": "织女项目#52",
+      "line": 52,
+      "quote": "织女项目 的依赖名调整为 bbolt，起因是接口兼容性调整。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

@@ -1,0 +1,21 @@
+{
+  "qid": "A1-001-history-0003",
+  "value": "redis",
+  "state": "active",
+  "at_seq": 1,
+  "chain": [],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "状态：有效；取值：redis；自第1起"
+    },
+    {
+      "file": "猎户项目#1",
+      "line": 1,
+      "quote": "猎户服务 的依赖名首次确立为 redis。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

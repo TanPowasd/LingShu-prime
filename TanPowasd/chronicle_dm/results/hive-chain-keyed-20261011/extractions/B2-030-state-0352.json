@@ -1,0 +1,16 @@
+[
+  {
+    "seq": 1,
+    "op": "set",
+    "value": "祠堂",
+    "alt": null,
+    "cid": "雾港#1"
+  },
+  {
+    "seq": 25,
+    "op": "retire",
+    "value": null,
+    "alt": null,
+    "cid": "雾港#25"
+  }
+]

@@ -1,0 +1,30 @@
+[
+  {
+    "seq": 2,
+    "op": "retire",
+    "value": null,
+    "alt": null,
+    "cid": "青石镇#2"
+  },
+  {
+    "seq": 3,
+    "op": "set",
+    "value": "祠堂",
+    "alt": null,
+    "cid": "青石镇#3"
+  },
+  {
+    "seq": 17,
+    "op": "set",
+    "value": "码头",
+    "alt": null,
+    "cid": "青石镇#17"
+  },
+  {
+    "seq": 26,
+    "op": "set",
+    "value": "磨坊",
+    "alt": null,
+    "cid": "青石镇#26"
+  }
+]

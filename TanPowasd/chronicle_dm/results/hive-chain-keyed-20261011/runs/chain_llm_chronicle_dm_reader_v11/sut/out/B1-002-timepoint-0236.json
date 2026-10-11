@@ -1,0 +1,21 @@
+{
+  "qid": "B1-002-timepoint-0236",
+  "value": null,
+  "state": "retired",
+  "at_seq": 2,
+  "chain": [],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "状态：已撤销；取值：None；自第2起"
+    },
+    {
+      "file": "青石镇#2",
+      "line": 2,
+      "quote": "老陈 的位置被撤销，此后不再保留取值，起因是一桩旧账。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

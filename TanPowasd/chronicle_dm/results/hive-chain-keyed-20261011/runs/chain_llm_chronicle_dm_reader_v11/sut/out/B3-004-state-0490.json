@@ -1,0 +1,21 @@
+{
+  "qid": "B3-004-state-0490",
+  "value": "程雪",
+  "state": "active",
+  "at_seq": 4,
+  "chain": [],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "状态：有效；取值：程雪；自第4起"
+    },
+    {
+      "file": "孤山驿#4",
+      "line": 4,
+      "quote": "白芨 的信任对象转为 程雪，起因是共同的外敌。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

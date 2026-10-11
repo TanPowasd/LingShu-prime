@@ -1,0 +1,21 @@
+{
+  "qid": "B1-001-history-0193",
+  "value": "驿站",
+  "state": "active",
+  "at_seq": 1,
+  "chain": [],
+  "basis": [
+    {
+      "file": "青石镇#1",
+      "line": 1,
+      "quote": "满儿 的位置首次确立为 驿站。"
+    },
+    {
+      "file": "青石镇#13",
+      "line": 13,
+      "quote": "满儿 自第 13 章起改名为 小满。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

@@ -1,0 +1,177 @@
+[
+  {
+    "seq": 1,
+    "op": "set",
+    "value": "batch_size=16",
+    "alt": null,
+    "cid": "流明项目#1"
+  },
+  {
+    "seq": 2,
+    "op": "set",
+    "value": "retry=64",
+    "alt": null,
+    "cid": "流明项目#2"
+  },
+  {
+    "seq": 3,
+    "op": "set",
+    "value": "max_conn=256",
+    "alt": null,
+    "cid": "流明项目#3"
+  },
+  {
+    "seq": 11,
+    "op": "set",
+    "value": "timeout_ms=16",
+    "alt": null,
+    "cid": "流明项目#11"
+  },
+  {
+    "seq": 12,
+    "op": "set",
+    "value": "max_conn=32",
+    "alt": null,
+    "cid": "流明项目#12"
+  },
+  {
+    "seq": 21,
+    "op": "set",
+    "value": "cfg_12819",
+    "alt": null,
+    "cid": "流明项目#21"
+  },
+  {
+    "seq": 22,
+    "op": "set",
+    "value": "cfg_683952",
+    "alt": null,
+    "cid": "流明项目#22"
+  },
+  {
+    "seq": 23,
+    "op": "set",
+    "value": "cfg_273189",
+    "alt": null,
+    "cid": "流明项目#23"
+  },
+  {
+    "seq": 24,
+    "op": "set",
+    "value": "cfg_692357",
+    "alt": null,
+    "cid": "流明项目#24"
+  },
+  {
+    "seq": 26,
+    "op": "set",
+    "value": "cfg_457311",
+    "alt": null,
+    "cid": "流明项目#26"
+  },
+  {
+    "seq": 30,
+    "op": "set",
+    "value": "cfg_710970",
+    "alt": null,
+    "cid": "流明项目#30"
+  },
+  {
+    "seq": 31,
+    "op": "set",
+    "value": "cfg_680534",
+    "alt": null,
+    "cid": "流明项目#31"
+  },
+  {
+    "seq": 32,
+    "op": "set",
+    "value": "cfg_838262",
+    "alt": null,
+    "cid": "流明项目#32"
+  },
+  {
+    "seq": 33,
+    "op": "set",
+    "value": "cfg_957414",
+    "alt": null,
+    "cid": "流明项目#33"
+  },
+  {
+    "seq": 34,
+    "op": "set",
+    "value": "cfg_841351",
+    "alt": null,
+    "cid": "流明项目#34"
+  },
+  {
+    "seq": 35,
+    "op": "set",
+    "value": "cfg_483261",
+    "alt": null,
+    "cid": "流明项目#35"
+  },
+  {
+    "seq": 36,
+    "op": "unresolve",
+    "value": "cfg_795010",
+    "alt": "batch_size=256",
+    "cid": "流明项目#36"
+  },
+  {
+    "seq": 37,
+    "op": "set",
+    "value": "cfg_145284",
+    "alt": null,
+    "cid": "流明项目#37"
+  },
+  {
+    "seq": 38,
+    "op": "set",
+    "value": "cfg_911293",
+    "alt": null,
+    "cid": "流明项目#38"
+  },
+  {
+    "seq": 39,
+    "op": "set",
+    "value": "cfg_690985",
+    "alt": null,
+    "cid": "流明项目#39"
+  },
+  {
+    "seq": 40,
+    "op": "set",
+    "value": "cfg_364575",
+    "alt": null,
+    "cid": "流明项目#40"
+  },
+  {
+    "seq": 41,
+    "op": "set",
+    "value": "cfg_754423",
+    "alt": null,
+    "cid": "流明项目#41"
+  },
+  {
+    "seq": 43,
+    "op": "set",
+    "value": "cfg_962313",
+    "alt": null,
+    "cid": "流明项目#43"
+  },
+  {
+    "seq": 47,
+    "op": "set",
+    "value": "cfg_925891",
+    "alt": null,
+    "cid": "流明项目#47"
+  },
+  {
+    "seq": 53,
+    "op": "set",
+    "value": "cfg_958953",
+    "alt": null,
+    "cid": "流明项目#53"
+  }
+]

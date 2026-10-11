@@ -1,0 +1,3 @@
+* -text whitespace=cr-at-eol
+sources/** -whitespace
+restart_4_to_16/** -whitespace

@@ -1,0 +1,47 @@
+{
+  "qid": "B3-030-change-0617",
+  "value": "低落",
+  "state": "active",
+  "at_seq": 28,
+  "chain": [
+    {
+      "seq": 11,
+      "from": null,
+      "to": "平静"
+    },
+    {
+      "seq": 15,
+      "from": "平静",
+      "to": "愤怒"
+    },
+    {
+      "seq": 19,
+      "from": "愤怒",
+      "to": "戒备"
+    },
+    {
+      "seq": 23,
+      "from": "戒备",
+      "to": null
+    },
+    {
+      "seq": 28,
+      "from": null,
+      "to": "低落"
+    }
+  ],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "版本链：\n- 第11：None → 平静（有效）\n- 第15：平静 → 愤怒（有效）\n- 第19：愤怒 → 戒备（有效）\n- 第23：戒备 → None（已撤销）\n- 第28：None → 低落（有效）"
+    },
+    {
+      "file": "孤山驿#28",
+      "line": 28,
+      "quote": "顾九 的情绪此后确立为 低落，起因是第三方的劝说。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

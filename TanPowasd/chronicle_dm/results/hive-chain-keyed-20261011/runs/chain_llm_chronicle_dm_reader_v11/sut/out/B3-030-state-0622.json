@@ -1,0 +1,21 @@
+{
+  "qid": "B3-030-state-0622",
+  "value": null,
+  "state": "retired",
+  "at_seq": 28,
+  "chain": [],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 30,
+      "quote": "状态：已撤销；取值：None；自第28起"
+    },
+    {
+      "file": "孤山驿#28",
+      "line": 28,
+      "quote": "顾九 的立场被撤销，此后不再保留取值，起因是一桩旧账。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

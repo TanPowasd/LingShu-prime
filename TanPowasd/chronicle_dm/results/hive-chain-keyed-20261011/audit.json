@@ -1,0 +1,45 @@
+{
+  "score_recomputed": true,
+  "test_denominator": 419,
+  "placeholders": 0,
+  "failed_stages": {},
+  "provider_finish_reasons": {
+    "stop": 1214,
+    "length": 16
+  },
+  "provider_models": {
+    "deepseek/deepseek-v4.1-flash": 1057,
+    "vmc/deepseek-v4p1-flash-contributor-fallbacks": 173
+  },
+  "source_changes": [],
+  "usage_saved_responses_only": {
+    "cache_creation_input_tokens": 0,
+    "completion_tokens": 3654763,
+    "cost": 3.622750917000002,
+    "gateway_cost": 3.076366395000001,
+    "market_cost": 3.622750917000002,
+    "prompt_tokens": 10637609,
+    "total_tokens": 14292372,
+    "reasoning_tokens": 3410431
+  },
+  "raw_source_citation": {
+    "hits": 330,
+    "total": 419,
+    "rate": 0.7876,
+    "normalization": "official norm; same original source cid and line"
+  },
+  "length_gate": {
+    "scope": "all",
+    "rates": {
+      "long": 0.9655,
+      "mid": 0.9412,
+      "short": 0.9463
+    },
+    "monotone": false
+  },
+  "history_error_diagnostics": {
+    "total": 11,
+    "unresolved_value_format": 10,
+    "other": 1
+  }
+}

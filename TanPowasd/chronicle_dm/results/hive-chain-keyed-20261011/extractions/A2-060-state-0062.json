@@ -1,0 +1,72 @@
+[
+  {
+    "seq": 18,
+    "op": "set",
+    "value": "load(key, ttl, refresh)",
+    "alt": null,
+    "cid": "流明项目#18"
+  },
+  {
+    "seq": 20,
+    "op": "set",
+    "value": "get(key, ttl, tag, refresh)",
+    "alt": null,
+    "cid": "流明项目#20"
+  },
+  {
+    "seq": 22,
+    "op": "set",
+    "value": "get(id, key, ttl)",
+    "alt": null,
+    "cid": "流明项目#22"
+  },
+  {
+    "seq": 26,
+    "op": "set",
+    "value": "resolve(key, ttl)",
+    "alt": null,
+    "cid": "流明项目#26"
+  },
+  {
+    "seq": 28,
+    "op": "set",
+    "value": "resolve(key, ttl, refresh)",
+    "alt": null,
+    "cid": "流明项目#28"
+  },
+  {
+    "seq": 30,
+    "op": "set",
+    "value": "resolve(key, ttl, force)",
+    "alt": null,
+    "cid": "流明项目#30"
+  },
+  {
+    "seq": 42,
+    "op": "set",
+    "value": "fetch(key, ttl)",
+    "alt": null,
+    "cid": "流明项目#42"
+  },
+  {
+    "seq": 46,
+    "op": "set",
+    "value": "fetch(id, key, ttl)",
+    "alt": null,
+    "cid": "流明项目#46"
+  },
+  {
+    "seq": 49,
+    "op": "set",
+    "value": "get(key, ttl, refresh)",
+    "alt": null,
+    "cid": "流明项目#49"
+  },
+  {
+    "seq": 52,
+    "op": "set",
+    "value": "sync(key, ttl, tag, refresh)",
+    "alt": null,
+    "cid": "流明项目#52"
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "qid": "B1-030-state-0172",
+  "value": null,
+  "state": "retired",
+  "at_seq": 29,
+  "chain": [],
+  "basis": [
+    {
+      "file": "青石镇#29",
+      "line": 29,
+      "quote": "周舟 的情绪被撤销，此后不再保留取值，起因是一次救助。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

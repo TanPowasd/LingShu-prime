@@ -1,0 +1,16 @@
+{
+  "qid": "A3-001-history-0123",
+  "value": "10800",
+  "state": "active",
+  "at_seq": 1,
+  "chain": [],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "取值：10800；自第1起"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

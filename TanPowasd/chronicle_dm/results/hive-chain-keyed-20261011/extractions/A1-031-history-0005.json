@@ -1,0 +1,177 @@
+[
+  {
+    "seq": 1,
+    "op": "set",
+    "value": "redis",
+    "alt": null,
+    "cid": "#1"
+  },
+  {
+    "seq": 3,
+    "op": "set",
+    "value": "redis",
+    "alt": null,
+    "cid": "#3"
+  },
+  {
+    "seq": 11,
+    "op": "set",
+    "value": "redis",
+    "alt": null,
+    "cid": "#11"
+  },
+  {
+    "seq": 18,
+    "op": "set",
+    "value": "lmdb",
+    "alt": null,
+    "cid": "#18"
+  },
+  {
+    "seq": 20,
+    "op": "unresolve",
+    "value": "bbolt",
+    "alt": "lmdb",
+    "cid": "#20"
+  },
+  {
+    "seq": 21,
+    "op": "set",
+    "value": "sqlite",
+    "alt": null,
+    "cid": "#21"
+  },
+  {
+    "seq": 22,
+    "op": "set",
+    "value": "bbolt",
+    "alt": null,
+    "cid": "#22"
+  },
+  {
+    "seq": 25,
+    "op": "set",
+    "value": "badger",
+    "alt": null,
+    "cid": "#25"
+  },
+  {
+    "seq": 26,
+    "op": "set",
+    "value": "rocksdb",
+    "alt": null,
+    "cid": "#26"
+  },
+  {
+    "seq": 27,
+    "op": "set",
+    "value": "redis",
+    "alt": null,
+    "cid": "#27"
+  },
+  {
+    "seq": 28,
+    "op": "set",
+    "value": "sqlite",
+    "alt": null,
+    "cid": "#28"
+  },
+  {
+    "seq": 29,
+    "op": "set",
+    "value": "bbolt",
+    "alt": null,
+    "cid": "#29"
+  },
+  {
+    "seq": 30,
+    "op": "set",
+    "value": "lmdb",
+    "alt": null,
+    "cid": "#30"
+  },
+  {
+    "seq": 31,
+    "op": "set",
+    "value": "redis",
+    "alt": null,
+    "cid": "#31"
+  },
+  {
+    "seq": 32,
+    "op": "set",
+    "value": "rocksdb",
+    "alt": null,
+    "cid": "#32"
+  },
+  {
+    "seq": 33,
+    "op": "set",
+    "value": "bbolt",
+    "alt": null,
+    "cid": "#33"
+  },
+  {
+    "seq": 34,
+    "op": "set",
+    "value": "redis",
+    "alt": null,
+    "cid": "#34"
+  },
+  {
+    "seq": 35,
+    "op": "set",
+    "value": "bbolt",
+    "alt": null,
+    "cid": "#35"
+  },
+  {
+    "seq": 36,
+    "op": "set",
+    "value": "rocksdb",
+    "alt": null,
+    "cid": "#36"
+  },
+  {
+    "seq": 37,
+    "op": "set",
+    "value": "badger",
+    "alt": null,
+    "cid": "#37"
+  },
+  {
+    "seq": 38,
+    "op": "set",
+    "value": "rocksdb",
+    "alt": null,
+    "cid": "#38"
+  },
+  {
+    "seq": 39,
+    "op": "set",
+    "value": "lmdb",
+    "alt": null,
+    "cid": "#39"
+  },
+  {
+    "seq": 40,
+    "op": "set",
+    "value": "sqlite",
+    "alt": null,
+    "cid": "#40"
+  },
+  {
+    "seq": 41,
+    "op": "set",
+    "value": "redis",
+    "alt": null,
+    "cid": "#41"
+  },
+  {
+    "seq": 56,
+    "op": "set",
+    "value": "redis",
+    "alt": null,
+    "cid": "#56"
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "qid": "A1-060-state-0012",
+  "value": "fetch(key)",
+  "state": "active",
+  "at_seq": 49,
+  "chain": [],
+  "basis": [
+    {
+      "file": "猎户项目#49",
+      "line": 49,
+      "quote": "猎户项目 的函数签名的争议就此裁定为 fetch(key)，起因是线上故障复盘。"
+    },
+    {
+      "file": "记忆查询",
+      "line": 60,
+      "quote": "状态：有效；取值：fetch(key)；自第49起"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

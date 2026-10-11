@@ -1,0 +1,21 @@
+{
+  "qid": "A3-026-state-0140",
+  "value": "timeout_ms=256",
+  "state": "active",
+  "at_seq": 26,
+  "chain": [],
+  "basis": [
+    {
+      "file": "片段1",
+      "line": 1,
+      "quote": "状态：有效；取值：timeout_ms=256；自第26起"
+    },
+    {
+      "file": "片段7",
+      "line": 7,
+      "quote": "织女项目 的配置值调整为 timeout_ms=256，起因是线上故障复盘。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

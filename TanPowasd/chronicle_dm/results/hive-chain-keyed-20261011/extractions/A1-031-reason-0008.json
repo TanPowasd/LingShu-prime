@@ -1,0 +1,177 @@
+[
+  {
+    "seq": 1,
+    "op": "set",
+    "value": "redis",
+    "alt": null,
+    "cid": "猎户项目#1"
+  },
+  {
+    "seq": 2,
+    "op": "set",
+    "value": "lmdb",
+    "alt": null,
+    "cid": "猎户项目#2"
+  },
+  {
+    "seq": 3,
+    "op": "set",
+    "value": "redis",
+    "alt": null,
+    "cid": "猎户项目#3"
+  },
+  {
+    "seq": 11,
+    "op": "set",
+    "value": "redis",
+    "alt": null,
+    "cid": "猎户项目#11"
+  },
+  {
+    "seq": 20,
+    "op": "unresolve",
+    "value": "bbolt",
+    "alt": "lmdb",
+    "cid": "猎户项目#20"
+  },
+  {
+    "seq": 21,
+    "op": "set",
+    "value": "sqlite",
+    "alt": null,
+    "cid": "猎户项目#21"
+  },
+  {
+    "seq": 22,
+    "op": "set",
+    "value": "bbolt",
+    "alt": null,
+    "cid": "猎户项目#22"
+  },
+  {
+    "seq": 25,
+    "op": "set",
+    "value": "badger",
+    "alt": null,
+    "cid": "猎户项目#25"
+  },
+  {
+    "seq": 26,
+    "op": "set",
+    "value": "rocksdb",
+    "alt": null,
+    "cid": "猎户项目#26"
+  },
+  {
+    "seq": 27,
+    "op": "set",
+    "value": "redis",
+    "alt": null,
+    "cid": "猎户项目#27"
+  },
+  {
+    "seq": 28,
+    "op": "set",
+    "value": "sqlite",
+    "alt": null,
+    "cid": "猎户项目#28"
+  },
+  {
+    "seq": 29,
+    "op": "set",
+    "value": "bbolt",
+    "alt": null,
+    "cid": "猎户项目#29"
+  },
+  {
+    "seq": 30,
+    "op": "set",
+    "value": "lmdb",
+    "alt": null,
+    "cid": "猎户项目#30"
+  },
+  {
+    "seq": 31,
+    "op": "set",
+    "value": "redis",
+    "alt": null,
+    "cid": "猎户项目#31"
+  },
+  {
+    "seq": 32,
+    "op": "set",
+    "value": "rocksdb",
+    "alt": null,
+    "cid": "猎户项目#32"
+  },
+  {
+    "seq": 33,
+    "op": "set",
+    "value": "bbolt",
+    "alt": null,
+    "cid": "猎户项目#33"
+  },
+  {
+    "seq": 34,
+    "op": "set",
+    "value": "redis",
+    "alt": null,
+    "cid": "猎户项目#34"
+  },
+  {
+    "seq": 35,
+    "op": "set",
+    "value": "bbolt",
+    "alt": null,
+    "cid": "猎户项目#35"
+  },
+  {
+    "seq": 36,
+    "op": "set",
+    "value": "rocksdb",
+    "alt": null,
+    "cid": "猎户项目#36"
+  },
+  {
+    "seq": 37,
+    "op": "set",
+    "value": "badger",
+    "alt": null,
+    "cid": "猎户项目#37"
+  },
+  {
+    "seq": 38,
+    "op": "set",
+    "value": "rocksdb",
+    "alt": null,
+    "cid": "猎户项目#38"
+  },
+  {
+    "seq": 39,
+    "op": "set",
+    "value": "lmdb",
+    "alt": null,
+    "cid": "猎户项目#39"
+  },
+  {
+    "seq": 40,
+    "op": "set",
+    "value": "sqlite",
+    "alt": null,
+    "cid": "猎户项目#40"
+  },
+  {
+    "seq": 41,
+    "op": "set",
+    "value": "redis",
+    "alt": null,
+    "cid": "猎户项目#41"
+  },
+  {
+    "seq": 56,
+    "op": "set",
+    "value": "redis",
+    "alt": null,
+    "cid": "猎户项目#56"
+  }
+]

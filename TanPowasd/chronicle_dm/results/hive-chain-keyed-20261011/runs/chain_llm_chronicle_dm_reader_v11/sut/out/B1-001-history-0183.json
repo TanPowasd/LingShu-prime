@@ -1,0 +1,21 @@
+{
+  "qid": "B1-001-history-0183",
+  "value": null,
+  "state": "absent",
+  "at_seq": null,
+  "chain": [],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "槽位：周舟 · 立场　查询时点：第1"
+    },
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "状态：不存在；取值：None"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

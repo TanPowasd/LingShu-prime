@@ -1,0 +1,21 @@
+{
+  "qid": "B1-022-history-0255",
+  "value": null,
+  "state": "retired",
+  "at_seq": 22,
+  "chain": [],
+  "basis": [
+    {
+      "file": "青石镇#22",
+      "line": 22,
+      "quote": "老陈 的情绪被撤销，此后不再保留取值，起因是私下承诺。"
+    },
+    {
+      "file": "片段1",
+      "line": 1,
+      "quote": "状态：已撤销；取值：None；自第22起"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

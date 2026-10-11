@@ -1,0 +1,52 @@
+{
+  "qid": "B1-030-change-0277",
+  "value": "祠堂",
+  "state": "active",
+  "at_seq": 25,
+  "chain": [
+    {
+      "seq": 6,
+      "from": null,
+      "to": "后山"
+    },
+    {
+      "seq": 8,
+      "from": "后山",
+      "to": "粮仓"
+    },
+    {
+      "seq": 12,
+      "from": "粮仓",
+      "to": null
+    },
+    {
+      "seq": 16,
+      "from": null,
+      "to": "祠堂"
+    },
+    {
+      "seq": 20,
+      "from": "祠堂",
+      "to": "渡口"
+    },
+    {
+      "seq": 25,
+      "from": "渡口",
+      "to": "祠堂"
+    }
+  ],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 30,
+      "quote": "版本链：\n- 第6：None → 后山（有效）\n- 第8：后山 → 粮仓（有效）\n- 第12：粮仓 → None（已撤销）\n- 第16：None → 祠堂（有效）\n- 第20：祠堂 → 渡口（有效）\n- 第25：渡口 → 祠堂（有效）"
+    },
+    {
+      "file": "青石镇#25",
+      "line": 25,
+      "quote": "阿禾 移到了 祠堂，起因是第三方的劝说。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

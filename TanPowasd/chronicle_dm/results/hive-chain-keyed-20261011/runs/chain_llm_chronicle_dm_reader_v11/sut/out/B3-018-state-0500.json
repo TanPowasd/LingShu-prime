@@ -1,0 +1,21 @@
+{
+  "qid": "B3-018-state-0500",
+  "value": "欣慰",
+  "state": "active",
+  "at_seq": 18,
+  "chain": [],
+  "basis": [
+    {
+      "file": "孤山驿#18",
+      "line": 18,
+      "quote": "白芨 的情绪转为 欣慰，起因是旧事重提。"
+    },
+    {
+      "file": "记忆查询",
+      "line": 18,
+      "quote": "状态：有效；取值：欣慰；自第18起"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

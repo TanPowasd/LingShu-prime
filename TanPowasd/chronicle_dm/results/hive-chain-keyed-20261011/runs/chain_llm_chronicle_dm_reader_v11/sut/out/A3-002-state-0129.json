@@ -1,0 +1,21 @@
+{
+  "qid": "A3-002-state-0129",
+  "value": null,
+  "state": "retired",
+  "at_seq": 2,
+  "chain": [],
+  "basis": [
+    {
+      "file": "片段1",
+      "line": 1,
+      "quote": "状态：已撤销；取值：None；自第2起"
+    },
+    {
+      "file": "片段1",
+      "line": 1,
+      "quote": "第2：retire"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

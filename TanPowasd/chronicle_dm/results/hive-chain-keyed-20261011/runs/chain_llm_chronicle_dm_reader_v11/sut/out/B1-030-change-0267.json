@@ -1,0 +1,82 @@
+{
+  "qid": "B1-030-change-0267",
+  "value": "支持",
+  "state": "active",
+  "at_seq": 26,
+  "chain": [
+    {
+      "seq": 1,
+      "from": null,
+      "to": "中立"
+    },
+    {
+      "seq": 2,
+      "from": "中立",
+      "to": "反对"
+    },
+    {
+      "seq": 3,
+      "from": "反对",
+      "to": "中立"
+    },
+    {
+      "seq": 4,
+      "from": "中立",
+      "to": "支持"
+    },
+    {
+      "seq": 5,
+      "from": "支持",
+      "to": "沉默"
+    },
+    {
+      "seq": 7,
+      "from": "沉默",
+      "to": null
+    },
+    {
+      "seq": 9,
+      "from": null,
+      "to": "暧昧"
+    },
+    {
+      "seq": 13,
+      "from": "暧昧",
+      "to": "沉默"
+    },
+    {
+      "seq": 17,
+      "from": "沉默",
+      "to": "中立"
+    },
+    {
+      "seq": 21,
+      "from": "中立",
+      "to": "沉默"
+    },
+    {
+      "seq": 26,
+      "from": "沉默",
+      "to": "支持"
+    }
+  ],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "第1：None → 中立（有效）"
+    },
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "第7：沉默 → None（已撤销）"
+    },
+    {
+      "file": "记忆查询",
+      "line": 1,
+      "quote": "第26：沉默 → 支持（有效）"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

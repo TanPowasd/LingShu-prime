@@ -1,0 +1,15 @@
+{
+  "model": "cline-pass/deepseek-v4.1-flash",
+  "algorithm": "RRF3 v1.1 -> LLM extraction -> ChronicleDM -> official LLM reader",
+  "total_questions": 642,
+  "scored_questions": 625,
+  "test_questions": 419,
+  "unique_extraction_prompts": 572,
+  "reader_prompts": 642,
+  "max_logical_calls": 1214,
+  "per_key_concurrency": 1,
+  "extraction_prompt": "existing EXTRACT_SYS, unchanged",
+  "extraction_reasons": false,
+  "original_retrieval_source": "rrf3v11",
+  "cache_policy": "exact request hash, no imported old responses"
+}

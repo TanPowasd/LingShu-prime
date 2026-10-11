@@ -1,0 +1,21 @@
+{
+  "qid": "A2-060-state-0092",
+  "value": "21600",
+  "state": "active",
+  "at_seq": 45,
+  "chain": [],
+  "basis": [
+    {
+      "file": "片段1",
+      "line": 1,
+      "quote": "状态：有效；取值：21600；自第45起"
+    },
+    {
+      "file": "流明项目#45",
+      "line": 45,
+      "quote": "流明项目·缓存模块 的有效期秒数调整为 21600，起因是安全审计要求。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}

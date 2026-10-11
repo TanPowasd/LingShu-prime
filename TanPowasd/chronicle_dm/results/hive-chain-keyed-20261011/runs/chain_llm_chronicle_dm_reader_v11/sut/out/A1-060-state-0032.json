@@ -1,0 +1,21 @@
+{
+  "qid": "A1-060-state-0032",
+  "value": "cfg_241943",
+  "state": "active",
+  "at_seq": 60,
+  "chain": [],
+  "basis": [
+    {
+      "file": "记忆查询",
+      "line": 60,
+      "quote": "状态：有效；取值：cfg_241943；自第60起"
+    },
+    {
+      "file": "猎户项目#60",
+      "line": 60,
+      "quote": "猎户项目 的配置值调整为 cfg_241943，起因是依赖库升级。"
+    }
+  ],
+  "confidence": "certain",
+  "_json_ok": true
+}
