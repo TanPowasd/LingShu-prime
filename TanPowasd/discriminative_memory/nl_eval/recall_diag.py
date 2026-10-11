@@ -7,7 +7,7 @@ DEV = {'A1', 'B1'}
 for arm in arms:
     st = collections.defaultdict(lambda: [0, 0]); n = []
     for q in K:
-        if q['doc_id'] in DEV:
+        if q['doc_id'] in DEV or q['reconstructible']:   # 与官方 judge_arm 同口径（测试集 419 题）
             continue
         m = json.loads((R / 'runs' / f'chain_{arm}' / 'retrieval' / f"{q['qid']}.json").read_text(encoding='utf-8'))['material']
         n.append(len(m)); s = q['answer'].get('at_seq')

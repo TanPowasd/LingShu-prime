@@ -82,6 +82,9 @@ def main():
     ap.add_argument('--workers', type=int, default=16)
     ap.add_argument('--model', default=MODEL)
     ap.add_argument('--dry', action='store_true')
+    ap.add_argument('--ext', default='llm_dm', help='抽取缓存臂：llm_dm（v1.0 召回）或 llm_dm_v11')
+    ap.add_argument('--suffix', default='', help='臂名后缀，如 _v11')
+    ap.add_argument('--out-name', default='chain_readings_reader_on_memory.json')
     args = ap.parse_args()
     sysmsg = load_official(args.bench)
     data = RES / 'data'
@@ -94,12 +97,13 @@ def main():
     sys.path.insert(0, str(Path(args.bench) / 'chain' / 'tools'))
     import probe_judge as J
     J.OUT, J.RUNS = data, RES / 'runs'
-    ext = RES / 'llm_raw' / 'llm_dm'
+    ext = RES / 'llm_raw' / args.ext
     llm = None if args.dry else LLM(args.model)
     readings = []
     for arm in args.arms.split(','):
-        d = RES / 'runs' / f'chain_{arm}'
-        raw_dir = RES / 'llm_raw' / arm
+        name = arm + args.suffix
+        d = RES / 'runs' / f'chain_{name}'
+        raw_dir = RES / 'llm_raw' / name
         (d / 'sut' / 'out').mkdir(parents=True, exist_ok=True)
         raw_dir.mkdir(parents=True, exist_ok=True)
 
@@ -131,16 +135,16 @@ def main():
             a = parse_answer(p.read_text(encoding='utf-8') if p.exists() else '', q['qid'])
             (d / 'sut' / 'out' / f"{q['qid']}.json").write_text(json.dumps(a, ensure_ascii=False), encoding='utf-8')
         _, doc_norms, decoys = J._corpus_index()
-        row = {'arm': arm, 'missing': miss}
+        row = {'arm': name, 'missing': miss}
         for split, ks in (('all', keys), ('test', [k for k in keys if k['doc_id'] not in CB.DEV])):
-            row[split] = J.judge_arm(arm, ks, doc_norms, decoys)
+            row[split] = J.judge_arm(name, ks, doc_norms, decoys)
         readings.append(row)
         t = row['test']
-        print(f"{arm:22s} test 现值{t['present']:.3f} 历史{t['history']:.3f} 变更{t['chain']:.3f} "
+        print(f"{name:22s} test 现值{t['present']:.3f} 历史{t['history']:.3f} 变更{t['chain']:.3f} "
               f"四态{t['four_state']:.3f} 缘由{t['reason']:.3f} 滞后{t['stale']:.3f} n={t['n']} 缺答{miss} "
               f"本次调用{llm.calls}", flush=True)
     if not args.dry:
-        (RES / 'chain_readings_reader_on_memory.json').write_text(
+        (RES / args.out_name).write_text(
             json.dumps(dict(model=args.model, readings=readings), ensure_ascii=False, indent=1), encoding='utf-8')
 
 

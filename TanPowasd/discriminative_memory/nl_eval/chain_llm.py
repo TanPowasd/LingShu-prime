@@ -222,7 +222,7 @@ def main():
     total = 0
     readings = []
     for arm in args.arms.split(','):
-        src = 'rrf3' if arm == 'llm_dm' else arm[4:]
+        src = {'llm_dm': 'rrf3', 'llm_dm_v11': 'rrf3v11'}.get(arm, arm[4:])   # llm_dm_v11＝RRF3 v1.1 召回→抽取
         d = RES / 'runs' / f'chain_{arm}'
         raw_dir = RES / 'llm_raw' / arm
         (d / 'sut' / 'out').mkdir(parents=True, exist_ok=True)
@@ -237,7 +237,7 @@ def main():
         def prompt(q):
             if arm == 'llm_closed':
                 return build_closed_prompt(q['qid'], q['question'])
-            if arm == 'llm_dm':
+            if arm in ('llm_dm', 'llm_dm_v11'):
                 _, _, ent, fac = CB.parse_q(q['question'], n_seq[q['doc']])
                 return build_extract_prompt(ent, fac, material(q))
             return build_prompt(sysmsg, q['qid'], q['question'], material(q))
@@ -246,7 +246,7 @@ def main():
         total += len(todo)
         if args.dry:
             print(f'{arm:16s} 待调用 {len(todo)} / {len(keys)}')
-            if todo and arm in ('llm_rrf3', 'llm_dm'):
+            if todo and arm in ('llm_rrf3', 'llm_dm', 'llm_rrf3v11', 'llm_dm_v11'):
                 p = prompt(todo[0])
                 print('  样例 user 提示前 300 字：', p[-1]['content'][:300].replace('\n', ' '))
             continue
@@ -264,7 +264,7 @@ def main():
         for q in keys:
             p = raw_dir / f"{q['qid']}.txt"
             raw = p.read_text(encoding='utf-8') if p.exists() else ''
-            a = (dm_from_events(parse_events(raw), q, n_seq[q['doc']], by_cid) if arm == 'llm_dm'
+            a = (dm_from_events(parse_events(raw), q, n_seq[q['doc']], by_cid) if arm in ('llm_dm', 'llm_dm_v11')
                  else parse_answer(raw, q['qid']))
             (d / 'sut' / 'out' / f"{q['qid']}.json").write_text(json.dumps(a, ensure_ascii=False), encoding='utf-8')
         (d / 'manifest.json').write_text(json.dumps(dict(arm=arm, model=args.model, limit=args.limit,
