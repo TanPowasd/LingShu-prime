@@ -36,13 +36,14 @@ v1.1（2026-10-11）召回瓶颈修复
 """
 from __future__ import annotations
 
+import bisect
 import collections
 import math
 import re
 from dataclasses import dataclass
 
 __all__ = ["TriCueMemory", "RRF3Memory", "Hit", "BM25_DF_CAP_V10", "TEMPORAL_FAR"]
-__version__ = "1.1.0"
+__version__ = "2.0.0"
 
 CHUNK = 300
 SEEDS, DECAY, THETA, KWTA, STEPS = 8, 0.35, 0.05, 80, 2
@@ -60,6 +61,141 @@ def norm(s: str) -> str:
 def bigrams(s: str) -> set[str]:
     s = norm(s)
     return {s[i:i + 2] for i in range(len(s) - 1)}
+
+
+_CJK = re.compile(r"[\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff\u3040-\u30ff\uac00-\ud7af]+")
+_WORD = re.compile(r"[^\W_]+", re.UNICODE)
+
+
+def mixed_tokens(s: str) -> set[str]:
+    """v2 通用分词：中日韩连续字段取字二元组（单字段取单字），其余字母数字串取小写整词。
+
+    v1 的 bigrams() 先去空白再取二元组，英文里会把词边界抹掉（"new york"→"wy"），
+    对非中文语料是语言层面的缺陷，不是某个数据集的问题。
+    """
+    out = set()
+    for w in _WORD.findall(s):
+        pos = 0
+        for m in _CJK.finditer(w):
+            if m.start() > pos:
+                out.add(w[pos:m.start()].lower())
+            run = m.group()
+            if len(run) == 1:
+                out.add(run)
+            else:
+                out.update(run[i:i + 2] for i in range(len(run) - 1))
+            pos = m.end()
+        if pos < len(w):
+            out.add(w[pos:].lower())
+    return out
+
+
+def seq_tokens(s: str) -> list[str]:
+    """v2 词项序列：中日韩逐字为词项，其余字母数字串取小写整词（SDM 需要有序位置）。"""
+    out = []
+    for w in _WORD.findall(s):
+        pos = 0
+        for m in _CJK.finditer(w):
+            if m.start() > pos:
+                out.append(w[pos:m.start()].lower())
+            out.extend(m.group())
+            pos = m.end()
+        if pos < len(w):
+            out.append(w[pos:].lower())
+    return out
+
+
+# BM25+（Lv & Zhai 2011）× SDM（Metzler & Croft 2005），全部取文献默认值，不针对任何数据集调参
+K1, B, DELTA = 1.2, 0.75, 1.0
+SDM_W = (0.85, 0.10, 0.05)       # 单词项 / 有序相邻对 / 无序窗口对
+SDM_WIN = 8
+
+
+class BM25PlusSDM:
+    """文档级 BM25+ 打分，特征按 SDM 三类：单词项、有序相邻对（#1）、无序窗口对（#uw8）。
+
+    每类特征各自用 BM25+ 计分（idf=log((N+1)/df)，tf 饱和 + δ 下界），三类按 SDM 权重线性相加。
+    无序对的 tf/df 在查询时由位置表现算，只对同时含两个词项的文档计算。
+    """
+
+    def __init__(self):
+        self.tf: list[collections.Counter] = []
+        self.tf2: list[collections.Counter] = []
+        self.pos: list[dict[str, list[int]]] = []
+        self.dl: list[int] = []
+        self.inv: dict[str, list[int]] = collections.defaultdict(list)
+        self.inv2: dict[tuple, list[int]] = collections.defaultdict(list)
+        self.total = 0
+
+    @property
+    def N(self) -> int:
+        return len(self.dl)
+
+    def add(self, toks: list[str]) -> int:
+        d = self.N
+        c = collections.Counter(toks)
+        c2 = collections.Counter(zip(toks, toks[1:]))
+        p = collections.defaultdict(list)
+        for i, t in enumerate(toks):
+            p[t].append(i)
+        self.tf.append(c); self.tf2.append(c2); self.pos.append(dict(p)); self.dl.append(len(toks))
+        self.total += len(toks)
+        for t in c:
+            self.inv[t].append(d)
+        for t in c2:
+            self.inv2[t].append(d)
+        return d
+
+    def _part(self, tf, df, dl, avg):
+        idf = math.log((self.N + 1) / df)
+        return idf * ((K1 + 1) * tf / (K1 * (1 - B + B * dl / avg) + tf) + DELTA)
+
+    @staticmethod
+    def _uw(pa, pb):
+        n, j = 0, 0
+        for x in pa:
+            i = bisect.bisect_left(pb, x - SDM_WIN + 1)
+            while i < len(pb) and pb[i] <= x + SDM_WIN - 1:
+                if pb[i] != x:
+                    n += 1
+                    break
+                i += 1
+        return n
+
+    def score(self, q: list[str]) -> dict[int, float]:
+        if not self.N or not q:
+            return {}
+        avg = self.total / self.N or 1.0
+        sc = collections.defaultdict(float)
+        wt, wo, wu = SDM_W
+        for t in set(q):
+            post = self.inv.get(t)
+            if post:
+                df = len(post)
+                for d in post:
+                    sc[d] += wt * self._part(self.tf[d][t], df, self.dl[d], avg)
+        pairs = {(a, b) for a, b in zip(q, q[1:]) if a != b}
+        for pr in pairs:
+            post = self.inv2.get(pr)
+            if post:
+                df = len(post)
+                for d in post:
+                    sc[d] += wo * self._part(self.tf2[d][pr], df, self.dl[d], avg)
+            a, b = pr
+            pa_, pb_ = self.inv.get(a), self.inv.get(b)
+            if not pa_ or not pb_:
+                continue
+            both = set(pa_).intersection(pb_) if len(pa_) < len(pb_) else set(pb_).intersection(pa_)
+            hits = {}
+            for d in both:
+                n = self._uw(self.pos[d][a], self.pos[d][b])
+                if n:
+                    hits[d] = n
+            if hits:
+                df = len(hits)
+                for d, n in hits.items():
+                    sc[d] += wu * self._part(n, df, self.dl[d], avg)
+        return sc
 
 
 def split_chunks(text: str, size: int = CHUNK) -> list[str]:
@@ -91,8 +227,26 @@ class Hit:
 
 
 class TriCueMemory:
-    def __init__(self, chunk: int = CHUNK, temporal: float = 0.0, df_cap: float = BM25_DF_CAP):
-        """temporal>0 打开第四路「相关近因」（v1.1，默认关＝与 v1.0 逐位等价）。"""
+    def __init__(self, chunk: int = CHUNK, temporal: float = 0.0, df_cap: float = BM25_DF_CAP,
+                 tokenizer: str = "bigram", turn_cue: bool = False, relrec: bool = False, recency: bool = True,
+                 scorer: str = "bm25"):
+        """temporal>0 打开第四路「相关近因」（v1.1，默认关＝与 v1.0 逐位等价）。
+
+        v2 开关（默认全关＝v1.1 逐位等价；TriCueMemory.v2() 给出 v2 组合）：
+          tokenizer="mixed"  通用分词 mixed_tokens（中日韩二元组 + 其余整词）
+          turn_cue=True      整轮 BM25 线索：按轮打分，轮内块按块分接续
+          relrec=True        无门限相关近因：块 BM25 前 SEEDS 名按新→旧，其余按 BM25
+          recency=False      去掉全局近因路
+          scorer="bm25p_sdm" 块级与整轮打分都换成 BM25PlusSDM（分词改用 seq_tokens）
+        """
+        self.sdm = scorer == "bm25p_sdm"
+        self.c_sdm, self.t_sdm = BM25PlusSDM(), BM25PlusSDM()
+        self.tok = mixed_tokens if tokenizer == "mixed" else bigrams
+        self.turn_cue, self.relrec, self.recency = turn_cue, relrec, recency
+        self.t_inv: dict[str, list[int]] = collections.defaultdict(list)
+        self.t_size: list[int] = []
+        self.t_chunks: list[list[int]] = []
+        self._t_tok: set[str] = set()
         self.chunk = chunk
         self.temporal = temporal
         self.df_cap = df_cap
@@ -125,13 +279,30 @@ class TriCueMemory:
             ids.append(i)
         if prev is not None:
             self._last_chunk = prev
+        if self.turn_cue and self.sdm:
+            self.t_sdm.add(seq_tokens(text)); self.t_size.append(0); self.t_chunks.append(ids)
+        elif self.turn_cue:
+            toks = self.tok(text)
+            self.t_size.append(len(norm(text)))
+            self.t_chunks.append(ids)
+            for g in toks:
+                self.t_inv[g].append(t)
         return ids
+
+    @classmethod
+    def v2(cls, recency: bool = False, **kw) -> "TriCueMemory":
+        """TriCue v2 组合：通用分词 + 块 BM25 + AGM + 整轮 BM25 + 无门限相关近因（全局近因可选）。"""
+        kw.setdefault("scorer", "bm25p_sdm")
+        return cls(tokenizer="mixed", turn_cue=True, relrec=True, recency=recency, **kw)
 
     def _add_chunk(self, t, role, piece):
         i = self.N
         self.raw.append(piece); self.size.append(len(norm(piece)))
         self.turn_of.append(t); self.role_of.append(role)
-        for g in bigrams(piece):
+        if self.sdm:
+            self.c_sdm.add(seq_tokens(piece))
+            return i
+        for g in self.tok(piece):
             self.inv[g].append(i)
         return i
 
@@ -140,13 +311,15 @@ class TriCueMemory:
         return list(range(self.N - 1, -1, -1))
 
     def bm25(self, query: str) -> dict[int, float]:
+        if self.sdm:
+            return self.c_sdm.score(seq_tokens(query))
         N = self.N
         if not N:
             return {}
         cap = max(5, int(self.df_cap * N))
         avg = sum(self.size) / N
         sc = collections.defaultdict(float)
-        for g in bigrams(query):
+        for g in self.tok(query):
             post = self.inv.get(g)
             if not post or len(post) > cap:
                 continue
@@ -190,13 +363,51 @@ class TriCueMemory:
         g = set(gate)
         return gate + sorted((i for i in sc if i not in g), key=lambda i: -sc[i])
 
+    def turn_bm25(self, query: str) -> dict[int, float]:
+        """整轮 BM25（同一公式，文档＝整轮）。"""
+        if self.sdm:
+            return self.t_sdm.score(seq_tokens(query))
+        T = len(self.t_size)
+        if not T:
+            return {}
+        avg = sum(self.t_size) / T or 1.0
+        sc = collections.defaultdict(float)
+        for g in self.tok(query):
+            post = self.t_inv.get(g)
+            if not post:
+                continue
+            idf = math.log(1 + (T - len(post) + 0.5) / (len(post) + 0.5))
+            for t in post:
+                sc[t] += idf
+        for t in sc:
+            sc[t] /= 0.25 + 0.75 * self.t_size[t] / avg
+        return sc
+
+    def rank_turn(self, query: str, sc: dict[int, float]) -> list[int]:
+        ts = self.turn_bm25(query)
+        out = []
+        for t in sorted(ts, key=lambda t: -ts[t]):
+            out.extend(sorted(self.t_chunks[t], key=lambda i: -sc.get(i, 0.0)))
+        return out
+
+    def rank_relrec(self, sc: dict[int, float]) -> list[int]:
+        """无门限相关近因：块 BM25 前 SEEDS 名（与 AGM 种子同数）按新→旧，其余按 BM25。"""
+        o = sorted(sc, key=lambda i: -sc[i])
+        return sorted(o[:SEEDS], key=lambda i: -i) + o[SEEDS:]
+
     def rank(self, query: str) -> list[int]:
         """融合排序（块号）。"""
         sc = self.bm25(query)
         o_bm = sorted(sc, key=lambda i: -sc[i])
-        ways = [self.rank_recent(), o_bm, self.rank_agm(sc)]
+        ways = [o_bm, self.rank_agm(sc)]
+        if self.recency:
+            ways.insert(0, self.rank_recent())
         if self.temporal > 0:
             ways.append(self.rank_recent_relevant(sc))
+        if self.turn_cue:
+            ways.append(self.rank_turn(query, sc))
+        if self.relrec:
+            ways.append(self.rank_relrec(sc))
         return rrf(ways)
 
     # ---------- 取上下文 ----------

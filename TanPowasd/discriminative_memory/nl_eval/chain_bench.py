@@ -293,6 +293,7 @@ def cap_material(hits, cap):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('bench')
+    ap.add_argument('--show', default='test', choices=('test', 'dev', 'all'), help='屏显哪个切分（定参时用 dev，避免看测试集）')
     ap.add_argument('--arms', default='disc_frozen,disc_ext,bm25,rrf3,lingshu,versionblind,closed')
     ap.add_argument('--dsh', default=str(TAN.parent.parent / 'dsh-memory'))
     ap.add_argument('--lingshu', default=str(TAN.parent.parent / 'lingshu'))
@@ -383,7 +384,18 @@ def main():
             arm_cfg = 'rrf3t0c100'                    # v1.1 默认参数的别名
         else:
             arm_cfg = arm
-        if arm in ('rrf3', 'rrf3_dm', 'rrf3v11') or arm.startswith('rrf3t'):
+        if arm in ('tc2', 'tc2r', 'tc11m', 'tc2b', 'tc11s'):          # TriCue v2 臂：tc2＝v2（无全局近因），tc2r＝v2+全局近因，tc11m＝v1.1+通用分词
+            import tricue as R
+            # tc2b＝v2 但打分仍是 v1 BM25；tc11s＝v1.1 三路，只把 BM25 换成 BM25+×SDM
+            rm = {'tc2': lambda: R.TriCueMemory.v2(), 'tc2r': lambda: R.TriCueMemory.v2(recency=True),
+                  'tc2b': lambda: R.TriCueMemory.v2(scorer='bm25'), 'tc11m': lambda: R.TriCueMemory(tokenizer='mixed'),
+                  'tc11s': lambda: R.TriCueMemory(scorer='bm25p_sdm')}[arm]()
+            owner = []
+            for c in corpus:
+                for i in rm.add_turn('doc', c['text']):
+                    while len(owner) <= i:
+                        owner.append(c['cid'])
+        elif arm in ('rrf3', 'rrf3_dm', 'rrf3v11') or arm.startswith('rrf3t'):
             import tricue as R                      # rrf3t<NN>＝v1.1 相关近因第四路，门限 NN/100
             # rrf3/rrf3_dm 钉在 v1.0 参数（复现旧读数）；rrf3t<T>c<C>：temporal=T/100，df_cap=C/100（缺省＝v1.0 截断）
             # v1.1 默认＝rrf3t0c100
@@ -451,8 +463,8 @@ def main():
                           ('dev', [k for k in keys if k['doc_id'] in DEV])):
             row[split] = J.judge_arm(arm, ks, doc_norms, decoys)
         readings.append(row)
-        t = row['test']
-        print(f"{arm:13s} test 现值{t['present']:.3f} 历史{t['history']:.3f} 变更{t['chain']:.3f} "
+        t = row[args.show]
+        print(f"{arm:13s} {args.show} 现值{t['present']:.3f} 历史{t['history']:.3f} 变更{t['chain']:.3f} "
               f"行召回{t['chain_row_recall']:.3f} 四态{t['four_state']:.3f} 缘由{t['reason']:.3f} "
               f"滞后{t['stale']:.3f} 超前{t['future']:.3f} 主体{t['subject_confusion']:.3f} 回源{t['verbatim']:.3f} n={t['n']} "
               f"建库{t_build:.2f}s 检索{1000 * t_ret / len(keys):.2f}ms/题",
