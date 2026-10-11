@@ -1,0 +1,214 @@
+{
+"conv-47#109": {
+"ents": [
+"James",
+"James's puppy",
+"clinic",
+"recent visit"
+],
+"preds": [
+"happened to",
+"was diagnosed with",
+"was treated for"
+],
+"time": "recent visit",
+"kw": [
+"puppy",
+"clinic",
+"vet",
+"visit",
+"ear infection",
+"checkup"
+],
+"hyde": "James's puppy was diagnosed with an ear infection at the recent clinic visit."
+},
+"conv-47#110": {
+"ents": [
+"John",
+"game genre",
+"shooters"
+],
+"preds": [
+"started exploring",
+"got into",
+"switched to"
+],
+"time": null,
+"kw": [
+"RPG",
+"genre",
+"shooters",
+"games",
+"exploring"
+],
+"hyde": "John started exploring RPGs instead of shooters."
+},
+"conv-47#111": {
+"ents": [
+"John",
+"RPG game",
+"The Witcher 3",
+"10 August, 2022"
+],
+"preds": [
+"playing",
+"enjoying",
+"is playing and enjoying"
+],
+"time": "10 August, 2022",
+"kw": [
+"RPG",
+"playing",
+"enjoying",
+"August 2022",
+"The Witcher 3"
+],
+"hyde": "John is playing and enjoying The Witcher 3 on 10 August, 2022."
+},
+"conv-47#112": {
+"ents": [
+"John",
+"The Witcher 3",
+"aspect"
+],
+"preds": [
+"finds immersive",
+"is immersive",
+"loves about"
+],
+"time": null,
+"kw": [
+"immersive",
+"open world",
+"story",
+"quests",
+"graphics"
+],
+"hyde": "John finds the open world and branching story of The Witcher 3 immersive."
+},
+"conv-47#113": {
+"ents": [
+"James",
+"phone number",
+"beach outing",
+"Samantha"
+],
+"preds": [
+"received",
+"got",
+"was given"
+],
+"time": "during the beach outing",
+"kw": [
+"phone number",
+"beach",
+"outing",
+"Samantha",
+"received"
+],
+"hyde": "James received Samantha's phone number during the beach outing."
+},
+"conv-47#114": {
+"ents": [
+"James",
+"Samantha's phone number",
+"Samantha"
+],
+"preds": [
+"planning to do",
+"plans to",
+"going to"
+],
+"time": "after receiving Samantha's phone number",
+"kw": [
+"call",
+"text",
+"ask out",
+"date",
+"reach out"
+],
+"hyde": "James is planning to call Samantha after receiving her number."
+},
+"conv-47#115": {
+"ents": [
+"John",
+"siblings"
+],
+"preds": [
+"organizing",
+"planning",
+"arranging"
+],
+"time": null,
+"kw": [
+"organize",
+"siblings",
+"reunion",
+"party",
+"surprise"
+],
+"hyde": "John is organizing a family reunion with his siblings."
+},
+"conv-47#116": {
+"ents": [
+"John",
+"beer",
+"type of beer"
+],
+"preds": [
+"does not like",
+"dislikes",
+"not a fan of"
+],
+"time": null,
+"kw": [
+"beer",
+"IPA",
+"stout",
+"lager",
+"bitter"
+],
+"hyde": "John does not like IPAs because they are too bitter."
+},
+"conv-47#117": {
+"ents": [
+"James",
+"game",
+"development"
+],
+"preds": [
+"faced difficulties",
+"ran into problems",
+"struggled with"
+],
+"time": "during the development of his game",
+"kw": [
+"bugs",
+"debugging",
+"coding",
+"game development",
+"issues"
+],
+"hyde": "James struggled with bugs and balancing the game during development."
+},
+"conv-47#118": {
+"ents": [
+"John",
+"siblings"
+],
+"preds": [
+"has been teaching",
+"teaching",
+"showing"
+],
+"time": null,
+"kw": [
+"teach",
+"siblings",
+"guitar",
+"lessons",
+"learn"
+],
+"hyde": "John has been teaching his siblings how to play guitar."
+}
+}

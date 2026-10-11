@@ -1,0 +1,221 @@
+{
+"conv-47#79": {
+"ents": [
+"James",
+"pup",
+"dog"
+],
+"preds": [
+"adopted",
+"named",
+"got a puppy"
+],
+"time": null,
+"kw": [
+"puppy",
+"adopted",
+"dog name",
+"rescue",
+"shelter",
+"James"
+],
+"hyde": "James named the pup he adopted Biscuit."
+},
+"conv-47#80": {
+"ents": [
+"James",
+"game character",
+"woman",
+"walk"
+],
+"preds": [
+"embody appearance",
+"modeled after",
+"inspired by"
+],
+"time": null,
+"kw": [
+"game character",
+"appearance",
+"woman",
+"walk",
+"avatar",
+"resembled"
+],
+"hyde": "James modeled his game character's appearance on a woman he saw during a walk because she looked just like the character."
+},
+"conv-47#81": {
+"ents": [
+"James",
+"game character",
+"virtual world",
+"woman",
+"walk"
+],
+"preds": [
+"inspired",
+"create",
+"design"
+],
+"time": null,
+"kw": [
+"inspiration",
+"game character",
+"virtual world",
+"avatar",
+"woman",
+"walk"
+],
+"hyde": "A woman James saw during a walk inspired him to create the game character in the virtual world."
+},
+"conv-47#82": {
+"ents": [
+"James",
+"country"
+],
+"preds": [
+"visit",
+"traveled to",
+"went to"
+],
+"time": "2021",
+"kw": [
+"country",
+"visit",
+"2021",
+"travel",
+"trip",
+"Japan"
+],
+"hyde": "The country James visited in 2021 was Japan."
+},
+"conv-47#83": {
+"ents": [
+"John",
+"Japan"
+],
+"preds": [
+"impresses",
+"admires",
+"likes about"
+],
+"time": null,
+"kw": [
+"John",
+"Japan",
+"impressed",
+"culture",
+"people",
+"tradition"
+],
+"hyde": "John is impressed by how polite and orderly people are in Japan."
+},
+"conv-47#84": {
+"ents": [
+"John",
+"assignment",
+"work"
+],
+"preds": [
+"giving a hard time",
+"struggling with",
+"working on"
+],
+"time": null,
+"kw": [
+"assignment",
+"work",
+"hard time",
+"deadline",
+"project",
+"struggle"
+],
+"hyde": "John was having a hard time with a group presentation assignment at work."
+},
+"conv-47#85": {
+"ents": [
+"Daisy",
+"James",
+"dogs"
+],
+"preds": [
+"breed",
+"is",
+"kind of dog"
+],
+"time": null,
+"kw": [
+"Daisy",
+"breed",
+"dog",
+"James",
+"pet",
+"golden retriever"
+],
+"hyde": "Daisy is a golden retriever."
+},
+"conv-47#86": {
+"ents": [
+"James",
+"pizza"
+],
+"preds": [
+"favorite",
+"likes",
+"prefers"
+],
+"time": null,
+"kw": [
+"pizza",
+"favorite",
+"James",
+"toppings",
+"pepperoni",
+"type"
+],
+"hyde": "James' favorite pizza is pepperoni."
+},
+"conv-47#87": {
+"ents": [
+"John",
+"pizza"
+],
+"preds": [
+"favorite",
+"likes",
+"prefers"
+],
+"time": null,
+"kw": [
+"pizza",
+"favorite",
+"John",
+"toppings",
+"margherita",
+"type"
+],
+"hyde": "John's favorite pizza is margherita."
+},
+"conv-47#88": {
+"ents": [
+"John",
+"friends",
+"May 8, 2022"
+],
+"preds": [
+"organize",
+"arranged",
+"planned"
+],
+"time": "May 8, 2022",
+"kw": [
+"organized",
+"friends",
+"May 8, 2022",
+"event",
+"party",
+"gathering"
+],
+"hyde": "John organized a barbecue with his friends on May 8, 2022."
+}
+}

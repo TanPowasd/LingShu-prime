@@ -1,0 +1,215 @@
+{
+"conv-30#60": {
+"ents": [
+"Jon",
+"Jon's dance"
+],
+"preds": [
+"make him",
+"make Jon feel",
+"cause him to become"
+],
+"time": null,
+"kw": [
+"dance",
+"feel",
+"happy",
+"free",
+"confident",
+"alive"
+],
+"hyde": "Jon's dance makes him feel happy and free."
+},
+"conv-30#61": {
+"ents": [
+"Gina",
+"dance contest"
+],
+"preds": [
+"receive",
+"win",
+"get awarded"
+],
+"time": null,
+"kw": [
+"trophy",
+"prize",
+"award",
+"medal",
+"first place",
+"competition"
+],
+"hyde": "Gina received a trophy from a dance contest."
+},
+"conv-30#62": {
+"ents": [
+"Gina",
+"Gina's business"
+],
+"preds": [
+"stay confident",
+"maintain confidence",
+"keep confident"
+],
+"time": null,
+"kw": [
+"confidence",
+"business",
+"mindset",
+"goals",
+"motivation",
+"success"
+],
+"hyde": "Gina stays confident in her business by focusing on her goals and celebrating small wins."
+},
+"conv-30#63": {
+"ents": [
+"Gina",
+"professional experience"
+],
+"preds": [
+"get accepted for",
+"be accepted to",
+"receive acceptance"
+],
+"time": "May 23, 2023",
+"kw": [
+"accepted",
+"internship",
+"fashion",
+"professional",
+"opportunity",
+"application"
+],
+"hyde": "Gina was accepted for a fashion internship on May 23, 2023."
+},
+"conv-30#64": {
+"ents": [
+"Gina",
+"Gina's fashion internship"
+],
+"preds": [
+"be located",
+"be based",
+"work"
+],
+"time": null,
+"kw": [
+"fashion",
+"internship",
+"Rome",
+"Italy",
+"studio",
+"office"
+],
+"hyde": "Gina's fashion internship is in Rome."
+},
+"conv-30#65": {
+"ents": [
+"Jon",
+"book"
+],
+"preds": [
+"read",
+"currently reading",
+"be reading"
+],
+"time": "currently",
+"kw": [
+"book",
+"reading",
+"author",
+"title",
+"novel",
+"chapter"
+],
+"hyde": "Jon is currently reading The Alchemist."
+},
+"conv-30#66": {
+"ents": [
+"Jon",
+"dancers",
+"Jon's dance studio"
+],
+"preds": [
+"offer",
+"provide",
+"give"
+],
+"time": null,
+"kw": [
+"dancers",
+"dance studio",
+"free class",
+"workshop",
+"training",
+"opportunity"
+],
+"hyde": "Jon is offering free dance classes to the dancers at his dance studio."
+},
+"conv-30#67": {
+"ents": [
+"Jon",
+"clipboard",
+"notepad"
+],
+"preds": [
+"use",
+"write on",
+"take notes"
+],
+"time": null,
+"kw": [
+"clipboard",
+"notepad",
+"notes",
+"checklist",
+"choreography",
+"schedule"
+],
+"hyde": "Jon uses the clipboard with a notepad attached to it to take notes during dance rehearsals."
+},
+"conv-30#68": {
+"ents": [
+"Jon",
+"Gina"
+],
+"preds": [
+"tell",
+"won't do",
+"refuse"
+],
+"time": null,
+"kw": [
+"won't",
+"refuse",
+"quit",
+"give up",
+"stop",
+"leave"
+],
+"hyde": "Jon tells Gina he won't give up on his dance studio."
+},
+"conv-30#69": {
+"ents": [
+"Jon",
+"Rome",
+"trip"
+],
+"preds": [
+"take a trip",
+"travel",
+"go to Rome for"
+],
+"time": null,
+"kw": [
+"Rome",
+"Italy",
+"trip",
+"visit",
+"fashion internship",
+"dance workshop"
+],
+"hyde": "Jon took a trip to Rome to visit Gina during her fashion internship."
+}
+}

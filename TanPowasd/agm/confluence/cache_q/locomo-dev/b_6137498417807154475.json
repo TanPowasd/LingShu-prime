@@ -1,0 +1,218 @@
+{
+"conv-47#129": {
+"ents": [
+"John",
+"music"
+],
+"preds": [
+"like",
+"enjoy",
+"listen to"
+],
+"time": null,
+"kw": [
+"music",
+"genre",
+"band",
+"artist",
+"favorite",
+"playlist"
+],
+"hyde": "John is really into indie rock and lo-fi hip-hop."
+},
+"conv-47#130": {
+"ents": [
+"James",
+"instrument"
+],
+"preds": [
+"used to play",
+"play",
+"learned"
+],
+"time": "when he was younger",
+"kw": [
+"instrument",
+"piano",
+"guitar",
+"drums",
+"younger",
+"music"
+],
+"hyde": "James used to play the piano when he was younger."
+},
+"conv-47#131": {
+"ents": [
+"John",
+"playing",
+"let off steam"
+],
+"preds": [
+"used to play",
+"play",
+"let off steam"
+],
+"time": "when he was younger",
+"kw": [
+"drums",
+"instrument",
+"play",
+"younger",
+"let off steam",
+"stress relief"
+],
+"hyde": "John used to play the drums when he was younger to let off steam."
+},
+"conv-47#132": {
+"ents": [
+"John",
+"career milestone",
+"September 2022"
+],
+"preds": [
+"achieve",
+"reach",
+"accomplish"
+],
+"time": "September 2022",
+"kw": [
+"career",
+"milestone",
+"promotion",
+"new job",
+"hired",
+"game studio"
+],
+"hyde": "In September 2022, John landed his first full-time game design job, a major career milestone."
+},
+"conv-47#133": {
+"ents": [
+"John",
+"upcoming mobile game"
+],
+"preds": [
+"is",
+"is categorized as",
+"plays like"
+],
+"time": null,
+"kw": [
+"mobile game",
+"genre",
+"puzzle",
+"strategy",
+"upcoming",
+"game design"
+],
+"hyde": "John's upcoming mobile game is a cozy puzzle game with narrative elements."
+},
+"conv-47#134": {
+"ents": [
+"John",
+"game design"
+],
+"preds": [
+"stay informed",
+"learn",
+"keep up with"
+],
+"time": null,
+"kw": [
+"game design",
+"stay informed",
+"learn",
+"podcasts",
+"articles",
+"courses"
+],
+"hyde": "John reads game design blogs, listens to podcasts, and takes online courses to stay informed."
+},
+"conv-47#135": {
+"ents": [
+"John",
+"gig",
+"game dev non-profit organization"
+],
+"preds": [
+"offer",
+"give",
+"propose"
+],
+"time": null,
+"kw": [
+"gig",
+"offer",
+"non-profit",
+"game dev",
+"mentor",
+"programming"
+],
+"hyde": "John was offered a programming mentor gig at the game dev non-profit organization."
+},
+"conv-47#136": {
+"ents": [
+"John",
+"programming mentor",
+"game developers",
+"journey"
+],
+"preds": [
+"feel",
+"start",
+"begin"
+],
+"time": null,
+"kw": [
+"feel",
+"excited",
+"nervous",
+"mentor",
+"programming",
+"game developers"
+],
+"hyde": "John feels excited and a little nervous to start his journey as a programming mentor for game developers."
+},
+"conv-47#137": {
+"ents": [
+"James",
+"new video card",
+"games"
+],
+"preds": [
+"excited to play",
+"play",
+"try out"
+],
+"time": null,
+"kw": [
+"video card",
+"GPU",
+"games",
+"play",
+"excited",
+"graphics"
+],
+"hyde": "James is excited to play graphically demanding PC games like Cyberpunk 2077 with his new video card."
+},
+"conv-47#138": {
+"ents": [
+"James",
+"his game"
+],
+"preds": [
+"inspire",
+"motivate",
+"create"
+],
+"time": null,
+"kw": [
+"inspired",
+"game",
+"create",
+"idea",
+"concept",
+"platformers"
+],
+"hyde": "James was inspired to create his game by old-school platformers and a dream he had."
+}
+}

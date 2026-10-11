@@ -1,0 +1,221 @@
+{
+"conv-47#139": {
+"ents": [
+"James",
+"gaming",
+"childhood"
+],
+"preds": [
+"sparked passion for gaming",
+"got into gaming",
+"started playing games"
+],
+"time": "when he was a kid",
+"kw": [
+"childhood",
+"first console",
+"Nintendo",
+"introduced",
+"video games",
+"brother"
+],
+"hyde": "My older brother let me play Super Mario Bros. on his Nintendo when I was a kid, and that sparked my passion for gaming."
+},
+"conv-47#140": {
+"ents": [
+"James",
+"progress",
+"power outage"
+],
+"preds": [
+"lose progress",
+"lose save",
+"wiped due to power outage"
+],
+"time": null,
+"kw": [
+"save file",
+"game",
+"console",
+"blackout",
+"hours",
+"corrupted"
+],
+"hyde": "I lost hours of progress in Elden Ring when the power went out."
+},
+"conv-47#141": {
+"ents": [
+"games",
+"gaming tournament",
+"John"
+],
+"preds": [
+"played",
+"organized by John",
+"took part in"
+],
+"time": "31 October, 2022",
+"kw": [
+"tournament",
+"bracket",
+"FIFA 23",
+"Super Smash Bros.",
+"Mario Kart",
+"played"
+],
+"hyde": "We played FIFA 23 and Super Smash Bros. Ultimate at the gaming tournament John organized on 31 October 2022."
+},
+"conv-47#142": {
+"ents": [
+"purpose",
+"gaming tournament",
+"John"
+],
+"preds": [
+"purpose",
+"organized by John",
+"held for"
+],
+"time": "31 October, 2022",
+"kw": [
+"charity",
+"fundraiser",
+"Halloween",
+"fun",
+"get together",
+"prize"
+],
+"hyde": "John organized the tournament on 31 October 2022 as a Halloween charity fundraiser to get everyone together."
+},
+"conv-47#143": {
+"ents": [
+"James",
+"Samantha",
+"decision"
+],
+"preds": [
+"make a decision",
+"decide",
+"agree"
+],
+"time": "31 October, 2022",
+"kw": [
+"move in together",
+"apartment",
+"live together",
+"lease",
+"McGee's bar"
+],
+"hyde": "Samantha and I decided to move in together on 31 October 2022."
+},
+"conv-47#144": {
+"ents": [
+"James",
+"Samantha",
+"apartment"
+],
+"preds": [
+"decide to live together",
+"move in together",
+"choose where to live"
+],
+"time": "31 October, 2022",
+"kw": [
+"near McGee's bar",
+"apartment",
+"together",
+"lease",
+"neighborhood",
+"move"
+],
+"hyde": "We decided to live together in an apartment near McGee's bar."
+},
+"conv-47#145": {
+"ents": [
+"James",
+"Samantha",
+"apartment",
+"McGee's bar"
+],
+"preds": [
+"choose",
+"pick",
+"decide on"
+],
+"time": null,
+"kw": [
+"close",
+"favorite bar",
+"convenient",
+"walking distance",
+"work",
+"nightlife"
+],
+"hyde": "We chose the apartment near McGee's because it was close to our favorite bar and walking distance to work."
+},
+"conv-47#146": {
+"ents": [
+"John",
+"game"
+],
+"preds": [
+"hooked on playing",
+"addicted to",
+"playing"
+],
+"time": "5 November, 2022",
+"kw": [
+"FIFA 23",
+"obsessed",
+"all weekend",
+"grinding",
+"online",
+"matches"
+],
+"hyde": "John is hooked on FIFA 23 on 5 November 2022 and has been playing it nonstop."
+},
+"conv-47#147": {
+"ents": [
+"John",
+"James",
+"FIFA 23"
+],
+"preds": [
+"suggest",
+"practice",
+"before playing together"
+],
+"time": null,
+"kw": [
+"practice mode",
+"skills",
+"defending",
+"passing",
+"controls",
+"tutorial"
+],
+"hyde": "John suggested I practice my defending and timed finishing in FIFA 23 before we played together."
+},
+"conv-47#148": {
+"ents": [
+"John",
+"project",
+"game developer"
+],
+"preds": [
+"work on",
+"collaborate with",
+"develop"
+],
+"time": "by 7 November, 2022",
+"kw": [
+"indie game",
+"development",
+"coding",
+"design",
+"collaboration",
+"project"
+],
+"hyde": "By 7 November 2022, John was working with a game developer on an indie horror game project."
+}
+}

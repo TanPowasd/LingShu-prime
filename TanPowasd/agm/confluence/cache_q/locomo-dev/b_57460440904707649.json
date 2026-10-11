@@ -1,0 +1,223 @@
+{
+"conv-47#49": {
+"ents": [
+"John",
+"gaming equipment"
+],
+"preds": [
+"buy",
+"refurbish",
+"purchase",
+"fix up",
+"restore"
+],
+"time": null,
+"kw": [
+"gaming gear",
+"headset",
+"controller",
+"keyboard",
+"refurbished"
+],
+"hyde": "I bought a new mechanical keyboard and refurbished my old controller."
+},
+"conv-47#50": {
+"ents": [
+"James",
+"cooking classes"
+],
+"preds": [
+"start taking",
+"begin taking",
+"enroll in",
+"started"
+],
+"time": null,
+"kw": [
+"cooking classes",
+"started",
+"began",
+"enrolled",
+"culinary",
+"lessons"
+],
+"hyde": "I started taking cooking classes in January."
+},
+"conv-47#51": {
+"ents": [
+"John",
+"James",
+"new games",
+"conversation with James"
+],
+"preds": [
+"start playing",
+"begin playing",
+"pick up",
+"try"
+],
+"time": "during the conversation with James",
+"kw": [
+"new games",
+"started playing",
+"picked up",
+"tried",
+"chat"
+],
+"hyde": "During our chat, John started playing Elden Ring and Hogwarts Legacy."
+},
+"conv-47#52": {
+"ents": [
+"John",
+"2D Adventure mobile game"
+],
+"preds": [
+"start working on",
+"begin developing",
+"start development",
+"began working on"
+],
+"time": null,
+"kw": [
+"2D Adventure",
+"mobile game",
+"started working",
+"development",
+"project",
+"began"
+],
+"hyde": "John started working on his 2D Adventure mobile game in March."
+},
+"conv-47#53": {
+"ents": [
+"James",
+"Witcher-inspired game"
+],
+"preds": [
+"complete",
+"finish",
+"take to complete",
+"develop"
+],
+"time": null,
+"kw": [
+"Witcher-inspired",
+"game",
+"completed",
+"finished",
+"took",
+"months"
+],
+"hyde": "It took James about six months to complete his Witcher-inspired game."
+},
+"conv-47#54": {
+"ents": [
+"John",
+"programming-related events"
+],
+"preds": [
+"host",
+"organize",
+"run",
+"hosted"
+],
+"time": null,
+"kw": [
+"programming events",
+"hosted",
+"hackathon",
+"workshop",
+"meetup",
+"coding competition"
+],
+"hyde": "John has hosted coding workshops and an online hackathon."
+},
+"conv-47#55": {
+"ents": [
+"John",
+"programming friends",
+"online programming competition"
+],
+"preds": [
+"host",
+"organize",
+"run",
+"hosted"
+],
+"time": null,
+"kw": [
+"online programming competition",
+"hosted",
+"programming friends",
+"date",
+"organized"
+],
+"hyde": "John and his programming friends hosted an online programming competition last summer."
+},
+"conv-47#56": {
+"ents": [
+"James",
+"family members"
+],
+"preds": [
+"visit",
+"come to see",
+"stay with",
+"visited"
+],
+"time": "last year",
+"kw": [
+"family",
+"visited",
+"last year",
+"mother",
+"brother",
+"sister"
+],
+"hyde": "My mother and brother visited me last year."
+},
+"conv-47#57": {
+"ents": [
+"James",
+"James's mother",
+"mother's friend"
+],
+"preds": [
+"visit",
+"come to see",
+"visited"
+],
+"time": null,
+"kw": [
+"mother",
+"friend",
+"visited",
+"James",
+"date",
+"came over"
+],
+"hyde": "James's mother and her friend visited him in April."
+},
+"conv-47#58": {
+"ents": [
+"James",
+"Cyberpunk 2077",
+"game"
+],
+"preds": [
+"try",
+"play",
+"try out",
+"played"
+],
+"time": null,
+"kw": [
+"Cyberpunk 2077",
+"tried",
+"played",
+"game",
+"date"
+],
+"hyde": "James tried Cyberpunk 2077 in November."
+}
+}

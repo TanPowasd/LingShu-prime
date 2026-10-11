@@ -1,0 +1,209 @@
+{
+"conv-30#0": {
+"ents": [
+"Jon",
+"banker job"
+],
+"preds": [
+"lost his job",
+"was laid off",
+"was fired"
+],
+"time": null,
+"kw": [
+"bank",
+"banker",
+"laid off",
+"fired",
+"job loss",
+"finance"
+],
+"hyde": "Jon lost his banking job in March 2022 after his bank downsized the department."
+},
+"conv-30#1": {
+"ents": [
+"Gina",
+"Door Dash",
+"job"
+],
+"preds": [
+"lost her job",
+"was laid off",
+"was fired"
+],
+"time": null,
+"kw": [
+"DoorDash",
+"delivery",
+"laid off",
+"fired",
+"job loss"
+],
+"hyde": "Gina got laid off from DoorDash in November 2022 when they cut the delivery ops team."
+},
+"conv-30#2": {
+"ents": [
+"Jon",
+"Gina"
+],
+"preds": [
+"destress",
+"relax",
+"unwind"
+],
+"time": null,
+"kw": [
+"unwind",
+"relax",
+"hobby",
+"yoga",
+"running",
+"meditation"
+],
+"hyde": "Jon and Gina both like to destress by going for a run or doing yoga after work."
+},
+"conv-30#3": {
+"ents": [
+"Jon",
+"Gina"
+],
+"preds": [
+"have in common",
+"share",
+"both like"
+],
+"time": null,
+"kw": [
+"common",
+"share",
+"similar",
+"both",
+"background"
+],
+"hyde": "Jon and Gina both used to work in finance before switching careers."
+},
+"conv-30#4": {
+"ents": [
+"Jon",
+"dance studio"
+],
+"preds": [
+"decide to start",
+"opened",
+"founded"
+],
+"time": null,
+"kw": [
+"dance studio",
+"passion",
+"career change",
+"open",
+"reason"
+],
+"hyde": "Jon started his dance studio because he wanted to turn his passion for dance into a full-time career after losing his banking job."
+},
+"conv-30#5": {
+"ents": [
+"Jon",
+"ideal dance studio"
+],
+"preds": [
+"should look like",
+"envision",
+"imagine"
+],
+"time": null,
+"kw": [
+"studio",
+"mirrors",
+"wooden floor",
+"lighting",
+"open space",
+"vibe"
+],
+"hyde": "Jon thinks the ideal dance studio should have a big open floor, mirrors, warm lighting, and a welcoming vibe."
+},
+"conv-30#6": {
+"ents": [
+"Jon's group",
+"festival"
+],
+"preds": [
+"performing at",
+"play",
+"gig"
+],
+"time": null,
+"kw": [
+"performance",
+"gig",
+"festival",
+"date",
+"summer"
+],
+"hyde": "Jon's group is performing at the Riverside Arts Festival on June 15."
+},
+"conv-30#7": {
+"ents": [
+"Gina",
+"ad campaign",
+"store"
+],
+"preds": [
+"launch",
+"started",
+"ran"
+],
+"time": null,
+"kw": [
+"marketing",
+"advertising",
+"promotion",
+"store",
+"launch"
+],
+"hyde": "Gina launched the ad campaign for her store in early May 2023."
+},
+"conv-30#8": {
+"ents": [
+"Jon",
+"Paris"
+],
+"preds": [
+"was in",
+"visited",
+"traveled to"
+],
+"time": null,
+"kw": [
+"Paris",
+"trip",
+"France",
+"travel",
+"visited"
+],
+"hyde": "Jon was in Paris last October for a dance workshop."
+},
+"conv-30#9": {
+"ents": [
+"Jean",
+"John",
+"city"
+],
+"preds": [
+"visited",
+"been to",
+"traveled to"
+],
+"time": null,
+"kw": [
+"visited",
+"travel",
+"both",
+"trip",
+"Jon",
+"Gina"
+],
+"hyde": "Both Jean and John have visited Paris."
+}
+}

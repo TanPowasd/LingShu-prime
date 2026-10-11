@@ -64,6 +64,10 @@ def contexts(bench, arm, questions):
     if arm == "直读":
         full = (bench / "corpus" / "语料.md").read_text(encoding="utf-8")
         return {q["qid"]: full for q in questions}
+    if arm == "QMD":                                          # 汇流多维 + 题面 LLM 抽取（冻结配置，见 confluence/PREREG_qmd.md）
+        sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent / "confluence"))
+        import hive_qmd
+        return hive_qmd.contexts(bench, questions)
     if arm == "汇流多维":                                     # 汇流多维 v3×3（LLM 中文源图缓存，见 confluence/hive_mdllm.py）
         sys.path.insert(0, str(pathlib.Path(__file__).parent.parent / "confluence"))
         import hive_mdllm

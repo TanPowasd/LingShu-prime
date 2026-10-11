@@ -1,0 +1,222 @@
+{
+"conv-47#29": {
+"ents": [
+"James",
+"trip to Canada",
+"Canada"
+],
+"preds": [
+"depart",
+"leave",
+"set off"
+],
+"time": null,
+"kw": [
+"departure",
+"flight",
+"left",
+"Canada",
+"trip",
+"date"
+],
+"hyde": "James departed for Canada on July 8, 2022."
+},
+"conv-47#30": {
+"ents": [
+"James",
+"tickets",
+"country",
+"July 2022"
+],
+"preds": [
+"book tickets for",
+"reserve tickets for",
+"buy tickets for"
+],
+"time": "July 2022",
+"kw": [
+"booked",
+"tickets",
+"country",
+"flight",
+"July 2022",
+"Canada"
+],
+"hyde": "James booked tickets for Canada in July 2022."
+},
+"conv-47#31": {
+"ents": [
+"James",
+"trip in Canada",
+"Canada",
+"days"
+],
+"preds": [
+"plan to spend",
+"intend to stay",
+"plan length of trip"
+],
+"time": null,
+"kw": [
+"days",
+"plan",
+"trip",
+"Canada",
+"stay",
+"itinerary"
+],
+"hyde": "James planned to spend 14 days in Canada."
+},
+"conv-47#32": {
+"ents": [
+"James",
+"July 12, 2022",
+"location"
+],
+"preds": [
+"be at",
+"stay at",
+"located in"
+],
+"time": "July 12, 2022",
+"kw": [
+"where",
+"James",
+"July 12",
+"2022",
+"location",
+"Canada"
+],
+"hyde": "On July 12, 2022, James was in Vancouver, Canada."
+},
+"conv-47#33": {
+"ents": [
+"John",
+"James"
+],
+"preds": [
+"study together",
+"attend school together",
+"be classmates"
+],
+"time": null,
+"kw": [
+"study",
+"together",
+"school",
+"college",
+"classmates",
+"university"
+],
+"hyde": "Yes, John and James studied together in college."
+},
+"conv-47#34": {
+"ents": [
+"James",
+"countries",
+"July 2022"
+],
+"preds": [
+"visit",
+"travel to",
+"go to"
+],
+"time": "July 2022",
+"kw": [
+"countries",
+"visited",
+"travel",
+"July 2022",
+"Canada",
+"United States"
+],
+"hyde": "In July 2022, James visited Canada and the United States."
+},
+"conv-47#35": {
+"ents": [
+"James",
+"trip to Canada",
+"Canada",
+"additional country"
+],
+"preds": [
+"visit",
+"also visit",
+"travel to as well"
+],
+"time": "during trip to Canada",
+"kw": [
+"additional",
+"also visited",
+"Canada trip",
+"besides Canada",
+"United States",
+"travel"
+],
+"hyde": "During his Canada trip, James also visited the United States."
+},
+"conv-47#36": {
+"ents": [
+"Jill"
+],
+"preds": [
+"is",
+"identity of",
+"relationship to"
+],
+"time": null,
+"kw": [
+"Jill",
+"John's sister",
+"sister",
+"friend",
+"family"
+],
+"hyde": "Jill is John's sister."
+},
+"conv-47#37": {
+"ents": [
+"John",
+"John's sister",
+"dogs"
+],
+"preds": [
+"spend time with",
+"hang out with",
+"visit"
+],
+"time": null,
+"kw": [
+"John",
+"sister",
+"dogs",
+"spent time",
+"visited",
+"weekend"
+],
+"hyde": "John spent time with his sister and dogs last weekend."
+},
+"conv-47#38": {
+"ents": [
+"John",
+"job situation",
+"2022"
+],
+"preds": [
+"happen to",
+"change",
+"get laid off",
+"start new job"
+],
+"time": "2022",
+"kw": [
+"John",
+"job",
+"work",
+"2022",
+"laid off",
+"new job"
+],
+"hyde": "In 2022, John got laid off and then found a new job."
+}
+}

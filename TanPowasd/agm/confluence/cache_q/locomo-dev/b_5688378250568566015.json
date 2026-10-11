@@ -1,0 +1,220 @@
+{
+"conv-47#99": {
+"ents": [
+"James",
+"organization",
+"volunteer organization"
+],
+"preds": [
+"volunteered with",
+"focuses on",
+"mission is"
+],
+"time": null,
+"kw": [
+"volunteer",
+"organization",
+"focus",
+"mission",
+"charity",
+"nonprofit"
+],
+"hyde": "James volunteered with an animal rescue organization whose main focus is rehoming stray cats and dogs."
+},
+"conv-47#100": {
+"ents": [
+"James",
+"organization",
+"interview"
+],
+"preds": [
+"volunteer with",
+"require interview",
+"need interview"
+],
+"time": null,
+"kw": [
+"volunteer",
+"interview",
+"required",
+"application",
+"screening",
+"orientation"
+],
+"hyde": "Yes, they ask for a brief interview and background check before you can volunteer."
+},
+"conv-47#101": {
+"ents": [
+"John",
+"free time",
+"9 July, 2022"
+],
+"preds": [
+"relax",
+"spend free time",
+"unwind"
+],
+"time": "9 July, 2022",
+"kw": [
+"relax",
+"free time",
+"hobby",
+"weekend",
+"July 2022",
+"evening"
+],
+"hyde": "On 9 July 2022, John relaxed by reading a sci-fi novel and taking a long walk in the park."
+},
+"conv-47#102": {
+"ents": [
+"James",
+"cold winter days"
+],
+"preds": [
+"enjoy doing",
+"like doing",
+"spend time"
+],
+"time": "cold winter days",
+"kw": [
+"winter",
+"cold",
+"snow",
+"cozy",
+"indoor",
+"hobby"
+],
+"hyde": "James loved curling up with hot chocolate and a good book on cold winter days."
+},
+"conv-47#103": {
+"ents": [
+"James",
+"new hobby"
+],
+"preds": [
+"become interested in",
+"take up",
+"start"
+],
+"time": "9 July, 2022",
+"kw": [
+"new hobby",
+"interested",
+"started",
+"photography",
+"July 2022",
+"learn"
+],
+"hyde": "On 9 July 2022, James became interested in learning photography and bought his first camera."
+},
+"conv-47#104": {
+"ents": [
+"James",
+"Toronto",
+"Vancouver"
+],
+"preds": [
+"plan to visit",
+"go after",
+"travel to"
+],
+"time": "after Toronto",
+"kw": [
+"Toronto",
+"Vancouver",
+"trip",
+"travel",
+"visit",
+"after"
+],
+"hyde": "After Toronto, James planned to visit Vancouver for a few days."
+},
+"conv-47#105": {
+"ents": [
+"James",
+"trip",
+"Toronto",
+"Vancouver"
+],
+"preds": [
+"plan to return",
+"come back",
+"get back"
+],
+"time": null,
+"kw": [
+"return",
+"trip",
+"Toronto",
+"Vancouver",
+"flight",
+"home"
+],
+"hyde": "James planned to return from his Toronto and Vancouver trip on August 12th."
+},
+"conv-47#106": {
+"ents": [
+"John",
+"online game",
+"strategy"
+],
+"preds": [
+"start playing",
+"improve strategy",
+"play online"
+],
+"time": "recently",
+"kw": [
+"online game",
+"strategy",
+"chess",
+"started",
+"playing",
+"improve"
+],
+"hyde": "John recently started playing online chess to improve his strategy."
+},
+"conv-47#107": {
+"ents": [
+"John",
+"IT job"
+],
+"preds": [
+"leave",
+"quit",
+"made him leave"
+],
+"time": null,
+"kw": [
+"IT job",
+"leave",
+"quit",
+"reason",
+"burnout",
+"career change"
+],
+"hyde": "John left his IT job because he was burned out and wanted to pursue game development full-time."
+},
+"conv-47#108": {
+"ents": [
+"John",
+"game tournaments",
+"CS:GO"
+],
+"preds": [
+"plan to organize",
+"host",
+"run tournaments"
+],
+"time": null,
+"kw": [
+"game tournaments",
+"organize",
+"CS:GO",
+"esports",
+"Dota 2",
+"League of Legends"
+],
+"hyde": "Besides CS:GO, John plans to organize tournaments for Dota 2 and League of Legends."
+}
+}

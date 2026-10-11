@@ -1,0 +1,218 @@
+{
+"conv-30#40": {
+"ents": [
+"Jon",
+"Jon's favorite style of dance",
+"dance style"
+],
+"preds": [
+"favorite",
+"prefers",
+"likes most"
+],
+"time": null,
+"kw": [
+"Jon",
+"dance",
+"style",
+"favorite",
+"hip hop",
+"contemporary"
+],
+"hyde": "Jon said his favorite style of dance is contemporary, though he also loves hip hop."
+},
+"conv-30#41": {
+"ents": [
+"Gina",
+"Gina's favorite dancing memory",
+"dancing memory"
+],
+"preds": [
+"remembers",
+"cherishes",
+"favorite memory was"
+],
+"time": null,
+"kw": [
+"Gina",
+"dance",
+"memory",
+"favorite",
+"performance",
+"competition"
+],
+"hyde": "Gina's favorite dancing memory is performing with her team at the national competition and winning first place."
+},
+"conv-30#42": {
+"ents": [
+"Gina's team",
+"dance piece",
+"first place"
+],
+"preds": [
+"perform",
+"win first place",
+"competed with"
+],
+"time": null,
+"kw": [
+"Gina's team",
+"routine",
+"piece",
+"first place",
+"competition",
+"won"
+],
+"hyde": "Gina's team performed a contemporary dance piece called 'Resilience' and won first place."
+},
+"conv-30#43": {
+"ents": [
+"dancers",
+"photo"
+],
+"preds": [
+"represent",
+"symbolize",
+"stand for"
+],
+"time": null,
+"kw": [
+"photo",
+"dancers",
+"represent",
+"symbolize",
+"unity",
+"strength"
+],
+"hyde": "The dancers in the photo represent strength and unity through their synchronized poses."
+},
+"conv-30#44": {
+"ents": [
+"Gina",
+"dancers",
+"photo"
+],
+"preds": [
+"says",
+"describes",
+"comments on"
+],
+"time": null,
+"kw": [
+"Gina",
+"photo",
+"dancers",
+"says",
+"pose",
+"sync"
+],
+"hyde": "Gina says the dancers in the photo look powerful and perfectly in sync."
+},
+"conv-30#45": {
+"ents": [
+"Jon",
+"dance festival"
+],
+"preds": [
+"feels about",
+"thinks about",
+"is part of"
+],
+"time": null,
+"kw": [
+"Jon",
+"dance festival",
+"excited",
+"nervous",
+"grateful",
+"part"
+],
+"hyde": "Jon is excited and grateful to be part of the dance festival, though a little nervous."
+},
+"conv-30#46": {
+"ents": [
+"Jon",
+"flooring",
+"dance studio"
+],
+"preds": [
+"looking for",
+"wants",
+"needs"
+],
+"time": null,
+"kw": [
+"flooring",
+"dance studio",
+"wood",
+"sprung",
+"Marley",
+"install"
+],
+"hyde": "Jon is looking for sprung wooden flooring or Marley for his dance studio."
+},
+"conv-30#47": {
+"ents": [
+"Gina",
+"clothing store",
+"1 February, 2023"
+],
+"preds": [
+"find",
+"found",
+"discovered"
+],
+"time": "1 February, 2023",
+"kw": [
+"Gina",
+"clothing store",
+"found",
+"February 2023",
+"location",
+"lease"
+],
+"hyde": "On 1 February 2023, Gina found a perfect retail space for her clothing store."
+},
+"conv-30#48": {
+"ents": [
+"Gina",
+"store"
+],
+"preds": [
+"design",
+"designed",
+"create"
+],
+"time": null,
+"kw": [
+"Gina",
+"store",
+"design",
+"logo",
+"interior",
+"layout"
+],
+"hyde": "Gina designed a warm, minimalist interior and a new logo for her store."
+},
+"conv-30#49": {
+"ents": [
+"Gina",
+"customers",
+"store"
+],
+"preds": [
+"want customers to feel",
+"wanted them to feel",
+"hoped they would feel"
+],
+"time": null,
+"kw": [
+"customers",
+"feel",
+"store",
+"welcomed",
+"inspired"
+],
+"hyde": "Gina wanted her customers to feel welcomed, comfortable, and inspired when they walked into her store."
+}
+}

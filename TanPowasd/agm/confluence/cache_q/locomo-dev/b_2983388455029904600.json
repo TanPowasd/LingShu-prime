@@ -1,0 +1,216 @@
+{
+"conv-47#69": {
+"ents": [
+"James",
+"dog-sitting app"
+],
+"preds": [
+"make unique",
+"differentiate",
+"stand out"
+],
+"time": null,
+"kw": [
+"features",
+"real-time GPS",
+"vet chat",
+"pet owners",
+"dog walkers",
+"app design"
+],
+"hyde": "I plan to make my dog-sitting app unique by adding real-time GPS tracking and a direct vet chat feature."
+},
+"conv-47#70": {
+"ents": [
+"John",
+"metal detector"
+],
+"preds": [
+"found",
+"discovered",
+"dug up"
+],
+"time": "so far",
+"kw": [
+"coins",
+"bottle caps",
+"treasure",
+"beach",
+"park",
+"junk"
+],
+"hyde": "So far I've mostly found old coins and bottle caps with my metal detector."
+},
+"conv-47#71": {
+"ents": [
+"James",
+"John",
+"pets"
+],
+"preds": [
+"offer to do",
+"help with",
+"take care of",
+"pet-sit"
+],
+"time": null,
+"kw": [
+"dog-sitting",
+"watch",
+"feed",
+"walk",
+"look after",
+"animals"
+],
+"hyde": "James offered to dog-sit for me while I was away."
+},
+"conv-47#72": {
+"ents": [
+"John",
+"drums",
+"instrument"
+],
+"preds": [
+"learning to play",
+"practicing",
+"taking lessons"
+],
+"time": "27 March, 2022",
+"kw": [
+"drums",
+"lessons",
+"beginner",
+"practice",
+"music",
+"kit"
+],
+"hyde": "As of 27 March 2022, I'm learning to play the drums."
+},
+"conv-47#73": {
+"ents": [
+"John",
+"drums"
+],
+"preds": [
+"has been playing",
+"playing drums",
+"been learning"
+],
+"time": "27 March, 2022",
+"kw": [
+"months",
+"years",
+"started",
+"duration",
+"practice",
+"since"
+],
+"hyde": "I've been playing the drums for about six months as of 27 March 2022."
+},
+"conv-47#74": {
+"ents": [
+"John",
+"gaming convention",
+"tournament"
+],
+"preds": [
+"played",
+"competed in",
+"took part in"
+],
+"time": "March 2022",
+"kw": [
+"Magic: The Gathering",
+"card game",
+"board game",
+"bracket",
+"opponents",
+"intense"
+],
+"hyde": "I played in an intense Magic: The Gathering tournament at the gaming convention in March 2022."
+},
+"conv-47#75": {
+"ents": [
+"James",
+"online gaming tournament"
+],
+"preds": [
+"playing",
+"competed in",
+"entered"
+],
+"time": "April 2022",
+"kw": [
+"Valorant",
+"video game",
+"esports",
+"bracket",
+"team",
+"online"
+],
+"hyde": "In April 2022, I was playing Valorant in an online gaming tournament."
+},
+"conv-47#76": {
+"ents": [
+"James",
+"gaming team"
+],
+"preds": [
+"communicate",
+"coordinate",
+"talk"
+],
+"time": null,
+"kw": [
+"Discord",
+"voice chat",
+"headset",
+"calls",
+"messages",
+"teamwork"
+],
+"hyde": "We use Discord voice chat to communicate with my gaming team during matches."
+},
+"conv-47#77": {
+"ents": [
+"James",
+"famous players",
+"tournament"
+],
+"preds": [
+"receive advice",
+"told",
+"recommended"
+],
+"time": null,
+"kw": [
+"practice",
+"aim",
+"strategy",
+"teamwork",
+"VOD review",
+"mindset"
+],
+"hyde": "The famous players I met at the tournament told me to focus on teamwork and review my gameplay."
+},
+"conv-47#78": {
+"ents": [
+"James"
+],
+"preds": [
+"adopt",
+"took in",
+"rescued"
+],
+"time": "April 2022",
+"kw": [
+"pet",
+"dog",
+"cat",
+"shelter",
+"rescue",
+"puppy"
+],
+"hyde": "In April 2022, I adopted a rescue dog."
+}
+}

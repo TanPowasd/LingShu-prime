@@ -1,0 +1,214 @@
+{
+"conv-47#19": {
+"ents": [
+"James",
+"Samantha"
+],
+"preds": [
+"feeling lonely",
+"felt lonely",
+"was lonely"
+],
+"time": "before meeting Samantha",
+"kw": [
+"lonely",
+"alone",
+"met Samantha",
+"meeting",
+"felt",
+"before"
+],
+"hyde": "James told me he felt really lonely before he met Samantha."
+},
+"conv-47#20": {
+"ents": [
+"John",
+"charity tournaments"
+],
+"preds": [
+"organized",
+"has organized",
+"put together"
+],
+"time": "till date",
+"kw": [
+"charity",
+"tournaments",
+"organized",
+"count",
+"how many",
+"fundraising"
+],
+"hyde": "John has organized three charity tournaments till date."
+},
+"conv-47#21": {
+"ents": [
+"John",
+"his friends",
+"charity tournament"
+],
+"preds": [
+"first organize",
+"organized first",
+"started organizing"
+],
+"time": null,
+"kw": [
+"first",
+"charity tournament",
+"friends",
+"organize",
+"year",
+"date"
+],
+"hyde": "John first organized a charity tournament with his friends in 2019."
+},
+"conv-47#22": {
+"ents": [
+"John",
+"charity tournaments",
+"beneficiaries",
+"organizations"
+],
+"preds": [
+"been beneficiaries",
+"benefited from",
+"received donations from"
+],
+"time": null,
+"kw": [
+"beneficiaries",
+"charity tournaments",
+"organizations",
+"donated",
+"proceeds",
+"funds"
+],
+"hyde": "The proceeds from John's charity tournaments went to the local children's hospital and an animal shelter."
+},
+"conv-47#23": {
+"ents": [
+"John",
+"new job"
+],
+"preds": [
+"start",
+"begin",
+"starting"
+],
+"time": null,
+"kw": [
+"new job",
+"start date",
+"begins",
+"next month",
+"employment"
+],
+"hyde": "John will start his new job on June 3rd."
+},
+"conv-47#24": {
+"ents": [
+"James",
+"games"
+],
+"preds": [
+"tried to develop",
+"develop",
+"build"
+],
+"time": null,
+"kw": [
+"games",
+"develop",
+"tried",
+"create",
+"video games",
+"mobile games"
+],
+"hyde": "James has tried to develop a couple of mobile puzzle games and a simple platformer."
+},
+"conv-47#25": {
+"ents": [
+"John",
+"James",
+"football team"
+],
+"preds": [
+"fans of",
+"support",
+"root for"
+],
+"time": null,
+"kw": [
+"fans",
+"same",
+"football team",
+"support",
+"root for"
+],
+"hyde": "Yes, John and James both support the same football team, Manchester United."
+},
+"conv-47#26": {
+"ents": [
+"James",
+"countries"
+],
+"preds": [
+"visited",
+"traveled to",
+"been to"
+],
+"time": null,
+"kw": [
+"visited",
+"countries",
+"travel",
+"abroad",
+"trip",
+"been to"
+],
+"hyde": "James has visited Japan, Italy, and Canada."
+},
+"conv-47#27": {
+"ents": [
+"James",
+"classes"
+],
+"preds": [
+"joined",
+"attended",
+"took"
+],
+"time": null,
+"kw": [
+"classes",
+"joined",
+"attended",
+"course",
+"lessons",
+"enrolled"
+],
+"hyde": "James has joined a few cooking classes and a photography class."
+},
+"conv-47#28": {
+"ents": [
+"James",
+"organization"
+],
+"preds": [
+"volunteered",
+"volunteer at",
+"helped at"
+],
+"time": null,
+"kw": [
+"volunteer",
+"organization",
+"when",
+"helped",
+"charity",
+"event"
+],
+"hyde": "James volunteered at the local food bank last summer."
+}
+}

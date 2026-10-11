@@ -1,0 +1,225 @@
+{
+"conv-47#59": {
+"ents": [
+"John",
+"John's gaming friends",
+"charity tournament"
+],
+"preds": [
+"organize",
+"set up",
+"hold"
+],
+"time": null,
+"kw": [
+"date",
+"month",
+"year",
+"charity",
+"tournament",
+"gaming friends"
+],
+"hyde": "John and his gaming friends organized the charity tournament in March 2022."
+},
+"conv-47#60": {
+"ents": [
+"John",
+"friends",
+"charity tournaments",
+"games"
+],
+"preds": [
+"play",
+"compete in",
+"participate in"
+],
+"time": null,
+"kw": [
+"game titles",
+"played",
+"tournament",
+"charity",
+"friends",
+"board games"
+],
+"hyde": "John has played Mario Kart and Super Smash Bros with his friends at charity tournaments."
+},
+"conv-47#61": {
+"ents": [
+"James",
+"Samantha",
+"big moment"
+],
+"preds": [
+"be James' big moment",
+"happen",
+"share a moment"
+],
+"time": "October 2023",
+"kw": [
+"engagement",
+"proposal",
+"anniversary",
+"romantic",
+"moment",
+"Samantha"
+],
+"hyde": "James' big moment with Samantha in October 2023 was when he proposed to her."
+},
+"conv-47#62": {
+"ents": [
+"James",
+"Samantha",
+"dating",
+"moving in together"
+],
+"preds": [
+"date",
+"be together",
+"decide to move in together"
+],
+"time": "before moving in together",
+"kw": [
+"years",
+"months",
+"relationship",
+"move in",
+"together",
+"before"
+],
+"hyde": "James and Samantha dated for about two years before deciding to move in together."
+},
+"conv-47#63": {
+"ents": [
+"James",
+"James' family",
+"James' dogs",
+"road trip"
+],
+"preds": [
+"start",
+"set off",
+"begin a road trip"
+],
+"time": null,
+"kw": [
+"date",
+"road trip",
+"family",
+"dogs",
+"started",
+"departure"
+],
+"hyde": "James, his family, and his dogs started their road trip together in July 2023."
+},
+"conv-47#64": {
+"ents": [
+"John",
+"chess",
+"chess tournament"
+],
+"preds": [
+"practice chess",
+"train",
+"win the chess tournament"
+],
+"time": "before winning the chess tournament",
+"kw": [
+"months",
+"years",
+"practice",
+"chess",
+"tournament",
+"win"
+],
+"hyde": "John practiced chess for about a year before winning the chess tournament."
+},
+"conv-47#65": {
+"ents": [
+"James",
+"James' family",
+"Mark",
+"Josh"
+],
+"preds": [
+"visit",
+"go see",
+"meet up with"
+],
+"time": null,
+"kw": [
+"date",
+"visit",
+"family",
+"Mark",
+"Josh",
+"trip"
+],
+"hyde": "James and his family visited Mark and Josh last December."
+},
+"conv-47#66": {
+"ents": [
+"John",
+"game developer",
+"project"
+],
+"preds": [
+"work with",
+"collaborate",
+"team up"
+],
+"time": null,
+"kw": [
+"date",
+"game developer",
+"project",
+"worked",
+"collaboration",
+"built"
+],
+"hyde": "John worked with a game developer on a project in 2022."
+},
+"conv-47#67": {
+"ents": [
+"James",
+"programming languages"
+],
+"preds": [
+"work with",
+"use",
+"code in"
+],
+"time": null,
+"kw": [
+"Python",
+"JavaScript",
+"C++",
+"Java",
+"coding",
+"development"
+],
+"hyde": "James has worked with Python, JavaScript, and C++."
+},
+"conv-47#68": {
+"ents": [
+"James",
+"John",
+"mobile application"
+],
+"preds": [
+"plan to build",
+"develop",
+"create"
+],
+"time": null,
+"kw": [
+"app",
+"mobile",
+"iOS",
+"Android",
+"fitness",
+"game"
+],
+"hyde": "James and John plan to build a fitness tracking mobile app together."
+}
+}

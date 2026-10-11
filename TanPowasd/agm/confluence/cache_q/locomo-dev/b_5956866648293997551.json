@@ -1,0 +1,217 @@
+{
+"conv-47#9": {
+"ents": [
+"James",
+"dogs",
+"names"
+],
+"preds": [
+"names of",
+"are called",
+"owned"
+],
+"time": null,
+"kw": [
+"dog",
+"puppy",
+"adopted",
+"pet",
+"names",
+"James"
+],
+"hyde": "My dogs are Max and Luna."
+},
+"conv-47#10": {
+"ents": [
+"James",
+"Ned"
+],
+"preds": [
+"adopt",
+"adopted",
+"got"
+],
+"time": null,
+"kw": [
+"Ned",
+"adopted",
+"shelter",
+"dog",
+"pet",
+"James"
+],
+"hyde": "I adopted Ned in March 2021."
+},
+"conv-47#11": {
+"ents": [
+"John"
+],
+"preds": [
+"feeling",
+"felt",
+"was feeling"
+],
+"time": "April 10, 2022",
+"kw": [
+"John",
+"feeling",
+"mood",
+"April 10",
+"2022",
+"anxious"
+],
+"hyde": "On April 10, 2022, I was feeling pretty anxious about work."
+},
+"conv-47#12": {
+"ents": [
+"James",
+"girlfriend"
+],
+"preds": [
+"have a girlfriend",
+"dating",
+"seeing someone"
+],
+"time": "April 2022",
+"kw": [
+"girlfriend",
+"dating",
+"relationship",
+"April 2022",
+"James",
+"single"
+],
+"hyde": "Yes, I had a girlfriend named Sarah during April 2022."
+},
+"conv-47#13": {
+"ents": [
+"James",
+"Italy"
+],
+"preds": [
+"visit",
+"travel to",
+"go to"
+],
+"time": null,
+"kw": [
+"Italy",
+"trip",
+"visited",
+"travel",
+"Rome",
+"James"
+],
+"hyde": "I visited Italy in June 2019."
+},
+"conv-47#14": {
+"ents": [
+"James",
+"adventure book"
+],
+"preds": [
+"buy",
+"purchase",
+"got himself"
+],
+"time": null,
+"kw": [
+"bought",
+"adventure book",
+"new",
+"bookstore",
+"James",
+"read"
+],
+"hyde": "I bought myself a new adventure book in July 2022."
+},
+"conv-47#15": {
+"ents": [
+"James",
+"Civilization VI"
+],
+"preds": [
+"start playing",
+"began playing",
+"got into"
+],
+"time": null,
+"kw": [
+"Civilization VI",
+"Civ VI",
+"started",
+"playing",
+"game",
+"Steam"
+],
+"hyde": "I started playing Civilization VI in May 2020."
+},
+"conv-47#16": {
+"ents": [
+"John",
+"James",
+"game",
+"different colored cards"
+],
+"preds": [
+"talking about",
+"mentioned",
+"described"
+],
+"time": null,
+"kw": [
+"game",
+"colored cards",
+"cards",
+"deck",
+"John",
+"James"
+],
+"hyde": "That game with different colored cards I mentioned is Uno."
+},
+"conv-47#17": {
+"ents": [
+"John",
+"James",
+"board game",
+"imposter"
+],
+"preds": [
+"mentions",
+"talked about",
+"described"
+],
+"time": null,
+"kw": [
+"board game",
+"imposter",
+"find the imposter",
+"John",
+"James",
+"deduction"
+],
+"hyde": "The board game where you find the imposter I mentioned is The Resistance."
+},
+"conv-47#18": {
+"ents": [
+"John",
+"James",
+"books"
+],
+"preds": [
+"recommended",
+"suggested",
+"told about"
+],
+"time": null,
+"kw": [
+"books",
+"recommended",
+"John",
+"James",
+"reading",
+"suggested"
+],
+"hyde": "I recommended The Hobbit and Dune to James."
+}
+}

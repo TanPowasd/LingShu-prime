@@ -1,0 +1,214 @@
+{
+"conv-47#119": {
+"ents": [
+"John's siblings",
+"programs"
+],
+"preds": [
+"making",
+"developing",
+"creating"
+],
+"time": null,
+"kw": [
+"siblings",
+"brother",
+"sister",
+"programs",
+"software",
+"apps",
+"coding"
+],
+"hyde": "John's siblings are making a fitness app and a video game."
+},
+"conv-47#120": {
+"ents": [
+"John",
+"headphones",
+"gaming"
+],
+"preds": [
+"choose",
+"pick",
+"go with"
+],
+"time": null,
+"kw": [
+"headphones",
+"headset",
+"gaming",
+"brand",
+"company",
+"audio"
+],
+"hyde": "John chose Razer headphones for gaming."
+},
+"conv-47#121": {
+"ents": [
+"James",
+"Samantha",
+"McGee's bar"
+],
+"preds": [
+"discover they both enjoy",
+"realize they both like",
+"find shared interest in"
+],
+"time": null,
+"kw": [
+"McGee's bar",
+"bar",
+"trivia",
+"karaoke",
+"darts",
+"shared interest"
+],
+"hyde": "James and Samantha discovered they both enjoy trivia nights at McGee's bar."
+},
+"conv-47#122": {
+"ents": [
+"James",
+"cooking class"
+],
+"preds": [
+"pay per cooking class",
+"cost per class",
+"pay for"
+],
+"time": null,
+"kw": [
+"cooking class",
+"price",
+"fee",
+"per class",
+"dollars"
+],
+"hyde": "James pays $50 per cooking class."
+},
+"conv-47#123": {
+"ents": [
+"James",
+"cooking class",
+"omelette",
+"meringue"
+],
+"preds": [
+"learn to make",
+"cook",
+"prepare"
+],
+"time": null,
+"kw": [
+"cooking class",
+"omelette",
+"meringue",
+"souffle",
+"recipe",
+"dish"
+],
+"hyde": "Besides omelette and meringue, James learned to make souffle."
+},
+"conv-47#124": {
+"ents": [
+"James",
+"cooking class"
+],
+"preds": [
+"sign up",
+"enroll",
+"join"
+],
+"time": null,
+"kw": [
+"cooking class",
+"sign up",
+"reason",
+"learn to cook",
+"skills"
+],
+"hyde": "James signed up for a cooking class because he wanted to improve his cooking skills."
+},
+"conv-47#125": {
+"ents": [
+"James",
+"cooking class"
+],
+"preds": [
+"prepare",
+"make",
+"cook for the first time"
+],
+"time": null,
+"kw": [
+"cooking class",
+"first time",
+"omelette",
+"prepared",
+"made"
+],
+"hyde": "In the cooking class, James prepared an omelette for the first time."
+},
+"conv-47#126": {
+"ents": [
+"John",
+"board game"
+],
+"preds": [
+"try",
+"play",
+"called"
+],
+"time": "September 2022",
+"kw": [
+"board game",
+"tabletop",
+"played",
+"tried",
+"Wingspan",
+"September 2022"
+],
+"hyde": "John tried the board game Wingspan in September 2022."
+},
+"conv-47#127": {
+"ents": [
+"James",
+"ideas"
+],
+"preds": [
+"get ideas from",
+"draw inspiration from",
+"come up with ideas from"
+],
+"time": null,
+"kw": [
+"inspiration",
+"source",
+"ideas",
+"dreams",
+"creative",
+"imagination"
+],
+"hyde": "James gets his ideas from his dreams."
+},
+"conv-47#128": {
+"ents": [
+"James",
+"dream"
+],
+"preds": [
+"have a dream",
+"dream",
+"dreamt"
+],
+"time": "recently",
+"kw": [
+"dream",
+"nightmare",
+"vivid",
+"weird",
+"recently",
+"asleep"
+],
+"hyde": "James recently had a vivid dream about a zombie apocalypse."
+}
+}

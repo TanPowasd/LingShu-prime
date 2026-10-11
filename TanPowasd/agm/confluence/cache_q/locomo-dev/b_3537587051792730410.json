@@ -1,0 +1,219 @@
+{
+"conv-30#50": {
+"ents": [
+"Jon",
+"Gina",
+"Gina's store"
+],
+"preds": [
+"say about",
+"comment on",
+"talk about"
+],
+"time": null,
+"kw": [
+"progress",
+"store",
+"opening",
+"inventory",
+"sales",
+"customers"
+],
+"hyde": "Jon said Gina's store is making great progress and the new displays are pulling people in."
+},
+"conv-30#51": {
+"ents": [
+"Gina",
+"furniture",
+"decor",
+"Gina's store"
+],
+"preds": [
+"choose",
+"pick",
+"select"
+],
+"time": null,
+"kw": [
+"furniture",
+"decor",
+"style",
+"vibe",
+"aesthetic",
+"store"
+],
+"hyde": "Gina picked the furniture and decor because she wanted a cozy, vintage vibe for her store."
+},
+"conv-30#52": {
+"ents": [
+"Jon",
+"customers",
+"special experience"
+],
+"preds": [
+"say about",
+"talk about",
+"emphasize"
+],
+"time": null,
+"kw": [
+"special experience",
+"customers",
+"shopping",
+"atmosphere",
+"service",
+"memorable"
+],
+"hyde": "Jon said creating a special experience for customers is about making them feel welcomed and remembered."
+},
+"conv-30#53": {
+"ents": [
+"Gina",
+"customers",
+"experience"
+],
+"preds": [
+"say about",
+"talk about",
+"describe"
+],
+"time": null,
+"kw": [
+"experience",
+"customers",
+"store",
+"shopping",
+"vibe",
+"personal touch"
+],
+"hyde": "Gina said she wants customers to have a fun, personal experience when they shop at her store."
+},
+"conv-30#54": {
+"ents": [
+"Gina's store"
+],
+"preds": [
+"doing",
+"perform",
+"go"
+],
+"time": null,
+"kw": [
+"store",
+"business",
+"sales",
+"customers",
+"busy",
+"growing"
+],
+"hyde": "Gina's store is doing really well—sales are up and more customers are coming in every week."
+},
+"conv-30#55": {
+"ents": [
+"Gina",
+"Gina's tattoo"
+],
+"preds": [
+"symbolize",
+"represent",
+"mean"
+],
+"time": null,
+"kw": [
+"tattoo",
+"symbol",
+"meaning",
+"strength",
+"journey",
+"reminder"
+],
+"hyde": "Gina's tattoo symbolizes her strength and the journey of building her business from scratch."
+},
+"conv-30#56": {
+"ents": [
+"Jon",
+"Gina",
+"entrepreneurial journeys"
+],
+"preds": [
+"compare to",
+"liken to",
+"describe as"
+],
+"time": null,
+"kw": [
+"entrepreneurial journey",
+"business",
+"rollercoaster",
+"marathon",
+"adventure",
+"ride"
+],
+"hyde": "Jon and Gina compared their entrepreneurial journeys to a rollercoaster with lots of ups and downs."
+},
+"conv-30#57": {
+"ents": [
+"Gina",
+"Jon",
+"successful business"
+],
+"preds": [
+"give advice",
+"advise",
+"recommend"
+],
+"time": null,
+"kw": [
+"advice",
+"business",
+"customers",
+"consistency",
+"passion",
+"patience"
+],
+"hyde": "Gina advised Jon to stay consistent, listen to customers, and not give up when things get tough."
+},
+"conv-30#58": {
+"ents": [
+"Jon",
+"bank account"
+],
+"preds": [
+"shut down",
+"close",
+"cancel"
+],
+"time": null,
+"kw": [
+"bank account",
+"close",
+"fees",
+"business",
+"personal",
+"switched"
+],
+"hyde": "Jon shut down his bank account because the fees were too high and he switched to a credit union."
+},
+"conv-30#59": {
+"ents": [
+"Gina",
+"clothing business",
+"dance"
+],
+"preds": [
+"combine",
+"merge",
+"bring together"
+],
+"time": null,
+"kw": [
+"clothing",
+"dance",
+"business",
+"passion",
+"studio",
+"performance"
+],
+"hyde": "Gina combined her clothing business with dance because she wanted to merge her two passions and reach a new audience."
+}
+}

@@ -1,0 +1,216 @@
+{
+"conv-30#20": {
+"ents": [
+"Gina",
+"design internship"
+],
+"preds": [
+"get accepted",
+"was accepted",
+"received acceptance"
+],
+"time": null,
+"kw": [
+"accepted",
+"design internship",
+"offer",
+"application",
+"email",
+"start date"
+],
+"hyde": "I got accepted for the design internship in March 2023."
+},
+"conv-30#21": {
+"ents": [
+"Jon",
+"The Lean Startup"
+],
+"preds": [
+"start reading",
+"began reading",
+"picked up"
+],
+"time": null,
+"kw": [
+"The Lean Startup",
+"book",
+"started",
+"reading",
+"chapter",
+"Jon"
+],
+"hyde": "I started reading The Lean Startup last month."
+},
+"conv-30#22": {
+"ents": [
+"Gina",
+"video presentation",
+"fashion pieces"
+],
+"preds": [
+"develop",
+"create",
+"teach how to style"
+],
+"time": null,
+"kw": [
+"video",
+"presentation",
+"styling",
+"fashion pieces",
+"tutorial",
+"Gina"
+],
+"hyde": "I made a video presentation to teach how to style my fashion pieces in April 2023."
+},
+"conv-30#23": {
+"ents": [
+"Gina",
+"clothes store"
+],
+"preds": [
+"promote",
+"advertise",
+"market"
+],
+"time": null,
+"kw": [
+"promotion",
+"clothes store",
+"social media",
+"Instagram",
+"pop-up",
+"customers"
+],
+"hyde": "I promoted my clothes store on Instagram and with a weekend pop-up."
+},
+"conv-30#24": {
+"ents": [
+"Jon",
+"business venture",
+"events"
+],
+"preds": [
+"participate in",
+"attend",
+"promote business venture"
+],
+"time": null,
+"kw": [
+"events",
+"business venture",
+"promote",
+"pitch",
+"expo",
+"networking"
+],
+"hyde": "I joined a startup expo and a local pitch night to promote my venture."
+},
+"conv-30#25": {
+"ents": [
+"Jon",
+"dance studio"
+],
+"preds": [
+"offer",
+"provide",
+"teach"
+],
+"time": null,
+"kw": [
+"dance studio",
+"classes",
+"workshops",
+"lessons",
+"hip-hop",
+"contemporary"
+],
+"hyde": "My dance studio offers hip-hop and contemporary classes, plus private lessons."
+},
+"conv-30#26": {
+"ents": [
+"Jon",
+"mentorship",
+"venture"
+],
+"preds": [
+"receive mentorship",
+"get mentoring",
+"meet with mentor"
+],
+"time": null,
+"kw": [
+"mentorship",
+"mentor",
+"venture",
+"business",
+"advice",
+"program"
+],
+"hyde": "I received mentorship for my venture in June 2023."
+},
+"conv-30#27": {
+"ents": [
+"Jon",
+"Gina",
+"dance competitions"
+],
+"preds": [
+"participate in",
+"compete in",
+"take part in"
+],
+"time": null,
+"kw": [
+"dance competitions",
+"both",
+"competed",
+"contest",
+"ballroom",
+"hip-hop"
+],
+"hyde": "Yes, Jon and I both competed in dance competitions."
+},
+"conv-30#28": {
+"ents": [
+"Jon",
+"Rome"
+],
+"preds": [
+"be in",
+"visit",
+"travel to"
+],
+"time": null,
+"kw": [
+"Rome",
+"Jon",
+"trip",
+"travel",
+"Italy",
+"visit"
+],
+"hyde": "I was in Rome in September 2022."
+},
+"conv-30#29": {
+"ents": [
+"Jon",
+"cities"
+],
+"preds": [
+"visit",
+"travel to",
+"has been to"
+],
+"time": null,
+"kw": [
+"visited",
+"travel",
+"trip",
+"Rome",
+"Paris",
+"Tokyo"
+],
+"hyde": "I've visited Rome, Paris, and Tokyo."
+}
+}

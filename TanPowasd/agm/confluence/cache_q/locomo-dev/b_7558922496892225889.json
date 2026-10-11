@@ -1,0 +1,223 @@
+{
+"conv-47#89": {
+"ents": [
+"John",
+"John and his friends",
+"remaining money",
+"dog shelter"
+],
+"preds": [
+"do with remaining money",
+"use leftover funds",
+"spend remaining money"
+],
+"time": "after helping the dog shelter",
+"kw": [
+"remaining money",
+"dog shelter",
+"leftover funds",
+"donation",
+"help",
+"charity"
+],
+"hyde": "After helping the dog shelter, John and his friends used the remaining money to buy food and blankets for another animal rescue."
+},
+"conv-47#90": {
+"ents": [
+"John",
+"John and his friends",
+"charity tournament",
+"money raised"
+],
+"preds": [
+"main goal of money raised",
+"fundraise for",
+"support cause"
+],
+"time": "May 2022",
+"kw": [
+"charity tournament",
+"proceeds",
+"funds",
+"donate",
+"goal",
+"May 2022"
+],
+"hyde": "The charity tournament in May 2022 raised money to support children's education in the community."
+},
+"conv-47#91": {
+"ents": [
+"John",
+"system",
+"charitable foundation"
+],
+"preds": [
+"help with",
+"assist",
+"support"
+],
+"time": null,
+"kw": [
+"system",
+"charitable foundation",
+"help",
+"automate",
+"manage",
+"donations"
+],
+"hyde": "The system John created helped the charitable foundation track donations and manage volunteer schedules."
+},
+"conv-47#92": {
+"ents": [
+"John",
+"charitable foundation",
+"system",
+"reports",
+"analysis"
+],
+"preds": [
+"create",
+"build",
+"generate reports"
+],
+"time": null,
+"kw": [
+"system",
+"tool",
+"dashboard",
+"reports",
+"analysis",
+"foundation"
+],
+"hyde": "John built a reporting dashboard for the charitable foundation that helped generate reports for analysis."
+},
+"conv-47#93": {
+"ents": [
+"John",
+"second place",
+"tournament"
+],
+"preds": [
+"receive",
+"get awarded",
+"win"
+],
+"time": null,
+"kw": [
+"second place",
+"tournament",
+"prize",
+"medal",
+"trophy",
+"award"
+],
+"hyde": "John received a silver medal for achieving second place in the tournament."
+},
+"conv-47#94": {
+"ents": [
+"James",
+"game design course",
+"project"
+],
+"preds": [
+"work on",
+"build",
+"design"
+],
+"time": null,
+"kw": [
+"project",
+"game design",
+"course",
+"develop",
+"assignment",
+"game"
+],
+"hyde": "James is working on a multiplayer puzzle game project for his game design course."
+},
+"conv-47#95": {
+"ents": [
+"James",
+"football matches",
+"football team"
+],
+"preds": [
+"support",
+"cheer for",
+"root for"
+],
+"time": null,
+"kw": [
+"football",
+"team",
+"match",
+"supporter",
+"club",
+"fan"
+],
+"hyde": "James supports Manchester United in football matches."
+},
+"conv-47#96": {
+"ents": [
+"John",
+"football club"
+],
+"preds": [
+"support",
+"follow",
+"root for"
+],
+"time": null,
+"kw": [
+"football club",
+"support",
+"team",
+"fan",
+"match"
+],
+"hyde": "John supports Liverpool football club."
+},
+"conv-47#97": {
+"ents": [
+"James",
+"John",
+"football teams"
+],
+"preds": [
+"disagree about",
+"argue over",
+"debate"
+],
+"time": null,
+"kw": [
+"disagreement",
+"football teams",
+"rivals",
+"argue",
+"banter",
+"best team"
+],
+"hyde": "James and John argued about whether Manchester United or Liverpool is the better football team."
+},
+"conv-47#98": {
+"ents": [
+"Max",
+"James"
+],
+"preds": [
+"be good at",
+"excel at",
+"skilled at"
+],
+"time": null,
+"kw": [
+"Max",
+"good at",
+"according to James",
+"skill",
+"talent",
+"doing"
+],
+"hyde": "According to James, Max is really good at cooking homemade pasta."
+}
+}

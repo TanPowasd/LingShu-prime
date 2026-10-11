@@ -1,0 +1,225 @@
+{
+"conv-30#70": {
+"ents": [
+"Jon",
+"opening",
+"dance studio"
+],
+"preds": [
+"work on opening",
+"open",
+"prepare to launch"
+],
+"time": null,
+"kw": [
+"Jon",
+"opening",
+"dance studio",
+"preparing",
+"launch",
+"doors"
+],
+"hyde": "Jon is working on opening his own dance studio."
+},
+"conv-30#71": {
+"ents": [
+"Gina",
+"Jon",
+"studio",
+"dance studio"
+],
+"preds": [
+"describe studio",
+"talk about studio",
+"characterize"
+],
+"time": null,
+"kw": [
+"Gina",
+"Jon",
+"studio",
+"dance studio",
+"welcoming",
+"energy"
+],
+"hyde": "Gina describes Jon's studio as a warm, welcoming space with great energy and plenty of mirrors."
+},
+"conv-30#72": {
+"ents": [
+"Jon",
+"opening night",
+"dance studio"
+],
+"preds": [
+"feel about",
+"describe feelings about",
+"react to"
+],
+"time": null,
+"kw": [
+"Jon",
+"opening night",
+"dance studio",
+"excited",
+"nervous",
+"proud"
+],
+"hyde": "Jon says he feels excited and nervous but mostly proud about his dance studio's opening night."
+},
+"conv-30#73": {
+"ents": [
+"Gina",
+"dance",
+"feeling"
+],
+"preds": [
+"describe feeling",
+"say dance brings",
+"explain what dance feels like"
+],
+"time": null,
+"kw": [
+"Gina",
+"dance",
+"feeling",
+"joy",
+"freedom",
+"expression"
+],
+"hyde": "Gina says dance brings a feeling of freedom, joy, and pure expression."
+},
+"conv-30#74": {
+"ents": [
+"Jon",
+"grand opening",
+"dance studio"
+],
+"preds": [
+"plan to do",
+"intend to do",
+"arrange for"
+],
+"time": null,
+"kw": [
+"Jon",
+"grand opening",
+"dance studio",
+"performance",
+"workshop",
+"celebrate"
+],
+"hyde": "Jon plans to perform a short routine and teach a free beginner workshop at the grand opening."
+},
+"conv-30#75": {
+"ents": [
+"Gina",
+"Jon",
+"grand opening"
+],
+"preds": [
+"say to Jon",
+"tell Jon",
+"comment about"
+],
+"time": null,
+"kw": [
+"Gina",
+"Jon",
+"grand opening",
+"congratulations",
+"excited",
+"support"
+],
+"hyde": "Gina tells Jon she is so excited for his grand opening and knows it will be a success."
+},
+"conv-30#76": {
+"ents": [
+"grand opening",
+"Jon",
+"Gina"
+],
+"preds": [
+"feel about",
+"anticipate",
+"be the sentiment about"
+],
+"time": null,
+"kw": [
+"grand opening",
+"excitement",
+"anticipation",
+"supportive",
+"happy",
+"success"
+],
+"hyde": "Everyone is really excited and supportive about the upcoming grand opening."
+},
+"conv-30#77": {
+"ents": [
+"Gina",
+"limited edition line"
+],
+"preds": [
+"make limited edition line of",
+"create",
+"produce"
+],
+"time": null,
+"kw": [
+"Gina",
+"limited edition",
+"line",
+"dancewear",
+"collection",
+"clothing"
+],
+"hyde": "Gina made a limited edition line of dancewear for the studio opening."
+},
+"conv-30#78": {
+"ents": [
+"Gina",
+"Jon",
+"mentor",
+"guide"
+],
+"preds": [
+"make Jon perfect mentor and guide",
+"qualify as",
+"be suited to"
+],
+"time": null,
+"kw": [
+"Gina",
+"Jon",
+"mentor",
+"guide",
+"experience",
+"patience",
+"passion"
+],
+"hyde": "Gina says Jon's patience, experience, and passion make him the perfect mentor and guide."
+},
+"conv-30#79": {
+"ents": [
+"Jon",
+"networking event",
+"advice",
+"plans"
+],
+"preds": [
+"plan after receiving advice",
+"intend to do",
+"decide following advice"
+],
+"time": "after the networking event",
+"kw": [
+"Jon",
+"networking event",
+"advice",
+"plans",
+"next steps",
+"implement"
+],
+"hyde": "After the networking event, Jon plans to revise his business plan and start marketing his studio locally."
+}
+}

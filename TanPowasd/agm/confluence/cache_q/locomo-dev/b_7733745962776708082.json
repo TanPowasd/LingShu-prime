@@ -1,0 +1,211 @@
+{
+"conv-47#39": {
+"ents": [
+"John",
+"job in IT"
+],
+"preds": [
+"start job",
+"begin working in IT",
+"started his IT job"
+],
+"time": null,
+"kw": [
+"started",
+"IT",
+"work",
+"company",
+"March 2023"
+],
+"hyde": "I started my IT job in March 2023."
+},
+"conv-47#40": {
+"ents": [
+"James",
+"James's pets",
+"tricks"
+],
+"preds": [
+"know tricks",
+"can do tricks",
+"perform tricks"
+],
+"time": null,
+"kw": [
+"dog",
+"sit",
+"shake",
+"roll over",
+"fetch"
+],
+"hyde": "My dogs know how to sit, shake, and roll over."
+},
+"conv-47#41": {
+"ents": [
+"James",
+"Samantha"
+],
+"preds": [
+"meet",
+"met",
+"first met"
+],
+"time": null,
+"kw": [
+"met",
+"first",
+"introduced",
+"party",
+"2021"
+],
+"hyde": "I met Samantha at a party in 2021."
+},
+"conv-47#42": {
+"ents": [
+"James",
+"3 dogs",
+"beach"
+],
+"preds": [
+"take to beach",
+"brought dogs to beach",
+"went to beach"
+],
+"time": null,
+"kw": [
+"three dogs",
+"beach",
+"took",
+"trip",
+"Saturday"
+],
+"hyde": "I took my three dogs to the beach last Saturday."
+},
+"conv-47#43": {
+"ents": [
+"John",
+"siblings",
+"next meeting"
+],
+"preds": [
+"plan meeting",
+"schedule meeting",
+"arrange meeting"
+],
+"time": null,
+"kw": [
+"siblings",
+"meeting",
+"planned",
+"scheduled",
+"next Sunday"
+],
+"hyde": "I planned our next siblings meeting for next Sunday."
+},
+"conv-47#44": {
+"ents": [
+"John",
+"Starbucks"
+],
+"preds": [
+"didn't want to go",
+"avoid going",
+"refused to go"
+],
+"time": null,
+"kw": [
+"Starbucks",
+"coffee",
+"crowded",
+"expensive",
+"didn't want"
+],
+"hyde": "I didn't want to go to Starbucks because it was too crowded."
+},
+"conv-47#45": {
+"ents": [
+"McGee's bar",
+"beer"
+],
+"preds": [
+"serve beer",
+"has on tap",
+"offers beer"
+],
+"time": null,
+"kw": [
+"McGee's",
+"bar",
+"beer",
+"draft",
+"lager",
+"IPA"
+],
+"hyde": "McGee's bar serves a local lager and an IPA on tap."
+},
+"conv-47#46": {
+"ents": [
+"John",
+"James",
+"McGee's bar"
+],
+"preds": [
+"meet",
+"met up",
+"got together"
+],
+"time": null,
+"kw": [
+"McGee's",
+"bar",
+"met",
+"Friday",
+"night"
+],
+"hyde": "John and I met at McGee's bar last Friday night."
+},
+"conv-47#47": {
+"ents": [
+"James",
+"Samantha",
+"girlfriend"
+],
+"preds": [
+"ask to be girlfriend",
+"asked out",
+"became official"
+],
+"time": null,
+"kw": [
+"asked",
+"girlfriend",
+"Valentine's Day",
+"relationship",
+"Samantha"
+],
+"hyde": "I asked Samantha to be my girlfriend on Valentine's Day."
+},
+"conv-47#48": {
+"ents": [
+"James",
+"Samantha",
+"John",
+"baseball game"
+],
+"preds": [
+"go to baseball game",
+"attended baseball game",
+"went together"
+],
+"time": null,
+"kw": [
+"baseball",
+"game",
+"stadium",
+"tickets",
+"together",
+"July"
+],
+"hyde": "James, Samantha, and I went to a baseball game together in July."
+}
+}

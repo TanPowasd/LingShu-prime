@@ -1,0 +1,24 @@
+{
+"conv-47#149": {
+"ents": [
+"John",
+"John's cousin",
+"dog"
+],
+"preds": [
+"is named",
+"is called",
+"name of"
+],
+"time": null,
+"kw": [
+"John",
+"cousin",
+"dog",
+"name",
+"called",
+"puppy"
+],
+"hyde": "John's cousin's dog is named Max."
+}
+}

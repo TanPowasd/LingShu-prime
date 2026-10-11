@@ -1,0 +1,209 @@
+{
+"conv-30#10": {
+"ents": [
+"Gina",
+"local artist",
+"cool designs"
+],
+"preds": [
+"team up",
+"collaborate",
+"partner with"
+],
+"time": null,
+"kw": [
+"Gina",
+"local artist",
+"designs",
+"collaboration",
+"artwork"
+],
+"hyde": "Gina teamed up with a local artist in March for some cool designs."
+},
+"conv-30#11": {
+"ents": [
+"Gina",
+"tattoo"
+],
+"preds": [
+"get a tattoo",
+"get inked",
+"have a tattoo done"
+],
+"time": null,
+"kw": [
+"Gina",
+"tattoo",
+"ink",
+"tattoo artist",
+"design"
+],
+"hyde": "Gina got her tattoo last month at a local shop."
+},
+"conv-30#12": {
+"ents": [
+"Jon",
+"gym"
+],
+"preds": [
+"start going to the gym",
+"begin gym routine",
+"start working out"
+],
+"time": null,
+"kw": [
+"Jon",
+"gym",
+"workout",
+"fitness",
+"started"
+],
+"hyde": "Jon started going to the gym in January."
+},
+"conv-30#13": {
+"ents": [
+"Gina",
+"online clothing store"
+],
+"preds": [
+"open",
+"launch",
+"start"
+],
+"time": null,
+"kw": [
+"Gina",
+"online store",
+"clothing",
+"launch",
+"shop"
+],
+"hyde": "Gina opened her online clothing store in February."
+},
+"conv-30#14": {
+"ents": [
+"Jon",
+"dance studio",
+"social media presence"
+],
+"preds": [
+"start expanding",
+"grow",
+"build up"
+],
+"time": null,
+"kw": [
+"Jon",
+"dance studio",
+"social media",
+"marketing",
+"presence"
+],
+"hyde": "Jon started expanding his studio's social media presence this spring."
+},
+"conv-30#15": {
+"ents": [
+"Jon",
+"dance competition"
+],
+"preds": [
+"host",
+"organize",
+"put on"
+],
+"time": null,
+"kw": [
+"Jon",
+"dance competition",
+"host",
+"event",
+"studio"
+],
+"hyde": "Jon hosted a dance competition in June."
+},
+"conv-30#16": {
+"ents": [
+"Jon",
+"fair",
+"dance studio",
+"exposure"
+],
+"preds": [
+"go to a fair",
+"attend a fair",
+"get exposure"
+],
+"time": null,
+"kw": [
+"Jon",
+"fair",
+"exposure",
+"dance studio",
+"promotion"
+],
+"hyde": "Jon went to a fair last weekend to get more exposure for his dance studio."
+},
+"conv-30#17": {
+"ents": [
+"Gina",
+"clothing store"
+],
+"preds": [
+"decide to start",
+"open",
+"launch"
+],
+"time": null,
+"kw": [
+"Gina",
+"clothing store",
+"reason",
+"passion",
+"fashion"
+],
+"hyde": "Gina decided to start her own clothing store because she loves fashion and wanted to be her own boss."
+},
+"conv-30#18": {
+"ents": [
+"Jon",
+"Gina",
+"businesses",
+"passions"
+],
+"preds": [
+"start businesses",
+"build businesses",
+"turn passions into businesses"
+],
+"time": null,
+"kw": [
+"Jon",
+"Gina",
+"business",
+"passion",
+"love",
+"venture"
+],
+"hyde": "Yes, Jon and Gina both started businesses out of what they love."
+},
+"conv-30#19": {
+"ents": [
+"Gina",
+"design internship"
+],
+"preds": [
+"interview",
+"apply for",
+"go for an interview"
+],
+"time": null,
+"kw": [
+"Gina",
+"design internship",
+"interview",
+"application",
+"company"
+],
+"hyde": "Gina interviewed for a design internship in April."
+}
+}

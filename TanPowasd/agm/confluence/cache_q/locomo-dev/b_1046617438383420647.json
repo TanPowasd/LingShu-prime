@@ -1,0 +1,219 @@
+{
+"conv-30#80": {
+"ents": [
+"Gina",
+"Jon",
+"social media"
+],
+"preds": [
+"make offer",
+"offer to help",
+"suggest"
+],
+"time": null,
+"kw": [
+"offer",
+"help",
+"manage",
+"accounts",
+"posts",
+"social media"
+],
+"hyde": "Jon, I can help you manage your social media accounts and posts."
+},
+"conv-47#0": {
+"ents": [
+"John",
+"health problems"
+],
+"preds": [
+"have health problems",
+"suffer from",
+"suspect health issues"
+],
+"time": null,
+"kw": [
+"health",
+"problems",
+"symptoms",
+"doctor",
+"diagnosis",
+"suspected"
+],
+"hyde": "John suspects his health problems might be diabetes and high blood pressure."
+},
+"conv-47#1": {
+"ents": [
+"James",
+"recreational activity"
+],
+"preds": [
+"pursue",
+"do",
+"take part in"
+],
+"time": "March 16, 2022",
+"kw": [
+"recreation",
+"hobby",
+"activity",
+"March 16",
+"2022",
+"pursuing"
+],
+"hyde": "On March 16, 2022, James was out hiking."
+},
+"conv-47#2": {
+"ents": [
+"John",
+"James",
+"places",
+"events"
+],
+"preds": [
+"plan to meet",
+"meet up",
+"get together"
+],
+"time": null,
+"kw": [
+"meetup",
+"planned",
+"location",
+"event",
+"get together",
+"place"
+],
+"hyde": "John and James planned to meet at the dog park and at a concert."
+},
+"conv-47#3": {
+"ents": [
+"James",
+"John",
+"pets"
+],
+"preds": [
+"have pets",
+"own pets",
+"have animals"
+],
+"time": null,
+"kw": [
+"pets",
+"dog",
+"cat",
+"own",
+"animals",
+"both"
+],
+"hyde": "Yes, both James and John have pets."
+},
+"conv-47#4": {
+"ents": [
+"John",
+"drums",
+"adulthood"
+],
+"preds": [
+"resume playing drums",
+"start playing drums again",
+"pick up drums again"
+],
+"time": "adulthood",
+"kw": [
+"drums",
+"resume",
+"playing",
+"adulthood",
+"again",
+"band"
+],
+"hyde": "John resumed playing drums in his adulthood around 2018."
+},
+"conv-47#5": {
+"ents": [
+"John",
+"James",
+"favorite games"
+],
+"preds": [
+"be favorite games",
+"like to play",
+"enjoy playing"
+],
+"time": null,
+"kw": [
+"favorite",
+"games",
+"play",
+"board games",
+"video games",
+"enjoy"
+],
+"hyde": "John and James' favorite games are chess and Settlers of Catan."
+},
+"conv-47#6": {
+"ents": [
+"James",
+"Connecticut"
+],
+"preds": [
+"live in",
+"reside in"
+],
+"time": null,
+"kw": [
+"live",
+"Connecticut",
+"reside",
+"resident",
+"state",
+"moved"
+],
+"hyde": "Yes, James lives in Connecticut."
+},
+"conv-47#7": {
+"ents": [
+"James",
+"puppy",
+"shelter",
+"state"
+],
+"preds": [
+"adopt puppy from shelter",
+"get puppy from shelter",
+"shelter is located in"
+],
+"time": null,
+"kw": [
+"shelter",
+"adopt",
+"puppy",
+"state",
+"animal shelter",
+"location"
+],
+"hyde": "James adopted the puppy from a shelter in Connecticut."
+},
+"conv-47#8": {
+"ents": [
+"James",
+"pets"
+],
+"preds": [
+"have pets",
+"own pets",
+"how many pets"
+],
+"time": null,
+"kw": [
+"pets",
+"have",
+"how many",
+"count",
+"dog",
+"cat"
+],
+"hyde": "James has two pets, a puppy and a cat."
+}
+}

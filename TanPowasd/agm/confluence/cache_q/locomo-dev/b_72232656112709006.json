@@ -1,0 +1,215 @@
+{
+"conv-30#30": {
+"ents": [
+"Jon",
+"dance studio"
+],
+"preds": [
+"planning to open",
+"open dance studio",
+"launch studio"
+],
+"time": null,
+"kw": [
+"Jon",
+"dance studio",
+"opening",
+"plans",
+"launch",
+"location"
+],
+"hyde": "Jon is planning to open his dance studio next spring."
+},
+"conv-30#31": {
+"ents": [
+"Jon",
+"studio"
+],
+"preds": [
+"take to open",
+"took time to open",
+"launch timeline"
+],
+"time": null,
+"kw": [
+"Jon",
+"dance studio",
+"opening",
+"timeline",
+"months",
+"process"
+],
+"hyde": "It took Jon about six months to open his studio."
+},
+"conv-30#32": {
+"ents": [
+"Gina",
+"limited collection of hoodies"
+],
+"preds": [
+"design",
+"create",
+"release"
+],
+"time": null,
+"kw": [
+"Gina",
+"hoodies",
+"limited collection",
+"design",
+"drop",
+"fashion"
+],
+"hyde": "Gina designed a limited collection of hoodies last summer."
+},
+"conv-30#33": {
+"ents": [
+"Jon",
+"networking events",
+"store"
+],
+"preds": [
+"visit networking events",
+"attend networking events",
+"go to networking events"
+],
+"time": null,
+"kw": [
+"Jon",
+"networking events",
+"store",
+"business",
+"attendees",
+"marketing"
+],
+"hyde": "Jon visited networking events for his store in early 2023."
+},
+"conv-30#34": {
+"ents": [
+"Gina",
+"fashion editors"
+],
+"preds": [
+"start being recognized",
+"get noticed",
+"gain recognition"
+],
+"time": null,
+"kw": [
+"Gina",
+"fashion editors",
+"recognition",
+"designs",
+"featured",
+"industry"
+],
+"hyde": "Gina started being recognized by fashion editors after her capsule collection."
+},
+"conv-30#35": {
+"ents": [
+"Jon",
+"marketing and analytics tools"
+],
+"preds": [
+"start learning",
+"learn",
+"study"
+],
+"time": null,
+"kw": [
+"Jon",
+"marketing",
+"analytics tools",
+"learning",
+"courses",
+"software"
+],
+"hyde": "Jon started learning marketing and analytics tools this January."
+},
+"conv-30#36": {
+"ents": [
+"Jon",
+"Gina",
+"dance content"
+],
+"preds": [
+"decide to collaborate",
+"team up",
+"create dance content together"
+],
+"time": null,
+"kw": [
+"Jon",
+"Gina",
+"collaboration",
+"dance content",
+"videos",
+"project"
+],
+"hyde": "Jon and Gina decided to collaborate to create dance content in April."
+},
+"conv-30#37": {
+"ents": [
+"Gina",
+"Shia Labeouf"
+],
+"preds": [
+"mention",
+"bring up",
+"talk about"
+],
+"time": null,
+"kw": [
+"Gina",
+"Shia Labeouf",
+"actor",
+"mention",
+"conversation",
+"movie"
+],
+"hyde": "Gina mentioned Shia Labeouf while we were talking about movies."
+},
+"conv-30#38": {
+"ents": [
+"Gina",
+"dance class",
+"group of friends"
+],
+"preds": [
+"go to dance class",
+"attend dance class",
+"take class"
+],
+"time": null,
+"kw": [
+"Gina",
+"dance class",
+"group of friends",
+"studio",
+"attended",
+"together"
+],
+"hyde": "Gina went to a dance class with a group of friends last weekend."
+},
+"conv-30#39": {
+"ents": [
+"Gina",
+"favorite style of dance"
+],
+"preds": [
+"is",
+"prefer",
+"like best"
+],
+"time": null,
+"kw": [
+"Gina",
+"favorite dance style",
+"contemporary",
+"ballet",
+"jazz",
+"hip-hop"
+],
+"hyde": "Gina's favorite style of dance is contemporary."
+}
+}
