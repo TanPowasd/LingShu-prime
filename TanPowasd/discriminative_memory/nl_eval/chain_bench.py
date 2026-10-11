@@ -5,7 +5,7 @@ Usage: python -B -X utf8 nl_eval/chain_bench.py <hive-memory-bench> [--arms a,b]
 """
 from __future__ import annotations
 
-import argparse, collections, json, re, shutil, sys
+import argparse, collections, json, re, shutil, sys, time
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -345,6 +345,7 @@ def main():
         shutil.rmtree(d, ignore_errors=True)
         (d / 'sut' / 'out').mkdir(parents=True)
         (d / 'retrieval').mkdir(parents=True)
+        _t0 = time.perf_counter()                 # 计时：建库（写入全部语料）
         led = full_ledger(frozen_events if arm == 'disc_frozen' else ext_events) if arm.startswith('disc') else None
         bm = BM25(corpus) if arm == 'bm25' else BM25(vb_corpus) if arm == 'versionblind' else None
         rm = lm = None
@@ -394,6 +395,8 @@ def main():
                 for i in rm.add_turn('doc', c['text']):
                     while len(owner) <= i:
                         owner.append(c['cid'])
+        t_build = time.perf_counter() - _t0
+        t_ret = 0.0                               # 计时：仅检索调用（不含机械读者）
         for q in keys:
             chq = q['type'] == '变更'
             if arm == 'closed':
@@ -421,6 +424,7 @@ def main():
                 cids = sorted({e['cid'] for e in used}, key=lambda c: by_cid[c]['seq'])
                 mat = [{'cid': c, 'text': by_cid[c]['text']} for c in cids]
             else:
+                _t1 = time.perf_counter()
                 if lm is not None:
                     res, _ = lm.search(q['question'], k=CHAIN_K if chq else K)
                     hits = [by_cid[nid[r[0]['id']]] for r in res if r[0].get('id') in nid]
@@ -433,6 +437,7 @@ def main():
                             hits.append(by_cid[cid])
                 else:
                     hits = bm.top(q['question'], CHAIN_K if chq else K)
+                t_ret += time.perf_counter() - _t1
                 mat = cap_material(hits, CHAIN_CAP if chq else CAP)
                 a, _ = answer(mat_ledger(mat), q['doc'], q, n_seq[q['doc']])
             (d / 'sut' / 'out' / f"{q['qid']}.json").write_text(json.dumps(a, ensure_ascii=False), encoding='utf-8')
@@ -441,7 +446,7 @@ def main():
         (d / 'manifest.json').write_text(json.dumps(dict(arm=arm, keys_fp=fp, limit=0, llm_calls=0),
                                                    ensure_ascii=False), encoding='utf-8')
         _, doc_norms, decoys = J._corpus_index()
-        row = {'arm': arm}
+        row = {'arm': arm, 'build_s': round(t_build, 3), 'retrieve_ms_per_q': round(1000 * t_ret / len(keys), 3), 'n_q': len(keys), 'n_docs': len(corpus)}
         for split, ks in (('all', keys), ('test', [k for k in keys if k['doc_id'] not in DEV]),
                           ('dev', [k for k in keys if k['doc_id'] in DEV])):
             row[split] = J.judge_arm(arm, ks, doc_norms, decoys)
@@ -449,7 +454,8 @@ def main():
         t = row['test']
         print(f"{arm:13s} test 现值{t['present']:.3f} 历史{t['history']:.3f} 变更{t['chain']:.3f} "
               f"行召回{t['chain_row_recall']:.3f} 四态{t['four_state']:.3f} 缘由{t['reason']:.3f} "
-              f"滞后{t['stale']:.3f} 超前{t['future']:.3f} 主体{t['subject_confusion']:.3f} 回源{t['verbatim']:.3f} n={t['n']}",
+              f"滞后{t['stale']:.3f} 超前{t['future']:.3f} 主体{t['subject_confusion']:.3f} 回源{t['verbatim']:.3f} n={t['n']} "
+              f"建库{t_build:.2f}s 检索{1000 * t_ret / len(keys):.2f}ms/题",
               flush=True)
     try:
         cal = J.calibration([r['all'] for r in readings], sut_arm='disc_ext' if any(r['arm'] == 'disc_ext' for r in readings) else None)

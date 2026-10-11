@@ -26,8 +26,12 @@ v1.1（2026-10-11）召回瓶颈修复
   读数  状态链轨 v0.2 测试集 419 题（零模型机械读者）：金标版本段召回 351/411 → 406/411（跳过 9 道可重建题、8 道无金标段），
         现值 .613→.968、历史 .882→.950、变更 .872→.949、四态 .871→.985、滞后 .258→.000；
         hive e2e：覆盖 0.1559→0.1559、窗口外 0.0522→0.0523（逐文件 7 胜 9 负，持平）。
-  可选  temporal>0 打开第四路「相关近因」（默认关）：hive 上 temporal=0.5 配 v1.0 截断时窗口外
-        0.0556（16/0 胜）但覆盖 0.1531；与 v1.1 同开则无增益，故不默认。
+  可选  temporal>0 打开第四路「相关近因」（默认关）。v1.1 上门限扫描（零 key）：
+          状态链  t=0.25/0.5/0.75 读数与关闭时完全相同（金标召回 406→407/411）；
+          hive    t=0.25 覆盖 .1567 窗口外 .0453（0/16）；t=0.5 .1538/.0526（9/7）；
+                  t=0.75 .1521/.0564（16/0 胜）。
+        预设 TEMPORAL_FAR=0.75：要「找回久远内容」时用 RRF3Memory(temporal=TEMPORAL_FAR)，
+        以约 2.4% 覆盖换窗口外 +7.8%；默认仍关。
   旧行为  RRF3Memory(df_cap=BM25_DF_CAP_V10) 与 v1.0 逐位等价。
 """
 from __future__ import annotations
@@ -37,7 +41,7 @@ import math
 import re
 from dataclasses import dataclass
 
-__all__ = ["RRF3Memory", "Hit", "BM25_DF_CAP_V10"]
+__all__ = ["RRF3Memory", "Hit", "BM25_DF_CAP_V10", "TEMPORAL_FAR"]
 __version__ = "1.1.0"
 
 CHUNK = 300
@@ -45,6 +49,7 @@ SEEDS, DECAY, THETA, KWTA, STEPS = 8, 0.35, 0.05, 80, 2
 W_FWD, W_BWD, W_QA = 0.5, 0.25, 0.4
 BM25_DF_CAP, RRF_K, RRF_LIMIT = 1.0, 60, 400   # v1.1：df 硬截断取消（1.0）；v1.0 为 0.05
 BM25_DF_CAP_V10 = 0.05
+TEMPORAL_FAR = 0.75   # 第四路「相关近因」预设：hive 窗口外 16/0 胜，覆盖 -2.4%
 
 
 def norm(s: str) -> str:
