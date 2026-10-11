@@ -1,6 +1,6 @@
 """AGM × hive-memory-bench 官方管线（主轮 92 题）：被测系统取材 → 同一生成器作答 → 官方判分器。
 
-臂：直读（全文 6 万字，长上下文天花板）、BM25、AGM（各 8,000 字预算，与检索面同口径）。
+臂：直读（全文 6 万字，长上下文天花板）、BM25、AGM、TriCue_v11、TriCue_v3（各 8,000 字预算，与检索面同口径）。
 作答契约逐字取自基准 questions/作答契约.md；检索臂前面多一句「以下是检索到的片段，不是全文」。
 生成器与判官都走 OpenAI chat completions 兼容接口；key 由运行环境注入，不写在代码里。
 用法：
@@ -62,6 +62,8 @@ def contexts(bench, arm, questions):
         full = (bench / "corpus" / "语料.md").read_text(encoding="utf-8")
         return {q["qid"]: full for q in questions}
     chunks = HR.load_chunks(bench)
+    if arm.startswith("TriCue"):
+        return tricue_contexts(chunks, arm, questions)
     bm = HR.BM25(chunks)
     agm = HR.AGM(chunks, bm) if arm == "AGM" else None
     out = {}
@@ -84,12 +86,35 @@ def contexts(bench, arm, questions):
     return out
 
 
+def tricue_contexts(chunks, arm, questions):
+    """TriCue 臂：语料各块按原文顺序逐个写入（一块＝一轮），按 8000 字预算取材，按原文顺序排回并标 cid。"""
+    sys.path.insert(0, str(pathlib.Path(__file__).parent.parent / "tricue"))
+    import tricue as T
+    mem = T.TriCueMemory.v3() if arm == "TriCue_v3" else T.TriCueMemory()
+    for c in chunks:
+        mem.add_turn("doc", c["text"])
+    out = {}
+    for q in questions:
+        hits = sorted(mem.retrieve(q["question"], BUDGET), key=lambda h: h.id)
+        parts, last = [], None
+        for h in hits:
+            cid = chunks[h.turn]["cid"]
+            parts.append((f"### {cid}\n" if cid != last else "") + h.text.strip()); last = cid
+        out[q["qid"]] = ("（以下是记忆系统按本题检索到的正文片段，不是全文；每段标题是它所在章的 cid。）\n\n"
+                         + "\n\n".join(parts))
+    return out
+
+
 def cmd_gen(A):
     bench = pathlib.Path(A.bench)
     qs = json.loads((bench / "questions" / "题目_主轮.json").read_text(encoding="utf-8"))
     if A.limit:
         qs = qs[: A.limit]
     ctx = contexts(bench, A.arm, qs)
+    if A.dry:
+        L = [len(v) for v in ctx.values()]
+        print(f"{A.arm}: {len(L)} 题，上下文字数 均值 {sum(L) / len(L):.0f} 最小 {min(L)} 最大 {max(L)}")
+        return
     head = contract(bench)
     outdir = bench / "sut" / f"out_{A.tag or A.arm}"
     outdir.mkdir(parents=True, exist_ok=True)
@@ -149,6 +174,7 @@ def main():
     ap.add_argument("--model", default=MODEL)
     ap.add_argument("--workers", type=int, default=8)
     ap.add_argument("--limit", type=int)
+    ap.add_argument("--dry", action="store_true", help="只建上下文、报字数，不调模型")
     A = ap.parse_args()
     (cmd_gen if A.cmd == "gen" else cmd_judge)(A)
 

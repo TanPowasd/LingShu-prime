@@ -1,0 +1,2355 @@
+[
+ {
+  "name": "o001__o001",
+  "qid": "o001",
+  "case": "o001",
+  "rule_verdict": "fail",
+  "expected": "?",
+  "answer_sha1_12": "091722ff2638",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5",
+   "p6",
+   "p7"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5",
+   "p6"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0,
+   "p6": 1.0,
+   "p7": 1.0
+  }
+ },
+ {
+  "name": "o002__o002",
+  "qid": "o002",
+  "case": "o002",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "dd35285a0e86",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5",
+   "p6"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0,
+   "p6": 1.0
+  }
+ },
+ {
+  "name": "o003__o003",
+  "qid": "o003",
+  "case": "o003",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "1f87ad9ff8dd",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5",
+   "p6"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0,
+   "p6": 1.0
+  }
+ },
+ {
+  "name": "o004__o004",
+  "qid": "o004",
+  "case": "o004",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "0d28dad42227",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3"
+  ],
+  "required": [
+   "p1",
+   "p2"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0
+  }
+ },
+ {
+  "name": "o005__o005",
+  "qid": "o005",
+  "case": "o005",
+  "rule_verdict": "fail",
+  "expected": "?",
+  "answer_sha1_12": "24fc75f36a1a",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0
+  }
+ },
+ {
+  "name": "o006__o006",
+  "qid": "o006",
+  "case": "o006",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "195cd8d0fdc7",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5",
+   "p6",
+   "p7"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0,
+   "p6": 1.0,
+   "p7": 1.0
+  }
+ },
+ {
+  "name": "o007__o007",
+  "qid": "o007",
+  "case": "o007",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "70ed3315f7b1",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5",
+   "p6"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0,
+   "p6": 1.0
+  }
+ },
+ {
+  "name": "o010__o010",
+  "qid": "o010",
+  "case": "o010",
+  "rule_verdict": "fail",
+  "expected": "?",
+  "answer_sha1_12": "209ce5174414",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5",
+   "p6",
+   "p7"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5",
+   "p6"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0,
+   "p6": 1.0,
+   "p7": 1.0
+  }
+ },
+ {
+  "name": "o011__o011",
+  "qid": "o011",
+  "case": "o011",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "35fc6b74764b",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5",
+   "p6"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0,
+   "p6": 1.0
+  }
+ },
+ {
+  "name": "o012__o012",
+  "qid": "o012",
+  "case": "o012",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "b23cda1a0fcc",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0
+  }
+ },
+ {
+  "name": "o014__o014",
+  "qid": "o014",
+  "case": "o014",
+  "rule_verdict": "fail",
+  "expected": "?",
+  "answer_sha1_12": "2d1f32630b1e",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5",
+   "p7",
+   "p6"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0,
+   "p7": 1.0,
+   "p6": 1.0
+  }
+ },
+ {
+  "name": "o016__o016",
+  "qid": "o016",
+  "case": "o016",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "f9d1f16df0b6",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5",
+   "p6"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0,
+   "p6": 1.0
+  }
+ },
+ {
+  "name": "o017__o017",
+  "qid": "o017",
+  "case": "o017",
+  "rule_verdict": "fail",
+  "expected": "?",
+  "answer_sha1_12": "684127119102",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0
+  }
+ },
+ {
+  "name": "o018__o018",
+  "qid": "o018",
+  "case": "o018",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "8687903372f7",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0
+  }
+ },
+ {
+  "name": "o019__o019",
+  "qid": "o019",
+  "case": "o019",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "c24ca86c9f57",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0
+  }
+ },
+ {
+  "name": "o020__o020",
+  "qid": "o020",
+  "case": "o020",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "7b7b1abc8a35",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0
+  }
+ },
+ {
+  "name": "o022__o022",
+  "qid": "o022",
+  "case": "o022",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "803826242d20",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0
+  }
+ },
+ {
+  "name": "o023__o023",
+  "qid": "o023",
+  "case": "o023",
+  "rule_verdict": "fail",
+  "expected": "?",
+  "answer_sha1_12": "4b621c953952",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0
+  }
+ },
+ {
+  "name": "o024__o024",
+  "qid": "o024",
+  "case": "o024",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "b2fc50f1bd70",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0
+  }
+ },
+ {
+  "name": "o025__o025",
+  "qid": "o025",
+  "case": "o025",
+  "rule_verdict": "fail",
+  "expected": "?",
+  "answer_sha1_12": "ff6f3e01cc30",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0
+  }
+ },
+ {
+  "name": "o026__o026",
+  "qid": "o026",
+  "case": "o026",
+  "rule_verdict": "fail",
+  "expected": "?",
+  "answer_sha1_12": "ddd446ba7eb7",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0
+  }
+ },
+ {
+  "name": "o027__o027",
+  "qid": "o027",
+  "case": "o027",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "9f117e562bed",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0
+  }
+ },
+ {
+  "name": "o028__o028",
+  "qid": "o028",
+  "case": "o028",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "f0ccb05eb008",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0
+  }
+ },
+ {
+  "name": "o029__o029",
+  "qid": "o029",
+  "case": "o029",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "be63327e4b00",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0
+  }
+ },
+ {
+  "name": "o030__o030",
+  "qid": "o030",
+  "case": "o030",
+  "rule_verdict": "fail",
+  "expected": "?",
+  "answer_sha1_12": "cd6f524493e1",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0
+  }
+ },
+ {
+  "name": "o031__o031",
+  "qid": "o031",
+  "case": "o031",
+  "rule_verdict": "fail",
+  "expected": "?",
+  "answer_sha1_12": "c95aaeca9625",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0
+  }
+ },
+ {
+  "name": "o032__o032",
+  "qid": "o032",
+  "case": "o032",
+  "rule_verdict": "fail",
+  "expected": "?",
+  "answer_sha1_12": "1e844dc2cc74",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0
+  }
+ },
+ {
+  "name": "o033__o033",
+  "qid": "o033",
+  "case": "o033",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "7afeeaa8cd32",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0
+  }
+ },
+ {
+  "name": "o034__o034",
+  "qid": "o034",
+  "case": "o034",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "503c93c60e83",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0
+  }
+ },
+ {
+  "name": "o035__o035",
+  "qid": "o035",
+  "case": "o035",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "f517639da287",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0
+  }
+ },
+ {
+  "name": "o036__o036",
+  "qid": "o036",
+  "case": "o036",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "380ea37b99d0",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0
+  }
+ },
+ {
+  "name": "o037__o037",
+  "qid": "o037",
+  "case": "o037",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "0d48746db6b9",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0
+  }
+ },
+ {
+  "name": "o038__o038",
+  "qid": "o038",
+  "case": "o038",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "ee156682ced1",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0
+  }
+ },
+ {
+  "name": "o039__o039",
+  "qid": "o039",
+  "case": "o039",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "d7b255d86a37",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0
+  }
+ },
+ {
+  "name": "o040__o040",
+  "qid": "o040",
+  "case": "o040",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "3f6c12ae340a",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0
+  }
+ },
+ {
+  "name": "o042__o042",
+  "qid": "o042",
+  "case": "o042",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "af4f4247c4ec",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0
+  }
+ },
+ {
+  "name": "o043__o043",
+  "qid": "o043",
+  "case": "o043",
+  "rule_verdict": "fail",
+  "expected": "?",
+  "answer_sha1_12": "239fe89faf11",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0
+  }
+ },
+ {
+  "name": "o044__o044",
+  "qid": "o044",
+  "case": "o044",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "7bb53be3082c",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0
+  }
+ },
+ {
+  "name": "o045__o045",
+  "qid": "o045",
+  "case": "o045",
+  "rule_verdict": "fail",
+  "expected": "?",
+  "answer_sha1_12": "283dfbb6c89c",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0
+  }
+ },
+ {
+  "name": "o047__o047",
+  "qid": "o047",
+  "case": "o047",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "82a10eb7afba",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0
+  }
+ },
+ {
+  "name": "o048__o048",
+  "qid": "o048",
+  "case": "o048",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "9a239c7e3651",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0
+  }
+ },
+ {
+  "name": "o049__o049",
+  "qid": "o049",
+  "case": "o049",
+  "rule_verdict": "fail",
+  "expected": "?",
+  "answer_sha1_12": "f5db06b6351e",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0
+  }
+ },
+ {
+  "name": "o052__o052",
+  "qid": "o052",
+  "case": "o052",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "b183498314c8",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0
+  }
+ },
+ {
+  "name": "o053__o053",
+  "qid": "o053",
+  "case": "o053",
+  "rule_verdict": "fail",
+  "expected": "?",
+  "answer_sha1_12": "e160d11e4006",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5",
+   "p6",
+   "p7",
+   "p8"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5",
+   "p6",
+   "p7"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0,
+   "p6": 1.0,
+   "p7": 1.0,
+   "p8": 1.0
+  }
+ },
+ {
+  "name": "o054__o054",
+  "qid": "o054",
+  "case": "o054",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "ba6fc31248a8",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "required": [
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ],
+  "weights": {
+   "p1": 1.0,
+   "p2": 1.0,
+   "p3": 1.0,
+   "p4": 1.0,
+   "p5": 1.0
+  }
+ },
+ {
+  "name": "q001__q001",
+  "qid": "q001",
+  "case": "q001",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "01bd9ecd12f9",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "a1",
+   "a2",
+   "a3"
+  ],
+  "required": [
+   "a1",
+   "a2",
+   "a3"
+  ],
+  "weights": {
+   "a1": 1.0,
+   "a2": 1.0,
+   "a3": 1.0
+  }
+ },
+ {
+  "name": "q002__q002",
+  "qid": "q002",
+  "case": "q002",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "fddc0a3de9df",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "a1",
+   "a2",
+   "a3",
+   "a4"
+  ],
+  "required": [
+   "a1",
+   "a2",
+   "a3",
+   "a4"
+  ],
+  "weights": {
+   "a1": 1.0,
+   "a2": 1.0,
+   "a3": 1.0,
+   "a4": 1.0
+  }
+ },
+ {
+  "name": "q003__q003",
+  "qid": "q003",
+  "case": "q003",
+  "rule_verdict": "fail",
+  "expected": "?",
+  "answer_sha1_12": "e47d500190f6",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "a1",
+   "a2",
+   "a3",
+   "a4"
+  ],
+  "required": [
+   "a1",
+   "a2",
+   "a3"
+  ],
+  "weights": {
+   "a1": 1.0,
+   "a2": 1.0,
+   "a3": 1.0,
+   "a4": 1.0
+  }
+ },
+ {
+  "name": "q004__q004",
+  "qid": "q004",
+  "case": "q004",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "754f3b04ab4f",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "a1",
+   "a2",
+   "a3",
+   "a4"
+  ],
+  "required": [
+   "a1",
+   "a2",
+   "a3",
+   "a4"
+  ],
+  "weights": {
+   "a1": 1.0,
+   "a2": 1.0,
+   "a3": 1.0,
+   "a4": 1.0
+  }
+ },
+ {
+  "name": "q005__q005",
+  "qid": "q005",
+  "case": "q005",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "430652c94eda",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5"
+  ],
+  "required": [
+   "a1",
+   "a2",
+   "a3",
+   "a4"
+  ],
+  "weights": {
+   "a1": 1.0,
+   "a2": 1.0,
+   "a3": 1.0,
+   "a4": 1.0,
+   "a5": 1.0
+  }
+ },
+ {
+  "name": "q007__q007",
+  "qid": "q007",
+  "case": "q007",
+  "rule_verdict": "fail",
+  "expected": "?",
+  "answer_sha1_12": "2c2b29c6eb0f",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "a1",
+   "a2",
+   "a3",
+   "a4"
+  ],
+  "required": [
+   "a1",
+   "a2",
+   "a3"
+  ],
+  "weights": {
+   "a1": 1.0,
+   "a2": 1.0,
+   "a3": 1.0,
+   "a4": 1.0
+  }
+ },
+ {
+  "name": "q010__q010",
+  "qid": "q010",
+  "case": "q010",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "46cbbe65650a",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5",
+   "a6"
+  ],
+  "required": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5"
+  ],
+  "weights": {
+   "a1": 1.0,
+   "a2": 1.0,
+   "a3": 1.0,
+   "a4": 1.0,
+   "a5": 1.0,
+   "a6": 1.0
+  }
+ },
+ {
+  "name": "q011__q011",
+  "qid": "q011",
+  "case": "q011",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "b77f646cbccc",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5"
+  ],
+  "required": [
+   "a1",
+   "a2",
+   "a3",
+   "a4"
+  ],
+  "weights": {
+   "a1": 1.0,
+   "a2": 1.0,
+   "a3": 1.0,
+   "a4": 1.0,
+   "a5": 1.0
+  }
+ },
+ {
+  "name": "q012__q012",
+  "qid": "q012",
+  "case": "q012",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "3eab4fd474c4",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5"
+  ],
+  "required": [
+   "a1",
+   "a2",
+   "a3",
+   "a4"
+  ],
+  "weights": {
+   "a1": 1.0,
+   "a2": 1.0,
+   "a3": 1.0,
+   "a4": 1.0,
+   "a5": 1.0
+  }
+ },
+ {
+  "name": "q013__q013",
+  "qid": "q013",
+  "case": "q013",
+  "rule_verdict": "fail",
+  "expected": "?",
+  "answer_sha1_12": "d569caf712e4",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5"
+  ],
+  "required": [
+   "a1",
+   "a2",
+   "a3",
+   "a4"
+  ],
+  "weights": {
+   "a1": 1.0,
+   "a2": 1.0,
+   "a3": 1.0,
+   "a4": 1.0,
+   "a5": 1.0
+  }
+ },
+ {
+  "name": "q015__q015",
+  "qid": "q015",
+  "case": "q015",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "e6ff5c4aa324",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5",
+   "a6"
+  ],
+  "required": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5"
+  ],
+  "weights": {
+   "a1": 1.0,
+   "a2": 1.0,
+   "a3": 1.0,
+   "a4": 1.0,
+   "a5": 1.0,
+   "a6": 1.0
+  }
+ },
+ {
+  "name": "q017__q017",
+  "qid": "q017",
+  "case": "q017",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "12c5ec4f2957",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5"
+  ],
+  "required": [
+   "a1",
+   "a2",
+   "a3",
+   "a4"
+  ],
+  "weights": {
+   "a1": 1.0,
+   "a2": 1.0,
+   "a3": 1.0,
+   "a4": 1.0,
+   "a5": 1.0
+  }
+ },
+ {
+  "name": "q018__q018",
+  "qid": "q018",
+  "case": "q018",
+  "rule_verdict": "fail",
+  "expected": "?",
+  "answer_sha1_12": "7c46d6243ddb",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5"
+  ],
+  "required": [
+   "a1",
+   "a2",
+   "a3",
+   "a4"
+  ],
+  "weights": {
+   "a1": 1.0,
+   "a2": 1.0,
+   "a3": 1.0,
+   "a4": 1.0,
+   "a5": 1.0
+  }
+ },
+ {
+  "name": "q020__q020",
+  "qid": "q020",
+  "case": "q020",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "c17968c6dc63",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5",
+   "a6"
+  ],
+  "required": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5"
+  ],
+  "weights": {
+   "a1": 1.0,
+   "a2": 1.0,
+   "a3": 1.0,
+   "a4": 1.0,
+   "a5": 1.0,
+   "a6": 1.0
+  }
+ },
+ {
+  "name": "q021__q021",
+  "qid": "q021",
+  "case": "q021",
+  "rule_verdict": "fail",
+  "expected": "?",
+  "answer_sha1_12": "e2f629cb5b3e",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5",
+   "a6",
+   "a7"
+  ],
+  "required": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5",
+   "a6"
+  ],
+  "weights": {
+   "a1": 1.0,
+   "a2": 1.0,
+   "a3": 1.0,
+   "a4": 1.0,
+   "a5": 1.0,
+   "a6": 1.0,
+   "a7": 1.0
+  }
+ },
+ {
+  "name": "q022__q022",
+  "qid": "q022",
+  "case": "q022",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "de256cf55a38",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5",
+   "a6",
+   "a7",
+   "a8"
+  ],
+  "required": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5"
+  ],
+  "weights": {
+   "a1": 1.0,
+   "a2": 1.0,
+   "a3": 1.0,
+   "a4": 1.0,
+   "a5": 1.0,
+   "a6": 1.0,
+   "a7": 1.0,
+   "a8": 1.0
+  }
+ },
+ {
+  "name": "q023__q023",
+  "qid": "q023",
+  "case": "q023",
+  "rule_verdict": "fail",
+  "expected": "?",
+  "answer_sha1_12": "61ed7eefc146",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5",
+   "a6",
+   "a7",
+   "a8"
+  ],
+  "required": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5"
+  ],
+  "weights": {
+   "a1": 1.0,
+   "a2": 1.0,
+   "a3": 1.0,
+   "a4": 1.0,
+   "a5": 1.0,
+   "a6": 1.0,
+   "a7": 1.0,
+   "a8": 1.0
+  }
+ },
+ {
+  "name": "q024__q024",
+  "qid": "q024",
+  "case": "q024",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "dec0ee151c06",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5",
+   "a6",
+   "a7",
+   "a8"
+  ],
+  "required": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5"
+  ],
+  "weights": {
+   "a1": 1.0,
+   "a2": 1.0,
+   "a3": 1.0,
+   "a4": 1.0,
+   "a5": 1.0,
+   "a6": 1.0,
+   "a7": 1.0,
+   "a8": 1.0
+  }
+ },
+ {
+  "name": "q025__q025",
+  "qid": "q025",
+  "case": "q025",
+  "rule_verdict": "fail",
+  "expected": "?",
+  "answer_sha1_12": "18a09273c63d",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5",
+   "a6",
+   "a7",
+   "a8"
+  ],
+  "required": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5",
+   "a6"
+  ],
+  "weights": {
+   "a1": 1.0,
+   "a2": 1.0,
+   "a3": 1.0,
+   "a4": 1.0,
+   "a5": 1.0,
+   "a6": 3.0,
+   "a7": 1.0,
+   "a8": 1.0
+  }
+ },
+ {
+  "name": "q026__q026",
+  "qid": "q026",
+  "case": "q026",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "b6a4455200f7",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5",
+   "a6",
+   "a7",
+   "a8"
+  ],
+  "required": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5",
+   "a6"
+  ],
+  "weights": {
+   "a1": 1.0,
+   "a2": 1.0,
+   "a3": 1.0,
+   "a4": 1.0,
+   "a5": 1.0,
+   "a6": 1.0,
+   "a7": 1.0,
+   "a8": 1.0
+  }
+ },
+ {
+  "name": "q027__q027",
+  "qid": "q027",
+  "case": "q027",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "90c5e74bd58b",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5",
+   "a6",
+   "a7",
+   "a8"
+  ],
+  "required": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5",
+   "a6"
+  ],
+  "weights": {
+   "a1": 1.0,
+   "a2": 1.0,
+   "a3": 1.0,
+   "a4": 1.0,
+   "a5": 1.0,
+   "a6": 1.0,
+   "a7": 1.0,
+   "a8": 1.0
+  }
+ },
+ {
+  "name": "q028__q028",
+  "qid": "q028",
+  "case": "q028",
+  "rule_verdict": "fail",
+  "expected": "?",
+  "answer_sha1_12": "e85fb70cbfa4",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5",
+   "a6",
+   "a7",
+   "a8"
+  ],
+  "required": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5",
+   "a6"
+  ],
+  "weights": {
+   "a1": 1.0,
+   "a2": 1.0,
+   "a3": 1.0,
+   "a4": 1.0,
+   "a5": 1.0,
+   "a6": 1.0,
+   "a7": 1.0,
+   "a8": 1.0
+  }
+ },
+ {
+  "name": "q030__q030",
+  "qid": "q030",
+  "case": "q030",
+  "rule_verdict": "fail",
+  "expected": "?",
+  "answer_sha1_12": "19c3ed69b824",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5"
+  ],
+  "required": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5"
+  ],
+  "weights": {
+   "a1": 1.0,
+   "a2": 1.0,
+   "a3": 1.0,
+   "a4": 1.0,
+   "a5": 1.0
+  }
+ },
+ {
+  "name": "q031__q031",
+  "qid": "q031",
+  "case": "q031",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "efe7af97328b",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5",
+   "a6"
+  ],
+  "required": [
+   "a1",
+   "a2",
+   "a3",
+   "a4"
+  ],
+  "weights": {
+   "a1": 1.0,
+   "a2": 1.0,
+   "a3": 1.0,
+   "a4": 1.0,
+   "a5": 1.0,
+   "a6": 1.0
+  }
+ },
+ {
+  "name": "q032__q032",
+  "qid": "q032",
+  "case": "q032",
+  "rule_verdict": "fail",
+  "expected": "?",
+  "answer_sha1_12": "088d52e0ae32",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5"
+  ],
+  "required": [
+   "a1",
+   "a2",
+   "a3",
+   "a4"
+  ],
+  "weights": {
+   "a1": 1.0,
+   "a2": 1.0,
+   "a3": 1.0,
+   "a4": 1.0,
+   "a5": 1.0
+  }
+ },
+ {
+  "name": "q033__q033",
+  "qid": "q033",
+  "case": "q033",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "42483e17961a",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5"
+  ],
+  "required": [
+   "a1",
+   "a2",
+   "a3",
+   "a4"
+  ],
+  "weights": {
+   "a1": 1.0,
+   "a2": 1.0,
+   "a3": 1.0,
+   "a4": 1.0,
+   "a5": 1.0
+  }
+ },
+ {
+  "name": "q034__q034",
+  "qid": "q034",
+  "case": "q034",
+  "rule_verdict": "fail",
+  "expected": "?",
+  "answer_sha1_12": "24c1a7ee1db6",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5",
+   "a6",
+   "a7"
+  ],
+  "required": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5",
+   "a6"
+  ],
+  "weights": {
+   "a1": 1.0,
+   "a2": 1.0,
+   "a3": 1.0,
+   "a4": 1.0,
+   "a5": 1.0,
+   "a6": 1.0,
+   "a7": 1.0
+  }
+ },
+ {
+  "name": "q035__q035",
+  "qid": "q035",
+  "case": "q035",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "9326b95511b5",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5",
+   "a6",
+   "a7"
+  ],
+  "required": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5",
+   "a6"
+  ],
+  "weights": {
+   "a1": 1.0,
+   "a2": 1.0,
+   "a3": 1.0,
+   "a4": 1.0,
+   "a5": 1.0,
+   "a6": 1.0,
+   "a7": 1.0
+  }
+ },
+ {
+  "name": "q036__q036",
+  "qid": "q036",
+  "case": "q036",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "3ff96fc9aab2",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5",
+   "a6"
+  ],
+  "required": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5"
+  ],
+  "weights": {
+   "a1": 1.0,
+   "a2": 1.0,
+   "a3": 1.0,
+   "a4": 1.0,
+   "a5": 1.0,
+   "a6": 1.0
+  }
+ },
+ {
+  "name": "q037__q037",
+  "qid": "q037",
+  "case": "q037",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "19daf818ca68",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5",
+   "a6"
+  ],
+  "required": [
+   "a1",
+   "a2",
+   "a3",
+   "a4"
+  ],
+  "weights": {
+   "a1": 1.0,
+   "a2": 1.0,
+   "a3": 1.0,
+   "a4": 1.0,
+   "a5": 1.0,
+   "a6": 1.0
+  }
+ },
+ {
+  "name": "q038__q038",
+  "qid": "q038",
+  "case": "q038",
+  "rule_verdict": "review",
+  "expected": "?",
+  "answer_sha1_12": "652d7b29786e",
+  "prompt_version": "semantic-v0.1",
+  "points": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5",
+   "a6"
+  ],
+  "required": [
+   "a1",
+   "a2",
+   "a3",
+   "a4",
+   "a5"
+  ],
+  "weights": {
+   "a1": 1.0,
+   "a2": 1.0,
+   "a3": 1.0,
+   "a4": 1.0,
+   "a5": 1.0,
+   "a6": 1.0
+  }
+ }
+]
