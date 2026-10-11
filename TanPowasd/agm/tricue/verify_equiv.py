@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: LicenseRef-TanPowasd-Proprietary
-"""对照：rrf3.RRF3Memory 与测评臂 RRF3(近因,BM25,AGM) 在 hive-memory-bench e2e 全部查询上的排序/取块是否逐条一致，并复算覆盖读数。
+"""对照：tricue.TriCueMemory 与测评臂 RRF3(近因,BM25,AGM) 在 hive-memory-bench e2e 全部查询上的排序/取块是否逐条一致，并复算覆盖读数。
 用法：python verify_equiv.py <hive-memory-bench 路径> [--budget 4000]
 """
 import argparse
@@ -9,7 +9,7 @@ import sys
 
 HERE = pathlib.Path(__file__).parent
 sys.path[:0] = [str(HERE), str(HERE.parent / "bench")]
-import rrf3 as R  # noqa: E402
+import tricue as R  # noqa: E402
 import agm_algos as X  # noqa: E402
 from hive_e2e_stream import Store, bset, chunk_turn, norm, parse, take  # noqa: E402
 from hive_e2e_full import AgmX  # noqa: E402
@@ -28,7 +28,7 @@ def main():
         allc = [c for t in turns for c in chunk_turn(t)]
         dfc = collections.Counter(g for _, x in allc for g in bset(x))
         capf = max(2, int(0.02 * len(allc)))
-        st, agm, mem = Store(), None, R.RRF3Memory(df_cap=R.BM25_DF_CAP_V10)  # 对照臂是 v1.0 参数
+        st, agm, mem = Store(), None, R.TriCueMemory(df_cap=R.BM25_DF_CAP_V10)  # 对照臂是 v1.0 参数
         agm = AgmX(st, False)
         last = None
         for ti, t in enumerate(turns):

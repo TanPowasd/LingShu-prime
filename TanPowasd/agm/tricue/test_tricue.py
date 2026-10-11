@@ -3,18 +3,18 @@ import pathlib
 import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
-import rrf3 as R  # noqa: E402
+import tricue as R  # noqa: E402
 
 
 def mem(turns):
-    m = R.RRF3Memory()
+    m = R.TriCueMemory()
     for role, t in turns:
         m.add_turn(role, t)
     return m
 
 
 def test_empty():
-    m = R.RRF3Memory()
+    m = R.TriCueMemory()
     assert m.rank("任何") == [] and m.retrieve("任何") == [] and m.context("x") == ""
 
 
@@ -66,8 +66,8 @@ def test_context_chronological():
 
 def test_v11_versioned_subject_recall():
     """v1.1 回归：同一主体每段都出现主体名/槽位名时，v1.0 截断把它们全跳过；v1.1 应能召回该主体的段。"""
-    m = R.RRF3Memory()
-    old = R.RRF3Memory(df_cap=R.BM25_DF_CAP_V10)
+    m = R.TriCueMemory()
+    old = R.TriCueMemory(df_cap=R.BM25_DF_CAP_V10)
     for k in range(40):
         for mem in (m, old):
             mem.add_turn("doc", f"第{k}次提交。甲项目的依赖名调整为v{k}。")

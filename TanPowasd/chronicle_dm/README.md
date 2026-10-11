@@ -1,5 +1,7 @@
 # 编年判别记忆（ChronicleDM）
 
+> 命名：RRF3 已于 2026-10-11 改名 **TriCue**（三路线索：近因 / BM25 / AGM）。代码在 `agm/tricue/`，类名为 `TriCueMemory`；旧名 `RRF3Memory` 和 `agm/rrf3/rrf3.py` 仍可用作兼容。评测臂 ID（如 `rrf3v11`、`llm_rrf3v11`）和已发布评测包保持原样，便于复现。
+
 License: LicenseRef-TanPowasd-Proprietary（见仓库根 LICENSE）
 
 编年（`chronicle.ChronicleMemory`）× 判别式记忆（`discriminative_memory.Memory`）合体，独立成包，两个原包一行不改。
@@ -20,7 +22,7 @@ python chronicle_dm/test_chronicle_dm.py          # 9 项
 python discriminative_memory/nl_eval/chain_chronicle_dm_replay.py <hive-memory-bench>
 ```
 
-## RRF3 v1.1 + 模型读者评测（2026-10-11）
+## TriCue v1.1 + 模型读者评测（2026-10-11）
 
 [完整报告与离线复算包](results/hive-chain-keyed-20261011/README.md)：固定请求
 `cline-pass/deepseek-v4.1-flash`，覆盖 642 题，主读数为 419 道测试题。

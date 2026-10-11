@@ -18,8 +18,8 @@ from unittest.mock import patch
 
 HERE = Path(__file__).resolve().parent
 TAN = HERE.parent.parent
-sys.path[:0] = [str(HERE.parent), str(TAN / 'agm' / 'rrf3'), str(TAN / 'agm' / 'bench')]
-import rrf3 as R                                   # noqa: E402
+sys.path[:0] = [str(HERE.parent), str(TAN / 'agm' / 'tricue'), str(TAN / 'agm' / 'bench')]
+import tricue as R                                   # noqa: E402
 from hive_e2e_stream import bset, chunk_turn, parse            # noqa: E402
 from nl_interpret import NLMemory, bind_question   # noqa: E402
 from discriminative_memory import Need, Query      # noqa: E402
@@ -59,7 +59,7 @@ def main():
         allc = [c for t in turns for c in chunk_turn(t)]
         dfc = collections.Counter(g for _, x in allc for g in bset(x))
         capf = max(2, int(0.02 * len(allc)))
-        mem, nm = R.RRF3Memory(), NLMemory()
+        mem, nm = R.TriCueMemory(), NLMemory()
         turn_chunks = {}
         sums = {k: [0.0, 0.0] for k in arms}
         n = 0

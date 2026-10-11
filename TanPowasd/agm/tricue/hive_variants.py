@@ -7,22 +7,22 @@
 import collections, pathlib, sys
 HERE = pathlib.Path(__file__).parent
 sys.path[:0] = [str(HERE), str(HERE.parent / "bench")]
-import rrf3 as R  # noqa: E402
+import tricue as R  # noqa: E402
 from hive_e2e_stream import bset, chunk_turn, parse  # noqa: E402
 
 
 def make(v):
     if v == 'v10':
-        return R.RRF3Memory(df_cap=R.BM25_DF_CAP_V10)
+        return R.TriCueMemory(df_cap=R.BM25_DF_CAP_V10)
     if v == 'v11':
-        return R.RRF3Memory()
+        return R.TriCueMemory()
     t = c = None
     s = v
     if s.startswith('t'):
         s = s[1:]; t, _, s = s.partition('c'); s = 'c' + s if s else ''
     if s.startswith('c'):
         c = s[1:]
-    return R.RRF3Memory(temporal=int(t) / 100 if t else 0.0, df_cap=int(c) / 100 if c else R.BM25_DF_CAP_V10)
+    return R.TriCueMemory(temporal=int(t) / 100 if t else 0.0, df_cap=int(c) / 100 if c else R.BM25_DF_CAP_V10)
 
 
 def main():
