@@ -1,10 +1,10 @@
-标题：[状态链轨 v0.2] 外部提交：RRF3 v1.1 + ChronicleDM（编年判别记忆），625 题 现值 0.979 / 历史 0.927 / 变更链 0.982 / 滞后 0.021，附零 key 离线复算包
+标题：[状态链轨 v0.2] 外部提交：RRF3 v1.1 + ChronicleDM（编年判别记忆），625 题 现值 0.979 / 历史 0.927 / 变更链 0.982 / 滞后 0.021，校准门四条全过，附零 key 离线复算包
 
 ---
 
 ## 一句话
 
-在状态链轨 v0.2（提交 `426a86a`）上跑了我们的记忆管线 **RRF3 v1.1 召回 → LLM 抽取槽位事件 → ChronicleDM 编年判别记忆 → 官方读者提示作答**，用仓库自带的 `chain/tools/probe_judge.py` 机械判分（零判官）。全部 642 份答卷、读者材料、逐题抽取事件和判分源码都已公开。**不需要 key、不联网**也能复算全部分数；带 key 的完整重跑步骤见第四节。
+在状态链轨 v0.2（提交 `426a86a`）上跑了我们的记忆管线 **RRF3 v1.1 召回 → LLM 抽取槽位事件 → ChronicleDM 编年判别记忆 → 官方读者提示作答**，用仓库自带的 `chain/tools/probe_judge.py` 机械判分（零判官）。同模型的版本盲和闭卷对照臂也已跑完，**预注册校准门四条全部通过**。三条臂的全部答卷、读者材料、逐题抽取事件和判分源码都已公开。**不需要 key、不联网**也能复算全部分数和校准判据；带 key 的完整重跑步骤见第四节。
 
 ## 一、被测系统
 
@@ -27,6 +27,8 @@
 | 朴素 BM25（首轮 v1） | 0.660 | 0.808 | 0.964 | 0.277 | 0.005 | 0.000 | 0.741 | 0.906 | 0.968 |
 | 灵枢（首轮 v1） | 0.489 | 0.780 | 0.643 | 0.298 | 0.000 | 0.000 | 0.822 | 0.176 | 0.921 |
 | Hindsight（首轮 v1） | 0.043 | 0.090 | 0.768 | 0.340 | 0.025 | 0.000 | 0.269 | 0.699 | 0.143 |
+| 版本盲对照（本次，同模型） | 1.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.508 | 0.000 | 0.000 |
+| 闭卷对照（本次，同模型） | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.061 | 0.000 | 0.000 |
 
 ### 测试集 419 题（我们预注册把 A1、B1 两篇文档作开发集，其余为测试集）
 
@@ -36,15 +38,28 @@
 | 本提交（8,000 token 上限主轮） | 0.903 | 0.899 | 0.821 | 0.977 | 1.000 | 0.000 | 0.847 |
 | 对照：RRF3 v1.0 → LLM 抽取 → 旧 Memory | 0.613 | 0.899 | 0.923 | 0.864 | 0.000 | 0.290 | — |
 | 对照：BM25 → 官方 LLM 读者 | 0.645 | 0.849 | 0.744 | 0.773 | 0.976 | 0.290 | — |
+| 版本盲对照（官方最新快照） | 1.000 | 0.000 | 0.000 | 0.545 | 0.000 | 0.000 | 0.000 |
+| 闭卷对照（官方提示，无材料） | 0.000 | 0.000 | 0.000 | 0.061 | 0.000 | 0.000 | 0.000 |
 
 主轮里有 12 题因 token 截断、4 题因接口失败没有答完。只对这 16 题补跑：仅当 `finish_reason=length` 时，上限按 8,000 → 16,000 → 32,000 逐级提高，共多发 36 次请求。主轮读数原样保留在 `initial_8000/`。
 
+### 校准门（全量 625 题，冻结的官方判分器）
+
+| 判据 | 读数 | 结果 |
+|:--|:--|:--|
+| ① 版本盲指纹 | 现值 1.0（要求 ≥0.5）、历史 0.0、变更链 0.0（要求 ≤0.15），现值分母 47 | 通过 |
+| ② 闭卷门 | 现值、历史、变更链均为 0.0（要求各 ≤0.2），答题 625 | 通过 |
+| ③ 链长单调 | 被测臂短/中/长 0.9463 / 0.9412 / 0.9655，按官方 `_nonincreasing` 的相邻桶 5 个百分点容差判定 | 通过 |
+| ④ 读数自洽 | 值域合法，答卷同源完整，可由答卷独立复算 | 通过 |
+
+两条对照臂与主臂用同一模型、同一官方读者提示和同一套截断恢复协议（8k 起，仅在 `finish_reason=length` 时升到 16k/32k）。新增 HTTP 尝试 1412 次，最终失败 0 题次。
+
 ## 三、必须说明的边界（caveats）
 
-1. **校准门**：本次只给新算法调用了模型，没有自行跑 LLM 闭卷和版本盲对照臂，所以**不声称通过完整校准门**。效度依据是首轮已公开的版本盲和闭卷指纹。
+1. **对照臂的含义**：版本盲和闭卷是基准规定的读者对照，不是 ChronicleDM 内部两个核心的结构消融，不能据此单独归因双核心的收益。闭卷提示里的 JSON 示例含 null/absent，会引导模型弃答，所以闭卷分低不能单独排除预训练污染。
 2. **增益不能单独归给 ChronicleDM**：从 v1.0 到本提交，召回从 RRF3 v1.0 换成了 v1.1，记忆核心也换了。零模型诊断里，v1.1 把金标段召回从 351/411 提到 406/411，现值天花板主要是这一步打破的。
 3. **历史题扣分**：测试集 11 道里有 10 道把状态正确判为 unresolved，但把两个候选值合写进同一个 `value`，单值匹配器不接受；另 1 道选错了版本。官方分数没有因此改动，逐题样例见 `failure_examples.json`。
-4. **链长单调性没有出现**：全量短链 0.946、中链 0.941、长链 0.966（判据④本身针对的是基准，这里只作诊断）。
+4. **链长单调只是在容差内通过**：短链 0.946、中链 0.941、长链 0.966，长链反而最高。按官方相邻桶 5 个百分点的容差算通过；如果按零容差严格不增，这一条不成立。
 5. **生态效度**：题目是公开的模板合成题。抽取提示是在已经看过公开题型之后写的（没有按题改写）；自由对话下的泛化、跨会话持续写入和晚到事件都没有测。
 6. **请求计数是下界**：中途把并发从 4 调到 16 时重启过一次，在途请求可能少计。保存下来的响应共 prompt 10,637,609 tokens、completion 3,654,763 tokens（含 reasoning 3,410,431）；接口报告的 market cost 约 3.62 美元。
 
@@ -55,7 +70,7 @@
 ```bash
 # Python 3.12，核心只用标准库
 git clone https://github.com/TanPowasd/LingShu-prime.git
-git -C LingShu-prime checkout 5733846          # 含发布包
+git -C LingShu-prime checkout bb47b34          # 含主评测包和对照臂包
 git clone https://github.com/FuRongJun-1999/hive-memory-bench.git
 git -C hive-memory-bench checkout 426a86a      # 状态链轨 v0.2，本次判分所用版本
 export REPO=$PWD/LingShu-prime BENCH=$PWD/hive-memory-bench
@@ -80,6 +95,16 @@ python -B verify_offline.py
 ```
 
 脚本只读包内数据和冻结的官方判分器，用 642 份答卷重算最终读数和 8k 主轮读数，同时核对原文引用、用量与路由计数，以及源码和发布包的 SHA-256。
+
+校准门和三条臂的读数同样可以离线复算：
+
+```bash
+cd $REPO/TanPowasd/chronicle_dm/results/hive-chain-controls-20261011
+python -B summarize_controls.py
+# 预期："verified": true, "arms": 3, "criteria": {"c1": true, "c2": true, "c3": true, "c4": true}, "passed": true
+```
+
+注意：`summarize_controls.py` 会重写包内的 `verification.json`，复算完可以用 `git checkout -- .` 还原。
 
 ### B. 零 key 单元测试与离线回放
 
@@ -120,7 +145,15 @@ python -X utf8 $RUN/run_keyed.py --repo $REPO --bench $BENCH --out $OUT
 
 # 3) 只补跑 token 截断和接口失败的题（8k→16k→32k，仅在 finish_reason=length 时升级）
 python -X utf8 $RUN/retry_truncated.py --repo $REPO --bench $BENCH --out $OUT
+
+# 4) 版本盲与闭卷对照臂（642×2 次读者调用，含重试约 1,400 次 HTTP 尝试；不读主臂答卷）
+CTRL=$REPO/TanPowasd/chronicle_dm/results/hive-chain-controls-20261011
+python -X utf8 $CTRL/run_controls.py --keys-file /path/keys.txt --dry
+python -X utf8 $CTRL/run_controls.py --keys-file /path/keys.txt
+python -X utf8 $CTRL/run_controls.py --keys-file /path/keys.txt --retry-failed   # 只重跑失败题
 ```
+
+> 对照臂脚本使用包内 `sources/` 的源码快照和冻结的官方提示，结果直接写回 `$CTRL`（会覆盖已发布的对照答卷），建议先把这个目录复制一份再跑。
 
 运行结束后，`$OUT/runs/chain_llm_chronicle_dm_reader_v11/sut/out/` 下是 642 份答卷。`run_keyed.py` 和 `retry_truncated.py` 会直接调用基准自带的 `$BENCH/chain/tools/probe_judge.py`（`judge_arm`）判分，读数写到 `$OUT/keyed_readings.json`，判分逻辑与首轮一致。
 
@@ -137,5 +170,7 @@ python -X utf8 $RUN/retry_truncated.py --repo $REPO --bench $BENCH --out $OUT
 - `extractions/`：逐题抽取事件；`data/`：判分所需的上游数据（原样复制）
 - `audit.json`、`failure_examples.json`、`metadata.json`、`response_index.json`、`verification.json`
 - `sources/`：实际评测用的源码快照（含 `probe_judge.py`）；`restart_4_to_16/`：并发切换前的快照
+
+`TanPowasd/chronicle_dm/results/hive-chain-controls-20261011/`：三条臂的答卷与实际材料、`control_readings.json`（对照臂读数）、`sut_readings.json`（主臂读数）、`versionblind_corpus.json`（官方版本盲语料）、源码快照和响应元数据索引。
 
 完整请求提示和原始模型响应留在本地运行目录，没有公开；包内没有任何 key。
