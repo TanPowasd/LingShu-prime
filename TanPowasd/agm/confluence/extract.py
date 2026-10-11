@@ -54,7 +54,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--split", default="dev"); ap.add_argument("--batch", type=int, default=10)
     ap.add_argument("--workers", type=int, default=4); ap.add_argument("--cap", type=int, default=250)
-    ap.add_argument("--dry", action="store_true")
+    ap.add_argument("--dry", action="store_true"); ap.add_argument("--secs", type=int, default=0)
     a = ap.parse_args()
     CACHE.mkdir(exist_ok=True)
     cf = CACHE / "calls.json"
@@ -70,8 +70,12 @@ def main():
     if a.dry:
         return
 
+    t0 = time.time()
+
     def run(job):
         key, b = job
+        if a.secs and time.time() - t0 > a.secs:
+            return "time"
         with lock:
             if calls["n"] >= a.cap:
                 return "capped"
@@ -84,9 +88,9 @@ def main():
         except Exception as e:  # noqa: BLE001
             with lock:
                 calls["fail"] += 1; cf.write_text(json.dumps(calls))
+            time.sleep(20)
             return f"fail {e}"[:120]
 
-    t0 = time.time()
     with ThreadPoolExecutor(a.workers) as ex:
         for k, r in enumerate(ex.map(run, jobs)):
             if k % 10 == 0 or r != "ok":
