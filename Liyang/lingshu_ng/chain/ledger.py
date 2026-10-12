@@ -20,6 +20,7 @@ from . import anchored as _anc
 from . import shorthand as _sh
 from . import llm_extract as _llm
 from . import sav as _sav
+from . import v15 as _v15
 from .extract import MOVE_ATTR, Event, extract, parse_header, split_sentences
 
 __all__ = ["Rec", "Ledger", "Status", "INF"]
@@ -96,6 +97,12 @@ class Ledger:
                     _sav.fix_entity(ev, None)
                     if (ev.extra.get("loose") or ev.extra.get("short")) and not _sav.repair_event(ev, ns, v13_names, v13_attrs, self.sinfo, extract):
                         continue
+                    if _v15.V15:
+                        _v15.fix_entity(ev)
+                        _v15.fix_value(ev)
+                        _v15.snap_attr(ev, v13_attrs); _v15.snap_loc(ev, v13_attrs)
+                        if ev.extra.get("loose") or ev.extra.get("short"):
+                            _v15.post(ev); _v15.two_vals(ev, ns, self.sinfo)
                 keep.append(ev)
             evs = keep
         for ev in evs:
@@ -120,6 +127,9 @@ class Ledger:
                            reason=a["reason"], line=i, quote=sent.strip(), extra={"anchored": True})
                 if _sav.V13:
                     _sav.repair_event(ev, ns, v13_names, v13_attrs, self.sinfo, None)
+                    if _v15.V15:
+                        _v15.fix_value(ev); _v15.snap_attr(ev, v13_attrs); _v15.snap_loc(ev, v13_attrs)
+                        _v15.post(ev); _v15.two_vals(ev, ns, self.sinfo)
                 if _llm.ON:                                  # r12 B 臂第 2 轮：锚定结果同样过可疑复核
                     self._llm_refine([ev])
                 out.append(self.add_event(ns, ev, seq, ref))
@@ -128,6 +138,8 @@ class Ledger:
         if _sav.V13:                                       # v13：账本上下文里的「主体 属性 值」（渠道前缀/无动词/按…走）
             ss_v13 = split_sentences(text)
             self._v13_pass(ns, [(sent, i, seq, ref) for i, sent in enumerate(ss_v13) if i not in done], out, done)
+        if _sav.V13 and _v15.V15:                          # v15：仍未登记且带消息体外壳的句子，去外壳后重抽一次（quote 存原句）
+            self._v15_pass(ns, ss_v13, seq, ref, out, done)
         if _llm.ON:                                          # chain-r12 B 臂：有事件信号但规则/锚定都没登记的句子
             ss = split_sentences(text)
             idx = [i for i, sent in enumerate(ss) if i not in done and _llm.has_signal(sent) and self._known_in(sent, ns)]
@@ -143,6 +155,53 @@ class Ledger:
             bl.extend((sent, i, seq, ref) for i, sent in enumerate(ss_v13) if i not in done and len(sent) <= 200)
             del bl[:-_sav.BACKLOG]
         return out
+
+    def _v15_pass(self, ns: str, ss, seq, ref, out, done) -> None:
+        cand = []
+        for i, sent in enumerate(ss):
+            if i in done or len(sent) > 200:
+                continue
+            s0 = sent.strip()
+            n = _v15.norm(_sh.pre_normalize(s0) if _sh.SHORT else s0)
+            if n and n != s0 and n != s0.translate(_v15._TR).strip():
+                cand.append((i, s0, n))
+        if not cand:
+            return
+        names, cattrs = self._v13_anchors(ns)
+        self.sinfo.cur = cattrs
+        for i, s0, n in cand:
+            evs = [e for e in extract(n) if e.op not in ("mention", "rename")]
+            if not evs:
+                if not names or not cattrs or not any(x in n for x in names):
+                    continue
+                self.sinfo.pairs = {(e, a) for (ns_, e), at in self.lex.attrs.items() if ns_ == ns for a in at}
+                a = _sav.extract_sav(n, ns, names, self.sinfo, None)
+                if a is None:
+                    continue
+                prev = self._by_key.get((ns, a["entity"], a["attr"]))
+                if a["op"] == "set" and prev and prev[-1].op == "unresolve" and prev[-1].seq <= seq and _sav._DECIDE.search(n):
+                    a["op"] = "resolve"
+                evs = [Event(op=a["op"], entity=a["entity"], attr=a["attr"], value=a["value"], alt=a["alt"], reason=a["reason"],
+                             line=i, quote=s0, extra={"anchored": True, "sav": True})]
+            ev = evs[0]
+            ev.line, ev.quote = i, s0
+            ev.extra = dict(ev.extra or {}, loose=True, v15=True)
+            if not _sav.repair_event(ev, ns, names, cattrs, self.sinfo, None):
+                continue
+            _v15.fix_entity(ev, names); _v15.fix_value(ev)
+            _v15.snap_attr(ev, cattrs); _v15.snap_loc(ev, cattrs); _v15.post(ev); _v15.two_vals(ev, ns, self.sinfo)
+            if not ev.entity or (ev.attr is not None and not ev.attr) or ev.entity == ev.attr:
+                continue
+            ga = _v15.GATE_A
+            aok = ga == "off" or ev.attr in cattrs or (ga == "reg" and ev.attr in self.sinfo.attrs.get(ns, ()))
+            if (_v15.GATE_E and not _v15.known_entity(ev, names)) or not aok \
+                    or any(v and re.fullmatch(r"[\u4e00-\u9fff]", v) for v in (ev.value, ev.alt)) \
+                    or not _v15.shape_ok(ev, self.sinfo.want(ns, ev.attr) if ev.attr else set()):
+                continue                                   # 主体须已知、属性须已确认、取值不为单字：宁漏不错
+            if _llm.ON:
+                self._llm_refine([ev])
+            out.append(self.add_event(ns, ev, seq, ref))
+            done.add(i)
 
     def _v13_anchors(self, ns: str):
         names = sorted({n for n in self._names.get(ns, ()) if n and len(n) >= 2} | {n for n in self.lex.names.get(ns, set()) if len(n) >= 2},
@@ -187,6 +246,8 @@ class Ledger:
             a["op"] = "resolve"
         ev = Event(op=a["op"], entity=a["entity"], attr=a["attr"], value=a["value"], alt=a["alt"],
                    reason=a["reason"], line=i, quote=sent.strip(), extra={"anchored": True, "sav": True})
+        if _v15.V15:
+            _v15.post(ev)
         if _llm.ON:
             self._llm_refine([ev])
         out.append(self.add_event(ns, ev, seq, ref))
@@ -224,6 +285,8 @@ class Ledger:
                 ev.reason, int(seq), ev.line, ref, ev.quote, ev.rename_from_seq)
         r._anchored = bool(ev.extra.get("anchored"))                       # 不持久化：只影响本进程的锚点学习
         r._strict = not ev.extra.get("loose") and not r._anchored
+        if ev.extra.get("v15") and _v15.LEARN != "full":
+            r._anchored = True; r._v15 = True                                 # v15 重抽事件：只把（主体, 属性）喂给锚点，不喂取值/形态
         self.add_rec(r)
         return r
 
@@ -261,6 +324,8 @@ class Ledger:
             self.sinfo.note(r.ns, r.attr, r.value, r.alt)
         if not getattr(r, "_anchored", False):
             self.lex.learn(r.ns, r.entity, r.attr, r.value, r.alt, strict=getattr(r, "_strict", False))
+        elif getattr(r, "_v15", False) and _v15.LEARN == "ea":
+            self.lex.learn(r.ns, r.entity, r.attr)
 
     # ------------------------------------------------------------ 别名
     def _find(self, x):

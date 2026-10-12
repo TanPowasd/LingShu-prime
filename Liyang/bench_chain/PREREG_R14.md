@@ -73,3 +73,7 @@ H9：v9 .204 / v13 .621 / v13+B .762；键错、耗时 0.92×、零 LLM 成立�
 - **判定：v13.1 P1（含全部约束）成立。** 进入全面升级判据（回归门 + 对 5c89cd1 无显著回退）。
 - B 成本：H10 全集触发 106 次、$0.0051（冷缓存 174s）；R14 区段 3 次 $0.0001，判 none 3。
 - 本轮 LLM 花费：H10 生成 $0.0619 + B 单次 $0.0052 ≈ **$0.067**（≤ $0.30）。
+
+## 全面升级与推送（2026-10-13 00:10 CST）
+- 回归：rel-v1 合入 chain-v1（077d007 → 2a44c31 → 985db64）；tests_ng 2981 passed；gate_rel 六段：cn（HMB cid .6804/.3701/.6395/.3108）、chainzh（.836/.7543/.994）、t2r、hmbzh 与 rel-v1.1 读数相同（逐题，除计时字段）；gen loc_dev/LME dev 以新 tag rel12 复跑，逐题 = relhead。h100/h50（H7 副本 out/regr_r14_h7）无回退。
+- 对上次推送版 5c89cd1 无显著回退 + H10 P1 达成 + 回归门全过 ⇒ 全面升级成立。取 rel.lock，同步 Liyang/（只动 Liyang/；Liyang 内 tests_ng 2980 passed + 1 skipped），基于远端 main 15b90f7（TanPowasd 新提交，未动）推送 **c962b5d**，释放锁。

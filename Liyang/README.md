@@ -2,7 +2,9 @@
 
 > **插件测评站**（另一条工作线）：见 [`plugin-eval-site/`](plugin-eval-site/README.md) —— 方案 v3.0 端到端验证结果、判分器缺陷与 v2 候选、多场景考卷 C。
 
-> **2026-10-13 增量升级 rel-v1.2（当前版本）**：版本链（`enable_chain`，可选、缺省关）抽取升级为零 LLM v13.1（速记体/渠道前缀/「主体 属性 值」/冷启动待查队列），另附可选受限 LLM 抽取 B（`LINGSHU_NG_CHAIN_LLM=1`，缺省关）。新保留集 H10（换实体/取值/写法，n=604）语料级抽取完全正确率 v13.1 .531 vs 上一版 .270（162 胜 4 负），B .684；键错、误登记、耗时 0.99×、零 LLM 约束均过（新误登记区段事件稀疏、检出力弱，已在 CHANGELOG 注明）。检索主线未改，回归门逐题相同。本目录 `python -m pytest tests_ng -q`：**2980 passed, 1 skipped**。r10–r13 未过判据的历史与未胜项见 [`CHANGELOG_rel-v1.2.md`](CHANGELOG_rel-v1.2.md)。
+> **2026-10-13 增量升级 rel-v1.3（当前版本）**：版本链（`enable_chain`，可选、缺省关）零 LLM 抽取升级为 v15：规则/锚定/「主体 属性 值」都认不出的句子，去掉消息体外壳（句首「【…】」标签、「标签：」、时间戳、`fix(S):` 提交头、转述头、`@提及` 等）后重抽，重抽结果须过「主体已知、取值非单字、形态一致」三道门；另有千分位/键值/属性残片/位置近义/两值未决等后修（`LINGSHU_NG_CHAIN_V15=0` 退回 v13.1）。新保留集 H11（换实体/取值/写法，n=659）语料级抽取完全正确率 v15 .725 vs 上一版 v13.1 .571（105 胜 3 负，McNemar p 1.3e-27），可选 B .798；键错 55≤57、新误登记区段 R15（约 290 万字、v13.1 区段内 107 条登记，有检出力）116=116、建账耗时 1.05×、零 LLM 均过。检索主线未改，回归门逐题相同。本目录 `python -m pytest tests_ng -q`：**2985 passed, 1 skipped**。未胜项见 [`CHANGELOG_rel-v1.3.md`](CHANGELOG_rel-v1.3.md)。
+
+> **2026-10-13 增量升级 rel-v1.2**：版本链（`enable_chain`，可选、缺省关）抽取升级为零 LLM v13.1（速记体/渠道前缀/「主体 属性 值」/冷启动待查队列），另附可选受限 LLM 抽取 B（`LINGSHU_NG_CHAIN_LLM=1`，缺省关）。新保留集 H10（换实体/取值/写法，n=604）语料级抽取完全正确率 v13.1 .531 vs 上一版 .270（162 胜 4 负），B .684；键错、误登记、耗时 0.99×、零 LLM 约束均过（新误登记区段事件稀疏、检出力弱，已在 CHANGELOG 注明）。检索主线未改，回归门逐题相同。本目录 `python -m pytest tests_ng -q`：**2980 passed, 1 skipped**。r10–r13 未过判据的历史与未胜项见 [`CHANGELOG_rel-v1.2.md`](CHANGELOG_rel-v1.2.md)。
 >
 > **2026-10-12 增量升级 rel-v1.1**：英文词级通路新增可选「稠密–稀疏加权融合」`densefuse.py`——只在配置了本地英文句向量模型（如 bge-small-en-v1.5，`LINGSHU_NG_EMBED_MODEL`，需 onnxruntime+tokenizers，权重不随仓库发布）时生效；**没有模型时与 rel-v1 逐位相同**。新的未暴露轮级保留集 LoCoMo-Plus Cognitive（291 题×两口径）上对 TriCue v3、多维 v3×3、无模型 v3.2 全面显著领先（t@10 .244 vs TriCue .021），但相对 rel-v1「同一模型 + LDD 交错」优势小（仅 1/8 项显著，t@10 +.038）。本目录 `python -m pytest tests_ng -q`：**2952 passed, 1 skipped**。详见 [`CHANGELOG_rel-v1.1.md`](CHANGELOG_rel-v1.1.md)。
 >

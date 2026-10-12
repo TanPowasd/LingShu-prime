@@ -9,7 +9,8 @@ SETS = {"h1": ("heldout", C.DEVDOCS, None), "d2": ("heldout_d2", C.DEVDOCS, None
         "d4": ("heldout_d4", C.DEVDOCS, None), "d5": ("heldout_d5", C.DEVDOCS, None), "h4": ("heldout_h4", None, None),
         "h5": ("heldout_h5", None, None), "h6": ("heldout_h6", None, None), "h7": ("heldout_h7", None, None),
         "h8": ("heldout_h8", None, "corpus_h8base.json"),
-        "h9": ("heldout_h9", None, "corpus_h9base.json")}   # chain-r13 单次运行后暴露，降为 dev
+        "h9": ("heldout_h9", None, "corpus_h9base.json"),
+        "h10": ("heldout_h10", None, "corpus_h10base.json")}   # chain-r13/r14 单次运行后暴露，降为 dev
 def main():
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     nbad = int(sys.argv[sys.argv.index("--bad") + 1]) if "--bad" in sys.argv else 0
