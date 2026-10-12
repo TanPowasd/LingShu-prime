@@ -24,11 +24,24 @@ import hive_retrieval as HR   # noqa: E402
 API = "https://api.cline.bot/api/v1/chat/completions"
 MODEL = "cline-pass/deepseek-v4.1-flash"
 BUDGET = 8000
+# 统一系统提示词（实验开关）：环境变量 LLM_SYS=1 时，我们这侧所有 LLM 环节（源图抽取、题面扩展、追问、作答）
+# 都带同一条 system 消息，缓存目录加 _sys 后缀与旧缓存隔离；官方判官始终不带（system=False），保证与基线可比。
+import os  # noqa: E402
+SYS_ON = os.environ.get("LLM_SYS") == "1"
+SYS_SUFFIX = "_sys" if SYS_ON else ""
+SYSTEM = ("你是灵枢长期记忆系统里的一个组件，负责从给定材料中抽取、检索或回答。\n"
+          "1. 只依据本次用户消息里给出的材料和问题工作，不使用材料以外的知识，不猜测，不编造。\n"
+          "2. 人名、地名、物品名、日期、数字一律照原文逐字写，不改写、不意译。\n"
+          "3. 问题有多个要点时逐点覆盖，不遗漏；材料里确实没有的，明确说没有，不要硬凑。\n"
+          "4. 严格按要求的格式输出：要 JSON 就只输出一个 JSON 对象，不加代码块、不加解释。")
 
 
-def chat(prompt, model, max_tokens=None, tries=4):
-    """max_tokens=None：不传上限，用模型/代理自身的最大输出（用户 2026-10-12 要求尽量不限制）。"""
-    req = {"model": model, "messages": [{"role": "user", "content": prompt}], "temperature": 0}
+def chat(prompt, model, max_tokens=None, tries=4, system=None):
+    """max_tokens=None：不传上限，用模型/代理自身的最大输出（用户 2026-10-12 要求尽量不限制）。
+    system=None：按 LLM_SYS 开关决定是否带统一系统提示词；system=False：强制不带（官方判官）；字符串：用它。"""
+    sysmsg = (SYSTEM if SYS_ON else None) if system is None else (system or None)
+    msgs = ([{"role": "system", "content": sysmsg}] if sysmsg else []) + [{"role": "user", "content": prompt}]
+    req = {"model": model, "messages": msgs, "temperature": 0}
     if max_tokens:
         req["max_tokens"] = max_tokens
     body = json.dumps(req).encode()
@@ -167,7 +180,7 @@ def cmd_judge(A):
             return f.stem, "skip"
         for _ in range(3):
             try:
-                obj = parse_json(chat(f.read_text(encoding="utf-8"), A.model))
+                obj = parse_json(chat(f.read_text(encoding="utf-8"), A.model, system=False))
                 g.write_text(json.dumps(obj, ensure_ascii=False, indent=1), encoding="utf-8")
                 return f.stem, "ok"
             except Exception as e:  # noqa: BLE001

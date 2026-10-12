@@ -6,9 +6,11 @@ from concurrent.futures import ThreadPoolExecutor
 HERE = pathlib.Path(__file__).resolve().parent
 sys.path[:0] = [str(HERE.parent / "bench")]
 import hive_retrieval as HR  # noqa: E402
-from hive_official import chat, parse_json, MODEL  # noqa: E402
+from hive_official import chat, parse_json, MODEL, SYS_SUFFIX  # noqa: E402
 
-CACHE = HERE / "cache_hive"
+import os  # noqa: E402
+# LLM_SYS_GRAPH=0：系统提示词实验里沿用旧源图（不带 system 抽取的 cache_hive/），只让题面扩展与作答带系统提示词
+CACHE = HERE / ("cache_hive" + (SYS_SUFFIX if os.environ.get("LLM_SYS_GRAPH", "1") == "1" else ""))
 PROMPT = """你要把小说正文片段转成知识图谱。对下面每个片段，列出其中的事实，格式为 [主语, 谓语, 宾语] 三元组。
 规则：
 - 代词（他、她、它、我们、这……）一律换成它指代的具体人名或事物名。

@@ -10,7 +10,7 @@ import argparse, json, pathlib, sys, threading, time
 from concurrent.futures import ThreadPoolExecutor
 HERE = pathlib.Path(__file__).resolve().parent
 sys.path[:0] = [str(HERE), str(HERE.parent / "bench"), str(HERE.parent / "tricue")]
-from hive_official import chat, parse_json, MODEL  # noqa: E402
+from hive_official import chat, parse_json, MODEL, SYS_SUFFIX  # noqa: E402
 
 P_EN = """You prepare search queries for a memory system over a long chat history between two people.
 For EACH question, output:
@@ -62,7 +62,7 @@ def clean(v):
 
 
 def cache_dir(which):
-    d = HERE / "cache_q" / which
+    d = HERE / ("cache_q" + SYS_SUFFIX) / which
     d.mkdir(parents=True, exist_ok=True)
     return d
 
