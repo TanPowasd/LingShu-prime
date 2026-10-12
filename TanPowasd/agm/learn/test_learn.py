@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # SPDX-License-Identifier: LicenseRef-TanPowasd-Proprietary
 """自主学习守卫：learn.py（零模型、零网络、确定性；自带小语料）。
-  python -X utf8 test_learn.py            # 正向 L1–L10
+  python -X utf8 test_learn.py            # 正向 L1–L13
   python -X utf8 test_learn.py --mutate   # 定点变异：每条恰好点红其目标判据
 退出码：0 全绿；1 失败 / 变异未恰好点红；2 锚点不唯一。"""
 import os
@@ -58,6 +58,20 @@ def run():
     p = os.path.join(_t.mkdtemp(), "lex.json"); Learner.save(p, L.lexicon())
     G = Learner(learn=False, lexicon=Learner.load(p)).ingest(SEGS)
     check("L10 存盘的说法表在新实例上不学也能用", G.answer(q)["value"] == "300" and G.learned == [], f"{G.answer(q)['value']}")
+    S2 = [(1, "d#1", "甲仓 的容量首次确立为 100。乙仓 的容量首次确立为 200。丙仓 的口令首次确立为 alpha。"),
+          (2, "d#2", "甲仓 的容量调整为 300。"),
+          (3, "d#3", "说到容量，甲仓 这回定为 200。说到容量，乙仓 这回定为 300。"),
+          (4, "d#4", "听说口令，丙仓 那边记作 alpha。")]
+    FR = Learner(frames=True).ingest(S2)
+    a, f0 = FR.answer(q)["value"], Learner(learn=False).ingest(S2).answer(q)["value"]
+    check("L11 句框自举：主体挪位的新句形可学（两槽、取值在池）", a == "300" and f0 == "200"
+          and ("说到⟨A⟩，⟨S⟩ 这回定为", "set") in FR.frames, f"{f0},{a},{FR.frames}")
+    check("L12 句框只见于一个槽 ⇒ 不晋升", not any("那边记作" in t for t, _ in FR.frames), f"{FR.frames}")
+    S3 = [(1, "d#1", "说到容量，甲仓 这回定为 100。说到容量，乙仓 这回定为 200。"), (2, "d#2", "说到容量，甲仓 这回定为 300。")]
+    q3 = "截至第 9 次，甲仓 的容量当前是什么值？"
+    T0, T1 = Learner(frames=True).ingest(S3), Learner(frames=True, teacher="v15").ingest(S3)
+    check("L13 没有种子时自举学不到；v15 老师给种子后学到", T0.answer(q3)["value"] is None and T1.answer(q3)["value"] == "300",
+          f"{T0.answer(q3)['value']},{T1.answer(q3)['value']}")
 
 
 MUTATIONS = [
@@ -67,17 +81,22 @@ MUTATIONS = [
     ("M4 偷看未来", "if seq > self.learn_until:", "if False:"),
     ("M5 关隐含属性学习", "if got and got[0]:", "if False:"),
     ("M7 不载入存盘说法", 'self._add(row["conn"], row["kind"])', "pass"),
+    ("M8 关句框槽数门", 'len(slots) >= self.p["min_slots"] and (tpl', "True and (tpl"),
+    ("M9 不用老师", 'if self.teacher == "v15":', "if False:"),
     ("M6 回顾句当种子", "if not sent or any(r in sent for r in RETRO) or any(", "if not sent or any("),
 ]
 WANT = {
-    # 学到了却不重放：表外句仍在链外，L1/L5/L7 的作答一起错
-    "M1 关巩固重放": {"L1 冻结抽不到表外说法、学习后能", "L5 巩固重放：晋升前的早期句也补进链", "L7 隐含属性说法可学（挪去了 ⇒ 位置）"},
+    # 学到了却不重放：表外句仍在链外，L1/L5/L7/L11/L13 的作答一起错
+    "M1 关巩固重放": {"L1 冻结抽不到表外说法、学习后能", "L5 巩固重放：晋升前的早期句也补进链", "L7 隐含属性说法可学（挪去了 ⇒ 位置）",
+                     "L11 句框自举：主体挪位的新句形可学（两槽、取值在池）", "L13 没有种子时自举学不到；v15 老师给种子后学到"},
     "M2 关槽数门": {"L3 只见于一个槽 ⇒ 不晋升"},
     "M3 关取值校验": {"L4 取值不在池 ⇒ 不晋升（噪声连接词）"},
     "M4 偷看未来": {"L6 前学后测：截止序号之后的说法不学"},
     "M5 关隐含属性学习": {"L7 隐含属性说法可学（挪去了 ⇒ 位置）"},
     "M6 回顾句当种子": {"L9 回顾句不作学习种子"},
     "M7 不载入存盘说法": {"L10 存盘的说法表在新实例上不学也能用"},
+    "M8 关句框槽数门": {"L12 句框只见于一个槽 ⇒ 不晋升"},
+    "M9 不用老师": {"L13 没有种子时自举学不到；v15 老师给种子后学到"},
 }
 
 
@@ -100,6 +119,8 @@ def mutate(list_only=False):
             shutil.copytree(os.path.join(HERE, "..", "..", "chronicle"), os.path.join(base, "chronicle"),
                             ignore=shutil.ignore_patterns("results", "__pycache__"))
             shutil.copy(os.path.join(HERE, "test_learn.py"), d)
+            shutil.copy(os.path.join(HERE, "teacher_v15.py"), d)
+            os.environ["LEARN_LIYANG_ROOT"] = os.path.join(HERE, "..", "..", "..", "Liyang")
             open(os.path.join(d, "learn.py"), "w", encoding="utf-8").write(src.replace(anchor, repl))
             p = subprocess.run([sys.executable, "-X", "utf8", "test_learn.py", "--json-fails"], cwd=d,
                                capture_output=True, text=True, encoding="utf-8")

@@ -34,6 +34,22 @@ RENAME = re.compile(r"(?P<old>[^\s，。；：、]+)\s*(?:自第\s*\d+\s*\S{0,4}
 REASON = re.compile(r"[，,]\s*(?:起因是|原因是|因为)\s*(?P<r>[^，。；]+)\s*$")
 SUBJ = r"(?:^|[，；：])\s*(?P<s>[^\s，。；：、]+)\s*的\s*(?P<a>[^\s，。；：、的]{1,12}?)\s*"
 SPLIT = re.compile(r"[。！？\n]")
+#: 句框（自主学习从数据里归纳的整句骨架）：⟨S⟩＝主体、⟨A⟩＝属性，骨架末尾接取值；字面字符原样匹配，空白宽松
+FS, FA = "⟨S⟩", "⟨A⟩"
+
+
+def frame_regex(tpl: str):
+    out = []
+    for tok in re.split(r"(⟨S⟩|⟨A⟩|\s+)", tpl):
+        if tok == FS:
+            out.append(r"(?P<s>[^\s，。；：、]+?)")
+        elif tok == FA:
+            out.append(r"(?P<a>[^\s，。；：、的]{1,12}?)")
+        elif tok and tok.isspace():
+            out.append(r"\s*")
+        elif tok:
+            out.append(re.escape(tok))
+    return re.compile(r"(?:^|[，；：])\s*" + "".join(out) + r"\s*(?P<rest>.*)$")
 QCUES = [  # (问型线索正则, 模式)
     (re.compile(r"经历过哪些变更|变更链|每一次变更|改过几次"), "chain"),
     (re.compile(r"为什么|缘由|什么原因|起因"), "reason"),
@@ -51,7 +67,7 @@ def _value(rest: str) -> str:
 
 
 class Reason:
-    def __init__(self, verbs=VERBS, retro=RETRO, implicit=IMPLICIT, use_alias=True, time_filter=True):
+    def __init__(self, verbs=VERBS, retro=RETRO, implicit=IMPLICIT, use_alias=True, time_filter=True, frames=()):
         self.verbs, self.retro = verbs, retro
         self.use_alias, self.time_filter = use_alias, time_filter
         self.mem = ChronicleMemory()
@@ -62,6 +78,7 @@ class Reason:
             for v in sorted(vs, key=len, reverse=True):
                 pats.append((op, v, re.compile(SUBJ + re.escape(v.strip()) + r"\s*(?P<rest>.*)$")))
         self._pats = sorted(pats, key=lambda x: -len(x[1]))
+        self._pats += [(op, tpl, frame_regex(tpl)) for tpl, op in frames]      # 学到的句框排在原表之后
         self._imp = [(fac, re.compile(r"(?:^|[，；：])\s*(?P<s>[^\s，。；：、]+)\s*" + re.escape(v) + r"\s*(?P<rest>.+)$"))
                      for fac, vs in implicit.items() for v in vs]
 
@@ -85,10 +102,10 @@ class Reason:
     def _sentence(self, seq, sid, sent):
         if not sent or any(r in sent for r in self.retro):
             return
-        for op, verb, pat in self._pats:
-            m = pat.search(sent)
-            if not m:
-                continue
+        hits = [(op, verb, m) for op, verb, pat in self._pats for m in [pat.search(sent)] if m]
+        if hits:                                         # 多个说法都能匹配时取属性最短的切法（「最早定|成了」不让短动词吞掉）
+            hits = [min(hits, key=lambda h: (len(h[2].group("a")), -len(h[1])))]
+        for op, verb, m in hits:
             s, a, rest = m.group("s"), m.group("a"), m.group("rest")
             r = REASON.search(sent)
             reason = r.group("r").strip() if r else None

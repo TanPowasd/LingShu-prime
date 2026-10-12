@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # SPDX-License-Identifier: LicenseRef-TanPowasd-Proprietary
 """推理守卫：reason.py（零模型、零网络、确定性；自带小语料，不依赖 hive）。
-  python -X utf8 test_reason.py            # 正向 R1–R12
+  python -X utf8 test_reason.py            # 正向 R1–R14
   python -X utf8 test_reason.py --mutate   # 定点变异：每条恰好点红其目标判据
 退出码：0 全绿；1 失败 / 变异未恰好点红；2 锚点不唯一。"""
 import os
@@ -62,6 +62,16 @@ def run():
     check("R11 题面最长主体匹配", R.parse("截至第 5 次，甲队·下属 的口令当前是什么值？")[0] == "甲队·下属")
     a = R.answer("截至第 5 次提交，无名氏 的口令当前是什么值？")
     check("R12 生词题面 ⇒ absent 且未解析", a["state"] == "absent" and a["parsed"] is False)
+    from reason import VERBS as _V
+    V2 = {**_V, "set": _V["set"] + ("成了",)}
+    R2 = Reason(verbs=V2, frames=[("⟨S⟩ 的⟨A⟩最早定成了", "set")])
+    R2.ingest([(1, "x#1", "丁 的信任对象最早定成了 小满。"), (2, "x#2", "丁 的信任对象成了 无人。")])
+    ch = R2.answer("丁 的信任对象从最初到现在经历过哪些变更？")["chain"]
+    check("R13 多说法都能匹配取属性最短（短动词不吞长句框）", [c["to"] for c in ch] == ["小满", "无人"], f"{[c['to'] for c in ch]}")
+    R3 = Reason(frames=[("说到⟨A⟩，⟨S⟩ 这回定为", "set")])
+    R3.ingest([(1, "x#1", "说到容量，甲仓 这回定为 100。")])
+    a = R3.answer("截至第 5 次，甲仓 的容量当前是什么值？")
+    check("R14 句框（主体挪位）可抽", a["value"] == "100", f"{a['value']}")
 
 
 MUTATIONS = [
@@ -69,6 +79,8 @@ MUTATIONS = [
     ("M2 关别名", 'self.mem.add_alias("entity", old, new)', "pass"),
     ("M3 关回顾句过滤", "if not sent or any(r in sent for r in self.retro):", "if not sent:"),
     ("M5 关隐含属性", "for fac, pat in self._imp:", "for fac, pat in []:"),
+    ("M7 关最短属性择优", 'hits = [min(hits, key=lambda h: (len(h[2].group("a")), -len(h[1])))]', "hits = hits[:1]"),
+    ("M8 句框不编译", "self._pats += [(op, tpl, frame_regex(tpl)) for tpl, op in frames]", "pass"),
     ("M6 丢缘由", 'reason = r.group("r").strip() if r else None', "reason = None"),
 ]
 WANT = {
@@ -81,6 +93,8 @@ WANT = {
     "M3 关回顾句过滤": {"R1 现值取最后一版", "R7 回顾句不入链", "R9 变更链 from/to"},
     "M5 关隐含属性": {"R10 隐含属性：移到了 ⇒ 位置"},
     "M6 丢缘由": {"R8 缘由按事件时点定位"},
+    "M7 关最短属性择优": {"R13 多说法都能匹配取属性最短（短动词不吞长句框）"},
+    "M8 句框不编译": {"R13 多说法都能匹配取属性最短（短动词不吞长句框）", "R14 句框（主体挪位）可抽"},
 }
 
 

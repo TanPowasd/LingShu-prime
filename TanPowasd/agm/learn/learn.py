@@ -25,16 +25,19 @@ import re
 import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "reason"))
-from reason import Reason, VERBS, IMPLICIT, RETRO, SPLIT, _value  # noqa: E402
+from reason import Reason, VERBS, IMPLICIT, RETRO, SPLIT, FS, FA, REASON, _value  # noqa: E402
 
 CJK_RUN = re.compile(r"^([\u4e00-\u9fff]{1,8})\s*(.*)$")
 DEF = dict(min_slots=2, min_hits=1, max_rounds=4, value_check=True)
+SEP = re.compile(r"[，；：]")
 
 
 class Learner:
-    def __init__(self, learn=True, learn_until=math.inf, lexicon=None, **p):
+    def __init__(self, learn=True, learn_until=math.inf, lexicon=None, frames=False, teacher=None, **p):
         self.p = {**DEF, **p}
         self.learn, self.learn_until = learn, learn_until
+        self.use_frames, self.teacher = frames, teacher    # frames：归纳整句骨架；teacher="v15"：用 Liyang v15 抽取当种子
+        self.frames = []                     # [(骨架, 动作)]
         self.verbs = {k: tuple(v) for k, v in VERBS.items()}
         self.implicit = {k: tuple(v) for k, v in IMPLICIT.items()}
         self.learned = []                    # [(连接词, 类型, 支持槽数, 取值命中数)]
@@ -44,7 +47,10 @@ class Learner:
                 self._add(row["conn"], row["kind"])
 
     def _add(self, conn, kind):
-        if kind == "set":
+        if kind.startswith("frame:"):
+            if (conn, kind[6:]) not in self.frames:
+                self.frames.append((conn, kind[6:]))
+        elif kind == "set":
             if conn not in self.verbs["set"]:
                 self.verbs["set"] = self.verbs["set"] + (conn,)
         else:
@@ -71,7 +77,7 @@ class Learner:
             json.dump(lexicon, f, ensure_ascii=False, indent=1)
 
     def _build(self, segs):
-        R = Reason(verbs=self.verbs, implicit=self.implicit)
+        R = Reason(verbs=self.verbs, implicit=self.implicit, frames=self.frames)
         R.ingest(segs)
         return R
 
@@ -140,6 +146,77 @@ class Learner:
                 new.append((conn, kind if kind == "set" else f"imp:{fac}", len(slots), hits))
         return new
 
+    def _skeleton(self, sent, s, a, v):
+        """原句 → 骨架：主体换 ⟨S⟩、属性换 ⟨A⟩，截到取值前；须两者都在、且有字面连接词。"""
+        if not v:                                       # 无取值（撤销）：骨架到缘由从句前为止
+            m = REASON.search(sent)
+            sent = sent[:m.start()] if m else sent
+        i = sent.rfind(v) if v else len(sent)
+        if i <= 0:
+            return None
+        head = sent[:i]
+        cut = max((m.end() for m in SEP.finditer(head) if s in head[m.end():] and a in head[m.end():]), default=0)
+        head = head[cut:].strip()                      # 只留含主体与属性的最后一个分句
+        js, ja = head.find(s), head.find(a)
+        if js < 0 or ja < 0 or (ja < js < ja + len(a)) or (js < ja < js + len(s)):
+            return None
+        if js < ja:
+            tpl = head[:js] + FS + head[js + len(s):ja] + FA + head[ja + len(a):]
+        else:
+            tpl = head[:ja] + FA + head[ja + len(a):js] + FS + head[js + len(s):]
+        lit = tpl.replace(FS, "").replace(FA, "").replace("的", "").strip()
+        if not re.search(r"[\u4e00-\u9fff]", lit) or re.fullmatch(r"\s*⟨S⟩\s*的\s*⟨A⟩\s*", tpl):
+            return None
+        return re.sub(r"\s+", " ", tpl.strip())
+
+    def _induce_frames(self, R, segs):
+        """句框归纳：本模块没抽出事件的句子 → 骨架；≥ min_slots 个不同槽共用同一骨架才晋升。
+        取样来源：teacher="v15" 时用老师的对齐样本（含动作）；否则自举——已知主体＋已知属性＋取值落池（只学 set）。"""
+        done = {e.quote for e in R.mem._events.values()}
+        sup = collections.defaultdict(lambda: [set(), collections.Counter()])
+        if self.teacher == "v15":
+            import teacher_v15
+            for seq, sent, s, a, op, v in teacher_v15.records(segs):
+                if self.learn_until < seq or sent in done or any(r in sent for r in RETRO):
+                    continue
+                tpl = self._skeleton(sent, s, a, v if op != "retire" else None)
+                if tpl:
+                    x = sup[tpl]; x[0].add((s, a)); x[1][op] += 1
+        else:
+            vals = collections.defaultdict(set)
+            for e in R.mem._events.values():
+                for v in (e.value, e.alternative):
+                    if v is not None:
+                        vals[e.facet].add(v)
+            ents = sorted(R.entities, key=len, reverse=True)
+            facs = sorted(R.facets, key=len, reverse=True)
+            for seq, _sid, text in segs:
+                if self.learn_until < seq:
+                    continue
+                for sent in SPLIT.split(text):
+                    sent = sent.strip()
+                    if not sent or sent in done or any(r in sent for r in RETRO):
+                        continue
+                    s = next((e for e in ents if e in sent), None)
+                    if not s:
+                        continue
+                    rest = sent.replace(s, " ")
+                    a = next((f for f in facs if f in rest), None)
+                    if not a:
+                        continue
+                    k = max(sent.find(s) + len(s), sent.find(a) + len(a))
+                    v = _value(sent[k:])
+                    v = next((x for x in sorted(vals[a], key=len, reverse=True) if v.endswith(x)), None) if v else None
+                    if v:
+                        tpl = self._skeleton(sent, s, a, v)
+                        if tpl:
+                            x = sup[tpl]; x[0].add((s, a)); x[1]["set"] += 1
+        new = []
+        for tpl, (slots, ops) in sorted(sup.items()):
+            if len(slots) >= self.p["min_slots"] and (tpl, ops.most_common(1)[0][0]) not in self.frames:
+                new.append((tpl, "frame:" + ops.most_common(1)[0][0], len(slots), sum(ops.values())))
+        return new
+
     def ingest(self, segments):
         segs = sorted(segments, key=lambda x: (x[0], x[1]))
         self.R = self._build(segs)
@@ -147,6 +224,8 @@ class Learner:
             return self
         for _ in range(self.p["max_rounds"]):
             new = self._induce(self.R, segs)
+            if self.use_frames:
+                new = new + self._induce_frames(self.R, segs)
             if not new:
                 break
             for conn, kind, ns, nh in new:

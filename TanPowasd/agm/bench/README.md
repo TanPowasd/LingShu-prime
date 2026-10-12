@@ -248,3 +248,6 @@ python bench/hive_e2e_full_merge.py a.json [b.json] --json readings_bench_hive_e
 
 ### 定稿：RRF3 作为主实现（2026-10-10）
 正式实现在 `../rrf3/rrf3.py`（v1.0.0），与本目录 RRF3 臂逐条一致（`rrf3/verify_equiv.py`：4041 次查询 0 不一致）。
+
+## AGM × Liyang 融合（hive_fuse.py，零 key，2026-10-13）
+预先固定 RRF k=60、等权（不在考卷上调参）。primary 证据召回 2000/4000/8000：AGM .241/.345/.522，Liyang .250/.358/.500，融合 .267/.362/.500；全证据题 8000 融合 .237（AGM .211、Liyang .184）。逐题配对均不显著（8000 对 AGM 5 胜 7 负）。结论：92 题上融合没有可靠增益，8000 primary 仍是 AGM 单用最高。读数 `confluence/results/hive_fuse_agm_liyang.json`。
