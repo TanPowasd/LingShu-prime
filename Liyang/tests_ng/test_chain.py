@@ -323,6 +323,7 @@ def test_anchored_needs_confirmed_key_and_switch(monkeypatch):
     recs = L.add_text("第 2 次提交（丁项目）。周报：丁服务缓存策略一项，经评审后切至 arc 执行。", ref="b")
     assert [r for r in recs if r.op != "mention"] == []
     monkeypatch.setattr(A, "ANCHOR", False)
+    monkeypatch.setattr(sys.modules["lingshu_ng.chain.v16"], "WIN", False)    # v16 窗口抽取是另一条路径（见 test_chain_v16）
     L2 = Ledger()
     L2.add_text("第 1 次提交（丙项目）。丙服务 的缓存策略首次确立为 lru。", ref="a")
     recs = L2.add_text("第 2 次提交（丙项目）。周报：丙服务缓存策略一项，经评审后由 lru 切至 arc 执行。", ref="b")

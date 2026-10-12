@@ -50,6 +50,11 @@ def cov(rmp, only_docs=None):
         if r.op in ("mention", "rename"):
             continue
         got.setdefault((r.ref, r.quote.strip()), []).append(key(r.op, r.entity, r.attr, r.value, r.alt))
+    if os.environ.get("LC_ML") == "1":                   # chain-r16 口径修订（PREREG_R16）：多行改写句（主题行+正文）按行登记，quote 等于该句任一非空行的记录归到该句（各臂一致）
+        for (cid, s_) in list(want):
+            if "\n" in s_:
+                for ln in {x.strip() for x in s_.split("\n") if x.strip()}:
+                    got.setdefault((cid, s_), []).extend(got.get((cid, ln), []))
     st = {"exact": 0, "wrong": 0, "none": 0}
     for k, w in want.items():
         g = got.get(k)

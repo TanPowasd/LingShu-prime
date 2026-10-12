@@ -85,3 +85,9 @@ P1（含全部约束）成立，且回归门全过：tests_ng 全过；gate_rel 
 - 约束 4 写入期零 LLM：v15 calls=0 ✔。
 - **判定：P1（含全部约束）成立。** 进入全面升级判据（回归门）。
 - B 成本：H11 全集 84 次调用 $0.0040（冷缓存 98s）；R15 区段 19 次 $0.0008。本轮 LLM：H11 生成 $0.034 + B $0.0048 ≈ **$0.039**。
+
+## 全面升级与推送（2026-10-13 01:15 CST）
+- 回归：rel-v1 合入 chain-v1（34b4c91 → 465eebd → 本提交后 CHANGELOG 补记）；tests_ng 2986 passed；gate_rel 六段：cn（HMB cid .6804/.3701/.6395/.3108）、chainzh（.836/.7543/.994）、t2r、hmbzh 与 rel-v1.2 逐题相同（除计时字段）；
+  gen loc_dev/LME dev 以新 tag rel13 复跑，逐题 = relhead。h100/h50（out/regr_r15_h7）v15 对 v13.1 各 2 胜 0 负，无回退。
+- P1 达成 + 回归门全过 + 对上次推送版无回退 ⇒ 全面升级成立。取 rel.lock，fetch 远端（main f4f1ad0，TanPowasd 新提交 edf4ec3/f4f1ad0 未动 Liyang/），只改 Liyang/（删 __pycache__；Liyang 内 tests_ng 2985 passed + 1 skipped），
+  推送 **a744c9c**，释放锁。

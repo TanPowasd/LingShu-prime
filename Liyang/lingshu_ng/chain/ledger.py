@@ -21,6 +21,7 @@ from . import shorthand as _sh
 from . import llm_extract as _llm
 from . import sav as _sav
 from . import v15 as _v15
+from . import v16 as _v16
 from .extract import MOVE_ATTR, Event, extract, parse_header, split_sentences
 
 __all__ = ["Rec", "Ledger", "Status", "INF"]
@@ -140,6 +141,8 @@ class Ledger:
             self._v13_pass(ns, [(sent, i, seq, ref) for i, sent in enumerate(ss_v13) if i not in done], out, done)
         if _sav.V13 and _v15.V15:                          # v15：仍未登记且带消息体外壳的句子，去外壳后重抽一次（quote 存原句）
             self._v15_pass(ns, ss_v13, seq, ref, out, done)
+        if _sav.V13 and _v16.V16 and _v16.WIN:             # v16：仍未登记的句子做账本窗口抽取（已知主体…已确认属性…合形态取值）
+            self._v16_pass(ns, ss_v13, seq, ref, out, done)
         if _llm.ON:                                          # chain-r12 B 臂：有事件信号但规则/锚定都没登记的句子
             ss = split_sentences(text)
             idx = [i for i, sent in enumerate(ss) if i not in done and _llm.has_signal(sent) and self._known_in(sent, ns)]
@@ -158,10 +161,17 @@ class Ledger:
 
     def _v15_pass(self, ns: str, ss, seq, ref, out, done) -> None:
         cand = []
+        pre = None
+        if _v16.V16 and _v15.GATE_E:                       # v16 预检：重抽 pass 的主体门要求已知名，句中没有任何已知名就不必规范化/重抽
+            pre = self._v13_anchors(ns)[0]
+            if not pre:
+                return
         for i, sent in enumerate(ss):
             if i in done or len(sent) > 200:
                 continue
             s0 = sent.strip()
+            if pre is not None and not any(x in s0 for x in pre):
+                continue
             n = _v15.norm(_sh.pre_normalize(s0) if _sh.SHORT else s0)
             if n and n != s0 and n != s0.translate(_v15._TR).strip():
                 cand.append((i, s0, n))
@@ -203,7 +213,55 @@ class Ledger:
             out.append(self.add_event(ns, ev, seq, ref))
             done.add(i)
 
+    def _v16_pass(self, ns: str, ss, seq, ref, out, done) -> None:
+        names = cattrs = None
+        for i, sent in enumerate(ss):
+            if i in done or len(sent) > 200:
+                continue
+            if names is None:
+                names, cattrs = self._v13_anchors(ns)
+                if not names or not cattrs:
+                    return
+                self.sinfo.cur = cattrs
+                self.sinfo.pairs = {(e, a) for (ns_, e), at in self.lex.attrs.items() if ns_ == ns for a in at}
+                if _v16.GLOB:                              # v16：属性/取值锚点放宽到全账本（其他命名空间确认过的属性），取值门不变
+                    cattrs = set(cattrs) | self._v16_gattrs()
+                attrs2 = [a for a in cattrs if a != "位置" and len(a) >= 2]
+                loc_ok = "位置" in cattrs
+            if not any(a in sent for a in attrs2) and not loc_ok:
+                continue
+            if not any(n in sent for n in names):
+                continue
+            a = _v16.extract_win(self, sent, ns, names, cattrs)
+            if a is None:
+                continue
+            ev = Event(op=a["op"], entity=a["entity"], attr=a["attr"], value=a["value"], alt=a["alt"], reason=a["reason"],
+                       line=i, quote=sent.strip(), extra={"anchored": True, "sav": True, "v16": True})
+            if _llm.ON:
+                self._llm_refine([ev])
+            out.append(self.add_event(ns, ev, seq, ref))
+            done.add(i)
+
+    def _v16_gattrs(self) -> set:
+        g = set()
+        for (_ns, _e), at in self.lex.attrs.items():
+            g |= at
+        for _ns, at in self.sinfo.attrs.items():
+            g |= {a for a in at if self.sinfo.acnt.get((_ns, a), 0) >= _sav.ATTR_MIN}
+        return {a for a in g if a and len(a) >= 2}
+
     def _v13_anchors(self, ns: str):
+        if _v16.V16:                                       # v16：锚点只随新记录变化，按（ns, 记录数）缓存
+            k = (ns, len(self.recs))
+            c = self.__dict__.get("_anc_cache")
+            if c and c[0] == k:
+                return c[1]
+            r = self._v13_anchors0(ns)
+            self._anc_cache = (k, r)
+            return r
+        return self._v13_anchors0(ns)
+
+    def _v13_anchors0(self, ns: str):
         names = sorted({n for n in self._names.get(ns, ()) if n and len(n) >= 2} | {n for n in self.lex.names.get(ns, set()) if len(n) >= 2},
                        key=len, reverse=True)
         cattrs = set()
@@ -281,6 +339,11 @@ class Ledger:
                 ev.extra = dict(ev.extra or {}, loose=True, llm=True)
 
     def add_event(self, ns: str, ev: Event, seq: int, ref: str) -> Rec:
+        if _v16.V16 and _sav.V13 and ev.op not in ("mention", "rename") and not ev.extra.get("llm"):
+            nonstrict = bool(ev.extra.get("loose") or ev.extra.get("short") or ev.extra.get("anchored"))
+            if nonstrict or _v16.STRICT:
+                names, cattrs = self._v13_anchors(ns)
+                _v16.post(self, ev, ns, names, cattrs, strict=not nonstrict)
         r = Rec(ns, ev.entity, ev.attr, ev.op, ev.extra.get("rest") if ev.op == "mention" else ev.value, ev.alt,
                 ev.reason, int(seq), ev.line, ref, ev.quote, ev.rename_from_seq)
         r._anchored = bool(ev.extra.get("anchored"))                       # 不持久化：只影响本进程的锚点学习
