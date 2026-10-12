@@ -25,7 +25,7 @@ import re
 import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "reason"))
-from reason import Reason, VERBS, IMPLICIT, RETRO, SPLIT, FS, FA, REASON, _value  # noqa: E402
+from reason import Reason, VERBS, IMPLICIT, RETRO, SPLIT, FS, FA, REASON, _value, frame_regex, RENAME  # noqa: E402
 
 CJK_RUN = re.compile(r"^([\u4e00-\u9fff]{1,8})\s*(.*)$")
 DEF = dict(min_slots=2, min_hits=1, max_rounds=4, value_check=True)
@@ -33,7 +33,7 @@ SEP = re.compile(r"[，；：]")
 
 
 class Learner:
-    def __init__(self, learn=True, learn_until=math.inf, lexicon=None, frames=False, teacher=None, **p):
+    def __init__(self, learn=True, learn_until=math.inf, lexicon=None, frames=False, teacher=None, llm=None, **p):
         self.p = {**DEF, **p}
         self.learn, self.learn_until = learn, learn_until
         self.use_frames, self.teacher = frames, teacher    # frames：归纳整句骨架；teacher="v15"：用 Liyang v15 抽取当种子
@@ -42,6 +42,8 @@ class Learner:
         self.implicit = {k: tuple(v) for k, v in IMPLICIT.items()}
         self.learned = []                    # [(连接词, 类型, 支持槽数, 取值命中数)]
         self.R = None
+        self.llm = llm                       # LLM+ 模式：teacher_llm.Teacher（或可调用）；None ⇒ 永不调用 LLM
+        self.facts = {}                      # LLM+：句框没接住的句子 → 规范句（直接入链）
         if lexicon:                          # 跨语料保存：载入以前学到的说法
             for row in lexicon:
                 self._add(row["conn"], row["kind"])
@@ -217,8 +219,114 @@ class Learner:
                 new.append((tpl, "frame:" + ops.most_common(1)[0][0], len(slots), sum(ops.values())))
         return new
 
+    def _explained(self, e):
+        """表/句框抽到的事件是否把整句都解释了：主体前没有多余内容，取值里没有分句标点，取值后只剩可识别的原因从句。
+        没解释全的句子在 LLM+ 模式下仍交给老师复核（例如「因私下承诺，周舟 迁到了 后山」前面的原因没被认出）。"""
+        sent = e.quote
+        names = [e.entity] + [k for k, v in self.R.mem._aliases["entity"].items() if v == e.entity]
+        i = min((sent.find(n) for n in names if n in sent), default=-1)    # 主体可能以旧名出现
+        if i < 0:
+            return True
+        pre = sent[:i]
+        for tpl, _op in self.frames:                     # 句框自带的前缀（如「说到⟨A⟩，」）算已解释
+            m = frame_regex(tpl).search(sent)
+            if m and m.group("s") == e.entity:
+                pre = sent[:m.start()]
+                break
+        if pre.strip(" ，；："):
+            return False
+        if e.value is None:
+            return "，" not in sent or bool(REASON.search(sent))
+        if re.search(r"[，；;,]", e.value):
+            return False
+        j = sent.rfind(e.value)
+        tail = sent[j + len(e.value):] if j >= 0 else ""
+        return not tail.strip() or bool(REASON.fullmatch(tail.rstrip("。") if tail.startswith(("，", ",")) else "x"))
+
+    @staticmethod
+    def _agree(tpl, sent, s, a, op, v, v2, r):
+        """句框自检：用这副骨架重新抽原句，主体/属性/取值/原因须与老师的标注一致，才算一个支持样本。"""
+        m = frame_regex(tpl).search(sent)
+        if not m or m.group("s") != s or m.group("a") != a:
+            return False
+        rest = m.group("rest")
+        got = REASON.search(sent)
+        if r and (not got or got.group("r").strip() != r):
+            return False
+        if op == "retire":
+            return True
+        val = _value(rest)
+        if op == "unresolved":
+            parts = re.split(r"\s*(?:与|和|或)\s*", val, maxsplit=1)
+            return len(parts) == 2 and parts[0].strip() == v and parts[1].split("，")[0].strip() == v2
+        return val == v
+
+    @staticmethod
+    def _canon(s, a, op, v, v2, sent, r=""):
+        if not r:
+            g = REASON.search(sent)
+            r = g.group("r").strip() if g else ""
+        tail = f"，起因是 {r}" if r else ""
+        body = {"set": f"调整为 {v}", "resolve": f"最终裁定为 {v}", "retire": "被撤销",
+                "unresolved": f"出现两种并存的取值：{v} 与 {v2}"}[op]
+        return f"{s} 的{a}{body}{tail}"
+
+    def _llm_plus(self, segs):
+        """LLM+：句框/动词表认不出的句子分批问 LLM；每批的答案先归纳句框（≥2 槽晋升），重建后再挑下一批，
+        于是同句形后面不再问。最后句框仍没接住的句子用 LLM 的答案改写成规范句直接入链。"""
+        import teacher_llm
+        T = self.llm if isinstance(self.llm, teacher_llm.Teacher) else teacher_llm.Teacher(llm=self.llm)
+        self.teacher_obj = T
+        asked, recs = set(), []
+        sup = collections.defaultdict(lambda: [set(), collections.Counter()])
+        while True:
+            self.R = self._build(segs)
+            done = {e.quote for e in self.R.mem._events.values() if self._explained(e)}
+            todo = []
+            for seq, _sid, text in segs:
+                if not seq <= self.learn_until:
+                    continue
+                for sent in SPLIT.split(text):
+                    sent = sent.strip()
+                    if (sent and sent not in done and sent not in asked and not any(r in sent for r in RETRO)
+                            and not RENAME.search(sent)):
+                        todo.append((seq, sent))
+            if not todo:
+                break
+            batch = todo[:T.batch]
+            asked.update(s for _q, s in batch)
+            got = [x for x in T.records(batch) if x[3] in x[1] or x[3] in self.R.facets]   # 隐含属性只认已有属性名
+            recs += got
+            new = []
+            for seq, sent, s, a, op, v, v2, r in got:
+                tpl = self._skeleton(sent, s, a, v or None)
+                if tpl and self._agree(tpl, sent, s, a, op, v, v2, r):
+                    x = sup[tpl]; x[0].add((s, a)); x[1][op] += 1
+                    o = x[1].most_common(1)[0][0]
+                    if len(x[0]) >= self.p["min_slots"] and (tpl, o) not in self.frames and (tpl, o) not in new:
+                        new.append((tpl, o))
+            for tpl, o in new:
+                self.learned.append((tpl, "frame:" + o, len(sup[tpl][0]), sum(sup[tpl][1].values())))
+                self._add(tpl, "frame:" + o)
+        self.R = self._build(segs)
+        by = collections.defaultdict(list)
+        for e in self.R.mem._events.values():
+            by[e.quote].append(e)
+        def ok(sent, s, a, op, v, r):               # 句框抽到的与老师标注一致才留句框结果，否则以老师为准
+            es = by.get(sent)
+            return bool(es) and any(e.entity == s and e.facet == a and (op in ("retire", "unresolved") or e.value == v)
+                                    and (not r or (e.reason or "") == r) for e in es)
+        self.facts = {sent: self._canon(s, a, op, v, v2, sent, r) for _q, sent, s, a, op, v, v2, r in recs
+                      if not ok(sent, s, a, op, v, r)}
+        if self.facts:
+            fixed = [(q, sid, "。".join(self.facts.get(x.strip(), x) for x in SPLIT.split(t))) for q, sid, t in segs]
+            self.R = self._build(fixed)
+
     def ingest(self, segments):
         segs = sorted(segments, key=lambda x: (x[0], x[1]))
+        if self.llm is not None:                     # LLM+ 模式（显式传 llm 才开）
+            self._llm_plus(segs)
+            return self
         self.R = self._build(segs)
         if not self.learn:
             return self
