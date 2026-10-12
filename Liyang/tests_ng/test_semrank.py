@@ -30,6 +30,10 @@ class _Stub:
         return [5.0 if "取件码" in p else (-1.0 if "丰巢" in p else -9.0) for p in passages]
 
 
+#: v7.1 的稠密补入开关（交付缺省自 v11c 起改为补入开；以下 v8/v10/v11 单测以 v7.1 为基线显式关闭）
+V71 = dict(sem_dense=0, sem_dense_m=0, sem_dense_cap=0, sem_dense_tau=-99.0)
+
+
 def _eng(tmp_path, docs=WEB, **cfg):
     e = MemoryEngine(str(tmp_path / "m.db"))
     for d in docs:
@@ -47,6 +51,21 @@ def test_default_v7():
     c = ax.AssocConfig()
     assert (c.tp_head, c.sem_n, c.sem_tau, c.sem_min, c.sem_paths, c.sem_v4fb) == (5, 40, -3.25, 3, "tp,lc", 1)
     assert c.sem_short == 0 and c.sem_coh == 1.0 and c.sem_lam == 0.0 and c.sem_tail == 0 and c.sem_chain == 1
+
+
+def test_default_v11c():
+    """交付默认 = v11c（PREREG_ZH 修订 9b 冻结 / 9c 判定）：v7.1 + 自适应稠密补入 20、m 5、cap 2、τd 0。"""
+    c = ax.AssocConfig()
+    assert (c.sem_dense, c.sem_dense_m, c.sem_dense_cap, c.sem_dense_tau, c.sem_fuse) == (20, 5, 2, 0.0, 0.0)
+
+
+def test_default_without_embedder_is_v71(tmp_path, monkeypatch):
+    """稠密件不可用 ⇒ 交付默认与 v7.1（稠密补入关）逐位相同。"""
+    monkeypatch.setattr(semrank, "get_scorer", lambda: _Stub())
+    monkeypatch.setattr(semrank, "get_embedder", lambda: None)
+    for lh in (2, 15):
+        _same(_eng(tmp_path / str(lh)), dict(lc_head=lh, tp_coh=0.0), dict(V71, lc_head=lh, tp_coh=0.0),
+              (("丰巢取件码忘了怎么办", 8), ("红烧肉怎么做", 6), ("取件码", 2)))
 
 
 def test_default_without_scorer_is_v4(tmp_path, monkeypatch):
@@ -152,3 +171,163 @@ def test_chain_requests_exempt_from_truncation(tmp_path, monkeypatch):
     assert len(_ids(off, q, 8)) == 1
     assert _ids(on, q, 8) == _ids(tail, q, 8) and len(_ids(on, q, 8)) > 1
     assert len(_ids(on, "丰巢取件码忘了怎么办", 8)) == 1
+
+
+class _DenseStub:
+    """假稠密件：含「短信」的段落与问句最近（模拟词面零重叠但语义相关）。"""
+    INST = semrank.DenseEmbedder.INST
+
+    def encode(self, texts, batch=16):
+        import numpy as np
+        return np.array([[1.0, 0.0] if ("短信" in t or t.startswith(self.INST)) else [0.0, 1.0] for t in texts], dtype=np.float32)
+
+
+def test_dense_off_by_default_and_missing_is_v71(tmp_path, monkeypatch):
+    """v8：sem_dense = 0 即 v7.1；稠密件不可用时 sem_dense>0 与 v7.1 逐位相同。"""
+    monkeypatch.setattr(semrank, "get_scorer", lambda: _Stub())
+    monkeypatch.setattr(semrank, "get_embedder", lambda: None)
+    kw = dict(V71, tp_head=1, tp_coh=0.0, lc_head=2, sem_n=2, sem_tau=-99.0, sem_min=1)
+    _same(_eng(tmp_path), dict(kw), dict(kw, sem_dense=3), (("丰巢取件码忘了怎么办", 8), ("红烧肉怎么做", 6)))
+
+
+def test_dense_injects_candidates_beyond_head(tmp_path, monkeypatch):
+    """v8：稠密补入词面头部之外的候选，经同一打分件重排；链式请求不补。"""
+    monkeypatch.setattr(semrank, "get_scorer", lambda: _Stub())
+    monkeypatch.setattr(semrank, "get_embedder", lambda: _DenseStub())
+    kw = dict(V71, tp_head=1, tp_coh=0.0, lc_head=2, sem_n=1, sem_tau=-99.0, sem_min=1)
+    q = "丰巢取件码忘了怎么办"
+    off = _ids(_eng(tmp_path / "off", **kw), q, 8)
+    on = _ids(_eng(tmp_path / "on", **dict(kw, sem_dense=1)), q, 8)
+    sms = [d for d in WEB if "短信" in d][0]
+    assert sms in on and on.index(sms) <= 1
+    assert sms not in off[:1]
+    qc = "丰巢取件码从最初到现在经历过哪些变更"
+    assert _ids(_eng(tmp_path / "c1", **dict(kw, sem_dense=1)), qc, 8) == _ids(_eng(tmp_path / "c0", **kw), qc, 8)
+
+
+def test_real_embedder_smoke():
+    em = semrank.get_embedder()
+    if em is None:
+        pytest.skip("bge-small-zh 不可用")
+    v = em.encode([semrank.DenseEmbedder.INST + "取件码忘了", "快递柜取件码可在公众号查看。", "红烧肉先焯水。"])
+    assert float(v[0] @ v[1]) > float(v[0] @ v[2])
+    assert (em.encode(["快递柜取件码可在公众号查看。"]) == v[1:2]).all()
+
+
+# ---------------------------------------------------------------- v9：判别头 D（PREREG_ZH 修订 7）
+class _DiscStub:
+    """假判别头：含「短信」者判为满足需求（高分），其余低分。"""
+
+    def score(self, q, passages, batch=16):
+        return [6.0 if "短信" in p else -6.0 for p in passages]
+
+
+def test_disc_off_by_default_and_missing_is_v71(tmp_path, monkeypatch):
+    """sem_disc 缺省 0；头缺失（get_disc → None）或打分件不是真 CrossScorer ⇒ 与 v7.1 逐位相同。"""
+    assert ax.AssocConfig().sem_disc == 0.0
+    st = _Stub()
+    monkeypatch.setattr(semrank, "get_scorer", lambda: st)
+    assert semrank.get_disc(st) is None
+    base = dict(tp_head=1, tp_coh=0.0, lc_head=2, sem_n=40, sem_tau=0.0, sem_min=1)
+    _same(_eng(tmp_path), base, dict(base, sem_disc=1.0), (("丰巢取件码忘了怎么办", 8), ("红烧肉怎么做", 6)))
+
+
+def test_disc_reorders_and_gates(tmp_path, monkeypatch):
+    """头存在且 sem_disc > 0：排序 / 截断分 = logit + α·D；D 低的段被挤出阈值。"""
+    st = _Stub()
+    monkeypatch.setattr(semrank, "get_scorer", lambda: st)
+    monkeypatch.setattr(semrank, "get_disc", lambda sc: _DiscStub())
+    base = dict(tp_head=1, tp_coh=0.0, lc_head=2, sem_n=40, sem_tau=0.0, sem_min=1)
+    e = _eng(tmp_path)
+    e.retriever.assoc = ax.AssocConfig(**base); off = _ids(e, "丰巢取件码忘了怎么办", 8)
+    e.retriever.assoc = ax.AssocConfig(**dict(base, sem_disc=1.0)); on = _ids(e, "丰巢取件码忘了怎么办", 8)
+    assert len(off) == 2 and len(on) == 1 and "短信" in on[0]
+
+
+def test_disc_skips_chain_requests(tmp_path, monkeypatch):
+    """链式请求不经过判别头（v7.1 行为）。"""
+    st = _Stub()
+    monkeypatch.setattr(semrank, "get_scorer", lambda: st)
+    monkeypatch.setattr(semrank, "get_disc", lambda sc: _DiscStub())
+    base = dict(tp_head=1, tp_coh=0.0, lc_head=2, sem_n=40, sem_tau=0.0, sem_min=1)
+    _same(_eng(tmp_path), base, dict(base, sem_disc=1.0), (("丰巢取件码经历过哪些变更", 8),))
+
+
+def test_anstype_features_and_weights():
+    """答案类型相容（修订 7b）：问价格时，含金额的段落分高于只有商品名的段落；权重文件存在且维度一致。"""
+    from lingshu_ng import anstype, anstype_w
+    assert len(anstype_w.W) == len(anstype_w.MU) == len(anstype_w.SD) == anstype.DIM
+    a, b = anstype.score("五星迎宾酒52度价格多少钱一瓶", ["五星迎宾酒52度 零售参考价:99.00元", "五星迎宾酒52度 浓香型白酒 产地四川"])
+    assert a > b
+
+
+def test_ans_off_by_default_and_chain_exempt(tmp_path, monkeypatch):
+    """sem_ans 缺省 0（= v7.1）；链式请求不加答案类型分。"""
+    assert ax.AssocConfig().sem_ans == 0.0
+    st = _Stub()
+    monkeypatch.setattr(semrank, "get_scorer", lambda: st)
+    base = dict(tp_head=1, tp_coh=0.0, lc_head=2, sem_n=40, sem_tau=0.0, sem_min=1)
+    _same(_eng(tmp_path), base, dict(base, sem_ans=50.0), (("丰巢取件码经历过哪些变更", 8),))
+
+
+# ---------------------------------------------------------------- v10：稠密 z 分融合排序（PREREG_ZH 修订 8）
+def test_fuse_off_by_default_and_missing_is_v71(tmp_path, monkeypatch):
+    """v10：sem_fuse 缺省 0（= v7.1）；稠密件不可用时 sem_fuse>0 与 v7.1 逐位相同。"""
+    assert ax.AssocConfig().sem_fuse == 0.0
+    monkeypatch.setattr(semrank, "get_scorer", lambda: _Stub())
+    monkeypatch.setattr(semrank, "get_embedder", lambda: None)
+    kw = dict(tp_head=1, tp_coh=0.0, lc_head=2, sem_n=40, sem_tau=-99.0, sem_min=1)
+    _same(_eng(tmp_path), dict(kw), dict(kw, sem_fuse=2.0), (("丰巢取件码忘了怎么办", 8), ("红烧肉怎么做", 6)))
+
+
+def test_fuse_reorders_but_keeps_truncation_set(tmp_path, monkeypatch):
+    """v10：融合只改排序，截断集合仍按 logit ≥ τ；链式请求不融合。"""
+    monkeypatch.setattr(semrank, "get_scorer", lambda: _Stub())
+    monkeypatch.setattr(semrank, "get_embedder", lambda: _DenseStub())
+    kw = dict(tp_head=1, tp_coh=0.0, lc_head=2, sem_n=40, sem_tau=-2.0, sem_min=1)
+    q = "丰巢取件码忘了怎么办"
+    off = _ids(_eng(tmp_path / "off", **kw), q, 8)
+    on = _ids(_eng(tmp_path / "on", sem_fuse=5.0, **kw), q, 8)
+    assert set(on) == set(off)
+    sms = [d for d in WEB if "短信" in d][0]
+    assert sms in on and on[0] == sms
+    qc = "丰巢取件码从最初到现在经历过哪些变更"
+    assert _ids(_eng(tmp_path / "c1", sem_fuse=5.0, **kw), qc, 8) == _ids(_eng(tmp_path / "c0", **kw), qc, 8)
+
+
+def test_dense_z_shape():
+    import numpy as np
+    z = None
+    em = semrank.get_embedder()
+    if em is not None:
+        z = semrank.dense_z("取件码忘了", ["快递柜取件码可在公众号查看。", "红烧肉先焯水。", "短信取件码"])
+        assert len(z) == 3 and abs(float(np.mean(z))) < 1e-4
+
+
+def test_adaptive_dense_fires_only_when_head_weak(tmp_path, monkeypatch):
+    """v10：sem_dense_m > 0 时，词面头部 logit ≥ τ 者 ≥ m 条 → 与 v7.1 逐位相同（不补）；少于 m 条 → 与 v8 总补逐位相同。"""
+    monkeypatch.setattr(semrank, "get_scorer", lambda: _Stub())
+    monkeypatch.setattr(semrank, "get_embedder", lambda: _DenseStub())
+    kw = dict(V71, tp_head=1, tp_coh=0.0, lc_head=2, sem_n=1, sem_tau=-99.0, sem_min=1)
+    q = "丰巢取件码忘了怎么办"
+    e = _eng(tmp_path)
+    _same(e, dict(kw), dict(kw, sem_dense=1, sem_dense_m=1), ((q, 8),))            # 头部 1 条 ≥ τ，不补
+    _same(e, dict(kw, sem_dense=1), dict(kw, sem_dense=1, sem_dense_m=2), ((q, 8),))   # 1 < 2，补 = v8
+    qc = "丰巢取件码从最初到现在经历过哪些变更"
+    _same(e, dict(kw), dict(kw, sem_dense=1, sem_dense_m=5), ((qc, 8),))             # 链式请求不补
+
+
+def test_adaptive_dense_cap_and_tau(tmp_path, monkeypatch):
+    """v11（PREREG_ZH 修订 9）：sem_dense_cap / sem_dense_tau 只作用于被触发的自适应补入
+    （未触发或总补 m = 0 时逐位不变）；cap = k → 取段 ≤ k·sem_min；补入段 logit < τd → 不保留（= 不补）。"""
+    monkeypatch.setattr(semrank, "get_scorer", lambda: _Stub())
+    monkeypatch.setattr(semrank, "get_embedder", lambda: _DenseStub())
+    kw = dict(V71, tp_head=1, tp_coh=0.0, lc_head=2, sem_n=1, sem_tau=-99.0, sem_min=1)
+    q = "丰巢取件码忘了怎么办"
+    e = _eng(tmp_path)
+    _same(e, dict(kw), dict(kw, sem_dense=3, sem_dense_m=1, sem_dense_cap=1, sem_dense_tau=99.0), ((q, 8),))   # 未触发
+    _same(e, dict(kw, sem_dense=1), dict(kw, sem_dense=1, sem_dense_cap=1, sem_dense_tau=99.0), ((q, 8),))       # 总补不受影响
+    _same(e, dict(kw), dict(kw, sem_dense=3, sem_dense_m=2, sem_dense_tau=99.0), ((q, 8),))                      # 补入段全不过 τd
+    e.retriever.assoc = ax.AssocConfig(**dict(kw, sem_dense=3, sem_dense_m=2)); full = e_rows(e, q, 8)
+    e.retriever.assoc = ax.AssocConfig(**dict(kw, sem_dense=3, sem_dense_m=2, sem_dense_cap=1)); capped = e_rows(e, q, 8)
+    assert len(full) > 1 and capped == full[:1]

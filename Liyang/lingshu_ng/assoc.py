@@ -92,8 +92,8 @@ class AssocConfig:
     sem_tau: float = -3.25
     sem_rel: float = 99.0
     sem_min: int = 3
-    sem_tail: int = 0
-    sem_chain: int = 1        # v7.1：链式请求（历次变更/从最初到现在…，见 semrank.chain_intent）只重排不截断
+    sem_tail: int = 0; sem_dense: int = 20; sem_dense_max: int = 50000; sem_dense_m: int = 5; sem_dense_cap: int = 2; sem_dense_tau: float = 0.0; sem_fuse: float = 0.0  # 交付 v11c（PREREG_ZH 修订 9b/9c：sem_dense 20 / m 5 / cap 2 / τd 0；稠密件缺失 → 逐位 v7.1，打分件缺失 → 逐位 v4）；sem_dense：v8 可选（修订 6），SR 前按稠密余弦补入候选数（0 = 关 = v7.1；链式请求不补；库超 sem_dense_max 块不补）；v10（修订 8/8b）sem_dense_m > 0 → 词面头部 logit ≥ τ 者少于 m 条才补（0 = 总补）；sem_fuse：排序分 + w·稠密 z（截断仍按 logit；0 = 关）；v11（修订 9）sem_dense_cap = k > 0 → 补入被触发时取段 ≤ k·sem_min，sem_dense_tau = 补入段须 logit ≥ 该值（−99 = 关），两者只作用于 sem_dense_m > 0 的自适应补入
+    sem_chain: int = 1; sem_disc: float = 0.0; sem_ans: float = 0.0  # v7.1：链式请求只重排不截断（semrank.chain_intent）；sem_disc / sem_ans：v9 判别头 α / 答案类型相容 β（0 = v7.1，修订 7/7b）
     sem_paths: str = "tp,lc"
     sem_v4fb: int = 1
     sem_short: int = 0        # 短请求（limit ≤ lc_head）语义截断；T2 dev 上伤 cid，关

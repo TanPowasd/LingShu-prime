@@ -16,6 +16,7 @@ import zh_eval as Z  # noqa: E402
 HR = Z.HR
 # 数据集开关（PREREG_ZH 修订 5）：T2R_SET=t2r2 → t2r2/t2r2.json，输出 runs/t2r2（口径不变）
 SET = os.environ.get("T2R_SET", "t2r")
+DURT_LIKE = SET in ("durt", "covr")   # 修订 9：Covr（CovidRetrieval）与 DuRT 同口径
 OUT = os.path.join(HERE, "runs", SET)
 _T = {}
 
@@ -46,15 +47,27 @@ def run_ng(tag, split, root=Z.WT, env=None, limit=100):
         specs.append(([x["text"] for x in st["docs"]], qs))
     rank, score, stats = {}, {}, []
 
+    # 断点续跑（zh-v10；沙箱会重启）：T2R_PART=1 时每库结果存 OUT/_part/<tag>_<split>_<库序>.json，已有则直接读（口径不变）
+    part = os.environ.get("T2R_PART") == "1"
+    pdir = os.path.join(OUT, "_part"); os.makedirs(pdir, exist_ok=True)
+    pf = [os.path.join(pdir, f"{tag}_{split}_{i:02d}.json") for i in range(len(specs))]
+
     def _jobs():
         k = np_ or len(specs)
         for i in range(0, len(specs), k):
-            yield from [Z.job(d, q, root, env) for d, q in specs[i:i + k]]  # 本批全部取完后才建下一批
-    for p, o in _jobs():
-        err = p.communicate()[1]
-        if not os.path.exists(o):
-            raise RuntimeError(err[-3000:])
-        r = json.load(open(o, encoding="utf-8"))
+            todo = [j for j in range(i, min(i + k, len(specs))) if not (part and os.path.exists(pf[j]))]
+            yield from [(j, None, None) for j in range(i, min(i + k, len(specs))) if j not in todo]
+            yield from [(j,) + Z.job(*specs[j], root, env) for j in todo]  # 本批全部取完后才建下一批
+    for j, p, o in _jobs():
+        if p is None:
+            r = json.load(open(pf[j], encoding="utf-8"))
+        else:
+            err = p.communicate()[1]
+            if not os.path.exists(o):
+                raise RuntimeError(err[-3000:])
+            r = json.load(open(o, encoding="utf-8"))
+            if part:
+                json.dump(r, open(pf[j], "w", encoding="utf-8"), ensure_ascii=False)
         rank.update(r["rank"]); score.update(r["score"]); stats.append({"db": r["db_cache"], "w": round(r["write_sec"], 2)})
     out = {"root": root, "env": env, "split": split, "rank": rank, "score": score, "stats": stats}
     Z.dump(os.path.join(OUT, f"{tag}_{split}.json"), out)
@@ -120,7 +133,7 @@ def perq(rank, B, cs):
 def agg(pq):
     R = list(pq.values()); s = lambda k: sum(r[k] for r in R)  # noqa: E731
     return {"primary": round(s("ev_hit") / s("ev_n"), 4), "full": round(statistics.mean(r["full"] for r in R), 4),
-            "excl": round(s("mis_hit") / s("mis_n"), 4), "ev3": round(s("ev3_hit") / max(1, s("ev3_n")), 4),
+            "excl": round(s("mis_hit") / s("mis_n"), 4) if s("mis_n") else None, "ev3": round(s("ev3_hit") / max(1, s("ev3_n")), 4),
             "rel0": round(s("r0_hit") / max(1, s("r0_n")), 4), "n": len(R)}
 
 
@@ -128,8 +141,54 @@ def metrics(tag, split, ids=None):
     r = get(tag, split)
     if r is None:
         return None
+    if DURT_LIKE:
+        return metrics2(tag, split, ids)
     cs = [c for c in cards(split) if ids is None or c["qid"] in ids]
     return {B: agg(perq(r, B, cs)) for B in HR.BUDGETS}
+
+
+def rankq(rank, cs, k=10):
+    """排序指标（修订 8.3）：nDCG@k（二值增益，理想 = min(|E|,k)）、MRR（名单内首个正例倒数名次，无则 0）。"""
+    import math
+    out = {}
+    for c in cs:
+        E = set(c["ev"]); r = list(rank[c["qid"]])
+        dcg = sum(1 / math.log2(i + 2) for i, x in enumerate(r[:k]) if x in E)
+        idcg = sum(1 / math.log2(i + 2) for i in range(min(len(E), k)))
+        mrr = next((1 / (i + 1) for i, x in enumerate(r) if x in E), 0.0)
+        out[c["qid"]] = {"ndcg": dcg / idcg, "mrr": mrr}
+    return out
+
+
+def metrics2(tag, split, ids=None):
+    """DuRT 口径：三档证据召回 / 全证据 / 干扰带入 / 平均取段数 + nDCG@10 / MRR。"""
+    r = get(tag, split)
+    cs = [c for c in cards(split) if ids is None or c["qid"] in ids]
+    m = {B: agg(perq(r, B, cs)) for B in HR.BUDGETS}
+    for B in HR.BUDGETS:
+        m[B]["ntake"] = round(statistics.mean(v["n_take"] for v in perq(r, B, cs).values()), 3)
+    rq = rankq(r, cs)
+    m["ndcg10"] = round(statistics.mean(v["ndcg"] for v in rq.values()), 4)
+    m["mrr"] = round(statistics.mean(v["mrr"] for v in rq.values()), 4)
+    return m
+
+
+def compare2(a, b, split, ids=None):
+    ra, rb = get(a, split), get(b, split)
+    cs = [c for c in cards(split) if ids is None or c["qid"] in ids]
+    q = [c["qid"] for c in cs]; out = {}
+    for B in HR.BUDGETS:
+        pa, pb = perq(ra, B, cs), perq(rb, B, cs)
+        out[f"{B}.primary"] = Z.paired([pa[x]["ev_hit"] for x in q], [pb[x]["ev_hit"] for x in q])
+        out[f"{B}.full"] = Z.paired([pa[x]["full"] for x in q], [pb[x]["full"] for x in q])
+    qa, qb = rankq(ra, cs), rankq(rb, cs)
+    for k in ("ndcg", "mrr"):
+        out[k] = Z.paired([qa[x][k] for x in q], [qb[x][k] for x in q])
+    return out
+
+
+def fmt2(m):
+    return " | ".join(f"{B} p{m[B]['primary']:.3f} f{m[B]['full']:.3f} r0{m[B]['rel0']:.3f} n{m[B]['ntake']:.2f}" for B in HR.BUDGETS) + f" | nDCG10 {m['ndcg10']:.4f} MRR {m['mrr']:.4f}"
 
 
 def compare(a, b, split, ids=None):
@@ -146,6 +205,8 @@ def compare(a, b, split, ids=None):
 
 
 def fmt(m):
+    if DURT_LIKE:
+        return fmt2(m)
     return " | ".join(f"{B} p{m[B]['primary']:.3f} f{m[B]['full']:.3f} x{m[B]['excl']:.3f} e3{m[B]['ev3']:.3f}" for B in HR.BUDGETS)
 
 
