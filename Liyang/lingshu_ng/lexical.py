@@ -172,6 +172,13 @@ class LexicalConfig:
     sf_k: float = 10.0
     sf_n: int = 60
     sf_adj: float = 0.0
+    #: gen-v3 r8/r9 F3（PREREG_GEN_v3 修订 9b 冻结、修订 10 H-CM9 判定）：sf_mx > 0 ⇒ 融合后前 sf_mxn 名按 bge 逐词向量 MaxSim 名次
+    #: 再加 RRF 项 sf_mx/(sf_k + r_mx) 精排（ColBERT 式晚交互）；sf_qp = 1 ⇒ 稠密路查询加 BGE 检索指令前缀；
+    #: 2 ⇒ 只对问句形式加（F3b'）；3 ⇒ 原句与加前缀两路稠密名次各半权重（F3b''）。无语义模型时不生效。
+    #: rel 默认 = 修订 9b 冻结 F3（gen-r9 H-CM9 判定通过）：问句路由前缀 + MaxSim 精排前 20。
+    sf_mx: float = 1.0
+    sf_mxn: int = 20
+    sf_qp: int = 2
     #: 候选精排上限与倒排展开行数预算
     cand_max: int = 3000
     budget: int = 200000

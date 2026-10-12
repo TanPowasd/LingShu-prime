@@ -147,6 +147,32 @@ class OnnxEmbedder:
                 out[i] = h[r]
         return np.vstack(out).astype(np.float32) if out else np.zeros((0, 1), np.float32)
 
+    def token_vecs(self, text: str):
+        """逐词向量 [t, d] float32（last_hidden_state 去 [CLS]/[SEP]，逐词 L2 归一；逐条编码；进程内按文本缓存）。
+        供 densefuse F3a 晚交互 MaxSim（gen r8，思想来源 ColBERT, Khattab & Zaharia 2020）。"""
+        np = self.np
+        c = self.__dict__.setdefault("_tokc", {})
+        v = c.get(text)
+        if v is not None:
+            return v
+        e = self.tok.encode(text)
+        ids = np.array([e.ids], np.int64)
+        feed = {"input_ids": ids, "attention_mask": np.ones_like(ids)}
+        if "token_type_ids" in self.inputs:
+            feed["token_type_ids"] = np.zeros_like(ids)
+        h = self.sess.run(None, feed)[0][0]
+        h = h[1:-1] if h.shape[0] > 2 else h[:1]
+        v = (h / np.maximum(np.linalg.norm(h, axis=1, keepdims=True), 1e-12)).astype(np.float32)
+        if len(c) > 20000:
+            c.clear()
+        c[text] = v
+        return v
+
+    def maxsim(self, query: str, texts: Sequence[str]) -> List[float]:
+        """MaxSim(q, d) = 查询各词对文档各词最大余弦的均值。"""
+        q = self.token_vecs(query)
+        return [float((q @ self.token_vecs(t).T).max(axis=1).astype(self.np.float64).mean()) for t in texts]
+
     def encode(self, text: str) -> List[float]:
         """单条句向量（旧接口 provider.encode）。"""
         return self.encode_batch([text])[0].tolist()
@@ -194,11 +220,22 @@ class OnnxEmbedder:
         np = self.np
         if self.mat is None or not len(self.ids):
             return []
-        s = self.mat @ self.qvec(query)
+        # 逐行独立求点积（逐元素乘 + 行内求和；与矩阵行序、BLAS 分块无关），同分按 id 断开：
+        # 行序随后台编码线程的取批时序而变，矩阵乘与按行号断开都会让同一份库的名次在运行间漂移（gen r8 确定性修复）。
+        q = self.qvec(query)
+        s = (self.mat * q).sum(axis=1, dtype=np.float64)
         k = min(int(limit), len(self.ids))
-        top = np.argpartition(-s, k - 1)[:k]
-        top = top[np.lexsort((top, -s[top]))]
-        return [(self.ids[i], float(s[i])) for i in top]
+        ids = self.ids
+        top = sorted(np.argpartition(-s, k - 1)[:k].tolist() if k < len(ids) else range(len(ids)),
+                     key=lambda i: (-s[i], ids[i]))
+        # argpartition 的边界同分可能截掉 id 更小者：把与第 k 名同分的全部行纳入再截断
+        if k < len(ids):
+            kth = s[top[-1]]
+            got = set(top)
+            extra = [i for i in np.flatnonzero(s == kth).tolist() if i not in got]
+            if extra:
+                top = sorted(top + extra, key=lambda i: (-s[i], ids[i]))[:k]
+        return [(ids[i], float(s[i])) for i in top]
 
 
     def score_ids(self, query: str, ids: Sequence[str]) -> dict:
