@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # SPDX-License-Identifier: LicenseRef-TanPowasd-Proprietary
 """自主学习守卫：learn.py（零模型、零网络、确定性；自带小语料）。
-  python -X utf8 test_learn.py            # 正向 L1–L9
+  python -X utf8 test_learn.py            # 正向 L1–L10
   python -X utf8 test_learn.py --mutate   # 定点变异：每条恰好点红其目标判据
 退出码：0 全绿；1 失败 / 变异未恰好点红；2 锚点不唯一。"""
 import os
@@ -54,6 +54,10 @@ def run():
     check("L7 隐含属性说法可学（挪去了 ⇒ 位置）", got.get("挪去了") == "imp:位置" and a["value"] == "码头", f"{got},{a['value']}")
     check("L8 原表能抽全的语料不学任何东西", Learner().ingest(SEGS[:1]).learned == [])
     check("L9 回顾句不作学习种子", "偷改作" not in got, f"{got}")
+    import json as _j, tempfile as _t
+    p = os.path.join(_t.mkdtemp(), "lex.json"); Learner.save(p, L.lexicon())
+    G = Learner(learn=False, lexicon=Learner.load(p)).ingest(SEGS)
+    check("L10 存盘的说法表在新实例上不学也能用", G.answer(q)["value"] == "300" and G.learned == [], f"{G.answer(q)['value']}")
 
 
 MUTATIONS = [
@@ -62,6 +66,7 @@ MUTATIONS = [
     ("M3 关取值校验", '(hits >= P["min_hits"] or not P["value_check"])', "True"),
     ("M4 偷看未来", "if seq > self.learn_until:", "if False:"),
     ("M5 关隐含属性学习", "if got and got[0]:", "if False:"),
+    ("M7 不载入存盘说法", 'self._add(row["conn"], row["kind"])', "pass"),
     ("M6 回顾句当种子", "if not sent or any(r in sent for r in RETRO) or any(", "if not sent or any("),
 ]
 WANT = {
@@ -72,6 +77,7 @@ WANT = {
     "M4 偷看未来": {"L6 前学后测：截止序号之后的说法不学"},
     "M5 关隐含属性学习": {"L7 隐含属性说法可学（挪去了 ⇒ 位置）"},
     "M6 回顾句当种子": {"L9 回顾句不作学习种子"},
+    "M7 不载入存盘说法": {"L10 存盘的说法表在新实例上不学也能用"},
 }
 
 

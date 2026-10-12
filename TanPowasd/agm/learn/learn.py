@@ -12,11 +12,13 @@
      （隐含属性句：值须落在该隐含属性的取值池里）。晋升后作「改成」类动词并入动词表。
   4. 巩固：晋升后从原始记忆整库重放（编年链是只追加的，重放才能把早先漏抽的句子补进链里），迭代到不动点。
   在线口径：learn_until 只用序号 ≤ 它的记忆学说法，之后的记忆只用已学到的表抽取（前学后测，不偷看未来）。
+跨语料保存：lexicon() 导出学到的说法，Learner(lexicon=…) 在别的语料上直接用（Learner.save/load 存盘）。
 不读答案键、不读生成器日志、不调用模型。只学「改成」类；撤销/并存/裁定类说法不学（边界，见 README）。
 """
 from __future__ import annotations
 
 import collections
+import json
 import math
 import os
 import re
@@ -30,13 +32,43 @@ DEF = dict(min_slots=2, min_hits=1, max_rounds=4, value_check=True)
 
 
 class Learner:
-    def __init__(self, learn=True, learn_until=math.inf, **p):
+    def __init__(self, learn=True, learn_until=math.inf, lexicon=None, **p):
         self.p = {**DEF, **p}
         self.learn, self.learn_until = learn, learn_until
         self.verbs = {k: tuple(v) for k, v in VERBS.items()}
         self.implicit = {k: tuple(v) for k, v in IMPLICIT.items()}
         self.learned = []                    # [(连接词, 类型, 支持槽数, 取值命中数)]
         self.R = None
+        if lexicon:                          # 跨语料保存：载入以前学到的说法
+            for row in lexicon:
+                self._add(row["conn"], row["kind"])
+
+    def _add(self, conn, kind):
+        if kind == "set":
+            if conn not in self.verbs["set"]:
+                self.verbs["set"] = self.verbs["set"] + (conn,)
+        else:
+            f = kind.split(":", 1)[1]
+            if conn not in self.implicit.get(f, ()):
+                self.implicit[f] = self.implicit.get(f, ()) + (conn,)
+
+    def lexicon(self, prior=()):
+        """学到的说法（可存盘、可在别的语料上载入）；prior 是先前载入的表，合并去重。"""
+        seen, out = set(), []
+        for row in list(prior) + [dict(conn=c, kind=k, slots=ns, hits=nh) for c, k, ns, nh in self.learned]:
+            if (row["conn"], row["kind"]) not in seen:
+                seen.add((row["conn"], row["kind"])); out.append(row)
+        return out
+
+    @staticmethod
+    def load(path):
+        with open(path, encoding="utf-8") as f:
+            return json.load(f)
+
+    @staticmethod
+    def save(path, lexicon):
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(lexicon, f, ensure_ascii=False, indent=1)
 
     def _build(self, segs):
         R = Reason(verbs=self.verbs, implicit=self.implicit)
@@ -119,11 +151,7 @@ class Learner:
                 break
             for conn, kind, ns, nh in new:
                 self.learned.append((conn, kind, ns, nh))
-                if kind == "set":
-                    self.verbs["set"] = self.verbs["set"] + (conn,)
-                else:
-                    f = kind.split(":", 1)[1]
-                    self.implicit[f] = self.implicit[f] + (conn,)
+                self._add(conn, kind)
             self.R = self._build(segs)               # 巩固：整库重放
         return self
 

@@ -46,6 +46,7 @@ def _value(rest: str) -> str:
     """值到「，起因是」或句末为止；括号内的逗号不切。"""
     m = REASON.search(rest)
     v = rest[:m.start()] if m else rest
+    v = re.sub(r"^\s*了(?=\s)", "", v)       # 动态助词：「改成了 V」不把「了」算进值
     return v.strip().strip("，,")
 
 
