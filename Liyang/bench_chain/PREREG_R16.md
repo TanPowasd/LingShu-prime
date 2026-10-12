@@ -93,3 +93,7 @@ P1（含全部约束）成立，且回归门全过：tests_ng 全过；gate_rel 
 - 只报告：R15 类长散文（R15 16 窗）墙钟 v13.1 16.11/15.94/15.35 → 15.94s，v16 15.46/15.55/15.77 → 15.55s ⇒ **0.98×**（目标 ≤1.15× 达成；v15 在 r15 时为 ≈1.25×）。
 - **判定：P1（含全部约束）成立。** 进入全面升级判据（回归门）。
 - B 成本：H12 全集 98 次调用 $0.0049；R16 区段 34 次 $0.0010。本轮 LLM：H12 生成 $0.0321 + B $0.0059 ≈ **$0.038**。
+
+## 全面升级与推送（2026-10-13 02:38 CST，chain-r16b 接手收尾）
+- 回归：rel-v1 合入 chain-v1@800b350（fe1af1c → 6814baa，CHANGELOG 补记 6022990）；tests_ng 2993 passed；gate_rel cn/chainzh/hmbzh/t2r 与 rel-v1.3 逐题相同（t2r 文件 19 处差异全是计时字段 stats[*].w）；gen loc_dev/LME dev 以 tag rel14 复跑（中途沙箱重启，断点续跑），逐题 = relhead（loc r@10 .749，LME s@5 .988 t@10 .9036）。h100/h50 检索代理 3胜0负、读者 1胜3负（p .625，不显著）。
+- 全面升级成立。fetch 远端（main bb7f182，TanPowasd 新增 learn/reason/hive_fuse，未动 Liyang/；其 learn 13/13、reason 14/14 自测在同步 v16 后仍过），只改 Liyang/（删 __pycache__；Liyang 内 tests_ng 2992 passed + 1 skipped），推送 **891fb97**，释放锁。

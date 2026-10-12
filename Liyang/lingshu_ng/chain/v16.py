@@ -15,6 +15,8 @@ import os
 import re
 from typing import List, Optional, Set
 
+from . import v17 as _v17
+
 V16 = os.environ.get("LINGSHU_NG_CHAIN_V16", "1").strip().lower() not in ("0", "false", "no", "off")
 WIN = os.environ.get("LINGSHU_NG_CHAIN_V16_WIN", "1") != "0"
 POST = os.environ.get("LINGSHU_NG_CHAIN_V16_POST", "1") != "0"
@@ -148,7 +150,7 @@ def _vals(L, ns, ent, attr, rest, reason, names, sav):
             out = [(v, p) for kind, v, p in toks if kind in ("kv", "id", "func")][:2]   # ASCII 配置记号族内互通（kv 属性写成记号 id）
         return [v for v, _ in sorted(out, key=lambda x: x[1])]
     if want == {"cjk"}:
-        kv = known_vals(L, ns, attr) | (gvals(L, attr) if GLOBV else set()) | ({n for n in names if n != ent and not ent.startswith(n)} if "信任" in attr or "对象" in attr else set())
+        kv = known_vals(L, ns, attr) | (gvals(L, attr) if GLOBV else set()) | ({n for n in names if n != ent and (not ent.startswith(n) or (_v17.V17 and _v17.ENT and ent.startswith(n + "·")))} if "信任" in attr or "对象" in attr else set())
         hits = sorted(((r.find(v), -len(v), v) for v in kv if v in r and v != ent and v not in ent))
         seen, spans = [], []
         for k, nl, v in hits:
@@ -158,7 +160,7 @@ def _vals(L, ns, ent, attr, rest, reason, names, sav):
         if seen:
             return seen
         base = ent.split("·")[0]
-        if (ent, attr) in L.sinfo.pairs or (base, attr) in L.sinfo.pairs or (COLD and (attr in L.sinfo.cur or COLDG) and _COLDLEAD.match(r)):     # 冷启动中文取值：只给 lex 确认的（主体, 属性）
+        if (ent, attr) in L.sinfo.pairs or (base, attr) in L.sinfo.pairs or (COLD and (attr in L.sinfo.cur or COLDG) and (_COLDLEAD.match(r) or _v17.coldlead(r))):     # 冷启动中文取值：只给 lex 确认的（主体, 属性）
             seg = r.split("\x00")[0]
             m = _COLDV.search(seg)
             if m:
@@ -200,11 +202,19 @@ def extract_win(L, sent: str, ns: str, names: List[str], cattrs: Set[str]) -> Op
             break
     reason = _reason_of(t)
     if best is None:
+        if LOCW and "位置" not in cattrs and _v17.COLDANY:
+            cl = _v17.cold_loc(L, t, subs, reason, names)
+            if not cl:
+                return None
+            return {"op": decide_op(t, None, cl[1]), "entity": cl[0], "attr": "位置", "value": cl[1], "alt": None, "reason": reason}
         if not LOCW or "位置" not in cattrs:
             return None
         kv = known_vals(L, ns, "位置")
         if not kv:
-            return None
+            cl = _v17.cold_loc(L, t, subs, reason, names)
+            if not cl:
+                return None
+            return {"op": decide_op(t, None, cl[1]), "entity": cl[0], "attr": "位置", "value": cl[1], "alt": None, "reason": reason}
         for e, a0, a1 in subs:
             after = t[a1:]
             m = re.match(r"^(?:\s|的|已经|已|现在|现|今天|目前|最近|又|也|就|人|这边|那边|now|已经|刚刚|以后|在\s*\S{0,4}之后)*", after, re.I)
@@ -218,7 +228,10 @@ def extract_win(L, sent: str, ns: str, names: List[str], cattrs: Set[str]) -> Op
                 best = (e, "位置", None, hit[0])
                 break
         if best is None:
-            return None
+            cl = _v17.cold_loc(L, t, subs, reason, names)
+            if not cl:
+                return None
+            best = (cl[0], "位置", None, cl[1])
         e, attr, _, v = best
         return {"op": decide_op(t, (L._by_key.get((ns, e, attr)) or [None])[-1], v), "entity": e, "attr": attr, "value": v, "alt": None, "reason": reason}
     e, attr, vpos = best
@@ -388,7 +401,7 @@ def fix_values(L, ev, ns: str, names: List[str]) -> None:
 _LOCSYN = re.compile(r"地点|地方|去向|去处|落点|落脚|下落|方位|所在|住处|办公")
 
 
-def fix_op(L, ev, ns: str, cattrs=()) -> None:
+def fix_op(L, ev, ns: str, cattrs=(), names=()) -> None:
     """非严格事件的动作判别（只用改写后仍保留的语义信号 + 账本上下文）。"""
     if ev.op in ("mention", "rename"):
         return
@@ -397,6 +410,8 @@ def fix_op(L, ev, ns: str, cattrs=()) -> None:
     prev = (L._by_key.get((ns, ev.entity, ev.attr)) or [None])[-1]
     if ev.op == "retire" or ev.attr not in cattrs:
         return                                              # 只改已确认属性上的事件（散文里的误登记不动）
+    if _v17.two_vals(L, ev, ns, names):
+        return
     if ev.op in ("set", "resolve") and _UNDEC.search(body) and _TWOC.search(body):
         from . import v15 as _v15
         o = ev.op
@@ -408,7 +423,7 @@ def fix_op(L, ev, ns: str, cattrs=()) -> None:
             return
         return
     if ev.op == "set":
-        if decide_op(body, prev, ev.value) == "resolve":
+        if decide_op(body, prev, ev.value) == "resolve" or (_v17.resolve_def(body) and not _v17.undecided(body)):
             ev.op = "resolve"
     elif ev.op == "resolve":
         if not _RESOLVE.search(body) and not (prev and prev.op == "unresolve") and not re.search(r"定论|定案|一锤定音|敲定|拍板|落定", body):
@@ -424,11 +439,15 @@ def post(L, ev, ns: str, names: List[str], cattrs: Set[str], strict: bool = Fals
     if strict:                                              # 严格句式事件：只修残片（主体/属性/取值），不改动作
         if STRICT and POST:
             fix_entity(ev, names, ev.quote or ""); subj_swap(L, ev, ns, names); fix_attr(L, ev, ns, cattrs); fix_values(L, ev, ns, names)
+            _v17.fix_entity(L, ev, names); _v17.fix_value(L, ev, ns, names); _v17.fix_attr(L, ev, cattrs)
         return
     if POST:
         fix_entity(ev, names, ev.quote or "")
         subj_swap(L, ev, ns, names)
         fix_attr(L, ev, ns, cattrs)
         fix_values(L, ev, ns, names)
+        _v17.fix_entity(L, ev, names)
+        _v17.fix_value(L, ev, ns, names)
+        _v17.fix_attr(L, ev, cattrs)
     if OPF:
-        fix_op(L, ev, ns, cattrs)
+        fix_op(L, ev, ns, cattrs, names)

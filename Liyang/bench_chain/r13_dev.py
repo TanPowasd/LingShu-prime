@@ -11,7 +11,10 @@ SETS = {"h1": ("heldout", C.DEVDOCS, None), "d2": ("heldout_d2", C.DEVDOCS, None
         "h8": ("heldout_h8", None, "corpus_h8base.json"),
         "h9": ("heldout_h9", None, "corpus_h9base.json"),
         "h10": ("heldout_h10", None, "corpus_h10base.json"),
-        "h11": ("heldout_h11", None, "corpus_h11base.json")}   # chain-r13/r14 单次运行后暴露，降为 dev
+        "h11": ("heldout_h11", None, "corpus_h11base.json"),
+        "h12": ("heldout_h12", None, "corpus_h12base.json"),
+        "h13": ("heldout_h13", None, "corpus_h13base.json"),
+        "h14": ("heldout_h14", None, "corpus_h14base.json")}   # chain-r13/r14 单次运行后暴露，降为 dev
 def main():
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     nbad = int(sys.argv[sys.argv.index("--bad") + 1]) if "--bad" in sys.argv else 0

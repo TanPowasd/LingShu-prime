@@ -22,6 +22,9 @@ from . import llm_extract as _llm
 from . import sav as _sav
 from . import v15 as _v15
 from . import v16 as _v16
+from . import v17 as _v17
+from . import v18 as _v18
+from . import v19 as _v19
 from .extract import MOVE_ATTR, Event, extract, parse_header, split_sentences
 
 __all__ = ["Rec", "Ledger", "Status", "INF"]
@@ -95,6 +98,8 @@ class Ledger:
             keep = []
             for ev in evs:
                 if ev.op not in ("mention", "rename"):
+                    if not _v18.brk_ok(ev, v13_names):        # v18：方括号日志频道名不当主体（须是已知名）
+                        continue
                     _sav.fix_entity(ev, None)
                     if (ev.extra.get("loose") or ev.extra.get("short")) and not _sav.repair_event(ev, ns, v13_names, v13_attrs, self.sinfo, extract):
                         continue
@@ -143,6 +148,10 @@ class Ledger:
             self._v15_pass(ns, ss_v13, seq, ref, out, done)
         if _sav.V13 and _v16.V16 and _v16.WIN:             # v16：仍未登记的句子做账本窗口抽取（已知主体…已确认属性…合形态取值）
             self._v16_pass(ns, ss_v13, seq, ref, out, done)
+        if _sav.V13 and _v18.V18 and _v18.FAM:              # v18：已知锚点下的写法覆盖（规则族见 v18.py）
+            self._v18_pass(ns, ss_v13, seq, ref, out, done)
+        if _sav.V13 and _v19.V19 and "K" in _v19.FAM:          # v19：ASCII 取值冷启动（规则族见 v19.py）
+            self._v19_pass(ns, ss_v13, seq, ref, out, done)
         if _llm.ON:                                          # chain-r12 B 臂：有事件信号但规则/锚定都没登记的句子
             ss = split_sentences(text)
             idx = [i for i, sent in enumerate(ss) if i not in done and _llm.has_signal(sent) and self._known_in(sent, ns)]
@@ -228,17 +237,75 @@ class Ledger:
                     cattrs = set(cattrs) | self._v16_gattrs()
                 attrs2 = [a for a in cattrs if a != "位置" and len(a) >= 2]
                 loc_ok = "位置" in cattrs
-            if not any(a in sent for a in attrs2) and not loc_ok:
+            if not any(a in sent for a in attrs2) and not loc_ok and not _v17.loc_cue(sent, names):
                 continue
             if not any(n in sent for n in names):
                 continue
             a = _v16.extract_win(self, sent, ns, names, cattrs)
+            if a is not None and not _v17.win_ok(sent, a):     # v17：收紧窗口抽取（表格行 / 取值含属性名 / 作废词远离属性）
+                a = None
             if a is None:
                 continue
             ev = Event(op=a["op"], entity=a["entity"], attr=a["attr"], value=a["value"], alt=a["alt"], reason=a["reason"],
                        line=i, quote=sent.strip(), extra={"anchored": True, "sav": True, "v16": True})
             if _llm.ON:
                 self._llm_refine([ev])
+            out.append(self.add_event(ns, ev, seq, ref))
+            done.add(i)
+
+    def _v18_pass(self, ns: str, ss, seq, ref, out, done) -> None:
+        names = cattrs = None
+        for i, sent in enumerate(ss):
+            if i in done or len(sent) > 200:
+                continue
+            if names is None:
+                names, cattrs = self._v13_anchors(ns)
+                if not names:
+                    return
+                cattrs = set(cattrs) | self._v16_gattrs()
+                if not cattrs:
+                    return
+            nm = names
+            if not any(n in sent for n in names):
+                if "E" not in _v18.FAM:
+                    continue
+                x = _v18.cold_entity(sent, names, cattrs, _v18.allvals(self))
+                if not x:
+                    continue
+                nm = [x] + list(names)
+            a = _v18.recall(self, sent, ns, nm, cattrs, lambda e, at: (self._by_key.get((ns, e, at)) or [None])[-1])
+            if a is None and nm is not names:
+                a = _v16.extract_win(self, sent, ns, nm, cattrs)
+                if a is not None and (not _v17.win_ok(sent, a) or a.get("entity") != nm[0]):
+                    a = None
+                if a is not None:
+                    a["fam"] = "E"
+            if a is None:
+                continue
+            ev = Event(op=a["op"], entity=a["entity"], attr=a["attr"], value=a["value"], alt=a["alt"], reason=a["reason"],
+                       line=i, quote=sent.strip(), extra={"anchored": True, "sav": True, "v18": a["fam"]})
+            if _llm.ON:
+                self._llm_refine([ev])
+            out.append(self.add_event(ns, ev, seq, ref))
+            done.add(i)
+
+    def _v19_pass(self, ns: str, ss, seq, ref, out, done) -> None:
+        names = cattrs = None
+        for i, sent in enumerate(ss):
+            if i in done or len(sent) > 200:
+                continue
+            if names is None:
+                names, cattrs = self._v13_anchors(ns)
+                if not names:
+                    return
+                cattrs = set(cattrs) | self._v16_gattrs()
+            if not any(n in sent for n in names):
+                continue
+            a = _v19.cold_ascii(self, ns, sent, names, cattrs, lambda e, at: (self._by_key.get((ns, e, at)) or [None])[-1])
+            if a is None:
+                continue
+            ev = Event(op=a["op"], entity=a["entity"], attr=a["attr"], value=a["value"], alt=a["alt"], reason=a["reason"],
+                       line=i, quote=sent.strip(), extra={"anchored": True, "sav": True, "v19": a["fam"]})
             out.append(self.add_event(ns, ev, seq, ref))
             done.add(i)
 
@@ -344,6 +411,10 @@ class Ledger:
             if nonstrict or _v16.STRICT:
                 names, cattrs = self._v13_anchors(ns)
                 _v16.post(self, ev, ns, names, cattrs, strict=not nonstrict)
+        if _v19.V19 and _v19.FAM and _sav.V13 and ev.op not in ("mention", "rename") and not ev.extra.get("llm"):
+            if _v19.SCOPE == "all" or ev.extra.get("loose") or ev.extra.get("short") or ev.extra.get("anchored"):
+                _n, _c = self._v13_anchors(ns)
+                _v19.apply(self, ev, ns, _n, (set(_c) | self._v16_gattrs()) if ("A" in _v19.FAM) else None)
         r = Rec(ns, ev.entity, ev.attr, ev.op, ev.extra.get("rest") if ev.op == "mention" else ev.value, ev.alt,
                 ev.reason, int(seq), ev.line, ref, ev.quote, ev.rename_from_seq)
         r._anchored = bool(ev.extra.get("anchored"))                       # 不持久化：只影响本进程的锚点学习
