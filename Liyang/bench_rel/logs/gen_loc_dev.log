@@ -1,0 +1,4 @@
+start 09:42:17
+done relhead loc_dev [0, 0]
+{"tag": "relhead", "set": "loc_dev", "n": 383, "n_expected": 383, "mean": {"r@5": 0.6054, "r@10": 0.749, "r@25": 0.8195}, "by_cat.r@10": {"1": 0.4038, "2": 0.9222, "3": 0.3158, "4": 0.84}, "write_ms_per_doc_median": 5.338, "query_ms_median": 14.32}
+EXIT 0 09:42:28

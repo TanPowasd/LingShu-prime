@@ -87,7 +87,7 @@ class MemoryEngine:
     """ng 原生引擎。``path=':memory:'`` 时为进程内私有库。"""
 
     def __init__(self, path: str = ":memory:", identity: str = "协议实例",
-                 role: Role = Role.PRIMARY) -> None:
+                 role: Role = Role.PRIMARY, lexical=None) -> None:
         self.store = Store(path, role)
         self.session_id = uuid.uuid4().hex[:8]
         self.round = 0
@@ -96,6 +96,8 @@ class MemoryEngine:
         self.auto_conflicts = True
         self.self_store = SelfStore(self.store, identity)
         self.retriever = Retriever(self.store, on_hit=self._note_reuse)
+        if lexical is not None:
+            self.set_lexical(lexical)
         self.maintenance = Maintenance(self.store)
         self.skills = SkillBook(self.store)
         self.negative = NegativeMemory(self.store)
@@ -106,6 +108,10 @@ class MemoryEngine:
         self.semantic = None
         #: 环境变量启用提供者失败的原因（缺依赖/模型文件；S4：退回纯词面，不影响引擎构造）
         self.semantic_error: Optional[str] = None
+        #: 可选版本链索引（:mod:`lingshu_ng.chain`）；默认关闭，``LINGSHU_NG_CHAIN=1`` 或 :meth:`enable_chain` 启用
+        self.chain = None
+        if os.environ.get("LINGSHU_NG_CHAIN", "").strip().lower() in ("1", "true", "yes", "on"):
+            self.enable_chain()
         if os.environ.get("LINGSHU_NG_EMBED_MODEL", "").strip():
             try:
                 from .embed import from_env
@@ -140,6 +146,44 @@ class MemoryEngine:
             self.semantic.close()
         self.semantic = SemanticIndex(self.store, provider) if provider is not None else None
         self.retriever.semantic = self.semantic
+
+    def set_lexical(self, config=None, **overrides):
+        """gen-v1 Q10 词级通路配置（:class:`lingshu_ng.lexical.LexicalConfig`、dict 或关键字覆盖）。
+        ``config=None`` 且无覆盖 ⇒ 恢复默认（含 ``LINGSHU_NG_LEXICAL`` 环境覆盖）。返回生效配置。"""
+        from .lexical import LexicalConfig, config_from_env
+        if isinstance(config, LexicalConfig):
+            cfg = config
+        elif isinstance(config, dict):
+            cfg = LexicalConfig().with_overrides(**config)
+        elif config is None:
+            cfg = config_from_env()
+        else:
+            raise TypeError(f"lexical 配置须为 LexicalConfig / dict / None：{type(config).__name__}")
+        if overrides:
+            cfg = cfg.with_overrides(**overrides)
+        self.retriever.lexical = cfg
+        return cfg
+
+    @property
+    def lexical(self):
+        """当前 Q10 词级通路配置。"""
+        return self.retriever.lexical
+
+    def enable_chain(self, on: bool = True, rebuild: bool = False):
+        """启用/关闭版本链索引。启用时建表并载入已登记事件；``rebuild`` 从现存节点全量重登记。"""
+        if not on:
+            self.chain = None
+            return None
+        if self.chain is None:
+            from .chain.index import ChainIndex
+            self.chain = ChainIndex(self.store)
+        if rebuild:
+            self.chain.rebuild()
+        return self.chain
+
+    def chain_answer(self, question: str) -> Optional[Dict]:
+        """版本链结构化作答（现值/时点历史/变更链/四态/缘由，带来源原文）；未启用时返回 None。"""
+        return self.chain.answer(question) if self.chain is not None else None
 
     def approved_dedup_threshold(self) -> float:
         """M5 阈值的持久事实源 = 终裁通过的最新 dedup_static 校验标准（无则默认值；#153 重启不失效）。"""
@@ -185,6 +229,8 @@ class MemoryEngine:
                 self._auto_conflicts(node)
         if self.semantic is not None:
             self.semantic.note(node.id, content)
+        if self.chain is not None:
+            self.chain.note(node.id, content)
         return WriteResult(node.id, "created", layer.value)
 
     def _auto_conflicts(self, node: Node) -> List[Edge]:
@@ -316,8 +362,10 @@ class MemoryEngine:
 
     def recall(self, query: str, limit: int = 10) -> Dict:
         """组合召回 + 负记忆提示（E3）。"""
-        return {"hits": self.retriever.recall(query, limit),
-                "negative": self.negative.check(None, query)}
+        hits = self.retriever.recall(query, limit)
+        if self.chain is not None:
+            hits = self.chain.route_recall(query, hits, limit, self.store.nodes.get_many)
+        return {"hits": hits, "negative": self.negative.check(None, query)}
 
     # ------------------------------------------------------------ 因果
     def _adjacency(self, types: Optional[Sequence[str]]):

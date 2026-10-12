@@ -27,6 +27,10 @@ class Store:
         self.db = Database(path)
         self.policy = LayerPolicy(role)
         self.text = TextIndex(self.db)
+        try:
+            self.text.ensure_lexical()     # gen-v1：旧库补拉丁词干词元（记脏，首读前重建）
+        except sqlite3.Error:              # 只读介质：沿用旧索引（拉丁查询的候选退回原二元组通路之外的空集）
+            pass
         self.nodes = NodeRepo(self.db, self.policy, self.text)
         self.edges = EdgeRepo(self.db, self.policy)
         self.meta = MetaRepo(self.db)

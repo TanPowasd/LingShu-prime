@@ -38,6 +38,7 @@ from collections import Counter
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Set, Tuple
 
 from .. import dedup
+from ..lexical import LEXV, index_words
 from ..layers import LayerPolicy
 from ..novelty import feature_set, novelty_with
 from .db import Database
@@ -66,7 +67,7 @@ def _pack(items: Sequence[str]) -> str:
 def terms_of(content: Optional[str], tags: Sequence[str]) -> Tuple[List[str], int]:
     """(词元表, 正文二元组个数)。"""
     grams = dedup.bigrams(content or "")
-    terms = set(grams) | {TAG_PREFIX + t for t in tags if t}
+    terms = set(grams) | {TAG_PREFIX + t for t in tags if t} | set(index_words(content))
     return sorted(terms), len(grams)
 
 
@@ -79,6 +80,19 @@ class TextIndex:
         self.last_probe: Optional[Tuple[frozenset, Dict[str, int]]] = None
 
     # ------------------------------------------------------------ 维护
+    def ensure_lexical(self) -> bool:
+        """gen-v1 L2：派生倒排的词元格式版本（index_state('lexv')）。旧库（无拉丁词干词元）打开时整体记脏，
+        由首次读前的 flush 批量重建；空库直接登记版本。返回是否记了脏。"""
+        with self.db.tx() as c:
+            r = c.execute("SELECT value FROM index_state WHERE key='lexv'").fetchone()
+            if r is not None and r[0] == LEXV:
+                return False
+            has = c.execute("SELECT 1 FROM node_index LIMIT 1").fetchone() is not None
+            if has:
+                c.execute("INSERT OR IGNORE INTO index_dirty(node_id) SELECT id FROM nodes")
+            c.execute("INSERT OR REPLACE INTO index_state(key, value) VALUES ('lexv', ?)", (LEXV,))
+            return has
+
     def feats_ready(self, c: Any = None) -> bool:
         """新奇特征计数是否已构建（未构建时 node_index.feats 全为 '[]'、feature_df 全 0）。"""
         q = "SELECT 1 FROM index_state WHERE key='feats' AND value='0'"

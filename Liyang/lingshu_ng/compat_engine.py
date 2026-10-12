@@ -232,6 +232,10 @@ class SpacetimeMemoryEngine(WorldFacade, WorldSimFacade, FrameMixin, StubsMixin)
         self._embedding_provider = provider
         self.ng.set_embedding_provider(provider)
 
+    def set_lexical_config(self, config=None, **overrides):
+        """gen-v1：词级检索通路配置（委托 ``MemoryEngine.set_lexical``）。"""
+        return self.ng.set_lexical(config, **overrides)
+
     def recall(self, context_content: str, limit: int = 10) -> List[Tuple[Node, float]]:
         """组合召回（内容/重要度/置信度/近因）。"""
         return self.ng.recall(context_content, limit)["hits"]

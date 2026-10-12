@@ -28,6 +28,10 @@ SELF 快照参与竞争(#201)、召回不看置信度(#29)。
      前 :data:`AUTO_TOP` 名的自动对侧至多 :data:`AUTO_SLOTS` 条补在末位（挤出末位，所随节点保留）。
   Q9 取代降权：被写入期检测判为「已被取代」的旧记载（auto_supersede 边的 target，且取代它的新记载未退役）
      相关度乘 :data:`SUPERSEDED_FACTOR`——旧值仍可检索、仍作为矛盾另一侧随新值交付，只是不再与新值同列。
+  Q10 按语言路由（gen-v1，:mod:`lingshu_ng.lexical`）：以拉丁文字为主的查询（中日韩字符占比 < route_cjk）改走
+     词级通路——分词（词 + 轻量词干 + 停用词）、BM25 长度归一 + SDM 邻近（+ 可选段落项 / 写入序上下文聚合），
+     相关度 = 分数 / 池内最高分；召回第二阶段不再做二元组 idf 重排（R1），R2 是否保留由配置决定。
+     中文查询的通路与 Q1–Q9 逐位不变。``Retriever.lexical`` 为当前配置（``enabled=False`` 全部回到旧通路）。
 """
 from __future__ import annotations
 
@@ -37,6 +41,7 @@ import re
 from typing import Callable, Dict, Iterable, List, Optional, Sequence, Set, Tuple
 
 from .dedup import bigrams, normalize
+from . import headrank as hd, lexical as lx
 from .layers import LayerPolicy
 from .store import Store
 from .store.schema import chunks, placeholders
@@ -44,6 +49,7 @@ from .expansion import TAG_BONUS, Expansion, tags_of
 from .conflict import AUTO_SUPERSEDE, is_auto
 from .semindex import interleave
 from .rerank import Reranker
+from . import assoc as ax
 from .store.textindex import TAG_PREFIX
 from .types import MemoryLayer, Node, now
 
@@ -118,12 +124,53 @@ def relevance(query: str, qg: frozenset, content: str, tags: Iterable[str]) -> f
     return round(s, 6)
 
 
+def corpus_cjk_share(store: Store) -> float:
+    """库的中日韩词元份额 Σdf(中日韩二元组) / Σdf(中日韩二元组 + 拉丁字母词元)（派生倒排 term_df 的两段主键区间求和；
+    纯数字词元不计）。按库缓存，代理键上界漂移超过 2% 才重读（同 :func:`lex_stats`）。空库视为 1.0（按中文处理）。"""
+    mk = store.db.scalar("SELECT MAX(nkey) FROM node_index") or 0
+    k0, share = getattr(store.text, "_cjk_share", (-1, 1.0))
+    if k0 < 0 or abs(mk - k0) > 0.02 * max(1, k0):
+        rng = lambda lo, hi: float(store.db.scalar("SELECT COALESCE(SUM(df), 0) FROM term_df WHERE term >= ? AND term < ?",
+                                                   (lo, hi)) or 0)
+        cj = rng("\u3040", "\u3100") + rng("\u3400", "\u4dc0") + rng("\u4e00", "\ua000") + rng("\uf900", "\ufb00") \
+            + rng("\uac00", "\ud7b0")
+        w = rng(lx.WORD_PREFIX, lx.WORD_PREFIX + "\U0010ffff") - rng(lx.WORD_PREFIX + "0", lx.WORD_PREFIX + ":")
+        share = cj / (cj + w) if cj + w > 0 else 1.0
+        store.text._cjk_share = (mk, share)
+    return share
+
+
+def _route(store: Store, q: str, cfg: "lx.LexicalConfig") -> bool:
+    """Q10 路由：拉丁为主 ⇒ 词级；否则（route_corpus ≥ 0 时）混合查询按库的语言份额判定（v2）。"""
+    if lx.is_latin_query(q, cfg):
+        return True
+    if cfg.route_corpus < 0:
+        return False
+
+    def df_of(terms):
+        """惰性：只有查询真含中日韩 + 非数字拉丁词元时才触及派生索引。"""
+        store.text.flush()
+        return store.text.df(terms)
+
+    def share():
+        """库的中日韩词元份额（先 flush，惰性）。"""
+        store.text.flush()
+        return corpus_cjk_share(store)
+
+    # 路由判定本身无副作用：纯中文/纯数字查询不 flush、不读 term_df（与 v1 的执行路径逐步相同）
+    return lx.mixed_route(q, cfg, df_of, share)
+
+
 def brute_force(store: Store, query: str, layers: Optional[Sequence[MemoryLayer]] = None,
-                limit: int = 20) -> List[Tuple[str, float]]:
-    """暴力全库精排（召回率基线；不走索引）：[(id, 相关度)]。"""
+                limit: int = 20, lexical: Optional["lx.LexicalConfig"] = None) -> List[Tuple[str, float]]:
+    """暴力全库精排（召回率基线；不走索引）：[(id, 相关度)]。拉丁查询按 Q10 词级通路对全部节点精排。"""
     q = (query or "").strip()
-    qg = bigrams(q)
     use = _layer_values(layers)
+    cfg = lexical or lx.config_from_env()
+    if _lex_ready(store) and _route(store, q, cfg):
+        store.text.flush()
+        return lex_rank(store, q, cfg, use, limit, keys=None)[0]
+    qg = bigrams(q)
     out = []
     for nid, content, tags_json, imp, layer in store.db.all(
             "SELECT id, content, tags, importance, layer FROM nodes"):
@@ -141,6 +188,9 @@ def _layer_values(layers: Optional[Sequence[MemoryLayer]]) -> Set[str]:
     return {m.value for m in use}
 
 
+from .lexpath import _lex_ready, lex_stats, lex_rank  # noqa: E402,F401（Q10 主体见 lexpath）
+
+
 class Retriever:
     """内容检索器（只读）。``on_hit`` 回调用于访问计数/飞轮记账。"""
 
@@ -152,8 +202,52 @@ class Retriever:
         self.semantic = None
         #: 可选读路径第三阶段（:class:`lingshu_ng.neural.NeuralStage`；engine 注入，默认无 ⇒ 召回与 c2 逐项相同）
         self.neural = None
-        #: 最近一次检索的展开计划（诊断/测试用）：terms/expanded/rows/approx
+        #: 最近一次检索的展开计划（诊断/测试用）：terms/expanded/rows/approx（Q10 通路另有 lexical=True）
         self.last_plan: Dict = {}
+        #: Q10 词级通路配置（默认 gen-v1 交付值，``LINGSHU_NG_LEXICAL`` 可覆盖；engine.set_lexical 可改）
+        self.lexical: lx.LexicalConfig = lx.config_from_env()
+        #: AX 联想扩展配置（zh-v1；中文通路，``LINGSHU_NG_ASSOC`` 可覆盖）
+        self.assoc: ax.AssocConfig = ax.config_from_env()
+        self.associator = ax.Associator(store, self._retrievable)
+
+    def routes_lexical(self, q: str) -> bool:
+        """该查询是否走 Q10 词级通路。"""
+        return _lex_ready(self.store) and _route(self.store, q, self.lexical)
+
+    def _ranked_lex(self, q: str, layers: Optional[Sequence[MemoryLayer]], limit: int) -> List[Tuple[str, float]]:
+        """Q10 候选展开：查询词元按 df 升序展开倒排（行数预算内），以命中词元 idf 和取前 cand_max 名精排。"""
+        cfg = self.lexical
+        text = self.store.text
+        use = _layer_values(layers)
+        if not use:
+            self.last_plan = {"lexical": True, "terms": 0, "expanded": 0, "rows": 0, "approx": False, "scored": 0}
+            return []
+        _, qtf = lx.query_terms(q, cfg)
+        df = text.df({lx.index_term(t) for t in qtf})
+        n, _ = lex_stats(self.store)
+        pre: Dict[int, float] = {}
+        rows, expanded, approx = 0, 0, False
+        for d, term in sorted((d, t) for t, d in df.items()):
+            if expanded and rows + d > cfg.budget:
+                approx = True
+                break
+            idf = math.log(1.0 + (max(1.0, n) - d + 0.5) / (d + 0.5))
+            for k, g in text.postings_g(term):
+                if g > 0:
+                    pre[k] = pre.get(k, 0.0) + idf
+            rows, expanded = rows + d, expanded + 1
+        tag_terms = list(text.df(self._tag_terms(q)))
+        for t in tag_terms:
+            for k in text.postings(t):
+                pre.setdefault(k, 0.0)
+        keys = sorted(pre, key=lambda k: (-pre[k], k))
+        if len(keys) > cfg.cand_max:
+            approx = True
+            keys = keys[:cfg.cand_max]
+        top, diag = lex_rank(self.store, q, cfg, use, limit, keys=keys)
+        self.last_plan = {"lexical": True, "terms": len(df), "expanded": expanded, "rows": rows, "approx": approx,
+                          "scored": diag["scored"], "head": diag.get("head")}     # head：gen-v3 r6 H2（headrank）
+        return top
 
     # ------------------------------------------------------------ 候选展开
     def _tag_terms(self, q: str) -> List[str]:
@@ -173,8 +267,11 @@ class Retriever:
         return sorted(order)
 
     def _ranked(self, q: str, layers: Optional[Sequence[MemoryLayer]], limit: int) -> List[Tuple[str, float]]:
-        """Q1：按 idf 降序展开倒排，上界剪枝精排，直到可证完成或预算耗尽（见 expansion）。"""
+        """Q1：按 idf 降序展开倒排，上界剪枝精排，直到可证完成或预算耗尽（见 expansion）。
+        拉丁查询改走 Q10 词级通路（:meth:`_ranked_lex`）。"""
         self.store.text.flush()
+        if self.routes_lexical(q):
+            return self._ranked_lex(q, layers, limit)
         use, qg = _layer_values(layers), bigrams(q)
         order = self._plan(q, qg) if use else []
         hit_tags = {t[len(TAG_PREFIX):] for _, t, tag in order if tag}
@@ -241,6 +338,7 @@ class Retriever:
         if self.neural is not None:
             return self._recall_neural(q, limit, exclude)
         hits = self._ranked(q, None, max(50, limit * 5))
+        lex = bool(self.last_plan.get("lexical"))
         light: Dict[str, tuple] = {}
         rows: Dict[str, tuple] = {}
         for part in chunks([nid for nid, _ in hits]):
@@ -251,7 +349,10 @@ class Retriever:
                 rows[r[0]] = (r[6], r[7], r[8])
         # Q7（:mod:`lingshu_ng.rerank` R1）：池内 idf 重排；df 读写入时维护的 term_df
         rel = {nid: sim for nid, sim in hits if nid in light}
-        sims = self.reranker.rerank(q, rel, self.store.text.df(bigrams(q)), rows) if rel else {}
+        if lex:
+            sims = rel                    # Q10：词级通路已含 idf 与长度归一，不再做二元组 idf 重排
+        else:
+            sims = self.reranker.rerank(q, rel, self.store.text.df(bigrams(q)), rows) if rel else {}
         superseded = self._superseded(list(light))
         t = now()
         scored = []
@@ -267,17 +368,30 @@ class Retriever:
             scored.append((nid, round(0.5 * sim + 0.2 * (imp or 0.0) + 0.15 * (conf or 0.0) + 0.15 * recency, 6)))
         scored.sort(key=lambda x: (-x[1], x[0]))
         # Q8（rerank R2）：长文本块之间 MMR 多样化（短节点不受影响）
-        scored = self.reranker.diversify(scored, limit, rows, max(sims.values() or [0.0]))
+        use_ax = not lex and self.assoc.enabled
+        if not lex or self.lexical.diversify:
+            scored = self.reranker.diversify(scored, max(limit, self.assoc.pool) if use_ax else limit, rows,
+                                             max(sims.values() or [0.0]))
+        else:
+            scored = scored[:limit]
+        if use_ax:
+            # Q11（:mod:`lingshu_ng.assoc`）：锚定局部展开 + 联想扩散（中文通路）
+            scored = self.associator.expand(q, scored, rows, self.assoc, set(exclude), limit)[:limit]
+        scored = hd.recall_stage(self, lex, scored)          # gen-v3 r6 H2 头部精排（headrank；hd_at 1，仅词级通路）
         if self.semantic is not None:
             scored = self._fuse_semantic(q, scored, limit, exclude)
-        picked = self._with_opposites(scored[:limit], limit, exclude)
-        nodes = self.store.nodes.get_many([nid for nid, _ in picked])
-        top = [(nodes[nid], s) for nid, s in picked if nid in nodes]
-        if top:
-            self.store.nodes.touch([n.id for n, _ in top])
-            if self.on_hit:
-                self.on_hit([n.id for n, _ in top])
-        return top
+        return self._deliver(self._with_opposites(scored[:limit], limit, exclude))
+
+    def _retrievable(self, ids) -> Set[str]:
+        """ids 中层可召回、未退役者。"""
+        ok: Set[str] = set()
+        use = _layer_values(None)
+        for part in chunks(sorted(set(ids))):
+            for nid, imp, tj, layer in self.store.db.all(
+                    f"SELECT id, importance, tags, layer FROM nodes WHERE id IN ({placeholders(len(part))})", part):
+                if layer in use and not _retired(imp, tj):
+                    ok.add(nid)
+        return ok
 
     def _recall_neural(self, q: str, limit: int, exclude: Set[str]) -> List[Tuple[Node, float]]:
         """N1–N3（:mod:`lingshu_ng.neural`）：混合候选池 → 三路 z 分数融合 → 写入流多样化 → Q6 对侧补全。
