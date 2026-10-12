@@ -1,4 +1,4 @@
-start 12:37:18
+start 15:30:46
 done relhead lme_dev [0, 0]
 {"tag": "relhead", "set": "lme_dev", "n": 83, "n_expected": 83, "mean": {"s@5": 0.988, "s@10": 0.988, "t@10": 0.9036, "t@50": 0.9759}, "by_type.s@5": {"knowledge-update": 1.0, "multi-session": 1.0, "single-session-assistant": 1.0, "single-session-preference": 1.0, "single-session-user": 1.0, "temporal-reasoning": 0.9714}, "write_ms_per_doc_median": 14.763, "query_ms_median": 35.37}
-EXIT 0 12:42:26
+EXIT 0 15:30:47

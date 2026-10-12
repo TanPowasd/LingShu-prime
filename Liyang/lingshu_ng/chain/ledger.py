@@ -17,7 +17,10 @@ from dataclasses import dataclass
 from typing import Dict, Iterable, List, Optional, Sequence, Tuple
 
 from . import anchored as _anc
-from .extract import Event, extract, parse_header, split_sentences
+from . import shorthand as _sh
+from . import llm_extract as _llm
+from . import sav as _sav
+from .extract import MOVE_ATTR, Event, extract, parse_header, split_sentences
 
 __all__ = ["Rec", "Ledger", "Status", "INF"]
 
@@ -66,6 +69,9 @@ class Ledger:
         self._name_index: Dict[str, set] = {}    # 实体名（含别名、提及主语）→ {ns}
         self._ml = 0
         self.lex = _anc.Lexicon()                 # v9：词表锚定二次抽取的运行时锚点
+        self.sinfo = _sav.AttrInfo()              # v13：属性取值形态（「S A V」抽取与取值修复用）
+        self._v13_bl: Dict[str, list] = {}        # v13：ns → 未登记句待查队列（冷启动）
+        self._v13_sig: Dict[str, tuple] = {}
 
     # ------------------------------------------------------------ 写
     def add_text(self, text: str, ref: str, seq: Optional[int] = None, ns: Optional[str] = None) -> List[Rec]:
@@ -79,20 +85,139 @@ class Ledger:
         self._ns_counter[ns] = max(self._ns_counter.get(ns, 0), seq)
         out = []
         evs = extract(text)
+        if _llm.ON:                                          # chain-r12 B 臂（缺省关）：可疑规则结果交受限 LLM 复核
+            self._llm_refine(evs)
+        if _sav.V13:                                         # v13：非严格事件的主体前缀/属性残片/取值形态修复
+            v13_names, v13_attrs = self._v13_anchors(ns)
+            self.sinfo.cur = v13_attrs
+            keep = []
+            for ev in evs:
+                if ev.op not in ("mention", "rename"):
+                    _sav.fix_entity(ev, None)
+                    if (ev.extra.get("loose") or ev.extra.get("short")) and not _sav.repair_event(ev, ns, v13_names, v13_attrs, self.sinfo, extract):
+                        continue
+                keep.append(ev)
+            evs = keep
         for ev in evs:
+            if ev.op == "set" and ev.extra.get("short"):          # v10：未决之后的新值＝裁定（mem0 式更新判定；只作用于速记体事件）
+                prev = self._by_key.get((ns, ev.entity, ev.attr))
+                if prev and prev[-1].op == "unresolve" and _sh.decides(ev.quote):
+                    ev.op = "resolve"
             out.append(self.add_event(ns, ev, seq, ref))
+        done = {ev.line for ev in evs if ev.op != "mention"}
         if _anc.ANCHOR:                                    # v9：句式认不出的句子，用已登记的实体/属性/取值做锚点再试
-            done = {ev.line for ev in evs if ev.op != "mention"}
             for i, sent in enumerate(split_sentences(text)):
                 if i in done:
                     continue
-                a = _anc.extract_anchored(sent, ns, self.lex, self.group)
+                a = _anc.extract_anchored(_sh.pre_normalize(sent) if _sh.SHORT else sent, ns, self.lex, self.group)
                 if a is None:
                     continue
+                if _sh.SHORT and _sh.strong_cue(sent) and not _sh.anchored_ok(sent, a):
+                    continue                                   # v10：速记信号句上的锚定结果先自检（残缺记号、标签词、起因当值、点分名前缀）
+                if _sh.SHORT and _sh.strong_cue(sent):
+                    a["value"] = _sh.norm_event_value(a["value"], a["attr"]); a["alt"] = _sh.norm_event_value(a["alt"], a["attr"])
                 ev = Event(op=a["op"], entity=a["entity"], attr=a["attr"], value=a["value"], alt=a["alt"],
                            reason=a["reason"], line=i, quote=sent.strip(), extra={"anchored": True})
+                if _sav.V13:
+                    _sav.repair_event(ev, ns, v13_names, v13_attrs, self.sinfo, None)
+                if _llm.ON:                                  # r12 B 臂第 2 轮：锚定结果同样过可疑复核
+                    self._llm_refine([ev])
                 out.append(self.add_event(ns, ev, seq, ref))
+                done.add(i)
+        ss_v13 = None
+        if _sav.V13:                                       # v13：账本上下文里的「主体 属性 值」（渠道前缀/无动词/按…走）
+            ss_v13 = split_sentences(text)
+            self._v13_pass(ns, [(sent, i, seq, ref) for i, sent in enumerate(ss_v13) if i not in done], out, done)
+        if _llm.ON:                                          # chain-r12 B 臂：有事件信号但规则/锚定都没登记的句子
+            ss = split_sentences(text)
+            idx = [i for i, sent in enumerate(ss) if i not in done and _llm.has_signal(sent) and self._known_in(sent, ns)]
+            _llm.STATS["trig_none"] += len(idx)
+            for i, r in zip(idx, _llm.run([ss[i].strip() for i in idx])):
+                if isinstance(r, dict):
+                    ev = Event(op=r["op"], entity=r["entity"], attr=r["attr"] or MOVE_ATTR, value=r["value"], alt=r["alt"],
+                               reason=r["reason"], line=i, quote=ss[i].strip(), first=False, extra={"loose": True, "llm": True})
+                    out.append(self.add_event(ns, ev, seq, ref))
+                    done.add(i)
+        if _sav.V13 and _sav.BACKLOG:                      # 冷启动：本段仍未登记的句子进待查队列，锚点（确认实体/属性）增长后重试
+            bl = self._v13_bl.setdefault(ns, [])
+            bl.extend((sent, i, seq, ref) for i, sent in enumerate(ss_v13) if i not in done and len(sent) <= 200)
+            del bl[:-_sav.BACKLOG]
         return out
+
+    def _v13_anchors(self, ns: str):
+        names = sorted({n for n in self._names.get(ns, ()) if n and len(n) >= 2} | {n for n in self.lex.names.get(ns, set()) if len(n) >= 2},
+                       key=len, reverse=True)
+        cattrs = set()
+        for (ns_, _e), at in self.lex.attrs.items():
+            if ns_ == ns:
+                cattrs |= at
+        cattrs |= {a for a in self.sinfo.attrs.get(ns, ()) if self.sinfo.acnt.get((ns, a), 0) >= _sav.ATTR_MIN}
+        return names, cattrs
+
+    def _v13_pass(self, ns: str, items, out, done) -> None:
+        """v13：只用「确认过」的锚点（lex 确认实体/属性 ∪ 句式路径登记≥ATTR_MIN 的属性）；锚定/SAV 结果不回灌锚点。
+        先重试本命名空间待查队列（锚点自上次以来有增长时），再处理本段。"""
+        names, cattrs = self._v13_anchors(ns)
+        if not names or not cattrs:
+            return
+        self.sinfo.cur = cattrs
+        self.sinfo.pairs = {(e, a) for (ns_, e), at in self.lex.attrs.items() if ns_ == ns for a in at}
+        sig = (len(names), len(cattrs), sum(sum(d.values()) for (n_, _a), d in self.sinfo.shapes.items() if n_ == ns))
+        bl = self._v13_bl.get(ns)
+        if bl and self._v13_sig.get(ns) != sig:
+            keep = []
+            for it in bl:
+                if not self._v13_one(ns, it, out, names):
+                    keep.append(it)
+            bl[:] = keep
+        self._v13_sig[ns] = sig
+        for it in items:
+            if self._v13_one(ns, it, out, names):
+                done.add(it[1])
+
+    def _v13_one(self, ns: str, it, out, names) -> bool:
+        sent, i, seq, ref = it
+        if not any(n in sent for n in names):
+            return False
+        a = _sav.extract_sav(sent, ns, names, self.sinfo, None)
+        if a is None:
+            return False
+        prev = self._by_key.get((ns, a["entity"], a["attr"]))
+        if a["op"] == "set" and prev and prev[-1].op == "unresolve" and prev[-1].seq <= seq and _sav._DECIDE.search(sent):
+            a["op"] = "resolve"
+        ev = Event(op=a["op"], entity=a["entity"], attr=a["attr"], value=a["value"], alt=a["alt"],
+                   reason=a["reason"], line=i, quote=sent.strip(), extra={"anchored": True, "sav": True})
+        if _llm.ON:
+            self._llm_refine([ev])
+        out.append(self.add_event(ns, ev, seq, ref))
+        return True
+
+    def _known_in(self, sent: str, ns: str) -> bool:
+        """B 臂触发门：句中出现本命名空间里已登记过事件的实体名（≥2 字）。散文/对话语料里极少命中，控制调用量与误登记。"""
+        if _llm.GATE == "ea2":                             # 实体名 + 本命名空间任一已登记属性
+            if not any(len(n) >= 2 and n in sent for n in self._names.get(ns, ())):
+                return False
+            ats = set().union(*[a for (ns_, _), a in self._attrs.items() if ns_ == ns] or [set()])
+            return any(a and len(a) >= 2 and a != MOVE_ATTR and a in sent for a in ats) or (MOVE_ATTR in ats and _llm.move_signal(sent))
+        if _llm.GATE == "ea":                              # 实体名 + 该实体已登记过的属性（位置属性只需移动类信号）同句出现
+            for n in self._names.get(ns, ()):
+                if len(n) >= 2 and n in sent:
+                    at = self._attrs.get((ns, n), set())
+                    if any(a and len(a) >= 2 and a != MOVE_ATTR and a in sent for a in at) or (MOVE_ATTR in at and _llm.move_signal(sent)):
+                        return True
+            return False
+        names = self._names.get(ns, ()) if _llm.GATE == "names" else [n for n, s_ in self._name_index.items() if ns in s_]
+        return any(len(n) >= 2 and n in sent for n in names)
+
+    def _llm_refine(self, evs) -> None:
+        """B 臂：有事件信号且结果可疑的规则事件，LLM 输出过校验就替换，否则保留规则结果。"""
+        c = [ev for ev in evs if ev.op not in ("mention", "rename") and _llm.suspicious(ev)]     # 规则已认出事件＝有事件信号
+        _llm.STATS["trig_susp"] += len(c)
+        for ev, r in zip(c, _llm.run([ev.quote for ev in c])):
+            if isinstance(r, dict):
+                ev.op, ev.entity, ev.attr, ev.value, ev.alt = r["op"], r["entity"], r["attr"] or MOVE_ATTR, r["value"], r["alt"]
+                ev.reason = r["reason"] or ev.reason
+                ev.extra = dict(ev.extra or {}, loose=True, llm=True)
 
     def add_event(self, ns: str, ev: Event, seq: int, ref: str) -> Rec:
         r = Rec(ns, ev.entity, ev.attr, ev.op, ev.extra.get("rest") if ev.op == "mention" else ev.value, ev.alt,
@@ -132,6 +257,8 @@ class Ledger:
             return
         self._by_key.setdefault((r.ns, r.entity, r.attr), []).append(r)
         self._attrs.setdefault((r.ns, r.entity), set()).add(r.attr)
+        if _sav.V13 and not getattr(r, "_anchored", False):
+            self.sinfo.note(r.ns, r.attr, r.value, r.alt)
         if not getattr(r, "_anchored", False):
             self.lex.learn(r.ns, r.entity, r.attr, r.value, r.alt, strict=getattr(r, "_strict", False))
 

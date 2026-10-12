@@ -1,3 +1,3 @@
-start 12:35:00
+start 15:29:01
 {"test": {"gold6_all": 0.836, "gold6_现值": 0.6667, "mrr_all": 0.7543, "chain_cov": 0.994}, "base_875d838": {"gold6_all": 0.836, "gold6_现值": 0.6667, "mrr_all": 0.7543, "chain_cov": 0.9763}, "identical_to_875d838": false, "pass": true, "n_test": 419}
-EXIT 0 12:35:14
+EXIT 0 15:29:18

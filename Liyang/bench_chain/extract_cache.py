@@ -20,6 +20,10 @@ def version(extract_module) -> str:
         p = os.path.join(d, f)
         if os.path.exists(p):
             h.update(open(p, "rb").read())
+    p = os.path.join(d, "shorthand.py")                 # chain-r10：v10 起抽取器含速记模块，连同开关进版本号（无此文件时版本号与旧版相同）
+    if os.path.exists(p):
+        h.update(open(p, "rb").read())
+        h.update(("SHORT=" + os.environ.get("LINGSHU_NG_CHAIN_SHORT", "1")).encode())
     return h.hexdigest()[:12]
 
 

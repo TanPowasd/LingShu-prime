@@ -94,12 +94,15 @@ def split_clauses(t: str) -> List[str]:
     return out
 
 
+_ADV_BYLEN = sorted(_ADV, key=len, reverse=True)      # r12：预排序（原每次调用都重排，结果相同）
+
+
 def _strip_adv(x: str, tail: bool = True) -> str:
     x = x.strip()
     changed = True
     while changed and x:
         changed = False
-        for a in sorted(_ADV, key=len, reverse=True):
+        for a in _ADV_BYLEN:
             if tail and x.endswith(a) and len(x) > len(a):
                 x = x[: -len(a)].rstrip(); changed = True
             elif not tail and x.startswith(a) and len(x) > len(a):
@@ -206,8 +209,32 @@ _PRE_BLOCK = {"设": "建假预陈铺开增摆", "定": "规决肯否一稳必�
               "搬": "", "住": "", "回": "", "来": "原本后", "落": "降段角坐"}
 
 
+def _bigram_idx(verbs):
+    idx = {}
+    for v in verbs:
+        idx.setdefault(v[:2], []).append(v)
+    return idx
+
+
+_IDX_SET, _IDX_MOVE = _bigram_idx(_SET_V), _bigram_idx(_MOVE_V)
+
+
+def _cands(c: str, idx):
+    """r12：只保留前两字在 c 中出现过的动词（所有动词 ≥2 字，c.find 命中必然前两字出现）——候选集是原集合的超集，_find 结果不变。"""
+    out, seen = [], set()
+    for i in range(len(c) - 1):
+        b = c[i:i + 2]
+        if b in idx and b not in seen:
+            seen.add(b); out.extend(idx[b])
+    return out
+
+
 def _find(c: str, verbs) -> Optional[re.Match]:
     best = None
+    if verbs is _SET_V:
+        verbs = _cands(c, _IDX_SET)
+    elif verbs is _MOVE_V:
+        verbs = _cands(c, _IDX_MOVE)
     for v in verbs:
         k = c.find(v)
         while k > 0 and c[k - 1] in _PRE_BLOCK.get(v[0], ""):
@@ -269,8 +296,9 @@ def _topic_subj(clauses: List[str]):
         if m:                                                   # 「A 这件事上，S …」：话题是属性，不是主体
             a_ = _clean_attr(m.group("a"))
             return (None, a_) if a_ and _ok_attr(a_) else (None, None)
-        if any(_sa(c)[:2]) and all(_sa(c)[:2]):                 # 「S 所在的地方」「S 心里的 A」：交给 _sa
-            s_, a_, _ = _sa(c)
+        sa_ = _sa(c)                                           # r12：_sa 是纯函数，只算一次
+        if any(sa_[:2]) and all(sa_[:2]):                       # 「S 所在的地方」「S 心里的 A」：交给 _sa
+            s_, a_, _ = sa_
             s_ = _clean_subj(s_)
             if s_ and a_ and _ok_ent(s_) and not _starts_with_verb(a_) and a_ not in _ADV and len(a_) <= 6:
                 return s_, a_
@@ -404,10 +432,14 @@ def _split_causal_any(x: str):
 _COPULA = re.compile(r"^(?:(?:" + _ADV_RE + r")\s*)*(?:就是|算是|便是|乃是|是|落在了|落在|定在了|定在)\s*(?P<v>[^，,]+)$")
 
 
+_ALL_V = tuple(_SET_V) + tuple(_RETIRE) + tuple(_MOVE_V)
+
+
 def _starts_with_verb(c: str) -> bool:
     c0 = c.strip()
-    c = _strip_adv(c0, tail=False)
-    return any(x.startswith(v) for x in (c0, c) for v in list(_SET_V) + list(_RETIRE) + list(_MOVE_V))
+    if c0.startswith(_ALL_V):                         # r12：str.startswith(元组) 与逐个 any 等价
+        return True
+    return _strip_adv(c0, tail=False).startswith(_ALL_V)
 
 
 def _split_causal(pre: str):

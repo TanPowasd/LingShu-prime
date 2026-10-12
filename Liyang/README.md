@@ -2,7 +2,9 @@
 
 > **插件测评站**（另一条工作线）：见 [`plugin-eval-site/`](plugin-eval-site/README.md) —— 方案 v3.0 端到端验证结果、判分器缺陷与 v2 候选、多场景考卷 C。
 
-> **2026-10-12 增量升级 rel-v1.1（当前版本）**：英文词级通路新增可选「稠密–稀疏加权融合」`densefuse.py`——只在配置了本地英文句向量模型（如 bge-small-en-v1.5，`LINGSHU_NG_EMBED_MODEL`，需 onnxruntime+tokenizers，权重不随仓库发布）时生效；**没有模型时与 rel-v1 逐位相同**。新的未暴露轮级保留集 LoCoMo-Plus Cognitive（291 题×两口径）上对 TriCue v3、多维 v3×3、无模型 v3.2 全面显著领先（t@10 .244 vs TriCue .021），但相对 rel-v1「同一模型 + LDD 交错」优势小（仅 1/8 项显著，t@10 +.038）。本目录 `python -m pytest tests_ng -q`：**2952 passed, 1 skipped**。详见 [`CHANGELOG_rel-v1.1.md`](CHANGELOG_rel-v1.1.md)。
+> **2026-10-13 增量升级 rel-v1.2（当前版本）**：版本链（`enable_chain`，可选、缺省关）抽取升级为零 LLM v13.1（速记体/渠道前缀/「主体 属性 值」/冷启动待查队列），另附可选受限 LLM 抽取 B（`LINGSHU_NG_CHAIN_LLM=1`，缺省关）。新保留集 H10（换实体/取值/写法，n=604）语料级抽取完全正确率 v13.1 .531 vs 上一版 .270（162 胜 4 负），B .684；键错、误登记、耗时 0.99×、零 LLM 约束均过（新误登记区段事件稀疏、检出力弱，已在 CHANGELOG 注明）。检索主线未改，回归门逐题相同。本目录 `python -m pytest tests_ng -q`：**2980 passed, 1 skipped**。r10–r13 未过判据的历史与未胜项见 [`CHANGELOG_rel-v1.2.md`](CHANGELOG_rel-v1.2.md)。
+>
+> **2026-10-12 增量升级 rel-v1.1**：英文词级通路新增可选「稠密–稀疏加权融合」`densefuse.py`——只在配置了本地英文句向量模型（如 bge-small-en-v1.5，`LINGSHU_NG_EMBED_MODEL`，需 onnxruntime+tokenizers，权重不随仓库发布）时生效；**没有模型时与 rel-v1 逐位相同**。新的未暴露轮级保留集 LoCoMo-Plus Cognitive（291 题×两口径）上对 TriCue v3、多维 v3×3、无模型 v3.2 全面显著领先（t@10 .244 vs TriCue .021），但相对 rel-v1「同一模型 + LDD 交错」优势小（仅 1/8 项显著，t@10 +.038）。本目录 `python -m pytest tests_ng -q`：**2952 passed, 1 skipped**。详见 [`CHANGELOG_rel-v1.1.md`](CHANGELOG_rel-v1.1.md)。
 >
 > **2026-10-12 集成升级 rel-v1**：在下述快照与 neural 增补之上合入英文词级通路 gen-v3.2、中文联想通路 v7.1（可选本地重排模型，缺模型逐位退回零模型 v4）与版本链（可选，默认关）。本目录内 `python -m pytest tests_ng -q`：**2946 passed, 1 skipped**。HMB 检索轨 cid .6804（不变）、原句 .2770→.3701、要点 .5765→.6395；英文 LME test s@5 .5995→.9716、LoCoMo test r@10 .438→.694。未胜项（LME 轮级 t@10 对 TriCue v3 平手、中文误用与 must_exclude 仍输）与集成核对见 [`CHANGELOG_rel-v1.md`](CHANGELOG_rel-v1.md)；分线报告 `REPORT_GEN_v1.md`、`bench_gen/REPORT_GEN_v3.md`、`REPORT_ZH_v1.md`、`REPORT_CHAIN_v1.md`，测评脚本在 `bench_gen/`、`bench_zh/`、`bench_chain/`、`bench_rel/`（不含数据集原文与模型权重）。
 

@@ -63,7 +63,8 @@ def _cov(mode):
 
 
 V7_ROOT = "/workspace/work/ls/chain_v7_snap"     # v7（43e8b3b）lingshu_ng 快照，供 H3 的 v7 对照臂
-V8_ROOT = "/workspace/work/ls/chain_v8_snap"     # v8（0c837a0）快照，供 H4 的 v8 对照臂
+V8_ROOT = "/workspace/work/ls/chain_v8_snap"
+V9_ROOT = "/workspace/work/ls/chain_v9_snap"     # v9（c8798fb）快照，供 H5 的 v9 对照臂（chain-r10）
 
 
 def worker(chain, C, of, extra_env=None, root=None):
@@ -88,6 +89,10 @@ def rank(cond, arm):
         worker(True, C, of, root=V7_ROOT)
     elif arm == "ngchain_v8":
         worker(True, C, of, root=V8_ROOT)
+    elif arm == "ngchain_v9":
+        worker(True, C, of, root=V9_ROOT)
+    elif arm == "ngchain_noshort":
+        worker(True, C, of, {"LINGSHU_NG_CHAIN_SHORT": "0"})
     else:
         worker(arm == "ngchain", C, of)
     print(cond, arm, "rewritten", n, "ok", os.path.exists(of))
@@ -126,7 +131,7 @@ SHOWR = ("present", "history", "chain", "four_state", "reason", "stale", "verbat
 def score(cond):
     C, n = cond_corpus(cond); by_cid = {c["cid"]: c for c in C}
     K = keys_main(); cidx = CM.chain_index()
-    arms = tuple(a for a in ("ng", "ngchain", "bm25", "ngchain_noloose", "ngchain_v7", "ngchain_v8") if os.path.exists(os.path.join(D, f"ranked_{cond}_{a}.json")))
+    arms = tuple(a for a in ("ng", "ngchain", "bm25", "ngchain_noloose", "ngchain_v7", "ngchain_v8", "ngchain_v9", "ngchain_noshort") if os.path.exists(os.path.join(D, f"ranked_{cond}_{a}.json")))
     R = {a: load(os.path.join(D, f"ranked_{cond}_{a}.json")) for a in arms}
     res = {"cond": cond, "rewritten": n, "proxy": {}, "reader": {}, "paired": {}}
     pp = {}
@@ -144,7 +149,7 @@ def score(cond):
             rp[(a, sp)] = reader_perq(base, f"{a}_{sp}", ks)
     for sp in ("dev", "test"):
         ks = [q["qid"] for q in split(K, sp)]
-        for b in [x for x in ("ng", "bm25", "ngchain_noloose", "ngchain_v7", "ngchain_v8") if x in arms]:
+        for b in [x for x in ("ng", "bm25", "ngchain_noloose", "ngchain_v7", "ngchain_v8", "ngchain_v9", "ngchain_noshort") if x in arms]:
             for f in ("gold6", "gold_first", "chain_full"):
                 qs = [q for q in ks if f in pp["ngchain"][q] and f in pp[b][q]]
                 res["paired"][f"{sp}.proxy.{f}.ngchain-{b}"] = sign([pp["ngchain"][q][f] for q in qs], [pp[b][q][f] for q in qs])

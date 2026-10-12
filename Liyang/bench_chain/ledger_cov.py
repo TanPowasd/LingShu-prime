@@ -34,7 +34,7 @@ def cov(rmp, only_docs=None):
     rw = load(rmp)
     if only_docs:
         rw = {k: v for k, v in rw.items() if k.split("#")[0] in only_docs}
-    corpus = load(os.path.join(CH, "corpus", "corpus.json"))
+    corpus = load(os.environ.get("LC_BASE") or os.path.join(CH, "corpus", "corpus.json"))   # chain-r12：H8 用换名后的基础语料
     L = LG.Ledger(); want = {}
     for c in corpus:
         sents = SPLIT.split(c["text"])
@@ -55,6 +55,9 @@ def cov(rmp, only_docs=None):
         g = got.get(k)
         st["none" if not g else "exact" if w in g else "wrong"] += 1
     st["n"] = len(want); st["exact_rate"] = round(st["exact"] / max(1, st["n"]), 4)
+    if os.environ.get("LC_DUMP"):                        # chain-r10：逐句结果（配对符号检验用），键＝cid|改写句
+        json.dump({f"{k[0]}|{k[1]}": ("none" if not got.get(k) else "exact" if w in got[k] else "wrong") for k, w in want.items()},
+                  open(os.environ["LC_DUMP"], "w", encoding="utf-8"), ensure_ascii=False)
     return st
 
 
@@ -89,6 +92,10 @@ if __name__ == "__main__":
         out = {"h1": cov(os.path.join(OUT, "heldout", "rewrite_map.json"), DEVDOCS),
                "d2": cov(os.path.join(OUT, "heldout_d2", "rewrite_map.json"), DEVDOCS),
                "d3": cov(os.path.join(OUT, "heldout_d3", "rewrite_map.json"), DEVDOCS)}
+        if os.environ.get("DEV_R10", "1") != "0":          # chain-r10：H4（已暴露，降为 dev）与 D4/D5
+            out.update({"h4": cov(os.path.join(OUT, "heldout_h4", "rewrite_map.json")),
+                        "d4": cov(os.path.join(OUT, "heldout_d4", "rewrite_map.json"), DEVDOCS),
+                        "d5": cov(os.path.join(OUT, "heldout_d5", "rewrite_map.json"), DEVDOCS)})
         for k, v in out.items():
             print(k, v)
     elif sys.argv[1] == "fp":

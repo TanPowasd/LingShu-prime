@@ -24,6 +24,7 @@ from dataclasses import dataclass, field
 from typing import List, Optional, Tuple
 
 from .loose import extract_loose  # noqa: E402
+from . import shorthand as _sh  # noqa: E402   v10（chain-r10）：速记体/中英夹杂规范化抽取
 
 _QUOTES = str.maketrans("", "", "「」『』*＊")
 _INSANE = re.compile(r"让|使得|促使|导致|因为|由于|之后|之下|最早|现在|如今|已经|后来|最终|终于|一开始|第一次|首次|而")
@@ -131,7 +132,8 @@ def extract(text: str, loose: Optional[bool] = None) -> List[Event]:
     out: List[Event] = []
     for i, sent in enumerate(split_sentences(text)):
         s = sent.strip()
-        sm = s.translate(_QUOTES) if use_loose else s      # 匹配用去引号的句子；quote 仍存原句
+        sn = _sh.pre_normalize(s) if (use_loose and _sh.SHORT) else s   # v11（chain-r10）：消息体前置规范化，quote 仍存原句
+        sm = sn.translate(_QUOTES) if use_loose else s      # 匹配用去引号的句子；quote 仍存原句
         for op, pat in _PATTERNS:
             m = pat.match(sm)
             if not m:
@@ -153,7 +155,26 @@ def extract(text: str, loose: Optional[bool] = None) -> List[Event]:
             break
         if not (out and out[-1].line == i):
             if use_loose:
-                lz = extract_loose(s)
+                strong = _sh.SHORT and _sh.strong_cue(s)
+                lz = _sh.extract_shorthand(s) if strong else None      # 强速记信号：速记规范化优先
+                if lz is None and not strong:
+                    lz = extract_loose(sn)
+                    if lz is None and _sh.SHORT:
+                        lz = _sh.extract_shorthand(s)                   # 弱信号（中文词间空格等）：宽松认不出再试速记
+                        if lz is not None:
+                            lz["_short"] = True
+                elif lz is not None:
+                    lz["_short"] = True
+                if lz is not None and lz.pop("_short", False):
+                    out.append(Event(op=lz["op"], entity=lz["entity"], attr=lz["attr"] or MOVE_ATTR, value=lz["value"],
+                                     alt=lz["alt"], reason=lz["reason"], line=i, quote=s, first=lz["first"],
+                                     extra={"loose": True, "short": True}))
+                    continue
+                if lz is None and strong:
+                    lz = extract_loose(sn)
+                    if lz is not None and _sh.SHORT:
+                        lz["value"] = _sh.norm_event_value(lz["value"], lz["attr"])
+                        lz["alt"] = _sh.norm_event_value(lz["alt"], lz["attr"])
                 if lz is not None:
                     out.append(Event(op=lz["op"], entity=lz["entity"], attr=lz["attr"] or MOVE_ATTR, value=lz["value"],
                                      alt=lz["alt"], reason=lz["reason"], line=i, quote=s, first=lz["first"],
@@ -163,4 +184,9 @@ def extract(text: str, loose: Optional[bool] = None) -> List[Event]:
             if m and m.group("s"):
                 out.append(Event(op="mention", entity=_clean(m.group("s")), attr=None, value=None, line=i, quote=s,
                                  extra={"rest": m.group("rest")}))
+    if use_loose and _sh.SHORT:                                  # v11：速记信号句/经前置规范化的句子，事件取值统一过数值/键值归一
+        for ev in out:
+            if ev.op != "mention" and ev.op != "rename" and (_sh.strong_cue(ev.quote) or _sh.pre_normalize(ev.quote) != ev.quote):
+                ev.value = _sh.norm_event_value(ev.value, ev.attr)
+                ev.alt = _sh.norm_event_value(ev.alt, ev.attr)
     return out
