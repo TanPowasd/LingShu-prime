@@ -1,3 +1,3 @@
-start 09:40:41
-{"root": "/workspace/work/ls/wt-rel", "hmb": {"cid": 0.6804, "quote": 0.3701, "point": 0.6395, "excl": 0.3108, "identical_to_875d838": false, "write_ms_per_chunk": 2.738, "query_ms_median": 13.599, "pass": true}, "chain": {"test": {"gold6_all": 0.836, "gold6_现值": 0.6667, "mrr_all": 0.7543, "chain_cov": 0.994}, "base_875d838": {"gold6_all": 0.836, "gold6_现值": 0.6667, "mrr_all": 0.7543, "chain_cov": 0.9763}, "identical_to_875d838": false, "pass": true, "n_test": 419}, "pass": true, "frozen_clock": "1760000000", "lexical_env": null}
-EXIT 0 09:41:02
+start 12:34:41
+{"root": "/workspace/work/ls/wt-rel", "hmb": {"cid": 0.6804, "quote": 0.3701, "point": 0.6395, "excl": 0.3108, "identical_to_875d838": false, "write_ms_per_chunk": 1.972, "query_ms_median": 6.265, "pass": true}, "chain": {"test": {"gold6_all": 0.836, "gold6_现值": 0.6667, "mrr_all": 0.7543, "chain_cov": 0.994}, "base_875d838": {"gold6_all": 0.836, "gold6_现值": 0.6667, "mrr_all": 0.7543, "chain_cov": 0.9763}, "identical_to_875d838": false, "pass": true, "n_test": 419}, "pass": true, "frozen_clock": "1760000000", "lexical_env": null}
+EXIT 0 12:35:00

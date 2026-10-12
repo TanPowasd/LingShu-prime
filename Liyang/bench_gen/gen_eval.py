@@ -108,6 +108,9 @@ def run(tag, sset, root=None, cfg=None, np_=2, limit=None, sweep=None):
         env.pop(k, None)
     if cfg:
         env["LINGSHU_NG_LEXICAL"] = cfg
+    if os.environ.get("GEN_EMBED"):              # r7：语义第二路（模型目录）与向量缓存
+        env["LINGSHU_NG_EMBED_MODEL"] = os.environ["GEN_EMBED"]
+        env["LINGSHU_NG_EMBED_CACHE"] = os.environ.get("GEN_EMBED_CACHE", "/workspace/work/ls/_shared/models/_vec_cache")
     if os.environ.get("G1_FROZEN_CLOCK"):          # 确定性模式（结构核对用）：clockshim 钉住 time.time 与 os.urandom
         env["PYTHONPATH"] = os.path.join(HERE, "clockshim") + os.pathsep + root
     if os.environ.get("GEN_PATCH_DEFAULT"):
@@ -115,7 +118,7 @@ def run(tag, sset, root=None, cfg=None, np_=2, limit=None, sweep=None):
     if sweep:
         env["GEN_SWEEP"] = open(sweep).read() if os.path.exists(sweep) else sweep
     dump(os.path.join(RUNS, tag, "run_meta.json"), {"root": root, "cfg": cfg, "set": sset, "sweep": env.get("GEN_SWEEP"), "patch_default": env.get("GEN_PATCH_DEFAULT"),
-                                                     "frozen_clock": os.environ.get("G1_FROZEN_CLOCK")})
+                                                     "frozen_clock": os.environ.get("G1_FROZEN_CLOCK"), "embed": os.environ.get("GEN_EMBED")})
     procs = []
     for i in range(np_):
         sh = os.path.join(RUNS, tag, f"{sset}.jobs{i}.jsonl")

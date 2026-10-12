@@ -41,7 +41,7 @@ import re
 from typing import Callable, Dict, Iterable, List, Optional, Sequence, Set, Tuple
 
 from .dedup import bigrams, normalize
-from . import headrank as hd, lexical as lx
+from . import densefuse as dfu, headrank as hd, lexical as lx
 from .layers import LayerPolicy
 from .store import Store
 from .store.schema import chunks, placeholders
@@ -379,7 +379,7 @@ class Retriever:
             scored = self.associator.expand(q, scored, rows, self.assoc, set(exclude), limit)[:limit]
         scored = hd.recall_stage(self, lex, scored)          # gen-v3 r6 H2 头部精排（headrank；hd_at 1，仅词级通路）
         if self.semantic is not None:
-            scored = self._fuse_semantic(q, scored, limit, exclude)
+            scored = dfu.fuse(self, q, scored, limit, exclude, lex)   # gen-v3 r7 F1（sf = 0 ⇒ 原交错）
         return self._deliver(self._with_opposites(scored[:limit], limit, exclude))
 
     def _retrievable(self, ids) -> Set[str]:

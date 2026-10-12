@@ -1,0 +1,439 @@
+........................................................................ [  2%]
+........................................................................ [  4%]
+........................................................................ [  7%]
+........................................................................ [  9%]
+........................................................................ [ 12%]
+........................................................................ [ 14%]
+........................................................................ [ 17%]
+........................................................................ [ 19%]
+........................................................................ [ 21%]
+........................................................................ [ 24%]
+........................................................................ [ 26%]
+........................................................................ [ 29%]
+........................................................................ [ 31%]
+........................................................................ [ 34%]
+........................................................................ [ 36%]
+........................................................................ [ 39%]
+........................................................................ [ 41%]
+........................................................................ [ 43%]
+........................................................................ [ 46%]
+........................................................................ [ 48%]
+........................................................................ [ 51%]
+........................................................................ [ 53%]
+........................................................................ [ 56%]
+........................................................................ [ 58%]
+........................................................................ [ 60%]
+........................................................................ [ 63%]
+........................................................................ [ 65%]
+........................................................................ [ 68%]
+........................................................................ [ 70%]
+........................................................................ [ 73%]
+........................................................................ [ 75%]
+........................................................................ [ 78%]
+........................................................................ [ 80%]
+........................................................................ [ 82%]
+........................................................................ [ 85%]
+........................................................................ [ 87%]
+........................................................................ [ 90%]
+........................................................................ [ 92%]
+........................................................................ [ 95%]
+........................................................................ [ 97%]
+........................................................................ [ 99%]
+.                                                                        [100%]
+=============================== warnings summary ===============================
+../../../../home/sandbox/.local/lib/python3.12/site-packages/_pytest/python.py:124
+  /home/sandbox/.local/lib/python3.12/site-packages/_pytest/python.py:124: PytestRemovedIn10Warning: Passing a non-Collection iterable to parametrize is deprecated.
+  Test: tests_ng/test_perception.py::test_zero_area_always_reject, argvalues type: product
+  Please convert to a list or tuple.
+  See https://docs.pytest.org/en/stable/deprecations.html#parametrize-iterators
+    metafunc.parametrize(*marker.args, **marker.kwargs, _param_mark=marker)
+
+tests_ng/world/test_learner_loop.py::test_loop_matches_legacy[0]
+tests_ng/world/test_learner_loop.py::test_loop_matches_legacy[9]
+tests_ng/world/test_learner_loop.py::test_learner_matches_legacy_except_oracle[0]
+tests_ng/world/test_learner_loop.py::test_learner_matches_legacy_except_oracle[9]
+tests_ng/world/test_learner_loop.py::test_curiosity_matches_legacy[0]
+tests_ng/world/test_learner_loop.py::test_curiosity_matches_legacy[9]
+tests_ng/world/test_learner_loop.py::test_fast_learn_equals_pairwise_reference[0]
+tests_ng/world/test_learner_loop.py::test_fast_learn_equals_pairwise_reference[9]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'e1' 的 avoid 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_learner_loop.py::test_loop_matches_legacy[0]
+tests_ng/world/test_learner_loop.py::test_learner_matches_legacy_except_oracle[0]
+tests_ng/world/test_learner_loop.py::test_curiosity_matches_legacy[0]
+tests_ng/world/test_learner_loop.py::test_fast_learn_equals_pairwise_reference[0]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'e2' 的 seek 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_learner_loop.py: 19 warnings
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'e0' 的 flee 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_learner_loop.py: 13 warnings
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'e1' 的 seek 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_learner_loop.py: 11 warnings
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'e1' 的 flee 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_learner_loop.py::test_loop_matches_legacy[5]
+tests_ng/world/test_learner_loop.py::test_learner_matches_legacy_except_oracle[5]
+tests_ng/world/test_learner_loop.py::test_curiosity_matches_legacy[5]
+tests_ng/world/test_learner_loop.py::test_fast_learn_equals_pairwise_reference[5]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'e3' 的 flee 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_learner_loop.py: 18 warnings
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'e0' 的 avoid 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_learner_loop.py::test_loop_matches_legacy[9]
+tests_ng/world/test_learner_loop.py::test_learner_matches_legacy_except_oracle[9]
+tests_ng/world/test_learner_loop.py::test_curiosity_matches_legacy[9]
+tests_ng/world/test_learner_loop.py::test_fast_learn_equals_pairwise_reference[9]
+tests_ng/world/test_learner_loop.py::test_fast_learn_equals_pairwise_reference[17]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'e3' 的 seek 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_learner_loop.py::test_fast_learn_equals_pairwise_reference[13]
+tests_ng/world/test_learner_loop.py::test_fast_learn_equals_pairwise_reference[19]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'e0' 的 seek 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[0]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_4995436b' 的 avoid 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[0]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_42732703' 的 flee 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[0]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_e76e708c' 的 avoid 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[0]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_30d2d290' 的 avoid 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[0]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_be720607' 的 flee 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[0]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_1f7acd3a' 的 avoid 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[1]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_9c1bb787' 的 avoid 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[1]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_6dd250cb' 的 avoid 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[3]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_f191d225' 的 seek 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[3]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_b209382b' 的 seek 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[4]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_d842f753' 的 flee 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[4]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_dc0de9c9' 的 seek 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[4]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_9b460e55' 的 flee 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[4]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_ee132627' 的 seek 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[5]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_edf30470' 的 flee 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[5]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_cf1faa12' 的 follow 目标 'scene_edf30470' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[5]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_1c988cf6' 的 flee 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[5]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_47704189' 的 follow 目标 'scene_1c988cf6' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[7]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_b5083f8a' 的 seek 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[7]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_a3e0f0b3' 的 seek 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[8]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_b4a39470' 的 flee 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[8]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_73f1acfc' 的 flee 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[9]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_50165b98' 的 flee 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[9]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_90a0ef61' 的 flee 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[10]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_43653d01' 的 avoid 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[10]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_dfda6c15' 的 flee 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[10]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_6236434e' 的 avoid 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[10]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_5ab26bb1' 的 flee 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[11]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_a13a8218' 的 seek 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[11]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_a1a5ed20' 的 follow 目标 'scene_fe625c62' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[11]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_c0a191ec' 的 seek 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[11]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_d61b15ce' 的 follow 目标 'scene_e28c520f' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[12]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_f290c7ab' 的 flee 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[12]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_2f7eddfc' 的 avoid 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[12]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_1e60b8c1' 的 flee 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[12]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_1d511149' 的 avoid 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[13]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_8461fda3' 的 flee 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[13]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_9ae1dd2c' 的 flee 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[14]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_dcce3387' 的 avoid 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[14]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_05d6aec0' 的 avoid 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[16]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_5dd5219a' 的 avoid 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[16]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_6107320e' 的 avoid 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[16]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_81c208fc' 的 avoid 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[16]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_51055414' 的 avoid 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[17]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_d819254c' 的 avoid 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[17]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_d0364899' 的 flee 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[17]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_dd08cfa2' 的 seek 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[17]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_ed85462c' 的 avoid 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[17]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_a5fd7e79' 的 flee 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[17]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_2cc6e710' 的 seek 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[20]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_a3646d72' 的 flee 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[20]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_668dfe33' 的 flee 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[21]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_d63fc53e' 的 avoid 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[21]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_d258fb99' 的 avoid 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[22]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_f529dbea' 的 seek 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[22]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_5650d188' 的 follow 目标 'scene_f529dbea' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[22]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_5cf2a755' 的 seek 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[22]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_7cb70497' 的 follow 目标 'scene_5cf2a755' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[25]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_430369ec' 的 follow 目标 'scene_d01bd483' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[25]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_5c3571e2' 的 follow 目标 'scene_0d46d979' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[26]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_92570c96' 的 seek 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[26]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_8890f097' 的 seek 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[26]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_1654876a' 的 seek 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[26]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_7120050c' 的 seek 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[27]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_0aef8d32' 的 flee 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[27]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_2a40dc8f' 的 flee 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[27]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_82c48081' 的 flee 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[27]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_ffebd79b' 的 flee 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[28]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_968e724f' 的 seek 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[28]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_6ba23e68' 的 seek 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[29]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_fc56ad53' 的 follow 目标 'scene_f49f0a5b' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_matches_legacy_on_same_world[29]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_058ac5e4' 的 follow 目标 'scene_1eba0712' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_infer_patterns_fast_path_equals_pairwise[0]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_af2e7ec4' 的 avoid 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_infer_patterns_fast_path_equals_pairwise[3]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_acafb6c1' 的 seek 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_infer_patterns_fast_path_equals_pairwise[4]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_6ebab45a' 的 flee 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_infer_patterns_fast_path_equals_pairwise[5]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_67f55c64' 的 flee 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_infer_patterns_fast_path_equals_pairwise[7]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_7305cbcb' 的 seek 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_infer_patterns_fast_path_equals_pairwise[8]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_97b3d51b' 的 flee 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_infer_patterns_fast_path_equals_pairwise[9]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_ef7ff20a' 的 flee 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_infer_patterns_fast_path_equals_pairwise[11]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_a086b342' 的 avoid 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_infer_patterns_fast_path_equals_pairwise[12]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_6a52d4c3' 的 flee 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_infer_patterns_fast_path_equals_pairwise[13]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_3c049893' 的 flee 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+tests_ng/world/test_world_model.py::test_infer_patterns_fast_path_equals_pairwise[14]
+  /workspace/work/ls/wt-rel/lingshu_ng/world/scene_sim.py:180: RuntimeWarning: [issue193] 实体 'scene_10c6f9f2' 的 seek 目标 '' 不可解析，本 tick 不行动
+    d = self._decide(e)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+2953 passed, 168 warnings in 68.25s (0:01:08)
+EXIT 0

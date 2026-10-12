@@ -164,6 +164,14 @@ class LexicalConfig:
     #: H2 放置（修订 7a）：0 = 词级通路内（Q4 组合分之前；第 1 次迭代）；1 = 召回最终名次上（Q4 组合分与 R2 多样化之后，
     #: 前 hd_n 名集合严格不变）
     hd_at: int = 1
+    #: gen-v3 r7 F1/F2 稠密–稀疏融合（PREREG_GEN_v3 修订 8/8b；sf = 0 ⇒ 语义第二路仍按 semindex.PATTERN 交错）：只在英文词级通路且
+    #: 注入了语义提供者时生效（:mod:`lingshu_ng.densefuse`）。f = 1/(sf_k + r_词面) + sf_w/(sf_k + r_稠密)；稠密取前 sf_n 名；
+    #: sf_adj > 0 ⇒ 稠密候选把 sf_adj × 自身稠密项传给写入序 ±1 邻轮。rel 默认 = r7 冻结配置（无语义模型时不生效，逐位同 v3.2）。
+    sf: int = 1
+    sf_w: float = 2.0
+    sf_k: float = 10.0
+    sf_n: int = 60
+    sf_adj: float = 0.0
     #: 候选精排上限与倒排展开行数预算
     cand_max: int = 3000
     budget: int = 200000

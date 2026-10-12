@@ -158,6 +158,8 @@ def run_job(job):
 
 def main():
     jf, of = sys.argv[1], sys.argv[2]
+    if os.environ.get("LINGSHU_NG_EMBED_MODEL"):   # r7：评测进程里不给语义后台编码线程降优先级（与其他进程争 CPU 时被饿死、
+        os.setpriority = lambda *a, **k: None       # sync() 等它编完最后一批而停摆）；只影响调度，不影响向量与名次
     _patch_default()
     done = set()
     if os.path.exists(of):

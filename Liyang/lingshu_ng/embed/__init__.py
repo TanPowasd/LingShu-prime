@@ -66,6 +66,7 @@ class OnnxEmbedder:
         self.pos = {}
         self.mat = None
         self.model = os.path.basename(os.path.normpath(model_dir))
+        self.fname = fname
         #: 句级证据向量（可选）：每个节点的句子各编一条，查询时取「最贴题那一句」的余弦
         self.sentences = bool(sentences)
         self.smat = None
@@ -85,7 +86,45 @@ class OnnxEmbedder:
             self._qcache.move_to_end(query)
         return v
 
+    def _cache(self):
+        """可选磁盘向量缓存（gen-v3 r7）：``LINGSHU_NG_EMBED_CACHE`` = 目录 ⇒ sqlite 表，键 = sha1(模型目录名, 文件名, 文本)。
+        只在逐条编码（batch = 1）时启用：此时向量与批组成无关，命中与重算逐位相同；只省重复编码。"""
+        if getattr(self, "_cdb", False) is not False:
+            return self._cdb
+        self._cdb = None
+        d = os.environ.get("LINGSHU_NG_EMBED_CACHE", "").strip()
+        if d and self.batch == 1:
+            import sqlite3
+            os.makedirs(d, exist_ok=True)
+            c = sqlite3.connect(os.path.join(d, "vec.db"), timeout=60, check_same_thread=False)
+            c.execute("PRAGMA journal_mode=WAL")
+            c.execute("CREATE TABLE IF NOT EXISTS v (k TEXT PRIMARY KEY, b BLOB)")
+            self._cdb = c
+        return self._cdb
+
     def encode_batch(self, texts: Sequence[str]):
+        """[n, d] float32，L2 归一；设了缓存时先查缓存，只编码未命中的文本。"""
+        c = self._cache()
+        if c is None or not texts:
+            return self._encode_raw(texts)
+        import hashlib
+        np = self.np
+        keys = [hashlib.sha1(f"{self.model}\0{self.fname}\0{t}".encode("utf-8")).hexdigest() for t in texts]
+        got = {}
+        for i in range(0, len(keys), 500):
+            part = keys[i:i + 500]
+            for k, b in c.execute(f"SELECT k, b FROM v WHERE k IN ({','.join('?' * len(part))})", part):
+                got[k] = np.frombuffer(b, np.float32)
+        miss = [i for i, k in enumerate(keys) if k not in got]
+        if miss:
+            v = self._encode_raw([texts[i] for i in miss])
+            for i, row in zip(miss, v):
+                got[keys[i]] = row
+            c.executemany("INSERT OR IGNORE INTO v VALUES (?, ?)", [(keys[i], got[keys[i]].tobytes()) for i in miss])
+            c.commit()
+        return np.vstack([got[k] for k in keys]).astype(np.float32)
+
+    def _encode_raw(self, texts: Sequence[str]):
         """[n, d] float32，L2 归一（按长度排序分批，减少填充）。"""
         np = self.np
         order = sorted(range(len(texts)), key=lambda i: len(texts[i]))

@@ -1,0 +1,9 @@
+done r7_cand lmelp_hold [0, 0]
+12:22:10 cand lmelp_hold
+done r7_lddh lmelp_hold [0, 0]
+12:22:38 ldd lmelp_hold
+done r7_cand lmelps_hold [0, 0]
+12:30:00 cand lmelps_hold
+done r7_lddh lmelps_hold [0, 0]
+12:30:25 ldd lmelps_hold
+R7HOLDDONE

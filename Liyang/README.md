@@ -2,7 +2,9 @@
 
 > **插件测评站**（另一条工作线）：见 [`plugin-eval-site/`](plugin-eval-site/README.md) —— 方案 v3.0 端到端验证结果、判分器缺陷与 v2 候选、多场景考卷 C。
 
-> **2026-10-12 集成升级 rel-v1（当前版本）**：在下述快照与 neural 增补之上合入英文词级通路 gen-v3.2、中文联想通路 v7.1（可选本地重排模型，缺模型逐位退回零模型 v4）与版本链（可选，默认关）。本目录内 `python -m pytest tests_ng -q`：**2946 passed, 1 skipped**。HMB 检索轨 cid .6804（不变）、原句 .2770→.3701、要点 .5765→.6395；英文 LME test s@5 .5995→.9716、LoCoMo test r@10 .438→.694。未胜项（LME 轮级 t@10 对 TriCue v3 平手、中文误用与 must_exclude 仍输）与集成核对见 [`CHANGELOG_rel-v1.md`](CHANGELOG_rel-v1.md)；分线报告 `REPORT_GEN_v1.md`、`bench_gen/REPORT_GEN_v3.md`、`REPORT_ZH_v1.md`、`REPORT_CHAIN_v1.md`，测评脚本在 `bench_gen/`、`bench_zh/`、`bench_chain/`、`bench_rel/`（不含数据集原文与模型权重）。
+> **2026-10-12 增量升级 rel-v1.1（当前版本）**：英文词级通路新增可选「稠密–稀疏加权融合」`densefuse.py`——只在配置了本地英文句向量模型（如 bge-small-en-v1.5，`LINGSHU_NG_EMBED_MODEL`，需 onnxruntime+tokenizers，权重不随仓库发布）时生效；**没有模型时与 rel-v1 逐位相同**。新的未暴露轮级保留集 LoCoMo-Plus Cognitive（291 题×两口径）上对 TriCue v3、多维 v3×3、无模型 v3.2 全面显著领先（t@10 .244 vs TriCue .021），但相对 rel-v1「同一模型 + LDD 交错」优势小（仅 1/8 项显著，t@10 +.038）。本目录 `python -m pytest tests_ng -q`：**2952 passed, 1 skipped**。详见 [`CHANGELOG_rel-v1.1.md`](CHANGELOG_rel-v1.1.md)。
+>
+> **2026-10-12 集成升级 rel-v1**：在下述快照与 neural 增补之上合入英文词级通路 gen-v3.2、中文联想通路 v7.1（可选本地重排模型，缺模型逐位退回零模型 v4）与版本链（可选，默认关）。本目录内 `python -m pytest tests_ng -q`：**2946 passed, 1 skipped**。HMB 检索轨 cid .6804（不变）、原句 .2770→.3701、要点 .5765→.6395；英文 LME test s@5 .5995→.9716、LoCoMo test r@10 .438→.694。未胜项（LME 轮级 t@10 对 TriCue v3 平手、中文误用与 must_exclude 仍输）与集成核对见 [`CHANGELOG_rel-v1.md`](CHANGELOG_rel-v1.md)；分线报告 `REPORT_GEN_v1.md`、`bench_gen/REPORT_GEN_v3.md`、`REPORT_ZH_v1.md`、`REPORT_CHAIN_v1.md`，测评脚本在 `bench_gen/`、`bench_zh/`、`bench_chain/`、`bench_rel/`（不含数据集原文与模型权重）。
 
 > 本目录由 Liyang（GitHub: Liyang1145）提交，是对上游 [FuRongJun-1999/lingshu](https://github.com/FuRongJun-1999/lingshu) 身体侧记忆引擎的**完全重写**，以及配套的测评脚本与读数。
 > 快照来源：重写仓库分支 `ng` 的已提交 HEAD `875d838bdbba2d686d429e1998edf67cdbb96b62`（2026-10-09 13:00 CST；= iter4 收口 `11a449a` + 规模优化线 `arch-scale` rebase 后快进合入），用 `git archive` 导出，不含任何未提交改动。该提交上 `python -m pytest tests_ng -q`：**2798 passed**（含上游 `tests/` 的开发树）。

@@ -366,3 +366,80 @@ gen_eval.score 对 `cm*` 集新增 hit@5 / hit@10 / all@10 三个逐题字段（
 **冻结 v3.2 = e0f738c + `{"hd_at": 1, "hd_n": 10, "hd_cov": 1.0}`**（H2 = 召回最终前 10 名内按「组合分/最大 + 查询词 idf 协调度」重排）。
 接下来（只跑一次，`v3/q_r6_hold.sh`）：H-CM6 两口径 v3.2、v3@1a4326e、gen-v2@9ffe1e9、TriCue v3、多维 启发同次运行；随后 v3.2 跑已暴露参考 LoCoMo test、REALTALK、LME test W0/W1。
 判定按 R7.4（目标 4 项 + 硬门 A1–A5）；判定前不改 `lingshu_ng/`。
+
+## 修订 8 · 第七轮 r7「LME 型轮级平手攻坚：新轮级金标保留集 + 稠密/稀疏融合」（2026-10-12 17:58 CST；在任何 r7 代码改动、任何新集检索读数之前提交）
+
+任务（转述，用户授权自主技术决策）：LME 轮级 t@10 / s@10 / t@50 对 TriCue v3 只是平手，要在**新的、未暴露的轮级金标保留集**上打成显著胜，其余指标不回退。
+起点 gen-v3.2（HEAD 8afd54e 的 `lingshu_ng/`；= 上次推送 rel-v1 a71fed9 中的 gen 部分）。对手 TriCue v3、多维 v3×3（启发），`prime-test/prime` 只 import。
+
+### R8.1 新集选择（按任务给定的优先序取第一个可用者；理由事先写明）
+
+1. LongMemEval M / oracle：`longmemeval_oracle.json` 与 S 的 500 个 question_id **完全相同**（本机核对 500/500），M（HF 同一发布）也是同一批题；
+   S 的 470 道非弃答题已全部用于 dev/test，30 道弃答题无金标 ⇒ **无未用部分**，不可用。
+2. MSC（Multi-Session Chat）：只有多会话对话与人设，**无问题、无轮级金标** ⇒ 不可用。
+3. PerLTQA（en_v2，Elvin-Yiming-Du/PerLTQA@8d9e198，已下载核对）：对话类问题的 `Reference Memory` 只到**对话（会话）级**（如 `4_0_0#0`），
+   Memory Anchors 的下标是中文原文字符位置、与英文版不对应 ⇒ 无可用轮级金标，不可用（可作将来会话级参考集）。
+4. **LoCoMo 扩展版 = LoCoMo-Plus**（xjtuleeyf/Locomo-Plus@059f4e3，arXiv:2602.10715，ACL 2026；`locomo_plus.json` md5 31027205…）：
+   第六类 Cognitive 共 401 条，每条一段 cue 对话（1–2 轮）按 time_gap 插进 LoCoMo 对话，后续 trigger 与 cue 之间**语义相关、词面脱节**（cue–trigger semantic disconnect）。
+   插入位置由构造决定 ⇒ **cue 轮就是轮级金标**。本项目从未使用过（grep 无记录）⇒ **选用**。
+
+### R8.2 构造与切分（`v3/r7/mk_lp.py`，只 import 官方 `build_conv.py`，不复制）
+
+- 拼接 = 官方 `unified_input.py` 口径：第 i 条拼进 `locomo10[i % 10]`（本机 locomo10.json md5 03e2a21d… 与 Locomo-Plus 仓库副本相同）。
+- 记忆 docs = 拼接后全部轮去掉 trigger 轮；W0 `lmelp_*` = 原文（有图追加 ` [image: caption]`），W1 `lmelps_*` = `speaker: 原文`。查询 = trigger 原文（两口径相同，不带说话人）。
+- 轮级金标 = cue 轮下标；会话 = `S<n>`，cue 轮 = `CUE`（s@k 按去重会话序，同 LME）。指标沿用 gen_eval 的 LME 口径：s@5、s@10、t@10、t@50（另报 t@5、all@10 描述性）。
+- 切分 key = `lp%03d`，md5(key) % 10 ∈ {0,1,2} → **dev 110 条**，其余 → **hold 291 条**（保留集，冻结后只跑一次）。
+- sha1：lmelp_dev 3acbb794…、lmelps_dev f88bc7f7…、meta_*_dev be593cfb…；lmelp_hold 9f76abd5…、lmelps_hold 3e7de12a…、meta_*_hold f09ee58b…。
+- 声明：构造时只看了数据格式与条数统计（关系类型 4×~100、trigger 均为 1 轮、cue 1–2 轮），**没有任何系统的检索读数**；底层 LoCoMo 对话本身已在 loc_dev/loc_test 暴露（查询与金标是新的）。
+
+### R8.3 候选机制（自研，借鉴思想并署名；新配置项默认关 ⇒ 关闭时与 v3.2 逐位相同；只在 Q10 英文词级通路生效，中文查询结构上不经过）
+
+前提：可选语义第二路（`LINGSHU_NG_EMBED_MODEL`，已有 `embed.OnnxEmbedder` + `semindex`）。英文模型 = **bge-small-en-v1.5**（BAAI，MIT；Xenova ONNX int8 导出，md5 0833f542…），
+不进仓库、不推权重，缺模型/缺依赖时逐位回退纯词面。已有融合方式 = `semindex.PATTERN` "LDD" 交错（上次推送版的能力，作对照臂 **v3.2+LDD**）。
+- **F1 稠密–稀疏加权融合**（`sf = 1`；思想来源：BGE-M3 的 dense + sparse 混合打分 [Chen et al. 2024]、RRF [Cormack et al. 2009]）：
+  词面最终名次（v3.2 全部步骤后）与稠密余弦名次（前 `sf_n` 名）做加权 RRF：f = 1/(sf_k + r_L) + sf_w/(sf_k + r_D)，候选 = 两路并集，按 f 排序；分数按非增重新分配。
+- **F2 稠密邻轮传播**（`sf_adj > 0`；思想来源：HippoRAG 式在关联图上扩散 [Gutiérrez et al. 2024] 的一跳特例，图 = 写入序邻接）：
+  稠密前 `sf_n` 名中每个节点把 sf_adj × 自身稠密 RRF 项传给写入序 ±1 邻轮（多段 cue 的应答轮常与 trigger 语义较远）。
+- **F3（只在第 2/3 次迭代、且须写明依据的 dev 读数）**：ColBERT 式晚交互 MaxSim 精排 [Khattab & Zaharia 2020]（用同一 bge-small 的逐词向量，前 N 名内重排）或 bge 查询指令前缀。
+- 工程：`OnnxEmbedder` 加可选磁盘向量缓存（`LINGSHU_NG_EMBED_CACHE`，键 = sha1(模型, 文本)，逐条编码保证确定性；只省重复编码、不改向量）。
+- 第 1 次迭代网格：sf_w ∈ {.5, 1, 2, 4} × sf_k ∈ {10, 60} × sf_n ∈ {60, 200} × sf_adj ∈ {0, .5} = 32 组，另含 v3.2（无语义）与 v3.2+LDD 两个对照。
+
+### R8.4 dev 与选型（只在 dev；事先写定）
+
+- dev = lmelp_dev + lmelps_dev（110×2）+ LoCoMo dev（383，原生 W1）+ LME dev 两口径（83×2）；确定性模式 `G1_FROZEN_CLOCK=1`；对手在 lmelp dev 两口径各跑一次作参照。
+- **目标** S = lmelp dev 上 (t@10 + s@10 + t@50)/3 的两口径平均。
+- **合格**：(a) loc_dev r@10 ≥ v3.2 − .005 且 r@5 对 v3.2 不显著为负；(b) LME dev 两口径 t@10 ≥ v3.2 − .013（至多 1 题）、s@5 ≥ v3.2 − .013；(c) lmelp dev 上任一目标指标对 v3.2+LDD 不显著为负。
+- 合格者取 S 最大；相差 ≤ .003 取更简单者（无 F2 < 有 F2；sf_n 小者；sf_w 接近 1 者）。
+- **冻结条件**：S − S(v3.2) ≥ +.020，S ≥ S(v3.2+LDD)，且 lmelp dev 两口径 t@10 点估计都高于 TriCue v3。不满足 ⇒ 下一次迭代（总共至多 3 次）；三次都不满足 ⇒ 不冻结，保留集不读。
+
+### R8.5 冻结后判定（hold 两口径只跑一次；候选、v3.2、v3.2+LDD、TriCue v3、多维 启发同批；逐题配对 bootstrap 10000 次 seed 0 + 双侧符号检验）
+
+- 「显著」= bootstrap 95% CI 不含 0 **且** 符号检验 p < .05（方向一致）。
+- **目标项**：两口径 × {t@10, s@10, t@50} 共 6 项，候选 − 同口径最强对手臂（均值最高者）。
+- **对上次推送版**：候选 − v3.2（推送默认）与 候选 − v3.2+LDD（推送版带语义的最好可用配置）各 6 项；至少一项显著为正且无一项显著为负 ⇒ 满足「未暴露保留集关键指标显著提升」。
+- **硬门**：tests_ng 全过；HMB cid ≥ .6804；状态链门 = 上次读数；gate_cn 中文逐问名次不变；英文 dev（loc_dev、LME dev）对 v3.2 不回退；新开关关闭时 v3.2 逐位不变（dev 逐题核对）。
+- 参考（已暴露，只报告）：LME test 两口径 t@10/s@10/t@50 候选对 TriCue v3。
+
+### R8.6 纪律
+
+零 LLM（本轮不调用 Cline）；对手 `PYTHONHASHSEED=0` 只 import；每步 commit；单次工具 ≤120 s、长任务后台；打分进程 ≤ 2；不碰 wt-zh / wt-chain。
+
+### 修订 8a · LME dev W1 合格读数改为非门控（2026-10-12 19:40 CST；在任何 LME dev 语义读数被查看之前提交）
+
+- 原因（算力）：语义第二路在 LME 长轮上逐条编码（bge-small，maxlen 512），本机 2 核同时被其他线的 3 个进程占用约 1.7 核，
+  LME dev W0 83 题已跑约 70 分钟仍未完（53/83），W1 还需全量重编码（文本带 "user: " 前缀，向量不能复用），估计 >3 小时；期间沙箱已重启两次。
+- 改动：R8.4 合格条件 (b) 只用 **LME dev W0**（83 题）；LME dev W1（lmes_dev）在冻结后、算力允许时用冻结配置单跑一次，**只报告、不门控**。
+  W1 口径的门控仍由 loc_dev（原生 `speaker: text`）与 lmelps_dev 承担。
+- 依据：r5 已测我方对 LME 写入口径不敏感（W1−W0 t@10 +.003，1:0）；此修订在查看任何 LME dev 语义读数之前作出。其余条款不变。
+
+### 修订 8b · r7 冻结（2026-10-12 20:25 CST；dev 结束、任何候选/LDD hold 读数之前提交）
+
+- 第 1 次迭代 32 组 + LDD 选型（`v3/r7/r7_select.py r7_it1 v3/r7/r7_sweep1.json`，按修订 8a 只门控 LME dev W0；日志 `v3/logs/r7_select_it1.log`）：
+  合格者 S 最大 = `w2_k10_n60_a0`（S .2833）与 `w2_k10_n200_a0`（.2818）相差 ≤ .003 ⇒ 取 sf_n 小者。`w4_*` S 更高但 loc_dev r@10 不合格；`LDD` 本身 loc_dev r@10 .7305 < .749−.005 也不合格（只作对照臂）。
+- **冻结配置**：`{"sf":1,"sf_w":2,"sf_k":10,"sf_n":60,"sf_adj":0}`（F1 加权 RRF，无 F2）。
+- 冻结条件核对：S − S(v3.2) = .2833 − .0652 = +.218 ≥ .020 ✓；S ≥ S(LDD) .2667 ✓；lmelp dev t@10 .2091 / lmelps dev .1727 均 > TriCue v3 .0364 ✓。
+- 合格读数：loc_dev r@10 .7544（v3.2 .749）、r@5 .6019（.6054，不显著）；LME dev W0 s@5 1.000（.988）、t@10 .9518（.9036）。
+- dev 参照（lmelp/lmelps，t@10 s@10 t@50）：候选 .209 .282 .418 / .173 .227 .391；LDD .182 .273 .400 / .164 .218 .364；v3.2 .045 .064 .082 / .045 .064 .091；TriCue v3 .036 .055 .109 / .036 .055 .109；多维 .027 .045 .082 / .000 .027 .073。
+- 执行记录：hold 固定臂（v3.2 快照 8afd54e、TriCue v3、多维 启发）已在冻结前跑完（`v3/r7/q_r7_hold_fixed.sh`，读数未看，同一冻结 jobs，sha1 已复核 9f76abd5 / 3e7de12a）；
+  候选与 LDD 两臂按 `v3/r7/q_r7_hold.sh '<冻结 cfg>'` 只跑一次。lme_dev 分片 1 曾被 OOM 杀（-9）、沙箱重启一次，均按 key 断点续跑，不改题。
+- 第 2/3 次迭代与 F3 不启用（第 1 次已满足冻结条件）。
