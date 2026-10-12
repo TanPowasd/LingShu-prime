@@ -1,0 +1,47 @@
+{
+ "R7": {
+  "n_proc": 100,
+  "n_warm": 114,
+  "warm_p50": 64.08,
+  "warm_p95": 152.89,
+  "cold_p50": 72.04,
+  "cold_p95": 284.48,
+  "load_p50": 556.48,
+  "sem_on": 100,
+  "errors": [],
+  "cm8_dev_warm_p50": 64.08,
+  "cm8_dev_warm_p95": 152.89,
+  "lme_dev_warm_p50": null,
+  "lme_dev_warm_p95": null
+ },
+ "B15L": {
+  "n_proc": 100,
+  "n_warm": 114,
+  "warm_p50": 72.26,
+  "warm_p95": 141.17,
+  "cold_p50": 77.62,
+  "cold_p95": 263.11,
+  "load_p50": 563.18,
+  "sem_on": 100,
+  "errors": [],
+  "cm8_dev_warm_p50": 72.26,
+  "cm8_dev_warm_p95": 141.17,
+  "lme_dev_warm_p50": null,
+  "lme_dev_warm_p95": null
+ },
+ "F4ub": {
+  "n_proc": 100,
+  "n_warm": 114,
+  "warm_p50": 84.74,
+  "warm_p95": 173.82,
+  "cold_p50": 102.5,
+  "cold_p95": 275.51,
+  "load_p50": 520.05,
+  "sem_on": 100,
+  "errors": [],
+  "cm8_dev_warm_p50": 84.74,
+  "cm8_dev_warm_p95": 173.82,
+  "lme_dev_warm_p50": null,
+  "lme_dev_warm_p95": null
+ }
+}

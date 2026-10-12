@@ -89,19 +89,99 @@ def _maxsim(r, q: str, order: List[str], f: Dict[str, float], drank: Dict[str, i
     return sorted(head, key=lambda nid: (-g[nid], pos[nid])) + order[n:]
 
 
+def _speaker(r, q: str, order: List[str], cfg) -> List[str]:
+    """F4（gen r10）：前 sp_n 名中与查询指向一致的轮加 sp/(sf_k + 一致者名次 + 1)，名次分 = 1/(sf_k + 位置 + 1)；只重排这一段。
+    轮的说话人：角色前缀直读；否则伪说话人推断（:func:`lingshu_ng.speaker.doc_speaker`），sp_win > 0 时加写入序邻轮的
+    交替结构平滑 s'(i) = s(i) + Σ_d (−1)^d 0.7^d (s(i−d) + s(i+d))（相邻两轮通常换人说话）。"""
+    from .speaker import doc_speaker, has_role, query_intent
+    want = query_intent(q)
+    n = min(int(cfg.sp_n), len(order))
+    if not want or n < 2:
+        return order
+    head = order[:n]
+    info: Dict[str, Tuple[int, str]] = {}
+    for part in chunks(head):
+        for nid, rid, c in r.store.db.all(f"SELECT id, rowid, content FROM nodes WHERE id IN ({placeholders(len(part))})", part):
+            info[nid] = (rid, c or "")
+    win = max(0, int(cfg.sp_win))
+    nb_txt: Dict[int, str] = {}
+    if win:
+        need = sorted({info[nid][0] + d for nid in head if nid in info and not has_role(info[nid][1])
+                       for d in range(-win, win + 1) if d})
+        for part in chunks(need):
+            for rid, c in r.store.db.all(f"SELECT rowid, content FROM nodes WHERE rowid IN ({placeholders(len(part))})", part):
+                nb_txt[rid] = c or ""
+    match = []
+    for nid in head:
+        if nid not in info:
+            continue
+        rid, c = info[nid]
+        s = float(doc_speaker(c))
+        if win and not has_role(c):
+            for d in range(1, win + 1):
+                sg = -1.0 if d % 2 else 1.0
+                for x in (rid - d, rid + d):
+                    if x in nb_txt:
+                        s += sg * (0.7 ** d) * doc_speaker(nb_txt[x])
+        if s * want > 0:
+            match.append(nid)
+    if not match:
+        return order
+    k, w = float(cfg.sf_k), float(cfg.sp)
+    mr = {nid: i for i, nid in enumerate(match)}
+    pos = {nid: i for i, nid in enumerate(head)}
+    g = {nid: 1.0 / (k + pos[nid] + 1) + (w / (k + mr[nid] + 1) if nid in mr else 0.0) for nid in head}
+    return sorted(head, key=lambda nid: (-g[nid], pos[nid])) + order[n:]
+
+
+def dense_queries(cfg, q: str) -> List[str]:
+    """稠密路实际编码的查询文本（与 fuse 内的路由逐字一致）。"""
+    qp = int(getattr(cfg, "sf_qp", 0) or 0)
+    if qp == 2:
+        return [QP + q] if is_question(q) else [q]
+    if qp == 3:
+        return [q, QP + q]
+    return [QP + q] if qp else [q]
+
+
+def prefetch(r, q: str):
+    """F3P（gen r10，纯时延优化）：召回一开始就在后台线程把稠密路查询向量与 MaxSim 查询逐词向量算好放进提供者缓存，
+    与词面通路并行（onnxruntime 推理释放 GIL）。值与现算逐位相同（同一编码函数），名次不变。
+    只在 sf ≠ 0、注入了带 ``prefetch_query`` 的提供者、且查询以拉丁字母为主（英文词级通路的必要条件）时启动；否则 None。"""
+    cfg = r.lexical
+    sem = getattr(r, "semantic", None)
+    if sem is None or not getattr(cfg, "sf", 0) or getattr(sem, "error", None) is not None:
+        return None
+    prov = getattr(sem, "provider", None)
+    if prov is None or not hasattr(prov, "prefetch_query"):
+        return None
+    letters = sum(1 for ch in q if ch.isalpha())
+    if not letters or sum(1 for ch in q if ch.isascii() and ch.isalpha()) * 2 < letters:
+        return None
+    toks = [q] if getattr(cfg, "sf_mx", 0) > 0 and hasattr(prov, "maxsim") else []
+    dq = dense_queries(cfg, q)
+
+    def _go():
+        try:
+            with sem._plock:
+                prov.prefetch_query(dq, toks)
+        except Exception:  # 外部推理件异常不可枚举：预取失败只是不省时，fuse 照常现算
+            return
+
+    import threading
+    th = threading.Thread(target=_go, name="ng-qprefetch", daemon=True)
+    th.start()
+    return th
+
+
 def fuse(r, q: str, scored: List[Tuple[str, float]], limit: int, exclude: Set[str],
          lex: bool) -> List[Tuple[str, float]]:
     """语义第二路融合入口（retrieval.recall 调用）。"""
     cfg = r.lexical
     if not (lex and getattr(cfg, "sf", 0)):
         return r._fuse_semantic(q, scored, limit, exclude)
-    qp = int(getattr(cfg, "sf_qp", 0) or 0)
-    if qp == 2:                       # F3b'：只对问句形式的查询加指令前缀（陈述式触发语不加）
-        qs = [QP + q] if is_question(q) else [q]
-    elif qp == 3:                     # F3b''：原句与加前缀各检索一次，两份稠密名次各占一半权重
-        qs = [q, QP + q]
-    else:
-        qs = [QP + q] if qp else [q]
+    # F3b'（sf_qp 2）：只对问句形式的查询加指令前缀；F3b''（3）：原句与加前缀各检索一次，两份稠密名次各占一半权重
+    qs = dense_queries(cfg, q)
     k, w = float(cfg.sf_k), float(cfg.sf_w)
     lists = []
     for qd in qs:
@@ -143,6 +223,8 @@ def fuse(r, q: str, scored: List[Tuple[str, float]], limit: int, exclude: Set[st
     order = sorted(f, key=lambda n: (-f[n], lrank.get(n, len(lrank)), drank.get(n, len(drank)), n))[:limit]
     if getattr(cfg, "sf_mx", 0) > 0:
         order = _maxsim(r, q, order, f, drank, lrank, cfg)
+    if getattr(cfg, "sp", 0) > 0:
+        order = _speaker(r, q, order, cfg)
     vals = sorted((s for _, s in scored), reverse=True)
     cos = dict(dense)
     if not vals:

@@ -337,6 +337,7 @@ class Retriever:
             return []
         if self.neural is not None:
             return self._recall_neural(q, limit, exclude)
+        pf = dfu.prefetch(self, q)        # gen r10 F3P：查询向量与词面通路并行编码（纯时延；sf = 0 或无提供者时 None）
         hits = self._ranked(q, None, max(50, limit * 5))
         lex = bool(self.last_plan.get("lexical"))
         light: Dict[str, tuple] = {}
@@ -379,6 +380,8 @@ class Retriever:
             scored = self.associator.expand(q, scored, rows, self.assoc, set(exclude), limit)[:limit]
         scored = hd.recall_stage(self, lex, scored)          # gen-v3 r6 H2 头部精排（headrank；hd_at 1，仅词级通路）
         if self.semantic is not None:
+            if pf is not None:
+                pf.join()
             scored = dfu.fuse(self, q, scored, limit, exclude, lex)   # gen-v3 r7 F1（sf = 0 ⇒ 原交错）
         return self._deliver(self._with_opposites(scored[:limit], limit, exclude))
 

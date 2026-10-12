@@ -573,3 +573,94 @@ gen_eval.score 对 `cm*` 集新增 hit@5 / hit@10 / all@10 三个逐题字段（
   候选−R7：**r@5 +.024（36:5，p<1e-4，CI [+.013,+.036]）、r@10 +.014（19:2，p .0002，CI [+.007,+.022]）——Holm 后均拒绝**；r@25/hit@5/hit@10/all@10 亦显著+，无负。
 - 候选对 v3.2、TriCue v3、多维 两口径 12 项全部显著为正。dev（r8 it2 逐题）无任何显著负（loc_dev r@5/r@25、CM8s-dev r@5/r@25/hit@5 显著+）。
 - **判定：gen_upgrade = true**（关键项族 4 检验中 W1 的 r@5、r@10 经 Holm 显著为正；W0 关键项未达显著——如实记录：增益在 speaker 前缀口径更明显）。进入硬门（合入 wt-rel 后）。
+
+## 修订 11 · 第十轮 r10「新未暴露保留集 H-CM10 + 带模型查询延迟验收 + W0 / 头部改进」（2026-10-13 03:30 CST；在下载 H-CM10 源文件、任何 H-CM10 读数、任何 r10 候选代码与读数之前提交）
+
+任务（转述，用户授权自主技术决策）：rel-v1.5（推送 d8ae585c，gen F3 缺省开、只在注入 bge 时生效）的弱项 = W0（无 speaker 前缀）r@10 不显著、LME 轮级 t@10 对 TriCue 平手、带模型查询延迟未验收。
+起点 = gen-v1 HEAD 985b69d。**比较基准臂 B15 = rel-v1.5 带模型默认 = F3 `{"sf":1,"sf_w":2,"sf_k":10,"sf_n":60,"sf_adj":0,"sf_qp":2,"sf_mx":1,"sf_mxn":20}`**（同批另跑 R7 与 v3.2 无模型作参考）。
+
+### R11.1 新保留集 H-CM10（来源、许可、抽样、排除——事先写定）
+- 来源：HF `Salesforce/ConvoMem` core_benchmark/pre_mixed_testcases 同五个类别目录（ue1 user_evidence/1、ue2 user_evidence/2、af1 assistant_facts_evidence/1、pe1 preference_evidence/1、ic2 implicit_connection_evidence/2），
+  许可 **CC BY-NC 4.0**（只作非商业评测；数据原文不进任何推送树）。
+- 批次：**batched_037 + batched_036**（尚未用过；000–037 中最靠后、上下文最长的两批：远端 ue1 037/036 约 24 MB、af1 约 26 MB，与 038 的 27/29 MB 相近）。
+  若两批合计去重后 < 800 题，按事先次序追加 batched_035（同规则），不看任何检索读数。048/049 单文件过大（本机 7 GB），不用。
+- 构造 `v3/r10/mk_cm_r10.py` = 直接调用 `mk_cm_r5.build`（证据逐字对齐、任一证据对不上即剔除；每文件 random.Random(5) 打乱后取 40 例），先 037 后 036（后者另排除前者）。
+- **排除清单（已暴露 ConvoMem 集，题面或证据文本组任一相同即剔除）**：cm_hold、cm4_dev、cm4_hold、cm5_hold、cm5_dev、cm6_hold、cm8_hold、cm8_dev、cm9a_hold、cm9b_hold（= cm9_hold）。
+- 两种写入口径：W0 = 消息原文（cm10_hold），W1 = `speaker: 原文`（cm10s_hold）。构造后只记录计数与 sha1（修订 11a），**无任何检索读数**直到冻结后判定。
+- 声明：H-CM10 与 H-CM8/9 同源同型（合成、第一人称问句、LME 型轮级金标；hit@k = LME t@k 同型量），上下文稍短（预计每 job 中位 ~190 轮），故作为「同分布新样本」而非 OOD 证据。
+
+### R11.2 带模型查询延迟（验收项，事先写定）
+- 工具 `v3/r10/lat_model.py`：同一批 job，各臂在独立子进程中交替执行（ABAB…抵消负载漂移），G1_FROZEN_CLOCK=1，单线程打分进程（不与其他重进程并行；他线进程若在跑，报告当时 load）。
+  - 语料：已暴露 cm8_dev 的前 40 job（W0）+ lme_dev 前 10 job（W0），各 2 轮。
+  - **热启动** = 写入全部文档（含稠密向量编码，向量缓存关闭）后逐题 recall 的单题耗时；**冷启动** = 新进程中 引擎构造 + 模型加载 + 写入完成后的第 1 次 recall（只计第 1 次 recall 本身，另报模型加载耗时）。
+  - 臂：v3.2（无模型）、R7、B15（F3）、候选。报告 p50 / p95（热）、冷首查 p50 / p95、模型加载 p50。
+- **容忍上限（硬门）**：候选 热 p95 ≤ 1.5 × R7 热 p95，且 冷首查 p95 ≤ 1.5 × R7 冷首查 p95。B15 自身对 R7 的同口径读数如实报告（若 B15 已超上限，记为 rel-v1.5 的未验收项，候选仍须满足对 R7 的上限）。
+- 预检（已做，非判定）：bge-reranker-base 量化 ONNX 交叉编码 10 段 ≈ 3–4 s（本机 CPU，他线并行），远超任何合理上限 ⇒ 交叉编码头部重排不进候选。
+
+### R11.3 候选方向（自研、可开关、缺省关；思想来源署名）
+- **F4 说话人意图先验**（`sp > 0`）：查询端按词面判定指向（问「你/助手说过、推荐过」⇒ 助手；第一人称陈述/提问 ⇒ 用户；其余不判），文档端说话人：有 `user:`/`assistant:` 等前缀时直接读；
+  无前缀（W0）时用**伪说话人推断**——只用文本结构特征（长度、列表/markdown 标记、第二人称/客套用语、第一人称占比）的固定规则，不看位置奇偶、不用任何数据集字段。
+  对融合后前 sp_n 名中与指向一致者加 RRF 项 sp/(sf_k + r)（r = 该段在一致者中的名次），只重排前 sp_n 名。思想来源：说话人感知检索（如 LoCoMo/LongMemEval 论文中 user/assistant 角色区分的分析）；本实现自研。
+- **F5 RRF 路权按查询类型路由**（`sf_wq`）：问句 / 陈述两类各用一个稠密路权（思想：可学习的融合权重，参见 Bruch et al. 2023「An Analysis of Fusion Functions for Hybrid Retrieval」；此处只在 dev 上选两档常数，不训练）。
+- 不做：交叉编码重排（延迟）、邻轮/PPR 扩散（r7 F2 dev 全负）。
+- 网格与选型规则在修订 11b（第 1 次迭代登记）中写定，**dev 至多 2 次迭代，只用已暴露集**：CM8-dev、H-CM8、H-CM9（两口径）、loc_dev、LME dev、lmelp(s)_dev。
+
+### R11.4 判定（冻结后 H-CM10 两口径只跑一次；候选、B15、R7、v3.2 同批；逐题配对 bootstrap 10000 次 seed 0 的 95% CI + 双侧符号检验）
+- **关键项族（4 检验）** = {r@5, r@10} × {W0, W1}，对 **B15**，Holm–Bonferroni（α = .05，按符号检验 p 排序）；「显著为正」= Holm 拒绝 且 CI 下界 > 0 且 胜 > 负。
+- 跟踪项：两口径 × {r@5, r@10, r@25, hit@5, hit@10, all@10} = 12 项；「显著为负」= 未校正 CI 上界 < 0 且 p < .05 且 负 > 胜。另：候选 − v3.2 无显著负。
+- **全面升级判据**：至少一个关键项显著为正；12 跟踪项无显著负；延迟硬门（R11.2）通过；dev（冻结时读数）LME dev W0 t@10/s@5、loc_dev r@10 无显著负；合入 wt-rel 后 tests_ng 全过、gate_rel 六段（HMB cid ≥ .6804；链门 gold6 ≥ .836、mrr ≥ .7543、cov ≥ .994）全过、rel 无模型路径逐位不变。
+- 若 dev 两次迭代均无候选满足冻结条件 ⇒ 不读 H-CM10（保留为未暴露集），本轮只交付延迟验收与负结果。
+- 无论结论，H-CM10 读过即暴露。
+
+### R11.5 纪律
+LLM 预算 ≤ $0.3（本轮计划 $0）；打分进程 ≤ 1；单次工具 ≤ 120 s，长任务 setsid nohup + 断点续跑；中间文件 /workspace（/tmp/gen_jobs、/tmp/gen_runs 链到 /workspace/work/ls/_shared/gen_tmp）；不碰 wt-zh / wt-chain；每步 commit。
+
+### 修订 11a · H-CM10 构造结果（2026-10-13 03:36 CST；只看过结构与计数，无任何检索读数）
+- 037+036 去重后 400 job / **759 题 < 800** ⇒ 按修订 11 事先规则追加 batched_035（同规则，后者另排除前两部分）。排除的已暴露题面 / 证据组 7050 / 7050。
+- **H-CM10 = 600 job、1141 题**（037 部分 378、036 部分 381、035 部分 382；ue1 272 / ue2 168 / af1 305 / pe1 253 / ic2 143；多证据 311）；每 job 52–320 轮（中位 201）。
+- sha1：cm10_hold.jsonl 5f51249a7428be0a78c89e378b5f9c6c0360baf9、cm10s_hold.jsonl 8e6415e9ae1ae3fb16c522d4f21d3e1e5fcb8772、meta_cm10_hold.json 13840d6c9d6f272fd1a0142f7e1f9c4614cdcfa5、ids_cm10_hold.json c20bdd416011b1932834f9c7a676997611b6ae18。
+  源文件 md5 `v3/r10/cm10_md5.json`；构造输出 `v3/r10/mk_cm_r10.out.json`。
+
+### 修订 11b · r10 第 1 次迭代登记（2026-10-13 03:40 CST；在任何 F4 检索读数之前提交）
+- 代码：F3L（gen-v1@38ae51d：写入时顺带保存逐词向量，逐位等于现算，只省 MaxSim 查询时延）；F4（gen-v1@9edf6b7：`lingshu_ng/speaker.py` + `densefuse._speaker`，sp/sp_n/sp_win，缺省关）。
+  F4 伪说话人规则在 dev 上的覆盖/准确率（只为确定规则形式，已暴露集 W1 角色前缀作标注，无检索读数）：cm8s_dev 纯文本 79.7% 覆盖 / 79.2% 准，邻轮交替平滑 ±2 后 99.6% / 88.5%；lmes_dev 90.8% / 93.3% → 97.4%。查询指向在 cm8s_dev af1 70 题中 59 判助手、用户类 196 题中 0 误判助手外 1 题。
+- **F5（查询类型路由路权）本轮不做**（算力只够一个方向；登记为待办）。
+- 网格 `v3/r10/r10_sweep1.json`（同库 sweep，7 组）：B15（基准）、sp ∈ {0.5, 1} × sp_win ∈ {0, 2}（sp_n 20）、sp1_n10_w2、sp2_n20_w2；其余固定 B15。
+- dev 集（全部已暴露）：CM8-dev 与 H-CM8 两口径（cm8_dev/cm8s_dev/cm8_hold/cm8s_hold），loc_dev，LME dev W0（lme_dev），lmelp(s)_dev；lmes_dev（LME W1）只报告。H-CM9 本轮不作 dev（算力）。
+- **目标** S = {cm8_dev, cm8_hold} × {W0, W1} 四集各自 (r@5 + r@10)/2 的平均；S_W0 = 两个 W0 集的同一量。
+- **合格**（对同 sweep 内 B15）：(a) loc_dev r@10 ≥ B15 − .005 且 r@5 不显著为负；(b) lme_dev t@10、s@5 ≥ B15 − .013；(c) lmelp(s)_dev t@10/s@10/t@50 无显著负；(d) 四个 CM dev 集 r@5/r@10 无显著负（「显著」同 R11.4 未校正定义）。
+- **冻结条件**：合格且 S − S(B15) ≥ +.010 且 S_W0 − S_W0(B15) ≥ +.005；多个满足取 S 最大，相差 ≤ .003 取更简单者（sp_win 0 < 2；sp 小；sp_n 小）。
+- 不满足 ⇒ 第 2 次（最后一次）迭代，事先补登记；两次都不满足 ⇒ H-CM10 不读。
+
+### 修订 11c · 延迟预检结果与纯时延工程件（2026-10-13 03:53 CST；在任何 F4 判定读数之前提交）
+- 预检（cm8_dev 前 34 job，非判定）：**rel-v1.5 带模型默认 B15 热 p50 379 ms / p95 785 ms，R7 43 / 116 ms（≈ 6.8×）**——F3a MaxSim 在查询时为前 20 名逐条现算逐词向量。B15 未通过 R11.2 上限，记为 rel-v1.5 未验收项。
+- 纯时延工程件（不改任何名次与分数，测试 `tests_ng/test_tokvec_pre.py` 逐位核对）：
+  - **F3L**（38ae51d）：写入时同一次前向顺带保存逐词向量（字节预算 LRU，缺省 256 MB；`LINGSHU_NG_EMBED_TOKVEC_MB=0` 关）。预检 p50 71 / p95 220 ms。
+  - **F3P**（3fec704）：召回开始即后台线程预取稠密查询向量与 MaxSim 查询逐词向量，与词面通路并行。
+- 正式延迟运行（`v3/r10/q_lat.sh`，R11.2 协议）：旧树（gen-v1@985b69d = rel-v1.5 的 gen 部分）上 v3.2 / R7 / B15，新树上 B15L（F3 + F3L + F3P）与 **F4ub**（B15L + F4 最贵形状 sp_n 20 / sp_win 2，sp 0.5；F4 的时延只取决于 sp_n 与 sp_win，作任何 sp_n ≤ 20、sp_win ≤ 2 候选的时延读数）。
+  上限按 R11.2 对**旧树 R7**。
+- H-CM10 判定运行方式补充（事先写定）：模型臂（候选、B15、R7）用同库 sweep 一次写入多配置（r8 已核对 sweep 与单配置逐题逐名次相同），v3.2 单独跑；判定统计不变。
+
+### 修订 11d · dev 集缩减（算力；2026-10-13 04:15 CST；在任何 H-CM8 / lmelp(s) / lmes 的 r10 读数之前提交）
+- 机器负载 ≈ 7（2 核：他线 zh/chain 进程 + 本线延迟运行），H-CM8 两口径 sweep 预计 ≥ 3 h ⇒ **H-CM8 退出 dev**（cm8_hold 已跑约 25 job，未打分、未读，弃用）；lmes_dev（只报告项）不跑。
+- 已读过的 dev：cm8_dev、cm8s_dev、lme_dev、loc_dev（it1 全部 7 组完成）。
+- 目标改为 S = {cm8_dev, cm8s_dev} 各 (r@5 + r@10)/2 的平均，S_W0 = cm8_dev 同量；合格条件 (d) 改为两个 CM8-dev 集；其余（loc_dev、lme_dev、lmelp(s)_dev 门，冻结阈值 dS ≥ +.010 且 dS_W0 ≥ +.005，简单者优先）不变。
+  如实声明：本修订时已看过 cm8_dev / cm8s_dev / lme_dev 的 it1 读数（sp 0.5 两口径 r@5/r@10 为正、sp ≥ 1 在 W0 r@5 为负），缩减不改变候选排序规则与阈值。
+
+### 修订 11e · 第 1 次迭代选型结果与冻结（2026-10-13 04:59 CST；在任何 H-CM10 读数之前提交）
+- `r10_select.py r10_it1 v3/r10/r10_sweep1.json`（修订 11d 口径）：S(B15) .8183、S_W0 .8209。冻结合格者两个：**sp05_n20_w2 dS +.0263 / dS_W0 +.0314**，sp05_n20_w0 dS +.0213 / dS_W0 +.0213；相差 .005 > .003 ⇒ 取 S 最大者 sp05_n20_w2。
+  - cm8_dev r@5 +.034（17:4，显著+）、r@10 +.028（10:1，显著+）；cm8s_dev r@5 +.014（13:5）、r@10 +.028（9:0，显著+）。
+  - loc_dev r@5 .6284 / r@10 .7502 = B15；lme_dev t@10 .952→.964（2:1）、s@5 1.000 = B15。
+  - lmelp_dev：t@10 .236→.227（2:3）、**s@10 .300→.273（0:3，符号 p .25，不显著）**、t@50 持平；lmelps_dev：t@10 持平（1:1）、s@10 .227→.218（0:1）、t@50 持平 ⇒ 门 (c) 通过（无显著负；s@10 的 3 题下降如实记为风险，H-CM10 的 hit/all 跟踪项会再检）。
+  - sp ≥ 1 在 W0 r@5 为负；sp2 lme_dev t@10 −.048 不合格。
+- **冻结候选 F4 = `{"sf":1,"sf_w":2,"sf_k":10,"sf_n":60,"sf_adj":0,"sf_qp":2,"sf_mx":1,"sf_mxn":20,"sp":0.5,"sp_n":20,"sp_win":2}`**（代码 gen-v1@d261d58，F3L/F3P 开），与延迟臂 F4ub 同形状；第 2 次迭代不做。
+- H-CM10 判定按修订 11 R11.4 / 11c：sweep 臂 B15、R7、F4 同库一次写入，v3.2 单独；只跑一次。
+
+### 修订 11f · 纯时延件 F3T 与延迟验收重测（2026-10-13 05:38 CST；在任何 H-CM10 读数之前提交）
+- 诊断：F3L+F3P 后 B15L 热 p95 仍 ≈ 1.62×R7（F3T 前读数 `out/r10_lat_main_preF3T.json`：round 0 的 cm8_dev 40 + lme_dev 4 job；B15 5.69× / 冷 9.84×，B15L 1.62× / 1.12×，F4ub 1.61× / 1.20×）。
+  逐段计时：MaxSim 的 20 次小矩阵乘在机器繁忙时被 OpenBLAS 多线程唤醒等待拖到 0.4–56 ms（单线程 0.4 ms）。
+- **F3T**（acb55cb）：MaxSim 矩阵乘期间把 numpy 自带 OpenBLAS 线程数临时设 1（ctypes；找不到函数则不动；`LINGSHU_NG_BLAS1=0` 关）。
+  OpenBLAS 只按输出行列切分线程、不改元素累加次序 ⇒ 逐位相同（测试 `test_blas1_bitwise`；cm8_dev 前 8 job × {B15, F4} 全深度 60 名与 r10_it1 逐题逐名次相同 56/56）。
+  （拒绝的替代：把 20 段拼成一次矩阵乘——300 次随机试验 9 次不逐位相同。）
+- 另修 `test_prefetch_bitwise`：原测试未钉墙钟，recency 项随耗时漂移偶发失败（与 F3P 无关）；现钉 time.time 与 os.urandom。
+- 延迟验收按 R11.2 原协议重测（`v3/r10/q_lat_f3t.sh`：旧树 R7 对新树 B15L / F4ub，cm8_dev 40 + lme_dev 10，2 轮 ABAB）；硬门不变（热 p95、冷首查 p95 均 ≤ 1.5×R7）。沙箱 05:19 重启一次，按 (round,set,i,arm) 续跑。

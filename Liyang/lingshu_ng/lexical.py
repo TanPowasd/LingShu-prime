@@ -179,6 +179,12 @@ class LexicalConfig:
     sf_mx: float = 1.0
     sf_mxn: int = 20
     sf_qp: int = 2
+    #: gen-v3 r10 F4 说话人意图先验（PREREG_GEN_v3 修订 11/11b；默认关）：sp > 0 ⇒ 融合（及 F3a）后的前 sp_n 名里，
+    #: 与查询指向（助手/用户，:func:`lingshu_ng.speaker.query_intent`）一致的轮再加 sp/(sf_k + 一致者名次)；
+    #: 轮的说话人 = 角色前缀，否则伪说话人推断，sp_win > 0 时再按写入序 ±sp_win 邻轮交替结构平滑。
+    sp: float = 0.0
+    sp_n: int = 20
+    sp_win: int = 0
     #: 候选精排上限与倒排展开行数预算
     cand_max: int = 3000
     budget: int = 200000

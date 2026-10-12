@@ -20,6 +20,60 @@ from typing import List, Optional, Sequence, Tuple
 
 __all__ = ["OnnxEmbedder", "from_env", "split_sentences"]
 
+_BLAS = None  # (get, set) 或 False
+
+
+def _blas_fns():
+    """F3T（gen r10，纯时延）：numpy 自带 OpenBLAS 的线程数读写函数；找不到返回 False（照常多线程）。"""
+    global _BLAS
+    if _BLAS is not None:
+        return _BLAS
+    _BLAS = False
+    if os.environ.get("LINGSHU_NG_BLAS1", "1").strip() == "0":
+        return _BLAS
+    try:
+        import ctypes
+        import glob
+        import numpy as np
+        base = os.path.dirname(np.__file__)
+        for f in sorted(glob.glob(os.path.join(base, "..", "numpy.libs", "*openblas*")) +
+                        glob.glob(os.path.join(base, ".libs", "*openblas*"))):
+            lib = ctypes.CDLL(f)
+            for g, st in (("scipy_openblas_get_num_threads64_", "scipy_openblas_set_num_threads64_"),
+                          ("scipy_openblas_get_num_threads", "scipy_openblas_set_num_threads"),
+                          ("openblas_get_num_threads64_", "openblas_set_num_threads64_"),
+                          ("openblas_get_num_threads", "openblas_set_num_threads")):
+                if hasattr(lib, g) and hasattr(lib, st):
+                    _BLAS = (getattr(lib, g), getattr(lib, st))
+                    return _BLAS
+    except Exception:  # ctypes/平台差异不可枚举：找不到就不限线程，结果不变
+        _BLAS = False
+    return _BLAS
+
+
+class _Blas1:
+    """MaxSim 的小矩阵乘在单线程 BLAS 下执行。OpenBLAS 多线程只按输出行列切分、不改每个元素的累加次序，
+    故结果逐位相同（tests_ng/test_tokvec_pre.py 核对）；但机器繁忙时唤醒工作线程的等待可达数十毫秒（r10 实测 0.4–56 ms → 0.4 ms）。"""
+    _n = None
+
+    def __enter__(self):
+        f = _blas_fns()
+        if f:
+            try:
+                self._n = int(f[0]())
+                if self._n != 1:
+                    f[1](1)
+            except Exception:
+                self._n = None
+        return self
+
+    def __exit__(self, *a):
+        f = _blas_fns()
+        if f and self._n and self._n != 1:
+            f[1](self._n)
+        return False
+
+
 _SENT_END = re.compile(r"(?<=[。！？!?；…\n])")
 
 
@@ -73,6 +127,14 @@ class OnnxEmbedder:
         self.sown: List[Optional[str]] = []
         self.srows = {}
         self._qcache: "OrderedDict[str, object]" = OrderedDict()
+        #: F3L（gen r10）：写入时顺带保存逐词向量（同一次前向，逐位等于 token_vecs 现算），供 MaxSim 精排查表；
+        #: 按字节预算 LRU（``LINGSHU_NG_EMBED_TOKVEC_MB``，缺省 256；0 = 关，退回查询时现算）
+        self._tokc: "OrderedDict[str, object]" = OrderedDict()
+        self._tokbytes = 0
+        try:
+            self.tok_budget = max(0, int(float(os.environ.get("LINGSHU_NG_EMBED_TOKVEC_MB", "256")) * 1048576))
+        except ValueError:
+            self.tok_budget = 256 * 1048576
 
     def qvec(self, query: str):
         """查询向量（小 LRU：一次召回里 search / score_ids / sent_scores 共用同一次编码）。"""
@@ -141,37 +203,66 @@ class OnnxEmbedder:
             feed = {"input_ids": ids, "attention_mask": am}
             if "token_type_ids" in self.inputs:
                 feed["token_type_ids"] = np.zeros_like(ids)
-            h = self.sess.run(None, feed)[0][:, 0]
+            full = self.sess.run(None, feed)[0]
+            if len(idx) == 1 and getattr(self, "tok_budget", 0):   # F3L：逐条编码时与 token_vecs 的前向逐位相同
+                self._tok_put(texts[idx[0]], self._tok_of(full[0]))
+            h = full[:, 0]
             h = h / np.maximum(np.linalg.norm(h, axis=1, keepdims=True), 1e-12)
             for r, i in enumerate(idx):
                 out[i] = h[r]
         return np.vstack(out).astype(np.float32) if out else np.zeros((0, 1), np.float32)
 
-    def token_vecs(self, text: str):
-        """逐词向量 [t, d] float32（last_hidden_state 去 [CLS]/[SEP]，逐词 L2 归一；逐条编码；进程内按文本缓存）。
-        供 densefuse F3a 晚交互 MaxSim（gen r8，思想来源 ColBERT, Khattab & Zaharia 2020）。"""
+    def _tok_of(self, h):
+        """last_hidden_state [t, d] → 逐词向量（去 [CLS]/[SEP]，逐词 L2 归一，float32）。"""
         np = self.np
-        c = self.__dict__.setdefault("_tokc", {})
-        v = c.get(text)
+        h = h[1:-1] if h.shape[0] > 2 else h[:1]
+        return (h / np.maximum(np.linalg.norm(h, axis=1, keepdims=True), 1e-12)).astype(np.float32)
+
+    def _tok_put(self, text: str, v) -> None:
+        """按字节预算的 LRU（F3L）。预算 0 时不存。"""
+        if not getattr(self, "tok_budget", 0):
+            return
+        old = self._tokc.pop(text, None)
+        if old is not None:
+            self._tokbytes -= old.nbytes
+        self._tokc[text] = v
+        self._tokbytes += v.nbytes
+        while self._tokbytes > self.tok_budget and len(self._tokc) > 1:
+            _, x = self._tokc.popitem(last=False)
+            self._tokbytes -= x.nbytes
+
+    def token_vecs(self, text: str):
+        """逐词向量 [t, d] float32（last_hidden_state 去 [CLS]/[SEP]，逐词 L2 归一；逐条编码）。
+        供 densefuse F3a 晚交互 MaxSim（gen r8，思想来源 ColBERT, Khattab & Zaharia 2020）。
+        gen r10 F3L：先查写入时顺带保存的逐词向量（同一次前向的输出，逐位相同），未命中才现算并放入同一 LRU。"""
+        np = self.np
+        v = self.__dict__.setdefault("_tokc", OrderedDict()).get(text)
         if v is not None:
+            self._tokc.move_to_end(text)
             return v
         e = self.tok.encode(text)
         ids = np.array([e.ids], np.int64)
         feed = {"input_ids": ids, "attention_mask": np.ones_like(ids)}
         if "token_type_ids" in self.inputs:
             feed["token_type_ids"] = np.zeros_like(ids)
-        h = self.sess.run(None, feed)[0][0]
-        h = h[1:-1] if h.shape[0] > 2 else h[:1]
-        v = (h / np.maximum(np.linalg.norm(h, axis=1, keepdims=True), 1e-12)).astype(np.float32)
-        if len(c) > 20000:
-            c.clear()
-        c[text] = v
+        v = self._tok_of(self.sess.run(None, feed)[0][0])
+        if getattr(self, "tok_budget", 0):
+            self._tok_put(text, v)
         return v
+
+    def prefetch_query(self, dense: Sequence[str], toks: Sequence[str] = ()) -> None:
+        """F3P：预先编码稠密路查询句向量（填 qvec LRU，search 直接命中）与 MaxSim 查询逐词向量（进 F3L 的 LRU）。"""
+        for t in dense:
+            self.qvec(t)
+        for t in toks:
+            self.token_vecs(t)
 
     def maxsim(self, query: str, texts: Sequence[str]) -> List[float]:
         """MaxSim(q, d) = 查询各词对文档各词最大余弦的均值。"""
         q = self.token_vecs(query)
-        return [float((q @ self.token_vecs(t).T).max(axis=1).astype(self.np.float64).mean()) for t in texts]
+        ds = [self.token_vecs(t) for t in texts]
+        with _Blas1():
+            return [float((q @ d.T).max(axis=1).astype(self.np.float64).mean()) for d in ds]
 
     def encode(self, text: str) -> List[float]:
         """单条句向量（旧接口 provider.encode）。"""
