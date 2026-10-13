@@ -37,4 +37,4 @@
 - 版本链仍是可选功能（`enable_chain` 缺省关），缺省安装下行为不变。
 
 ## 推送记录
-- __PUSH__
+- 已推送 LingShu-prime main **974440dd**（基于远端 44dff906 = rel-v1.11；只改 Liyang/ 28 文件）。Liyang 内 `pytest tests_ng`：3054 passed, 1 skipped；TanPowasd learn 25/25、reason 14/14 只运行通过，TanPowasd/ 未修改、无 .pyc/__pycache__ 改动。本行为推送后补记（首次推送时此处误留占位符）。
