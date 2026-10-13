@@ -74,7 +74,8 @@ def retry_op(a, prior, sent: str = "") -> None:
         return
     p = prior[-1]
     from .sav import _DECIDE
-    if p.op == "unresolve" and (a.value in (p.value, p.alt) or _DECIDE.search(sent or "")):
+    from . import v25 as _v25
+    if p.op == "unresolve" and (a.value in (p.value, p.alt) or _v25.decides(p, a.value, sent, _DECIDE)):
         a.op = "resolve"
 
 

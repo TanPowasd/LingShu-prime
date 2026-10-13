@@ -29,6 +29,8 @@ from . import v21 as _v21
 from . import v22 as _v22
 from . import v23 as _v23
 from . import v24 as _v24
+from . import v25 as _v25
+from . import v26 as _v26
 from .extract import MOVE_ATTR, Event, extract, parse_header, split_sentences
 
 __all__ = ["Rec", "Ledger", "Status", "INF"]
@@ -158,6 +160,36 @@ class Ledger:
             self._v19_pass(ns, ss_v13, seq, ref, out, done)
         if _sav.V13 and _v21.V21 and _v21.FAM & {"G", "L", "C", "P"}:     # v21：段内仍未登记句的追加抽取（G/L，见 v21.py）
             self._v21_pass(ns, ss_v13, seq, ref, out, done)
+        if _v25.FAM:                                       # v25 B：前序各路径都未登记的句子，处置句主体剥离后重抽（见 v25.py）
+            b_ctx = None
+            for i, sent in enumerate(ss_v13 if ss_v13 is not None else split_sentences(text)):
+                if i in done or not (_v25.pre(sent) or _v25.epre(sent) or ("M" in _v26.FAM and _v26._MV.search(sent))):
+                    continue
+                if b_ctx is None:
+                    b_names, b_attrs = self._v13_anchors(ns)
+                    b_ctx = (set(b_names), set(b_attrs) | self._v16_gattrs())
+                e = _v25.ba(sent, *b_ctx) if _v25.pre(sent) else None
+                if e is None and _v25.epre(sent):                   # v25 E：主体与属性不相连的叙事句（见 v25.py）
+                    a = _v25.ewin(self, sent, ns, sorted(b_ctx[0], key=len, reverse=True), b_ctx[1])
+                    if a is not None:
+                        r = Rec(ns, a["entity"], a["attr"], a["op"], a["value"], a["alt"], a["reason"], int(seq), i, ref, sent.strip(), None)
+                        r._anchored = True; r._cold = bool(a.get("_cold")); r._strict = False   # 不走 v16/v19 后处理（取值已由 E 定好）；v26 C 冷启动主体只进影子锚点
+                        self.add_rec(r); out.append(r); done.add(i)
+                        continue
+                if e is None and _v26.FAM & {"M"}:                   # v26 M：叙事迁移句（首次出现主体/地名；见 v26.py）
+                    _ss = ss_v13 if ss_v13 is not None else split_sentences(text)
+                    a = _v26.mwin(self, sent, ns, b_ctx[0], b_ctx[1], _ss[max(0, i - 3):i])
+                    if a is not None:
+                        r = Rec(ns, a["entity"], a["attr"], a["op"], a["value"], a["alt"], a["reason"], int(seq), i, ref, sent.strip(), None)
+                        r._anchored = True; r._cold = bool(a.get("_cold")); r._strict = False
+                        self.add_rec(r); out.append(r); done.add(i)
+                        continue
+                if e is None:
+                    continue
+                if "B1" in _v25.FAM and self._by_key.get((ns, e.entity, e.attr)):
+                    continue                                   # B1（试验）：该键已有登记时不走 B
+                e.line = i; e.quote = sent.strip(); e.extra = dict(e.extra or {}, v25="B")
+                out.append(self.add_event(ns, e, seq, ref)); done.add(i)
         if _llm.ON:                                          # chain-r12 B 臂：有事件信号但规则/锚定都没登记的句子
             ss = split_sentences(text)
             idx = [i for i, sent in enumerate(ss) if i not in done and _llm.has_signal(sent) and self._known_in(sent, ns)]
@@ -204,7 +236,7 @@ class Ledger:
                 if a is None:
                     continue
                 prev = self._by_key.get((ns, a["entity"], a["attr"]))
-                if a["op"] == "set" and prev and prev[-1].op == "unresolve" and prev[-1].seq <= seq and _sav._DECIDE.search(n):
+                if a["op"] == "set" and prev and prev[-1].op == "unresolve" and prev[-1].seq <= seq and _v25.decides(prev[-1], a["value"], n, _sav._DECIDE):
                     a["op"] = "resolve"
                 evs = [Event(op=a["op"], entity=a["entity"], attr=a["attr"], value=a["value"], alt=a["alt"], reason=a["reason"],
                              line=i, quote=s0, extra={"anchored": True, "sav": True})]
@@ -380,7 +412,7 @@ class Ledger:
         if a is None:
             return False
         prev = self._by_key.get((ns, a["entity"], a["attr"]))
-        if a["op"] == "set" and prev and prev[-1].op == "unresolve" and prev[-1].seq <= seq and _sav._DECIDE.search(sent):
+        if a["op"] == "set" and prev and prev[-1].op == "unresolve" and prev[-1].seq <= seq and _v25.decides(prev[-1], a["value"], sent, _sav._DECIDE):
             a["op"] = "resolve"
         ev = Event(op=a["op"], entity=a["entity"], attr=a["attr"], value=a["value"], alt=a["alt"],
                    reason=a["reason"], line=i, quote=sent.strip(), extra={"anchored": True, "sav": True})
@@ -511,13 +543,24 @@ class Ledger:
             if _v19.SCOPE == "all" or ev.extra.get("loose") or ev.extra.get("short") or ev.extra.get("anchored"):
                 _n, _c = self._v13_anchors(ns)
                 _v19.apply(self, ev, ns, _n, (set(_c) | self._v16_gattrs()) if ("A" in _v19.FAM) else None)
-        if _v24.FAM and ev.op not in ("mention", "rename") and _v24.drop_base(ev):
+        _v26cold = False
+        if _v26.FAM:
+            _v26.tidy(self, ev, ns)                                          # v26 T：属性/取值粘连修整
+        if _v26.FAM and ev.op not in ("mention", "rename") and _v26.frame(ev.entity):
+            rc = _v26.recover(self, ev, ns)                                  # v26 R：框架主体 ⇒ 句中唯一名称候选
+            if rc is not None:
+                ev.entity = rc[0]; _v26cold = not rc[1]
+        if (_v24.FAM and ev.op not in ("mention", "rename") and _v24.drop_base(ev)) or (_v26.FAM and _v26.drop(ev)):
             ev.op = "mention"; ev.extra["rest"] = None; ev.extra["v24_drop"] = True     # v24 G：主体修复后仍不合名称形态 ⇒ 不登记（句子留给锚定/窗口路径重试）
             return Rec(ns, ev.entity, ev.attr, "mention", None, None, ev.reason, int(seq), ev.line, ref, ev.quote, ev.rename_from_seq)
         r = Rec(ns, ev.entity, ev.attr, ev.op, ev.extra.get("rest") if ev.op == "mention" else ev.value, ev.alt,
                 ev.reason, int(seq), ev.line, ref, ev.quote, ev.rename_from_seq)
         r._anchored = bool(ev.extra.get("anchored"))                       # 不持久化：只影响本进程的锚点学习
         r._cold = (bool(_v22.FAM & {"P", "Q"}) and ev.extra.get("v21") in ("N", "U")) or ("H" in _v23.FAM and ev.extra.get("v21") == "S")   # v23 H：S 冷启动主体同样暂不入锚点。 v22 P/Q：冷启动主体暂不入锚点名（Q：同名冷启动 ≥2 条后转正）
+        if "S" in _v25.FAM and ev.extra.get("v25") == "B":
+            r._cold = True                                                     # v25 S：B 的冷启动主体只进只读影子锚点（不入 _names，不供其他族用）
+        if _v26cold:
+            r._cold = True                                                     # v26 R：自举出的首次出现主体只进只读影子锚点
         r._strict = not ev.extra.get("loose") and not r._anchored
         if ev.extra.get("v15") and _v15.LEARN != "full":
             r._anchored = True; r._v15 = True                                 # v15 重抽事件：只把（主体, 属性）喂给锚点，不喂取值/形态

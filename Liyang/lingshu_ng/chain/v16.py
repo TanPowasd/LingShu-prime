@@ -122,10 +122,15 @@ def _find_names(t: str, names: List[str]):
     return sorted(out, key=lambda x: x[1])
 
 
+def _v25w() -> bool:
+    from . import v25 as _v25
+    return "F" in _v25.FAM
+
+
 def decide_op(body: str, prev, value: Optional[str]) -> str:
     """单值事件的 set/resolve 判别：争议/最终类信号，或同键上一条为未决且新值是两候选之一 ⇒ resolve。"""
     m = _RESOLVE.search(body)
-    if m and not _UNDEC.search(body) and (not re.match(r"最终|最后|终于|总算|finally", m.group(0), re.I) or _RESOLVE2.search(body) or (OPFIN and not _NARR.search(body))):
+    if m and not _UNDEC.search(body) and (not re.match(r"最终|最后|终于|总算|finally", m.group(0), re.I) or _RESOLVE2.search(body) or (OPFIN and not _NARR.search(body) and not _v25w())):
         return "resolve"
     if OPPREV and prev and prev.op == "unresolve" and value and value in (prev.value, prev.alt):
         return "resolve"
