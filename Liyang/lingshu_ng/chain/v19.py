@@ -13,7 +13,8 @@ import os
 
 V19 = os.environ.get("LINGSHU_NG_CHAIN_V19", "1").strip().lower() not in ("0", "false", "no", "off")
 SCOPE = os.environ.get("LINGSHU_NG_CHAIN_V19_SCOPE", "all")
-FAM = set((os.environ.get("LINGSHU_NG_CHAIN_V19_FAM", "") or "").replace(" ", "").split(",")) - {""}
+#: chain-r20（PREREG_R20 §2 三留出集裁定）：只有 V 族过（调参 +17 / H10 +3 / H11 +0 / H15 +1，键错各不增，R15/R16/R17 不增）⇒ 缺省 "V"；设为空串即退回 v19。
+FAM = set((os.environ.get("LINGSHU_NG_CHAIN_V19_FAM", "V") or "").replace(" ", "").split(",")) - {""}
 
 
 import re

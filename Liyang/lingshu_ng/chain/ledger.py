@@ -25,6 +25,7 @@ from . import v16 as _v16
 from . import v17 as _v17
 from . import v18 as _v18
 from . import v19 as _v19
+from . import v21 as _v21
 from .extract import MOVE_ATTR, Event, extract, parse_header, split_sentences
 
 __all__ = ["Rec", "Ledger", "Status", "INF"]
@@ -152,6 +153,8 @@ class Ledger:
             self._v18_pass(ns, ss_v13, seq, ref, out, done)
         if _sav.V13 and _v19.V19 and "K" in _v19.FAM:          # v19：ASCII 取值冷启动（规则族见 v19.py）
             self._v19_pass(ns, ss_v13, seq, ref, out, done)
+        if _sav.V13 and _v21.V21 and _v21.FAM & {"G", "L", "C", "P"}:     # v21：段内仍未登记句的追加抽取（G/L，见 v21.py）
+            self._v21_pass(ns, ss_v13, seq, ref, out, done)
         if _llm.ON:                                          # chain-r12 B 臂：有事件信号但规则/锚定都没登记的句子
             ss = split_sentences(text)
             idx = [i for i, sent in enumerate(ss) if i not in done and _llm.has_signal(sent) and self._known_in(sent, ns)]
@@ -350,8 +353,15 @@ class Ledger:
         bl = self._v13_bl.get(ns)
         if bl and self._v13_sig.get(ns) != sig:
             keep = []
+            ctx = None
+            if _v21.V21 and _v21.FAM & {"B", "G", "L", "C", "P"}:
+                bsig = (len(names), len(cattrs))               # 提速：v21 重试只在主体/属性锚点集变化后的那次扫描里做
+                bs = self.__dict__.setdefault("_v21_bsig", {})
+                if not _v21.SIG or bs.get(ns) != bsig:
+                    bs[ns] = bsig
+                    ctx = (names, set(cattrs) | self._v16_gattrs())
             for it in bl:
-                if not self._v13_one(ns, it, out, names):
+                if not self._v13_one(ns, it, out, names) and not (ctx is not None and self._v21_retry(ns, it, out, ctx)):
                     keep.append(it)
             bl[:] = keep
         self._v13_sig[ns] = sig
@@ -376,6 +386,58 @@ class Ledger:
         if _llm.ON:
             self._llm_refine([ev])
         out.append(self.add_event(ns, ev, seq, ref))
+        return True
+
+    def _v21_pass(self, ns: str, ss, seq, ref, out, done) -> None:
+        names = cattrs = None
+        for i, sent in enumerate(ss):
+            if i in done or len(sent) > 200:
+                continue
+            if names is None:
+                names, cattrs = self._v13_anchors(ns)
+                if not names:
+                    return
+                cattrs = set(cattrs) | self._v16_gattrs()
+            if not any(n in sent for n in names) and "C" not in _v21.FAM:
+                continue
+            a = _v21.more(self, sent, ns, names, cattrs)
+            if a is None or not _v21.retry_ok(self, ns, a, a.get("_names") or names, sent):
+                continue
+            prior = sorted((r for r in (self._by_key.get((ns, a["entity"], a["attr"])) or []) if r.seq <= seq), key=lambda r: (r.seq, r.line))
+            if not _v21.retry_keep(a, prior):
+                continue
+            ev = Event(op=a["op"], entity=a["entity"], attr=a["attr"], value=a["value"], alt=a["alt"], reason=a["reason"],
+                       line=i, quote=sent.strip(), extra={"anchored": True, "sav": True, "v21": a["fam"]})
+            rec = self.add_event(ns, ev, seq, ref)
+            if a.get("op_v21"):
+                rec.op = a["op_v21"]
+            _v21.retry_op(rec, prior, sent)
+            out.append(rec)
+            done.add(i)
+
+    def _v21_retry(self, ns: str, it, out, ctx) -> bool:
+        """v21 B：待查队列句锚点增长后，SAV 不中再走 v16 窗口抽取（v17 收紧门同 v16 pass），再走 G/P/L/C。"""
+        sent, i, seq, ref = it
+        names, cattrs = ctx
+        if not any(n in sent for n in names) and "C" not in _v21.FAM:
+            return False
+        a = _v16.extract_win(self, sent, ns, names, cattrs) if "B" in _v21.FAM else None
+        if a is not None and not _v17.win_ok(sent, a):
+            a = None
+        if a is None:
+            a = _v21.more(self, sent, ns, names, cattrs)
+        if a is None or not _v21.retry_ok(self, ns, a, a.get("_names") or names, sent):
+            return False
+        ev = Event(op=a["op"], entity=a["entity"], attr=a["attr"], value=a["value"], alt=a["alt"], reason=a["reason"],
+                   line=i, quote=sent.strip(), extra={"anchored": True, "sav": True, "v16": True, "v21": a.get("fam", "B")})
+        prior = sorted((r for r in (self._by_key.get((ns, a["entity"], a["attr"])) or []) if r.seq <= seq), key=lambda r: (r.seq, r.line))
+        if not _v21.retry_keep(a, prior):
+            return False
+        rec = self.add_event(ns, ev, seq, ref)
+        if a.get("op_v21"):
+            rec.op = a["op_v21"]
+        _v21.retry_op(rec, prior, sent)
+        out.append(rec)
         return True
 
     def _known_in(self, sent: str, ns: str) -> bool:

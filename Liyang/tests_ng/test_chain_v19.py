@@ -31,3 +31,11 @@ def test_snap_entity():
 def test_snap_attr():
     e = E("set", "甲", "因此依赖名", "x"); V.snap_attr(e, {"依赖名", "位置"}); assert e.attr == "依赖名"
     e = E("set", "甲", "依赖名", "x"); V.snap_attr(e, {"依赖名"}); assert e.attr == "依赖名"
+
+
+def test_v19_default_family_is_v_r20():
+    """chain-r20 三留出集裁定：缺省只开 V 族（PREREG_R20 §2）。"""
+    import importlib, os
+    from lingshu_ng.chain import v19
+    if "LINGSHU_NG_CHAIN_V19_FAM" not in os.environ:
+        assert importlib.reload(v19).FAM == {"V"}

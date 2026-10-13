@@ -339,7 +339,7 @@ def extract_shorthand(sent: str) -> Optional[dict]:
     clauses = [c.strip() for c in body.split(" , ") if c.strip()]
     if not clauses:
         return None
-    extra = [c for c in clauses[1:] if not _CUE_ONLY.fullmatch(c)]
+    extra = [c for c in clauses[1:] if not _cue_only(c)]
     if len(extra) > 1 or any(len(c) > 16 for c in extra):
         return None                                          # 自检：主干之外最多一个短的裸起因分句（其余须是 TBD/未定/不再保留取值 之类提示）
     main = clauses[0]
@@ -387,7 +387,7 @@ def extract_shorthand(sent: str) -> Optional[dict]:
         if op == "resolve":
             head = re.sub(r"(?:争议|分歧|dispute)\s*(?:落定|定案|裁定|settled|resolved)?\s*$", "", head, flags=re.I)
         ctx = TAGGED[0] or (reason and _EXPL_CAUSE.search(t)) or re.fullmatch(r"\s*[A-Za-z0-9_][^" + _CJK + r"]*", tail or "")
-        bare = [c for c in clauses[1:] if not _CUE_ONLY.fullmatch(c) or (not _EXPL_CAUSE.search(c) and not re.search(r"(?i)tbd|pending|未定|待定|定案|落定", c))]
+        bare = [c for c in clauses[1:] if not _cue_only(c) or (not _EXPL_CAUSE.search(c) and not re.search(r"(?i)tbd|pending|未定|待定|定案|落定", c))]
         if not ctx or (bare and not (TAGGED[0] and len(bare) == 1 and len(bare[0]) <= 14)):
             return None                                      # 无动词字段写法须有标签/显式起因/英文数值取值作语境，且不带裸分句
         return _finish(op, head, tail, ":", reason, first, src, whole)
@@ -409,6 +409,36 @@ _CUE_ONLY = re.compile(r"(?:\s*(?:(?<![A-Za-z_])(?:tbd|pending|undecided|unresol
                        r"settled|resolved|done|ok|dispute\s+settled|since\s+then|thereafter|from\s+then\s+on|anymore|no\s+(?:longer|value|decision)[A-Za-z\s]*|"
                        r"(?:with\s+)?no\s+value\s+(?:retained|remains|kept)[A-Za-z\s]*)(?![A-Za-z_])|不再保留取值|不再保留|不保留取值|不留值|无值|未定|待定|尚未定|尚未裁定|还没定|没定|悬而未决|"
                        r"争议定案|争议落定|定案|落定|已裁定|裁定|拍板|尘埃落定|[" + _CJK + r"]{2,14}(?:导致|所致|引起|引发|触发|驱动)?)\s*)+", re.I)
+# —— _CUE_ONLY.fullmatch 的无灾难回溯等价实现（chain-r20）。原式 (?:\s*(?:…|[CJK]{2,14}…)\s*)+ 在长串上失败时
+#    指数回溯（一段 259 字带标点的散文 >20 分钟）。等价改写：①字母表预检——串里有任一字符不可能出现在任何单元里 ⇒ 必不匹配；
+#    ②短串（≤ _CUE_SHORT）直接用原式（回溯有界）；③长串用「单元可达位置」动态规划，单元 = 原式 + 号内的一节，逐位置求所有可能终点。
+_CUE_UNIT = re.compile(_CUE_ONLY.pattern[len("(?:"):-len(")+")], re.I)
+_CUE_ALPHA = re.compile(r"[A-Za-z\s/" + _CJK + r"]", re.I)
+_CUE_SHORT = 24
+
+
+def _cue_only(c: str) -> bool:
+    """与 bool(_CUE_ONLY.fullmatch(c)) 逐条相同，但最坏 O(n²) 次有界单元匹配。"""
+    n = len(c)
+    if n == 0:
+        return False
+    for ch in set(c):
+        if not _CUE_ALPHA.match(ch):
+            return False
+    if n <= _CUE_SHORT:
+        return bool(_CUE_ONLY.fullmatch(c))
+    reach = [False] * (n + 1); reach[0] = True
+    for i in range(n):
+        if not reach[i]:
+            continue
+        for j in range(n, i, -1):
+            if not reach[j] and _CUE_UNIT.fullmatch(c, i, j):
+                reach[j] = True
+        if reach[n]:
+            return True
+    return reach[n]
+
+
 _FUNC = re.compile(r"[的了是在把被也都很就还着过呢吗每让使而又才这那么如果我你他她它不没]")
 _CODE = re.compile(r"[{}\\<>]|//|\b(?:def|class|return|yield|import|None|True|False|null|var|let|const)\b|^\s*[.#/$]")
 _UCUE = re.compile(r"(?<![A-Za-z_])(?:tbd|pending|undecided|open|unresolved|either|both|wip|values?|vals?|two|coexisting|co-existing|competing|"
