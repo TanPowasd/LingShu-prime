@@ -171,10 +171,13 @@ class EdgeType(Enum):
 
     @classmethod
     def coerce(cls, v: Any) -> "EdgeType":
-        """字符串/枚举统一成枚举；未知取值抛 ``ValueError``（不静默吞掉）。"""
+        """字符串/枚举统一成枚举；未知取值抛 ``ValueError``（不静默吞掉；信息里列出可选值）。"""
         if isinstance(v, cls):
             return v
-        return cls(str(getattr(v, "value", v)).lower())
+        try:
+            return cls(str(getattr(v, "value", v)).lower())
+        except ValueError:
+            raise ValueError(f"{v!r} 不是有效的边类型；可选：{', '.join(m.value for m in cls)}") from None
 
 
 class MemoryLayer(Enum):
@@ -187,10 +190,14 @@ class MemoryLayer(Enum):
 
     @classmethod
     def coerce(cls, v: Any) -> "MemoryLayer":
-        """字符串/枚举统一成枚举。"""
+        """字符串/枚举统一成枚举；未知取值抛 ``ValueError``（信息里列出可选值）。"""
         if isinstance(v, cls):
             return v
-        return cls(str(getattr(v, "value", v)).lower())
+        try:
+            return cls(str(getattr(v, "value", v)).lower())
+        except ValueError:
+            raise ValueError(f"{v!r} 不是有效的记忆层；可选：{', '.join(m.value for m in cls)}"
+                             "（或 lingshu_ng.types.MemoryLayer.<名>）") from None
 
 
 #: 层取值 → 枚举（from_row 热路径免 Enum.__call__）

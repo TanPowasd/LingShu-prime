@@ -11,6 +11,7 @@ def _reset(monkeypatch):
     monkeypatch.setattr(semrank, "_SCORERS", {})
     monkeypatch.setattr(semrank, "_EMBEDDERS", {})
     monkeypatch.setattr(semrank, "_REASONS", {})
+    monkeypatch.delenv("XDG_CACHE_HOME", raising=False)
 
 
 def test_env_wins_no_warning(monkeypatch, tmp_path):
@@ -65,3 +66,18 @@ def test_no_dev_machine_path_in_package():
                     if "/workspace/work" in line and not line.lstrip().startswith("#"):
                         bad.append(f"{os.path.relpath(p, root)}:{i}")
     assert not bad, bad
+
+
+def test_xdg_cache_home(monkeypatch, tmp_path):
+    """stab-r5：设了 XDG_CACHE_HOME（绝对路径）⇒ 缺省目录 $XDG_CACHE_HOME/lingshu_ng/models；相对路径按规范忽略。"""
+    _reset(monkeypatch)
+    monkeypatch.delenv("LINGSHU_NG_SEM", raising=False)
+    monkeypatch.setenv("HOME", str(tmp_path / "home"))
+    monkeypatch.setenv("XDG_CACHE_HOME", str(tmp_path / "xdg"))
+    assert semrank.default_model_dir() == os.path.join(str(tmp_path / "xdg"), "lingshu_ng", "models")
+    assert semrank.model_root(warn=False) == semrank.default_model_dir()
+    monkeypatch.setenv("XDG_CACHE_HOME", "relative/dir")
+    assert semrank.default_model_dir() == os.path.join(str(tmp_path / "home"), ".cache", "lingshu_ng", "models")
+    from lingshu_ng.chain import llm_extract
+    monkeypatch.setenv("XDG_CACHE_HOME", str(tmp_path / "xdg"))
+    assert llm_extract._cache_home() == str(tmp_path / "xdg")

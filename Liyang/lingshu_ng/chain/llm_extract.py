@@ -34,7 +34,13 @@ _log = logging.getLogger(__name__)
 ON = os.environ.get("LINGSHU_NG_CHAIN_LLM", "0").strip().lower() in ("1", "true", "yes", "on")
 MODEL = os.environ.get("LINGSHU_NG_CHAIN_LLM_MODEL", "cline-pass/deepseek-v4.1-flash")
 URL = os.environ.get("LINGSHU_NG_CHAIN_LLM_URL", "https://api.cline.bot/api/v1/chat/completions")
-CACHE = os.environ.get("LINGSHU_LLM_CACHE") or os.path.expanduser("~/.cache/lingshu_ng/llm_cache")
+def _cache_home() -> str:
+    """$XDG_CACHE_HOME（绝对路径时）否则 ~/.cache（与 semrank.cache_home 同规则）。"""
+    x = os.environ.get("XDG_CACHE_HOME", "").strip()
+    return x if x and os.path.isabs(x) else os.path.expanduser("~/.cache")
+
+
+CACHE = os.environ.get("LINGSHU_LLM_CACHE") or os.path.join(_cache_home(), "lingshu_ng", "llm_cache")
 COSTLOG = os.environ.get("LINGSHU_NG_CHAIN_LLM_COSTLOG")
 OFFLINE = os.environ.get("LINGSHU_NG_CHAIN_LLM_OFFLINE", "0") == "1"      # 只读缓存，不发请求
 WORKERS = int(os.environ.get("LINGSHU_NG_CHAIN_LLM_WORKERS", "4"))

@@ -1,7 +1,7 @@
-# lingshu_ng 对外 API（rel-v1.19）
+# lingshu_ng 对外 API（rel-v1.20）
 
 本文覆盖 `lingshu_ng` 的公开类与方法、参数、返回值、异常、可选依赖与 `capabilities()` 用法。
-版本：`lingshu_ng.__version__ == "1.19.0"`（发行包 `lingshu-ng`，版本号 = `CHANGELOG_rel-v1.19.md`）。
+版本：`lingshu_ng.__version__ == "1.20.0"`（发行包 `lingshu-ng`，版本号 = `CHANGELOG_rel-v1.20.md`）。
 文末附录 A 由代码生成（`tools/ci/gen_api_appendix.py`），列出兼容门面每个公开方法的支持状态，与运行期
 `capabilities.compat_methods()` 一致。
 
@@ -84,6 +84,16 @@ e.close()
 | `reason_causal(start_id, end_id=None, max_depth=5, relation_types=None, max_paths=None)` | `[CausalChain]` | 因果链（带 truncated / cyclic 标记）或 start→end 路径。 |
 | `find_cycles(max_len=None, max_cycles=10000, types=("causal","cyclic"), max_steps=None)` / `has_cycle(types=…)` | `CycleScan` / `bool` | 环枚举（有上限）/ SCC 精确判环。 |
 | `self_check(cycle_budget=256, step_budget=200000)` | `dict` | 各层计数、SELF 持久化、因果环摘要。 |
+
+**入参校验（rel-v1.20 起，`lingshu_ng.inputs`，先判后写、零副作用）**：
+- `query`：`None` / 空白 ⇒ 空结果；非 `str` ⇒ `TypeError`；孤立 UTF-16 代理码位替换为 U+FFFD 后照常检索；
+  长度超过 `inputs.MAX_QUERY_CHARS`（**4096 字符**）只取前 4096 字符检索，进程内打一次 WARNING 并登记 `diag.fallbacks()["query_truncated"]`。
+  本仓评测查询无一超过上限，截断不改任何评测读数：中文各集最长 130 字符（stab-r5b 扫描）；英文 gen 作业 49 个文件共 26191 条查询最长 478 字符（cm11_hold，stab-r5c 扫描 `_stab/r5c/scan_q.py`）。
+- `limit`：整数（含 numpy 整数；有限且为整数值的 float 也接受）；`bool` / NaN / inf / 非整数 ⇒ `TypeError`；≤ 0 ⇒ 空结果；
+  超过 `inputs.MAX_LIMIT`（**100000**）截到 100000（库里条数不到上限时结果不变）。
+- 写入正文 `content`：必须是 `str`（空串放行；控制字符含 NUL 原样保存）；非 `str` ⇒ `TypeError`（与上游 cb3a6ea #331 同口径）；
+  含孤立代理码位 ⇒ `ValueError`（rel-v1.19 及以前在事务中途抛 `UnicodeEncodeError`）。`tags` / `entities` 传单个字符串 ⇒ `TypeError`（以前会被拆成单字标签）。
+- 未知层 / 边类型字符串 ⇒ `ValueError`，信息里列出可选值。
 
 ### 3.3 可选通路与维护
 
@@ -185,7 +195,13 @@ caps["compat_methods"]   # 兼容门面每个公开方法：{"status": "supporte
 | `lingshu_ng.compat_stubs.NotSupportedError` | `NotImplementedError` | 严格模式下调用不支持的方法（§4.1）。 |
 | `lingshu_ng.store.schema.SchemaTooNewError` | `RuntimeError` | 库的结构版本高于本代码（由更新版本写出），拒绝打开（§10）。 |
 | `lingshu_ng.world.validate.NonFiniteError` | `ValueError` | 世界线输入含 NaN / Inf。门面方法把它转成 `{"status": "error"}`，不穿出。 |
-| `ValueError` | — | 参数非法（如 `spatial` 既非映射也非数值向量、`link` 端点不存在）。 |
+| `lingshu_ng.store.db.DatabaseOpenError` | `sqlite3.OperationalError` | rel-v1.20 起：库路径是目录、所在目录不可写、文件不是 SQLite 库等，信息里写明路径与改法。 |
+| `lingshu_ng.store.db.DatabaseLockedError` | `sqlite3.OperationalError` | rel-v1.20 起：写锁被其它连接 / 进程占用，等 `LINGSHU_NG_BUSY_TIMEOUT`（缺省 30 s）后仍未释放。 |
+| `lingshu_ng.store.db.EngineClosedError` | `sqlite3.ProgrammingError` | rel-v1.20 起：`close()` 之后仍调用引擎 / 库。 |
+| `ValueError` | — | 参数非法（如未知层 / 边类型、写入正文含孤立代理码位、 `spatial` 既非映射也非数值向量、`link` 端点不存在）。 |
+| `TypeError` | — | rel-v1.20 起：入参类型错（正文 / 查询非 `str`、`limit` 非整数、`tags` 传单个字符串等，见 §3.2 末）。 |
+
+三个库异常都是原 `sqlite3` 异常的子类，旧代码里 `except sqlite3.OperationalError` 等照常接住。
 
 可选依赖缺失**不抛异常**：退回无模型路径并记入 `fallbacks`（§5）。
 
@@ -201,7 +217,7 @@ caps["compat_methods"]   # 兼容门面每个公开方法：{"status": "supporte
 缺省模型名 `bge-reranker-base`（`LINGSHU_NG_SEM_MODEL`）、稠密 `bge-small-zh-v1.5`（`LINGSHU_NG_DENSE_MODEL`）、级联 `bge-reranker-v2-m3`（`LINGSHU_NG_SEM_CASC_MODEL`），
 ONNX 文件缺省 `model_quantized.onnx`。英文语义第二路用 `LINGSHU_NG_EMBED_MODEL=<模型目录>`（如 bge-small-en-v1.5）。
 **模型根目录**（rel-v1.19 起，`semrank.model_root()`）：设了 `LINGSHU_NG_SEM` 就用它（`off` 或空串 = 关闭）；未设时退到
-`~/.cache/lingshu_ng/models`，进程内打一次 WARNING（logger `lingshu_ng`）并登记 `diag.fallbacks()["sem_model_dir_default"]`，写明所用目录、目录是否存在；
+`$XDG_CACHE_HOME/lingshu_ng/models`（rel-v1.20 起；未设 `XDG_CACHE_HOME` 时 `~/.cache/lingshu_ng/models`），进程内打一次 WARNING（logger `lingshu_ng`）并登记 `diag.fallbacks()["sem_model_dir_default"]`，写明所用目录、目录是否存在；
 目录不存在 ⇒ 语义件退回无模型路径（`capabilities()` 的 unavailable 原因里能看到该路径）。rel-v1.18 及以前未设时缺省是作者开发机路径。
 部署时建议显式设置 `LINGSHU_NG_SEM`（或设 `off` 关闭），即无此警告。打分缓存缺省写在 `<模型目录>/_score_cache`（`LINGSHU_NG_SEM_CACHE` 可改，空串关闭）。
 
@@ -209,7 +225,9 @@ ONNX 文件缺省 `model_quantized.onnx`。英文语义第二路用 `LINGSHU_NG_
 
 | 变量 | 作用 |
 |---|---|
-| `LINGSHU_NG_SEM` | 中文语义件模型根目录；`off` 关闭；未设 → `~/.cache/lingshu_ng/models`（一次 WARNING）。 |
+| `LINGSHU_NG_SEM` | 中文语义件模型根目录；`off` 关闭；未设 → `$XDG_CACHE_HOME/lingshu_ng/models`（未设 `XDG_CACHE_HOME` 时 `~/.cache/lingshu_ng/models`；一次 WARNING）。 |
+| `XDG_CACHE_HOME` | rel-v1.20 起：设了且为绝对路径时，缺省模型目录与版本链 LLM 缓存放在它下面（XDG Base Directory 规范）；相对路径忽略。 |
+| `LINGSHU_NG_BUSY_TIMEOUT` | rel-v1.20 起：写锁等待上限（秒，缺省 30；非法值退回 30），超时抛 `DatabaseLockedError`。 |
 | `LINGSHU_NG_SEM_MODEL` / `_ONNX` / `_CACHE` / `_THREADS` / `_MAXLEN` | 重排件模型名 / ONNX 文件 / 分数缓存目录 / 线程数 / 最大长度。 |
 | `LINGSHU_NG_DENSE_MODEL` / `_ONNX` / `_MAXLEN` | 稠密补入件。 |
 | `LINGSHU_NG_SEM_CASC_MODEL` / `_ONNX` | 级联复打件（缺省关）。 |
@@ -229,7 +247,7 @@ ONNX 文件缺省 `model_quantized.onnx`。英文语义第二路用 `LINGSHU_NG_
   （`engine_meta._schema_version`）。`MemoryEngine(...).store.db.schema_version` 或 `capabilities()["engine"]["schema_version"]` 可读。
 - **旧库升级**：rel-v1.10 写出的库、上游旧引擎（cb3a6ea）写出的库都能直接打开、读、写（`tests_ng/test_db_safety.py`，夹具在 `tests_ng/fixtures/`）。
 - **更新版本写出的库**：结构版本高于本代码时抛 `SchemaTooNewError` 拒绝打开（避免旧代码按旧结构写入新库）；确认只做了追加式变更时可设 `LINGSHU_NG_ALLOW_NEWER_SCHEMA=1`。
-- **并发**：每个引擎一个连接 + 一把可重入锁，跨线程读写在锁内串行；文件库用 WAL 日志与 `busy_timeout`（缺省 30 s），多个引擎 / 多个进程可同时写同一文件。
+- **并发**：每个引擎一个连接 + 一把可重入锁，跨线程读写在锁内串行；文件库用 WAL 日志与 `busy_timeout`（缺省 30 s，`LINGSHU_NG_BUSY_TIMEOUT` 可改；超时抛 `DatabaseLockedError`），多个引擎 / 多个进程可同时写同一文件。
   所有写入在 `BEGIN IMMEDIATE` 事务内，异常整体回滚。
 - **崩溃安全**：写入方法返回即已提交；进程在写入中途被杀（SIGKILL）后，重开库 `PRAGMA integrity_check = ok`，已返回的写入全部可读，派生检索索引与主表一致。
   实测见 `tools/ci/stress_db.sh`（多线程 / 多连接 / 多进程 / 中途被杀，30 轮）。

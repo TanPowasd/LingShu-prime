@@ -23,19 +23,68 @@ from typing import Any, Iterator, List, Optional, Sequence
 from .. import dedup
 from . import schema
 
-__all__ = ["Database"]
+__all__ = ["Database", "DatabaseLockedError", "DatabaseOpenError", "EngineClosedError", "busy_timeout_s"]
+
+
+class DatabaseLockedError(sqlite3.OperationalError):
+    """库被其它连接 / 进程持有写锁，等待 busy_timeout 后仍未释放（``sqlite3.OperationalError`` 子类，旧的 except 照常接住）。"""
+
+
+class DatabaseOpenError(sqlite3.OperationalError):
+    """库文件打不开（路径是目录、目录不可写、文件不是 SQLite 库……），信息里写明路径与改法。"""
+
+
+class EngineClosedError(sqlite3.ProgrammingError):
+    """引擎 / 库已 close() 后仍被调用（``sqlite3.ProgrammingError`` 子类）。"""
+
+
+def busy_timeout_s() -> float:
+    """写锁等待上限（秒）：``LINGSHU_NG_BUSY_TIMEOUT``，缺省 30。"""
+    try:
+        v = float(os.environ.get("LINGSHU_NG_BUSY_TIMEOUT", "") or 30.0)
+        return v if v >= 0 and v == v else 30.0
+    except ValueError:
+        return 30.0
+
+
+def _translate(db: "Database", e: BaseException) -> BaseException:
+    """把 SQLite 的常见误用异常换成带改法的子类（类型仍是原异常的子类）；其它原样返回。"""
+    msg = str(e)
+    if isinstance(e, sqlite3.ProgrammingError) and "closed" in msg and not isinstance(e, EngineClosedError):
+        return EngineClosedError(f"库已关闭（close() 之后又被调用）：{db.path}。请重新构造 MemoryEngine(path) 再读写")
+    if isinstance(e, sqlite3.OperationalError) and ("locked" in msg or "busy" in msg) \
+            and not isinstance(e, DatabaseLockedError):
+        return DatabaseLockedError(
+            f"库被其它连接或进程占着写锁，等待 {db.timeout:g} 秒后仍未释放：{db.path}（SQLite：{msg}）。"
+            "请确认没有别的进程停在长事务里（或未关闭的 sqlite3 会话）；需要更长等待可设环境变量 "
+            "LINGSHU_NG_BUSY_TIMEOUT=<秒>")
+    return e
 
 
 class Database:
     """SQLite 连接 + 锁 + 事务。``path=':memory:'`` 时为进程内私有库。"""
 
-    def __init__(self, path: str = ":memory:", timeout: float = 30.0) -> None:
-        self.path = path
+    def __init__(self, path: str = ":memory:", timeout: Optional[float] = None) -> None:
+        if isinstance(path, os.PathLike):
+            path = os.fspath(path)
+        if not isinstance(path, str):
+            raise TypeError(f"库路径必须是 str 或 os.PathLike（收到 {type(path).__name__}）；进程内私有库用 ':memory:'")
+        timeout = busy_timeout_s() if timeout is None else timeout
+        self.path, self.timeout = path, timeout
         if path != ":memory:" and not path.startswith("file:"):
+            if os.path.isdir(path):
+                raise DatabaseOpenError(f"库路径是一个目录：{path}。请给文件路径，例如 {os.path.join(path, 'mem.db')}")
             parent = os.path.dirname(os.path.abspath(path))
-            os.makedirs(parent, exist_ok=True)
-        self.conn = sqlite3.connect(path, check_same_thread=False, timeout=timeout,
-                                    isolation_level=None)
+            try:
+                os.makedirs(parent, exist_ok=True)
+            except OSError as e:
+                raise DatabaseOpenError(f"无法创建库所在目录 {parent}：{e.strerror or e}。"
+                                        "请换一个可写的路径，或先建好该目录并授予写权限") from e
+        try:
+            self.conn = sqlite3.connect(path, check_same_thread=False, timeout=timeout,
+                                        isolation_level=None)
+        except sqlite3.OperationalError as e:
+            raise DatabaseOpenError(f"无法打开库文件 {path}：{e}。请检查路径是否可写、磁盘是否已满") from e
         self.conn.row_factory = sqlite3.Row
         self.lock = threading.RLock()
         self._depth = 0
@@ -44,7 +93,16 @@ class Database:
         if path != ":memory:":
             self._pragma("PRAGMA journal_mode=WAL")
             self._pragma(f"PRAGMA busy_timeout={int(timeout * 1000)}")
-        self.migrated = schema.migrate(self.conn)
+        try:
+            self.migrated = schema.migrate(self.conn)
+        except sqlite3.DatabaseError as e:
+            if isinstance(e, sqlite3.OperationalError) and ("locked" in str(e) or "busy" in str(e)):
+                raise _translate(self, e) from e
+            if "not a database" in str(e) or "malformed" in str(e):
+                self.conn.close()
+                raise DatabaseOpenError(f"{path} 不是可用的 SQLite 库（{e}）。请确认路径没有指向别的文件；"
+                                        "若是损坏的旧库，先备份再用 sqlite3 的 .recover 修复") from e
+            raise
         self.closed = False
         self._lazy_ready = not schema.lazy_indexes_missing(self.conn)
 
@@ -100,12 +158,24 @@ class Database:
     def all(self, sql: str, params: Sequence[Any] = ()) -> List[sqlite3.Row]:
         """执行查询并取全部行（锁内）。"""
         with self.lock:
-            return self.conn.execute(sql, tuple(params)).fetchall()
+            try:
+                return self.conn.execute(sql, tuple(params)).fetchall()
+            except sqlite3.Error as e:
+                t = _translate(self, e)
+                if t is e:
+                    raise
+                raise t from e
 
     def one(self, sql: str, params: Sequence[Any] = ()) -> Optional[sqlite3.Row]:
         """执行查询并取首行（锁内）。"""
         with self.lock:
-            return self.conn.execute(sql, tuple(params)).fetchone()
+            try:
+                return self.conn.execute(sql, tuple(params)).fetchone()
+            except sqlite3.Error as e:
+                t = _translate(self, e)
+                if t is e:
+                    raise
+                raise t from e
 
     def scalar(self, sql: str, params: Sequence[Any] = (), default: Any = None) -> Any:
         """取首行首列。"""
@@ -182,6 +252,12 @@ class _Tx:
             self.outer = db._depth == 0
             if self.outer:
                 db.conn.execute("BEGIN IMMEDIATE")
+        except sqlite3.Error as e:
+            db.lock.release()
+            t = _translate(db, e)
+            if t is e:
+                raise
+            raise t from e
         except BaseException:
             db.lock.release()
             raise

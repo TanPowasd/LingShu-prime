@@ -2,7 +2,9 @@
 
 > **插件测评站**（另一条工作线）：见 [`plugin-eval-site/`](plugin-eval-site/README.md) —— 方案 v3.0 端到端验证结果、判分器缺陷与 v2 候选、多场景考卷 C。
 
-> **2026-10-13 增量升级 rel-v1.19（当前版本）：semrank 缺省模型目录**。未设 `LINGSHU_NG_SEM` 时模型根目录由作者开发机路径改为 `~/.cache/lingshu_ng/models`，并在进程内打一次 WARNING（同时登记 `diag.fallbacks()["sem_model_dir_default"]`，写明目录及是否存在）；以前在别的机器上是静默退回无模型。设了 `LINGSHU_NG_SEM`（含 `off`）行为不变。检索 / 版本链 / 中文门读数对 rel-v1.18 逐项、逐题相同。照实：Windows 真机未测。详见 [`CHANGELOG_rel-v1.19.md`](CHANGELOG_rel-v1.19.md)。
+> **2026-10-13 增量升级 rel-v1.20（当前版本）：规模 · 输入安全 · 易用性 · 与上游同口径对照**。不含检索 / 版本链调优，检索、版本链、中文门对 rel-v1.19 逐项、逐题相同。修崩溃：v7.1 档问句超过交叉编码器 max_len 个 token 时（limit > 15 的超长中文请求）分词抛 `Truncation error`，现仅此情形截问句打分，其余输入分词逐位相同；公开 API 模糊测试与修复（孤立代理码位先判 `ValueError`、limit 上限 100000、查询超 4096 字符截断并一次 WARNING）；常见误用给可操作报错（`DatabaseOpenError` / `DatabaseLockedError` / `EngineClosedError`，均为 sqlite3 异常子类）；`verify_promotion` 返回 bool（与上游同形）；近重复候选剪枝使 100k 写入 1056.7 s → 365.4 s；新增 [`examples/`](examples/)、`tools/perf`、`tools/compare`。性能读数见 [`docs/PERF_ng.md`](docs/PERF_ng.md)，与上游 cb3a6ea 同口径对照见 [`docs/VS_UPSTREAM_cb3a6ea.md`](docs/VS_UPSTREAM_cb3a6ea.md)——其中 ng 不如上游的项：公平口径孤儿模块 8 vs 3、冷 import 兼容门面 147 vs 72–76 ms、内存与库体积更大、晋升延迟 3.7–4.3 vs 0.2 ms，HMB excl 不显著。更正此前对外材料：ng 函数 >100 行为 **4 个**（不是 1 个），最大文件为 `chain/ledger.py` **793 行**（不是 703 行）。照实：Windows 真机未测；占位 45 个、扩展面 28 项未完成；写入仍非线性（库 100k 时每千条 4.8 s）；v7.1 档中文长请求在 2 核上冷查询约 1.8 s/题。详见 [`CHANGELOG_rel-v1.20.md`](CHANGELOG_rel-v1.20.md)。
+
+> **2026-10-13 增量升级 rel-v1.19：semrank 缺省模型目录**。未设 `LINGSHU_NG_SEM` 时模型根目录由作者开发机路径改为 `~/.cache/lingshu_ng/models`，并在进程内打一次 WARNING（同时登记 `diag.fallbacks()["sem_model_dir_default"]`，写明目录及是否存在）；以前在别的机器上是静默退回无模型。设了 `LINGSHU_NG_SEM`（含 `off`）行为不变。检索 / 版本链 / 中文门读数对 rel-v1.18 逐项、逐题相同。照实：Windows 真机未测。详见 [`CHANGELOG_rel-v1.19.md`](CHANGELOG_rel-v1.19.md)。
 >
 > **2026-10-13 增量升级 rel-v1.18：确定性 · 不支持方法语义 · 打包 · 数据安全 · API 文档**。不含检索 / 版本链调优，检索与版本链指标只作持平门（见 CHANGELOG 回归门）。节点 / 边 id 改为按写入序单调（`lingshu_ng/ids.py`），同分候选「先写入者在前」，版本链与 gen 评测逐题名次不再随运行变化；45 个不支持的兼容方法统一为「返回上游缺省值 + 首次 WARNING」，`LINGSHU_NG_STRICT_UNSUPPORTED=1` 改为抛 `NotSupportedError`，兼容矩阵真实覆盖 **215/260**；发行包改名 **lingshu-ng 1.18.0**，只含 `lingshu_ng`，**不再安装旧 `lingshu/` 包**；库 schema 版本可查，库比代码新时拒绝打开（`SchemaTooNewError`）；新增 API 文档 [`docs/API_ng.md`](docs/API_ng.md)。行为变更：`wm_simloop` / `world_generator` / `world_semantics` 改为返回状态字典，`adjust_attention_weight` 返回 False，`resolve_crisis` 先校验密钥。读数：gen loc_dev r@5 +1 题、r@10 −1 题（p=1），T2Ranking 误用 1 题之差（p=1），其余门逐项相同。照实：semrank 缺省模型目录仍是作者本机路径（rel-v1.19 已修）；Windows 真机未测；占位 45 个、扩展面 28 项未完成。详见 [`CHANGELOG_rel-v1.18.md`](CHANGELOG_rel-v1.18.md)。
 >
@@ -132,7 +134,7 @@ Windows 上的已知差异（粗时钟、onnxruntime DLL 加载失败）已用�
   bge-small-en-v1.5/   model_quantized.onnx, tokenizer.json        英文逐词向量件的测试（test_tokvec_pre；也可用 LINGSHU_NG_TOKVEC_MODEL 指定）
 ```
 
-未设 `LINGSHU_NG_SEM` 时（rel-v1.19 起）缺省目录是 `~/.cache/lingshu_ng/models`，并打一次 WARNING 写明该目录及是否存在；目录不存在时效果等同无模型。rel-v1.18 及以前缺省是作者本机路径。
+未设 `LINGSHU_NG_SEM` 时（rel-v1.19 起）缺省目录是 `~/.cache/lingshu_ng/models`（rel-v1.20 起若设了绝对路径的 `XDG_CACHE_HOME`，则为 `$XDG_CACHE_HOME/lingshu_ng/models`），并打一次 WARNING 写明该目录及是否存在；目录不存在时效果等同无模型。rel-v1.18 及以前缺省是作者本机路径。
 设为 `off` 即关闭全部模型件。
 
 #### 缺依赖或模型时哪些测试会跳过

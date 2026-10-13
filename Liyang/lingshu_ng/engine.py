@@ -19,9 +19,10 @@ import os
 import uuid
 from typing import Dict, List, Optional, Sequence, Tuple
 
-from . import causal, conflict, dedup, exchange
+from . import causal, conflict, dedup, exchange, inputs
 from .decay import Maintenance, elapsed_factor
 from .gate import LongTermGate
+from .store.db import EngineClosedError
 from .promotion import adjudicate as _adjudicate
 from .insight import Insights
 from .layers import LayerPolicy, LayerViolation
@@ -218,15 +219,25 @@ class MemoryEngine:
     def _note_reuse(self, node_ids: List[str]) -> None:
         self.store.meta.note_reuse(self.session_id, self.round, node_ids)
 
+    def _check_open(self) -> None:
+        """close() 之后再调用 ⇒ EngineClosedError（``sqlite3.ProgrammingError`` 子类，带改法）。"""
+        db = self.store.db
+        if db.closed:
+            raise EngineClosedError(f"引擎已 close()：{db.path}。请重新构造 MemoryEngine(path) 再读写")
+
     # ------------------------------------------------------------ 写入
     def perceive(self, content: str, modality: str = "text", spatial: Optional[Dict] = None,
                  condition_space: Optional[ConditionSpace] = None, importance: float = 0.5,
                  tags: Optional[Sequence[str]] = None, entities: Optional[Sequence[str]] = None,
                  skip_dedup: bool = False, layer: MemoryLayer = MemoryLayer.KNOWLEDGE,
                  confidence: float = 0.5, prefix: str = "node") -> WriteResult:
-        """写一条记忆（默认知识层，M5 去重）。命中去重 ⇒ action=merged。"""
-        self.round += 1
+        """写一条记忆（默认知识层，M5 去重）。命中去重 ⇒ action=merged。
+        入参先判后写（:mod:`lingshu_ng.inputs`）：非 str 正文 ⇒ TypeError，孤立代理码位 ⇒ ValueError。"""
+        content = inputs.content(content)
+        tags, entities = inputs.str_list(tags, "tags"), inputs.str_list(entities, "entities")
         imp, layer = unit(importance, "importance"), MemoryLayer.coerce(layer)
+        conf = unit(confidence, "confidence")
+        self.round += 1
         tags, ents = list(tags or []), [str(e) for e in (entities or [])]
         with self.store.db.tx():
             if not skip_dedup:
@@ -237,7 +248,7 @@ class MemoryEngine:
             node = Node(id=_uid(prefix), content=content, modality=modality,
                         spatial_coordinates=spatial_dict(spatial), temporal_coordinate=t,
                         condition_space=condition_space or ConditionSpace.default("感知系统", "感官输入"),
-                        importance=imp, confidence=unit(confidence, "confidence"), layer=layer,
+                        importance=imp, confidence=conf, layer=layer,
                         tags=list(dict.fromkeys(tags + [f"ent:{e}" for e in ents])),
                         last_access=t, created_at=t)
             self.store.nodes.put(node, index_now=not skip_dedup)   # 去重路径写后即读索引：即时索引
@@ -327,6 +338,8 @@ class MemoryEngine:
                     tags: Optional[Sequence[str]] = None,
                     entities: Optional[Sequence[str]] = None) -> WriteResult:
         """写情境层（短期记忆，不去重），随后按持久化容量上限 FIFO 淘汰。"""
+        content = inputs.content(content)
+        tags = inputs.str_list(tags, "tags")
         cs = condition_space or ConditionSpace.default("情境感知", "会话摄入")
         with self.store.db.tx():               # 写入与 FIFO 淘汰同一事务（一次提交；上限从不被外部观察到越界）
             r = self.perceive(content, importance=importance, condition_space=cs,
@@ -339,6 +352,7 @@ class MemoryEngine:
     def add_shared(self, layer: MemoryLayer, content: str, importance: float,
                    condition_space: Optional[ConditionSpace] = None) -> WriteResult:
         """写锚点层/结构层（仅 PRIMARY；不可遗忘、不可删除）。"""
+        content = inputs.content(content)
         prefix, modality, tags, (pos, tool, cons) = _LAYER_DEFAULTS[MemoryLayer.coerce(layer)]
         cs = condition_space or ConditionSpace(pos, tool, (0.0, math.inf), cons)
         return self.perceive(content, modality=modality, condition_space=cs, importance=importance,
@@ -373,11 +387,19 @@ class MemoryEngine:
     # ------------------------------------------------------------ 检索
     def search(self, query: str, layers: Optional[Sequence[MemoryLayer]] = None,
                limit: int = 20) -> List[Tuple[Node, float]]:
-        """内容检索。"""
+        """内容检索。query 为 None/空白或 limit ≤ 0 ⇒ []；入参类型错 ⇒ TypeError（:mod:`lingshu_ng.inputs`）。"""
+        query, limit = inputs.query(query), inputs.limit(limit)
+        self._check_open()
+        if limit <= 0:
+            return []
         return self.retriever.search(query, layers, limit)
 
     def recall(self, query: str, limit: int = 10) -> Dict:
-        """组合召回 + 负记忆提示（E3）。"""
+        """组合召回 + 负记忆提示（E3）。query 为 None/空白或 limit ≤ 0 ⇒ 空 hits；入参类型错 ⇒ TypeError。"""
+        query, limit = inputs.query(query), inputs.limit(limit)
+        self._check_open()
+        if limit <= 0:
+            return {"hits": [], "negative": self.negative.check(None, query)}
         hits = self.retriever.recall(query, limit)
         if self.chain is not None:
             hits = self.chain.route_recall(query, hits, limit, self.store.nodes.get_many)

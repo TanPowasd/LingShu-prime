@@ -269,6 +269,14 @@ class TextIndex:
             cur.row_factory = None
             return cur.execute("SELECT nkey, grams FROM node_terms WHERE term=?", (term,)).fetchall()
 
+    def postings_len(self, term: str, lo: int, hi: int) -> List[Tuple[int, int]]:
+        """:meth:`postings_g` 只留二元组数在 [lo, hi] 内或未知（0）的行（过滤在 SQL 层做，免逐行构造元组）。"""
+        with self.db.lock:
+            cur = self.db.conn.cursor()
+            cur.row_factory = None
+            return cur.execute("SELECT nkey, grams FROM node_terms WHERE term=? AND (grams=0 OR grams BETWEEN ? AND ?)",
+                               (term, lo, hi)).fetchall()
+
     def members(self, term: str, keys: Sequence[int]) -> List[int]:
         """keys 中含该词元的节点（逐键 PK 点查，单条语句，键集以 JSON 传入不受变量上限影响）。"""
         if not keys:
@@ -319,18 +327,75 @@ class TextIndex:
         return math.log(1.0 + max(1, n) / max(1, df))
 
     def near_duplicate_candidates(self, grams: frozenset, threshold: float, extra: int = 3) -> Set[str]:
-        """前缀过滤（缺口 6）：Jaccard(A,B) ≥ t ⇒ |A∩B| ≥ need=⌈t·|A|⌉ ⇒ 在 A 中 df 最小的
-        m = |A|−need+1+j 个二元组里，B 至少命中 1+j 个（其余 |A|−m 个最多全中）。取这 m 个的倒排
-        计数筛选——**精确**的候选超集，与「全层逐条比对」结果相同，且不设任何时间窗口。
-        ``extra`` = j（多读几个倒排换更少的正文读取）。"""
+        """近重复候选：Jaccard(A, B) ≥ t 的全部节点的**精确超集**（与「全层逐条比对」结果相同，不设时间窗口）。
+
+        stab-r5（规模）：旧版（:meth:`_ndc_prefix`）读 A 中 df 最小的 |A|−need+1+j 个二元组的完整倒排，
+        常用二元组的倒排随库规模线性变长 ⇒ 每次写入 O(N)、灌库 O(N²)。现改为「前缀 + 逐步校验 + 剪枝」：
+
+        1. 前缀：need=⌈t·|A|⌉，r = |A|−need+1 个最稀有二元组里真近重复至少命中 1 个（鸽笼）⇒
+           只读这 r 个倒排得到候选，同时用倒排行自带的 |B| 做长度过滤 t·|A| ≤ |B| ≤ |A|/t；
+        2. 每个候选的精确下限 need_B = ⌈t·(|A|+|B|)/(1+t)⌉（J ≥ t ⇔ |A∩B| ≥ need_B）；
+        3. 其余二元组按 df 升序逐个校验：df 不超过存活候选数时读整条倒排，否则只对存活候选做主键点查；
+           每步剔除「已命中 + 剩余可命中 < need_B」的候选，存活为空即停。
+
+        所有剪枝都是必要条件，因此结果 ⊇ 全部真近重复；调用方随后逐条核对 Jaccard 与签名，返回值与旧版逐位相同
+        （tests_ng/test_perf_scale.py 对照旧算法）。t ≤ 0 或 t > 1 时沿用旧算法。``extra`` 只用于旧算法。"""
+        self.flush()
+        if not grams:
+            return set()
+        if not 0 < threshold <= 1:
+            return self._ndc_prefix(grams, threshold, extra)
+        a = len(grams)
+        need = max(1, math.ceil(threshold * a - 1e-9))
+        dfs = self.df(grams)
+        self.last_probe = (grams, dfs)          # 写入期矛盾检测（conflict C1）复用，免再查一次 df
+        if len(dfs) < need:
+            return set()                      # 库里连 need 个二元组都凑不齐 ⇒ 不可能近重复
+        order = sorted(grams, key=lambda g: (dfs.get(g, 0), g))
+        r = a - need + 1
+        lo = math.floor(threshold * a * (1 - 1e-9))
+        hi = math.ceil(a / threshold * (1 + 1e-9))
+        cnt: Dict[int, int] = {}
+        nb: Dict[int, int] = {}
+        for g in order[:r]:
+            if dfs.get(g, 0) <= 0:
+                continue
+            for k, n in self.postings_len(g, lo, hi):
+                cnt[k] = cnt.get(k, 0) + 1
+                nb[k] = n
+        t1 = threshold / (1.0 + threshold) * (1 - 1e-9)
+        req = {k: (max(need, math.ceil(t1 * (a + n))) if n else need) for k, n in nb.items()}
+        done = r
+        for g in order[r:]:
+            left = a - done
+            dead = [k for k, c in cnt.items() if c + left < req[k]]
+            for k in dead:
+                del cnt[k]
+            if not cnt:
+                break
+            d = dfs.get(g, 0)
+            if d > 0:
+                if d <= len(cnt):
+                    got = [k for k in self.postings(g) if k in cnt]
+                else:
+                    got = self.members(g, sorted(cnt))
+                for k in got:
+                    cnt[k] += 1
+            done += 1
+        keep = [k for k, c in cnt.items() if c >= req[k]]
+        return set(self.node_ids(keep).values())
+
+    def _ndc_prefix(self, grams: frozenset, threshold: float, extra: int = 3) -> Set[str]:
+        """旧版近重复候选（rel-v1.19 及以前，前缀过滤 + 固定 j）：Jaccard(A,B) ≥ t ⇒ |A∩B| ≥ need=⌈t·|A|⌉ ⇒
+        在 A 中 df 最小的 m = |A|−need+1+j 个二元组里，B 至少命中 1+j 个。保留作 t 越界时的路径与测试对照。"""
         self.flush()
         if not grams:
             return set()
         need = max(1, math.ceil(threshold * len(grams) - 1e-9))
         dfs = self.df(grams)
-        self.last_probe = (grams, dfs)          # 写入期矛盾检测（conflict C1）复用，免再查一次 df
+        self.last_probe = (grams, dfs)
         if len(dfs) < need:
-            return set()                      # 库里连 need 个二元组都凑不齐 ⇒ 不可能近重复
+            return set()
         m = min(len(grams), len(grams) - need + 1 + max(0, extra))
         rare = sorted(grams, key=lambda g: (dfs.get(g, 0), g))[:m]
         hits: Counter = Counter()

@@ -26,14 +26,26 @@ from . import anstype, diag
 _log = logging.getLogger(__name__)
 
 #: 未设 ``LINGSHU_NG_SEM`` 时的模型根目录（v1.19 起；此前为作者开发机路径 /workspace/work/ls/_shared/models）。
-#: 导入时按当前用户主目录展开；运行期以 :func:`model_root` 为准（每次调用重新展开，HOME 改了也跟着变）。
-DEFAULT_DIR = os.path.join(os.path.expanduser("~"), ".cache", "lingshu_ng", "models")
+#: 导入时按 XDG_CACHE_HOME / 当前用户主目录展开（v1.20 起认 XDG_CACHE_HOME）；运行期以 :func:`model_root` 为准（每次调用重新求值）。
+DEFAULT_DIR = os.path.join((os.environ.get("XDG_CACHE_HOME", "").strip()
+                            if os.path.isabs(os.environ.get("XDG_CACHE_HOME", "").strip() or ".")
+                            else "") or os.path.join(os.path.expanduser("~"), ".cache"), "lingshu_ng", "models")
 _LOCK = threading.Lock()
 
 
+def cache_home() -> str:
+    """用户缓存根目录：``$XDG_CACHE_HOME``（设了且为绝对路径时，按 XDG Base Directory 规范）否则 ``~/.cache``。
+    调用时求值。"""
+    x = os.environ.get("XDG_CACHE_HOME", "").strip()
+    if x and os.path.isabs(x):
+        return x
+    return os.path.join(os.path.expanduser("~"), ".cache")
+
+
 def default_model_dir() -> str:
-    """缺省模型根目录 ``~/.cache/lingshu_ng/models``（调用时展开当前用户主目录）。"""
-    return os.path.join(os.path.expanduser("~"), ".cache", "lingshu_ng", "models")
+    """缺省模型根目录 ``$XDG_CACHE_HOME/lingshu_ng/models``，未设 XDG_CACHE_HOME 时 ``~/.cache/lingshu_ng/models``
+    （rel-v1.20 起支持 XDG_CACHE_HOME；调用时求值）。"""
+    return os.path.join(cache_home(), "lingshu_ng", "models")
 
 
 def model_root(warn: bool = True) -> str:
@@ -76,6 +88,8 @@ class CrossScorer:
         tok.enable_truncation(max_length=self.max_len, strategy="only_second")
         tok.enable_padding(pad_id=tok.token_to_id("<pad>") or 1, pad_token="<pad>")
         self.tok = tok
+        self._tok_file = os.path.join(mdir, "tokenizer.json")
+        self._qtok = None
         so = ort.SessionOptions()
         so.intra_op_num_threads = int(os.environ.get("LINGSHU_NG_SEM_THREADS", "2"))
         so.inter_op_num_threads = 1
@@ -110,6 +124,24 @@ class CrossScorer:
         """缓存键 sha1(模型标签, 问句, 段落)。"""
         return hashlib.sha1(json.dumps([self.tag, q, p], ensure_ascii=False).encode("utf-8")).hexdigest()
 
+    def encode_pairs(self, q: str, ps: Sequence[str]):
+        """(问句, 段落) 对分词（only_second：只截段落）。问句本身已超过 max_len 时 tokenizers 抛 Truncation error
+        （rel-v1.19 及以前 limit > 15 的超长问句在 v7.1 档因此崩溃）⇒ 仅此时把问句截到前 max_len // 2 个 token 再分词；
+        其余输入与旧版逐位相同。缓存键仍用原问句。"""
+        try:
+            return self.tok.encode_batch([(q, p) for p in ps])
+        except Exception as e:  # tokenizers 只抛通用 Exception；非截断错误原样抛出
+            if "runcat" not in str(e):
+                raise
+        diag.warn_once("sem_query_truncated", f"问句超过交叉编码器 max_len {self.max_len} 个 token：打分时只取问句前 "
+                                              f"{max(1, self.max_len // 2)} 个 token（词面召回仍用全文）")
+        if self._qtok is None:
+            self._qtok = importlib.import_module("tokenizers").Tokenizer.from_file(self._tok_file)
+        off = self._qtok.encode(q, add_special_tokens=False).offsets
+        k = max(1, self.max_len // 2)
+        qq = q[:off[k - 1][1]] if len(off) > k else q
+        return self.tok.encode_batch([(qq, p) for p in ps])
+
     # ---------------------------------------------------------------- scoring
     def score(self, q: str, passages: Sequence[str], batch: int = 16) -> List[float]:
         """返回每段的相关度 logit（越大越相关）。"""
@@ -121,7 +153,7 @@ class CrossScorer:
             new = []
             for s in range(0, len(todo), batch):
                 idx = todo[s:s + batch]
-                enc = self.tok.encode_batch([(q, passages[i]) for i in idx])
+                enc = self.encode_pairs(q, [passages[i] for i in idx])
                 feed = {"input_ids": np.array([e.ids for e in enc], dtype=np.int64),
                         "attention_mask": np.array([e.attention_mask for e in enc], dtype=np.int64)}
                 if "token_type_ids" in self.inputs:
@@ -184,7 +216,7 @@ class DiscHead:
             new = []
             for s in range(0, len(todo), batch):
                 idx = todo[s:s + batch]
-                enc = self.sc.tok.encode_batch([(q, passages[i]) for i in idx])
+                enc = self.sc.encode_pairs(q, [passages[i] for i in idx])
                 feed = {"input_ids": np.array([e.ids for e in enc], dtype=np.int64),
                         "attention_mask": np.array([e.attention_mask for e in enc], dtype=np.int64)}
                 for i, v in zip(idx, self._feat(self.sess.run(None, feed)).tolist()):
@@ -248,7 +280,8 @@ def _scorer(model: str, name: str) -> Optional[CrossScorer]:
                 sc = None
                 _REASONS[k] = f"加载失败 {type(e).__name__}: {e}"
         else:
-            _REASONS[k] = f"模型文件缺失（{mdir}/tokenizer.json 或 onnx/{name}）"
+            _REASONS[k] = (f"模型文件缺失（{mdir}/tokenizer.json 或 onnx/{name}）；把模型放到该处，"
+                            "或设 LINGSHU_NG_SEM=<含该模型的根目录>，不用语义件可设 LINGSHU_NG_SEM=off")
     else:
         _REASONS[k] = "已关闭（LINGSHU_NG_SEM=off）"
     _SCORERS[k] = sc
@@ -384,7 +417,8 @@ def get_embedder() -> Optional[DenseEmbedder]:
                 em = None
                 _REASONS[k] = f"加载失败 {type(e).__name__}: {e}"
         else:
-            _REASONS[k] = f"模型文件缺失（{mdir}/tokenizer.json 或 onnx/{name}）"
+            _REASONS[k] = (f"模型文件缺失（{mdir}/tokenizer.json 或 onnx/{name}）；把模型放到该处，"
+                            "或设 LINGSHU_NG_SEM=<含该模型的根目录>，不用语义件可设 LINGSHU_NG_SEM=off")
     else:
         _REASONS[k] = "已关闭（LINGSHU_NG_SEM 或 LINGSHU_NG_DENSE = off）"
     _EMBEDDERS[k] = em

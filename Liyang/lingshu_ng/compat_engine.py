@@ -389,9 +389,10 @@ class SpacetimeMemoryEngine(WorldFacade, WorldSimFacade, FrameMixin, ProvidersMi
                 raise
             raise PromotionRejected(f"{e}（重提须 override_rejected=True 且提供设计者密钥）") from e
 
-    def verify_promotion(self, proposal_id: str, verified_by: str) -> None:
-        """复核。"""
-        self.ng.verify_promotion(proposal_id, verified_by)
+    def verify_promotion(self, proposal_id: str, verified_by: str) -> bool:
+        """复核。返回是否通过（与上游 cb3a6ea 同形：False = 被拒 / 提案不存在、状态未改写）。
+        rel-v1.19 及以前恒返回 None（stab-r5 同口径对照时发现）。"""
+        return bool(self.ng.verify_promotion(proposal_id, verified_by))
 
     def adjudicate_promotion(self, proposal_id: str, adjudicated_by: str, approved: bool,
                              designer_key: Optional[str] = None) -> bool:

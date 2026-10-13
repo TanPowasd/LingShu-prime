@@ -330,12 +330,13 @@ class LayeredStore:
         n = self.ng.nodes.get(node_id)
         return self.ng.registry.add_proposal(node_id, requester, reason, n.content if n else "")
 
-    def verify_promotion(self, proposal_id: str, verified_by: str) -> None:
-        """旧 API ``verify_promotion``：形状适配，规则委托 ng 组件。"""
+    def verify_promotion(self, proposal_id: str, verified_by: str) -> bool:
+        """旧 API ``verify_promotion``：形状适配，规则委托 ng 组件。返回是否通过（与上游同形；rel-v1.19 及以前恒为 None）。"""
         p = self.ng.registry.proposal(proposal_id)
         n = self.ng.nodes.get(p["node_id"]) if p else None
-        if n is not None:
-            self.ng.registry.verify_proposal(proposal_id, verified_by, n.content or "")
+        if n is None:
+            return False
+        return bool(self.ng.registry.verify_proposal(proposal_id, verified_by, n.content or ""))
 
     def adjudicate_promotion(self, proposal_id: str, adjudicated_by: str, approved: bool,
                              designer_key: Optional[str] = None) -> Optional[str]:
