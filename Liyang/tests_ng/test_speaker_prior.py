@@ -52,8 +52,9 @@ def _run(**cfg):
 
 
 def test_off_equals_default_and_on_promotes_user_turn():
-    base = _run()
+    base = _run(sp=0.0)
     assert _run(sp=0.0, sp_n=20, sp_win=2) == base
+    assert _run() == _run(sp=0.5, sp_n=20, sp_win=2)   # 缺省 = 冻结 F4
     on = _run(sp=2.0, sp_n=4)
     assert on[0].startswith("user:")
     assert sorted(on) == sorted(base)
