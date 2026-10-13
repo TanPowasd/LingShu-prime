@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 """stab-r5（schema v4）：单节点重建的原位差量路径（``trg_index_upd`` + ``TextIndex._move_row``）
-与旧的「删旧行 + 插新行」逐值相同——node_index（含 nkey 分配）、倒排 node_terms、term_df、feature_df 全表相等。"""
+与旧的「删旧行 + 插新行」逐值相同——node_index（含 nkey 分配）、倒排（v5 解码后的倒排块）、term_df、feature_df 全表相等。"""
 import json
 import random
 
 from lingshu_ng.engine import MemoryEngine
 from lingshu_ng.layers import LayerViolation
+from lingshu_ng.store import postings
 from lingshu_ng.store.textindex import TextIndex
 from lingshu_ng.types import MemoryLayer
 
@@ -15,7 +16,9 @@ WORDS = ["记忆", "视觉", "图像", "语义", "识别", "灵枢", "协议", "
 def _dump(e):
     c = e.store.conn
     out = {t: [tuple(r) for r in c.execute(f"SELECT * FROM {t} ORDER BY 1, 2").fetchall()]
-           for t in ("node_terms", "term_df", "feature_df")}
+           for t in ("term_df", "feature_df")}
+    # v5：倒排块的切分随历史而异，比较解码后的 (词元, nkey, grams) 全量（与 v4 node_terms 行逐条对应）
+    out["postings"] = sorted((t, k, g) for t, v in postings.all_postings(c).items() for k, g in v)
     # 节点 id 含时间戳、两次运行不同：换成 nodes.rowid（同一操作序列下确定）
     out["node_index"] = [tuple(r) for r in c.execute(
         "SELECT ni.nkey, n.rowid, ni.terms, ni.feats, ni.grams FROM node_index ni JOIN nodes n ON n.id = ni.node_id "

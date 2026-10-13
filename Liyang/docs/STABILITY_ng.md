@@ -40,37 +40,43 @@
    只有新增而版本号未升且未点名 ⇒ 拒绝。快照的版本不得高于代码版本（`test_snapshot_version_not_ahead`）。
 5. 签名快照只记参数名、种类、缺省值，不记类型注解（注解的字符串形式随 Python 小版本变化）；Python 3.11 / 3.12 / 3.13 下快照相同（多 Python 矩阵跑同一测试）。
 
-截至 rel-v1.22 没有处于弃用期的名字。
+截至 rel-v1.23 没有处于弃用期的名字。
 
 ## 4. schema 前后兼容矩阵
 
 结构版本：`lingshu_ng.store.schema.SCHEMA_VERSION`，库里记在 `engine_meta._schema_version`。历史：
-v2（ng 早期，ec5a2aea，未发布）→ **v3**（4bfafa7b 派生倒排索引；rel-v1 … rel-v1.20）→ **v4**（368c3323 触发器 `trg_index_upd`；rel-v1.21、rel-v1.22）。
+v2（ng 早期，ec5a2aea，未发布）→ **v3**（4bfafa7b 派生倒排索引；rel-v1 … rel-v1.20）→ **v4**（368c3323 触发器 `trg_index_upd`；rel-v1.21、rel-v1.22）
+→ **v5**（4e3fbb8a 倒排分块 blob `term_blocks` + 墓碑 `index_tomb` / `trg_index_tomb`，删除 `node_terms` 与 `trg_index_ins/del/upd`；rel-v1.23）。
 上游旧引擎（FuRongJun-1999/lingshu cb3a6ea）写出的库没有 ng 的版本标记。
 
-**实测**（`_stab/r7/schema_matrix.py`，读数 `_stab/r7/schema_matrix.json`）：每个写出版本建库写 3 条，每个读取版本在副本上打开 → 召回旧内容 →
+**实测**（`_stab/r8/schema_matrix.py`，读数 `_stab/r8/gate/schema_matrix.json`；rel-v1.22 及以前的行列与 `_stab/r7` 读数相同）：每个写出版本建库写 3 条，每个读取版本在副本上打开 → 召回旧内容 →
 写一条 → 召回新内容；能打开的再用写出版本重开该副本（往返）。各版本代码为 wt-rel 对应提交的 `lingshu_ng/`（git archive），零模型。
 
-| 写出 ↓ / 打开 → | rel-v1.10 | rel-v1.17 | rel-v1.18 | rel-v1.20 | rel-v1.21 | rel-v1.22 |
-|---|---|---|---|---|---|---|
-| 上游 cb3a6ea（无标记） | 可（→ v3） | 可（→ v3） | 可（→ v3） | 可（→ v3） | 可（→ v4） | 可（→ v4） |
-| rel-v1.10 / v1.17 / v1.18 / v1.20（v3） | 可 | 可 | 可 | 可 | 可（迁移 → v4） | 可（迁移 → v4） |
-| rel-v1.21 / v1.22（v4） | **可**（不检查版本，保留 v4 标记） | **可**（同左） | **拒绝** `SchemaTooNewError` | **拒绝** | 可 | 可 |
+| 写出 ↓ / 打开 → | rel-v1.10 | rel-v1.17 | rel-v1.18 | rel-v1.20 | rel-v1.21 | rel-v1.22 | rel-v1.23 |
+|---|---|---|---|---|---|---|---|
+| 上游 cb3a6ea（无标记） | 可（→ v3） | 可（→ v3） | 可（→ v3） | 可（→ v3） | 可（→ v4） | 可（→ v4） | 可（→ v5） |
+| rel-v1.10 / v1.17 / v1.18 / v1.20（v3） | 可 | 可 | 可 | 可 | 可（迁移 → v4） | 可（迁移 → v4） | 可（迁移 → v5） |
+| rel-v1.21 / v1.22（v4） | **可**（不检查版本，保留 v4 标记） | **可**（同左） | **拒绝** `SchemaTooNewError` | **拒绝** | 可 | 可 | 可（迁移 → v5） |
+| rel-v1.23（v5） | **可**（不检查版本，标记改回 3） | **可**（同左） | **拒绝** | **拒绝** | **拒绝** | **拒绝** | 可 |
 
 - 「可」= 打开、旧内容可召回、写入并召回新内容都成功。v3 库被 v1.21+ 打开后迁移成 v4，此后 rel-v1.18–v1.20 **不能再打开它**（往返实测拒绝）；
   rel-v1.10 / v1.17 仍能打开并照常读写（往返实测）。
+- **v5（rel-v1.23）补充**：v4 / v3 库被 rel-v1.23 打开后迁移成 v5，此后 rel-v1.18–v1.22 不能再打开（往返实测拒绝）。rel-v1.10 / v1.17 打开 v5 库会把标记改回 3、
+  重建旧倒排 `node_terms` 并照常读写；再用 rel-v1.23 打开时按 v3 重新迁移，派生索引与 `nodes` 全量重算逐值相同，旧版本写入与裸删都正确反映（`_stab/r8/gate/schema_extra.txt`）。
+  rel-v1.18–v1.22 设 `LINGSHU_NG_ALLOW_NEWER_SCHEMA=1` 强制打开 v5 库时同样会把标记改写为自己的版本，rel-v1.23 重开后重新迁移、结果同上。以上均属未承诺行为。
+  迁移要整体重建派生索引：100k 条零模型库约 1 分 42 秒（2 核 aarch64）。
 - rel-v1.18 起才有「库版本高于代码 ⇒ 拒绝」的检查（`SchemaTooNewError`，逃生口 `LINGSHU_NG_ALLOW_NEWER_SCHEMA=1`）；更早版本不检查。
   **更正**：CHANGELOG_rel-v1.21 写的「v4 库不能再用 rel-v1.20 及更早版本打开」不准确——只对 rel-v1.18–v1.20 成立，rel-v1.17 及更早不检查、实测能打开读写。
   v4 相对 v3 只多一个触发器（追加式变更），旧代码不走它，所以这几个旧版本读写 v4 库结果正常；但这属于未承诺的行为。
 - **承诺**：新版本总能打开所有旧版本（含上游 cb3a6ea）写出的库并自动迁移（`tests_ng/test_db_safety.py` 用 rel-v1.10 与上游夹具守）；
   旧版本打开新版本的库**不承诺**：rel-v1.18 起会拒绝，降级前请先 `export_all`，用旧版本 `import_all`。
-- 派生检索索引（`node_terms` / `term_df` / `node_index` 等）可由 `nodes` 完全重建，不随导出导入迁移；结构不符时打开库会整体重建（耗时随库规模）。
+- 派生检索索引（v5 起 `term_blocks` / `index_tomb`，v4 及以前 `node_terms`；`term_df` / `node_index` 等）可由 `nodes` 完全重建，不随导出导入迁移；结构不符时打开库会整体重建（耗时随库规模）。
 
 ## 5. 发布检查清单（每次发布）
 
 1. `__version__` 与 `CHANGELOG_rel-vX.Y.md` 同一提交；`tests_ng/test_api_snapshot.py` 通过（必要时按 §3 更新快照）。
 2. `python tools/ci/gen_api_appendix.py`（API_ng 附录 A）与 `--stability`（本文附录）重新生成，无手改。
-3. schema 有变化：更新 §4 矩阵（重跑 `_stab/r7/schema_matrix.py`）并加旧库夹具测试。
+3. schema 有变化：更新 §4 矩阵（重跑 `_stab/r8/schema_matrix.py`）并加旧库夹具测试。
 
 ## 附录：公开 API 清单
 
@@ -197,7 +203,7 @@ v2（ng 早期，ec5a2aea，未发布）→ **v3**（4bfafa7b 派生倒排索引
 
 #### `lingshu_ng.store.schema.SCHEMA_VERSION`
 
-- `·` const int = 4
+- `·` const int = 5
 
 #### `lingshu_ng.store.schema.SchemaTooNewError`
 

@@ -3,6 +3,7 @@
 
 夹具 tests_ng/fixtures/：
   * db_rel_v1_10.sqlite / .json —— rel-v1.10（wt-rel 5782f4f4）代码写出的库与内容清单（tools/ci/make_legacy_db.py）；
+  * db_rel_v1_22.sqlite / .json —— rel-v1.22（stab-v1 1a8cdeb4，schema v4，逐条倒排 node_terms + trg_index_* 触发器）写出的库；
   * db_upstream_cb3a6ea.sqlite —— 上游旧引擎（FuRongJun-1999/lingshu cb3a6ea）写出的库（tools/ci/make_upstream_db.py）。
 """
 import json
@@ -41,10 +42,11 @@ def _nid(n):
 
 
 # ---------------------------------------------------------------- 结构版本 / 旧库升级
-def test_rel_v1_10_db_reopens_readable_and_writable(tmp_path):
-    man = json.load(open(os.path.join(FIX, "db_rel_v1_10.json"), encoding="utf-8"))
+@pytest.mark.parametrize("fx", ["db_rel_v1_10", "db_rel_v1_22"])        # schema v3 / v4 → 当前（v5）
+def test_rel_v1_10_db_reopens_readable_and_writable(tmp_path, fx):
+    man = json.load(open(os.path.join(FIX, fx + ".json"), encoding="utf-8"))
     p = str(tmp_path / "old.sqlite")
-    shutil.copy(os.path.join(FIX, "db_rel_v1_10.sqlite"), p)
+    shutil.copy(os.path.join(FIX, fx + ".sqlite"), p)
     e = SpacetimeMemoryEngine(p)
     assert e.ng.store.db.schema_version == schema.SCHEMA_VERSION
     assert e.ng.capabilities()["engine"]["schema_version"] == schema.SCHEMA_VERSION
@@ -60,8 +62,13 @@ def test_rel_v1_10_db_reopens_readable_and_writable(tmp_path):
     assert e2.ng.store.nodes.get(new).content == "新版本写入旧库：合同续签已完成"
     assert "新版本写入旧库：合同续签已完成" in [n.content for n, _ in e2.recall("合同续签已完成", limit=3)]
     assert e2.ng.store.nodes.count() == man["counts"]["nodes"] + 1
+    assert e2.ng.store.text.rebuild_equals()                         # 迁移后派生索引（v5 倒排块）与全量重算相同
     e2.close()
     assert _integrity(p) == ("ok", [])
+    c = sqlite3.connect(p)
+    names = {r[0] for r in c.execute("SELECT name FROM sqlite_master")}
+    c.close()
+    assert "node_terms" not in names and "trg_index_ins" not in names and "term_blocks" in names
 
 
 def test_upstream_legacy_db_migrates_then_reads_and_writes(tmp_path):

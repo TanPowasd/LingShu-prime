@@ -432,7 +432,7 @@
 "lingshu_ng.store.db.DatabaseLockedError": "class(OperationalError)",
 "lingshu_ng.store.db.DatabaseOpenError": "class(OperationalError)",
 "lingshu_ng.store.db.EngineClosedError": "class(ProgrammingError)",
-"lingshu_ng.store.schema.SCHEMA_VERSION": "const int = 4",
+"lingshu_ng.store.schema.SCHEMA_VERSION": "const int = 5",
 "lingshu_ng.store.schema.SchemaTooNewError": "class(RuntimeError)",
 "lingshu_ng.types.ConditionSpace": "class(object)",
 "lingshu_ng.types.ConditionSpace.__init__": "(self, observation_position, observation_tool, time_window, existence_constraint)",
@@ -470,5 +470,5 @@
 "lingshu_ng.types.WriteResult.fields": "node_id, action, layer, reason",
 "lingshu_ng.types.WriteResult.reason": "attr str"
 },
-"version": "1.22.0"
+"version": "1.23.0"
 }

@@ -93,9 +93,9 @@ def test_reopen_legacy_db_backfills_index(tmp_path):
     e.perceive("会迁移的旧记忆：仓库钥匙在三号柜", skip_dedup=True)
     e.close()
     c = sqlite3.connect(p)                                     # 模拟旧库：无派生表与触发器
-    for t in ("trg_nodes_ins", "trg_nodes_upd", "trg_nodes_del", "trg_index_ins", "trg_index_del"):
+    for t in ("trg_nodes_ins", "trg_nodes_upd", "trg_nodes_del"):
         c.execute(f"DROP TRIGGER {t}")
-    for t in ("node_terms", "term_df", "feature_df", "node_index", "index_dirty"):
+    for t in ("term_blocks", "index_tomb", "term_df", "feature_df", "node_index", "index_dirty"):
         c.execute(f"DROP TABLE {t}")
     c.execute("INSERT INTO nodes (id, content, layer, tags) VALUES ('legacy_1', '旧版写入的钥匙记录', 'knowledge', '[]')")
     c.commit()
@@ -238,9 +238,7 @@ def test_reopen_db_with_stale_derived_index_shape_rebuilds(tmp_path):
     e.perceive("派生索引升级前写入：仓库钥匙在三号柜", skip_dedup=True)
     e.close()
     c = sqlite3.connect(p)                                     # 模拟第一版派生表（文本键倒排）
-    for t in ("trg_index_ins", "trg_index_del"):
-        c.execute(f"DROP TRIGGER {t}")
-    for t in ("node_terms", "node_index"):
+    for t in ("term_blocks", "node_index"):
         c.execute(f"DROP TABLE {t}")
     c.execute("CREATE TABLE node_terms (term TEXT NOT NULL, node_id TEXT NOT NULL, PRIMARY KEY (term, node_id)) "
               "WITHOUT ROWID")
@@ -292,7 +290,7 @@ def test_feats_lazy_build_consistent_with_deletes_and_writes():
 
 
 def test_stale_index_trigger_definition_is_rebuilt(tmp_path):
-    """旧库里的 trg_index_ins（无批量守卫）视为过期：重建触发器并全量重算派生索引。"""
+    """库里的 trg_index_tomb 定义过期（不留墓碑）：重建触发器并全量重算派生索引。"""
     import sqlite3
     from lingshu_ng.store import schema
     p = str(tmp_path / "trg.db")
@@ -300,13 +298,11 @@ def test_stale_index_trigger_definition_is_rebuilt(tmp_path):
     e.perceive("旧触发器时代写入：钥匙在三号柜", skip_dedup=True)
     e.close()
     c = sqlite3.connect(p)
-    c.execute("DROP TRIGGER trg_index_ins")
-    body = schema.TRIGGERS["trg_index_ins"].replace(
-        "WHEN NOT EXISTS (SELECT 1 FROM index_state WHERE key = 'bulk') ", "")
-    c.execute(f"CREATE TRIGGER trg_index_ins {body}")
+    c.execute("DROP TRIGGER trg_index_tomb")
+    c.execute("CREATE TRIGGER trg_index_tomb AFTER DELETE ON node_index BEGIN SELECT 1; END")
     c.execute("DROP TABLE index_state")
     c.commit()
-    assert schema.missing_parts(c)["triggers"] == ["trg_index_ins"]
+    assert schema.missing_parts(c)["triggers"] == ["trg_index_tomb"]
     c.close()
     e = MemoryEngine(p)
     assert [n.content for n, _ in e.search("钥匙")] == ["旧触发器时代写入：钥匙在三号柜"]

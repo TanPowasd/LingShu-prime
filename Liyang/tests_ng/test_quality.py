@@ -11,7 +11,7 @@ PKG = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 
 STDLIB_OK = {"__future__", "ast", "copy", "contextlib", "dataclasses", "enum", "hashlib", "hmac", "json",
              "math", "os", "random", "re", "sqlite3", "sys", "threading", "time", "typing", "unicodedata",
              "uuid", "importlib", "itertools", "collections", "functools", "io", "warnings",
-             "difflib", "logging", "operator"}   # logging：退回可见 / 宽 except 记录（stab-r1）；difflib：conflict.py 写入期矛盾检测的短文本对齐（标准库）；operator：inputs.limit 的 operator.index（标准库，stab-r5）
+             "difflib", "logging", "operator", "array", "bisect", "struct"}   # logging：退回可见 / 宽 except 记录（stab-r1）；difflib：conflict.py 写入期矛盾检测的短文本对齐（标准库）；operator：inputs.limit 的 operator.index（标准库，stab-r5）；array：v5 倒排块编解码（标准库，stab-r7）
 
 
 #: 本门禁只覆盖记忆引擎（lingshu_ng 根 + store/ + perception/）；lingshu_ng/world/ 属另一条重写线，不在此范围

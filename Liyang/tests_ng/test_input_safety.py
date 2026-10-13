@@ -12,6 +12,7 @@ import pytest
 from lingshu_ng import diag, inputs
 from lingshu_ng.compat import SpacetimeMemoryEngine
 from lingshu_ng.engine import MemoryEngine
+from lingshu_ng.store import postings
 from lingshu_ng.store.db import DatabaseLockedError, DatabaseOpenError, EngineClosedError
 
 _ALPH = ("abc 项目青鸾周会改到周四下午三点 Atlas meeting \n\t\r\x00\x01\x1b\x7f\u200b\u202e\ufeff\ufffd😀"
@@ -47,8 +48,10 @@ def _check_db(e):
     n_nodes = db.scalar("SELECT COUNT(*) FROM nodes")
     n_idx = db.scalar("SELECT COUNT(*) FROM node_index")
     assert n_idx == n_nodes
-    bad = db.scalar("SELECT COUNT(*) FROM node_terms t LEFT JOIN node_index i ON i.nkey = t.nkey WHERE i.nkey IS NULL")
-    assert bad == 0
+    keys = {r[0] for r in db.all("SELECT nkey FROM node_index")}
+    with db.lock:
+        bad = [k for v in postings.all_postings(db.conn).values() for k, _ in v if k not in keys]
+    assert bad == []                                       # 倒排块里没有悬空的节点键（v5）
     w = e.perceive("模糊测试之后仍可写入的哨兵记忆 sentinel")
     assert any(n.id == w.node_id for n, _ in e.recall("哨兵记忆 sentinel", limit=5)["hits"])
 

@@ -8,8 +8,10 @@
   S2 打开库时先**只读**比对实际结构（表/列/索引）；结构齐全则零写入返回
      （保住多进程启动只读化的初衷）；有缺失则在单个事务内补齐并写版本标记。
   S3 nodes/edges 的前 16/11 列保持旧列序；ng 新增列只追加在尾部。
-  S4 派生文本索引（倒排 node_terms / df / 新奇特征计数）由纯 SQL 触发器「写时记脏 + 删时级联」
-     维护，任何连接的裸写都不会让索引静默过期；触发器缺失（旧库）⇒ 全量记脏重建。
+  S4 派生文本索引（倒排块 term_blocks / df / 新奇特征计数）：nodes 上的纯 SQL 触发器「写时记脏 + 删时留墓碑」，
+     任何连接的裸写都不会让索引静默过期（删掉的节点由墓碑带着旧词元，下次 flush 时退出倒排与计数）；
+     倒排块与计数本身由 textindex 在 Python 侧维护（v5；v3/v4 为 node_index 上的触发器逐行维护 node_terms）。
+     触发器缺失或过期（旧库）⇒ 全量记脏重建；旧版遗留的 node_terms 表与 trg_index_* 触发器在迁移时删除。
   S5 只服务读路径的二级索引（:data:`LAZY_INDEXES`）惰性建：写入密集的灌库期不维护，首次需要时一次建齐。
 """
 from __future__ import annotations
@@ -19,9 +21,9 @@ import sqlite3
 from typing import Dict, Iterable, List, Sequence, Set, Tuple
 
 __all__ = ["SchemaTooNewError", "stored_version", "ALLOW_NEWER_ENV", "SCHEMA_VERSION", "TABLES", "INDEXES", "LAZY_INDEXES", "PENDING_KEY", "KEY_MISSING", "lazy_indexes_missing", "ensure_lazy_indexes", "TRIGGERS", "columns_of", "missing_parts", "migrate",
-           "existing_tables", "DERIVED_TABLES"]
+           "existing_tables", "DERIVED_TABLES", "LEGACY_TABLES", "LEGACY_TRIGGERS"]
 
-SCHEMA_VERSION = 4
+SCHEMA_VERSION = 5
 #: 允许打开「比本代码新」的库的逃生口（只在确认新版本只做了追加式变更时使用）
 ALLOW_NEWER_ENV = "LINGSHU_NG_ALLOW_NEWER_SCHEMA"
 
@@ -119,8 +121,11 @@ TABLES: Dict[str, Tuple[Tuple[Column, ...], str]] = {
         ("ts", "REAL NOT NULL"), ("polarity", "INTEGER DEFAULT 1"),
     ), ""),
     # ---- ng 派生文本索引（textindex.py；可由 nodes 完全重建，不导出）----
-    "node_terms": ((("term", "TEXT NOT NULL"), ("nkey", "INTEGER NOT NULL"), ("grams", "INTEGER NOT NULL DEFAULT 0")),
-                   "PRIMARY KEY (term, nkey)"),
+    # v5（stab-r7）：倒排按词元分块打包（store/postings.py；每块 ≤ 128 条 nkey/grams 小端数组），取代 v3/v4 的逐条 node_terms
+    "term_blocks": ((("term", "TEXT NOT NULL"), ("bno", "INTEGER NOT NULL"), ("n", "INTEGER NOT NULL"),
+                     ("nk", "BLOB NOT NULL"), ("gr", "BLOB NOT NULL")), "PRIMARY KEY (term, bno)"),
+    # 墓碑：node_index 行被删时（trg_index_tomb）写入其旧词元与特征，textindex 让其退出倒排与计数后删除（每个被删行一条）
+    "index_tomb": ((("nkey", "INTEGER NOT NULL"), ("terms", "TEXT NOT NULL"), ("feats", "TEXT NOT NULL")), ""),
     "term_df": ((("term", "TEXT PRIMARY KEY"), ("df", "INTEGER NOT NULL DEFAULT 0")), ""),
     "feature_df": ((("feat", "TEXT PRIMARY KEY"), ("df", "INTEGER NOT NULL DEFAULT 0")), ""),
     "node_index": ((
@@ -136,12 +141,15 @@ TABLES: Dict[str, Tuple[Tuple[Column, ...], str]] = {
 }
 
 #: 派生表（索引数据，可由 nodes 重建；导出/导入与完整性校验不涉及）
-DERIVED_TABLES = frozenset({"node_terms", "term_df", "feature_df", "node_index", "index_dirty", "index_state"})
+DERIVED_TABLES = frozenset({"term_blocks", "index_tomb", "term_df", "feature_df", "node_index", "index_dirty", "index_state"})
+#: 旧版派生对象（v3/v4）：迁移时删除
+LEGACY_TABLES = ("node_terms",)
+LEGACY_TRIGGERS = ("trg_index_ins", "trg_index_del", "trg_index_upd")
 #: 表选项（CREATE TABLE … 之后的修饰）
-_TABLE_OPTIONS = {"node_terms": " WITHOUT ROWID", "term_df": " WITHOUT ROWID", "feature_df": " WITHOUT ROWID",
+_TABLE_OPTIONS = {"term_blocks": " WITHOUT ROWID", "term_df": " WITHOUT ROWID", "feature_df": " WITHOUT ROWID",
                   "index_state": " WITHOUT ROWID"}
 #: 引用派生表结构的触发器（派生表重建时一并重建）
-_DERIVED_TRIGGERS = ("trg_index_ins", "trg_index_del", "trg_index_upd", "trg_nodes_ins")
+_DERIVED_TRIGGERS = ("trg_nodes_ins", "trg_index_tomb")
 
 #: 索引名 → (表, 列表达式, 是否唯一)
 INDEXES: Dict[str, Tuple[str, str, bool]] = {
@@ -178,8 +186,9 @@ LAZY_INDEXES: Dict[str, Tuple[str, str, bool]] = {
     "idx_nodes_temporal": ("nodes", "temporal_coordinate", False),
 }
 
-#: 触发器（纯 SQL，不依赖应用函数——任何连接、包括旧代码的裸写都会维护派生索引）：
-#: nodes 增改 ⇒ 记脏（rowid 高于水位的新行由水位隐式记脏）；nodes 删 ⇒ 删 node_index；node_index 增删 ⇒ 维护倒排、df、新奇特征计数。
+#: 触发器（纯 SQL，不依赖应用函数——任何连接、包括旧代码的裸写都会让派生索引记脏或留墓碑）：
+#: nodes 增改 ⇒ 记脏（rowid 高于水位的新行由水位隐式记脏）；nodes 删 / 改 id ⇒ 删 node_index 行 ⇒ 旧词元与特征转入墓碑 index_tomb。
+#: 倒排块、df、新奇特征计数不再由触发器维护（v5：textindex 在 flush / 写路径里按墓碑与脏节点在 Python 侧增删，见 S4）。
 TRIGGERS: Dict[str, str] = {
     # 新行（rowid 高于派生索引水位 index_state('hw')）由水位隐式记脏，免逐行写 index_dirty；只有落在水位
     # 以下的插入（REPLACE 复用/显式小 rowid）才显式记脏——见 textindex「水位」说明
@@ -192,41 +201,10 @@ TRIGGERS: Dict[str, str] = {
     "trg_nodes_del": "AFTER DELETE ON nodes BEGIN "
                      "DELETE FROM node_index WHERE node_id = OLD.id; "
                      "DELETE FROM index_dirty WHERE node_id = OLD.id; END",
-    "trg_index_ins": "AFTER INSERT ON node_index "
-                     "WHEN NOT EXISTS (SELECT 1 FROM index_state WHERE key = 'bulk') BEGIN "
-                     "INSERT INTO node_terms(term, nkey, grams) SELECT value, NEW.nkey, NEW.grams FROM json_each(NEW.terms); "
-                     "INSERT INTO term_df(term, df) SELECT value, 1 FROM json_each(NEW.terms) WHERE 1 "
-                     "ON CONFLICT(term) DO UPDATE SET df = df + 1; "
-                     "INSERT INTO feature_df(feat, df) SELECT value, 1 FROM json_each(NEW.feats) WHERE 1 "
-                     "ON CONFLICT(feat) DO UPDATE SET df = df + 1; END",
-    "trg_index_del": "AFTER DELETE ON node_index BEGIN "
-                     "DELETE FROM node_terms WHERE nkey = OLD.nkey "
-                     "AND term IN (SELECT value FROM json_each(OLD.terms)); "
-                     "UPDATE term_df SET df = df - 1 WHERE term IN (SELECT value FROM json_each(OLD.terms)); "
-                     "UPDATE feature_df SET df = df - 1 WHERE feat IN (SELECT value FROM json_each(OLD.feats)); END",
-    # v4（stab-r5）：单行重建的原位差量路径（textindex._row_flush / reindex_written 对单个已索引节点用
-    # ``UPDATE node_index SET nkey=<删后插入会拿到的新键>, terms, feats, grams``）——结果与「删旧行 + 插新行」逐值相同
-    # （倒排行、df、新奇特征计数、nkey 分配都一样），只是未变的词元不再「减一再加一」、倒排只改键不删插。
-    # 只在 SET 含 terms 时触发：ensure_feats 回填 feats 不经此触发器（其计数另行聚合）。
-    "trg_index_upd": "AFTER UPDATE OF terms ON node_index "
-                     "WHEN NOT EXISTS (SELECT 1 FROM index_state WHERE key = 'bulk') BEGIN "
-                     "DELETE FROM node_terms WHERE nkey = OLD.nkey AND term IN "
-                     "(SELECT value FROM json_each(OLD.terms) EXCEPT SELECT value FROM json_each(NEW.terms)); "
-                     "UPDATE term_df SET df = df - 1 WHERE term IN "
-                     "(SELECT value FROM json_each(OLD.terms) EXCEPT SELECT value FROM json_each(NEW.terms)); "
-                     "UPDATE node_terms SET nkey = NEW.nkey, grams = NEW.grams "
-                     "WHERE (NEW.nkey <> OLD.nkey OR NEW.grams <> OLD.grams) AND nkey = OLD.nkey "
-                     "AND term IN (SELECT value FROM json_each(OLD.terms)); "
-                     "INSERT INTO node_terms(term, nkey, grams) SELECT value, NEW.nkey, NEW.grams FROM json_each(NEW.terms) "
-                     "WHERE value NOT IN (SELECT value FROM json_each(OLD.terms)); "
-                     "INSERT INTO term_df(term, df) SELECT value, 1 FROM json_each(NEW.terms) "
-                     "WHERE value NOT IN (SELECT value FROM json_each(OLD.terms)) "
-                     "ON CONFLICT(term) DO UPDATE SET df = df + 1; "
-                     "UPDATE feature_df SET df = df - 1 WHERE feat IN "
-                     "(SELECT value FROM json_each(OLD.feats) EXCEPT SELECT value FROM json_each(NEW.feats)); "
-                     "INSERT INTO feature_df(feat, df) SELECT value, 1 FROM json_each(NEW.feats) "
-                     "WHERE value NOT IN (SELECT value FROM json_each(OLD.feats)) "
-                     "ON CONFLICT(feat) DO UPDATE SET df = df + 1; END",
+    # v5：node_index 行无论因何被删（节点删除/改 id 的级联、textindex 重建、任何裸写），旧词元与特征都进墓碑；
+    # textindex 在下一次分配 nkey 之前（flush / 写路径开头、自身删行之后立即）让墓碑退出倒排与计数
+    "trg_index_tomb": "AFTER DELETE ON node_index BEGIN "
+                      "INSERT INTO index_tomb(nkey, terms, feats) VALUES (OLD.nkey, OLD.terms, OLD.feats); END",
 }
 
 
@@ -247,7 +225,7 @@ def _existing_columns(conn: sqlite3.Connection, table: str) -> Set[str]:
 def missing_parts(conn: sqlite3.Connection) -> Dict[str, List]:
     """只读比对：返回 {tables:[..], columns:[(t,c,decl)..], indexes:[..]}。"""
     have = existing_tables(conn)
-    out: Dict[str, List] = {"tables": [], "columns": [], "indexes": [], "triggers": [], "derived": []}
+    out: Dict[str, List] = {"tables": [], "columns": [], "indexes": [], "triggers": [], "derived": [], "legacy": []}
     for t, (cols, _) in TABLES.items():
         if t not in have:
             out["tables"].append(t)
@@ -263,6 +241,10 @@ def missing_parts(conn: sqlite3.Connection) -> Dict[str, List]:
     trg = {r[0]: r[1] for r in conn.execute("SELECT name, sql FROM sqlite_master WHERE type='trigger'")}
     # 缺失或定义过期（旧版本的触发器体）都算缺口：重建触发器并全量重算派生索引
     out["triggers"] = [t for t in TRIGGERS if trg.get(t) != f"CREATE TRIGGER {t} {TRIGGERS[t]}"]
+    # 旧版派生对象仍在（v3/v4 库，或 v5 库被不查版本的旧代码打开过）：删除，并按触发器过期处理（全量重算）
+    out["legacy"] = [t for t in LEGACY_TRIGGERS if t in trg] + [t for t in LEGACY_TABLES if t in have]
+    if out["legacy"] and not out["triggers"]:
+        out["triggers"] = list(TRIGGERS)
     return out
 
 
@@ -292,6 +274,8 @@ def migrate(conn: sqlite3.Connection) -> Dict[str, List]:
         return gap                                # 结构齐全 ⇒ 零写入（多进程只读启动；无版本标记的库下次补齐时写）
     conn.execute("BEGIN IMMEDIATE")
     try:
+        for name in gap["legacy"]:
+            conn.execute(f"DROP {'TABLE' if name in LEGACY_TABLES else 'TRIGGER'} IF EXISTS {name}")
         if gap["derived"]:
             for name in _DERIVED_TRIGGERS:
                 conn.execute(f"DROP TRIGGER IF EXISTS {name}")
@@ -317,7 +301,7 @@ def migrate(conn: sqlite3.Connection) -> Dict[str, List]:
         if gap["triggers"]:
             # 触发器缺失/过期期间的写入未进派生索引：全部记脏，由 textindex 在首次读前重建；
             # 新奇特征计数一并清空并标记「未构建」（首次新奇度查询时按需补建）
-            for t in ("node_terms", "term_df", "feature_df", "node_index", "index_state"):
+            for t in ("node_index", "term_blocks", "index_tomb", "term_df", "feature_df", "index_state"):   # node_index 先删：其删除触发器写的墓碑随后一并清掉
                 conn.execute(f"DELETE FROM {t}")
             conn.execute("INSERT INTO index_state(key, value) VALUES ('feats', '0')")
             conn.execute("INSERT OR IGNORE INTO index_dirty(node_id) SELECT id FROM nodes")

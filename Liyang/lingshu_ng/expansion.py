@@ -160,26 +160,19 @@ class Expansion:
     def _members(self, term: str, keys: Sequence[int]) -> List[int]:
         if self.member is not None:
             return self.member(term, keys)
-        hits: List[int] = []
-        for part in chunks(list(keys)):
-            hits += [r[0] for r in self.db.all(
-                f"SELECT nkey FROM node_terms WHERE term=? AND nkey IN ({placeholders(len(part))})", [term, *part])]
-        return hits
+        from .store import postings              # 未注入回调：直接读倒排块（schema v5）
+        with self.db.lock:
+            return postings.members(self.db.conn, term, keys)
 
     def _members_multi(self, terms: Sequence[str], keys: Sequence[int]) -> List[Tuple[str, int]]:
         """[(词元, nkey)]：keys 中含 terms 任一项的 (词元, 节点) 对——等价于逐词元 :meth:`_members` 的并
-        （倒排主键 (term, nkey) 逐对点查，单条语句，键集以 JSON 传入不受变量上限影响）。"""
+        （schema v5：由派生索引的 ``members_multi`` 读倒排块；只给了逐词元回调时逐词元求并）。"""
         if not terms or not keys:
             return []
-        if self.member is not None and not hasattr(self.db, "conn"):
-            return [(t, h) for t in terms for h in self.member(t, keys)]
-        with self.db.lock:
-            cur = self.db.conn.cursor()
-            cur.row_factory = None
-            return cur.execute(
-                "SELECT term, nkey FROM node_terms WHERE term IN (SELECT value FROM json_each(?)) "
-                "AND nkey IN (SELECT value FROM json_each(?))",
-                (json.dumps(list(terms), ensure_ascii=False), json.dumps(list(keys)))).fetchall()
+        multi = getattr(getattr(self.member, "__self__", None), "members_multi", None)
+        if multi is not None:
+            return multi(terms, keys)
+        return [(t, h) for t in terms for h in self._members(t, keys)]
 
     # ------------------------------------------------------------ 精排
     def drain(self, cap: int, rest: Sequence[Tuple[int, str, bool]] = ()) -> bool:
