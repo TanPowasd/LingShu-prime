@@ -140,3 +140,7 @@
 
 ## 推送记录
 
+- 2026-10-14 split-r3：LingShu-prime main 367335b1 → **34b46f93**（只改 `Liyang/`）。推送前 `Liyang/` 内 `tests_ng` + 插件测试目录 3297 passed + 1 skipped（nn compat 表面核对需上游 `tests/`，发布目录无）；
+  TanPowasd `agm/learn/test_learn.py` 25/0、`agm/reason/test_reason.py` 14/0（只运行，运行后还原 `.pyc`）。
+- 推送后 PyPI 布局验收：从 prime 新克隆的 `Liyang/` 在干净 venv `pip install ./Liyang ./Liyang/plugins/lingshu-ng-embed` → lingshu-ng 1.24.0 + lingshu-ng-embed 1.24.0（带入 numpy 2.5.4 / onnxruntime 1.31.0 / tokenizers 0.23.3）；
+  `capabilities()["plugins"]` 只有 embed（source=entry_point，无错误），`dependencies` 三项可用，`semantic_tier` v11c（有本机模型件）/ v4（`LINGSHU_NG_SEM=off`）；`import lingshu_ng.world` 抛带 `pip install lingshu-ng-world` 提示的 ModuleNotFoundError；写入 + 召回正常。

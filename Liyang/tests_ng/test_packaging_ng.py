@@ -70,7 +70,7 @@ def test_core_package_zero_deps_no_extras():
 
 
 def test_plugin_packages_declared():
-    """四个插件包：各自 pyproject（name / 版本单一来源 / 入口点 lingshu_ng.plugins / 依赖核心 1.24+）、README、测试目录。"""
+    """四个插件包：各自 pyproject（name / 版本单一来源 / 入口点 lingshu_ng.plugins / 依赖核心 1.25+）、README、测试目录。"""
     for name in PLUGINS:
         d = ROOT / "plugins" / f"lingshu-ng-{name}"
         pp = _plugin_pyproject(name)
@@ -78,7 +78,7 @@ def test_plugin_packages_declared():
         assert pp["project"]["name"] == f"lingshu-ng-{name}"
         assert pp["tool"]["setuptools"]["dynamic"]["version"] == {"attr": f"{top}.__version__"}
         assert pp["project"]["entry-points"]["lingshu_ng.plugins"] == {name: f"{top}.plugin:PLUGIN"}
-        assert any(s.replace(" ", "").startswith("lingshu-ng>=1.24") for s in pp["project"]["dependencies"])
+        assert any(s.replace(" ", "").startswith("lingshu-ng>=1.25") for s in pp["project"]["dependencies"])
         assert (d / "README.md").exists() and (d / f"tests_{name}").is_dir() and (d / "src" / top / "plugin.py").exists()
         m = re.search(r'^__version__ = "(\d+\.\d+\.\d+)"', (d / "src" / top / "__init__.py").read_text(encoding="utf-8"), re.M)
         assert m, top

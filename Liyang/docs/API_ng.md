@@ -1,7 +1,7 @@
-# lingshu_ng 对外 API（rel-v1.24）
+# lingshu_ng 对外 API（rel-v1.25）
 
 本文覆盖 `lingshu_ng` 的公开类与方法、参数、返回值、异常、可选依赖与 `capabilities()` 用法。
-版本：`lingshu_ng.__version__ == "1.24.0"`（发行包 `lingshu-ng`，版本号 = `CHANGELOG_rel-v1.24.md`）。
+版本：`lingshu_ng.__version__ == "1.25.0"`（发行包 `lingshu-ng`，版本号 = `CHANGELOG_rel-v1.25.md`）。
 文末附录 A 由代码生成（`tools/ci/gen_api_appendix.py`），列出兼容门面每个公开方法的支持状态，与运行期
 `capabilities.compat_methods()` 一致。
 
@@ -36,7 +36,7 @@ pip install lingshu-ng-gen      # 插件：numpy / Pillow / lingshu-ng-nn——l
 **不兼容点**：rel-v1.23 及以前的 extras（`".[embed]"`、`".[world]"`、`".[nn]"`、`".[gen]"`、`".[full]"`、`".[dev]"`）已删除；
 pip 对不存在的 extra 只给警告、照装核心，所以旧命令不会报错但**不会再装上 numpy / onnxruntime 等**，请改装对应插件包。
 
-要求 Python ≥ 3.11。实测（rel-v1.24，`tools/ci/pkg_check.sh` 核心 3.12.15 / 3.11.17 / 3.13.5，`tools/ci/pkg_check_plugins.sh` 核心 / 核心 + embed / + world / + nn / + nn + gen 五组：
+要求 Python ≥ 3.11。实测（rel-v1.25，`tools/ci/pkg_check.sh` 核心 3.12.15 / 3.11.17 / 3.13.5，`tools/ci/pkg_check_plugins.sh` 核心 / 核心 + embed / + world / + nn / + nn + gen 五组：
 干净 venv、非 editable 安装、换到无关目录 import 并跑最小用例）全部通过（Linux aarch64）。Windows 真机未测。
 核心发行包只含 `lingshu_ng`（不含 world / nn / gen 源码）；`Liyang/lingshu/`（上游旧包副本）只用于仓内差分测试，不会被安装。
 
@@ -274,10 +274,10 @@ ONNX 文件缺省 `model_quantized.onnx`。英文语义第二路用 `LINGSHU_NG_
 
 ## 10. 存储、并发与数据安全
 
-- **结构版本**：`schema.SCHEMA_VERSION`（当前 5；rel-v1.23 起倒排分块 blob，rel-v1.21–v1.22 为 4，此前 3；v3/v4 库打开时自动迁移并首次读前整体重建派生索引）。各版本能打开哪个结构版本见 [`docs/STABILITY_ng.md`](STABILITY_ng.md) §4。打开库时只读比对表 / 列 / 索引 / 触发器；齐全则零写入，缺失则单事务补齐并写版本标记
+- **结构版本**：`schema.SCHEMA_VERSION`（当前 6；rel-v1.25 起 `node_index` 不再存词元 JSON、退出倒排按旧正文重算，rel-v1.23–v1.24 为 5（倒排分块 blob），rel-v1.21–v1.22 为 4，此前 3；v3/v4/v5 库打开时自动迁移并首次读前整体重建派生索引；分词指纹变化时同样整体重建）。各版本能打开哪个结构版本见 [`docs/STABILITY_ng.md`](STABILITY_ng.md) §4。打开库时只读比对表 / 列 / 索引 / 触发器；齐全则零写入，缺失则单事务补齐并写版本标记
   （`engine_meta._schema_version`）。`MemoryEngine(...).store.db.schema_version` 或 `capabilities()["engine"]["schema_version"]` 可读。
 - **旧库升级**：rel-v1.10 写出的库、上游旧引擎（cb3a6ea）写出的库都能直接打开、读、写（`tests_ng/test_db_safety.py`，夹具在 `tests_ng/fixtures/`）。
-- **更新版本写出的库**：结构版本高于本代码时抛 `SchemaTooNewError` 拒绝打开（避免旧代码按旧结构写入新库）；确认只做了追加式变更时可设 `LINGSHU_NG_ALLOW_NEWER_SCHEMA=1`（v5 不是追加式变更：旧版本强制打开会改写标记并重建旧倒排，见 STABILITY §4）。
+- **更新版本写出的库**：结构版本高于本代码时抛 `SchemaTooNewError` 拒绝打开（避免旧代码按旧结构写入新库）；确认只做了追加式变更时可设 `LINGSHU_NG_ALLOW_NEWER_SCHEMA=1`（v5、v6 都不是追加式变更：旧版本强制打开的后果见 STABILITY §4）。
 - **并发**：每个引擎一个连接 + 一把可重入锁，跨线程读写在锁内串行；文件库用 WAL 日志与 `busy_timeout`（缺省 30 s，`LINGSHU_NG_BUSY_TIMEOUT` 可改；超时抛 `DatabaseLockedError`），多个引擎 / 多个进程可同时写同一文件。
   所有写入在 `BEGIN IMMEDIATE` 事务内，异常整体回滚。
 - **崩溃安全**：写入方法返回即已提交；进程在写入中途被杀（SIGKILL）后，重开库 `PRAGMA integrity_check = ok`，已返回的写入全部可读，派生检索索引与主表一致。

@@ -21,7 +21,7 @@ def _dump(e):
     out["postings"] = sorted((t, k, g) for t, v in postings.all_postings(c).items() for k, g in v)
     # 节点 id 含时间戳、两次运行不同：换成 nodes.rowid（同一操作序列下确定）
     out["node_index"] = [tuple(r) for r in c.execute(
-        "SELECT ni.nkey, n.rowid, ni.terms, ni.feats, ni.grams FROM node_index ni JOIN nodes n ON n.id = ni.node_id "
+        "SELECT ni.nkey, n.rowid, ni.feats, ni.grams FROM node_index ni JOIN nodes n ON n.id = ni.node_id "
         "ORDER BY 1").fetchall()]
     assert len(out["node_index"]) == c.execute("SELECT COUNT(*) FROM node_index").fetchone()[0]
     return out
@@ -90,5 +90,6 @@ def test_move_row_used_for_single_update():
         TextIndex._move_row = staticmethod(orig)
     assert calls == [nid]
     assert e.store.text.rebuild_equals()
-    assert json.loads(e.store.conn.execute("SELECT terms FROM node_index WHERE node_id=?", (nid,)).fetchone()[0])
+    k = e.store.conn.execute("SELECT nkey FROM node_index WHERE node_id=?", (nid,)).fetchone()[0]
+    assert k in e.store.text.postings("\x1f新标签")
     e.close()

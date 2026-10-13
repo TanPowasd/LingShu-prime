@@ -1,34 +1,27 @@
 # -*- coding: utf-8 -*-
 """textindex · 派生文本索引（倒排词元表 + df + 新奇特征计数）
 
-旧实现与 ng 第一版的问题：检索靠 ``instr()``/``LIKE`` 全表预筛（O(N·探针)），候选池按命中
-探针数截断；新奇度每次全库重算特征（O(N·L)，缺口 5）；模糊去重只看最近 200 条（缺口 6）。
-
 结构：
-  * ``node_index(nkey, node_id, terms, feats, grams)``：每节点一行（nkey = 整数代理键），terms = 规范化正文二元组 ∪
-    ``\\x1f``+标签（标签项，供「标签 ⊂ 查询」加分的精确候选），feats = 新奇特征（仅可检索层），
+  * ``node_index(nkey, node_id, feats, grams)``：每节点一行（nkey = 整数代理键）。词元（规范化正文二元组 ∪
+    ``\\x1f``+标签，标签项供「标签 ⊂ 查询」加分的精确候选）schema v6 起不再存列，需要时由正文按 :func:`terms_of` 重算；
+    节点被改/删时触发器先把上次索引时的正文与标签记入 ``index_old``，墓碑 ``index_tomb`` 带旧正文；feats = 新奇特征（仅可检索层），
     grams = 正文二元组个数（相关度上界用；不可检索层记 0）。
   * 倒排：schema v5 起为 ``term_blocks``（:mod:`lingshu_ng.store.postings`，按词元分块打包 (nkey, grams)，每块 ≤ 128 条，
     WITHOUT ROWID）；v3/v4 是逐条一行的 ``node_terms(term, nkey, grams)``。读出顺序与内容同 v4（按 nkey 升序）；
-    grams 冗余自 node_index，让检索读倒排即得每个节点的精确率分母、无需逐行回表。``term_df``：词元 df（WITHOUT ROWID）；
-    ``feature_df``：新奇特征在可检索层中的出现节点数。
+    grams 冗余自 node_index（检索读倒排即得精确率分母）。``term_df``：词元 df；``feature_df``：新奇特征在可检索层的节点数。
   * 水位（arch-scale）：``index_state('hw')`` = 已处理到的最大 nodes.rowid。rowid 高于水位的行一律视为脏
     （新行是 rowid 递增追加的常态——灌库时不再逐行写 ``index_dirty``，省一棵 B 树的随机写）；落在水位以下的
-    插入（REPLACE 复用 rowid、显式小 rowid）由插入触发器显式记脏。flush 处理「脏表 ∪ 水位以上」后在同一
-    写事务内把水位推到 MAX(rowid)。
-  * 维护（v5）：schema.TRIGGERS 的纯 SQL 触发器只负责「nodes 改 ⇒ 记脏；nodes 删 ⇒ 删 node_index 行 ⇒ 旧词元/特征进
-    墓碑 ``index_tomb``」，所以任何连接的裸写都不会让索引过期。倒排块、df、新奇特征计数由本模块在 Python 侧增删：
+    插入（REPLACE 复用 rowid、显式小 rowid）由插入触发器显式记脏。flush 处理「脏表 ∪ 水位以上」后同事务推水位到 MAX(rowid)。
+  * 维护（v5）：schema.TRIGGERS 的纯 SQL 触发器只负责「nodes 改 ⇒ 记脏；nodes 删 ⇒ 删 node_index 行 ⇒ 旧正文/特征进
+    墓碑 ``index_tomb``」（v6），所以任何连接的裸写都不会让索引过期。倒排块、df、新奇特征计数由本模块在 Python 侧增删：
     写路径 / flush 开头先让墓碑退出（:meth:`TextIndex._apply_tombs`，须先于新 nkey 分配），再把脏节点「算词元 →
-    重写 node_index 行 → 倒排块删旧加新 → 计数按净变化增减」（:meth:`TextIndex._apply`；结果与 v4 触发器路径逐值相同）。
-    任何读之前先 flush。
-  * 新奇特征按需构建：新库/重建后 ``index_state('feats','0')``，此时 feats 全为 ``'[]'``、feature_df
-    全 0（删除触发器无可递减，自然一致）；首次新奇度查询 :meth:`TextIndex.ensure_feats` 一次补建，
-    之后随写入即时维护。检索/去重/自检的首读因此不付特征成本。
+    重写 node_index 行 → 倒排块删旧加新 → 计数按净变化增减」（:meth:`TextIndex._apply`；与 v4 触发器路径逐值相同）。任何读之前先 flush。
+  * 新奇特征按需构建：新库/重建后 ``index_state('feats','0')``，feats 全 ``'[]'``、feature_df 全 0；首次新奇度查询
+    :meth:`TextIndex.ensure_feats` 一次补建，之后随写入即时维护（检索/去重/自检的首读不付特征成本）。
 
 不变量：
-  T1 flush 之后，node_index 与 nodes 一一对应，倒排/df/特征计数与「从 nodes 全量重算」相同
-     （特征未构建时「全量重算」的特征即为空）
-     （tests_ng/test_recall_perf.py::test_index_matches_rebuild）。
+  T1 flush 之后，node_index 与 nodes 一一对应，倒排/df/特征计数与「从 nodes 全量重算」相同（特征未构建时为空；
+     tests_ng/test_recall_perf.py::test_index_matches_rebuild）。
   T2 词元与检索评分用的是同一个 :func:`dedup.bigrams`（规范化后二元组）——倒排命中 ⇔ 评分交集非空。
 """
 from __future__ import annotations
@@ -73,6 +66,21 @@ def terms_of(content: Optional[str], tags: Sequence[str]) -> Tuple[List[str], in
     return sorted(terms), len(grams)
 
 
+#: 分词指纹探针（覆盖中日韩二元组、拉丁词干、数字/版本号、全角、标点、表情与组合字符）
+_PROBES = ("记忆视觉图像语义识别", "The marathon training plan starts in March.", "running runs ran v2.1 10.1.2.3 CPU-x86_64",
+           "ＦＵＬＬ　ｗｉｄｔｈ １２３", "混合 mixed 文本，标点！？…", "emoji 😀🚀 e\u0301 ﬁ ½ Ⅷ", "")
+
+
+def _tokfp() -> str:
+    """分词指纹：Unicode 数据库版本 + 探针的 terms_of 输出的 sha1 前 16 位。"""
+    import hashlib
+    import unicodedata
+    h = hashlib.sha1(unicodedata.unidata_version.encode())
+    for t in _PROBES:
+        h.update(_pack(terms_of(t, ["标签", "tag"])[0]).encode("utf-8"))
+    return h.hexdigest()[:16]
+
+
 class TextIndex:
     """派生文本索引的读写入口（绑定一个 Database）。"""
 
@@ -85,16 +93,20 @@ class TextIndex:
 
     # ------------------------------------------------------------ 维护
     def ensure_lexical(self) -> bool:
-        """gen-v1 L2：派生倒排的词元格式版本（index_state('lexv')）。旧库（无拉丁词干词元）打开时整体记脏，
-        由首次读前的 flush 批量重建；空库直接登记版本。返回是否记了脏。"""
+        """派生倒排的词元格式（index_state('lexv') = LEXV，gen-v1 L2）与分词指纹（('tokfp')：Unicode 数据库版本 +
+        terms_of 在固定探针上的输出）。v6 起 node_index 不存词元、退出倒排时按正文重算旧词元，所以分词结果一变就必须
+        **整体重建**（而不只是记脏）：版本或指纹不符且已有索引 ⇒ 清空派生索引、全部记脏，首读前批量重建。返回是否重建。"""
+        fp = _tokfp()
         with self.db.tx() as c:
             r = c.execute("SELECT value FROM index_state WHERE key='lexv'").fetchone()
-            if r is not None and r[0] == LEXV:
+            f = c.execute("SELECT value FROM index_state WHERE key='tokfp'").fetchone()
+            if r is not None and r[0] == LEXV and f is not None and f[0] == fp:
                 return False
             has = c.execute("SELECT 1 FROM node_index LIMIT 1").fetchone() is not None
             if has:
-                c.execute("INSERT OR IGNORE INTO index_dirty(node_id) SELECT id FROM nodes")
+                self._wipe(c)
             c.execute("INSERT OR REPLACE INTO index_state(key, value) VALUES ('lexv', ?)", (LEXV,))
+            c.execute("INSERT OR REPLACE INTO index_state(key, value) VALUES ('tokfp', ?)", (fp,))
             return has
 
     def feats_ready(self, c: Any = None) -> bool:
@@ -112,7 +124,7 @@ class TextIndex:
         if not (existed and self._move_row(c, row)):
             if existed:
                 self._drop_rows(c, [nid])
-            cur = c.execute("INSERT INTO node_index (node_id, terms, feats, grams) VALUES (?,?,?,?)", self._packed(row))
+            cur = c.execute("INSERT INTO node_index (node_id, feats, grams) VALUES (?,?,?)", self._packed(row))
             self._apply(c, [], [(cur.lastrowid,) + row[1:]])
         c.execute("DELETE FROM index_dirty WHERE node_id=?", (nid,))
         hw = self._hw(c)
@@ -134,10 +146,11 @@ class TextIndex:
         c.execute("INSERT OR REPLACE INTO index_state(key, value) VALUES ('hw', ?)", (str(int(hw)),))
 
     def _pending(self, c: Any) -> bool:
-        """是否有待处理的派生索引变更：墓碑或脏表非空，或有 rowid 高于水位的行。"""
+        """是否有待处理的派生索引变更：墓碑 / 旧正文 / 脏表非空，或有 rowid 高于水位的行。
+        （index_old 非空而未记脏：被 IGNORE 的同 id 插入也会触发 BEFORE INSERT 留下旧正文，须重建一次消费掉。）"""
         if c.execute("SELECT 1 FROM index_dirty LIMIT 1").fetchone() is not None:
             return True
-        if c.execute("SELECT 1 FROM index_tomb LIMIT 1").fetchone() is not None:
+        if c.execute("SELECT 1 FROM index_tomb UNION ALL SELECT 1 FROM index_old LIMIT 1").fetchone() is not None:
             return True
         return c.execute("SELECT 1 FROM nodes WHERE rowid > ? LIMIT 1", (self._hw(c),)).fetchone() is not None
 
@@ -219,16 +232,41 @@ class TextIndex:
     def _apply_tombs(c: Any) -> int:
         """墓碑（node_index 行被删时 trg_index_tomb 留下的 (nkey, 旧词元, 旧特征)）退出倒排与计数。须先于任何新 nkey
         分配执行（nkey 可能被复用）。墓碑键若已被别的 node_index 行占用（只有裸写派生表才会），该行一并记脏重建。"""
-        rows = c.execute("SELECT nkey, terms, feats FROM index_tomb").fetchall()
+        rows = c.execute("SELECT nkey, known, content, tags, feats FROM index_tomb").fetchall()
+        # 改过但未记脏的节点（REPLACE 被 IGNORE 等）记脏；CROSS JOIN 固定 index_old 为外表（否则每次写入全扫 node_index）
+        c.execute("INSERT OR IGNORE INTO index_dirty(node_id) SELECT ni.node_id FROM index_old o CROSS "
+                  "JOIN node_index ni ON ni.nkey = o.nkey")
         if not rows:
             return 0
-        TextIndex._apply(c, [(k, json.loads(t), json.loads(f)) for k, t, f in rows], [])
+        if any(not r[1] for r in rows):
+            TextIndex._wipe(c)                             # 旧正文无从得知（只有裸写派生表才会）：整体重建
+            return len(rows)
+        TextIndex._apply(c, [(k, terms_of(ct, _tags(tg))[0], json.loads(f)) for k, _, ct, tg, f in rows], [])
         keys = sorted({r[0] for r in rows})
         for part in chunks(keys):
             c.execute(f"INSERT OR IGNORE INTO index_dirty(node_id) SELECT node_id FROM node_index "
                       f"WHERE nkey IN ({placeholders(len(part))})", part)
         c.execute("DELETE FROM index_tomb")
         return len(rows)
+
+    @staticmethod
+    def _wipe(c: Any) -> None:
+        """派生索引整体清空并全部记脏（首次读前批量重建）；新奇特征回到「未构建」。"""
+        c.execute("DELETE FROM node_index")
+        for t in ("index_tomb", "index_old", "term_blocks", "term_df", "feature_df"):
+            c.execute(f"DELETE FROM {t}")
+        c.execute("INSERT OR REPLACE INTO index_state(key, value) VALUES ('feats', '0')")
+        c.execute("INSERT OR IGNORE INTO index_dirty(node_id) SELECT id FROM nodes")
+
+    @staticmethod
+    def _old_terms(c: Any, nkey: int, nid: str) -> List[str]:
+        """已索引节点上次索引时的词元：自那以后改过 ⇒ index_old 里的旧正文，否则节点当前正文（未变）；同时消费 index_old。"""
+        r = c.execute("SELECT content, tags FROM index_old WHERE nkey=?", (nkey,)).fetchone()
+        if r is not None:
+            c.execute("DELETE FROM index_old WHERE nkey=?", (nkey,))
+        else:
+            r = c.execute("SELECT content, tags FROM nodes WHERE id=?", (nid,)).fetchone()
+        return terms_of(r[0], _tags(r[1]))[0] if r is not None else []
 
     def _drop_rows(self, c: Any, ids: Sequence[str]) -> None:
         """删除这些节点的 node_index 行（触发器把旧词元/特征转入墓碑）并立即让其退出倒排与计数。"""
@@ -241,21 +279,17 @@ class TextIndex:
         """单个已索引节点的重建走原位改写：nkey 取「删掉旧行后再插入」会分配到的键（其余行的最大 nkey + 1，
         与 SQLite 整数主键的分配规则相同），词元/特征/grams 改成新值——结果与删旧插新逐值相同。
         节点尚未索引 ⇒ False（调用方照旧插入）。row = :meth:`_parts` 的未打包行。"""
-        old = c.execute("SELECT nkey, terms, feats FROM node_index WHERE node_id=?", (row[0],)).fetchone()
+        old = c.execute("SELECT nkey, feats, grams FROM node_index WHERE node_id=?", (row[0],)).fetchone()
         if old is None:
             return False
         mx = c.execute("SELECT nkey FROM node_index WHERE nkey <> ? ORDER BY nkey DESC LIMIT 1", (old[0],)).fetchone()
         nk = (mx[0] if mx else 0) + 1
         p = TextIndex._packed(row)
-        if nk == old[0] and p[1] == old[1] and p[2] == old[2] and c.execute(
-                "SELECT grams FROM node_index WHERE nkey=?", (nk,)).fetchone()[0] == p[3]:
+        ot = TextIndex._old_terms(c, old[0], row[0])
+        if nk == old[0] and ot == row[1] and p[1] == old[1] and p[2] == old[2]:
             return True                                   # 键与内容都未变：无事可做
-        c.execute("UPDATE node_index SET nkey=?, terms=?, feats=?, grams=? WHERE nkey=?", (nk,) + p[1:] + (old[0],))
-        ot, of = json.loads(old[1]), json.loads(old[2])
-        if nk == old[0]:
-            TextIndex._apply(c, [(nk, ot, of)], [(nk,) + tuple(row[1:])])
-        else:
-            TextIndex._apply(c, [(old[0], ot, of)], [(nk,) + tuple(row[1:])])
+        c.execute("UPDATE node_index SET nkey=?, feats=?, grams=? WHERE nkey=?", (nk,) + p[1:] + (old[0],))
+        TextIndex._apply(c, [(old[0], ot, json.loads(old[1]))], [(nk,) + tuple(row[1:])])
         return True
 
     def _row_flush(self, c: Any, ids: List[str], ready: bool) -> None:
@@ -272,7 +306,7 @@ class TextIndex:
             news = []
             for r in got:
                 p = self._parts(*r, ready)
-                cur = c.execute("INSERT INTO node_index (node_id, terms, feats, grams) VALUES (?,?,?,?)", self._packed(p))
+                cur = c.execute("INSERT INTO node_index (node_id, feats, grams) VALUES (?,?,?)", self._packed(p))
                 news.append((cur.lastrowid,) + p[1:])
             self._apply(c, [], news)
 
@@ -295,7 +329,7 @@ class TextIndex:
             self._bulk_put(c, news)
 
     def _bulk_put(self, c: Any, news: List[tuple]) -> None:
-        c.executemany("INSERT INTO node_index (nkey, node_id, terms, feats, grams) VALUES (?,?,?,?,?)",
+        c.executemany("INSERT INTO node_index (nkey, node_id, feats, grams) VALUES (?,?,?,?)",
                       [(r[0],) + self._packed(r[1:]) for r in news])
         self._apply(c, [], [(r[0], r[2], r[3], r[4]) for r in news])
 
@@ -340,8 +374,8 @@ class TextIndex:
 
     @staticmethod
     def _packed(p: tuple) -> tuple:
-        """未打包行 → node_index 列值 (node_id, terms, feats, grams)。"""
-        return (p[0], _pack(p[1]), _pack(p[2]) if p[2] else "[]", p[3])
+        """未打包行 → node_index 列值 (node_id, feats, grams)（schema v6：词元不入库，需要时由正文按 terms_of 重算）。"""
+        return (p[0], _pack(p[2]) if p[2] else "[]", p[3])
 
     @classmethod
     def _row(cls, nid: str, content: Optional[str], tags_json: Optional[str], layer: Optional[str],
@@ -561,4 +595,5 @@ class TextIndex:
         return (have_terms == want_terms and have_feats == want_feats and not stale_feats and blocks_ok
                 and have_post == {t: sorted(v) for t, v in want_post.items()}
                 and self.db.scalar("SELECT COUNT(*) FROM index_tomb", default=0) == 0
+                and self.db.scalar("SELECT COUNT(*) FROM index_old", default=0) == 0
                 and self.total() == self.db.scalar("SELECT COUNT(*) FROM nodes", default=0))

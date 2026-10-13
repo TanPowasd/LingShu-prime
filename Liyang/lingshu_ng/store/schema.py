@@ -23,7 +23,7 @@ from typing import Dict, Iterable, List, Sequence, Set, Tuple
 __all__ = ["SchemaTooNewError", "stored_version", "ALLOW_NEWER_ENV", "SCHEMA_VERSION", "TABLES", "INDEXES", "LAZY_INDEXES", "PENDING_KEY", "KEY_MISSING", "lazy_indexes_missing", "ensure_lazy_indexes", "TRIGGERS", "columns_of", "missing_parts", "migrate",
            "existing_tables", "DERIVED_TABLES", "LEGACY_TABLES", "LEGACY_TRIGGERS"]
 
-SCHEMA_VERSION = 5
+SCHEMA_VERSION = 6   # v6（rel-v1.25）：node_index 去掉 terms 列（旧词元由 index_old / 节点正文按 terms_of 重算），新增 index_old；v5→v6 迁移按派生表结构过期整体重建
 #: 允许打开「比本代码新」的库的逃生口（只在确认新版本只做了追加式变更时使用）
 ALLOW_NEWER_ENV = "LINGSHU_NG_ALLOW_NEWER_SCHEMA"
 
@@ -125,11 +125,15 @@ TABLES: Dict[str, Tuple[Tuple[Column, ...], str]] = {
     "term_blocks": ((("term", "TEXT NOT NULL"), ("bno", "INTEGER NOT NULL"), ("n", "INTEGER NOT NULL"),
                      ("nk", "BLOB NOT NULL"), ("gr", "BLOB NOT NULL")), "PRIMARY KEY (term, bno)"),
     # 墓碑：node_index 行被删时（trg_index_tomb）写入其旧词元与特征，textindex 让其退出倒排与计数后删除（每个被删行一条）
-    "index_tomb": ((("nkey", "INTEGER NOT NULL"), ("terms", "TEXT NOT NULL"), ("feats", "TEXT NOT NULL")), ""),
+    "index_tomb": ((("nkey", "INTEGER NOT NULL"), ("known", "INTEGER NOT NULL"), ("content", "TEXT"), ("tags", "TEXT"),
+                    ("feats", "TEXT NOT NULL")), ""),
+    # 旧正文：已索引节点自上次索引以来第一次被改（正文/标签/层/id、REPLACE 覆盖、删除）前的正文与标签——
+    # node_index 不再存词元（schema v6），退出倒排时由它（或节点当前正文，若未改过）按同一 terms_of 重算旧词元
+    "index_old": ((("nkey", "INTEGER PRIMARY KEY"), ("content", "TEXT"), ("tags", "TEXT")), ""),
     "term_df": ((("term", "TEXT PRIMARY KEY"), ("df", "INTEGER NOT NULL DEFAULT 0")), ""),
     "feature_df": ((("feat", "TEXT PRIMARY KEY"), ("df", "INTEGER NOT NULL DEFAULT 0")), ""),
     "node_index": ((
-        ("nkey", "INTEGER PRIMARY KEY"), ("node_id", "TEXT NOT NULL UNIQUE"), ("terms", "TEXT NOT NULL"),
+        ("nkey", "INTEGER PRIMARY KEY"), ("node_id", "TEXT NOT NULL UNIQUE"),
         ("feats", "TEXT NOT NULL"), ("grams", "INTEGER NOT NULL"),
     ), ""),
     "index_dirty": ((("node_id", "TEXT PRIMARY KEY"),), ""),
@@ -141,7 +145,7 @@ TABLES: Dict[str, Tuple[Tuple[Column, ...], str]] = {
 }
 
 #: 派生表（索引数据，可由 nodes 重建；导出/导入与完整性校验不涉及）
-DERIVED_TABLES = frozenset({"term_blocks", "index_tomb", "term_df", "feature_df", "node_index", "index_dirty", "index_state"})
+DERIVED_TABLES = frozenset({"term_blocks", "index_tomb", "index_old", "term_df", "feature_df", "node_index", "index_dirty", "index_state"})
 #: 旧版派生对象（v3/v4）：迁移时删除
 LEGACY_TABLES = ("node_terms",)
 LEGACY_TRIGGERS = ("trg_index_ins", "trg_index_del", "trg_index_upd")
@@ -149,7 +153,7 @@ LEGACY_TRIGGERS = ("trg_index_ins", "trg_index_del", "trg_index_upd")
 _TABLE_OPTIONS = {"term_blocks": " WITHOUT ROWID", "term_df": " WITHOUT ROWID", "feature_df": " WITHOUT ROWID",
                   "index_state": " WITHOUT ROWID"}
 #: 引用派生表结构的触发器（派生表重建时一并重建）
-_DERIVED_TRIGGERS = ("trg_nodes_ins", "trg_index_tomb")
+_DERIVED_TRIGGERS = ("trg_nodes_ins", "trg_nodes_bins", "trg_nodes_upd", "trg_nodes_del", "trg_index_tomb")
 
 #: 索引名 → (表, 列表达式, 是否唯一)
 INDEXES: Dict[str, Tuple[str, str, bool]] = {
@@ -195,16 +199,30 @@ TRIGGERS: Dict[str, str] = {
     "trg_nodes_ins": "AFTER INSERT ON nodes "
                      "WHEN NEW.rowid <= COALESCE((SELECT CAST(value AS INTEGER) FROM index_state WHERE key = 'hw'), 0) "
                      "BEGIN INSERT OR IGNORE INTO index_dirty(node_id) VALUES (NEW.id); END",
+    # REPLACE 覆盖同 id 的已索引节点：旧行被静默删除（不触发删除触发器），先记下其旧正文
+    "trg_nodes_bins": "BEFORE INSERT ON nodes BEGIN "
+                      "INSERT OR IGNORE INTO index_old(nkey, content, tags) SELECT ni.nkey, n.content, n.tags "
+                      "FROM nodes n JOIN node_index ni ON ni.node_id = n.id WHERE n.id = NEW.id; END",
     "trg_nodes_upd": "AFTER UPDATE OF id, content, tags, layer ON nodes BEGIN "
+                     "INSERT OR IGNORE INTO index_old(nkey, content, tags) SELECT nkey, OLD.content, OLD.tags "
+                     "FROM node_index WHERE node_id = OLD.id; "
                      "INSERT OR IGNORE INTO index_dirty(node_id) VALUES (NEW.id); "
                      "DELETE FROM node_index WHERE node_id = OLD.id AND OLD.id <> NEW.id; END",
     "trg_nodes_del": "AFTER DELETE ON nodes BEGIN "
+                     "INSERT OR IGNORE INTO index_old(nkey, content, tags) SELECT nkey, OLD.content, OLD.tags "
+                     "FROM node_index WHERE node_id = OLD.id; "
                      "DELETE FROM node_index WHERE node_id = OLD.id; "
                      "DELETE FROM index_dirty WHERE node_id = OLD.id; END",
-    # v5：node_index 行无论因何被删（节点删除/改 id 的级联、textindex 重建、任何裸写），旧词元与特征都进墓碑；
-    # textindex 在下一次分配 nkey 之前（flush / 写路径开头、自身删行之后立即）让墓碑退出倒排与计数
+    # node_index 行无论因何被删（节点删除/改 id 的级联、textindex 重建、任何裸写）都进墓碑：旧正文取 index_old（改过）
+    # 或节点当前行（未改过）；两者都没有（只有裸写派生表 / 按 rowid 的 REPLACE 才会）⇒ known=0，textindex 整体重建
     "trg_index_tomb": "AFTER DELETE ON node_index BEGIN "
-                      "INSERT INTO index_tomb(nkey, terms, feats) VALUES (OLD.nkey, OLD.terms, OLD.feats); END",
+                      "INSERT INTO index_tomb(nkey, known, content, tags, feats) "
+                      "SELECT OLD.nkey, 1, o.content, o.tags, OLD.feats FROM index_old o WHERE o.nkey = OLD.nkey "
+                      "UNION ALL SELECT OLD.nkey, 1, n.content, n.tags, OLD.feats FROM nodes n WHERE n.id = OLD.node_id "
+                      "AND NOT EXISTS (SELECT 1 FROM index_old WHERE nkey = OLD.nkey) "
+                      "UNION ALL SELECT OLD.nkey, 0, NULL, NULL, OLD.feats WHERE NOT EXISTS (SELECT 1 FROM index_old "
+                      "WHERE nkey = OLD.nkey) AND NOT EXISTS (SELECT 1 FROM nodes WHERE id = OLD.node_id); "
+                      "DELETE FROM index_old WHERE nkey = OLD.nkey; END",
 }
 
 
@@ -301,7 +319,7 @@ def migrate(conn: sqlite3.Connection) -> Dict[str, List]:
         if gap["triggers"]:
             # 触发器缺失/过期期间的写入未进派生索引：全部记脏，由 textindex 在首次读前重建；
             # 新奇特征计数一并清空并标记「未构建」（首次新奇度查询时按需补建）
-            for t in ("node_index", "term_blocks", "index_tomb", "term_df", "feature_df", "index_state"):   # node_index 先删：其删除触发器写的墓碑随后一并清掉
+            for t in ("node_index", "term_blocks", "index_tomb", "index_old", "term_df", "feature_df", "index_state"):   # node_index 先删：其删除触发器写的墓碑随后一并清掉
                 conn.execute(f"DELETE FROM {t}")
             conn.execute("INSERT INTO index_state(key, value) VALUES ('feats', '0')")
             conn.execute("INSERT OR IGNORE INTO index_dirty(node_id) SELECT id FROM nodes")

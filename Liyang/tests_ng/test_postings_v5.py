@@ -23,11 +23,14 @@ def _s(rng):
 
 
 def _naive(e):
-    """从 node_index 现算的逐条倒排 {词元: [(nkey, grams)]}（v4 node_terms 的内容）。"""
-    import json
+    """由节点正文现算的逐条倒排 {词元: [(nkey, grams)]}（v4 node_terms 的内容）。"""
+    from lingshu_ng.store.textindex import TextIndex
     out = {}
-    for k, terms, g in e.store.conn.execute("SELECT nkey, terms, grams FROM node_index ORDER BY nkey"):
-        for t in json.loads(terms):
+    for k, nid, content, tags, layer in e.store.conn.execute(
+            "SELECT ni.nkey, n.id, n.content, n.tags, n.layer FROM node_index ni JOIN nodes n ON n.id = ni.node_id "
+            "ORDER BY ni.nkey"):
+        _, terms, _, g = TextIndex._parts(nid, content, tags, layer, False)
+        for t in terms:
             out.setdefault(t, []).append((k, g))
     return out
 
@@ -44,7 +47,7 @@ def test_random_ops_small_blocks_match_rebuild(monkeypatch, seed):
     c = e.store.conn
     for step in range(160):
         nid = rng.choice(ids)
-        op = rng.randrange(10)
+        op = rng.randrange(11)
         alive = e.store.nodes.get(nid) is not None
         if op == 0 and alive:
             e.store.nodes.update(nid, content=_s(rng))
@@ -73,6 +76,9 @@ def test_random_ops_small_blocks_match_rebuild(monkeypatch, seed):
                                      layer=rng.choice([MemoryLayer.CONTEXT, MemoryLayer.KNOWLEDGE, MemoryLayer.STRUCTURE]))
             except LayerViolation:
                 pass
+        elif op == 10:
+            c.execute("INSERT OR IGNORE INTO nodes (id, content, layer, tags) VALUES (?, '被忽略', 'knowledge', '[]')",
+                      (nid,))                                                  # 被 IGNORE 的覆盖：旧正文空捕获
         elif op == 9:
             for j in range(rng.randrange(30, 45)):                                   # ≥ BULK_MIN：批量路径
                 c.execute("INSERT INTO nodes (id, content, layer, tags, importance, confidence) "
@@ -234,4 +240,67 @@ def test_trigger_gap_rebuild_leaves_no_tombs():
     e = MemoryEngine(path)
     assert e.store.conn.execute("SELECT COUNT(*) FROM index_tomb").fetchone()[0] == 0
     assert e.store.text.rebuild_equals()
+
+
+def test_unknown_old_text_tomb_forces_full_rebuild():
+    """墓碑无旧正文（known=0，只有裸写派生表等异常才会）⇒ 派生索引整体重建，结果仍与全量重算相同。"""
+    e = MemoryEngine()
+    rng = random.Random(4)
+    for _ in range(40):
+        e.perceive(_s(rng), skip_dedup=True)
+    e.recall("记忆", limit=3)
+    e.store.conn.execute("INSERT INTO index_tomb(nkey, known, content, tags, feats) VALUES (1, 0, NULL, NULL, '[]')")
+    assert e.store.text.rebuild_equals()
+    assert e.store.conn.execute("SELECT COUNT(*) FROM index_tomb").fetchone()[0] == 0
+    e.close()
+
+
+def test_tokenizer_fingerprint_change_rebuilds(tmp_path, monkeypatch):
+    """schema v6：退出倒排时按正文重算旧词元，所以分词指纹（Unicode 版本 + 探针输出）一变，打开库即整体重建。"""
+    from lingshu_ng.store import textindex
+    p = str(tmp_path / "fp.db")
+    e = MemoryEngine(p)
+    for t in ("仓库钥匙在三号柜", "The marathon training plan starts in March."):
+        e.perceive(t, skip_dedup=True)
+    e.recall("钥匙", limit=3)
+    e.close()
+    monkeypatch.setattr(textindex, "_tokfp", lambda: "changed-fp")
+    e = MemoryEngine(p)
+    assert e.store.conn.execute("SELECT COUNT(*) FROM node_index").fetchone()[0] == 0     # 已清空、全部记脏
+    assert [n.content for n, _ in e.search("钥匙")] == ["仓库钥匙在三号柜"]
+    assert e.store.text.rebuild_equals()
+    assert e.store.conn.execute("SELECT value FROM index_state WHERE key='tokfp'").fetchone()[0] == "changed-fp"
+    e.close()
+
+
+def test_node_index_has_no_terms_column():
+    e = MemoryEngine()
+    cols = [r[1] for r in e.store.conn.execute("PRAGMA table_info(node_index)")]
+    assert cols == ["nkey", "node_id", "feats", "grams"]
+    e.close()
+
+
+def test_write_path_never_full_scans_node_index():
+    """回归（stab-r9c）：写入路径上任何触及 node_index 的语句，查询计划都不得全扫 node_index。
+    v6 初版 _apply_tombs 的 index_old⋈node_index 被规划为 SCAN node_index（每次写入 O(N)，100k 写入 2.24×）。"""
+    import re
+    e = MemoryEngine()
+    rng = random.Random(9)
+    for _ in range(150):
+        e.perceive(_s(rng), skip_dedup=True)
+    e.recall("记忆", limit=3)
+    c = e.store.conn
+    seen = []
+    c.set_trace_callback(seen.append)
+    try:
+        for _ in range(20):
+            e.perceive(_s(rng), skip_dedup=True)
+            e.recall("记忆", limit=3)
+    finally:
+        c.set_trace_callback(None)
+    stmts = {s for s in seen if "node_index" in s and re.match(r"\s*(SELECT|INSERT|UPDATE|DELETE|WITH|REPLACE)", s, re.I)}
+    assert any("index_old" in s for s in stmts)          # 被测语句确实在写入路径上执行过
+    bad = [(s[:120], d) for s in stmts for d in (r[3] for r in c.execute("EXPLAIN QUERY PLAN " + s))
+           if re.match(r"SCAN (node_index|ni)\b", d)]
+    assert bad == []
     e.close()

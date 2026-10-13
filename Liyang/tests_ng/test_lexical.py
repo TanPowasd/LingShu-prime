@@ -206,7 +206,7 @@ def test_index_terms_include_words_and_rebuild_consistent():
     e = MemoryEngine()
     e.perceive("Booked flights and hotels for the Lisbon trip.")
     e.store.text.flush()
-    terms = json.loads(e.store.db.scalar("SELECT terms FROM node_index LIMIT 1"))
+    terms = [t for t, _, _ in e.store.text.postings_rows([lx.WORD_PREFIX + "flight", lx.WORD_PREFIX + "lisbon"])]
     assert lx.WORD_PREFIX + "flight" in terms and lx.WORD_PREFIX + "lisbon" in terms
     assert e.store.text.rebuild_equals()
 
