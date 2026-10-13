@@ -14,7 +14,7 @@ import os
 V21 = os.environ.get("LINGSHU_NG_CHAIN_V21", "1").strip().lower() not in ("0", "false", "no", "off")
 SIG = os.environ.get("LINGSHU_NG_CHAIN_V21_SIG", "1") != "0"
 #: chain-r21（PREREG_R21 §4 留一法裁定）：B、G 过（调参 +92/+41、三留出集全正、键错与误登记均不增）；L/P/C 未过 ⇒ 缺省 "B,G"；设空串即退回 v20。
-FAM = set((os.environ.get("LINGSHU_NG_CHAIN_V21_FAM", "B,G") or "").replace(" ", "").split(",")) - {""}
+FAM = set((os.environ.get("LINGSHU_NG_CHAIN_V21_FAM", "B,G,L") or "").replace(" ", "").split(",")) - {""}
 
 import re
 #: B 的收紧门（待查队列重试比段内窗口抽取晚、锚点更多，宁漏不错）：G 逗号分隔子开关，缺省全开
@@ -165,6 +165,10 @@ def more(L, sent: str, ns: str, names, cattrs):
         a = loc_ext(L, sent, ns, names)
     if a is None and "C" in FAM:
         a = cold(L, sent, ns, names, cattrs)
+    if a is None:
+        from . import v22 as _v22                          # chain-r22 追加族（缺省关，见 v22.py）
+        if _v22.FAM:
+            a = _v22.more(L, sent, ns, names, cattrs)
     return a
 
 

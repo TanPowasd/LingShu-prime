@@ -26,6 +26,9 @@ from . import v17 as _v17
 from . import v18 as _v18
 from . import v19 as _v19
 from . import v21 as _v21
+from . import v22 as _v22
+from . import v23 as _v23
+from . import v24 as _v24
 from .extract import MOVE_ATTR, Event, extract, parse_header, split_sentences
 
 __all__ = ["Rec", "Ledger", "Status", "INF"]
@@ -398,13 +401,27 @@ class Ledger:
                 if not names:
                     return
                 cattrs = set(cattrs) | self._v16_gattrs()
-            if not any(n in sent for n in names) and "C" not in _v21.FAM:
+            cold_only = not any(n in sent for n in names) and "C" not in _v21.FAM
+            cgo = _v22.FAM & {"N", "U"} and _v22.cold_pre(sent)
+            nar = _v24.FAM & {"N", "Q", "P"} and _v24.narr_pre(sent)
+            if cold_only and not cgo and not nar:
                 continue
-            a = _v21.more(self, sent, ns, names, cattrs)
-            if a is None or not _v21.retry_ok(self, ns, a, a.get("_names") or names, sent):
+            a = None
+            if not cold_only or cgo:
+                a = _v22.more_cold(self, sent, ns, names, cattrs) if cold_only else _v21.more(self, sent, ns, names, cattrs)
+                if not cold_only and _v23.FAM and (a is None or not _v21.retry_ok(self, ns, a, a.get("_names") or names, sent)):
+                    a = _v23.more(self, sent, ns, names, cattrs)          # v23：前序族未中或被 retry 门拒时再试（见 v23.py）
+                a = _v24.filt(a)                                          # v24 K：主体形态门
+                if a is not None and not _v21.retry_ok(self, ns, a, a.get("_names") or names, sent):
+                    a = None
+            if a is None and nar:                                         # v24 N：叙事句「主体的属性 + 承接词 + 取值」
+                a = _v24.filt(_v24.more(self, sent, ns, names, cattrs))
+                if a is not None and not _v24.gate_ok(self, ns, a, a.get("_names") or names, sent):
+                    a = None
+            if a is None:
                 continue
             prior = sorted((r for r in (self._by_key.get((ns, a["entity"], a["attr"])) or []) if r.seq <= seq), key=lambda r: (r.seq, r.line))
-            if not _v21.retry_keep(a, prior):
+            if not _v21.retry_keep(a, prior) and not a.get("_disp"):
                 continue
             ev = Event(op=a["op"], entity=a["entity"], attr=a["attr"], value=a["value"], alt=a["alt"], reason=a["reason"],
                        line=i, quote=sent.strip(), extra={"anchored": True, "sav": True, "v21": a["fam"]})
@@ -419,19 +436,36 @@ class Ledger:
         """v21 B：待查队列句锚点增长后，SAV 不中再走 v16 窗口抽取（v17 收紧门同 v16 pass），再走 G/P/L/C。"""
         sent, i, seq, ref = it
         names, cattrs = ctx
-        if not any(n in sent for n in names) and "C" not in _v21.FAM:
+        cold_only = not any(n in sent for n in names) and "C" not in _v21.FAM
+        cgo = _v22.FAM & {"N", "U"} and _v22.cold_pre(sent)
+        nar = _v24.FAM & {"N", "Q", "P"} and _v24.narr_pre(sent)
+        if cold_only and not cgo and not nar:
             return False
-        a = _v16.extract_win(self, sent, ns, names, cattrs) if "B" in _v21.FAM else None
-        if a is not None and not _v17.win_ok(sent, a):
+        if cold_only and not cgo:
             a = None
+        elif cold_only:                                    # v22 提速：句中无已知名时只走冷启动路径（其余族都要求已知名）
+            a = _v22.more_cold(self, sent, ns, names, cattrs)
+        else:
+            a = _v16.extract_win(self, sent, ns, names, cattrs) if "B" in _v21.FAM else None
+            if a is not None and not _v17.win_ok(sent, a):
+                a = None
+            if a is None:
+                a = _v21.more(self, sent, ns, names, cattrs)
+            if _v23.FAM and (a is None or not _v21.retry_ok(self, ns, a, a.get("_names") or names, sent)):
+                a = _v23.more(self, sent, ns, names, cattrs)          # v23：前序族未中或被 retry 门拒时再试
+        a = _v24.filt(a)                                              # v24 K：主体形态门
+        if a is not None and not _v21.retry_ok(self, ns, a, a.get("_names") or names, sent):
+            a = None
+        if a is None and nar:                                         # v24 N：叙事句
+            a = _v24.filt(_v24.more(self, sent, ns, names, cattrs))
+            if a is not None and not _v24.gate_ok(self, ns, a, a.get("_names") or names, sent):
+                a = None
         if a is None:
-            a = _v21.more(self, sent, ns, names, cattrs)
-        if a is None or not _v21.retry_ok(self, ns, a, a.get("_names") or names, sent):
             return False
         ev = Event(op=a["op"], entity=a["entity"], attr=a["attr"], value=a["value"], alt=a["alt"], reason=a["reason"],
                    line=i, quote=sent.strip(), extra={"anchored": True, "sav": True, "v16": True, "v21": a.get("fam", "B")})
         prior = sorted((r for r in (self._by_key.get((ns, a["entity"], a["attr"])) or []) if r.seq <= seq), key=lambda r: (r.seq, r.line))
-        if not _v21.retry_keep(a, prior):
+        if not _v21.retry_keep(a, prior) and not a.get("_disp"):
             return False
         rec = self.add_event(ns, ev, seq, ref)
         if a.get("op_v21"):
@@ -477,9 +511,13 @@ class Ledger:
             if _v19.SCOPE == "all" or ev.extra.get("loose") or ev.extra.get("short") or ev.extra.get("anchored"):
                 _n, _c = self._v13_anchors(ns)
                 _v19.apply(self, ev, ns, _n, (set(_c) | self._v16_gattrs()) if ("A" in _v19.FAM) else None)
+        if _v24.FAM and ev.op not in ("mention", "rename") and _v24.drop_base(ev):
+            ev.op = "mention"; ev.extra["rest"] = None; ev.extra["v24_drop"] = True     # v24 G：主体修复后仍不合名称形态 ⇒ 不登记（句子留给锚定/窗口路径重试）
+            return Rec(ns, ev.entity, ev.attr, "mention", None, None, ev.reason, int(seq), ev.line, ref, ev.quote, ev.rename_from_seq)
         r = Rec(ns, ev.entity, ev.attr, ev.op, ev.extra.get("rest") if ev.op == "mention" else ev.value, ev.alt,
                 ev.reason, int(seq), ev.line, ref, ev.quote, ev.rename_from_seq)
         r._anchored = bool(ev.extra.get("anchored"))                       # 不持久化：只影响本进程的锚点学习
+        r._cold = (bool(_v22.FAM & {"P", "Q"}) and ev.extra.get("v21") in ("N", "U")) or ("H" in _v23.FAM and ev.extra.get("v21") == "S")   # v23 H：S 冷启动主体同样暂不入锚点。 v22 P/Q：冷启动主体暂不入锚点名（Q：同名冷启动 ≥2 条后转正）
         r._strict = not ev.extra.get("loose") and not r._anchored
         if ev.extra.get("v15") and _v15.LEARN != "full":
             r._anchored = True; r._v15 = True                                 # v15 重抽事件：只把（主体, 属性）喂给锚点，不喂取值/形态
@@ -498,6 +536,16 @@ class Ledger:
         return self._ml
 
     def add_rec(self, r: Rec) -> None:
+        if getattr(r, "_cold", False):
+            k = (r.ns, r.entity)
+            cc = self.__dict__.setdefault("_v22_cold", {})
+            cc[k] = cc.get(k, 0) + 1
+            if not ("Q" in _v22.FAM and cc[k] >= 2) and r.entity not in self._names.get(r.ns, ()):
+                self.recs.append(r)
+                self._ns_max[r.ns] = max(self._ns_max.get(r.ns, 0), r.seq)
+                self._by_key.setdefault((r.ns, r.entity, r.attr), []).append(r)
+                self._attrs.setdefault((r.ns, r.entity), set()).add(r.attr)
+                return
         if r.op == "mention":
             self._mentions.setdefault((r.ns, r.entity), []).append(r)
             self._note_name(r.ns, r.entity)

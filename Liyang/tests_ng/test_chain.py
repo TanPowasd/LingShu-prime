@@ -173,6 +173,8 @@ def test_co_mention_guard_promotes_unparsed_newer_version(monkeypatch):
     import sys
     monkeypatch.setattr(sys.modules["lingshu_ng.chain.extract"], "LOOSE", False)          # 本条测的是严格抽取漏版本时的守卫（宽松抽取会直接认出第 3 段）
     monkeypatch.setattr(sys.modules["lingshu_ng.chain.anchored"], "ANCHOR", False)        # v9 词表锚定也会直接认出第 3 段
+    import lingshu_ng.chain.v22 as _v22
+    monkeypatch.setattr(_v22, "FAM", set())                                               # v22 A 自由序锚定也会直接认出第 3 段
     e = MemoryEngine()
     e.enable_chain()
     segs = ["第 1 次提交（乙项目）。乙项目 的端口首次确立为 8080。",
@@ -324,6 +326,7 @@ def test_anchored_needs_confirmed_key_and_switch(monkeypatch):
     assert [r for r in recs if r.op != "mention"] == []
     monkeypatch.setattr(A, "ANCHOR", False)
     monkeypatch.setattr(sys.modules["lingshu_ng.chain.v16"], "WIN", False)    # v16 窗口抽取是另一条路径（见 test_chain_v16）
+    monkeypatch.setattr(sys.modules["lingshu_ng.chain.v22"], "FAM", set())    # v22 A 自由序锚定也是另一条路径（开关测试只测 v9 锚定）
     L2 = Ledger()
     L2.add_text("第 1 次提交（丙项目）。丙服务 的缓存策略首次确立为 lru。", ref="a")
     recs = L2.add_text("第 2 次提交（丙项目）。周报：丙服务缓存策略一项，经评审后由 lru 切至 arc 执行。", ref="b")
