@@ -184,6 +184,8 @@ _PRO = re.compile(r"(?<![其])(?:他|她)(?!们)")
 def _pre_neg(t0: str) -> bool:
     from . import v16 as _v16, v21 as _v21, v24 as _v24
     t0 = re.sub(r"这么|那么|怎么|什么|多么", "  ", t0)
+    from . import v27 as _v27
+    t0 = _v27.mask_m(t0)                                     # v27 A：迁移句同样不把叙事写法当非断言（缺省关时原样）
     return bool(_v16._HYPO.search(t0) or _v21._NONASSERT.search(t0) or _v24._UNCONF.search(t0) or _v16._RETIRE.search(t0) or _v16._UNDEC.search(t0) or _v16._TWOC.search(t0))
 
 

@@ -78,7 +78,13 @@ _EBAD = re.compile(r"[。；;？?！!]")
 
 
 def epre(sent: str) -> bool:
-    return "E" in FAM and bool(sent) and _EVERB.search(sent) is not None
+    if "E" not in FAM or not sent:
+        return False
+    if _EVERB.search(sent) is not None:
+        return True
+    from . import v27 as _v27
+    e2 = _v27.everb2()
+    return e2 is not None and e2.search(sent) is not None
 
 
 def ewin(L, sent: str, ns: str, names, cattrs):
@@ -94,7 +100,9 @@ def ewin(L, sent: str, ns: str, names, cattrs):
     if re.search(r"[｜|]", t):
         return None
     t0 = _v24._REPORT.sub(lambda m: " " * len(m.group(0)), t)
-    if _v16._HYPO.search(t0) or _v21._NONASSERT.search(t0) or _v24._UNCONF.search(t0):
+    from . import v27 as _v27
+    tg = _v27.mask(t0)                                       # v27 A/H：叙事写法不算非断言（缺省关时 tg == t0）
+    if _v16._HYPO.search(tg) or _v21._NONASSERT.search(tg) or _v24._UNCONF.search(tg):
         return None
     if _v16._PAST.search(t0) and not sav._NOWCHG.search(_v16._PAST.sub("", t0)):
         return None
@@ -106,9 +114,10 @@ def ewin(L, sent: str, ns: str, names, cattrs):
             if not any(k < fz and fk < k + len(a) for _, fk, fz in found):
                 found.append((a, k, k + len(a)))
             k = t0.find(a, k + 1)
-    if len(found) != 1:
+    if len(found) != 1 and not _v27.same_attr(found):
         return None
-    attr, k, z = found[0]
+    found.sort(key=lambda f: f[1])
+    attr, k, z = found[0][0], found[0][1], found[-1][2]       # v27 Q：同一属性重复出现时，主体在第一次之前、动词在最后一次之后
     av = _v18.allvals(L)
     subs = [s for s in _v16._find_names(t0, names) if s[0] not in av]
     if any(s[1] >= z for s in subs):
@@ -132,7 +141,7 @@ def ewin(L, sent: str, ns: str, names, cattrs):
         b = max(cands, key=len)
         mx = re.match(re.escape(b) + r"(·[\u4e00-\u9fff]{0,6}?(?:模块|组件|下属|同名者))", ent)
         ent = mx.group(0) if mx else b
-    if not _v24.namey(ent):
+    if not _v24.namey(ent) or _v27.bad_ent(ent):
         return None
     if cold:
         pass
@@ -142,10 +151,15 @@ def ewin(L, sent: str, ns: str, names, cattrs):
     elif not L._attrs.get((ns, ent)) and not L._attrs.get((ns, ent.split("·")[0])):
         return None                                          # 主体须已有登记（只被提及过的名字不算）
     mp = re.search(r"([\u4e00-\u9fff]{2,})[之的]$", t0[:k].rstrip(" "))
-    if mp and not ent.endswith(mp.group(1)) and not re.search(r"(?:他|她|它|其)$", mp.group(1)):
+    if mp and not ent.endswith(mp.group(1)) and not re.search(r"(?:他|她|它|其)$", mp.group(1)) and not _v27.deictic(mp.group(1)):
         return None                                          # 属性前紧挨着另一个领属语（「阚某的立场」而阚某不是已知名）
     m = _EVERB.search(t0, z)
-    if m is None or m.start() - z > 30 or _EBAD.search(t0[z:m.start()]):
+    e2 = _v27.everb2()
+    if e2 is not None:                                       # v27 V：扩充动词，取属性之后最近的一个
+        m2 = e2.search(t0, z)
+        if m2 is not None and (m is None or m2.start() < m.start()):
+            m = m2
+    if m is None or m.start() - z > 30 or _EBAD.search(t0[z:m.start()]) or _v27.appos(t0, m.start()):
         return None
     if any(a in t0[z:m.start()] for a in attrs if a != attr):
         return None
@@ -185,7 +199,7 @@ def ewin(L, sent: str, ns: str, names, cattrs):
                 v = x                                        # v26 C：取值在原句里带引号时取引号内
                 break
     if v is None:
-        if "位置" in attr:
+        if "位置" in attr or (e2 is not None and m.group(0).startswith("变得")):   # v27 V：「变得」后只认已登记取值
             return None
         v, _k = _v24._value_at(rest, set(), set(), ent)
         if v is None or not re.fullmatch(r"[\u4e00-\u9fff]{2,6}", v):
@@ -199,7 +213,12 @@ def ewin(L, sent: str, ns: str, names, cattrs):
     prev = (L._by_key.get((ns, ent, attr)) or [None])[-1]
     disp = bool(re.search(r"定案|定论|一锤定音|尘埃落定|总算定了", whole))   # E：只认明确的定案词（叙事里「吵了/争论」多是起因）
     shadow = cold or ("C" in _v26.FAM and all(getattr(r_, "_cold", False) for r_ in (L._by_key.get((ns, ent, attr)) or [])))
-    if shadow and disp and not re.search(r"争|吵|纷纭|拉锯|分歧|两说|两派", whole):
+    d2 = not disp and _v27.disp2(t0)
+    if d2:
+        disp = True                                          # v27 A：「吵到/满城风雨…总算落定/就此定下」⇒ 裁定（争议信号已在其中）
+    if _v27.ambig_settle(whole, shadow, disp):
+        return None
+    if shadow and disp and not d2 and not re.search(r"争|吵|纷纭|拉锯|分歧|两说|两派", whole):
         disp = False                                         # v26 C：首次出现主体的「拍板定案」没有争议在前 ⇒ 仍是 set
     if (cold or ("C" in _v26.FAM and all(getattr(r_, "_cold", False) for r_ in (L._by_key.get((ns, ent, attr)) or [])))) and not disp:
         md = re.search(r"(?<!不再)(?<!再不)(?<!没有)(?<!不曾)(?:争论|争执|纷争|争议|拉锯|争了|吵了|争来争去|众说纷纭)", whole)
