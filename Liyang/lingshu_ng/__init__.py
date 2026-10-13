@@ -1,12 +1,18 @@
 # -*- coding: utf-8 -*-
 """lingshu_ng · 灵枢记忆引擎重写版（纯标准库，零依赖，不导入 lingshu.core）
 
+依赖第三方库的部分是独立插件包（1.24 起）：lingshu-ng-embed / lingshu-ng-world / lingshu-ng-nn / lingshu-ng-gen，
+见 :mod:`lingshu_ng.plugins`。
+
 模块地图见 REWRITE_REPORT_core.md。原生入口：:class:`lingshu_ng.engine.MemoryEngine`；
 旧 API 兼容门面：:mod:`lingshu_ng.compat`。
 """
 from . import _pathguard as _pathguard  # noqa: F401  最早落点：cwd 解析护栏（上游 #156/#273）
+from . import _alias as _alias  # noqa: E402  split-r1：旧子包 lingshu_ng.{world,nn,gen} → 插件包别名（未装插件时给出安装提示）
 
-__version__ = "1.23.0"
+_alias.install()
+
+__version__ = "1.24.0"
 
 #: 对外入口模块（stab-r5 登记）：宿主与旧 API 别名（tests_ng/ng_switch.py：lingshu.core.core / activation / provenance）
 #: 按名导入，包内不 import 它们。``lingshu_ng.<名>`` 属性访问时懒加载，不增加 ``import lingshu_ng`` 的耗时。

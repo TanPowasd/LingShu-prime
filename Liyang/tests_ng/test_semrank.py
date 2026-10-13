@@ -180,7 +180,7 @@ def test_chain_requests_exempt_from_truncation(tmp_path, monkeypatch):
 
 class _DenseStub:
     """假稠密件：含「短信」的段落与问句最近（模拟词面零重叠但语义相关）。"""
-    INST = semrank.DenseEmbedder.INST
+    INST = semrank.DENSE_INST   # split-r3：1.24 起 DenseEmbedder 属插件；核心常量同值，纯核心环境可收集
 
     def encode(self, texts, batch=16):
         import numpy as np

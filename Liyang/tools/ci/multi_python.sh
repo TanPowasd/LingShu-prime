@@ -8,6 +8,7 @@
 #     MP_EXTRAS     额外装的包（缺省 "numpy Pillow"；设 "numpy Pillow onnxruntime tokenizers" 跑完整环境）
 #     MP_MINIMAL=1  只装 pytest（最小环境）
 #     LINGSHU_NG_SEM  模型目录或 off（缺省 off：多版本复跑看的是解释器差异，不依赖本机模型）
+#     MP_TESTS      测试路径（缺省 tests_ng 加 plugins/*/tests_* 各插件测试目录；split-r1 起插件测试随插件包放在 plugins/ 下）
 #   每个版本的结果写到 $MP_VENV_ROOT/<版本>.log，末尾汇总一行「py<版本>: <pytest 摘要>」；任一版本有 failed / error 即返回 1。
 set -u
 ROOT=$(cd "$(dirname "$0")/../.." && pwd)
@@ -17,6 +18,7 @@ while [ $# -gt 0 ]; do if [ "$1" = "--" ]; then shift; EXTRA=("$@"); break; fi; 
 VR=${MP_VENV_ROOT:-$ROOT/.venvs-ci}; mkdir -p "$VR"
 PKGS="pytest"; [ "${MP_MINIMAL:-0}" = "1" ] || PKGS="pytest ${MP_EXTRAS:-numpy Pillow}"
 export LINGSHU_NG_SEM=${LINGSHU_NG_SEM:-off}
+TESTS=${MP_TESTS:-"tests_ng $(cd "$ROOT" && ls -d plugins/*/tests_* 2>/dev/null | tr '\n' ' ')"}
 rc=0; SUM=()
 for v in "${VERS[@]}"; do
   py=$(command -v python$v || true)
@@ -31,7 +33,7 @@ for v in "${VERS[@]}"; do
   fi
   if command -v uv >/dev/null; then uv pip install -q --python "$ve/bin/python" $PKGS; else "$ve/bin/python" -m pip install -q $PKGS; fi
   log="$VR/py$v.log"
-  ( cd "$ROOT" && PYTHONDONTWRITEBYTECODE=1 "$ve/bin/python" -m pytest tests_ng -q -p no:cacheprovider "${EXTRA[@]}" ) > "$log" 2>&1
+  ( cd "$ROOT" && PYTHONDONTWRITEBYTECODE=1 "$ve/bin/python" -m pytest $TESTS -q -p no:cacheprovider "${EXTRA[@]}" ) > "$log" 2>&1
   r=$?; last=$(grep -E "[0-9]+ (passed|failed|error)" "$log" | tail -n 1)
   SUM+=("py$v ($("$ve/bin/python" -V 2>&1)): ${last:-无摘要，见 $log}（exit $r）")
   [ $r -ne 0 ] && rc=1

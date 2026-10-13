@@ -40,32 +40,67 @@ def test_version_single_source_and_changelog():
         assert lingshu_ng.__version__ == f"{major}.{minor}.0"
 
 
-def test_extras_and_package_scope():
+KNOWN = {"numpy": "numpy", "PIL": "pillow", "onnxruntime": "onnxruntime", "tokenizers": "tokenizers",
+         "scipy": "scipy", "torch": "torch", "pyarrow": "pyarrow"}
+PLUGINS = ("embed", "world", "nn", "gen")
+
+
+def _plugin_pyproject(name):
+    return tomllib.loads((ROOT / "plugins" / f"lingshu-ng-{name}" / "pyproject.toml").read_text(encoding="utf-8"))
+
+
+def _imports(f):
+    src = f.read_text(encoding="utf-8")
+    out = set()
+    for node in ast.walk(ast.parse(src)):
+        mods = ([a.name for a in node.names] if isinstance(node, ast.Import)
+                else [node.module] if isinstance(node, ast.ImportFrom) and node.module and not node.level else [])
+        out |= {m.split(".")[0] for m in mods}
+    out |= set(re.findall(r"import_module\(\"(onnxruntime|tokenizers|numpy|PIL)\"\)", src))
+    return out
+
+
+def test_core_package_zero_deps_no_extras():
+    """split-r1（1.24）：核心 dependencies 为空、没有 optional-dependencies（第三方依赖只写在各插件包）；只打包 lingshu_ng。"""
     pp = _ng_pyproject()
     assert pp["project"]["dependencies"] == []                       # 核心纯标准库
-    ex = pp["project"]["optional-dependencies"]
-    assert {"onnxruntime", "tokenizers", "numpy"} <= _names(ex["embed"])
-    assert _names(ex["embed"]) | _names(ex["world"]) <= _names(ex["full"])
+    assert "optional-dependencies" not in pp["project"], pp["project"].get("optional-dependencies")
     find = pp["tool"]["setuptools"]["packages"]["find"]["include"]
-    assert all(x.startswith("lingshu_ng") for x in find)             # 不把旧包副本 lingshu/ 打进发行包
+    assert all(x.startswith("lingshu_ng") and not x.startswith("lingshu_ng_") for x in find)  # 不含旧包 lingshu/、不含插件包
 
 
-def test_every_third_party_import_of_lingshu_ng_declared():
-    declared = set().union(*(_names(v) for v in _ng_pyproject()["project"]["optional-dependencies"].values()))
-    known = {"numpy": "numpy", "PIL": "pillow", "onnxruntime": "onnxruntime", "tokenizers": "tokenizers",
-             "scipy": "scipy", "torch": "torch", "pyarrow": "pyarrow"}
+def test_plugin_packages_declared():
+    """四个插件包：各自 pyproject（name / 版本单一来源 / 入口点 lingshu_ng.plugins / 依赖核心 1.24+）、README、测试目录。"""
+    for name in PLUGINS:
+        d = ROOT / "plugins" / f"lingshu-ng-{name}"
+        pp = _plugin_pyproject(name)
+        top = f"lingshu_ng_{name}"
+        assert pp["project"]["name"] == f"lingshu-ng-{name}"
+        assert pp["tool"]["setuptools"]["dynamic"]["version"] == {"attr": f"{top}.__version__"}
+        assert pp["project"]["entry-points"]["lingshu_ng.plugins"] == {name: f"{top}.plugin:PLUGIN"}
+        assert any(s.replace(" ", "").startswith("lingshu-ng>=1.24") for s in pp["project"]["dependencies"])
+        assert (d / "README.md").exists() and (d / f"tests_{name}").is_dir() and (d / "src" / top / "plugin.py").exists()
+        m = re.search(r'^__version__ = "(\d+\.\d+\.\d+)"', (d / "src" / top / "__init__.py").read_text(encoding="utf-8"), re.M)
+        assert m, top
+    assert {"onnxruntime", "tokenizers", "numpy"} <= _names(_plugin_pyproject("embed")["project"]["dependencies"])
+    assert "lingshu-ng-nn" in _names(_plugin_pyproject("gen")["project"]["dependencies"])
+
+
+def test_every_third_party_import_declared_in_its_plugin():
+    """每个插件源码里的第三方导入都写在该插件（或它依赖的插件）的 dependencies 里；核心一个都没有（见 test_core_zero_deps）。"""
     missing = set()
-    for f in (ROOT / "lingshu_ng").rglob("*.py"):
-        src = f.read_text(encoding="utf-8")
-        for node in ast.walk(ast.parse(src)):
-            mods = ([a.name for a in node.names] if isinstance(node, ast.Import)
-                    else [node.module] if isinstance(node, ast.ImportFrom) and node.module and not node.level else [])
-            for m in mods:
-                top = m.split(".")[0]
-                if top in known and known[top] not in declared:
+    for name in PLUGINS:
+        pp = _plugin_pyproject(name)
+        declared = _names(pp["project"]["dependencies"])
+        for dep in [x for x in declared if x.startswith("lingshu-ng-")]:
+            declared |= _names(_plugin_pyproject(dep[len("lingshu-ng-"):])["project"]["dependencies"])
+        for f in (ROOT / "plugins" / f"lingshu-ng-{name}" / "src").rglob("*.py"):
+            for top in _imports(f):
+                if top in KNOWN and KNOWN[top] not in declared:
                     missing.add((str(f.relative_to(ROOT)), top))
-        for top in re.findall(r"import_module\(\"(onnxruntime|tokenizers|numpy)\"\)", src):
-            if known[top] not in declared:
+    for f in (ROOT / "lingshu_ng").rglob("*.py"):
+        for top in _imports(f):
+            if top in KNOWN:
                 missing.add((str(f.relative_to(ROOT)), top))
     assert not missing, sorted(missing)
 

@@ -2,8 +2,9 @@
 """capabilities · 当前生效档位查询（stab-r1）
 
 ng 的可选依赖全部「缺了逐位退回」。:func:`capabilities` 回答「此刻这台机器上实际跑的是哪一档」：
-各可选依赖能否导入（含导入失败的异常原文，例如 Windows 上 onnxruntime DLL 加载被拒）、各模型件是否可用及原因、
-中文长请求语义通路的生效档位，以及本进程迄今已发生的退回（:mod:`lingshu_ng.diag`）。
+已发现的插件及其版本（1.24 起，:mod:`lingshu_ng.plugins`）、插件声明的第三方依赖能否导入（含导入失败的异常原文，例如 Windows 上
+onnxruntime DLL 加载被拒）、各模型件是否可用及原因、中文长请求语义通路的生效档位，以及本进程迄今已发生的退回（:mod:`lingshu_ng.diag`）。
+核心本身不导入任何第三方库：``dependencies`` 只列已发现插件声明的依赖（未装插件时为空字典）。
 
 调用会按需构造模型件单例（与召回时用的是同一个单例，不另起会话）；不改变任何行为。
 """
@@ -13,14 +14,13 @@ import logging
 import importlib
 from typing import Any, Dict, Optional
 
-from . import diag, semrank
+from . import diag, plugins, semrank
 from .assoc import AssocConfig
 
 _log = logging.getLogger(__name__)
 
 __all__ = ["capabilities", "semantic_tier", "probe_dependency", "compat_methods"]
 
-_DEPS = ("numpy", "onnxruntime", "tokenizers", "PIL")
 
 
 def probe_dependency(name: str) -> Dict[str, Any]:
@@ -61,8 +61,11 @@ def capabilities(cfg: Optional[AssocConfig] = None) -> Dict[str, Any]:
         "casc_scorer": {"available": cs is not None,
                         "reason": None if cs is not None else (semrank.unavailable_reason("casc") or "交付默认未启用（sem_casc 0）")},
     }
+    found = plugins.installed()
+    deps = list(dict.fromkeys(d for p in found.values() for d in p["dependencies"]))   # 插件名序、声明序、去重
     return {
-        "dependencies": {n: probe_dependency(n) for n in _DEPS},
+        "plugins": found,
+        "dependencies": {n: probe_dependency(n) for n in deps},
         "models": models,
         "semantic_tier": semantic_tier(cfg, sc, em, cs),
         "fallbacks": diag.fallbacks(),

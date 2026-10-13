@@ -2,7 +2,7 @@
 """gen r8 确定性修复：densefuse 与 OnnxEmbedder.search 的次序与节点 id / 矩阵行序无关。"""
 import pytest
 
-from tests_ng._optdeps import require
+from tests_ng._optdeps import require, plugin
 
 from lingshu_ng.engine import MemoryEngine
 
@@ -50,6 +50,7 @@ def test_densefuse_order_depends_only_on_ranks():
 
 def test_onnx_search_row_order_and_ties():
     np = require("numpy")
+    plugin("onnx_embedder")   # 1.24：OnnxEmbedder 在插件 lingshu-ng-embed
     from lingshu_ng.embed import OnnxEmbedder
     q = np.array([1.0, 0.0], np.float32)
 

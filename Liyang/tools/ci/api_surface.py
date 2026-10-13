@@ -19,6 +19,8 @@ PUBLIC = [
     ("lingshu_ng.types", ["Node", "Edge", "WriteResult", "MemoryLayer", "EdgeType", "Role", "ConditionSpace"]),
     ("lingshu_ng.capabilities", ["capabilities", "compat_methods", "probe_dependency"]),
     ("lingshu_ng.diag", ["fallbacks", "reset"]),
+    ("lingshu_ng.plugins", ["GROUP", "Plugin", "CrossScorerBackend", "DenseEmbedderProtocol", "EmbeddingProvider", "CrossEncoder",
+                            "PluginMissingError", "register", "unregister", "installed", "provider", "require", "hint", "refresh"]),
     ("lingshu_ng.layers", ["LayerViolation"]),
     ("lingshu_ng.governance", ["DesignerRequired"]),
     ("lingshu_ng.compat_engine", ["PromotionRejected"]),

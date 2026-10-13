@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """tests_ng 公共夹具（stab-r1：测试确定性）。
 
-- 每个用例前后快照 / 还原进程内单例（semrank 的打分件 / 稠密件 / 判别头缓存与不可用原因）、``LINGSHU_*`` 环境变量
+- 每个用例前后快照 / 还原进程内单例（semrank 的打分件 / 稠密件 / 判别头缓存与不可用原因、插件注册表）、``LINGSHU_*`` 环境变量
   与 :func:`lingshu_ng.types.now` 的时钟注入，杜绝跨文件状态泄漏；
 - ``no_models``：把三个模型件固定为不可用（与机器上装了什么无关）；
 - ``frozen_clock``：把引擎时钟冻结在用例开始时刻（:func:`lingshu_ng.types.now` 仍严格单调，按 ULP 递增），
@@ -13,7 +13,7 @@ import time
 
 import pytest
 
-from lingshu_ng import semrank, types
+from lingshu_ng import plugins, semrank, types
 
 _CACHES = ("_SCORERS", "_EMBEDDERS", "_DISC", "_REASONS")
 
@@ -23,7 +23,11 @@ def _ng_isolation():
     saved = {n: dict(getattr(semrank, n)) for n in _CACHES if hasattr(semrank, n)}
     env = {k: v for k, v in os.environ.items() if k.startswith("LINGSHU")}
     clock = types._clock
+    reg = (dict(plugins._EXPLICIT), plugins._FOUND)   # split-r1：插件注册表（显式注册 / 发现结果）同样逐用例还原
     yield
+    plugins._EXPLICIT.clear()
+    plugins._EXPLICIT.update(reg[0])
+    plugins._FOUND = reg[1]
     for n, d in saved.items():
         cur = getattr(semrank, n)
         cur.clear()

@@ -16,7 +16,8 @@ python -m lingshu_ng serve    --db mem.db [--host 127.0.0.1] [--port 8765] [--to
 python -m lingshu_ng mcp      --db mem.db
 ```
 
-`pip install` 发行包 `lingshu-ng` 后另有同名命令 `lingshu-ng …`（`[project.scripts]`）。
+`pip install` 发行包 `lingshu-ng` 后另有同名命令 `lingshu-ng …`（`[project.scripts]`）。集成面只用核心（零依赖）；
+`capabilities` 子命令 / `GET /v1/capabilities` / `lingshu_capabilities` 工具的输出含 rel-v1.24 新增的 `plugins` 键（已发现的插件包与版本，见 docs/API_ng.md §8.1）。
 `--db` 缺省读环境变量 `LINGSHU_NG_DB`；`serve` / `mcp` 必须指定库文件（不允许 `:memory:`，免得进程退出后数据丢失）。
 输出都是 UTF-8 JSON（stdout）；日志写 stderr，级别由 `LINGSHU_NG_LOG`（缺省 `WARNING`）控制。退出码：0 成功、2 参数错误、1 运行错误。
 

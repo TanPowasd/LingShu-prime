@@ -18,7 +18,7 @@ from lingshu_ng.capabilities import capabilities, semantic_tier
 from lingshu_ng.compat import SpacetimeMemoryEngine
 from lingshu_ng.engine import MemoryEngine
 from lingshu_ng.types import EdgeType
-from tests_ng._optdeps import require
+from tests_ng._optdeps import plugin, require
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 WEB = ["丰巢快递柜取件码忘了，可以在丰巢微信公众号里查看取件码。", "西红柿炒鸡蛋要先炒鸡蛋，盛出后再炒西红柿。",
@@ -110,7 +110,10 @@ def test_v4_fallback_behaviour_unchanged(tmp_path, no_models, frozen_clock):
 def test_capabilities_reports_tier_without_models(tmp_path, no_models):
     c = MemoryEngine(str(tmp_path / "c.db")).capabilities()
     assert c["semantic_tier"] == "v4"
-    assert set(c["dependencies"]) == {"numpy", "onnxruntime", "tokenizers", "PIL"}
+    # 1.24 起只列已装插件声明的依赖（纯核心环境为空）；装了 lingshu-ng-embed 时至少含其三项
+    assert set(c["dependencies"]) <= {"numpy", "onnxruntime", "tokenizers", "PIL"}
+    if "embed" in c["plugins"] and c["plugins"]["embed"]["error"] is None:
+        assert {"numpy", "onnxruntime", "tokenizers"} <= set(c["dependencies"])
     assert all(set(d) == {"available", "version", "error"} for d in c["dependencies"].values())
     assert c["models"]["cross_scorer"]["available"] is False
     assert c["engine"]["semantic_provider"] is False
@@ -128,6 +131,7 @@ def test_semantic_tier_table():
 
 def test_broken_onnxruntime_records_reason(tmp_path, monkeypatch):
     """装了但导入失败（sys.modules 屏蔽 → ImportError）：打分件 / 稠密件构造不抛错，返回 None 并记原因。"""
+    plugin("cross_backend")   # split-r3：模型件在插件 lingshu-ng-embed；纯核心环境下原因是「未安装插件」（test_plugins 覆盖），此处 skip
     for m in ("bge-reranker-base", "bge-small-zh-v1.5"):
         (tmp_path / m / "onnx").mkdir(parents=True)
         (tmp_path / m / "tokenizer.json").write_text("{}", encoding="utf-8")
@@ -155,8 +159,9 @@ def test_collection_survives_unusable_onnxruntime(sim):
     """子进程：把模拟包放到 PYTHONPATH 最前（DLL 加载失败 / 未安装），依赖 onnxruntime 的测试文件被 skip 而非收集报错。"""
     env = dict(os.environ, PYTHONPATH=os.path.join(ROOT, "tests_ng", "_envsim", sim) + os.pathsep + ROOT,
                PYTHONDONTWRITEBYTECODE="1")
-    r = subprocess.run([sys.executable, "-m", "pytest", "-q", "-p", "no:cacheprovider", "-p", "no:randomly",
-                        os.path.join("tests_ng", "test_tokvec_pre.py")],
+    # 1.24：该文件随 OnnxEmbedder 移到插件 lingshu-ng-embed 的测试目录；-p tests_ng.conftest 带上本套件的档位报告头
+    r = subprocess.run([sys.executable, "-m", "pytest", "-q", "-p", "no:cacheprovider", "-p", "no:randomly", "-p", "tests_ng.conftest",
+                        os.path.join("plugins", "lingshu-ng-embed", "tests_embed", "test_tokvec_pre.py")],
                        cwd=ROOT, env=env, capture_output=True, text=True, timeout=110)
     assert r.returncode in (0, 5), r.stdout[-2000:] + r.stderr[-2000:]   # 5 = 整个文件在收集期被 skip（无用例可跑）
     assert "1 skipped" in r.stdout and " error" not in r.stdout

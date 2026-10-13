@@ -1,7 +1,7 @@
-# lingshu_ng 对外 API（rel-v1.23）
+# lingshu_ng 对外 API（rel-v1.24）
 
 本文覆盖 `lingshu_ng` 的公开类与方法、参数、返回值、异常、可选依赖与 `capabilities()` 用法。
-版本：`lingshu_ng.__version__ == "1.23.0"`（发行包 `lingshu-ng`，版本号 = `CHANGELOG_rel-v1.23.md`）。
+版本：`lingshu_ng.__version__ == "1.24.0"`（发行包 `lingshu-ng`，版本号 = `CHANGELOG_rel-v1.24.md`）。
 文末附录 A 由代码生成（`tools/ci/gen_api_appendix.py`），列出兼容门面每个公开方法的支持状态，与运行期
 `capabilities.compat_methods()` 一致。
 
@@ -22,18 +22,23 @@
 
 ## 1. 安装
 
-在 `Liyang/` 目录（含 `pyproject.toml`，发行包名 `lingshu-ng`）：
+rel-v1.24 起核心与依赖第三方库的部分分成独立发行包（拆包，见 §8.1）：
 
 ```bash
-pip install .            # 核心：纯标准库，零第三方依赖
-pip install ".[embed]"   # + numpy / onnxruntime / tokenizers：可选本地语义件（模型权重需另备，见 §8）
-pip install ".[world]"   # + numpy / Pillow：lingshu_ng.world / nn / gen（[nn]、[gen] 同）
-pip install ".[full]"    # 以上全部
+pip install lingshu-ng          # 核心：纯标准库，零第三方依赖（写入、召回、版本链、兼容门面、集成面）
+pip install lingshu-ng-embed    # 插件：numpy / onnxruntime / tokenizers——本地语义件（模型权重需另备，见 §8）
+pip install lingshu-ng-world    # 插件：numpy / Pillow——lingshu_ng.world.*
+pip install lingshu-ng-nn       # 插件：numpy / Pillow——lingshu_ng.nn.*
+pip install lingshu-ng-gen      # 插件：numpy / Pillow / lingshu-ng-nn——lingshu_ng.gen.*
 ```
 
-要求 Python ≥ 3.11。实测（rel-v1.18，`tools/ci/pkg_check.sh`：干净 venv、非 editable 安装、换到无关目录 import 并跑最小用例）：
-Python 3.12.15 核心 / `[embed]` / `[full]`，Python 3.11.17 与 3.13.5 核心，全部通过（Linux aarch64）。Windows 真机未测。
-发行包只含 `lingshu_ng`；`Liyang/lingshu/`（上游旧包副本）只用于仓内差分测试，不会被安装。
+从源码目录安装：`Liyang/` 下 `pip install .`（核心），`pip install ./plugins/lingshu-ng-embed` 等（插件；先装核心）。
+**不兼容点**：rel-v1.23 及以前的 extras（`".[embed]"`、`".[world]"`、`".[nn]"`、`".[gen]"`、`".[full]"`、`".[dev]"`）已删除；
+pip 对不存在的 extra 只给警告、照装核心，所以旧命令不会报错但**不会再装上 numpy / onnxruntime 等**，请改装对应插件包。
+
+要求 Python ≥ 3.11。实测（rel-v1.24，`tools/ci/pkg_check.sh` 核心 3.12.15 / 3.11.17 / 3.13.5，`tools/ci/pkg_check_plugins.sh` 核心 / 核心 + embed / + world / + nn / + nn + gen 五组：
+干净 venv、非 editable 安装、换到无关目录 import 并跑最小用例）全部通过（Linux aarch64）。Windows 真机未测。
+核心发行包只含 `lingshu_ng`（不含 world / nn / gen 源码）；`Liyang/lingshu/`（上游旧包副本）只用于仓内差分测试，不会被安装。
 
 ## 2. 两个入口
 
@@ -155,7 +160,8 @@ ng 不内置任何提供者。
 from lingshu_ng.compat import SpacetimeMemoryEngine
 e = SpacetimeMemoryEngine("mem.db")
 caps = e.capabilities()
-caps["dependencies"]     # {"numpy": {"available", "version", "error"}, "onnxruntime": …, "tokenizers": …, "PIL": …}
+caps["plugins"]          # rel-v1.24：已发现的插件 {"embed": {"distribution", "version", "source", "provides", "dependencies", "error"}, …}
+caps["dependencies"]     # 已发现插件声明的第三方依赖能否导入 {"numpy": {"available", "version", "error"}, "onnxruntime": …}；未装插件时为 {}
 caps["models"]           # {"cross_scorer": {"available", "reason"}, "dense_embedder": …, "casc_scorer": …}
 caps["semantic_tier"]    # 中文长请求语义通路："off" | "v4"（无模型）| "v7.1" | "v11c" | "v13"
 caps["fallbacks"]        # 本进程已发生的退回 {类别: 说明}（含 compat_unsupported:<方法名>）
@@ -169,7 +175,7 @@ caps["compat_methods"]   # 兼容门面每个公开方法：{"status": "supporte
 |---|---|
 | `MemoryEngine.capabilities()` | 上表除 `compat_methods` 外全部。 |
 | `SpacetimeMemoryEngine.capabilities()` | 原生全部 + `compat_methods`。 |
-| `lingshu_ng.capabilities.capabilities(cfg=None)` | 不构造引擎：`dependencies / models / semantic_tier / fallbacks`。会按需构造模型件单例（与召回用同一个单例）。 |
+| `lingshu_ng.capabilities.capabilities(cfg=None)` | 不构造引擎：`plugins / dependencies / models / semantic_tier / fallbacks`。会按需构造模型件单例（与召回用同一个单例）。 |
 | `lingshu_ng.capabilities.compat_methods()` | 不构造引擎：兼容门面方法支持状态表（= `compat_methods`）。 |
 | `lingshu_ng.capabilities.probe_dependency(name)` | 能否导入某依赖；装了但原生库加载失败（如 Windows DLL 被拒）也记为不可用，`error` 带异常原文。 |
 | `lingshu_ng.diag.fallbacks()` / `diag.reset()` | 退回登记的副本 / 清空（测试用）。 |
@@ -196,7 +202,8 @@ caps["compat_methods"]   # 兼容门面每个公开方法：{"status": "supporte
 | `lingshu_ng.compat_engine.PromotionRejected` | `PermissionError`, `ValueError` | 兼容门面的晋升被拒。 |
 | `lingshu_ng.compat_stubs.NotSupportedError` | `NotImplementedError` | 严格模式下调用不支持的方法（§4.1）。 |
 | `lingshu_ng.store.schema.SchemaTooNewError` | `RuntimeError` | 库的结构版本高于本代码（由更新版本写出），拒绝打开（§10）。 |
-| `lingshu_ng.world.validate.NonFiniteError` | `ValueError` | 世界线输入含 NaN / Inf。门面方法把它转成 `{"status": "error"}`，不穿出。 |
+| `lingshu_ng.plugins.PluginMissingError` | `ImportError` | rel-v1.24：用到需要插件的名字（如 `from lingshu_ng.embed import OnnxEmbedder`）而插件未装；信息写明 `pip install <插件包>`。旧代码 `except ImportError` 照常接住。 |
+| `lingshu_ng.world.validate.NonFiniteError`（插件 lingshu-ng-world） | `ValueError` | 世界线输入含 NaN / Inf。门面方法把它转成 `{"status": "error"}`，不穿出。 |
 | `lingshu_ng.store.db.DatabaseOpenError` | `sqlite3.OperationalError` | rel-v1.20 起：库路径是目录、所在目录不可写、文件不是 SQLite 库等，信息里写明路径与改法。 |
 | `lingshu_ng.store.db.DatabaseLockedError` | `sqlite3.OperationalError` | rel-v1.20 起：写锁被其它连接 / 进程占用，等 `LINGSHU_NG_BUSY_TIMEOUT`（缺省 30 s）后仍未释放。 |
 | `lingshu_ng.store.db.EngineClosedError` | `sqlite3.ProgrammingError` | rel-v1.20 起：`close()` 之后仍调用引擎 / 库。 |
@@ -209,11 +216,32 @@ caps["compat_methods"]   # 兼容门面每个公开方法：{"status": "supporte
 
 ## 8. 可选依赖与模型
 
-| 依赖（extras） | 用途 | 缺失时 |
+| 依赖（发行包） | 用途 | 缺失时 |
 |---|---|---|
-| 无（核心） | 写入、词面召回、版本链、因果、维护、兼容门面 | — |
-| `numpy` + `onnxruntime` + `tokenizers`（`[embed]`） | 中文联想通路交叉编码重排（v7.1）/ 稠密补入（v11c）/ 级联复打（v13，缺省关）；英文语义第二路与 F3；读路径第三阶段 | 逐位退回零模型路径（中文 v4、英文纯词面），名次与未装时相同 |
-| `numpy` + `Pillow`（`[world]` / `[nn]` / `[gen]`） | `lingshu_ng.world`、`nn`、`gen` 与兼容门面世界外观 | 世界外观返回 `{"status": "…_not_ready"}` |
+| 无（核心 `lingshu-ng`） | 写入、词面召回、版本链、因果、维护、兼容门面、集成面 | — |
+| `lingshu-ng-embed`（numpy + onnxruntime + tokenizers） | 中文联想通路交叉编码重排（v7.1）/ 稠密补入（v11c）/ 级联复打（v13，缺省关）/ 判别头（缺省关）；英文语义第二路（`OnnxEmbedder`）与 F3；读路径第三阶段（`OnnxCrossEncoder`） | 逐位退回零模型路径（中文 v4、英文纯词面），名次与未装时相同；另打一次 WARNING（`fallbacks()["plugin_missing:embed"]`） |
+| `lingshu-ng-world` / `-nn` / `-gen`（numpy + Pillow） | `lingshu_ng.world`、`nn`、`gen` 与兼容门面世界外观 | 导入这些子包抛 `ModuleNotFoundError`（带安装提示）；世界外观返回 `{"status": "…_not_ready"}` |
+
+### 8.1 插件（rel-v1.24 起）
+
+核心通过 `importlib.metadata.entry_points(group="lingshu_ng.plugins")` 发现已安装的插件（`lingshu_ng.plugins`，纯标准库）；
+从源码目录直接运行（未 pip 安装）时也会找 `<lingshu_ng 的上级>/plugins/lingshu-ng-*/src`（`LINGSHU_NG_SOURCE_PLUGINS=0` 关闭）。
+
+| 名字 | 说明 |
+|---|---|
+| `plugins.installed()` | 已发现插件：`{名: {distribution, version, source, provides, dependencies, error}}`，`source` ∈ `register` / `entry_point` / `source_tree` |
+| `plugins.register(obj, replace=True)` / `unregister(name)` | 显式注册（优先于入口点与源码树）：宿主可注入自己的推理后端等 |
+| `plugins.provider(cap)` / `require(cap)` / `hint(cap)` | 取能力的工厂（无则 None / 抛 `PluginMissingError` / 安装提示） |
+| `plugins.refresh()` | 丢弃发现结果（装卸插件后调用） |
+| 协议（`typing.Protocol`） | `Plugin`、`CrossScorerBackend`（`tag`、`encode_pairs`、`logits`）、`DenseEmbedderProtocol`（`encode`）、`EmbeddingProvider`（`add` + `search`）、`CrossEncoder`（`score`） |
+
+能力名：`cross_backend`（交叉编码推理后端；缓存 / 分批 / 取整仍在核心 `semrank.CrossScorer`）、`dense_embedder`、`disc_head`、
+`onnx_embedder`、`onnx_cross_encoder`（以上 lingshu-ng-embed）；`subpackage:world` / `nn` / `gen`。
+
+**旧导入路径**：`lingshu_ng.semrank`、`lingshu_ng.embed`、`lingshu_ng.embed.cross` 留在核心（纯标准库部分：模型目录、件单例、缓存、
+排序 / 截断逻辑、`split_sentences`、`from_env`），需要模型的类经模块 `__getattr__` 委托插件——`from lingshu_ng.embed import OnnxEmbedder`、
+`semrank.DenseEmbedder` 装了插件时是插件里的同一个类，未装时抛 `PluginMissingError`。`lingshu_ng.world.*` / `nn.*` / `gen.*`
+由核心的兼容入口（`lingshu_ng._alias`）把插件包目录按旧名载入：模块名、类的 `__module__`、pickle 路径与 rel-v1.22 相同，模块源码逐字未改。
 
 模型权重不随包发布。目录约定（`lingshu_ng.semrank`）：`$LINGSHU_NG_SEM/<模型名>/{tokenizer.json, onnx/<文件>}`，
 缺省模型名 `bge-reranker-base`（`LINGSHU_NG_SEM_MODEL`）、稠密 `bge-small-zh-v1.5`（`LINGSHU_NG_DENSE_MODEL`）、级联 `bge-reranker-v2-m3`（`LINGSHU_NG_SEM_CASC_MODEL`），
@@ -241,6 +269,7 @@ ONNX 文件缺省 `model_quantized.onnx`。英文语义第二路用 `LINGSHU_NG_
 | `LINGSHU_NG_STRICT_UNSUPPORTED` | `1`：不支持的兼容方法抛 `NotSupportedError`（§4.1）。 |
 | `LINGSHU_NG_ALLOW_NEWER_SCHEMA` | `1`：强制打开结构版本更高的库（§10）。 |
 | `AEIS_DESIGNER_KEY` | 设计者密钥（终裁等）。 |
+| `LINGSHU_NG_SOURCE_PLUGINS` | rel-v1.24：`0` 时不在源码目录 `plugins/lingshu-ng-*/src` 里找插件（只用已安装的入口点与显式注册）。 |
 | `LINGSHU_ALLOW_CWD_IMPORTS` | 关闭 cwd 导入护栏（`lingshu_ng._pathguard`，上游 #156/#273）；一般不要设。 |
 
 ## 10. 存储、并发与数据安全

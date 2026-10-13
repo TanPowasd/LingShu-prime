@@ -54,14 +54,28 @@ def test_216_prediction_miss_searchable_by_content():
 
 # ---- #209：requires-python 下界须装得上 extras 的 numpy 下界 ----
 def test_209_python_floor_matches_numpy_floor():
+    """每个声明 numpy 下界的 pyproject：requires-python 不低于该 numpy 下界的最低 wheel 版本。
+
+    split-r3：1.24 起核心 pyproject（发布目录 Liyang/pyproject.toml）不再声明 numpy，numpy 下界在 plugins/*/pyproject.toml；
+    开发树根目录的 pyproject.toml 是旧包 lingshu 的（仍有 numpy extras），一并核对。"""
+    import glob
     import os
     import re
     root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    txt = open(os.path.join(root, "pyproject.toml"), encoding="utf-8").read()
-    py = tuple(int(x) for x in re.search(r'^requires-python\s*=\s*">=\s*(\d+)\.(\d+)"', txt, re.M).groups())
-    lows = [(int(a), int(b)) for a, b in re.findall(r'"numpy>=(\d+)\.(\d+)', txt)]
-    need = {(2, 2): (3, 10), (2, 3): (3, 11), (2, 4): (3, 11), (2, 5): (3, 12)}[max(lows)]
-    assert py >= need, (py, max(lows))
+    checked = 0
+    for f in [os.path.join(root, "pyproject.toml")] + sorted(glob.glob(os.path.join(root, "plugins", "*", "pyproject.toml"))):
+        if not os.path.exists(f):
+            continue
+        txt = open(f, encoding="utf-8").read()
+        lows = [(int(a), int(b)) for a, b in re.findall(r'"numpy>=(\d+)\.(\d+)', txt)]
+        if not lows:
+            continue
+        py = tuple(int(x) for x in re.search(r'^requires-python\s*=\s*">=\s*(\d+)\.(\d+)"', txt, re.M).groups())
+        need = {(2, 2): (3, 10), (2, 3): (3, 11), (2, 4): (3, 11), (2, 5): (3, 12)}[max(lows)]
+        assert py >= need, (f, py, max(lows))
+        checked += 1
+    if not checked:
+        pytest.skip("没有声明 numpy 下界的 pyproject（最小副本）")
 
 
 # ---- #208：同轮同节点复用只记一次；不保留只增不删的内存 tracker ----

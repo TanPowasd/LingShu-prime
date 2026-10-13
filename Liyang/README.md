@@ -2,7 +2,9 @@
 
 > **插件测评站**（另一条工作线）：见 [`plugin-eval-site/`](plugin-eval-site/README.md) —— 方案 v3.0 端到端验证结果、判分器缺陷与 v2 候选、多场景考卷 C。
 
-> **2026-10-14 增量升级 rel-v1.23（当前版本）：倒排分块 blob（库结构 schema 4 → 5）· 长请求回退以块缓存压回**。不含检索 / 版本链调优，召回结果对 rel-v1.22 逐题相同（100k 冻结墙钟 240 / 240），检索、版本链、中文门见 CHANGELOG。**升级须知**：`SCHEMA_VERSION` 4 → 5，旧库首次打开自动迁移并整体重建派生索引（100k 条约 1 分 42 秒）；v5 库不能再用 rel-v1.18–v1.22 打开（`SchemaTooNewError`），降级请先 `export_all`。**先写未胜项**：库体积只在大库上降够——100k −20.9%（311.7 → 246.7 MB）、10k −11.2%、1k −1.9%，仍约为上游 cb3a6ea 的 3.6–4.4 倍；1k 写入慢约 6%（ABBA 中位 1.49 → 1.59 s）；写入非线性、冷 import / 内存 / 晋升延迟未动；v7.1 档本版未复跑 100k；Windows 真机未测。**读数**（零模型，ABBA 中位，B / A）：100k 召回 p95 236.7 → 200.9 ms（0.85×）、p50 39.0 → 33.7 ms、中文长请求 limit 50 p95 94.7 → 89.1 ms、写入 405.6 → 366.0 s；10k 召回 p95 0.94×、写入持平。stab-r7 的 v5 首版曾使 100k p50 +13%、长请求 p95 +16%，根因是判定精排的成员点查反复定位解码同一批块，本版加按词元缓存块区间（令牌随任何写入失效）后压回。另修迁移重建时的清表顺序（不残留陈旧墓碑）。详见 [`CHANGELOG_rel-v1.23.md`](CHANGELOG_rel-v1.23.md)、[`docs/STABILITY_ng.md`](docs/STABILITY_ng.md) §4。
+> **2026-10-14 增量升级 rel-v1.24（当前版本）：拆包——核心零外部依赖，依赖第三方库的部分拆为 4 个独立插件包**。`pip install lingshu-ng` 即零依赖核心（写入、召回、版本链、兼容门面、集成面）；本地 ONNX 语义件改装 `lingshu-ng-embed`，世界线 / 蜂窝 CNN / 文生图改装 `lingshu-ng-world` / `lingshu-ng-nn` / `lingshu-ng-gen`（源码在 [`plugins/`](plugins/)，各有 pyproject、版本、README、测试）。核心经入口点组 `lingshu_ng.plugins` 发现插件（也支持显式注册，协议用 `typing.Protocol`），`capabilities()` 新增 `plugins` 键；没装插件时逐位退回无模型档并打一次 WARNING 提示该装哪个包。旧导入路径不变：`lingshu_ng.semrank` / `lingshu_ng.embed` 留在核心（纯标准库部分），模型类委托插件；`lingshu_ng.world.*` 等由兼容入口按旧名载入插件目录（模块名、`__module__` 不变，源码逐字未改）。新增 AST 守卫：核心 `lingshu_ng/` 下出现任何非标准库导入（含函数内延迟导入与 `import_module` 字面量）即失败——拆包前 43 个文件依赖 numpy / PIL / onnxruntime / tokenizers，现为 0。**不兼容点**：extras（`[embed]` `[world]` `[nn]` `[gen]` `[full]` `[dev]`）已删除，旧命令只给警告、不再装第三方包，请改装插件包；`capabilities()["dependencies"]` 只列已装插件声明的依赖；未装插件时 `from lingshu_ng.embed import OnnxEmbedder` 抛 `PluginMissingError`（`ImportError` 子类）。读数：核心 + 全部插件 3298 passed；纯核心 1753 passed / 27 skipped；最小 venv 2117 passed / 58 skipped；无 onnxruntime / DLL 坏 / 无模型各 3287 passed / 8 skipped；py3.11.17 / 3.13.5 各 3287 passed / 8 skipped；打包核心 3 个解释器 + 插件 5 组干净 venv 全过；检索 / 版本链 / 中文 / gen 门对 rel-v1.23 逐项逐题相同（带模型 lmelp(s)_dev 110/110）。 迁移指引与不兼容点详见 [`CHANGELOG_rel-v1.24.md`](CHANGELOG_rel-v1.24.md)。
+
+> **2026-10-14 增量升级 rel-v1.23：倒排分块 blob（库结构 schema 4 → 5）· 长请求回退以块缓存压回**。不含检索 / 版本链调优，召回结果对 rel-v1.22 逐题相同（100k 冻结墙钟 240 / 240），检索、版本链、中文门见 CHANGELOG。**升级须知**：`SCHEMA_VERSION` 4 → 5，旧库首次打开自动迁移并整体重建派生索引（100k 条约 1 分 42 秒）；v5 库不能再用 rel-v1.18–v1.22 打开（`SchemaTooNewError`），降级请先 `export_all`。**先写未胜项**：库体积只在大库上降够——100k −20.9%（311.7 → 246.7 MB）、10k −11.2%、1k −1.9%，仍约为上游 cb3a6ea 的 3.6–4.4 倍；1k 写入慢约 6%（ABBA 中位 1.49 → 1.59 s）；写入非线性、冷 import / 内存 / 晋升延迟未动；v7.1 档本版未复跑 100k；Windows 真机未测。**读数**（零模型，ABBA 中位，B / A）：100k 召回 p95 236.7 → 200.9 ms（0.85×）、p50 39.0 → 33.7 ms、中文长请求 limit 50 p95 94.7 → 89.1 ms、写入 405.6 → 366.0 s；10k 召回 p95 0.94×、写入持平。stab-r7 的 v5 首版曾使 100k p50 +13%、长请求 p95 +16%，根因是判定精排的成员点查反复定位解码同一批块，本版加按词元缓存块区间（令牌随任何写入失效）后压回。另修迁移重建时的清表顺序（不残留陈旧墓碑）。详见 [`CHANGELOG_rel-v1.23.md`](CHANGELOG_rel-v1.23.md)、[`docs/STABILITY_ng.md`](docs/STABILITY_ng.md) §4。
 
 > **2026-10-13 增量升级 rel-v1.22：命令行 / HTTP / MCP 集成面 · 版本与弃用策略 · 召回 p95 回退修复**。不含检索 / 版本链调优，检索、版本链、中文门对 rel-v1.21 逐项、逐题相同；库结构版本不变（schema 4）。**先写未胜项**：库文件体积**未改**，仍约为上游 cb3a6ea 的 4.5 倍——本版只做了原型（倒排按词元分块打包 blob 可使 100k 全库约 −20.7%，但需整套重写触发器维护的派生索引，未采用；词元整数 id 反而更大）；为修 p95，常驻内存回升（零模型 100k 144 → 179 MB，rel-v1.20 为 209 MB）；写入非线性未修（100k 末段每千条 4.85 s）；Windows 真机未测，MCP 未与具体客户端实机联调。**修复**：rel-v1.21 的 100k 召回 p95 261 ms 经 ABBA 各 3 次复核为真回退（rel-v1.20 约 210 ms、rel-v1.21 约 245 ms），原因是分词缓存 16384 → 4096，已恢复（本版 203–204 ms）。**新增（可选、纯标准库）**：`python -m lingshu_ng` / `lingshu-ng` 命令行，本机 HTTP/JSON 服务（缺省只绑 127.0.0.1，绑外网须令牌），MCP stdio 适配器，见 [`docs/INTEGRATION_ng.md`](docs/INTEGRATION_ng.md)；版本号规则、弃用流程、schema 前后兼容矩阵（实测）与公开 API 清单见 [`docs/STABILITY_ng.md`](docs/STABILITY_ng.md)，公开签名有变化时快照测试失败。更正：rel-v1.21 所写「v4 库不能再用 rel-v1.20 及更早版本打开」只对 rel-v1.18–v1.20 成立，rel-v1.17 及更早不检查版本。详见 [`CHANGELOG_rel-v1.22.md`](CHANGELOG_rel-v1.22.md)。
 
@@ -80,37 +82,41 @@
 
 ## 3. 快速开始
 
-**要求**：Python ≥ 3.11（实测 3.12.15）。
+**要求**：Python ≥ 3.11（实测 3.12.15；另测 3.11.17 / 3.13.5）。
 
 ```bash
 cd Liyang
 python3 -m venv .venv && . .venv/bin/activate
-pip install -e ".[full,dev]"      # numpy、Pillow、pytest
+pip install -e . pytest                       # 核心：零第三方依赖
+pip install ./plugins/lingshu-ng-embed        # 可选：本地 ONNX 语义件（numpy、onnxruntime、tokenizers；模型权重自备）
+pip install ./plugins/lingshu-ng-world ./plugins/lingshu-ng-nn ./plugins/lingshu-ng-gen   # 可选：world / nn / gen（numpy、Pillow）
 ```
 
-API 用法见 [`docs/API_ng.md`](docs/API_ng.md)（安装、两个入口、兼容门面与不支持方法语义、capabilities、异常、环境变量、存储并发与数据安全）。
+API 用法见 [`docs/API_ng.md`](docs/API_ng.md)（安装、两个入口、兼容门面与不支持方法语义、capabilities、插件、异常、环境变量、存储并发与数据安全）。
 
 ```bash
-# 只装发行包（rel-v1.18 起包名 lingshu-ng，只含 lingshu_ng）
-pip install ".[embed]"            # 或 ".[full]"；不带 extras 即纯标准库核心
-python -m pytest tests_ng -q
+# 发行包（rel-v1.24 起拆包；包名 lingshu-ng 只含 lingshu_ng，零依赖）
+pip install lingshu-ng                 # 核心
+pip install lingshu-ng-embed           # 插件（按需）
+python -m pytest tests_ng -q           # 核心测试；插件测试在 plugins/<插件>/tests_<名>/
 ```
 
-**依赖分组**（rel-v1.18 起，`pyproject.toml` 的 `[project.optional-dependencies]`；发行包 `lingshu-ng` 只含 `lingshu_ng`）：
+**发行包**（rel-v1.24 起；rel-v1.18–v1.23 为 `pyproject.toml` 的 extras，已删除）：
 
-| 安装方式 | 装什么 | 用途 |
+| 安装 | 装什么 | 用途 |
 |---|---|---|
-| `pip install .`（不带 extras） | 无第三方依赖 | 记忆核心 `lingshu_ng`（纯标准库） |
-| `.[embed]` | `numpy`、`onnxruntime`、`tokenizers` | 可选语义件（`lingshu_ng.semrank` / `lingshu_ng.embed`）；模型权重不随包发布，需自备并设 `LINGSHU_NG_SEM` |
-| `.[world]` / `.[nn]` / `.[gen]` | `numpy>=2.3.5,<2.6`、`Pillow>=12.2,<13` | `lingshu_ng.world` / `nn` / `gen` |
-| `.[full]` | 以上全部 | 完整环境 |
-| `.[dev]` | `pytest` | 跑测试 |
+| `pip install lingshu-ng` | 无第三方依赖 | 记忆核心 `lingshu_ng`（纯标准库） |
+| `pip install lingshu-ng-embed` | `numpy`、`onnxruntime`、`tokenizers` | 可选语义件（`lingshu_ng.semrank` 交叉编码 / 稠密 / 判别头的模型部分、`lingshu_ng.embed.OnnxEmbedder`、`lingshu_ng.embed.cross.OnnxCrossEncoder`）；模型权重不随包发布，需自备并设 `LINGSHU_NG_SEM` |
+| `pip install lingshu-ng-world` / `lingshu-ng-nn` / `lingshu-ng-gen` | `numpy>=2.3.5,<2.6`、`Pillow>=12.2,<13`（gen 另需 lingshu-ng-nn） | `lingshu_ng.world` / `nn` / `gen`（导入路径不变） |
 
-rel-v1.17 及以前的 `accel` / `semantic` / `data` / `diffusion` 分组属于旧 `lingshu/` 包，已随旧包一起移出发行包（`semantic` 由 `embed` 取代）。
+旧命令对照：`".[embed]"` → `lingshu-ng-embed`；`".[world]"` / `[nn]` / `[gen]` → 对应插件包；`".[full]"` → 四个插件包；`".[dev]"` → 自行 `pip install pytest`。
+没装插件时：中文长请求逐位退回 v4 词面档（与无模型时相同），进程内打一次 WARNING 提示 `pip install lingshu-ng-embed`；`import lingshu_ng.world` 抛带安装提示的 `ModuleNotFoundError`。
+
+rel-v1.17 及以前的 `accel` / `semantic` / `data` / `diffusion` 分组属于旧 `lingshu/` 包，已随旧包一起移出发行包（`semantic` 由 `embed` 取代，rel-v1.24 起再由插件包 `lingshu-ng-embed` 取代）。
 
 **本快照（ng@875d838）实测**：在本发布目录内（不含上游 `tests/`）跑 `python -m pytest tests_ng -q`，**2797 passed, 1 skipped**，约 41 s。这次用的是已装 numpy/Pillow/SciPy/pytest 的开发环境，不是干净 venv。
 
-**干净 venv 实测（2026-10-09，上一版快照 ng@08efc93 + `a3fb0ae` 修订；`/tmp` 下新建 venv，按上面的命令逐字执行）**
+**干净 venv 实测（2026-10-09，上一版快照 ng@08efc93 + `a3fb0ae` 修订；`/tmp` 下新建 venv，按当时 README 的命令逐字执行；rel-v1.24 起安装命令已改为核心 + 插件包，见上）**
 
 - 环境：Python 3.12.15；`pip install -e ".[full,dev]"` 装上 numpy 2.5.3、Pillow 12.3.0、pytest 9.1.1（无 SciPy）。
 - `python -m pytest tests_ng -q`：**1978 passed, 1 skipped**，约 43 s（分段：核心 488 passed；`tests_ng/world` 1003 passed；`tests_ng/nn` 487 passed、1 skipped）。唯一的 skip 是 `test_compat_surface_covers_legacy_tests`，原因见 §6.2。
@@ -128,7 +134,7 @@ Windows 上的已知差异（粗时钟、onnxruntime DLL 加载失败）已用�
 | 项 | 最小环境 | 完整环境 |
 |---|---|---|
 | Python | ≥ 3.11 | ≥ 3.11 |
-| 安装 | `pip install -e ".[dev]"`（只有 pytest） | `pip install -e ".[full,dev]"`（numpy、Pillow、pytest、onnxruntime、tokenizers；rel-v1.17 及以前写作 `.[full,dev,semantic]`） |
+| 安装 | `pip install -e . pytest`（只有 pytest；rel-v1.23 及以前写作 `.[dev]`） | `pip install -e . pytest ./plugins/lingshu-ng-embed ./plugins/lingshu-ng-world ./plugins/lingshu-ng-nn ./plugins/lingshu-ng-gen`（numpy、Pillow、onnxruntime、tokenizers；rel-v1.23 及以前写作 `.[full,dev]`） |
 | 模型 | 不需要；建议设 `LINGSHU_NG_SEM=off` 明确关闭 | 自备 ONNX 模型目录（权重不随仓库发布），设 `LINGSHU_NG_SEM=<模型目录>` |
 
 `LINGSHU_NG_SEM` 指向的模型目录结构（缺哪个件，哪个件退回，其余不受影响）：
@@ -149,13 +155,27 @@ Windows 上的已知差异（粗时钟、onnxruntime DLL 加载失败）已用�
 
 | 缺什么 | 跳过什么 |
 |---|---|
-| numpy / Pillow | `tests_ng/world/`、`tests_ng/nn/` 中导入它们的模块（原因：`可选依赖 numpy 未安装（world/nn 需要 pip install -e ".[full]"）`），以及核心目录里用 `require("numpy")` 按需跳过的用例（最小环境实测 17 处，含`test_semrank.py` 稠密补入 / 融合 6 条、`test_backlog_core_r3.py::test_216_prediction_miss_searchable_by_content`、`test_stab_env.py::test_world_rebuild_latest_frame_with_tied_clock`、`world/test_scene_relations.py::test_compat_scene_model_uses_fixed_solver`）与 `test_compat_surface.py` 的 2 条世界线用例（「ng 世界线依赖 numpy/PIL」） |
-| onnxruntime / tokenizers（没装，或装了但原生库加载失败，如 Windows DLL 被拒） | `test_tokvec_pre.py` 整文件（原因含异常原文）；连带下两行 |
+| numpy / Pillow | （rel-v1.24 起 world / nn 测试在 `plugins/lingshu-ng-world/tests_world/`、`plugins/lingshu-ng-nn/tests_nn/`，随插件测试跑；以下为 rel-v1.23 及以前的说法）`tests_ng/world/`、`tests_ng/nn/` 中导入它们的模块（原因：`可选依赖 numpy 未安装（world/nn 需要 pip install -e ".[full]"）`），以及核心目录里用 `require("numpy")` 按需跳过的用例（最小环境实测 17 处，含`test_semrank.py` 稠密补入 / 融合 6 条、`test_backlog_core_r3.py::test_216_prediction_miss_searchable_by_content`、`test_stab_env.py::test_world_rebuild_latest_frame_with_tied_clock`、`world/test_scene_relations.py::test_compat_scene_model_uses_fixed_solver`）与 `test_compat_surface.py` 的 2 条世界线用例（「ng 世界线依赖 numpy/PIL」） |
+| onnxruntime / tokenizers（没装，或装了但原生库加载失败，如 Windows DLL 被拒） | `test_tokvec_pre.py` 整文件（rel-v1.24 起在 `plugins/lingshu-ng-embed/tests_embed/`）（原因含异常原文）；连带下两行 |
 | bge-small-en-v1.5 | `test_tokvec_pre.py` 整文件（「bge-small-en-v1.5 不在本机」） |
 | 交叉编码模型 bge-reranker-base | `test_semrank.py::test_real_scorer_smoke`（「可选语义模型未安装」） |
 | 稠密模型 bge-small-zh-v1.5 | `test_semrank.py::test_real_embedder_smoke`（「bge-small-zh 不可用」） |
 
 其余用例在任何组合下都必须通过；缺件的退回路径本身有专门用例（`no_models` 夹具把模型件固定为不可用，与机器上装了什么无关）。
+
+#### rel-v1.24 拆包后的命令与读数
+
+```bash
+# 纯核心：干净 venv 只装 pytest，不装任何插件（源码目录里加 LINGSHU_NG_SOURCE_PLUGINS=0，确保不发现 plugins/ 下的插件）
+LINGSHU_NG_SOURCE_PLUGINS=0 LINGSHU_NG_SEM=off python -m pytest tests_ng -q -rs
+# 本版实测：1753 passed, 27 skipped（干净 venv 只装 pytest，LINGSHU_NG_SOURCE_PLUGINS=0，随机序 605）
+
+# 核心 + 全部插件（插件测试目录一起跑；拆包前同一批用例都在 tests_ng 下）
+python -m pytest tests_ng plugins/*/tests_* -q -rs
+# 本版实测：3298 passed（3.12.15 + onnxruntime + 模型件，核心 tests_ng + 4 个插件测试目录；随机序 61 / 62 各 3298 passed）
+```
+
+以下「两套命令」是 rel-v1.16 时的写法与读数，保留作对照（`.[dev]` / `.[full,dev]` 已改为上面的安装方式）。
 
 #### 两套命令与预期读数
 

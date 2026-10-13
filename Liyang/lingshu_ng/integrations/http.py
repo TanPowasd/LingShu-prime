@@ -32,6 +32,8 @@ from .service import BadRequest, Service
 _log = logging.getLogger("lingshu_ng.integrations.http")
 #: 请求体上限（字节）
 MAX_BODY = 1 << 20
+#: 超限请求体在回 413 之前最多读掉（丢弃）这么多字节，客户端才能读到 413 而不是写到一半被断开（Broken pipe）；更大的直接断开
+_DRAIN_CAP = 4 * MAX_BODY
 TOKEN_ENV = "LINGSHU_NG_TOKEN"
 _GET = {"/v1/status": "status", "/v1/capabilities": "capabilities"}
 _POST = {"/v1/perceive": "perceive", "/v1/recall": "recall"}
@@ -82,6 +84,19 @@ class _Handler(BaseHTTPRequestHandler):
         raw = self.rfile.read(n) if n > 0 else b"{}"
         return json.loads(raw.decode("utf-8"))
 
+    def _drain(self, n: int) -> None:
+        """丢弃超限请求体（split-r3）：服务端不读就回 413 并关连接时，仍在发送的客户端会撞上 Broken pipe、读不到 413。
+
+        只在 ``n <= _DRAIN_CAP`` 时读掉，分块读、不留内容；更大的请求体不读（直接关连接，避免被大包拖住）。"""
+        if n > _DRAIN_CAP:
+            return
+        left = n
+        while left > 0:
+            chunk = self.rfile.read(min(left, 1 << 16))
+            if not chunk:
+                break
+            left -= len(chunk)
+
     def _run(self, op: str, body) -> None:
         try:
             out = getattr(self.server.service, op)(body)
@@ -116,8 +131,9 @@ class _Handler(BaseHTTPRequestHandler):
             return self._err(404, f"未知路径 {path}")
         try:
             body = self._body()
-        except OverflowError:
+        except OverflowError as e:
             self.close_connection = True
+            self._drain(e.args[0])
             return self._err(413, f"请求体超过 {MAX_BODY} 字节")
         except (ValueError, UnicodeDecodeError) as e:
             return self._err(400, f"JSON 解析失败：{e}")

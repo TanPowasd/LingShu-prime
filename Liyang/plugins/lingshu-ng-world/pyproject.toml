@@ -1,0 +1,33 @@
+# lingshu-ng-world：灵枢 ng 的独立插件包（split-r1，rel-v1.24 起）。核心 lingshu-ng 零依赖；第三方依赖只写在本包。
+# 版本区间依据实测（Python 3.12：onnxruntime 1.31.0 · tokenizers 0.23.3 · numpy 2.5.4 · Pillow 12.3.0），区间外未测不承诺。
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lingshu-ng-world"
+dynamic = ["version"]
+description = "灵枢 ng 插件：世界线重写（旧路径 lingshu_ng.world.*）"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+dependencies = ["lingshu-ng>=1.24,<2", "numpy>=2.3.5,<2.6", "Pillow>=12.2,<13"]
+
+[project.entry-points."lingshu_ng.plugins"]
+world = "lingshu_ng_world.plugin:PLUGIN"
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.urls]
+Source = "https://github.com/TanPowasd/LingShu-prime/tree/main/Liyang/plugins/lingshu-ng-world"
+
+[tool.setuptools.dynamic]
+version = { attr = "lingshu_ng_world.__version__" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["lingshu_ng_world", "lingshu_ng_world.*"]
+
+[tool.setuptools.package-data]
+"*" = ["*.json", "*.md"]

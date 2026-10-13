@@ -1,4 +1,4 @@
-# lingshu_ng 版本与弃用策略（rel-v1.22 起）
+# lingshu_ng 版本与弃用策略（rel-v1.22 起；rel-v1.24 补插件包）
 
 本文规定 `lingshu_ng` 的版本号含义、哪些名字算公开 API、怎样弃用与删除、以及哪个版本能打开哪个结构版本（schema）的库。
 公开 API 清单（文末附录）与签名快照 `tests_ng/api_snapshot.json` 都由代码生成（`tools/ci/gen_api_appendix.py --stability / --snapshot`，
@@ -21,11 +21,15 @@
 ## 2. 什么算公开 API
 
 - **算**：附录所列模块里的所列名字——`MemoryEngine` 与兼容门面 `SpacetimeMemoryEngine` 的公开方法（含不支持方法的存在与支持状态）、
-  `lingshu_ng.types` 的数据类型（字段名与顺序、枚举成员与取值）、`capabilities` / `diag` 函数、§7 异常类、`SCHEMA_VERSION`、
+  `lingshu_ng.types` 的数据类型（字段名与顺序、枚举成员与取值）、`capabilities` / `diag` 函数、插件接口 `lingshu_ng.plugins`（rel-v1.24 起：
+  注册 / 发现函数、`typing.Protocol` 协议、`PluginMissingError`、入口点组名 `GROUP = "lingshu_ng.plugins"`）、§7 异常类、`SCHEMA_VERSION`、
   入参上限常量、集成面（`lingshu_ng.integrations.service / http / mcp / cli` 的所列名字，以及 docs/INTEGRATION_ng.md 的 HTTP 路径、
   JSON 字段、MCP 工具名与参数、命令行子命令）、docs/API_ng.md §9 的环境变量名。
 - **不算**：其它模块、以下划线开头的名字、类型注解的写法、日志文本、`capabilities()` 里 `fallbacks` 的说明文字、
-  `lingshu_ng/world`、`nn`、`gen` 子包（另一条重写线，未纳入本策略）、`bench_*` / `tools/` 脚本。
+  `lingshu_ng.world`、`nn`、`gen` 子包（另一条重写线，未纳入本策略；rel-v1.24 起源码在插件包 lingshu-ng-world / -nn / -gen，旧导入路径照旧）、
+  插件能力名（`cross_backend` 等）与插件内部模块（`lingshu_ng_embed.*` 等）、`bench_*` / `tools/` 脚本。
+- **插件包版本**：每个插件包（`lingshu-ng-embed` / `-world` / `-nn` / `-gen`）有自己的版本号（`lingshu_ng_<名>.__version__`，同样按 semver），
+  首次独立发布为 1.24.0；插件声明所需核心区间（当前 `lingshu-ng>=1.24,<2`）。核心与插件可分别升级；核心的插件接口按本策略演进。
 - `capabilities()` 返回字典的**键**算公开；取值随环境变化（这正是它的用途）。
 
 ## 3. 弃用流程
@@ -40,7 +44,8 @@
    只有新增而版本号未升且未点名 ⇒ 拒绝。快照的版本不得高于代码版本（`test_snapshot_version_not_ahead`）。
 5. 签名快照只记参数名、种类、缺省值，不记类型注解（注解的字符串形式随 Python 小版本变化）；Python 3.11 / 3.12 / 3.13 下快照相同（多 Python 矩阵跑同一测试）。
 
-截至 rel-v1.23 没有处于弃用期的名字。
+截至 rel-v1.24 没有处于弃用期的名字。rel-v1.24 拆包没有删除或改签名任何公开名字（快照 469 → 494 项，只有新增 `lingshu_ng.plugins` 的 25 项）；
+发行包层面的不兼容（extras 删除、`capabilities()["dependencies"]` 只列插件声明的依赖）见 CHANGELOG_rel-v1.24「不兼容点」。
 
 ## 4. schema 前后兼容矩阵
 
@@ -61,6 +66,7 @@ v2（ng 早期，ec5a2aea，未发布）→ **v3**（4bfafa7b 派生倒排索引
 
 - 「可」= 打开、旧内容可召回、写入并召回新内容都成功。v3 库被 v1.21+ 打开后迁移成 v4，此后 rel-v1.18–v1.20 **不能再打开它**（往返实测拒绝）；
   rel-v1.10 / v1.17 仍能打开并照常读写（往返实测）。
+- **rel-v1.24（拆包）**：未改库结构（`SCHEMA_VERSION` 仍为 5；拆包没有改动 `lingshu_ng/store/` 任何文件），rel-v1.23 与 rel-v1.24 读写的是同一种 v5 库；本版未单独做 v1.23↔v1.24 往返实测（v1.24 门含 v4 旧库夹具迁移测试）。
 - **v5（rel-v1.23）补充**：v4 / v3 库被 rel-v1.23 打开后迁移成 v5，此后 rel-v1.18–v1.22 不能再打开（往返实测拒绝）。rel-v1.10 / v1.17 打开 v5 库会把标记改回 3、
   重建旧倒排 `node_terms` 并照常读写；再用 rel-v1.23 打开时按 v3 重新迁移，派生索引与 `nodes` 全量重算逐值相同，旧版本写入与裸删都正确反映（`_stab/r8/gate/schema_extra.txt`）。
   rel-v1.18–v1.22 设 `LINGSHU_NG_ALLOW_NEWER_SCHEMA=1` 强制打开 v5 库时同样会把标记改写为自己的版本，rel-v1.23 重开后重新迁移、结果同上。以上均属未承诺行为。
@@ -74,7 +80,7 @@ v2（ng 早期，ec5a2aea，未发布）→ **v3**（4bfafa7b 派生倒排索引
 
 ## 5. 发布检查清单（每次发布）
 
-1. `__version__` 与 `CHANGELOG_rel-vX.Y.md` 同一提交；`tests_ng/test_api_snapshot.py` 通过（必要时按 §3 更新快照）。
+1. `__version__` 与 `CHANGELOG_rel-vX.Y.md` 同一提交（插件包有改动时一并升插件版本）；`tests_ng/test_api_snapshot.py` 通过（必要时按 §3 更新快照）。
 2. `python tools/ci/gen_api_appendix.py`（API_ng 附录 A）与 `--stability`（本文附录）重新生成，无手改。
 3. schema 有变化：更新 §4 矩阵（重跑 `_stab/r8/schema_matrix.py`）并加旧库夹具测试。
 
@@ -82,7 +88,7 @@ v2（ng 早期，ec5a2aea，未发布）→ **v3**（4bfafa7b 派生倒排索引
 
 <!-- 以下由 tools/ci/gen_api_appendix.py 生成，勿手改 -->
 
-公开名字与签名共 469 项（含兼容门面支持状态 167 项，见快照 `tests_ng/api_snapshot.json`）。签名只列参数名、种类与缺省值。
+公开名字与签名共 494 项（含兼容门面支持状态 167 项，见快照 `tests_ng/api_snapshot.json`）。签名只列参数名、种类与缺省值。
 
 #### `lingshu_ng.__version__`
 
@@ -188,6 +194,73 @@ v2（ng 早期，ec5a2aea，未发布）→ **v3**（4bfafa7b 派生倒排索引
 #### `lingshu_ng.layers.LayerViolation`
 
 - `·` class(PermissionError)
+
+#### `lingshu_ng.plugins.CrossEncoder`
+
+- `·` class(Protocol)
+- `__init__`: `(self, *args, **kwargs)`
+- `score`: `(self, query, texts)`
+
+#### `lingshu_ng.plugins.CrossScorerBackend`
+
+- `·` class(Protocol)
+- `__init__`: `(self, *args, **kwargs)`
+- `encode_pairs`: `(self, q, ps)`
+- `logits`: `(self, q, ps)`
+
+#### `lingshu_ng.plugins.DenseEmbedderProtocol`
+
+- `·` class(Protocol)
+- `__init__`: `(self, *args, **kwargs)`
+- `encode`: `(self, texts)`
+
+#### `lingshu_ng.plugins.EmbeddingProvider`
+
+- `·` class(Protocol)
+- `__init__`: `(self, *args, **kwargs)`
+- `add`: `(self, ids, texts)`
+- `search`: `(self, query, limit)`
+
+#### `lingshu_ng.plugins.GROUP`
+
+- `·` const str = 'lingshu_ng.plugins'
+
+#### `lingshu_ng.plugins.Plugin`
+
+- `·` class(Protocol)
+- `__init__`: `(self, *args, **kwargs)`
+
+#### `lingshu_ng.plugins.PluginMissingError`
+
+- `·` class(ImportError)
+
+#### `lingshu_ng.plugins.hint`
+
+- `·` (capability)
+
+#### `lingshu_ng.plugins.installed`
+
+- `·` ()
+
+#### `lingshu_ng.plugins.provider`
+
+- `·` (capability)
+
+#### `lingshu_ng.plugins.refresh`
+
+- `·` ()
+
+#### `lingshu_ng.plugins.register`
+
+- `·` (plugin, replace=True)
+
+#### `lingshu_ng.plugins.require`
+
+- `·` (capability, what='')
+
+#### `lingshu_ng.plugins.unregister`
+
+- `·` (name)
 
 #### `lingshu_ng.store.db.DatabaseLockedError`
 

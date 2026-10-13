@@ -24,3 +24,12 @@ def model_dir(*parts: str) -> str:
 
     from lingshu_ng import semrank
     return os.path.join(semrank.model_root(warn=False), *parts)
+
+
+def plugin(capability: str):
+    """需要插件能力 ``capability``（如 ``onnx_embedder``）的用例：插件未装 → skip（原因写明该装哪个插件）。返回提供者。"""
+    from lingshu_ng import plugins
+    p = plugins.provider(capability)
+    if p is None:
+        pytest.skip(plugins.hint(capability), allow_module_level=True)
+    return p
