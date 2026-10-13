@@ -3,6 +3,7 @@
 import pytest
 
 from lingshu_ng.engine import MemoryEngine
+from tests_ng._optdeps import require
 
 
 @pytest.fixture
@@ -35,6 +36,7 @@ def test_216_hint_failures_not_double_counted(e):
 
 # ---- #216 ⑤：预测负记忆可按内容检索 ----
 def test_216_prediction_miss_searchable_by_content():
+    require("numpy")  # 最小环境（不装 numpy）下 skip，见 tests_ng/_optdeps.py
     from lingshu_ng.compat import SpacetimeMemoryEngine
     from lingshu_ng.world.prediction import PredictionEngine
     c = SpacetimeMemoryEngine(":memory:")

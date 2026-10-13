@@ -16,6 +16,7 @@
 """
 from __future__ import annotations
 
+import logging
 import math
 import random
 from dataclasses import asdict, dataclass, field
@@ -25,6 +26,8 @@ from .scene_sim import SceneSimulator, normalize_xz
 from .spacetime import SpacetimeConsistency
 from .validate import finite_vec3
 from .world_model import best_tendency, motion_stats, pair_tendency_n, window_series
+
+_log = logging.getLogger(__name__)
 
 __all__ = ["LNNode", "WorldLearner"]
 
@@ -274,6 +277,7 @@ class WorldLearner:
         try:
             return SpacetimeConsistency(scene=self.world)._predict_next()
         except Exception:
+            _log.debug("影子重放失败 → 上界预测为空", exc_info=True)
             return {}
 
     def _score_tick(self, acc: Dict) -> None:

@@ -17,17 +17,30 @@ import math
 import time
 from dataclasses import asdict, dataclass, field
 from enum import Enum
-from typing import Any, Dict, List, Optional, Sequence, Tuple
+from typing import Any, Callable, Dict, List, Optional, Sequence, Tuple
 
 __all__ = [
     "ConditionSpace", "NodeType", "EdgeType", "MemoryLayer", "Role", "Node", "Edge",
-    "CausalChain", "WriteResult", "dumps", "loads", "now",
+    "CausalChain", "WriteResult", "dumps", "loads", "now", "set_clock",
 ]
 
 
+_clock: Optional[Callable[[], float]] = None
+
+
 def now() -> float:
-    """当前墙钟时间（集中一处，便于测试注入）。"""
-    return time.time()
+    """当前墙钟时间（集中一处，便于测试注入）。
+
+    缺省每次调用时读 ``time.time()``（与此前逐位相同；评测里用 sitecustomize 钉住 ``time.time`` 的做法照常生效）；
+    :func:`set_clock` 注入后读注入的时钟。"""
+    return time.time() if _clock is None else _clock()
+
+
+def set_clock(fn: Optional[Callable[[], float]] = None) -> Optional[Callable[[], float]]:
+    """注入时钟（测试用，stab-r1）：``fn`` 为无参返回秒数的函数；``None`` 恢复墙钟。返回此前注入的时钟（未注入为 None）。"""
+    global _clock
+    prev, _clock = _clock, fn
+    return prev
 
 
 _ENC = json.JSONEncoder(ensure_ascii=False, allow_nan=False)

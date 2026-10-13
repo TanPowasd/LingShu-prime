@@ -12,6 +12,7 @@
 """
 from __future__ import annotations
 
+import logging
 import copy
 import math
 import os
@@ -21,7 +22,7 @@ from typing import Dict, List, Optional, Sequence, Tuple
 from . import causal, conflict, dedup, exchange
 from .decay import Maintenance, elapsed_factor
 from .gate import LongTermGate
-from .governance import require_designer
+from .promotion import adjudicate as _adjudicate
 from .insight import Insights
 from .layers import LayerPolicy, LayerViolation
 from .negative import EXPERIENCE_IMPORTANCE, NegativeMemory
@@ -34,6 +35,8 @@ from .skills import SkillBook
 from .store import Store
 from .types import (CausalChain, ConditionSpace, Edge, EdgeType, MemoryLayer, Node, Role,
                     WriteResult, now)
+
+_log = logging.getLogger(__name__)
 
 __all__ = ["MemoryEngine"]
 _LAYER_DEFAULTS = {
@@ -117,6 +120,7 @@ class MemoryEngine:
                 from .embed import from_env
                 self.set_embedding_provider(from_env())
             except Exception as e:  # 外部依赖件（onnxruntime 等）的异常类型不可枚举：记录后退回纯词面
+                _log.warning("LINGSHU_NG_EMBED_MODEL 指定的语义检索提供者启用失败 → 退回纯词面（原因见 engine.semantic_error）", exc_info=True)
                 self.semantic_error = f"{type(e).__name__}: {e}"
 
         #: 可选读路径第三阶段（混合池 + 交叉编码重排 + 写入流多样化，见 :mod:`lingshu_ng.neural`）；默认无
@@ -130,7 +134,17 @@ class MemoryEngine:
                 top = os.environ.get("LINGSHU_NG_RERANK_TOPN", "").strip()
                 self.set_reranker(cross, enable=True, **({"cross_top": int(top)} if top else {}))
             except Exception as e:  # 同上：外部依赖件失败 ⇒ 记录并保持默认召回
+                _log.warning("神经重排启用失败 → 保持默认召回（原因见 engine.neural_error）", exc_info=True)
                 self.neural_error = f"{type(e).__name__}: {e}"
+
+    def capabilities(self) -> Dict:
+        """当前生效档位（:func:`lingshu_ng.capabilities.capabilities`）+ 本引擎的可选通路状态：
+        语义检索提供者 / 神经重排是否启用及启用失败原因、中文联想配置下的语义档位。"""
+        from .capabilities import capabilities as _caps
+        out = _caps(self.retriever.assoc)
+        out["engine"] = {"semantic_provider": self.semantic is not None, "semantic_error": self.semantic_error,
+                         "neural_error": self.neural_error, "chain": self.chain is not None}
+        return out
 
     def set_reranker(self, cross=None, enable: bool = True, **params) -> None:
         """启用/撤除读路径第三阶段。``cross``：交叉编码提供者（``score(query, texts)``，可 None）；
@@ -373,13 +387,16 @@ class MemoryEngine:
         return causal.build_adjacency(arcs)
 
     def reason_causal(self, start_id: str, end_id: Optional[str] = None, max_depth: int = 5,
-                      relation_types: Optional[Sequence[str]] = None) -> List[CausalChain]:
-        """因果链（带 truncated/cyclic 标记）或 start→end 路径。元素为 Edge 对象。"""
+                      relation_types: Optional[Sequence[str]] = None,
+                      max_paths: Optional[int] = None) -> List[CausalChain]:
+        """因果链（带 truncated/cyclic 标记）或 start→end 路径。元素为 Edge 对象。
+        ``max_paths``：枚举上限（None ⇒ 两个分支各自的缺省上限 10000，行为与此前相同）。"""
         adj, _ = self._adjacency(relation_types or ["causal"])
+        cap = {} if max_paths is None else {"max_paths": int(max_paths)}
         if end_id:
-            raw = [(p, "end") for p in causal.paths_between(adj, start_id, end_id, max_depth)]
+            raw = [(p, "end") for p in causal.paths_between(adj, start_id, end_id, max_depth, **cap)]
         else:
-            raw = causal.chains(adj, start_id, max_depth)
+            raw = causal.chains(adj, start_id, max_depth, **({"max_chains": cap["max_paths"]} if cap else {}))
         edges = self.store.edges.get_many([e for p, _ in raw for e in p])
         return [CausalChain([edges[e] for e in p], truncated=k == "truncated", cyclic=k == "cyclic")
                 for p, k in raw]
@@ -456,24 +473,8 @@ class MemoryEngine:
 
     def adjudicate_promotion(self, proposal_id: str, by: str, approved: bool,
                              designer_key: Optional[str] = None) -> Optional[str]:
-        """终裁：通过 ⇒ 写结构层；否决 ⇒ 记负记忆。返回节点 id（未裁决返回 None）。"""
-        require_designer(designer_key, "晋升终裁")
-        p = self.store.registry.proposal(proposal_id)
-        node = self.store.nodes.get(p["node_id"]) if p else None
-        if node is None:
-            return None
-        with self.store.db.tx():
-            d = self.store.registry.decide_proposal(proposal_id, by, approved, designer_key, node.content or "")
-            if d is None:
-                return None
-            self.store.nodes.remove_tags(node.id, ["promotion_pending"])
-            if approved:
-                self.store.nodes.update(node.id, allow_transition=True, layer=MemoryLayer.STRUCTURE,
-                                        confidence=1.0)
-            else:
-                self.negative.record("promotion", f"固化提案被拒：{(node.content or '')[:60]}",
-                                     f"维生系统终裁拒绝（{by}）", subject=node.content or "")
-        return node.id
+        """终裁：通过 ⇒ 写结构层；否决 ⇒ 记负记忆。返回节点 id（未裁决返回 None）。规则见 :mod:`lingshu_ng.promotion`。"""
+        return _adjudicate(self.store, self.negative, proposal_id, by, approved, designer_key)
 
     # ------------------------------------------------------------ 技能闭环（P1-3）
     def record_action_sequence(self, actions: Sequence[str], outcome: str, success: bool,
@@ -519,6 +520,7 @@ class MemoryEngine:
             from . import semrank
             return semrank.prefetch_dense(self.retriever.associator, self.retriever.assoc)
         except Exception:  # noqa: 可选件异常不影响主路径
+            _log.debug("稠密向量预算失败（可选件，类型不可枚举）→ 不预算，名次不受影响", exc_info=True)
             return 0
 
     def run_maintenance(self, factor: float = 0.02, promote=None) -> Dict:

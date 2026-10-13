@@ -33,9 +33,9 @@ class LongTermMemoryGate:
         return self._g.engine.store.text.novelty(content, existing_id)
 
     def evaluate(self, content: str, source: str = "snapshot", tags: Any = None,
-                 existing_id: Optional[str] = None) -> dict:
-        """评估（特征 → 评分 → 层级）。"""
-        return self._g.evaluate(content, existing_id)
+                 existing_id: Optional[str] = None, novelty: Optional[float] = None) -> dict:
+        """评估（特征 → 评分 → 层级）。``novelty``：调用方已算出的新奇度，给了就复用（钳到 [0,1]），不再现算。"""
+        return self._g.evaluate(content, existing_id, novelty)
 
     def write_snapshot(self, content: str, source: str = "snapshot", tags: Optional[list] = None,
                        entities: Optional[list] = None, importance_hint: Optional[float] = None) -> dict:

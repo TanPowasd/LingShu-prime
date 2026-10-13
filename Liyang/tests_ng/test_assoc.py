@@ -204,9 +204,10 @@ WEB = [  # 无写入序话题连续性的段落集：三个话题交错写入
 ]
 
 
-def test_tp_inactive_for_short_requests(tmp_path, monkeypatch):
-    """limit ≤ lc_head：TP 不启用（T2 limit=10 口径逐位不变的依据）。"""
-    on = _eng(tmp_path / "on", docs=WEB, tp_head=1, tp_coh=0.0, lc_head=5)
+def test_tp_inactive_for_short_requests(tmp_path, monkeypatch, no_models):
+    """limit ≤ lc_head：TP 不启用（T2 limit=10 口径逐位不变的依据）。
+    stab-r1：本用例测 TP 门本身——锁住可选依赖（no_models）并关 sem_v4fb，结果与机器上装没装 onnxruntime / 模型无关。"""
+    on = _eng(tmp_path / "on", docs=WEB, tp_head=1, tp_coh=0.0, lc_head=5, sem_v4fb=0)
     calls = []
     orig = on.retriever.associator._topic_prf
     monkeypatch.setattr(on.retriever.associator, "_topic_prf", lambda *a, **k: calls.append(1) or orig(*a, **k))
@@ -217,9 +218,11 @@ def test_tp_inactive_for_short_requests(tmp_path, monkeypatch):
     assert calls
 
 
-def test_tp_pulls_same_topic_passages(tmp_path):
-    """长请求：头部之后同话题段落（与题面字面重叠少）排在其他话题之前；分数非增。"""
-    on = _eng(tmp_path / "on", docs=WEB, anchor_beta=0.0, lc_beta=0.0, lc_head=2, tp_head=1, tp_seeds=2, tp_coh=0.0)
+def test_tp_pulls_same_topic_passages(tmp_path, no_models):
+    """长请求：头部之后同话题段落（与题面字面重叠少）排在其他话题之前；分数非增。
+    stab-r1：同上，锁住可选依赖并关 sem_v4fb（否则无打分件的机器上 TP 被 v4 退回关掉，用例必红）。"""
+    on = _eng(tmp_path / "on", docs=WEB, anchor_beta=0.0, lc_beta=0.0, lc_head=2, tp_head=1, tp_seeds=2, tp_coh=0.0,
+              sem_v4fb=0)
     q = "丰巢取件码忘了怎么办"
     got = _ids(on, q, 8)
     topic = {WEB[0], WEB[3], WEB[6]}

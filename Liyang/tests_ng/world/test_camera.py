@@ -3,6 +3,8 @@ import math
 import numpy as np
 import pytest
 
+from tests_ng._optdeps import require
+
 from lingshu_ng.world import camera as C
 from lingshu_ng.world.validate import NonFiniteError
 
@@ -74,7 +76,7 @@ def test_depth_is_camera_z_not_world_z():
 
 def test_matches_legacy_camera3d_numerics():
     """与旧 Camera3D（修复版）逐点一致：保证 compat 位姿语义不漂移。"""
-    old = pytest.importorskip("lingshu.world.world3d")
+    old = require("lingshu.world.world3d")
     if getattr(old, "__ng_compat__", False):
         pytest.skip("legacy aliases installed")
     rng = np.random.default_rng(11)

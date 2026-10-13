@@ -8,7 +8,7 @@ from . import cooc, headrank as hd, lexical as lx
 from .store import Store
 from .store.schema import chunks, placeholders
 from .expansion import TAG_BONUS, tags_of
-from . import retrieval as _R
+from . import recall_filter as _R   # stab-r1：退役 / 标签判定自 retrieval 下沉（原为 retrieval ↔ lexpath 双向依赖）
 
 
 def _lex_ready(store: Store) -> bool:

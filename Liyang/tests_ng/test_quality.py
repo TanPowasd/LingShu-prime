@@ -11,7 +11,7 @@ PKG = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 
 STDLIB_OK = {"__future__", "ast", "copy", "contextlib", "dataclasses", "enum", "hashlib", "hmac", "json",
              "math", "os", "random", "re", "sqlite3", "sys", "threading", "time", "typing", "unicodedata",
              "uuid", "importlib", "itertools", "collections", "functools", "io", "warnings",
-             "difflib"}   # difflib：conflict.py 写入期矛盾检测的短文本对齐（标准库）
+             "difflib", "logging"}   # logging：退回可见 / 宽 except 记录（stab-r1）；difflib：conflict.py 写入期矛盾检测的短文本对齐（标准库）
 
 
 #: 本门禁只覆盖记忆引擎（lingshu_ng 根 + store/ + perception/）；lingshu_ng/world/ 属另一条重写线，不在此范围
@@ -56,17 +56,67 @@ def test_module_rules(path):
     assert ast.get_docstring(tree), "模块缺 docstring"
 
 
-def test_no_silent_broad_except():
-    """#170：不允许 ``except Exception: pass`` 式静默吞错。"""
+#: 静默宽 except 门禁的范围：整个 lingshu_ng（含 world/ nn/ gen/ chain/ embed/ 等子包；stab-r1 起扩大）
+ALL_PKG_FILES = sorted(os.path.join(dp, f) for dp, dn, fs in os.walk(PKG) if "__pycache__" not in dp
+                       for f in fs if f.endswith(".py"))
+_BROAD = ("Exception", "BaseException")
+_LOUD_CALLS = {"debug", "info", "warning", "warn", "error", "exception", "critical", "warn_once", "log"}
+
+
+def _is_broad(t):
+    if t is None:
+        return True
+    if isinstance(t, ast.Name):
+        return t.id in _BROAD
+    if isinstance(t, ast.Attribute):
+        return t.attr in _BROAD
+    if isinstance(t, ast.Tuple):
+        return any(_is_broad(e) for e in t.elts)
+    return False
+
+
+def _is_loud(handler):
+    """处理体内有 raise，或有日志 / 告警调用（logging.*、warnings.warn、diag.warn_once）。"""
+    for n in ast.walk(ast.Module(body=handler.body, type_ignores=[])):
+        if isinstance(n, ast.Raise):
+            return True
+        if isinstance(n, ast.Call):
+            f = n.func
+            name = f.attr if isinstance(f, ast.Attribute) else (f.id if isinstance(f, ast.Name) else "")
+            if name in _LOUD_CALLS:
+                return True
+    return False
+
+
+def silent_broad_excepts(paths):
+    """宽 except（裸 except / Exception / BaseException，含元组里出现者）且处理体既不 raise 也不记日志的位置。"""
     bad = []
-    for path in _files():
+    for path in paths:
         for node in ast.walk(ast.parse(open(path, encoding="utf-8").read())):
-            if isinstance(node, ast.ExceptHandler):
-                broad = node.type is None or (isinstance(node.type, ast.Name)
-                                              and node.type.id in ("Exception", "BaseException"))
-                if broad and all(isinstance(b, ast.Pass) for b in node.body):
-                    bad.append(f"{os.path.basename(path)}:{node.lineno}")
+            if isinstance(node, ast.ExceptHandler) and _is_broad(node.type) and not _is_loud(node):
+                bad.append(f"{os.path.relpath(path, PKG)}:{node.lineno}")
+    return bad
+
+
+def test_no_silent_broad_except():
+    """#170 口径（stab-r1 扩大到整个 lingshu_ng，并收紧）：宽 except 必须 raise 或记 logging（说明退回理由），
+    不允许任何静默吞错——不只是 ``except Exception: pass``，``except Exception: return None`` 之类同样算静默。"""
+    bad = silent_broad_excepts(ALL_PKG_FILES)
     assert not bad, bad
+
+
+def test_silent_except_guard_catches_known_shapes(tmp_path):
+    """门禁自检：几种静默写法都会被抓到，记日志 / raise / 收窄的写法不会。"""
+    p = tmp_path / "m.py"
+    p.write_text("import logging\n_log = logging.getLogger(__name__)\n"
+                 "def a():\n    try:\n        f()\n    except Exception:\n        pass\n"
+                 "def b():\n    try:\n        f()\n    except:\n        return None\n"
+                 "def c():\n    try:\n        f()\n    except (ValueError, BaseException) as e:\n        x = e\n"
+                 "def d():\n    try:\n        f()\n    except Exception:\n        _log.debug('why', exc_info=True)\n"
+                 "def e():\n    try:\n        f()\n    except Exception:\n        raise\n"
+                 "def g():\n    try:\n        f()\n    except ValueError:\n        pass\n", encoding="utf-8")
+    got = [b.rsplit(":", 1)[1] for b in silent_broad_excepts([str(p)])]
+    assert got == ["6", "11", "16"]
 
 
 def test_public_functions_documented():

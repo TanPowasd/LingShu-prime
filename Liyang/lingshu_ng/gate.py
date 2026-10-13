@@ -70,8 +70,9 @@ class LongTermGate:
             if n.id != exclude:
                 yield n.content or ""
 
-    def features(self, content: str, existing_id: Optional[str] = None) -> Dict[str, float]:
-        """特征向量（全部已钳制）。"""
+    def features(self, content: str, existing_id: Optional[str] = None,
+                 novelty: Optional[float] = None) -> Dict[str, float]:
+        """特征向量（全部已钳制）。``novelty`` 给出时复用调用方已算的新奇度（上游 evaluate(novelty=…) 同义），否则现算。"""
         sm = self.engine.self_store.model
         th = [require_finite(h["t_total"], "t_total") for h in sm.trust_history[-6:]]
         trust = unit(sm.trust_state.get("t_total", 0.5), "t_total") if th else 0.5
@@ -80,7 +81,8 @@ class LongTermGate:
         if existing_id:
             n = self.engine.store.nodes.get(existing_id)
             mention = int(n.access_count or 0) if n else 0
-        return {"novelty": unit(self.engine.store.text.novelty(content, existing_id)),
+        nov = self.engine.store.text.novelty(content, existing_id) if novelty is None else novelty
+        return {"novelty": unit(nov),
                 "trust": trust, "d2": _second_diff(gaps), "t2": _second_diff(th), "mention": mention}
 
     def score(self, f: Dict[str, float]) -> float:
@@ -91,9 +93,10 @@ class LongTermGate:
              + w["t2"] * max(0.0, f["t2"]) * 2 + w["mention"] * m)
         return unit(s)
 
-    def evaluate(self, content: str, existing_id: Optional[str] = None) -> Dict:
-        """评估：特征 → 评分 → 层级判定。"""
-        f = self.features(content, existing_id)
+    def evaluate(self, content: str, existing_id: Optional[str] = None,
+                 novelty: Optional[float] = None) -> Dict:
+        """评估：特征 → 评分 → 层级判定（``novelty`` 见 :meth:`features`）。"""
+        f = self.features(content, existing_id, novelty)
         imp = self.score(f)
         layer = _decide(imp)
         return {"importance": round(imp, 3), "layer": layer,

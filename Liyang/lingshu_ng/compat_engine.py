@@ -20,14 +20,22 @@ from .compat_world import WorldFacade
 from .compat_world_sim import WorldSimFacade
 from .compat_frame import FrameMixin
 from .decay import elapsed_factor
+from .compat_store import CAUSAL_MAX_PATHS
 from .engine import MemoryEngine
+from .governance import verify_designer
 from .graphquery import timeline as _timeline
 from .scheduler import AutoDecay
+from .self_model import SNAPSHOT_KEEP
 from .types import ConditionSpace, Edge, EdgeType, MemoryLayer, Node, Role, dumps, now
 
 from .exchange import TABLES as _EXPORT_TABLES
 
-__all__ = ["SpacetimeMemoryEngine"]
+__all__ = ["SpacetimeMemoryEngine", "PromotionRejected"]
+
+
+class PromotionRejected(PermissionError, ValueError):
+    """同内容晋升提案已被终裁否决：上游抛 ValueError、旧 ng 门面抛 PermissionError——两者都是。"""
+
 
 _SCREEN_RE = re.compile(r"\[[^\]]*?((?:[A-Za-z]:[\\/]|/)[^\]]+\.(?:png|bmp|jpg))\]")
 
@@ -43,6 +51,7 @@ class SpacetimeMemoryEngine(WorldFacade, WorldSimFacade, FrameMixin, StubsMixin)
     REUSE_TRACKER_ROUNDS = 64
     #: self_check 环枚举上限（= MemoryEngine.self_check 的 cycle_budget；超限 cycles_truncated=True，上游 #215）
     SELF_CHECK_CYCLE_LIMIT = 256
+    SELF_SNAPSHOT_MAX = SNAPSHOT_KEEP          # 上游 #201 同名（200）
     ANCHOR_KINDS = ("pre_access_stance", "introspection", "external_calibration")
     META_BLINDSPOT_DEFINITION = "对人类造成文明级别的重大负面影响"
     RECURSION_LIMIT = 3
@@ -50,7 +59,7 @@ class SpacetimeMemoryEngine(WorldFacade, WorldSimFacade, FrameMixin, StubsMixin)
     def __init__(self, db_path: str = ":memory:", identity: str = "协议实例",
                  role: Role = Role.PRIMARY) -> None:
         """内部辅助函数。"""
-        from .compat import LayeredStore
+        from .compat_store import LayeredStore
         self.ng = MemoryEngine(db_path, identity, role)
         self.store = LayeredStore(db_path, role, _ng_store=self.ng.store)
         self.role = self.ng.store.role
@@ -60,10 +69,18 @@ class SpacetimeMemoryEngine(WorldFacade, WorldSimFacade, FrameMixin, StubsMixin)
         self._lifecycle: Any = None
         self._embedding_provider: Any = None
         # 后台衰减经仓储门面 store.decay_cycle（与旧引擎同一入口；规则同 ng Maintenance.step）
-        self.ng.autodecay = AutoDecay(lambda el: self.store.decay_cycle(elapsed_factor(0.02, el, 60.0)))
+        self.ng.autodecay = self._default_autodecay()
+        self._decay_clock: Any = None           # start_auto_decay(clock=…) 注入的墙钟（上游 #176）
         if not self.ng.store.registry.list_escalations(enabled_only=False):
             self._seed_escalation_points()
         self.migrate_v17_coordinates()          # D-003 旧库坐标字段分离（旧 v1.7 构造期迁移）
+
+    def _default_autodecay(self) -> AutoDecay:
+        return AutoDecay(lambda el: self.store.decay_cycle(elapsed_factor(0.02, el, 60.0)))
+
+    def capabilities(self) -> Dict:
+        """ng 扩展（旧引擎无此方法）：当前生效档位与可选依赖状态，见 :meth:`MemoryEngine.capabilities`。"""
+        return self.ng.capabilities()
 
     # ------------------------------------------------------------ 只读属性
     @property
@@ -193,12 +210,13 @@ class SpacetimeMemoryEngine(WorldFacade, WorldSimFacade, FrameMixin, StubsMixin)
 
     def reason_causal(self, start_id: str, end_id: Optional[str] = None, max_depth: int = 5,
                       relation_types: Optional[List[str]] = None, importance_weighted: bool = False,
-                      include_subgraph: bool = False) -> list:
-        """因果链/路径；可按节点 importance 均值排序、可附尾节点子图。"""
+                      include_subgraph: bool = False, max_paths: int = CAUSAL_MAX_PATHS) -> list:
+        """因果链/路径；可按节点 importance 均值排序、可附尾节点子图。``max_paths``（上游 #327，缺省 1000）：
+        两个分支都至多枚举这么多条（返回先枚举到的，无截断标记，与上游同）。"""
         if end_id:
-            paths: list = self.store.infer_causal_paths(start_id, end_id, max_depth, relation_types)
+            paths: list = self.store.infer_causal_paths(start_id, end_id, max_depth, relation_types, max_paths)
         else:
-            paths = self.ng.reason_causal(start_id, None, max_depth, relation_types)
+            paths = self.ng.reason_causal(start_id, None, max_depth, relation_types, max_paths=max_paths)[:max_paths]
         if importance_weighted and paths:
             nodes = self.ng.store.nodes.get_many([e.source_id for p in paths for e in p] +
                                                  [p[-1].target_id for p in paths])
@@ -344,10 +362,27 @@ class SpacetimeMemoryEngine(WorldFacade, WorldSimFacade, FrameMixin, StubsMixin)
         return True
 
     # ------------------------------------------------------------ 固化流水线
-    def propose_promotion(self, node_id: str, requester: str, reason: str,
-                          override_rejected_id: Optional[str] = None) -> str:
-        """晋升提案（被否决过的同内容需显式 override）。"""
-        return self.ng.propose_promotion(node_id, requester, reason, override_rejected_id)
+    def propose_promotion(self, node_id: str, requester: str, reason: str, override_rejected: Any = False,
+                          designer_key: Optional[str] = None, override_rejected_id: Optional[str] = None) -> str:
+        """晋升提案（上游 #216 同签名）：同内容已被终裁否决 ⇒ 拒绝（:class:`PromotionRejected`，既是 ValueError
+        也是 PermissionError，上游与 rel-v1.15 及以前的调用方都接得住）；确需重提须 ``override_rejected=True``
+        **且**过设计者密钥闸（失败 PermissionError）。ng 扩展：也可直接给 ``override_rejected_id``（被越过的否决记录 id）；
+        第 4 个位置参数若是字符串，按旧 ng 门面口径当作 ``override_rejected_id``。
+        与上游的差异：否决记录按**精确同内容**匹配（ng 负记忆键），不做上游的二元组 Jaccard≥0.15 模糊匹配。"""
+        if isinstance(override_rejected, str):
+            override_rejected_id, override_rejected = override_rejected, False
+        if override_rejected and override_rejected_id is None:
+            if not verify_designer(designer_key):
+                raise PermissionError("#216 override 否决负记忆须过设计者密钥闸（fail-closed）")
+            node = self.ng.store.nodes.get(node_id)
+            prior = self.ng.negative.check("promotion", (node.content or "") if node else "", fuzzy=False)
+            override_rejected_id = prior[0]["id"] if prior else None
+        try:
+            return self.ng.propose_promotion(node_id, requester, reason, override_rejected_id)
+        except PermissionError as e:
+            if isinstance(e, PromotionRejected):
+                raise
+            raise PromotionRejected(f"{e}（重提须 override_rejected=True 且提供设计者密钥）") from e
 
     def verify_promotion(self, proposal_id: str, verified_by: str) -> None:
         """复核。"""
@@ -498,4 +533,4 @@ class SpacetimeMemoryEngine(WorldFacade, WorldSimFacade, FrameMixin, StubsMixin)
         review_verifier_standard, cs_review_verifier_standard, adjudicate_verifier_standard,
         list_verifier_standards, _seed_escalation_points, list_escalation_points, add_escalation_point,
         set_escalation_enabled, check_escalation, check_recursion_depth, get_entity_context, subgraph_replace,
-        recursive_reflect, prepare_shared_sync, migrate_v17_coordinates)
+        recursive_reflect, prepare_shared_sync, migrate_v17_coordinates, apply_shared_sync, prune_self_snapshots)

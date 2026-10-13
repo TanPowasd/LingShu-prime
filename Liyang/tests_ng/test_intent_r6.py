@@ -9,6 +9,8 @@ import threading
 
 import pytest
 
+from tests_ng._optdeps import require
+
 from lingshu_ng.compat_engine import SpacetimeMemoryEngine
 from lingshu_ng.types import ConditionSpace, MemoryLayer, Node
 
@@ -54,7 +56,7 @@ def test_world_shadow_seek_capped_by_remaining_distance():
         assert m._apply_move((9.5, 1.5, 10.0), 0.8, (1.0, 0.0, 0.0)) == (10.3, 1.5, 10.0)
 
 
-np = pytest.importorskip("numpy")
+np = require("numpy")
 
 
 def test_compat_apply_delta_legacy_whole_vector_form_is_atomic():

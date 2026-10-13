@@ -52,6 +52,7 @@ from .rerank import Reranker
 from . import assoc as ax
 from .store.textindex import TAG_PREFIX
 from .types import MemoryLayer, Node, now
+from .recall_filter import ARCHIVED_IMP_MAX, _layer_values, _retired, tag_hit  # noqa: F401（stab-r1 下沉；此处再导出同一对象）
 
 __all__ = ["SYNONYM_GROUPS", "expand_terms", "score", "brute_force", "Retriever", "BUDGET"]
 
@@ -72,8 +73,6 @@ BUDGET = 60000
 #: 展开下一个词元前「先精排再判完成」的最低代价额度（倒排成员点查次数；实际额度取
 #: max(REFINE_CAP, 下一词元 df/2)——点查一次约等于读两行倒排，超出额度就先展开下一个词元）
 REFINE_CAP = 400
-#: 归档节点的 importance 上限（forget_advisor 默认 archived_imp=0.1；恢复到此之上即解除退役）
-ARCHIVED_IMP_MAX = 0.1 + 1e-9
 #: Q6 自动登记矛盾：只看前 AUTO_TOP 名入选节点的对侧，至多补 AUTO_SLOTS 条
 AUTO_TOP = 3
 AUTO_SLOTS = 2
@@ -109,11 +108,6 @@ def score(query_grams: frozenset, text: str) -> float:
     if not inter:
         return 0.0
     return (inter / len(query_grams)) * (0.5 + 0.5 * inter / len(ng))
-
-
-def tag_hit(query: str, tags: Iterable[str]) -> bool:
-    """标签加分条件：某标签等于查询，或（长度 >1 且）是查询的子串。"""
-    return any(t == query or (len(t) > 1 and t in query) for t in tags)
 
 
 def relevance(query: str, qg: frozenset, content: str, tags: Iterable[str]) -> float:
@@ -180,12 +174,6 @@ def brute_force(store: Store, query: str, layers: Optional[Sequence[MemoryLayer]
                 out.append((nid, s, imp or 0.0))
     out.sort(key=lambda x: (-x[1], -x[2], x[0]))
     return [(nid, s) for nid, s, _ in out[:limit]]
-
-
-def _layer_values(layers: Optional[Sequence[MemoryLayer]]) -> Set[str]:
-    allowed = set(LayerPolicy.layers(searchable=True))
-    use = [x for x in (MemoryLayer.coerce(y) for y in layers) if x in allowed] if layers else list(allowed)
-    return {m.value for m in use}
 
 
 from .lexpath import _lex_ready, lex_stats, lex_rank  # noqa: E402,F401（Q10 主体见 lexpath）
@@ -570,8 +558,3 @@ def _auto_tail(out: List[Tuple[str, float]], auto: Dict[str, List[str]], ok: Set
     return head + [(p, floor) for p in tail]
 
 
-def _retired(imp, tags_json) -> bool:
-    """Q5：归档且未恢复（importance 仍 ≤ 归档值）。"""
-    if not tags_json or "archived" not in tags_json:
-        return False
-    return (imp or 0.0) <= ARCHIVED_IMP_MAX and "archived" in tags_of(tags_json)

@@ -22,8 +22,11 @@
 """
 from __future__ import annotations
 
+import logging
 import math
 from typing import Dict, List, Optional, Sequence, Tuple
+
+_log = logging.getLogger(__name__)
 
 __all__ = ["NeuralStage", "zscores", "fuse", "stream_diversify", "POOL_LEX", "POOL_SEM", "A_CROSS", "SPAN", "PEN", "WS", "blend_sentence"]
 
@@ -133,6 +136,7 @@ class NeuralStage:
         try:
             vals = list(self.cross.score(q, [texts[i] for i in ids]))
         except Exception as e:  # 外部注入件：失败不影响召回
+            _log.warning("交叉编码重排件打分失败 → 本阶段停用（原因见 NeuralStage.error）", exc_info=True)
             self.error = f"{type(e).__name__}: {e}"
             return None
         return {i: float(v) for i, v in zip(ids, vals)}

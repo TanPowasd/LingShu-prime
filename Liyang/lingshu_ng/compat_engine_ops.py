@@ -7,6 +7,7 @@
 from __future__ import annotations
 
 import json
+import logging
 import math
 from typing import Any, Dict, List, Optional, Set
 
@@ -16,6 +17,8 @@ from .layers import LayerPolicy
 from .types import EdgeType, MemoryLayer, Node, Role, dumps, now, split_semantic_keys
 
 __all__ = ["export_all", "import_all"]   # 其余为门面私有方法
+
+_log = logging.getLogger(__name__)
 
 
 # ------------------------------------------------------------------ 交换
@@ -41,9 +44,15 @@ def verify_integrity(self) -> Dict:
 
 
 # ------------------------------------------------------------------ 维护
-def decay_cycle(self, factor: float = 0.02, min_confidence: float = 0.1) -> None:
-    """一步衰减。"""
-    self.ng.decay_step(factor, min_confidence)
+def decay_cycle(self, factor: float = 0.02, min_confidence: float = 0.1, now: Optional[float] = None) -> None:
+    """一步衰减。``now``（上游 #176）：给出墙钟时刻 ⇒ 按距上次衰减的流逝时间换算（见 LayeredStore.decay_cycle）；
+    未给且 ``start_auto_decay(clock=…)`` 注入过时钟 ⇒ 取该时钟；都没有 ⇒ 每次 = 一个周期（旧语义，行为不变）。"""
+    if now is None and getattr(self, "_decay_clock", None) is not None:
+        now = self._decay_clock()
+    if now is None:
+        self.ng.decay_step(factor, min_confidence)
+    else:
+        self.store.decay_cycle(factor, min_confidence, now)
 
 
 def forget_advisor(self, stale_days: float = 30.0, low_value: float = 0.2, archived_imp: float = 0.1) -> Dict:
@@ -66,8 +75,22 @@ def run_maintenance_cycle(self, decay_factor: float = 0.02) -> Dict:
             "promoted": r["promoted"], "decay_stats": r["decay"], "forget": r["forget"]}
 
 
-def start_auto_decay(self, interval: float = 60.0) -> None:
-    """启动后台衰减（至多一个线程）。"""
+def start_auto_decay(self, interval: float = 60.0, clock: Any = None) -> None:
+    """启动后台衰减（至多一个线程；先停旧线程再起，新 interval 立即生效）。
+
+    ``clock``（上游 #176）：注入墙钟（无参可调用，返回秒）⇒ 每个 tick 以 ``decay_cycle(now=clock())`` 按真实流逝时间衰减，
+    此后手动 ``decay_cycle()`` 也取该时钟；``clock=None`` ⇒ 按单调钟测得的 tick 间隔换算（ng 缺省，遗忘量同样只取决于
+    流逝时间），并清除先前注入的时钟。"""
+    from .scheduler import AutoDecay
+    self.ng.autodecay.stop()
+    if clock is not None:
+        if not callable(clock):
+            raise TypeError("clock 须为无参可调用对象（返回墙钟秒）")
+        self._decay_clock = clock
+        self.ng.autodecay = AutoDecay(lambda _el: self.decay_cycle(now=clock()))
+    else:
+        self._decay_clock = None
+        self.ng.autodecay = self._default_autodecay()
     self.ng.autodecay.start(interval)
 
 
@@ -378,3 +401,63 @@ def migrate_v17_coordinates(self) -> Dict:
         except (PermissionError, ValueError, TypeError) as e:   # 审计节点写失败不阻断构造（与旧版同）
             self.ng.store.meta.log_action("migration", f"v1.7 迁移审计节点未写入：{e}")
     return {"migrated_nodes": migrated}
+
+
+def apply_shared_sync(self, payload: Any, overwrite: bool = False) -> Dict:
+    """#165 接收端（上游同签名同语义，尽力而为）：按 ``prepare_shared_sync`` 的载荷重建共享层节点。
+
+    只收共享层（锚点 / 结构）条目，本地层记入 ``rejected`` 不落库；同 id 已存在且层与内容一致 ⇒ ``identical``（幂等）；
+    不一致 ⇒ 记入 ``conflicts``，缺省不覆盖，``overwrite=True`` 才写（仍留在 conflicts 里）；缺字段 / 坏值 ⇒ ``failed``。
+    ``payload`` 可为 prepare_shared_sync() 的返回 dict 或其 ``sync_payload`` 列表。不含网络传输与自动编排（上游同）。"""
+    from .types import ConditionSpace
+    items = payload.get("sync_payload") if isinstance(payload, dict) else payload
+    shared = {m for m in MemoryLayer if LayerPolicy.rule(m).shared}
+    applied: List[str] = []
+    identical: List[str] = []
+    conflicts: List[Dict] = []
+    rejected: List[Dict] = []
+    failed: List[Dict] = []
+    for item in items or []:
+        nid = item.get("id") if isinstance(item, dict) else None
+        try:
+            layer = MemoryLayer(item["layer"])
+            cs = item["condition_space"]
+            cs = ConditionSpace.from_json(cs if isinstance(cs, str) else json.dumps(cs))
+            t = float(item["temporal_coordinate"])
+            node = Node(id=nid, content=item["content"], modality=item["modality"],
+                        spatial_coordinates=item.get("spatial_coordinates") or {}, temporal_coordinate=t,
+                        condition_space=cs, importance=item.get("importance", 0.5),
+                        confidence=item.get("confidence", 0.5), layer=layer, tags=list(item.get("tags") or []),
+                        semantic_coordinates=item.get("semantic_coordinates") or {},
+                        state_attributes=item.get("state_attributes") or {}, entity_id=item.get("entity_id"),
+                        last_access=t, created_at=t)
+            if not nid:
+                raise KeyError("id")
+        except (KeyError, TypeError, ValueError, AttributeError) as exc:
+            failed.append({"id": nid, "reason": f"{type(exc).__name__}: {exc}"})
+            continue
+        if layer not in shared:
+            rejected.append({"id": nid, "layer": layer.value, "reason": "本地层不入共享层（章程：实例独立）"})
+            continue
+        existing = self.ng.store.nodes.get(nid)
+        if existing is not None:
+            if existing.layer == layer and existing.content == node.content:
+                identical.append(nid)
+                continue
+            conflicts.append({"id": nid, "incoming_layer": layer.value, "existing_layer": existing.layer.value})
+            if not overwrite:
+                continue
+        try:
+            self.ng.store.nodes.put(node, allow_transition=existing is not None)
+        except Exception as exc:  # 单条写入失败（层守卫 / 角色 / 值域校验）不毒化整批：如实记入 failed
+            _log.debug("apply_shared_sync：条目 %s 写入失败，记入 failed", nid, exc_info=True)
+            failed.append({"id": nid, "reason": f"{type(exc).__name__}: {exc}"})
+            continue
+        applied.append(nid)
+    return {"applied": applied, "identical": identical, "conflicts": conflicts, "rejected": rejected,
+            "failed": failed, "overwritten": bool(overwrite)}
+
+
+def prune_self_snapshots(self, keep: Optional[int] = None) -> int:
+    """回收自我快照：只留最近 ``keep`` 条（缺省 SELF_SNAPSHOT_MAX = 200，与 ng 写入期上限相同），返回删除条数（#201）。"""
+    return self.store.prune_self_snapshots(self.SELF_SNAPSHOT_MAX if keep is None else keep)

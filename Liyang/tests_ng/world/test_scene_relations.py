@@ -9,6 +9,7 @@ from dataclasses import dataclass, field
 import pytest
 
 from lingshu_ng.world import scene_relations as R
+from tests_ng._optdeps import require
 
 REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -53,6 +54,7 @@ def test_unknown_target_and_chain():
 
 
 def test_compat_scene_model_uses_fixed_solver():
+    require("numpy")  # 最小环境（不装 numpy）下 skip，见 tests_ng/_optdeps.py
     code = ("import sys; sys.path.insert(0, %r)\n"
             "from lingshu_ng.world.compat import install_legacy_aliases\n"
             "assert 'scene_model' in install_legacy_aliases()\n"

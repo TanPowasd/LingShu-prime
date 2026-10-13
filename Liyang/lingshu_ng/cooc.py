@@ -200,7 +200,7 @@ def _neighbors(store, main: List[str], seqno: Dict[str, Optional[int]], cfg: "lx
 
 def _admitter(store, use: Set[str], seqno: Dict[str, Optional[int]]) -> Callable[[List[str]], Set[str]]:
     """可检索过滤（层在 use 内、未退役，同 Q10 主通路）；通过者登记 rowid 进 seqno。"""
-    from .retrieval import _retired   # 延迟导入：retrieval 导入本模块
+    from .recall_filter import _retired   # stab-r1：自 retrieval 下沉（原延迟导入 retrieval）
 
     def admit(ids: List[str]) -> Set[str]:
         """ids 中可检索者的集合。"""

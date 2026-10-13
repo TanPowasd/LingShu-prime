@@ -6,6 +6,11 @@ import pytest
 from lingshu_ng import assoc as ax
 from lingshu_ng import semrank
 from lingshu_ng.engine import MemoryEngine
+from tests_ng._optdeps import require
+
+#: stab-r1：本文件大量「同一引擎上切换配置、两次召回逐位相同」断言；召回分含 recency（随墙钟流逝），
+#: 两次调用间隔在粗时钟（Windows ≈15.6 ms）下可跨过 6 位小数的舍入边界 → 冻结引擎时钟。
+pytestmark = pytest.mark.usefixtures("frozen_clock")
 
 WEB = [
     "丰巢快递柜取件码忘了，可以在丰巢微信公众号里查看取件码。",
@@ -192,6 +197,7 @@ def test_dense_off_by_default_and_missing_is_v71(tmp_path, monkeypatch):
 
 def test_dense_injects_candidates_beyond_head(tmp_path, monkeypatch):
     """v8：稠密补入词面头部之外的候选，经同一打分件重排；链式请求不补。"""
+    require("numpy")  # 最小环境（不装 numpy）下 skip，见 tests_ng/_optdeps.py
     monkeypatch.setattr(semrank, "get_scorer", lambda: _Stub())
     monkeypatch.setattr(semrank, "get_embedder", lambda: _DenseStub())
     kw = dict(V71, tp_head=1, tp_coh=0.0, lc_head=2, sem_n=1, sem_tau=-99.0, sem_min=1)
@@ -282,6 +288,7 @@ def test_fuse_off_by_default_and_missing_is_v71(tmp_path, monkeypatch):
 
 def test_fuse_reorders_but_keeps_truncation_set(tmp_path, monkeypatch):
     """v10：融合只改排序，截断集合仍按 logit ≥ τ；链式请求不融合。"""
+    require("numpy")  # 最小环境（不装 numpy）下 skip，见 tests_ng/_optdeps.py
     monkeypatch.setattr(semrank, "get_scorer", lambda: _Stub())
     monkeypatch.setattr(semrank, "get_embedder", lambda: _DenseStub())
     kw = dict(tp_head=1, tp_coh=0.0, lc_head=2, sem_n=40, sem_tau=-2.0, sem_min=1)
@@ -296,6 +303,7 @@ def test_fuse_reorders_but_keeps_truncation_set(tmp_path, monkeypatch):
 
 
 def test_dense_z_shape():
+    require("numpy")  # 最小环境（不装 numpy）下 skip，见 tests_ng/_optdeps.py
     import numpy as np
     z = None
     em = semrank.get_embedder()
@@ -306,6 +314,7 @@ def test_dense_z_shape():
 
 def test_adaptive_dense_fires_only_when_head_weak(tmp_path, monkeypatch):
     """v10：sem_dense_m > 0 时，词面头部 logit ≥ τ 者 ≥ m 条 → 与 v7.1 逐位相同（不补）；少于 m 条 → 与 v8 总补逐位相同。"""
+    require("numpy")  # 最小环境（不装 numpy）下 skip，见 tests_ng/_optdeps.py
     monkeypatch.setattr(semrank, "get_scorer", lambda: _Stub())
     monkeypatch.setattr(semrank, "get_embedder", lambda: _DenseStub())
     kw = dict(V71, tp_head=1, tp_coh=0.0, lc_head=2, sem_n=1, sem_tau=-99.0, sem_min=1)
@@ -320,6 +329,7 @@ def test_adaptive_dense_fires_only_when_head_weak(tmp_path, monkeypatch):
 def test_adaptive_dense_cap_and_tau(tmp_path, monkeypatch):
     """v11（PREREG_ZH 修订 9）：sem_dense_cap / sem_dense_tau 只作用于被触发的自适应补入
     （未触发或总补 m = 0 时逐位不变）；cap = k → 取段 ≤ k·sem_min；补入段 logit < τd → 不保留（= 不补）。"""
+    require("numpy")  # 最小环境（不装 numpy）下 skip，见 tests_ng/_optdeps.py
     monkeypatch.setattr(semrank, "get_scorer", lambda: _Stub())
     monkeypatch.setattr(semrank, "get_embedder", lambda: _DenseStub())
     kw = dict(V71, tp_head=1, tp_coh=0.0, lc_head=2, sem_n=1, sem_tau=-99.0, sem_min=1)
@@ -348,6 +358,7 @@ class _CountDense(_DenseStub):
 
 def test_prefetch_dense_same_ranks_and_moves_cost(tmp_path, monkeypatch):
     """v13（PREREG_ZH 修订 11.1）：prefetch_dense 把全库稠密向量预先算入缓存，名次与不预取逐位相同；无件 / 补入关 → 0。"""
+    require("numpy")  # 最小环境（不装 numpy）下 skip，见 tests_ng/_optdeps.py
     monkeypatch.setattr(semrank, "get_scorer", lambda: _Stub())
     kw = dict(tp_head=1, tp_coh=0.0, lc_head=2, sem_n=1, sem_tau=-99.0, sem_min=1, sem_dense=3, sem_dense_m=2)
     q = "丰巢取件码忘了怎么办"

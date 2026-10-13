@@ -17,16 +17,19 @@
 """
 from __future__ import annotations
 
+import logging
 from typing import Dict, List, Set, Tuple
 
 from .store.schema import chunks, placeholders
+
+_log = logging.getLogger(__name__)
 
 __all__ = ["fuse"]
 
 
 def _allowed(r, ids: List[str]) -> Dict[str, int]:
     """可检索（层内、未退役）的 id → rowid。"""
-    from .retrieval import _layer_values, _retired
+    from .recall_filter import _layer_values, _retired
     use = _layer_values(None)
     out: Dict[str, int] = {}
     for part in chunks(ids):
@@ -80,6 +83,7 @@ def _maxsim(r, q: str, order: List[str], f: Dict[str, float], drank: Dict[str, i
         with r.semantic._plock:
             ms = prov.maxsim(q, [txt.get(nid, "") for nid in head])
     except Exception:  # 外部推理件异常类型不可枚举：退回 F1 次序
+        _log.debug("MaxSim 外部推理件失败（类型不可枚举）→ 退回 F1 次序", exc_info=True)
         return order
     mrank = {nid: i for i, nid in enumerate(sorted(range(n), key=lambda i: (-ms[i], i)))}
     mr = {head[i]: rk for i, rk in mrank.items()}
@@ -166,6 +170,7 @@ def prefetch(r, q: str):
             with sem._plock:
                 prov.prefetch_query(dq, toks)
         except Exception:  # 外部推理件异常不可枚举：预取失败只是不省时，fuse 照常现算
+            _log.debug("查询向量预取失败（类型不可枚举）→ 只是不省时，fuse 照常现算", exc_info=True)
             return
 
     import threading

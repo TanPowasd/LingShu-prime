@@ -6,6 +6,8 @@ import random
 
 import pytest
 
+from tests_ng._optdeps import require
+
 from lingshu_ng.compat import SpacetimeMemoryEngine
 from lingshu_ng.world.scene_sim import SceneSimulator
 
@@ -86,7 +88,7 @@ def test_262_ghost_rejected_new_object_verifiable():
 # ---- #277：render path 限定在渲染根内 + 扩展名白名单 ----
 @pytest.fixture
 def reng(tmp_path, monkeypatch):
-    pytest.importorskip("PIL")
+    require("PIL")
     root = tmp_path / "out"
     root.mkdir()
     monkeypatch.setenv("LINGSHU_RENDER_ROOT", str(root))

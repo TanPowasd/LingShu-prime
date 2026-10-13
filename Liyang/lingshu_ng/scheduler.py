@@ -12,9 +12,12 @@
 """
 from __future__ import annotations
 
+import logging
 import threading
 import time
 from typing import Callable, List, Optional
+
+_log = logging.getLogger(__name__)
 
 __all__ = ["AutoDecay"]
 
@@ -59,6 +62,7 @@ class AutoDecay:
                 self._tick(t - last)
                 backoff = interval
             except Exception as exc:  # W3：记录并退避，不静默退出
+                _log.warning("后台衰减 tick 失败 → 记入 errors 并退避", exc_info=True)
                 self.errors.append(f"{type(exc).__name__}: {exc}")
                 del self.errors[:-self.MAX_ERRORS]
                 backoff = min(interval * 8, backoff * 2)

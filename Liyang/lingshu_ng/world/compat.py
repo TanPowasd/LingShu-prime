@@ -655,6 +655,24 @@ def _load_legacy_source(short: str) -> types.ModuleType:
     return mod
 
 
+def _write_order(store, nodes) -> Dict[str, int]:
+    """节点 id → 写入序（sqlite rowid）；取不到（非 sqlite 仓储 / 表结构不同）→ 空表，排序退回原两键。"""
+    import sqlite3
+    conn = getattr(store, "conn", None)
+    ids = [getattr(n, "id", None) for n in nodes]
+    if conn is None or not ids or None in ids:
+        return {}
+    try:
+        out: Dict[str, int] = {}
+        for i in range(0, len(ids), 500):
+            part = ids[i:i + 500]
+            out.update(conn.execute(f"SELECT id, rowid FROM nodes WHERE id IN ({','.join('?' * len(part))})",
+                                    part).fetchall())
+        return out
+    except sqlite3.Error:
+        return {}
+
+
 def _derive_scene_model(legacy: types.ModuleType) -> Dict[str, object]:
     """scene_model：WorldModel.apply_relations 改走 ng 求解器（left_of/right_of 违反条件修正）。"""
     from .scene_relations import solve_relations
@@ -680,8 +698,9 @@ def _derive_scene_model(legacy: types.ModuleType) -> Dict[str, object]:
             nodes = store.get_nodes_by_tag(tag, limit=None)
         except TypeError:                               # 旧 store 的 limit 只收 int
             nodes = store.get_nodes_by_tag(tag, limit=1_000_000)
+        seq = _write_order(store, nodes)       # stab-r1：同一墙钟读数写入的帧按写入序断开（Windows 粗时钟下取错最新帧）
         nodes = sorted(nodes, key=lambda n: (getattr(n, "created_at", 0.0) or 0.0,
-                                             getattr(n, "temporal_coordinate", 0.0) or 0.0))
+                                             getattr(n, "temporal_coordinate", 0.0) or 0.0, seq.get(n.id, -1)))
         wm = WorldModel()
         for n in nodes:
             sp = n.spatial_coordinates or {}

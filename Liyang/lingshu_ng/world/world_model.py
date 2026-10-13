@@ -17,6 +17,7 @@ verify（外部观察者：生成 vs 最近一次真实观测快照）。模型�
 """
 from __future__ import annotations
 
+import logging
 import math
 import random
 from dataclasses import asdict, dataclass, field
@@ -24,6 +25,8 @@ from typing import Dict, List, Optional, Set, Tuple
 
 from .scene_sim import SceneSimulator, normalize_xz
 from .validate import finite_vec3
+
+_log = logging.getLogger(__name__)
 
 __all__ = ["WMNode", "WMEdge", "UnifiedWorldModel", "motion_stats", "pair_tendency",
            "pair_tendency_n"]
@@ -226,6 +229,7 @@ class UnifiedWorldModel:
             try:
                 pos = tuple(float(v) for v in finite_vec3(o["pos"], "observation pos"))
             except Exception:                      # noqa: BLE001 —— 非法坐标留给 _ingest 报错
+                _log.debug("非法观测坐标 → 跳过匹配，留给 _ingest 报错", exc_info=True)
                 continue
             for eid, n in self.nodes.items():
                 if n.category == o.get("category") and eid not in explicit:

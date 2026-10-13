@@ -16,6 +16,7 @@ entity/attr/value/alt/reason 必须是原句的逐字子串（取值随后过与
 费用：每次真实调用把网关返回的 cost 追加到 ``LINGSHU_NG_CHAIN_LLM_COSTLOG``（若设）；``STATS`` 记触发/调用/命中/采纳/拒收。"""
 from __future__ import annotations
 
+import logging
 import hashlib
 import json
 import os
@@ -27,6 +28,8 @@ from concurrent.futures import ThreadPoolExecutor
 from typing import List, Optional
 
 from . import shorthand as _sh
+
+_log = logging.getLogger(__name__)
 
 ON = os.environ.get("LINGSHU_NG_CHAIN_LLM", "0").strip().lower() in ("1", "true", "yes", "on")
 MODEL = os.environ.get("LINGSHU_NG_CHAIN_LLM_MODEL", "cline-pass/deepseek-v4.1-flash")
@@ -159,6 +162,7 @@ def _call(sent: str) -> Optional[str]:
             os.replace(tmp, p)
             return content
         except Exception:  # noqa: BLE001
+            _log.debug("LLM 抽取请求失败（网络 / 解析，类型不可枚举）→ 退避重试", exc_info=True)
             time.sleep(2 * (attempt + 1))
     with _lock:
         STATS["fail"] += 1

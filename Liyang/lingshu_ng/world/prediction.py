@@ -19,12 +19,15 @@ get_incoming_edges/verify_edge``、``engine.register_rejected_path/add_perceptio
 """
 from __future__ import annotations
 
+import logging
 import json
 import math
 import time
 from typing import Dict, List, Optional, Tuple
 
 import numpy as np
+
+_log = logging.getLogger(__name__)
 
 __all__ = ["PredictionEngine", "dynamic_hit_threshold", "as_hit"]
 
@@ -67,6 +70,7 @@ def _cs_dict(cs: object) -> Dict:
     try:
         return json.loads(cs.to_json())
     except Exception:
+        _log.debug("条件空间不可序列化 → 视为空", exc_info=True)
         return {}
 
 
@@ -106,6 +110,7 @@ class PredictionEngine:
         try:
             from spacetime_memory_core import LayeredStore
         except Exception:
+            _log.debug("外部组件 spacetime_memory_core 不可用 → 相似度 0", exc_info=True)
             return 0.0
         sc_a = getattr(a, "semantic_coordinates", {}) or {}
         sc_b = getattr(b, "semantic_coordinates", {}) or {}
@@ -115,6 +120,7 @@ class PredictionEngine:
                 from semantic_space import SemanticSpaceProvider
                 v = SemanticSpaceProvider.similarity_coordinates(sc_a, sc_b)
             except Exception:
+                _log.debug("外部组件 semantic_space 不可用或计算失败 → 改用二元组 Jaccard", exc_info=True)
                 v = None
         if v is None:
             v = LayeredStore.char_bigram_jaccard(a.content, b.content)
@@ -143,6 +149,7 @@ class PredictionEngine:
             if "信息差" in content or "盲区" in content:
                 score += w.get("gap", 0.6)
         except Exception:
+            _log.debug("外部引擎节点打分失败 → 0 分", exc_info=True)
             return 0.0
         return _finite(score) or 0.0
 
@@ -195,6 +202,7 @@ class PredictionEngine:
                 ec = str(_cs_dict(getattr(n, "condition_space", None))
                          .get("existence_constraint", "")).strip()
             except Exception:
+                _log.debug("外部引擎取节点失败 → 存在约束待定", exc_info=True)
                 ec = ""
         return ec[:40] if ec else "待定（条件空间未声明）"
 
@@ -204,7 +212,7 @@ class PredictionEngine:
                 if e.target_id == dst and e.relation_type.value in CAUSAL:
                     return e.condition_space
         except Exception:
-            pass
+            _log.debug("外部引擎取出边失败 → 无条件空间", exc_info=True)
         return None
 
     def _walk(self, routes: List[Dict], cur: str, path: List[str], conds: List[str],
@@ -235,6 +243,7 @@ class PredictionEngine:
         try:
             return next((b for b in self.engine.list_blindspots() if b["id"] == blindspot_id), None)
         except Exception:
+            _log.debug("外部引擎列盲区失败 → 视为未找到", exc_info=True)
             return None
 
     def _anchor_from_description(self, description: str) -> Optional[str]:
@@ -244,10 +253,11 @@ class PredictionEngine:
             if hits:
                 return hits[0][0].id
         except Exception:
-            pass
+            _log.debug("外部引擎内容检索失败 → 改走锚定检索", exc_info=True)
         try:
             return self._anchor_by_semantics(description)
         except Exception:
+            _log.debug("锚定检索失败 → 改走语义锚定", exc_info=True)
             return None
 
     def _anchor_by_semantics(self, description: str) -> Optional[str]:
@@ -328,6 +338,7 @@ class PredictionEngine:
         try:
             n = self._store.get_node(node_id)
         except Exception:
+            _log.debug("外部引擎取节点失败 → 内容为空", exc_info=True)
             n = None
         return (getattr(n, "content", "") or "")[:80] if n is not None else ""
 
@@ -340,11 +351,11 @@ class PredictionEngine:
                 description=f"预测未命中：{pc}［{predicted_id}］" + (f"（{note}）" if note else ""),
                 reason=f"实际：{ac}［{actual_id}］")
         except Exception:
-            pass
+            _log.debug("外部引擎登记拒绝路径失败 → 不影响预测记账", exc_info=True)
         try:
             self._auto_conditionize(predicted_id, actual_id)
         except Exception:
-            pass
+            _log.debug("外部引擎登记失败 → 不影响预测记账", exc_info=True)
 
     @staticmethod
     def _missing_conditions(p_cs: Dict, a_cs: Dict) -> List[str]:
@@ -364,6 +375,7 @@ class PredictionEngine:
         try:
             pn, an = self._store.get_node(predicted_id), self._store.get_node(actual_id)
         except Exception:
+            _log.debug("外部引擎取节点失败 → 不做自动条件化", exc_info=True)
             return []
         if not pn or not an:
             return []
@@ -377,7 +389,7 @@ class PredictionEngine:
                     tags=["condition_candidate", "auto_conditionized", "prediction_error"])
                 created.append(node.id)
             except Exception:
-                pass
+                _log.debug("外部引擎写条件候选节点失败 → 跳过该条件", exc_info=True)
         if created:
             self.prediction_log.append({"type": "auto_conditionize", "predicted": predicted_id,
                                         "actual": actual_id, "conditions": missing,

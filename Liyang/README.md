@@ -2,7 +2,9 @@
 
 > **插件测评站**（另一条工作线）：见 [`plugin-eval-site/`](plugin-eval-site/README.md) —— 方案 v3.0 端到端验证结果、判分器缺陷与 v2 候选、多场景考卷 C。
 
-> **2026-10-13 增量升级 rel-v1.15（当前版本）**：带 bge 语义模型时说话人先验重排窗口 `sp_n` 20→40（只改一个常数；无模型路径逐位不变）。H-CM11（ConvoMem 未用文件，801 题）上 r@25 W0 .9320→.9519（27 胜 0 负）、W1 .9282→.9407（17:0），all@25 W0 .8851→.9189（27:0）、W1 .8851→.9039（15:0），四项 Holm 显著；**r@5 / r@10 没有提升**。照实：只有读取 ≥25 条且注入了 bge 时才看得到收益，缺省 `limit=10` 看不到；热查询 p95 对 R7 1.33×、冷首查 1.07×。gen 检索调优到此停止。详见 [`CHANGELOG_rel-v1.15.md`](CHANGELOG_rel-v1.15.md)。
+> **2026-10-13 增量升级 rel-v1.16（当前版本）：稳定性 · 可复跑 · 兼容性**。不含检索 / 版本链调优，检索与版本链指标对 rel-v1.15 逐项、逐题相同（持平门）。修复粗时钟（Windows 约 15.6 ms）下取「最新帧」可能取错的缺陷（同时间戳按写入序断开）；新增 `capabilities()` 报告可选依赖 / 模型件 / 中文语义通路实际档位与退回，每类退回打一次 WARNING；全包 34 处静默宽 except 改为记日志；非 chain 部分直接双向依赖 3→0；测试间单例 / 环境变量 / 时钟污染隔离，可选依赖导入期异常（如 DLL 被拒）改报 skip，最小环境（只装 pytest）可复跑；兼容门面补上游当前 API 缺口，兼容矩阵 `COMPAT_MATRIX.md`：上游 `core.core` / `core.activation` / `core.longterm_gate` 260 个公开方法，签名覆盖 260/260，**真实覆盖 198/260（76.2%）、占位 62**。照实：Windows 真机与 Python 3.11 / 3.13 未实测（Windows 项为模拟环境读数）；chain/ 内 5 对双向依赖仍在；版本链尾部名次运行间不完全确定（新旧代码都有，指标不受影响）。复跑前置条件与预期读数见 §3「复跑说明」；详见 [`CHANGELOG_rel-v1.16.md`](CHANGELOG_rel-v1.16.md)。
+>
+> **2026-10-13 增量升级 rel-v1.15**：带 bge 语义模型时说话人先验重排窗口 `sp_n` 20→40（只改一个常数；无模型路径逐位不变）。H-CM11（ConvoMem 未用文件，801 题）上 r@25 W0 .9320→.9519（27 胜 0 负）、W1 .9282→.9407（17:0），all@25 W0 .8851→.9189（27:0）、W1 .8851→.9039（15:0），四项 Holm 显著；**r@5 / r@10 没有提升**。照实：只有读取 ≥25 条且注入了 bge 时才看得到收益，缺省 `limit=10` 看不到；热查询 p95 对 R7 1.33×、冷首查 1.07×。gen 检索调优到此停止。详见 [`CHANGELOG_rel-v1.15.md`](CHANGELOG_rel-v1.15.md)。
 >
 > **2026-10-13 增量升级 rel-v1.14**：版本链（`enable_chain`，可选、缺省关）零 LLM 抽取缺省升为 v27 = v26 + A,V,AM,D,Q,H（叙事句非断言门误挡修整、E 族动词扩充、指代领属语、属性重复、转述）。新保留集 H23（叙事体裁，n=632）完全正确率 v26 行为 .3180 → v27 .3734（+.0554，35 胜 0 负，McNemar p 5.8e-11；照实：门槛 +.05，压线通过，H23 已暴露），键错 84→83，误登记 157（与 v26 相同），耗时 ABBA 1.002×。检索主线未改，回归门逐题相同。rel-v1.11–v1.13 的说明见各自 CHANGELOG。详见 [`CHANGELOG_rel-v1.14.md`](CHANGELOG_rel-v1.14.md)。
 
@@ -93,6 +95,96 @@ python -m pytest tests_ng -q
 - 另起 venv 做非 editable 安装 `pip install ".[full]"`：在仓库外 `import` 全部 112 个 `lingshu_ng.*` 模块，0 个失败。
 - 再起 venv 只装 `pip install .`（无 extras）：`from lingshu_ng.engine import MemoryEngine` 构造、`perceive`、`recall` 正常，进程中未加载 numpy。
 - 额外装 `.[semantic]`（onnxruntime 1.31.0、tokenizers 0.23.2，未设模型变量）后，测试结果不变。
+
+### 3.1 复跑说明（rel-v1.16 起；稳定性 / 兼容性）
+
+本节回答「在你的机器上跑 `tests_ng` 应该看到什么」。所有读数都是我们在 Linux（Python 3.12.15，2 核）上的实测；
+Windows 上的已知差异（粗时钟、onnxruntime DLL 加载失败）已用模拟环境覆盖（见下文「验收矩阵」），但不是真机读数。
+
+#### 前置条件
+
+| 项 | 最小环境 | 完整环境 |
+|---|---|---|
+| Python | ≥ 3.11 | ≥ 3.11 |
+| 安装 | `pip install -e ".[dev]"`（只有 pytest） | `pip install -e ".[full,dev,semantic]"`（numpy、Pillow、pytest、onnxruntime、tokenizers） |
+| 模型 | 不需要；建议设 `LINGSHU_NG_SEM=off` 明确关闭 | 自备 ONNX 模型目录（权重不随仓库发布），设 `LINGSHU_NG_SEM=<模型目录>` |
+
+`LINGSHU_NG_SEM` 指向的模型目录结构（缺哪个件，哪个件退回，其余不受影响）：
+
+```
+<LINGSHU_NG_SEM>/
+  bge-reranker-base/   tokenizer.json, onnx/model_quantized.onnx   交叉编码重排（中文长请求 v7.1 档）
+  bge-small-zh-v1.5/   tokenizer.json, onnx/…                      稠密补入（v11c 档）
+  bge-small-en-v1.5/   model_quantized.onnx, tokenizer.json        英文逐词向量件的测试（test_tokvec_pre；也可用 LINGSHU_NG_TOKVEC_MODEL 指定）
+```
+
+未设 `LINGSHU_NG_SEM` 时缺省目录是作者本机路径 `/workspace/work/ls/_shared/models`，在你的机器上通常不存在，效果等同无模型。
+设为 `off` 即关闭全部模型件。
+
+#### 缺依赖或模型时哪些测试会跳过
+
+跳过一律带原因（`-rs` 可见），且只在缺件时发生；装齐后 0 skip。
+
+| 缺什么 | 跳过什么 |
+|---|---|
+| numpy / Pillow | `tests_ng/world/`、`tests_ng/nn/` 中导入它们的模块（原因：`可选依赖 numpy 未安装（world/nn 需要 pip install -e ".[full]"）`），以及核心目录里用 `require("numpy")` 按需跳过的用例（最小环境实测 17 处，含`test_semrank.py` 稠密补入 / 融合 6 条、`test_backlog_core_r3.py::test_216_prediction_miss_searchable_by_content`、`test_stab_env.py::test_world_rebuild_latest_frame_with_tied_clock`、`world/test_scene_relations.py::test_compat_scene_model_uses_fixed_solver`）与 `test_compat_surface.py` 的 2 条世界线用例（「ng 世界线依赖 numpy/PIL」） |
+| onnxruntime / tokenizers（没装，或装了但原生库加载失败，如 Windows DLL 被拒） | `test_tokvec_pre.py` 整文件（原因含异常原文）；连带下两行 |
+| bge-small-en-v1.5 | `test_tokvec_pre.py` 整文件（「bge-small-en-v1.5 不在本机」） |
+| 交叉编码模型 bge-reranker-base | `test_semrank.py::test_real_scorer_smoke`（「可选语义模型未安装」） |
+| 稠密模型 bge-small-zh-v1.5 | `test_semrank.py::test_real_embedder_smoke`（「bge-small-zh 不可用」） |
+
+其余用例在任何组合下都必须通过；缺件的退回路径本身有专门用例（`no_models` 夹具把模型件固定为不可用，与机器上装了什么无关）。
+
+#### 两套命令与预期读数
+
+```bash
+# 最小环境：干净 venv，只装 pytest（无 numpy / Pillow / onnxruntime / 模型）
+python3 -m venv .venv-min && . .venv-min/bin/activate
+pip install -e ".[dev]"
+LINGSHU_NG_SEM=off python -m pytest tests_ng -q -rs
+# 预期：1939 passed, 51 skipped（0 failed；skip 原因见上表）
+
+# 完整环境：装齐可选依赖并提供模型目录
+python3 -m venv .venv-full && . .venv-full/bin/activate
+pip install -e ".[full,dev,semantic]"
+LINGSHU_NG_SEM=/path/to/models python -m pytest tests_ng -q -rs
+# 预期：3113 passed（0 failed、0 skipped；需 4 个模型件齐全，缺哪个按上表多出对应 skip）
+```
+
+`-q` 模式下测试结尾会打印「lingshu_ng 本机生效档位」一节：各可选依赖是否可用（含导入失败的异常原文）、各模型件是否可用及原因、
+中文长请求语义通路实际跑的是哪一档。**对读数前先看这一节**——同样是全绿，`v4` 档与 `v11c` 档跑的不是同一条路径。
+
+#### 验收矩阵（本版发布前实测）
+
+Linux、Python 3.12.15，全部用随机测试序（每次不同种子）：
+
+| 环境 | 种子 | 读数 |
+|---|---|---|
+| 完整（onnxruntime + 本地模型）随机序 ×5 | 11/22/33/44/55 | 3113 passed ×5，0 failed，0 skipped |
+| 无 onnxruntime（_envsim/no_ort）×3 | 101/102/103 | 3107 passed, 3 skipped ×3，0 failed |
+| onnxruntime 原生库加载失败（_envsim/ort_broken，Windows DLL 拒绝同形）×3 | 201/202/203 | 3107 passed, 3 skipped ×3，0 failed |
+| 无模型（LINGSHU_NG_SEM=off）×1 | 301 | 3107 passed, 3 skipped，0 failed |
+| 粗时钟 1/64 s（_envsim/coarse_clock，Windows 式）×2 | 401/402 | 3113 passed ×2，0 failed |
+| 最小环境（干净 venv 只装 pytest；无 numpy/Pillow/onnxruntime/tokenizers；LINGSHU_NG_SEM=off）随机序 ×1 | 501 | 1939 passed, 51 skipped，0 failed |
+
+模拟环境的用法见 `tests_ng/_envsim/README.md`；随机序插件是仓内的 `tests_ng/shuffle_plugin.py`（`-p tests_ng.shuffle_plugin`，
+种子由 `LINGSHU_TEST_SHUFFLE_SEED` 给定、打印在结尾），不需要安装 pytest-randomly。
+
+#### `capabilities()`：本机实际生效的是哪一档
+
+```python
+from lingshu_ng.capabilities import capabilities
+c = capabilities()          # 纯数据，可 json.dumps
+c["dependencies"]["onnxruntime"]   # {"available": bool, "version": str|None, "error": "ImportError: DLL load failed …"|None}
+c["models"]["cross_scorer"]        # {"available": bool, "reason": "已关闭（LINGSHU_NG_SEM=off）" / "缺模型文件 …" / None}
+c["semantic_tier"]                 # "v4"（无交叉编码件）/ "v7.1" / "v11c"（+ 稠密补入）/ "v13"（+ 复打）/ "off"
+c["fallbacks"]                     # 本进程迄今发生过的退回（每类只记一次，同时打一次 WARNING 日志）
+```
+
+引擎上也有同名方法：`MemoryEngine(...).capabilities()`、兼容门面 `SpacetimeMemoryEngine(...).capabilities()`（旧引擎没有此方法，属 ng 扩展）。
+调用只读，不改变任何行为；模型件按需构造的是召回时用的同一个单例。
+
+**本发布目录内的读数**：上面的读数在开发树（含上游 `tests/`）上测得；在本发布目录内跑，`tests_ng/nn/test_quality_nn.py` 的上游旧测试表面核对因缺上游 `tests/` 而 skip（原因见 §6.2），所以完整环境读数为 **3112 passed, 1 skipped**（2026-10-13 实测，Linux / Python 3.12.15，onnxruntime + 4 个模型件齐全）。
 
 **测评复跑**（脚本里的示例路径是我们本机的绝对路径，复跑时换成你的检出位置；各维度的单项复现命令见 §4.2、§4.3）
 

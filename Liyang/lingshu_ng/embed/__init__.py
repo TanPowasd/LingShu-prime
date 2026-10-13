@@ -13,10 +13,13 @@
 """
 from __future__ import annotations
 
+import logging
 import os
 import re
 from collections import OrderedDict
 from typing import List, Optional, Sequence, Tuple
+
+_log = logging.getLogger(__name__)
 
 __all__ = ["OnnxEmbedder", "from_env", "split_sentences"]
 
@@ -47,6 +50,7 @@ def _blas_fns():
                     _BLAS = (getattr(lib, g), getattr(lib, st))
                     return _BLAS
     except Exception:  # ctypes/平台差异不可枚举：找不到就不限线程，结果不变
+        _log.debug("BLAS 线程控制符号查找失败（ctypes / 平台差异）→ 不限线程，结果不变", exc_info=True)
         _BLAS = False
     return _BLAS
 
@@ -64,6 +68,7 @@ class _Blas1:
                 if self._n != 1:
                     f[1](1)
             except Exception:
+                _log.debug("BLAS 线程数读写失败 → 不限线程，结果不变", exc_info=True)
                 self._n = None
         return self
 

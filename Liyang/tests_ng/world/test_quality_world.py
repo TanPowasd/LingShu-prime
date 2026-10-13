@@ -7,7 +7,7 @@ import pytest
 
 ROOT = pathlib.Path(__file__).resolve().parents[2] / "lingshu_ng" / "world"
 FILES = sorted(ROOT.glob("*.py"))
-STDLIB = {"__future__", "math", "random", "re", "sys", "time", "types", "uuid", "itertools",
+STDLIB = {"__future__", "logging", "math", "random", "re", "sys", "time", "types", "uuid", "itertools",
           "dataclasses", "typing", "importlib", "pathlib", "functools", "json"}
 
 

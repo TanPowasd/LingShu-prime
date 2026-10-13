@@ -106,7 +106,7 @@ class ChainIndex:
         """只留仍在库、在可检索层、未归档（与基础召回同一过滤口径 Q5）、且不在 exclude 里的节点。"""
         if not ids:
             return []
-        from ..retrieval import _layer_values, _retired
+        from ..recall_filter import _layer_values, _retired
         use = _layer_values(None)
         ok = set()
         for i in range(0, len(ids), 500):

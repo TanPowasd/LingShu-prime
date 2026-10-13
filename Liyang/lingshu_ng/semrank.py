@@ -10,6 +10,8 @@
 """
 from __future__ import annotations
 
+import logging
+import dataclasses
 import hashlib
 import importlib
 import json
@@ -18,11 +20,15 @@ import re
 import threading
 from typing import Dict, List, Optional, Sequence
 
-from . import anstype
+from . import anstype, diag
+
+_log = logging.getLogger(__name__)
 
 DEFAULT_DIR = "/workspace/work/ls/_shared/models"
 _LOCK = threading.Lock()
 _SCORERS: Dict[str, Optional["CrossScorer"]] = {}
+#: 件不可用的原因（键同 _SCORERS / _EMBEDDERS）：关闭 / 缺模型文件 / 依赖加载失败（stab-r1：退回可见）
+_REASONS: Dict[str, str] = {}
 #: 链式请求（v7.1，PREREG_ZH 修订 5b）：问的是「某状态/版本从早到晚怎样变」——答案是整条链（链首、各次变更、现值），
 #: 语义打分只看单段与问句的相关度，链中段常落到阈值以下被截掉。这类请求重排保留、截断豁免（取回条数同无截断）。
 CHAIN_RE = re.compile(
@@ -180,6 +186,7 @@ def get_disc(sc) -> Optional[DiscHead]:
         try:
             _DISC[path] = DiscHead(sc, path) if os.path.exists(path) else None
         except Exception:  # noqa: 头损坏 / 特征图缺失 → 退回 v7.1
+            _log.warning("判别头加载失败（头损坏 / 特征图缺失）→ 退回 v7.1", exc_info=True)
             _DISC[path] = None
     return _DISC[path]
 
@@ -209,10 +216,46 @@ def _scorer(model: str, name: str) -> Optional[CrossScorer]:
             try:
                 cache = os.environ.get("LINGSHU_NG_SEM_CACHE", os.path.join(d, "_score_cache"))
                 sc = CrossScorer(mdir, name, cache or None, model)
-            except Exception:  # noqa: 依赖缺失或模型损坏 → 退回无模型路径
+            except Exception as e:  # 可选依赖件（onnxruntime 原生库 / 模型文件）的失败类型不可枚举：记原因，退回无模型路径
+                _log.debug("交叉编码打分件构造失败 → 退回无模型路径（原因见 semrank.unavailable_reason）", exc_info=True)
                 sc = None
+                _REASONS[k] = f"加载失败 {type(e).__name__}: {e}"
+        else:
+            _REASONS[k] = f"模型文件缺失（{mdir}/tokenizer.json 或 onnx/{name}）"
+    else:
+        _REASONS[k] = "已关闭（LINGSHU_NG_SEM=off）"
     _SCORERS[k] = sc
     return sc
+
+
+def v4_fallback(cfg):
+    """sem_v4fb 退回（lingshu_ng.assoc 调用）：返回 tp_head、sem_n 置 0 的配置（= 逐位 v4）；
+    进程内只打一次 WARNING，并登记进 diag.fallbacks()。"""
+    warn_v4fb()
+    return dataclasses.replace(cfg, tp_head=0, sem_n=0)
+
+
+def warn_v4fb() -> None:
+    """登记 sem_v4fb 退回：进程内只打一次 WARNING。"""
+    diag.warn_once("sem_v4fb", "交叉编码打分件不可用（" + str(unavailable_reason("scorer"))
+                   + "）→ 中文长请求关闭 TP 与语义重排，逐位退回 v4 词面档")
+
+
+def unavailable_reason(kind: str = "scorer") -> Optional[str]:
+    """``kind`` ∈ {scorer, casc, dense}：对应件当前不可用的原因；可用或尚未探测 → None。"""
+    d = os.environ.get("LINGSHU_NG_SEM", DEFAULT_DIR).strip()
+    if kind == "dense":
+        model = os.environ.get("LINGSHU_NG_DENSE_MODEL", "bge-small-zh-v1.5").strip()
+        name = os.environ.get("LINGSHU_NG_DENSE_ONNX", "model.onnx").strip()
+        off = os.environ.get("LINGSHU_NG_DENSE", "").strip().lower() in ("off", "0", "none")
+        return _REASONS.get(f"{d}|{model}|{name}|{off}")
+    if kind == "casc":
+        model = os.environ.get("LINGSHU_NG_SEM_CASC_MODEL", "bge-reranker-v2-m3").strip()
+        name = os.environ.get("LINGSHU_NG_SEM_CASC_ONNX", "model_quantized.onnx").strip()
+    else:
+        model = os.environ.get("LINGSHU_NG_SEM_MODEL", "bge-reranker-base").strip()
+        name = os.environ.get("LINGSHU_NG_SEM_ONNX", "model_quantized.onnx").strip()
+    return _REASONS.get(f"{d}|{model}|{name}")
 
 
 class DenseEmbedder:
@@ -309,8 +352,14 @@ def get_embedder() -> Optional[DenseEmbedder]:
         if os.path.exists(os.path.join(mdir, "tokenizer.json")) and os.path.exists(os.path.join(mdir, "onnx", name)):
             try:
                 em = DenseEmbedder(mdir, name, os.environ.get("LINGSHU_NG_SEM_CACHE", os.path.join(d, "_score_cache")) or None, model)
-            except Exception:  # noqa
+            except Exception as e:  # 同 _scorer：可选依赖件失败类型不可枚举；记原因，调用方不补稠密候选（= v7.1）
+                _log.debug("稠密件构造失败 → 不补稠密候选 = v7.1（原因见 semrank.unavailable_reason）", exc_info=True)
                 em = None
+                _REASONS[k] = f"加载失败 {type(e).__name__}: {e}"
+        else:
+            _REASONS[k] = f"模型文件缺失（{mdir}/tokenizer.json 或 onnx/{name}）"
+    else:
+        _REASONS[k] = "已关闭（LINGSHU_NG_SEM 或 LINGSHU_NG_DENSE = off）"
     _EMBEDDERS[k] = em
     return em
 
@@ -337,6 +386,8 @@ def dense_candidates(assoc, q: str, ctx, cfg, exclude_ids) -> Dict[str, tuple]:
     件不可用或库超过 sem_dense_max 块 → {}。"""
     em = get_embedder()
     if em is None or cfg.sem_dense <= 0:
+        if em is None and cfg.sem_dense > 0:
+            diag.warn_once("sem_dense", "稠密件不可用（" + str(unavailable_reason("dense")) + "）→ 中文长请求不做稠密补入，逐位退回 v7.1 档")
         return {}
     np = importlib.import_module("numpy")
     rows = assoc.store.db.all("SELECT n.id, n.content FROM node_index i JOIN nodes n ON n.id = i.node_id WHERE i.grams > 0")
@@ -456,6 +507,8 @@ def rerank(sc, q: str, order: List[str], text: Dict[str, str], cfg, extra: Seque
     kc = getattr(cfg, "sem_casc", 0)
     if kc > 0 and len(keep) > 1:   # v13（修订 11 C1）：截断后前 kc 段由更强的交叉编码器复打、只在这 kc 段内重排（取段集合不变）
         s2 = get_casc_scorer()
+        if s2 is None:
+            diag.warn_once("sem_casc", "复打件不可用（" + str(unavailable_reason("casc")) + "）→ 不复打，逐位退回 v11c 档")
         if s2 is not None:
             hk = keep[:kc]
             l2 = s2.score(q, [text[c] for c in hk])

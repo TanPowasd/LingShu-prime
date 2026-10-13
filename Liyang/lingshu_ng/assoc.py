@@ -264,7 +264,7 @@ class Associator:
             fn = self._spread if cfg.ax2 == "spread" else self._ppr
             order = fn(order, _norm_scores(fill[:cfg.pool] if cfg.ax2 == "spread" else fill), ctx, cfg)
         if cfg.sem_v4fb and cfg.sem_n > 0 and limit is not None and limit > cfg.lc_head and semrank.get_scorer() is None:
-            cfg = replace(cfg, tp_head=0, sem_n=0)  # v7 缺可选依赖/模型 → 逐位退回 v4（PREREG_ZH 修订 5.2）
+            cfg = semrank.v4_fallback(cfg)  # v7 缺可选依赖/模型 → 逐位退回 v4（PREREG_ZH 修订 5.2）；stab-r1：退回打一次 WARNING
         qw = None
         if cfg.hd_beta > 0 and limit is not None and limit > cfg.lc_head and len(order) > 1:
             qw = self._qweights(q, cfg)

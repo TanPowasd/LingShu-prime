@@ -11,11 +11,14 @@
 开关：LINGSHU_NG_CHAIN_V16=0 关闭（关闭时与 v15 逐条相同）；V16_WIN / V16_POST / V16_OP 分别控制窗口抽取 / 残片后修 / 动作判别。"""
 from __future__ import annotations
 
+import logging
 import os
 import re
 from typing import List, Optional, Set
 
 from . import v17 as _v17
+
+_log = logging.getLogger(__name__)
 
 V16 = os.environ.get("LINGSHU_NG_CHAIN_V16", "1").strip().lower() not in ("0", "false", "no", "off")
 WIN = os.environ.get("LINGSHU_NG_CHAIN_V16_WIN", "1") != "0"
@@ -66,6 +69,7 @@ def _reason_of(t: str) -> Optional[str]:
     try:
         return _reason(split_clauses(t), -1, None)
     except Exception:  # noqa: BLE001
+        _log.debug("原因从句抽取失败 → 视为无原因", exc_info=True)
         return None
 
 

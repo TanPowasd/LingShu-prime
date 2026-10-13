@@ -19,11 +19,14 @@
 """
 from __future__ import annotations
 
+import logging
 import math
 import os
 import threading
 import time
 from typing import Dict, List, Optional, Sequence, Tuple
+
+_log = logging.getLogger(__name__)
 
 __all__ = ["SemanticIndex", "PATTERN", "interleave"]
 
@@ -135,6 +138,7 @@ class SemanticIndex:
             with self._plock:
                 self.provider.add([a for a, _ in part], [b for _, b in part])
         except Exception as e:  # 提供者是外部注入件：任何失败都退回纯词面（S4），不影响写入与召回
+            _log.warning("语义检索提供者编码失败 → 退回纯词面（原因见 SemanticIndex.error）", exc_info=True)
             self.error = f"{type(e).__name__}: {e}"
             with self._qlock:
                 self._pending.clear()
@@ -199,6 +203,7 @@ class SemanticIndex:
             with self._plock:
                 res = list(self.provider.search(query, int(limit)))
         except Exception as e:  # 同 _encode：退回纯词面
+            _log.warning("语义检索提供者 search 失败 → 退回纯词面（原因见 SemanticIndex.error）", exc_info=True)
             self.error = f"{type(e).__name__}: {e}"
             return []
         return [(r, 0.0) if isinstance(r, str) else (str(r[0]), float(r[1])) for r in res]
@@ -213,6 +218,7 @@ class SemanticIndex:
             with self._plock:
                 return {str(k): float(v) for k, v in self.provider.score_ids(query, list(ids)).items()}
         except Exception as e:  # 同 search：退回
+            _log.warning("语义检索提供者 score_ids 失败 → 退回（原因见 SemanticIndex.error）", exc_info=True)
             self.error = f"{type(e).__name__}: {e}"
             return {}
 
@@ -225,6 +231,7 @@ class SemanticIndex:
             with self._plock:
                 return {str(k): float(v) for k, v in self.provider.sent_scores(query, list(ids)).items()}
         except Exception as e:  # 同 search：退回
+            _log.warning("语义检索提供者 sent_scores 失败 → 退回（原因见 SemanticIndex.error）", exc_info=True)
             self.error = f"{type(e).__name__}: {e}"
             return {}
 

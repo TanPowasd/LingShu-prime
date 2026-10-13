@@ -4,9 +4,11 @@ import os
 
 import pytest
 
-MD = "/workspace/work/ls/_shared/models/bge-small-en-v1.5"
-pytest.importorskip("onnxruntime")
-pytest.importorskip("tokenizers")
+from tests_ng._optdeps import model_dir, require
+
+MD = os.environ.get("LINGSHU_NG_TOKVEC_MODEL", model_dir("bge-small-en-v1.5"))
+require("onnxruntime")   # 装了但原生库加载失败（Windows DLL 拒绝）也 skip，不打断收集
+require("tokenizers")
 if not os.path.exists(os.path.join(MD, "model_quantized.onnx")):
     pytest.skip("bge-small-en-v1.5 不在本机", allow_module_level=True)
 

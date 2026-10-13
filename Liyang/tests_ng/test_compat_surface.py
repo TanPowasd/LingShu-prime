@@ -4,6 +4,8 @@ import math
 
 import pytest
 
+from tests_ng._optdeps import require
+
 from lingshu_ng.compat import EdgeType, MemoryLayer, SpacetimeMemoryEngine
 from lingshu_ng.compat_stubs import NOT_READY, WORLD_MISSING
 
@@ -69,7 +71,7 @@ _SIM = ("spacetime_consistency", "world_model", "world_learner", "curiosity_expl
 
 @pytest.mark.parametrize("name", _SIM)
 def test_sim_facades_delegate_to_ng_world(eng, name):
-    pytest.importorskip("numpy")
+    require("numpy")
     from lingshu_ng.compat_world_sim import SIM_FACADES
     f = getattr(eng, name)
     assert f("init", {"size": 16})["status"] == "ok"
@@ -84,7 +86,7 @@ def test_sim_facades_delegate_to_ng_world(eng, name):
 
 
 def test_voxel_world_delegates(eng):
-    pytest.importorskip("numpy")
+    require("numpy")
     assert eng.voxel_world("build", {"trees": 1})["blocks"] > 0
     eid = eng.voxel_world("spawn", {"category": "ball", "pos": [2, 3, 2]})["entity_id"]
     assert eng.voxel_world("simulate", {"steps": 2})["status"] == "ok"

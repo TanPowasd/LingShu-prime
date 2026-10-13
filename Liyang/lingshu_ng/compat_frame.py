@@ -16,13 +16,12 @@
 from __future__ import annotations
 
 import hashlib
-import time
 import uuid
 from typing import Any, Dict, List, Optional
 
 from . import dedup
 from .numeric import unit
-from .types import ConditionSpace, EdgeType, MemoryLayer, Node
+from .types import ConditionSpace, EdgeType, MemoryLayer, Node, now
 
 __all__ = ["FrameMixin", "frame_entity_id"]
 
@@ -56,7 +55,12 @@ class FrameMixin:
         if nid:
             return self.ng.store.nodes.get(nid)
         frames = [n for n in self.ng.store.nodes.by_tag(f"ent:{entity_id}", None) if "image_frame" in n.tags]
-        return max(frames, key=lambda n: (n.created_at, n.id)) if frames else None
+        if not frames:
+            return None
+        # stab-r1：同一墙钟读数（Windows time.time 粒度 ≈15.6 ms）写入的帧按写入序（rowid）断开，不再落到随机 id 上
+        seq = dict(self.ng.store.db.all(f"SELECT id, rowid FROM nodes WHERE id IN ({','.join('?' * len(frames))})",
+                                        [n.id for n in frames]))
+        return max(frames, key=lambda n: (n.created_at, seq.get(n.id, -1), n.id))
 
     def ingest_frame(self, frame_data: Dict, entity_hint: Optional[str] = None,
                      state_hint: Optional[Dict] = None, semantic_attention: Optional[Dict] = None,
@@ -65,7 +69,7 @@ class FrameMixin:
         if not isinstance(frame_data, dict):
             raise ValueError("frame_data 必须是 dict")
         imp = unit(frame_data.get("importance", 0.6), "importance")
-        t = time.time()
+        t = now()
         cs = condition_space or ConditionSpace("视觉感知", "帧摄入", (t, t + 3600), "协议实例运行中")
         sp = {"visual": frame_data["visual"]} if frame_data.get("visual") else {}
         name = str(entity_hint) if entity_hint else None

@@ -59,6 +59,20 @@ class SelfModel:
         """全量字段字典。"""
         return asdict(self)
 
+    @classmethod
+    def from_dict(cls, data: Any) -> "SelfModel":
+        """从快照字典重建（上游 #33 同名同口径）：未知键忽略、缺失键取默认（``version`` 等非字段键剔除），
+        ``data`` 非 dict 时返回全默认；重建后各列表按上限钳制（F5）。不绑定存储。"""
+        obj = cls()
+        if not isinstance(data, dict):
+            return obj
+        names = {f.name for f in fields(cls)}
+        for k, v in data.items():
+            if k in names:
+                setattr(obj, k, v)
+        obj._clip()
+        return obj
+
     def core_dict(self) -> Dict:
         """SELF 节点正文（不含 history，体积有界）。"""
         d = self.to_dict()
