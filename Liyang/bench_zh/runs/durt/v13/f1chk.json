@@ -1,0 +1,26 @@
+{
+ "durt:v11c_dev:v11cpf_dev": {
+  "n": 200,
+  "rank_diff": [],
+  "score_diff": [],
+  "qset_diff": []
+ },
+ "durt:v11c_hold2:v11cpf_hold2": {
+  "n": 380,
+  "rank_diff": [],
+  "score_diff": [],
+  "qset_diff": []
+ },
+ "t2r2:v11cnp_r1dev:v11cpf_r1dev": {
+  "n": 200,
+  "rank_diff": [],
+  "score_diff": [],
+  "qset_diff": []
+ },
+ "t2r2:v11cnp_r2dev:v11cpf_r2dev": {
+  "n": 200,
+  "rank_diff": [],
+  "score_diff": [],
+  "qset_diff": []
+ }
+}

@@ -331,3 +331,58 @@ def test_adaptive_dense_cap_and_tau(tmp_path, monkeypatch):
     e.retriever.assoc = ax.AssocConfig(**dict(kw, sem_dense=3, sem_dense_m=2)); full = e_rows(e, q, 8)
     e.retriever.assoc = ax.AssocConfig(**dict(kw, sem_dense=3, sem_dense_m=2, sem_dense_cap=1)); capped = e_rows(e, q, 8)
     assert len(full) > 1 and capped == full[:1]
+
+
+class _CountDense(_DenseStub):
+    """计数稠密件：记录每次 encode 的文本数（预取 → 首个触发补入的查询不再现编全库）。"""
+
+    def __init__(self):
+        self.n = []
+        self.cache = set()
+
+    def encode(self, texts, batch=16):
+        self.n.append(sum(t not in self.cache for t in texts))
+        self.cache.update(texts)
+        return super().encode(texts, batch)
+
+
+def test_prefetch_dense_same_ranks_and_moves_cost(tmp_path, monkeypatch):
+    """v13（PREREG_ZH 修订 11.1）：prefetch_dense 把全库稠密向量预先算入缓存，名次与不预取逐位相同；无件 / 补入关 → 0。"""
+    monkeypatch.setattr(semrank, "get_scorer", lambda: _Stub())
+    kw = dict(tp_head=1, tp_coh=0.0, lc_head=2, sem_n=1, sem_tau=-99.0, sem_min=1, sem_dense=3, sem_dense_m=2)
+    q = "丰巢取件码忘了怎么办"
+    d0 = _CountDense(); monkeypatch.setattr(semrank, "get_embedder", lambda: d0)
+    a = _eng(tmp_path / "a", **kw); ra = _ids(a, q, 8)
+    d1 = _CountDense(); monkeypatch.setattr(semrank, "get_embedder", lambda: d1)
+    b = _eng(tmp_path / "b", **kw)
+    assert b.prefetch_dense() == len(WEB)
+    k = len(d1.n); rb = _ids(b, q, 8)
+    assert ra == rb and max(d0.n) == len(WEB) and all(x <= 1 for x in d1.n[k:])
+    b.retriever.assoc = ax.AssocConfig(**dict(kw, sem_dense=0)); assert b.prefetch_dense() == 0
+    monkeypatch.setattr(semrank, "get_embedder", lambda: None); assert b.prefetch_dense() == 0
+
+
+class _Casc:
+    """假复打件：含「短信」者最高（与 _Stub 次序相反的一部分）。"""
+
+    def score(self, q, passages, batch=16):
+        return [9.0 if "短信" in p else 0.0 for p in passages]
+
+
+def test_casc_off_by_default_and_reorders_within_top_k(tmp_path, monkeypatch):
+    """v13 C1：sem_casc = 0（缺省）逐位不变；复打件缺失 → 不复打；k > 0 只在截断后前 k 段内重排，取段集合不变。"""
+    assert ax.AssocConfig().sem_casc == 0
+    monkeypatch.setattr(semrank, "get_scorer", lambda: _Stub())
+    monkeypatch.setattr(semrank, "get_embedder", lambda: None)
+    kw = dict(V71, tp_head=1, tp_coh=0.0, lc_head=2, sem_n=8, sem_tau=-99.0, sem_min=1)
+    q = "丰巢取件码忘了怎么办"
+    e = _eng(tmp_path)
+    monkeypatch.setattr(semrank, "get_casc_scorer", lambda: None)
+    _same(e, dict(kw), dict(kw, sem_casc=3), ((q, 8),))
+    monkeypatch.setattr(semrank, "get_casc_scorer", lambda: _Casc())
+    e.retriever.assoc = ax.AssocConfig(**kw); base = _ids(e, q, 8)
+    e.retriever.assoc = ax.AssocConfig(**dict(kw, sem_casc=2)); cas = _ids(e, q, 8)
+    assert sorted(base) == sorted(cas) and cas[2:] == base[2:] and set(cas[:2]) == set(base[:2])
+    e.retriever.assoc = ax.AssocConfig(**dict(kw, sem_casc=8)); full = _ids(e, q, 8)
+    sms = [d for d in base if "短信" in d]
+    assert sms and full[0] == sms[0] and sorted(full) == sorted(base)

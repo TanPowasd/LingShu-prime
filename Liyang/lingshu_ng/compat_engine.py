@@ -240,6 +240,10 @@ class SpacetimeMemoryEngine(WorldFacade, WorldSimFacade, FrameMixin, StubsMixin)
         """组合召回（内容/重要度/置信度/近因）。"""
         return self.ng.recall(context_content, limit)["hits"]
 
+    def prefetch_dense(self) -> int:
+        """批量写入后预算稠密补入向量（v13 纯延迟修复，名次不变；无模型时为 0）。"""
+        return self.ng.prefetch_dense()
+
     def traverse(self, start_id: str, relation_types: Optional[List[str]] = None, direction: str = "out",
                  max_depth: int = 5, min_importance: float = 0.0, max_nodes: int = 500) -> List[Dict]:
         """有界遍历。"""

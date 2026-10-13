@@ -186,9 +186,19 @@ def get_disc(sc) -> Optional[DiscHead]:
 
 def get_scorer() -> Optional[CrossScorer]:
     """可用时返回打分件（进程内单例），否则 None（缺依赖 / 缺模型 / LINGSHU_NG_SEM=off）。"""
+    return _scorer(os.environ.get("LINGSHU_NG_SEM_MODEL", "bge-reranker-base").strip(),
+                   os.environ.get("LINGSHU_NG_SEM_ONNX", "model_quantized.onnx").strip())
+
+
+def get_casc_scorer() -> Optional[CrossScorer]:
+    """v13 级联复打件（PREREG_ZH 修订 11 C1）：BAAI/bge-reranker-v2-m3（MIT；onnx-community 量化 ONNX），
+    ``LINGSHU_NG_SEM_CASC_MODEL`` / ``LINGSHU_NG_SEM_CASC_ONNX`` 可换；缺模型 / 缺依赖 → None（调用方不复打 = v11c）。"""
+    return _scorer(os.environ.get("LINGSHU_NG_SEM_CASC_MODEL", "bge-reranker-v2-m3").strip(),
+                   os.environ.get("LINGSHU_NG_SEM_CASC_ONNX", "model_quantized.onnx").strip())
+
+
+def _scorer(model: str, name: str) -> Optional[CrossScorer]:
     d = os.environ.get("LINGSHU_NG_SEM", DEFAULT_DIR).strip()
-    name = os.environ.get("LINGSHU_NG_SEM_ONNX", "model_quantized.onnx").strip()
-    model = os.environ.get("LINGSHU_NG_SEM_MODEL", "bge-reranker-base").strip()
     k = f"{d}|{model}|{name}"
     if k in _SCORERS:
         return _SCORERS[k]
@@ -303,6 +313,23 @@ def get_embedder() -> Optional[DenseEmbedder]:
                 em = None
     _EMBEDDERS[k] = em
     return em
+
+
+def prefetch_dense(assoc, cfg) -> int:
+    """v13 纯延迟修复（PREREG_ZH 修订 11.1）：把全库可检索块的稠密向量预先算进缓存（与 :func:`dense_candidates` 首次触发时
+    同一 SQL、同一过滤、同一排序、同一批次 → 向量逐位相同、名次不变），使首个触发补入的查询不再现编全库。
+    件不可用 / 补入关 / 库超 sem_dense_max → 0（不做事）。返回预算的块数。"""
+    em = get_embedder()
+    if em is None or getattr(cfg, "sem_dense", 0) <= 0 or get_scorer() is None:
+        return 0
+    rows = assoc.store.db.all("SELECT n.id, n.content FROM node_index i JOIN nodes n ON n.id = i.node_id WHERE i.grams > 0")
+    if not rows or len(rows) > cfg.sem_dense_max:
+        return 0
+    ok = assoc.retrievable([r[0] for r in rows])
+    rows = sorted({(nid, c or "") for nid, c in rows if nid in ok})
+    if rows:
+        em.encode([c for _, c in rows])
+    return len(rows)
 
 
 def dense_candidates(assoc, q: str, ctx, cfg, exclude_ids) -> Dict[str, tuple]:
@@ -426,6 +453,13 @@ def rerank(sc, q: str, order: List[str], text: Dict[str, str], cfg, extra: Seque
     k = getattr(cfg, "sem_dense_cap", 0)
     if filled and k > 0:   # v11：补入被触发时取段 ≤ k·sem_min（控「补入大量相关但不满足段」）
         keep = keep[:k * cfg.sem_min]
+    kc = getattr(cfg, "sem_casc", 0)
+    if kc > 0 and len(keep) > 1:   # v13（修订 11 C1）：截断后前 kc 段由更强的交叉编码器复打、只在这 kc 段内重排（取段集合不变）
+        s2 = get_casc_scorer()
+        if s2 is not None:
+            hk = keep[:kc]
+            l2 = s2.score(q, [text[c] for c in hk])
+            keep = [hk[i] for i in sorted(range(len(hk)), key=lambda i: (-l2[i], i))] + keep[kc:]
     return keep
 
 

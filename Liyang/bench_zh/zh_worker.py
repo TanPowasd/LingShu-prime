@@ -69,6 +69,8 @@ def main():
                 shutil.rmtree(tmp, ignore_errors=True)
             e = SpacetimeMemoryEngine(dbp)
     wsec = time.perf_counter() - t0
+    if os.environ.get("LS_PREFETCH") == "1":   # zh-v13：写入后预取稠密向量（修订 11.1 F1 名次核对用）
+        e.prefetch_dense()
     rank, score, qms = {}, {}, []
     for q in job["queries"]:
         t1 = time.perf_counter()

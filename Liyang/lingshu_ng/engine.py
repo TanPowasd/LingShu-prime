@@ -513,6 +513,14 @@ class MemoryEngine:
     def _auto_tick(self, elapsed: float) -> None:
         self.decay_step(elapsed_factor(0.02, elapsed, 60.0))
 
+    def prefetch_dense(self) -> int:
+        """v13：批量写入后预算稠密补入向量（semrank.prefetch_dense；无模型 / 补入关时为 0，不改名次）。"""
+        try:
+            from . import semrank
+            return semrank.prefetch_dense(self.retriever.associator, self.retriever.assoc)
+        except Exception:  # noqa: 可选件异常不影响主路径
+            return 0
+
     def run_maintenance(self, factor: float = 0.02, promote=None) -> Dict:
         """睡眠巩固：提升 → 巩固 → 衰减 → 主动遗忘（确定性顺序）。``promote`` 可替换提升入口（兼容门面
         经旧接口 ``_ensure_gate().promote_from_context`` 走同一门控）。"""
