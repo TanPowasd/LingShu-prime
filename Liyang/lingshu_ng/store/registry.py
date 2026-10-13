@@ -12,11 +12,11 @@
 from __future__ import annotations
 
 import hashlib
-import uuid
 from typing import Dict, List, Optional
 
 from ..governance import require_designer
 from ..layers import LayerPolicy
+from ..ids import new_id
 from ..types import MemoryLayer, now
 from .db import Database
 
@@ -30,7 +30,7 @@ def _hash(text: str) -> str:
 
 
 def _uid(prefix: str) -> str:
-    return f"{prefix}_{uuid.uuid4().hex[:12]}"
+    return new_id(prefix)
 
 
 class Registry:

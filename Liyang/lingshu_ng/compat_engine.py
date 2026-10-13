@@ -16,7 +16,8 @@ import os
 import re
 from typing import Any, Dict, List, Optional, Set, Tuple
 
-from .compat_stubs import StubsMixin
+from .compat_body import BodyMixin
+from .compat_stubs import StubsMixin, support_table
 from .compat_providers import ProvidersMixin
 from .compat_world import WorldFacade
 from .compat_world_sim import WorldSimFacade
@@ -42,7 +43,7 @@ class PromotionRejected(PermissionError, ValueError):
 _SCREEN_RE = re.compile(r"\[[^\]]*?((?:[A-Za-z]:[\\/]|/)[^\]]+\.(?:png|bmp|jpg))\]")
 
 
-class SpacetimeMemoryEngine(WorldFacade, WorldSimFacade, FrameMixin, ProvidersMixin, StubsMixin):
+class SpacetimeMemoryEngine(WorldFacade, WorldSimFacade, FrameMixin, ProvidersMixin, BodyMixin, StubsMixin):
     """旧引擎门面（PRIMARY/SUB 角色、:memory: 默认库）。"""
 
     #: 全库备份表清单 = ng 实际导出清单（exchange.TABLES，含 #270 的 OBS 持久化表）；
@@ -82,7 +83,9 @@ class SpacetimeMemoryEngine(WorldFacade, WorldSimFacade, FrameMixin, ProvidersMi
 
     def capabilities(self) -> Dict:
         """ng 扩展（旧引擎无此方法）：当前生效档位与可选依赖状态，见 :meth:`MemoryEngine.capabilities`。"""
-        return self.ng.capabilities()
+        out = self.ng.capabilities()
+        out["compat_methods"] = support_table(type(self))
+        return out
 
     # ------------------------------------------------------------ 只读属性
     @property

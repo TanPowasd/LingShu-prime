@@ -1,15 +1,15 @@
 # COMPAT_MATRIX · ng 兼容门面 × 上游当前 API
 
 生成：`python tools/compat/compat_matrix.py <上游仓根> --md COMPAT_MATRIX.md`（只读上游 AST，不导入、不执行、不复制实现）。
-上游：FuRongJun-1999/lingshu main cb3a6ea（2026-10-11 22:25 +0800；2026-10-13 16:10 CST fetch 时仍为最新）。对照面：`lingshu.core.core`（SpacetimeMemoryEngine / LayeredStore / 数据类型 / 模块函数）→ `lingshu_ng.compat`；`lingshu.core.activation.ActivationEngine` → `lingshu_ng.compat_activation`；`lingshu.core.longterm_gate.LongTermMemoryGate` → `lingshu_ng.compat_gate`。
+上游：FuRongJun-1999/lingshu main cb3a6ea（2026-10-11 22:25 +0800；stab-r3 2026-10-13 生成时仍以此为对照基线）。对照面：`lingshu.core.core`（SpacetimeMemoryEngine / LayeredStore / 数据类型 / 模块函数）→ `lingshu_ng.compat`；`lingshu.core.activation.ActivationEngine` → `lingshu_ng.compat_activation`；`lingshu.core.longterm_gate.LongTermMemoryGate` → `lingshu_ng.compat_gate`。
 
-判定：**覆盖**＝同名可调用，且上游每个形参 ng 都接受、上游可省略的 ng 也可省略、ng 多出的形参都有缺省值；**部分**＝同名存在但签名不满足上一条；**缺失**＝无同名对象。**占位**＝签名覆盖、但只由 `compat_stubs` 动态提供：`not_ready` 返回「未装配」状态字典（与上游公开仓形态下这些器官模块未装配时同形，不伪造成功），`unsupported` 调用即 NotImplementedError。签名覆盖不等于语义逐项相同；有意不同之处写在各门面方法的 docstring。
+判定：**覆盖**＝同名可调用，且上游每个形参 ng 都接受、上游可省略的 ng 也可省略、ng 多出的形参都有缺省值；**部分**＝同名存在但签名不满足上一条；**缺失**＝无同名对象。**占位**＝签名覆盖、但只由 `compat_stubs` 动态提供：缺省返回上游在器官缺失时的同一缺省值（状态字典或空值，不伪造成功；首次调用打一条 WARNING），`LINGSHU_NG_STRICT_UNSUPPORTED=1` 时调用即抛 `NotSupportedError`（NotImplementedError 子类）；说明列为器官类别与上游缺省返回（`lingshu_ng.compat_stubs.UNSUPPORTED_INFO`，运行期见 `capabilities()["compat_methods"]`）。签名覆盖不等于语义逐项相同；有意不同之处写在各门面方法的 docstring。
 
 | 口径 | 读数 |
 |---|---|
 | 签名覆盖（含占位） | 260/260（100.0%） |
-| 真实覆盖（不含占位） | 211/260（81.2%） |
-| 占位 | 49/260（18.8%） |
+| 真实覆盖（不含占位） | 215/260（82.7%） |
+| 占位 | 45/260（17.3%） |
 | 部分 | 0/260（0.0%） |
 | 缺失 | 0/260（0.0%） |
 
@@ -23,61 +23,57 @@
 
 （无）
 
-## 占位（签名覆盖，无真实实现）（49）
+## 占位（签名覆盖，无真实实现）（45）
 
 | 名字 | 上游签名 | 频次 | 说明 |
 |---|---|---|---|
-| `SpacetimeMemoryEngine.wm_simloop` | `(action, params=…)` | 13 | unsupported |
-| `SpacetimeMemoryEngine.annotate_semantics` | `(node_id)` | 6 | not_ready |
-| `SpacetimeMemoryEngine.predict_routes` | `(start_id=…, blindspot_id=…, horizon=…, max_branches=…)` | 6 | not_ready |
-| `SpacetimeMemoryEngine.export_structured_trajectories` | `(limit=…, output_path=…)` | 5 | not_ready |
-| `SpacetimeMemoryEngine.update_prediction_feedback` | `(predicted_node_id, actual_node_id, hit, note=…)` | 5 | not_ready |
-| `SpacetimeMemoryEngine.export_trajectory` | `(cycle_id=…, output_path=…, _limit=…)` | 3 | not_ready |
-| `SpacetimeMemoryEngine.semantic_neighbors` | `(node_id, k=…)` | 3 | not_ready |
-| `SpacetimeMemoryEngine.exploration_budget` | `()` | 2 | not_ready |
-| `SpacetimeMemoryEngine.get_body_capabilities` | `()` | 2 | not_ready |
-| `SpacetimeMemoryEngine.get_emotional_bias` | `(window=…)` | 2 | not_ready |
-| `SpacetimeMemoryEngine.world_generator` | `(action, params=…)` | 2 | unsupported |
-| `SpacetimeMemoryEngine.attention_shift` | `(window=…)` | 1 | not_ready |
-| `SpacetimeMemoryEngine.cognition_cycle` | `()` | 1 | not_ready |
-| `SpacetimeMemoryEngine.cognition_report` | `()` | 1 | not_ready |
-| `SpacetimeMemoryEngine.confirm_standby` | `(approved)` | 1 | not_ready |
-| `SpacetimeMemoryEngine.enter_standby` | `()` | 1 | not_ready |
-| `SpacetimeMemoryEngine.get_next_candidate` | `()` | 1 | not_ready |
-| `SpacetimeMemoryEngine.learn_next` | `(force=…, use_prediction=…)` | 1 | not_ready |
-| `SpacetimeMemoryEngine.learning_impact` | `(window=…)` | 1 | not_ready |
-| `SpacetimeMemoryEngine.mark_contested` | `(node_id, reason)` | 1 | not_ready |
-| `SpacetimeMemoryEngine.mark_stale` | `(node_id, reason)` | 1 | not_ready |
-| `SpacetimeMemoryEngine.pattern_separation_scan` | `(limit=…)` | 1 | not_ready |
-| `SpacetimeMemoryEngine.perceive_image` | `(image_path, conf_threshold=…, importance=…, classes=…)` | 1 | not_ready |
-| `SpacetimeMemoryEngine.query_subgraph` | `(query, max_nodes=…)` | 1 | not_ready |
-| `SpacetimeMemoryEngine.recency_weighted_update` | `(node_id, delta)` | 1 | not_ready |
-| `SpacetimeMemoryEngine.reconstruct_scene` | `(clue, depth=…, max_nodes=…)` | 1 | not_ready |
-| `SpacetimeMemoryEngine.render_semantic_cube_3d` | `(entity_id=…, limit=…)` | 1 | not_ready |
-| `SpacetimeMemoryEngine.render_semantic_map_2d` | `(limit=…)` | 1 | not_ready |
-| `SpacetimeMemoryEngine.resolve_contested` | `(node_id, verdict)` | 1 | not_ready |
-| `SpacetimeMemoryEngine.resolve_crisis` | `(directive, designer_key=…)` | 1 | not_ready |
-| `SpacetimeMemoryEngine.reverify` | `(node_id)` | 1 | not_ready |
-| `SpacetimeMemoryEngine.shortest_path` | `(start_id, end_id, max_depth=…)` | 1 | not_ready |
-| `SpacetimeMemoryEngine.start_lifecycle` | `(interval=…)` | 1 | not_ready |
-| `SpacetimeMemoryEngine.stop_lifecycle` | `(source)` | 1 | not_ready |
-| `SpacetimeMemoryEngine.universe_calibrate` | `()` | 1 | not_ready |
-| `SpacetimeMemoryEngine.adjust_attention_weight` | `(key, value, source, reason, role=…)` | 0 | not_ready |
-| `SpacetimeMemoryEngine.body_devices` | `()` | 0 | not_ready |
-| `SpacetimeMemoryEngine.device_call` | `(name, action, params=…)` | 0 | not_ready |
-| `SpacetimeMemoryEngine.evo_distill_cycle` | `(source_filter=…)` | 0 | not_ready |
-| `SpacetimeMemoryEngine.evo_flywheel_metrics` | `()` | 0 | not_ready |
-| `SpacetimeMemoryEngine.get_prediction_stats` | `()` | 0 | not_ready |
-| `SpacetimeMemoryEngine.get_self_reliability` | `(window=…)` | 0 | not_ready |
-| `SpacetimeMemoryEngine.lifecycle_cycle` | `()` | 0 | not_ready |
-| `SpacetimeMemoryEngine.query_by_semantics` | `(text, limit=…, modality=…)` | 0 | not_ready |
-| `SpacetimeMemoryEngine.run_learning_cycle` | `(input_signal, context=…)` | 0 | not_ready |
-| `SpacetimeMemoryEngine.sync_body_state` | `()` | 0 | not_ready |
-| `SpacetimeMemoryEngine.test_transfer_capability` | `()` | 0 | not_ready |
-| `SpacetimeMemoryEngine.wake_lifecycle` | `()` | 0 | not_ready |
-| `SpacetimeMemoryEngine.world_semantics` | `(action, params=…)` | 0 | unsupported |
+| `SpacetimeMemoryEngine.wm_simloop` | `(action, params=…)` | 13 | world_gen（世界推演 / 生成 / 图像语义）；上游缺省 `{status: simloop_not_ready, error}` |
+| `SpacetimeMemoryEngine.annotate_semantics` | `(node_id)` | 6 | semantic_coords（语义坐标列 / 实体注册表）；上游缺省 `False` |
+| `SpacetimeMemoryEngine.predict_routes` | `(start_id=…, blindspot_id=…, horizon=…, max_branches=…)` | 6 | prediction（预测 / 语义地图）；上游缺省 `{status: v19_not_ready, error}` |
+| `SpacetimeMemoryEngine.update_prediction_feedback` | `(predicted_node_id, actual_node_id, hit, note=…)` | 5 | prediction（预测 / 语义地图）；上游缺省 `{status: v19_not_ready, error}` |
+| `SpacetimeMemoryEngine.semantic_neighbors` | `(node_id, k=…)` | 3 | prediction（预测 / 语义地图）；上游缺省 `[]` |
+| `SpacetimeMemoryEngine.exploration_budget` | `()` | 2 | self_cognition（自我认知）；上游缺省 `1.0` |
+| `SpacetimeMemoryEngine.get_emotional_bias` | `(window=…)` | 2 | self_cognition（自我认知）；上游缺省 `{status: v112_not_ready, error}` |
+| `SpacetimeMemoryEngine.world_generator` | `(action, params=…)` | 2 | world_gen（世界推演 / 生成 / 图像语义）；上游缺省 `{status: gen_not_ready, error}` |
+| `SpacetimeMemoryEngine.attention_shift` | `(window=…)` | 1 | attention（注意力策略的增量接口）；上游缺省 `0.0` |
+| `SpacetimeMemoryEngine.cognition_cycle` | `()` | 1 | self_cognition（自我认知）；上游缺省 `{status: v112_not_ready, error}` |
+| `SpacetimeMemoryEngine.cognition_report` | `()` | 1 | self_cognition（自我认知）；上游缺省 `{status: v112_not_ready, error}` |
+| `SpacetimeMemoryEngine.confirm_standby` | `(approved)` | 1 | lifecycle（生命周期）；上游缺省 `{status: v110_not_ready, error}` |
+| `SpacetimeMemoryEngine.enter_standby` | `()` | 1 | lifecycle（生命周期）；上游缺省 `{status: v110_not_ready, error}` |
+| `SpacetimeMemoryEngine.get_next_candidate` | `()` | 1 | learning_loop（学习闭环）；上游缺省 `None` |
+| `SpacetimeMemoryEngine.learn_next` | `(force=…, use_prediction=…)` | 1 | learning_loop（学习闭环）；上游缺省 `{status: v13_not_ready, error}` |
+| `SpacetimeMemoryEngine.learning_impact` | `(window=…)` | 1 | self_cognition（自我认知）；上游缺省 `{status: v112_not_ready, error}` |
+| `SpacetimeMemoryEngine.mark_contested` | `(node_id, reason)` | 1 | flywheel（进化飞轮）；上游缺省 `False` |
+| `SpacetimeMemoryEngine.mark_stale` | `(node_id, reason)` | 1 | flywheel（进化飞轮）；上游缺省 `False` |
+| `SpacetimeMemoryEngine.pattern_separation_scan` | `(limit=…)` | 1 | scene_memory（模式分离 / 场景重建）；上游缺省 `{created: 0, error}` |
+| `SpacetimeMemoryEngine.perceive_image` | `(image_path, conf_threshold=…, importance=…, classes=…)` | 1 | vision（视觉闭环）；上游缺省 `{status: vision_unavailable, error}` |
+| `SpacetimeMemoryEngine.query_subgraph` | `(query, max_nodes=…)` | 1 | flywheel（进化飞轮）；上游缺省 `{query, nodes: {}, edges: []}` |
+| `SpacetimeMemoryEngine.recency_weighted_update` | `(node_id, delta)` | 1 | flywheel（进化飞轮）；上游缺省 `False` |
+| `SpacetimeMemoryEngine.reconstruct_scene` | `(clue, depth=…, max_nodes=…)` | 1 | scene_memory（模式分离 / 场景重建）；上游缺省 `{scene: [], error}` |
+| `SpacetimeMemoryEngine.render_semantic_cube_3d` | `(entity_id=…, limit=…)` | 1 | prediction（预测 / 语义地图）；上游缺省 `{status: v19_not_ready, error}` |
+| `SpacetimeMemoryEngine.render_semantic_map_2d` | `(limit=…)` | 1 | prediction（预测 / 语义地图）；上游缺省 `{status: v19_not_ready, error}` |
+| `SpacetimeMemoryEngine.resolve_contested` | `(node_id, verdict)` | 1 | flywheel（进化飞轮）；上游缺省 `False` |
+| `SpacetimeMemoryEngine.resolve_crisis` | `(directive, designer_key=…)` | 1 | lifecycle（生命周期）；上游缺省 `设计者密钥无效 → DesignerRequired(PermissionError)；否则 {status: v110_not_ready, error}` |
+| `SpacetimeMemoryEngine.reverify` | `(node_id)` | 1 | flywheel（进化飞轮）；上游缺省 `False` |
+| `SpacetimeMemoryEngine.shortest_path` | `(start_id, end_id, max_depth=…)` | 1 | flywheel（进化飞轮）；上游缺省 `[]` |
+| `SpacetimeMemoryEngine.start_lifecycle` | `(interval=…)` | 1 | lifecycle（生命周期）；上游缺省 `{status: v110_not_ready, error}` |
+| `SpacetimeMemoryEngine.stop_lifecycle` | `(source)` | 1 | lifecycle（生命周期）；上游缺省 `{status: v110_not_ready, error}` |
+| `SpacetimeMemoryEngine.universe_calibrate` | `()` | 1 | flywheel（进化飞轮）；上游缺省 `{status: v111_not_ready, error}` |
+| `SpacetimeMemoryEngine.adjust_attention_weight` | `(key, value, source, reason, role=…)` | 0 | attention（注意力策略的增量接口）；上游缺省 `False` |
+| `SpacetimeMemoryEngine.body_devices` | `()` | 0 | body（身体设备注册表）；上游缺省 `{status: body_not_ready, error, devices: [], health: []}` |
+| `SpacetimeMemoryEngine.device_call` | `(name, action, params=…)` | 0 | body（身体设备注册表）；上游缺省 `{status: body_not_ready, error}` |
+| `SpacetimeMemoryEngine.evo_distill_cycle` | `(source_filter=…)` | 0 | flywheel（进化飞轮）；上游缺省 `{status: v111_not_ready, error}` |
+| `SpacetimeMemoryEngine.evo_flywheel_metrics` | `()` | 0 | flywheel（进化飞轮）；上游缺省 `{status: v111_not_ready, error}` |
+| `SpacetimeMemoryEngine.get_prediction_stats` | `()` | 0 | prediction（预测 / 语义地图）；上游缺省 `{status: v19_not_ready, error}` |
+| `SpacetimeMemoryEngine.get_self_reliability` | `(window=…)` | 0 | self_cognition（自我认知）；上游缺省 `{status: v112_not_ready, error}` |
+| `SpacetimeMemoryEngine.lifecycle_cycle` | `()` | 0 | lifecycle（生命周期）；上游缺省 `{status: v110_not_ready, error}` |
+| `SpacetimeMemoryEngine.query_by_semantics` | `(text, limit=…, modality=…)` | 0 | semantic_coords（语义坐标列 / 实体注册表）；上游缺省 `[]` |
+| `SpacetimeMemoryEngine.run_learning_cycle` | `(input_signal, context=…)` | 0 | learning_loop（学习闭环）；上游缺省 `{status: v13_not_ready, error}` |
+| `SpacetimeMemoryEngine.test_transfer_capability` | `()` | 0 | flywheel（进化飞轮）；上游缺省 `{status: v111_not_ready, error}` |
+| `SpacetimeMemoryEngine.wake_lifecycle` | `()` | 0 | lifecycle（生命周期）；上游缺省 `{status: v110_not_ready, error}` |
+| `SpacetimeMemoryEngine.world_semantics` | `(action, params=…)` | 0 | world_gen（世界推演 / 生成 / 图像语义）；上游缺省 `{status: blindspot, reason, available: []}` |
 
-## 真实覆盖（211）
+## 真实覆盖（215）
 
 | 名字 | 上游签名 | 频次 | 说明 |
 |---|---|---|---|
@@ -197,6 +193,7 @@
 | `LayeredStore.set_meta` | `(key, value)` | 5 |  |
 | `LongTermMemoryGate.__init__` | `(engine, weights=…)` | 5 |  |
 | `SpacetimeMemoryEngine.__init__` | `(db_path=…, identity=…, role=…)` | 5 |  |
+| `SpacetimeMemoryEngine.export_structured_trajectories` | `(limit=…, output_path=…)` | 5 |  |
 | `SpacetimeMemoryEngine.forget_advisor` | `(stale_days=…, low_value=…, archived_imp=…)` | 5 |  |
 | `SpacetimeMemoryEngine.recursive_reflect` | `(claim, expected=…, actual=…, context=…, depth=…, max_depth=…)` | 5 |  |
 | `ActivationEngine.import_workset` | `(snapshot, workset=…)` | 4 |  |
@@ -214,6 +211,7 @@
 | `LayeredStore.update_node_confidence` | `(node_id, delta)` | 3 |  |
 | `LayeredStore.update_skill_confidence` | `(skill_id, delta)` | 3 |  |
 | `SpacetimeMemoryEngine.curiosity_explorer` | `(action, params=…)` | 3 |  |
+| `SpacetimeMemoryEngine.export_trajectory` | `(cycle_id=…, output_path=…, _limit=…)` | 3 |  |
 | `SpacetimeMemoryEngine.get_recent_context` | `(limit=…)` | 3 |  |
 | `SpacetimeMemoryEngine.list_rejected_paths` | `(status=…)` | 3 |  |
 | `SpacetimeMemoryEngine.prune_self_snapshots` | `(keep=…)` | 3 |  |
@@ -232,6 +230,7 @@
 | `STNode.to_row` | `()` | 2 |  |
 | `SpacetimeMemoryEngine.consolidate_learning_result` | `(record)` | 2 |  |
 | `SpacetimeMemoryEngine.get_anchors` | `()` | 2 |  |
+| `SpacetimeMemoryEngine.get_body_capabilities` | `()` | 2 |  |
 | `SpacetimeMemoryEngine.get_open_blindspots` | `()` | 2 |  |
 | `SpacetimeMemoryEngine.get_self_model` | `()` | 2 |  |
 | `SpacetimeMemoryEngine.list_verifier_standards` | `(status=…)` | 2 |  |
@@ -287,6 +286,7 @@
 | `SpacetimeMemoryEngine.set_dedup_config` | `(static_threshold=…, window=…)` | 0 |  |
 | `SpacetimeMemoryEngine.set_embedding_provider` | `(provider)` | 0 |  |
 | `SpacetimeMemoryEngine.set_vision_provider` | `(provider)` | 0 |  |
+| `SpacetimeMemoryEngine.sync_body_state` | `()` | 0 |  |
 | `SpacetimeMemoryEngine.voice_session_log` | `(turn)` | 0 |  |
 | `SpacetimeMemoryEngine.voxel_world` | `(action, params=…)` | 0 |  |
 | `SpacetimeMemoryEngine.vprim_query` | `(action, params=…)` | 0 |  |
@@ -295,7 +295,7 @@
 
 ## 扩展面（stab-r2 起计量，单独汇总）
 
-上游 `lingshu.core` 其余公开模块：`lingshu/core/provenance.py`、`lingshu/core/time_core.py`、`lingshu/core/condition_normalize.py`、`lingshu/core/verdict.py`、`lingshu/core/component_resolver.py`。ng 未提供同名模块，按 `lingshu_ng.compat` 查同名对象。这些是上游较新的内部工具面（来源记录、可信度时间核、条件规范化、部件判定、组件发现），ng 目前没有对应实现：27 项缺失；1 项「部分」是 `lingshu_ng.compat` 里恰有同名对象但签名不同（不是对应实现）。
+上游 `lingshu.core` 其余公开模块：`lingshu/core/provenance.py`、`lingshu/core/time_core.py`、`lingshu/core/condition_normalize.py`、`lingshu/core/verdict.py`、`lingshu/core/component_resolver.py`。ng 未提供同名模块，按 `lingshu_ng.compat` 查同名对象。这些是上游较新的内部工具面（来源记录、可信度时间核、条件规范化、部件判定、组件发现），ng 目前没有对应实现，照实列为缺失。
 
 | 口径 | 读数 |
 |---|---|

@@ -152,6 +152,5 @@ def test_compat_surface_covers_legacy_core_tests():
     for name in ("ConditionSpace", "EdgeType", "MemoryLayer", "STNode", "STEdge", "Role", "cred_step"):
         assert hasattr(compat, name)
     assert e.world3d("status", {})["status"] in ("ok", "world3d_not_ready")   # 委托 ng 世界线（numpy 可选）
-    with pytest.raises(NotImplementedError):
-        e.world_generator("init", {})
+    assert e.world_generator("init", {})["status"] == "gen_not_ready"      # stab-r3：上游缺省（严格模式才抛）
     assert e.evo_flywheel_metrics()["status"] == "v111_not_ready"

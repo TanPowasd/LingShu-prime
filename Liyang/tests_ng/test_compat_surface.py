@@ -60,8 +60,14 @@ def test_vprim_query_and_scene_simulator(eng):
     assert eng.scene_simulator("entity", {"pos": [math.nan, 0, 0]})["status"] == "error"
 
 
+_WM_STATUS = {"wm_simloop": "simloop_not_ready", "world_generator": "gen_not_ready", "world_semantics": "blindspot"}
+
+
 @pytest.mark.parametrize("name", WORLD_MISSING)
-def test_missing_world_components_stay_explicit_stubs(eng, name):
+def test_missing_world_components_return_upstream_default(eng, name, monkeypatch):
+    # stab-r3：与上游模块缺失时的缺省返回一致；严格模式抛 NotSupportedError（NotImplementedError 子类）
+    assert getattr(eng, name)("init", {})["status"] == _WM_STATUS[name]
+    monkeypatch.setenv("LINGSHU_NG_STRICT_UNSUPPORTED", "1")
     with pytest.raises(NotImplementedError):
         getattr(eng, name)("init", {})
 

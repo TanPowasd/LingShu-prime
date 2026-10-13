@@ -49,6 +49,12 @@ class Database:
         self._lazy_ready = not schema.lazy_indexes_missing(self.conn)
 
     @property
+    def schema_version(self) -> "int | None":
+        """库里记录的结构版本（打开时已迁移到 :data:`schema.SCHEMA_VERSION`；结构本就齐全且无标记的库为 None）。"""
+        with self.lock:
+            return schema.stored_version(self.conn)
+
+    @property
     def lazy_ready(self) -> bool:
         """惰性二级索引（S5）是否已建齐——齐则写入时即算 dedup_key，否则免去重写入留空待补。"""
         return self._lazy_ready

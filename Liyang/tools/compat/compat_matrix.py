@@ -152,8 +152,8 @@ def _instance(modname: str, cls_name: str):
 
 
 def _placeholder(modname: str, qual: str):
-    """占位项：名字只由 compat_stubs 的 ``__getattr__`` 提供（NOT_READY 返回「未装配」状态 / UNSUPPORTED 抛
-    NotImplementedError），类上没有真实实现。返回 None（非占位）或占位类别。"""
+    """占位项：名字只由 compat_stubs 的 ``__getattr__`` 提供（返回上游器官缺失时的缺省值；
+    ``LINGSHU_NG_STRICT_UNSUPPORTED=1`` 时抛 NotSupportedError），类上没有真实实现。返回 None（非占位）或占位类别。"""
     from lingshu_ng import compat_stubs
     cls_name, _, meth = qual.partition(".")
     if not meth:
@@ -161,10 +161,8 @@ def _placeholder(modname: str, qual: str):
     cls = getattr(importlib.import_module(modname), cls_name, None)
     if cls is None or inspect.getattr_static(cls, meth, None) is not None:
         return None
-    if meth in compat_stubs.UNSUPPORTED:
+    if meth in compat_stubs.NOT_READY:          # stab-r3：统一语义——返回上游缺省 / 严格模式抛 NotSupportedError
         return "unsupported"
-    if meth in compat_stubs.NOT_READY:
-        return "not_ready"
     return None
 
 
@@ -237,6 +235,14 @@ def summary(rows):
             "partial": sum(r["status"] == "部分" for r in rows), "missing": sum(r["status"] == "缺失" for r in rows)}
 
 
+def _ph_note(r) -> str:
+    if not r.get("placeholder"):
+        return ""
+    from lingshu_ng.compat_stubs import UNSUPPORTED_INFO
+    info = UNSUPPORTED_INFO.get(r["name"].partition(".")[2])
+    return f"{info['organ']}；上游缺省 `{info['upstream_default']}`" if info else r["placeholder"]
+
+
 def to_markdown(rows, upstream_desc: str, ext=None) -> str:
     s = summary(rows)
     pct = lambda k: f"{s[k]}/{s['total']}（{100.0 * s[k] / s['total']:.1f}%）"
@@ -247,8 +253,9 @@ def to_markdown(rows, upstream_desc: str, ext=None) -> str:
            "`lingshu.core.longterm_gate.LongTermMemoryGate` → `lingshu_ng.compat_gate`。", "",
            "判定：**覆盖**＝同名可调用，且上游每个形参 ng 都接受、上游可省略的 ng 也可省略、ng 多出的形参都有缺省值；"
            "**部分**＝同名存在但签名不满足上一条；**缺失**＝无同名对象。**占位**＝签名覆盖、但只由 `compat_stubs` 动态提供："
-           "`not_ready` 返回「未装配」状态字典（与上游公开仓形态下这些器官模块未装配时同形，不伪造成功），"
-           "`unsupported` 调用即 NotImplementedError。签名覆盖不等于语义逐项相同；有意不同之处写在各门面方法的 docstring。", "",
+           "缺省返回上游在器官缺失时的同一缺省值（状态字典或空值，不伪造成功；首次调用打一条 WARNING），"
+           "`LINGSHU_NG_STRICT_UNSUPPORTED=1` 时调用即抛 `NotSupportedError`（NotImplementedError 子类）；"
+           "说明列为器官类别与上游缺省返回（`lingshu_ng.compat_stubs.UNSUPPORTED_INFO`，运行期见 `capabilities()[\"compat_methods\"]`）。签名覆盖不等于语义逐项相同；有意不同之处写在各门面方法的 docstring。", "",
            "| 口径 | 读数 |", "|---|---|",
            f"| 签名覆盖（含占位） | {pct('covered_incl_placeholder')} |",
            f"| 真实覆盖（不含占位） | {pct('covered_real')} |",
@@ -264,7 +271,7 @@ def to_markdown(rows, upstream_desc: str, ext=None) -> str:
             return
         out.extend(["| 名字 | 上游签名 | 频次 | 说明 |", "|---|---|---|---|"])
         for r in rs:
-            note = "；".join(r["diffs"]) if r["diffs"] else (r["placeholder"] or "")
+            note = "；".join(r["diffs"]) if r["diffs"] else _ph_note(r)
             out.append(f"| `{r['name']}` | `{r['sig']}` | {r['freq']} | {note} |")
         out.append("")
     table("缺失", lambda r: r["status"] == "缺失")

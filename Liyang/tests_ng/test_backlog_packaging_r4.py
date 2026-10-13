@@ -29,7 +29,9 @@ def test_253_every_third_party_import_declared():
     extras = PP["project"]["optional-dependencies"]
     declared = set().union(*(_names(v) for v in extras.values()))
     missing = set()
-    for pkg in ("lingshu_ng", "lingshu"):
+    # Liyang/ 发布目录自 rel-v1.18 起打包的是 lingshu-ng（只含 lingshu_ng）：只核对它；上游 lingshu 定义核对两包
+    pkgs = ("lingshu_ng",) if PP["project"]["name"] == "lingshu-ng" else ("lingshu_ng", "lingshu")
+    for pkg in pkgs:
         for f in (ROOT / pkg).rglob("*.py"):
             for node in ast.walk(ast.parse(f.read_text(encoding="utf-8"))):
                 mods = ([a.name for a in node.names] if isinstance(node, ast.Import)

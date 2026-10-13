@@ -2,7 +2,9 @@
 
 > **插件测评站**（另一条工作线）：见 [`plugin-eval-site/`](plugin-eval-site/README.md) —— 方案 v3.0 端到端验证结果、判分器缺陷与 v2 候选、多场景考卷 C。
 
-> **2026-10-13 增量升级 rel-v1.17（当前版本）：依赖结构 · 兼容覆盖 · 多 Python 版本**。不含检索 / 版本链调优，检索与版本链指标对 rel-v1.16 持平（见 CHANGELOG 回归门）。chain/ 内 5 对直接双向依赖清零（共享正则与取值函数逐字下沉 `chain/common`，原名再导出同一对象），`lingshu_ng` 全包直接双向依赖 0 对；兼容门面语义 / 注意力 / 视觉提供者注入 13 个方法由占位转为真实实现（注入后委托，未注入退回值同上游），兼容矩阵真实覆盖 198→**211/260（81.2%）**、占位 62→49；矩阵另计上游 `lingshu.core` 其余 5 个公开模块 28 项（单独汇总：缺失 27、部分 1，照实未实现）；新增 `tools/ci/multi_python.sh`，Python 3.11 / 3.13 各 3116 passed、3 skipped、0 failed。照实：Windows 真机未测；占位仍 49 个。详见 [`CHANGELOG_rel-v1.17.md`](CHANGELOG_rel-v1.17.md)。
+> **2026-10-13 增量升级 rel-v1.18（当前版本）：确定性 · 不支持方法语义 · 打包 · 数据安全 · API 文档**。不含检索 / 版本链调优，检索与版本链指标只作持平门（见 CHANGELOG 回归门）。节点 / 边 id 改为按写入序单调（`lingshu_ng/ids.py`），同分候选「先写入者在前」，版本链与 gen 评测逐题名次不再随运行变化；45 个不支持的兼容方法统一为「返回上游缺省值 + 首次 WARNING」，`LINGSHU_NG_STRICT_UNSUPPORTED=1` 改为抛 `NotSupportedError`，兼容矩阵真实覆盖 **215/260**；发行包改名 **lingshu-ng 1.18.0**，只含 `lingshu_ng`，**不再安装旧 `lingshu/` 包**；库 schema 版本可查，库比代码新时拒绝打开（`SchemaTooNewError`）；新增 API 文档 [`docs/API_ng.md`](docs/API_ng.md)。行为变更：`wm_simloop` / `world_generator` / `world_semantics` 改为返回状态字典，`adjust_attention_weight` 返回 False，`resolve_crisis` 先校验密钥。读数：gen loc_dev r@5 +1 题、r@10 −1 题（p=1），T2Ranking 误用 1 题之差（p=1），其余门逐项相同。照实：semrank 缺省模型目录仍是作者本机路径；Windows 真机未测；占位 45 个、扩展面 28 项未完成。详见 [`CHANGELOG_rel-v1.18.md`](CHANGELOG_rel-v1.18.md)。
+>
+> **2026-10-13 增量升级 rel-v1.17：依赖结构 · 兼容覆盖 · 多 Python 版本**。不含检索 / 版本链调优，检索与版本链指标对 rel-v1.16 持平（见 CHANGELOG 回归门）。chain/ 内 5 对直接双向依赖清零（共享正则与取值函数逐字下沉 `chain/common`，原名再导出同一对象），`lingshu_ng` 全包直接双向依赖 0 对；兼容门面语义 / 注意力 / 视觉提供者注入 13 个方法由占位转为真实实现（注入后委托，未注入退回值同上游），兼容矩阵真实覆盖 198→**211/260（81.2%）**、占位 62→49；矩阵另计上游 `lingshu.core` 其余 5 个公开模块 28 项（单独汇总：缺失 27、部分 1，照实未实现）；新增 `tools/ci/multi_python.sh`，Python 3.11 / 3.13 各 3116 passed、3 skipped、0 failed。照实：Windows 真机未测；占位仍 49 个。详见 [`CHANGELOG_rel-v1.17.md`](CHANGELOG_rel-v1.17.md)。
 >
 > **2026-10-13 增量升级 rel-v1.16：稳定性 · 可复跑 · 兼容性**。不含检索 / 版本链调优，检索与版本链指标对 rel-v1.15 逐项、逐题相同（持平门）。修复粗时钟（Windows 约 15.6 ms）下取「最新帧」可能取错的缺陷（同时间戳按写入序断开）；新增 `capabilities()` 报告可选依赖 / 模型件 / 中文语义通路实际档位与退回，每类退回打一次 WARNING；全包 34 处静默宽 except 改为记日志；非 chain 部分直接双向依赖 3→0；测试间单例 / 环境变量 / 时钟污染隔离，可选依赖导入期异常（如 DLL 被拒）改报 skip，最小环境（只装 pytest）可复跑；兼容门面补上游当前 API 缺口，兼容矩阵 `COMPAT_MATRIX.md`：上游 `core.core` / `core.activation` / `core.longterm_gate` 260 个公开方法，签名覆盖 260/260，**真实覆盖 198/260（76.2%）、占位 62**。照实：Windows 真机与 Python 3.11 / 3.13 未实测（Windows 项为模拟环境读数）；chain/ 内 5 对双向依赖仍在；版本链尾部名次运行间不完全确定（新旧代码都有，指标不受影响）。复跑前置条件与预期读数见 §3「复跑说明」；详见 [`CHANGELOG_rel-v1.16.md`](CHANGELOG_rel-v1.16.md)。
 >
@@ -74,19 +76,27 @@
 cd Liyang
 python3 -m venv .venv && . .venv/bin/activate
 pip install -e ".[full,dev]"      # numpy、Pillow、pytest
+```
+
+API 用法见 [`docs/API_ng.md`](docs/API_ng.md)（安装、两个入口、兼容门面与不支持方法语义、capabilities、异常、环境变量、存储并发与数据安全）。
+
+```bash
+# 只装发行包（rel-v1.18 起包名 lingshu-ng，只含 lingshu_ng）
+pip install ".[embed]"            # 或 ".[full]"；不带 extras 即纯标准库核心
 python -m pytest tests_ng -q
 ```
 
-**依赖分组**（均在 `pyproject.toml` 的 `[project.optional-dependencies]` 里声明）：
+**依赖分组**（rel-v1.18 起，`pyproject.toml` 的 `[project.optional-dependencies]`；发行包 `lingshu-ng` 只含 `lingshu_ng`）：
 
 | 安装方式 | 装什么 | 用途 |
 |---|---|---|
 | `pip install .`（不带 extras） | 无第三方依赖 | 记忆核心 `lingshu_ng`（纯标准库） |
-| `.[world]` / `.[nn]` / `.[gen]` / `.[full]` | `numpy>=2.3.5,<2.6`、`Pillow>=12.2,<13` | `lingshu_ng.world` / `nn` / `gen`，以及 `tests_ng` 中 world/nn 部分 |
+| `.[embed]` | `numpy`、`onnxruntime`、`tokenizers` | 可选语义件（`lingshu_ng.semrank` / `lingshu_ng.embed`）；模型权重不随包发布，需自备并设 `LINGSHU_NG_SEM` |
+| `.[world]` / `.[nn]` / `.[gen]` | `numpy>=2.3.5,<2.6`、`Pillow>=12.2,<13` | `lingshu_ng.world` / `nn` / `gen` |
+| `.[full]` | 以上全部 | 完整环境 |
 | `.[dev]` | `pytest` | 跑测试 |
-| `.[accel]`（可选） | `scipy` | 只用于旧版 `lingshu/core/activation` 的 SciPy CSR 分支（差分对照用）；`tests_ng` 不需要它，§3 实测就是在没装 SciPy 的环境里全过的 |
-| `.[semantic]`（可选，发布副本新增） | `onnxruntime`、`tokenizers` | ng 可选语义第二路 `lingshu_ng/embed`。另需自备 bge 系 ONNX 模型（如 HuggingFace `Xenova/bge-base-zh-v1.5` 的 `onnx/model_quantized.onnx`），设 `LINGSHU_NG_EMBED_MODEL=<模型目录>` 后引擎构造时自动注入；不设则完全不生效，默认行为不变 |
-| `.[data]` / `.[diffusion]`（可选） | `pyarrow` / `torch`、`diffusers` | 只用于旧版 `lingshu/` 里的 CIFAR 读取与扩散研究脚本，ng 不用 |
+
+rel-v1.17 及以前的 `accel` / `semantic` / `data` / `diffusion` 分组属于旧 `lingshu/` 包，已随旧包一起移出发行包（`semantic` 由 `embed` 取代）。
 
 **本快照（ng@875d838）实测**：在本发布目录内（不含上游 `tests/`）跑 `python -m pytest tests_ng -q`，**2797 passed, 1 skipped**，约 41 s。这次用的是已装 numpy/Pillow/SciPy/pytest 的开发环境，不是干净 venv。
 
@@ -108,7 +118,7 @@ Windows 上的已知差异（粗时钟、onnxruntime DLL 加载失败）已用�
 | 项 | 最小环境 | 完整环境 |
 |---|---|---|
 | Python | ≥ 3.11 | ≥ 3.11 |
-| 安装 | `pip install -e ".[dev]"`（只有 pytest） | `pip install -e ".[full,dev,semantic]"`（numpy、Pillow、pytest、onnxruntime、tokenizers） |
+| 安装 | `pip install -e ".[dev]"`（只有 pytest） | `pip install -e ".[full,dev]"`（numpy、Pillow、pytest、onnxruntime、tokenizers；rel-v1.17 及以前写作 `.[full,dev,semantic]`） |
 | 模型 | 不需要；建议设 `LINGSHU_NG_SEM=off` 明确关闭 | 自备 ONNX 模型目录（权重不随仓库发布），设 `LINGSHU_NG_SEM=<模型目录>` |
 
 `LINGSHU_NG_SEM` 指向的模型目录结构（缺哪个件，哪个件退回，其余不受影响）：
@@ -148,7 +158,7 @@ LINGSHU_NG_SEM=off python -m pytest tests_ng -q -rs
 
 # 完整环境：装齐可选依赖并提供模型目录
 python3 -m venv .venv-full && . .venv-full/bin/activate
-pip install -e ".[full,dev,semantic]"
+pip install -e ".[full,dev]"
 LINGSHU_NG_SEM=/path/to/models python -m pytest tests_ng -q -rs
 # 预期：3113 passed（0 failed、0 skipped；需 4 个模型件齐全，缺哪个按上表多出对应 skip）
 ```
@@ -254,7 +264,7 @@ python3 evalsuite_hmb/metrics_r1.py                   # 检索轨读数（零 LL
 怎么读：
 
 - **默认配置**（纯词面，零依赖）只是**略超** BM25（cid 0.680 对 0.668），差距在 92 题的噪声量级内；须排除句混入比 BM25 差；难矛盾对 0/9。
-- **语义第二路默认关闭**。开启方式：装 `.[semantic]`，自行从 HuggingFace 下载 `Xenova/bge-small-zh-v1.5` 或 `Xenova/bge-base-zh-v1.5`（`onnx/model_quantized.onnx`，约 24 MB / 103 MB；本目录**不附带模型**），设环境变量 `LINGSHU_NG_EMBED_MODEL=<模型目录>`。
+- **语义第二路默认关闭**。开启方式：装 `.[embed]`（rel-v1.17 及以前为 `.[semantic]`），自行从 HuggingFace 下载 `Xenova/bge-small-zh-v1.5` 或 `Xenova/bge-base-zh-v1.5`（`onnx/model_quantized.onnx`，约 24 MB / 103 MB；本目录**不附带模型**），设环境变量 `LINGSHU_NG_EMBED_MODEL=<模型目录>`。
 - 开启后 cid、原句、须排除三项都超过 BM25；bge-base 在难 9 对上到 3/9（BM25 2/9），但这一项刚到线：按批编码的另一次运行是 4/9，向量的微小扰动就会让一块进出前 10。
 - 代价是延迟和依赖：查询中位从 5.1 ms 升到 13 ms（small）/ 45.6 ms（base），BM25 是 0.19 ms；写入后要在后台线程补齐向量编码（bge-base 约 0.6 s/长块 CPU）。查询 <10 ms 的目标在 CPU 模型路线上**没有达到**。
 - 难 9 对用的是我们从公开 cards 构造的代理清单（作者的 9 对未公开），BM25 的 2/9 已归因于标点二元组的分词巧合（见 `ITER_HMBQ.md`）。
@@ -377,9 +387,9 @@ r3 s0 总分（自建 HARD 榜，题目与判分由我们设计）：v1 规则 n
   - README §3 的快速开始改为 `pip install -e ".[full,dev]"`，并列出全部可选依赖分组。原 README 写的「激活对照测试需要 scipy」不准确，已更正：`tests_ng` 在没有 SciPy 的环境里全部通过。
   - 在 `/tmp` 新建干净 venv，逐字执行快速开始：1978 passed、1 skipped（即上面这条），另做了非 editable 安装与无 extras 安装的导入/冒烟检查（§3）。
 - **仍存在的局限**：
-  - 包名沿用上游的 `lingshu`，安装时会同时装入旧版副本 `lingshu/` 与 `lingshu_ng/`。不要装进已经装了上游 `lingshu` 的环境，否则会互相覆盖。
+  - （rel-v1.18 已解决）包名原先沿用上游的 `lingshu` 并同时装入旧版副本 `lingshu/`；现在发行包为 `lingshu-ng`，只含 `lingshu_ng`，可与上游 `lingshu` 并存。
   - 意图守卫（`tests_ng/intent/`）与上面那条 compat 表面测试需要上游 `tests/`，本目录不收录。
-  - `semantic` extra 只声明包名、不设版本区间，未进入已测矩阵；实测仅确认 onnxruntime 1.31.0 / tokenizers 0.23.2 可安装，且未设模型时不影响测试。
+  - （rel-v1.18）`semantic` extra 已由 `embed` 取代，带版本区间（onnxruntime>=1.31,<2、tokenizers>=0.23,<1）。
 
 ## 7. 许可
 

@@ -33,6 +33,7 @@ from .semindex import SemanticIndex
 from .self_model import SelfStore
 from .skills import SkillBook
 from .store import Store
+from .ids import new_id
 from .types import (CausalChain, ConditionSpace, Edge, EdgeType, MemoryLayer, Node, Role,
                     WriteResult, now)
 
@@ -46,8 +47,8 @@ _LAYER_DEFAULTS = {
 
 
 def _uid(prefix: str) -> str:
-    # 与 uuid4().hex[:12] 同分布（uuid4 的版本/变体位在第 13 位之后）：48 位密码学随机、小写十六进制
-    return f"{prefix}_{os.urandom(6).hex()}"
+    # stab-r3：按写入序单调（同分断开 = 先写入者在前，可复现）；旧版为 48 位随机十六进制
+    return new_id(prefix)
 
 
 _AXES = ("x", "y", "z")
@@ -143,7 +144,8 @@ class MemoryEngine:
         from .capabilities import capabilities as _caps
         out = _caps(self.retriever.assoc)
         out["engine"] = {"semantic_provider": self.semantic is not None, "semantic_error": self.semantic_error,
-                         "neural_error": self.neural_error, "chain": self.chain is not None}
+                         "neural_error": self.neural_error, "chain": self.chain is not None,
+                         "schema_version": self.store.db.schema_version}
         return out
 
     def set_reranker(self, cross=None, enable: bool = True, **params) -> None:

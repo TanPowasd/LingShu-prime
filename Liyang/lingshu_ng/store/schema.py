@@ -14,13 +14,33 @@
 """
 from __future__ import annotations
 
+import os
 import sqlite3
 from typing import Dict, Iterable, List, Sequence, Set, Tuple
 
-__all__ = ["SCHEMA_VERSION", "TABLES", "INDEXES", "LAZY_INDEXES", "PENDING_KEY", "KEY_MISSING", "lazy_indexes_missing", "ensure_lazy_indexes", "TRIGGERS", "columns_of", "missing_parts", "migrate",
+__all__ = ["SchemaTooNewError", "stored_version", "ALLOW_NEWER_ENV", "SCHEMA_VERSION", "TABLES", "INDEXES", "LAZY_INDEXES", "PENDING_KEY", "KEY_MISSING", "lazy_indexes_missing", "ensure_lazy_indexes", "TRIGGERS", "columns_of", "missing_parts", "migrate",
            "existing_tables", "DERIVED_TABLES"]
 
 SCHEMA_VERSION = 3
+#: 允许打开「比本代码新」的库的逃生口（只在确认新版本只做了追加式变更时使用）
+ALLOW_NEWER_ENV = "LINGSHU_NG_ALLOW_NEWER_SCHEMA"
+
+
+class SchemaTooNewError(RuntimeError):
+    """库的 ``_schema_version`` 高于本代码的 :data:`SCHEMA_VERSION`（由更新版本写出）。拒绝打开，避免旧代码
+    按旧结构写入新库（新列缺值、触发器被降级重建）。设 ``LINGSHU_NG_ALLOW_NEWER_SCHEMA=1`` 可强制打开。"""
+
+
+def stored_version(conn: sqlite3.Connection) -> "int | None":
+    """库里记录的结构版本（``engine_meta._schema_version``）；无表 / 无记录 / 非整数 ⇒ None（只读）。"""
+    try:
+        row = conn.execute("SELECT value FROM engine_meta WHERE key='_schema_version'").fetchone()
+    except sqlite3.OperationalError:          # 新库或上游旧库尚无 engine_meta 表
+        return None
+    try:
+        return int(row[0]) if row is not None else None
+    except (TypeError, ValueError):
+        return None
 
 Column = Tuple[str, str]
 
@@ -240,9 +260,13 @@ def migrate(conn: sqlite3.Connection) -> Dict[str, List]:
 
     唯一索引建立前先清理历史重复行（flywheel_reuse 旧库可能已有 #208 的重复计数）。
     """
+    v = stored_version(conn)
+    if v is not None and v > SCHEMA_VERSION and os.environ.get(ALLOW_NEWER_ENV, "").strip() not in ("1", "true", "yes", "on"):
+        raise SchemaTooNewError(f"库结构版本 {v} 高于本代码支持的 {SCHEMA_VERSION}（由更新版本的 lingshu_ng 写出）；"
+                                f"请升级 lingshu_ng，或确认兼容后设 {ALLOW_NEWER_ENV}=1 强制打开")
     gap = missing_parts(conn)
     if not any(gap.values()):
-        return gap
+        return gap                                # 结构齐全 ⇒ 零写入（多进程只读启动；无版本标记的库下次补齐时写）
     conn.execute("BEGIN IMMEDIATE")
     try:
         if gap["derived"]:

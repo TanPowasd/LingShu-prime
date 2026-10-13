@@ -18,7 +18,7 @@ from .assoc import AssocConfig
 
 _log = logging.getLogger(__name__)
 
-__all__ = ["capabilities", "semantic_tier", "probe_dependency"]
+__all__ = ["capabilities", "semantic_tier", "probe_dependency", "compat_methods"]
 
 _DEPS = ("numpy", "onnxruntime", "tokenizers", "PIL")
 
@@ -67,3 +67,13 @@ def capabilities(cfg: Optional[AssocConfig] = None) -> Dict[str, Any]:
         "semantic_tier": semantic_tier(cfg, sc, em, cs),
         "fallbacks": diag.fallbacks(),
     }
+
+
+def compat_methods() -> Dict[str, Dict[str, Any]]:
+    """兼容门面 ``SpacetimeMemoryEngine`` 每个公开方法的支持状态（不构造引擎）：
+    ``{"status": "supported"}``，或 ``{"status": "unsupported", "on_call", "organ", "upstream_default", "reason"}``。
+    ``on_call`` 为 ``upstream_default``（返回上游缺省值）或 ``raise NotSupportedError``（``LINGSHU_NG_STRICT_UNSUPPORTED=1``）。
+    与 ``SpacetimeMemoryEngine(...).capabilities()["compat_methods"]`` 相同。"""
+    from .compat_engine import SpacetimeMemoryEngine
+    from .compat_stubs import support_table
+    return support_table(SpacetimeMemoryEngine)

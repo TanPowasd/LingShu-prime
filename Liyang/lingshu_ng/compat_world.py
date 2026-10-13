@@ -6,8 +6,8 @@
     委托 ``lingshu_ng.world.compat``（World3D、VPrim、SceneSimulator，z-buffer 渲染、截断步长等修复随之生效）。
   * 模拟 / 世界模型 6 个（voxel_world / spacetime_consistency / world_model / world_learner /
     curiosity_explorer / seven_layer_loop）在 :mod:`lingshu_ng.compat_world_sim`；
-  * ng 世界线尚无对应模块的 3 个（wm_simloop / world_generator / world_semantics）保持桩
-    （compat_stubs.WORLD_MISSING，NotImplementedError），不伪造成功、不回落旧 ``lingshu.world``。
+  * ng 世界线尚无对应模块的 3 个（wm_simloop / world_generator / world_semantics）不支持：返回上游模块缺失时的
+    缺省状态字典（compat_stubs.WORLD_MISSING；严格模式抛 NotSupportedError），不伪造成功、不回落旧 ``lingshu.world``。
   * ng 世界线依赖 numpy/PIL；不可导入时返回旧版同名的 ``*_not_ready`` 状态字典。
 不变量：这里的方法不写库；参数中的数值经 isfinite 校验，非法时返回 ``status=error``。
 """

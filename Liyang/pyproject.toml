@@ -1,39 +1,41 @@
+# Liyang/ 发布目录的打包定义（stab-r3 #3）：可安装的发行包是 lingshu_ng（灵枢记忆引擎重写版）。
+# 源文件：wt-stab release/Liyang/pyproject.toml，发布时复制为 Liyang/pyproject.toml。
+# rel-v1.17 及以前本文件沿用上游 lingshu 身体侧包定义（name="lingshu"，同时装入旧包副本 lingshu/）；
+# 自 rel-v1.18 起只打包 lingshu_ng，旧包副本 lingshu/ 只用于仓内差分测试，不进发行包（避免与上游 lingshu 冲突）。
 [build-system]
-requires = ["setuptools>=77"]  # #237：PEP 639 SPDX license 字符串
+requires = ["setuptools>=77"]  # PEP 639 SPDX license 字符串
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "lingshu"
-version = "0.0.1"
-description = "灵枢 · 完整 AI 生命载体（灵×脑×身）——身体侧代码主体：存算一体 / 世界模型 / 自研神经网络 / 图像生成"
+name = "lingshu-ng"
+dynamic = ["version"]          # 唯一来源：lingshu_ng.__version__（= CHANGELOG_rel-vX.Y 的 X.Y.0）
+description = "灵枢记忆引擎重写版（lingshu_ng）：零 LLM 写入、原文召回、核心纯标准库；可选本地 ONNX 语义件"
 readme = "README.md"
-requires-python = ">=3.11"  # #209：extras 下界 numpy>=2.3.5 只有 cp311+ wheel
-license = "MIT"  # #237：弃用的表格写法改 SPDX 表达式
+requires-python = ">=3.11"     # 实测 3.11 / 3.12 / 3.13（tools/ci/multi_python.sh）
+license = "MIT"
 license-files = ["LICENSE"]
-dependencies = []
+dependencies = []              # 核心纯标准库：不装任何 extras 即可构造引擎、写入、召回
 
 [project.optional-dependencies]
-# 轻核承诺：core 纯标准库（不装任何 extras 也可运行）
-# 版本区间依据＝2026-10-08 实测矩阵（Python 3.12.x：numpy 2.3.5/2.4.2/2.5.3 · Pillow 12.2.0/12.3.0），
-# 区间外未测不承诺（外部报告 issue #4）；本发布目录的安装与依赖说明见 Liyang/README.md §3。
-# world 的 render()（ng world.compat / 旧 world3d 等）用 Pillow（#253）
+# 版本区间依据实测（Python 3.12.15：onnxruntime 1.31.0 · tokenizers 0.23.3 · numpy 2.5.4 · Pillow 12.3.0；
+# numpy 2.3.5/2.4.2、Pillow 12.2.0 见上游 2026-10-08 矩阵）。区间外未测不承诺。
+# embed：中英文可选语义件（交叉编码重排 / 稠密向量，lingshu_ng.semrank、lingshu_ng.embed）。模型权重不随包发布，
+#        需自备 bge 系 ONNX 模型目录（见 docs/API_ng.md「可选依赖」）；缺依赖或缺模型时逐位退回无模型路径。
+embed = ["numpy>=2.3.5,<2.6", "onnxruntime>=1.31,<2", "tokenizers>=0.23,<1"]
+# world / nn / gen：ng 世界线、自研神经网络与图像生成重写（numpy；渲染用 Pillow）
 world = ["numpy>=2.3.5,<2.6", "Pillow>=12.2,<13"]
 nn = ["numpy>=2.3.5,<2.6", "Pillow>=12.2,<13"]
 gen = ["numpy>=2.3.5,<2.6", "Pillow>=12.2,<13"]
-full = ["numpy>=2.3.5,<2.6", "Pillow>=12.2,<13"]
+full = ["numpy>=2.3.5,<2.6", "Pillow>=12.2,<13", "onnxruntime>=1.31,<2", "tokenizers>=0.23,<1"]
 dev = ["pytest"]
-# 可选能力面（#253）：未进已测矩阵，只声明包名不设区间、不进 full。accel：旧 core/activation 的 SciPy CSR
-# 分支；data：旧 nn/hex_train.load_cifar10_parquet；diffusion：旧 gen/hexgen_multi_seed.gen。
-accel = ["scipy"]
-data = ["pyarrow"]
-diffusion = ["torch", "diffusers"]
-# 发布副本新增（Liyang/，ng 源仓库未改）：ng 可选语义第二路 lingshu_ng/embed（ONNX 编码器）。
-# 只声明包名不设区间、不进 full；另需自备 bge 系 ONNX 模型目录并设 LINGSHU_NG_EMBED_MODEL，缺依赖时引擎退回纯词面。
-semantic = ["onnxruntime", "tokenizers"]
+
+[project.urls]
+Source = "https://github.com/TanPowasd/LingShu-prime/tree/main/Liyang"
+Upstream = "https://github.com/FuRongJun-1999/lingshu"
+
+[tool.setuptools.dynamic]
+version = { attr = "lingshu_ng.__version__" }
 
 [tool.setuptools.packages.find]
-include = ["lingshu*"]
-
-[tool.setuptools.package-data]
-# nn 模块附属固化物（白箱固化产物，JSON 可直读；见 docs/intake/body-export-v0.2/）
-"lingshu.nn" = ["assets/*.json"]
+include = ["lingshu_ng", "lingshu_ng.*"]
+exclude = ["lingshu_ng.*.__pycache__"]
