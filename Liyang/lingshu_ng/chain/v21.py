@@ -17,13 +17,12 @@ SIG = os.environ.get("LINGSHU_NG_CHAIN_V21_SIG", "1") != "0"
 FAM = set((os.environ.get("LINGSHU_NG_CHAIN_V21_FAM", "B,G,L") or "").replace(" ", "").split(",")) - {""}
 
 import re
+from .common import _NONASSERT, _DISP  # noqa: F401,E501（stab-r2：共享工具下沉 chain/common，原名再导出同一对象）
 #: B 的收紧门（待查队列重试比段内窗口抽取晚、锚点更多，宁漏不错）：G 逗号分隔子开关，缺省全开
 BGATE = set((os.environ.get("LINGSHU_NG_CHAIN_V21_BGATE", "E,S,K,O,X,H") or "").replace(" ", "").split(",")) - {""}
 
 
 #: H：重试句里有转述/传闻/揣测/反事实/否定类非断言信号 ⇒ 不重试（按句型定义写，未看 R21 句子）
-_NONASSERT = re.compile(r"据说|听说|传闻|据传|传言|有人说|有人提|提议|建议|猜|好像|似乎|估计|大概|恐怕|也许|或许|要是|如果|假如|万一|本来|本该|本应|原本可以|差点|险些|"
-                        r"并没|并未|没有改|没改|没变|未改|不会|不是|没定|还没|尚未|吗|么|呢|是否|[?？]")
 
 
 def retry_ok(L, ns: str, a: dict, names, sent: str = "") -> bool:
@@ -50,7 +49,6 @@ def retry_ok(L, ns: str, a: dict, names, sent: str = "") -> bool:
     return True
 
 
-_DISP = re.compile(r"争议|争论|分歧|之争|之议|裁定|尘埃落定|落幕|争到最后|吵了|(?<![A-Za-z_])(?:dispute\w*|ruling|verdict)(?![A-Za-z_])", re.I)
 
 
 def retry_keep(a: dict, prior) -> bool:

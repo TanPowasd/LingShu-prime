@@ -32,6 +32,16 @@ SURFACES = [
     ("lingshu/core/longterm_gate.py", "lingshu_ng.compat_gate", ["LongTermMemoryGate"]),
 ]
 
+#: stab-r2 扩展面（只计量、单独汇总，不并入上面三面的 260 口径，便于与历史读数对比）：上游 lingshu.core 其余公开模块。
+#: ng 没有同名模块时按 lingshu_ng.compat 查找同名对象（找不到即「缺失」）。
+SURFACES_EXT = [
+    ("lingshu/core/provenance.py", "lingshu_ng.compat", ["Provenance"]),
+    ("lingshu/core/time_core.py", "lingshu_ng.compat", []),
+    ("lingshu/core/condition_normalize.py", "lingshu_ng.compat", []),
+    ("lingshu/core/verdict.py", "lingshu_ng.compat", []),
+    ("lingshu/core/component_resolver.py", "lingshu_ng.compat", ["ComponentDiscoveryWarning"]),
+]
+
 
 def _params(fn: ast.FunctionDef, is_method: bool):
     a = fn.args
@@ -203,9 +213,9 @@ def judge(up, obj, kind):
     return ("覆盖" if not diffs else "部分"), diffs
 
 
-def build(root: str):
+def build(root: str, surfaces=None):
     rows = []
-    for rel, modname, classes in SURFACES:
+    for rel, modname, classes in (surfaces or SURFACES):
         api = upstream_api(root, rel, classes)
         freq = call_freq(root, {k.rpartition(".")[2] for k in api})
         for qual, up in sorted(api.items()):
@@ -227,7 +237,7 @@ def summary(rows):
             "partial": sum(r["status"] == "部分" for r in rows), "missing": sum(r["status"] == "缺失" for r in rows)}
 
 
-def to_markdown(rows, upstream_desc: str) -> str:
+def to_markdown(rows, upstream_desc: str, ext=None) -> str:
     s = summary(rows)
     pct = lambda k: f"{s[k]}/{s['total']}（{100.0 * s[k] / s['total']:.1f}%）"
     out = ["# COMPAT_MATRIX · ng 兼容门面 × 上游当前 API", "",
@@ -261,18 +271,34 @@ def to_markdown(rows, upstream_desc: str) -> str:
     table("部分", lambda r: r["status"] == "部分")
     table("占位（签名覆盖，无真实实现）", lambda r: r["status"] == "覆盖" and r["placeholder"])
     table("真实覆盖", lambda r: r["status"] == "覆盖" and not r["placeholder"])
+    if ext:
+        e = summary(ext)
+        out.extend(["## 扩展面（stab-r2 起计量，单独汇总）", "",
+                    "上游 `lingshu.core` 其余公开模块：" + "、".join(f"`{r}`" for r, _, _ in SURFACES_EXT)
+                    + "。ng 未提供同名模块，按 `lingshu_ng.compat` 查同名对象。这些是上游较新的内部工具面"
+                    "（来源记录、可信度时间核、条件规范化、部件判定、组件发现），ng 目前没有对应实现，照实列为缺失。", "",
+                    f"| 口径 | 读数 |", "|---|---|",
+                    f"| 签名覆盖（含占位） | {e['covered_incl_placeholder']}/{e['total']} |",
+                    f"| 真实覆盖 | {e['covered_real']}/{e['total']} |",
+                    f"| 部分 | {e['partial']}/{e['total']} |",
+                    f"| 缺失 | {e['missing']}/{e['total']} |", "",
+                    "| 名字 | 上游位置 | 上游签名 | 频次 | 状态 |", "|---|---|---|---|---|"])
+        for r in sorted(ext, key=lambda r: (r["upstream"].split(":")[0], -r["freq"], r["name"])):
+            out.append(f"| `{r['name']}` | `{r['upstream'].split(':')[0]}` | `{r['sig']}` | {r['freq']} | {r['status']} |")
+        out.append("")
     return "\n".join(out)
 
 
 def main(argv):
     root = argv[1]
     rows = build(root)
+    ext = build(root, SURFACES_EXT)
     if "--json" in argv:
         json.dump(rows, open(argv[argv.index("--json") + 1], "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     if "--md" in argv:
         desc = argv[argv.index("--desc") + 1] if "--desc" in argv else root
-        open(argv[argv.index("--md") + 1], "w", encoding="utf-8").write(to_markdown(rows, desc))
-    print(json.dumps(summary(rows), ensure_ascii=False))
+        open(argv[argv.index("--md") + 1], "w", encoding="utf-8").write(to_markdown(rows, desc, ext))
+    print(json.dumps(summary(rows), ensure_ascii=False), json.dumps({"ext": summary(ext)}, ensure_ascii=False))
     return rows
 
 

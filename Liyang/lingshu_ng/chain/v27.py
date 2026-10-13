@@ -69,9 +69,9 @@ def bad_ent(ent) -> bool:
     """A：E 放出来的主体是光杆类名或叙事框架 ⇒ True。"""
     if "A" not in FAM or not ent:
         return False
-    from . import v26 as _v26
+    from . import common as _cm
     b = str(ent).split("·")[0]
-    return bool(_BARE.match(b) or _FX.search(b) or _v26.frame(ent))
+    return bool(_BARE.match(b) or _FX.search(b) or _cm.frame(ent))
 
 
 def appos(t0: str, k: int) -> bool:

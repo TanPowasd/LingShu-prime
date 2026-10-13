@@ -36,14 +36,14 @@ def _blank(t: str, spans):
 
 
 def free_win(L, sent: str, ns: str, names, cattrs, cold: bool = False):
-    from . import v16 as _v16, v17 as _v17, v21 as _v21
+    from . import v16 as _v16, v17 as _v17, common as _cm
     from . import sav
     raw = (sent or "").strip()
     if not raw or len(raw) > 200:
         return None
     t = raw.translate(_v16._TR)
     t = re.sub(r"(?<=\d),(?=\d{3}(?!\d))", "", t).rstrip("。！!；;").strip()
-    if _v16._HYPO.search(t) or _v21._NONASSERT.search(t):
+    if _v16._HYPO.search(t) or _cm._NONASSERT.search(t):
         return None
     if _v16._PAST.search(t) and not sav._NOWCHG.search(_v16._PAST.sub("", t)):
         return None
@@ -110,7 +110,7 @@ def free_win(L, sent: str, ns: str, names, cattrs, cold: bool = False):
     if not _v17.win_ok(t, a):
         return None
     prev = (L._by_key.get((ns, e, attr)) or [None])[-1]
-    a["op"] = a["op_v21"] = "resolve" if (prev is not None and prev.op == "unresolve" and vv[0] in (prev.value, prev.alt)) or _v21._DISP.search(t) else "set"
+    a["op"] = a["op_v21"] = "resolve" if (prev is not None and prev.op == "unresolve" and vv[0] in (prev.value, prev.alt)) or _cm._DISP.search(t) else "set"
     a["fam"] = fam
     return a
 

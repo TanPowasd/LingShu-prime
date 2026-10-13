@@ -14,6 +14,8 @@ import os
 import re
 from typing import List, Optional
 
+from .common import _RETIRE, _UNDEC  # stab-r2：原自 v16 延迟导入
+
 V17 = os.environ.get("LINGSHU_NG_CHAIN_V17", "1").strip().lower() not in ("0", "false", "no", "off")
 WIN = os.environ.get("LINGSHU_NG_CHAIN_V17_WIN", "1") != "0"
 ENT = os.environ.get("LINGSHU_NG_CHAIN_V17_ENT", "1") != "0"
@@ -38,7 +40,6 @@ def win_ok(sent: str, res: Optional[dict]) -> bool:
         if x and a and (a in x or x in a):                 # 取值里含属性名本身（「位置是信息位置」）
             return False
     if RETD and res.get("op") == "retire" and a:
-        from .v16 import _RETIRE
         k = t.find(a)
         m = _RETIRE.search(t, k + len(a)) if k >= 0 else None
         if not m or m.start() - (k + len(a)) > RETD:       # 作废词须紧跟属性（≤RETD 字）
@@ -128,12 +129,16 @@ _RESDEF = re.compile(r"有(?:了)?结论|结论(?:是|为|已|：|:)|定论|定�
 
 
 def undecided(body: str) -> bool:
-    from .v16 import _UNDEC
     return bool(_UNDEC.search(body) or _UNDEC2.search(body))
 
 
-def two_vals(L, ev, ns: str, names: List[str]) -> bool:
-    """未决信号 + 两值信号（含「A 还是 B」「A 与 B」）且属性名后能取到两个同族取值 ⇒ 改判 unresolve（按句中出现序）。"""
+def two_vals(L, ev, ns: str, names: List[str], vals=None) -> bool:
+    """未决信号 + 两值信号（含「A 还是 B」「A 与 B」）且属性名后能取到两个同族取值 ⇒ 改判 unresolve（按句中出现序）。
+
+    ``vals``：取值候选函数（v16 主干调用时传入 ``v16._vals``；stab-r2 起由调用方注入，本模块不再反向导入 v16）。
+    未传时不改判（返回 False）。"""
+    if vals is None:
+        return False
     if not (V17 and TWO) or ev.op not in ("set", "resolve") or not ev.attr:
         return False
     q = (ev.quote or "").translate(_TR)
@@ -143,9 +148,9 @@ def two_vals(L, ev, ns: str, names: List[str]) -> bool:
     k = q.find(ev.attr)
     if k < 0:
         return False
-    from . import v16 as _v16, sav as _sav
+    from . import sav as _sav
     rest = re.sub(r"(?<=\d),(?=\d{3}(?!\d))", "", q[k + len(ev.attr):])
-    vv = [v for v in _v16._vals(L, ns, ev.entity or "", ev.attr, rest, ev.reason, names, _sav) if v != ev.entity and v != ev.attr]
+    vv = [v for v in vals(L, ns, ev.entity or "", ev.attr, rest, ev.reason, names, _sav) if v != ev.entity and v != ev.attr]
     vv = [v for v in vv if not (ev.reason and v in ev.reason)]
     if len(vv) < 2 or (ev.value and ev.value not in vv[:2] and ev.value in rest):
         return False

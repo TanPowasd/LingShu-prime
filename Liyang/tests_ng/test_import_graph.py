@@ -6,8 +6,8 @@
 
 已清零：retrieval ↔ lexpath（判定函数下沉 recall_filter）、retrieval ↔ densefuse（同）、compat ↔ compat_engine
 （LayeredStore 拆到 compat_store）；engine ↔ gate 只在 TYPE_CHECKING 里，不计。
-已知存量（只许减少）：chain/ 规则版本模块之间的延迟互引——v16/v21/v26 等主干在运行期按缺省族开关调用后续版本，
-后续版本又复用主干的正则与取值函数。拆它要改链抽取主干的调用约定，留作单独一轮（见 README 未解决项）。
+stab-r2 清零 chain/ 规则版本间 5 对（v16↔v17、v16↔v25、v21↔v22、v21↔v25、v26↔v27）：后续版本反向取用的正则与取值函数
+逐字搬到 chain/common（主干再导出同一对象）；v17.two_vals 改为由 v16 注入取值函数 ``vals``。
 """
 import ast
 import os
@@ -15,13 +15,7 @@ import os
 PKG = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "lingshu_ng")
 
 #: 已知存量（只许减少：修掉一对就从这里删掉，测试会提示过期条目）
-KNOWN_DEBT = {
-    ("lingshu_ng.chain.v16", "lingshu_ng.chain.v17"),
-    ("lingshu_ng.chain.v16", "lingshu_ng.chain.v25"),
-    ("lingshu_ng.chain.v21", "lingshu_ng.chain.v22"),
-    ("lingshu_ng.chain.v21", "lingshu_ng.chain.v25"),
-    ("lingshu_ng.chain.v26", "lingshu_ng.chain.v27"),
-}
+KNOWN_DEBT: set = set()   # stab-r2：chain/ 5 对已清零（共享工具下沉 chain/common，v17.two_vals 改为注入取值函数）
 
 
 def _modules():

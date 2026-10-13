@@ -4,7 +4,8 @@
 形状与旧类一致（构造签名、方法名、返回 STNode/dict/list 的形态），行为委托给
 :class:`lingshu_ng.engine.MemoryEngine`。世界模型外观 13 个方法在 :mod:`lingshu_ng.compat_world`
 （委托 lingshu_ng.world 或返回旧版「组件不可导入」状态）；仓外器官组件集中在
-:mod:`lingshu_ng.compat_stubs`，返回与旧版「组件未装配」一致的状态字典。
+:mod:`lingshu_ng.compat_stubs`，返回与旧版「组件未装配」一致的状态字典；语义 / 注意力 / 视觉提供者的注入与委托在
+:mod:`lingshu_ng.compat_providers`。
 
 不变量：门面方法不直接写 SQL；所有写入都经 ng 组件（因而受 LayerPolicy 约束）。
 """
@@ -16,6 +17,7 @@ import re
 from typing import Any, Dict, List, Optional, Set, Tuple
 
 from .compat_stubs import StubsMixin
+from .compat_providers import ProvidersMixin
 from .compat_world import WorldFacade
 from .compat_world_sim import WorldSimFacade
 from .compat_frame import FrameMixin
@@ -40,7 +42,7 @@ class PromotionRejected(PermissionError, ValueError):
 _SCREEN_RE = re.compile(r"\[[^\]]*?((?:[A-Za-z]:[\\/]|/)[^\]]+\.(?:png|bmp|jpg))\]")
 
 
-class SpacetimeMemoryEngine(WorldFacade, WorldSimFacade, FrameMixin, StubsMixin):
+class SpacetimeMemoryEngine(WorldFacade, WorldSimFacade, FrameMixin, ProvidersMixin, StubsMixin):
     """旧引擎门面（PRIMARY/SUB 角色、:memory: 默认库）。"""
 
     #: 全库备份表清单 = ng 实际导出清单（exchange.TABLES，含 #270 的 OBS 持久化表）；

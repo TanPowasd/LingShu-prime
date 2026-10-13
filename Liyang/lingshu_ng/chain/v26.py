@@ -18,37 +18,12 @@ from __future__ import annotations
 
 import os
 import re
+from .common import _FHEAD, _FTAIL2, _FTAIL1, _FMID, _REDUP, _SEGNN, _FUSE, frame  # noqa: F401,E501（stab-r2：共享工具下沉 chain/common，原名再导出同一对象）
 
 FAM = set((os.environ.get("LINGSHU_NG_CHAIN_V26_FAM", "W,T,C,M") or "").replace(" ", "").split(",")) - {""}
 
-_FHEAD = re.compile(r"^(?:童话|评书|报告|追思|悼词|演讲|证人|剧本|纪录|传记|写传|田野|播客|广播|口述|各位|众人|大家|有人|管事|一帮|天亮|等到|茶馆|技术人员|团队|母亲|父亲|史书|导游|相声|寓言|群聊|复盘|网文|小说|旧事|原先|原本|发现|心里|一路|一直|一度|大伙|街坊|众位|看官|听客|诸位|那位|这位|此人|那人|镜头)")
-_FTAIL2 = re.compile(r"(?:[里中上](?:写|讲|说|记|提)(?:道|到|起)?|(?:陈述|讲述|记载|写|说|讲|提|记)(?:道|到|起)|拍板|会上|结束[前后]|之[前后]|以[前后]|连夜|当晚|那天|这天|一路)$")
-_FTAIL1 = re.compile(r"[里中上时前后]$")
-_FMID = re.compile(r"[竟的]|收拾|动身|一步|落脚|头一|浮出|一径|提起|明白|看官|听真|列位")
-_REDUP = re.compile(r"^(.)\1(.)\2$|^.(.)\3$")
-_SEGNN = re.compile(r"[了着过下定把被将说]")
 
 
-def frame(e) -> bool:
-    """True ⇒ 主体是叙事框架/泛指/状语，不是名称。"""
-    if not e:
-        return False
-    s = str(e)
-    if not re.search(r"[\u4e00-\u9fff]", s):
-        return False
-    parts = s.split("·")
-    b = parts[0]
-    if (len(b) < 2 and (b in _FUSE or b in "遂乃即人众谁某")) or _FHEAD.search(b) or _FTAIL2.search(b) or _REDUP.search(b):
-        return True
-    if len(b) >= 3 and _FTAIL1.search(b) and re.fullmatch(r"[\u4e00-\u9fff]+", b):
-        return True
-    if _FMID.search(b):
-        return True
-    if "项目" in b and (not b.endswith("项目") or (len(b) > 4 and any(ch in _FUSE for ch in b[:-4]))):
-        return True
-    if len(parts) > 1 and not re.search(r"(?:模块|组件|下属|同名者)$", parts[-1]) and (_SEGNN.search(parts[-1][-3:]) or re.search(r"(?:模块|组件|下属|同名者)", parts[-1])):
-        return True
-    return False
 
 
 _APRE = re.compile(r"^(?:这个|那个|这|那|个|其|该)")
@@ -100,7 +75,6 @@ def drop(ev) -> bool:
 # ---------------------------------------------------------------- R：框架主体 ⇒ 句中唯一名称候选（首次出现主体自举，只进只读影子锚点）
 #: 百家姓单姓（去掉常作虚词/常用词的字，降低散文误认；通用知识表，不依赖评测词表）
 _BJX = set("赵钱孙李周吴郑王冯陈褚卫蒋沈韩杨朱秦尤许何吕施张孔曹严华魏陶姜戚谢邹喻柏窦章苏潘葛奚范彭郎鲁韦昌苗凤俞袁柳酆鲍唐费廉岑薛雷贺倪汤滕殷罗毕郝邬傅皮卞齐伍余卜顾孟黄穆萧尹姚邵湛汪祁毛禹狄米贝臧伏戴宋茅庞熊纪舒屈项祝董梁杜阮蓝闵席季麻贾娄危童颜郭梅盛林刁钟徐邱骆蔡樊胡凌霍虞柯昝卢莫裘缪贲邓郁杭洪崔钮龚嵇邢滑裴陆翁荀羊於惠甄芮羿储靳汲邴糜巫焦隗侯宓蓬郗栾暴钭厉戎詹郜蓟邰鄂索咸籍赖卓蔺屠蒙乔胥莘翟谭贡逄姬堵冉宰郦卻璩濮扈冀郏晏柴瞿阎茹宦艾庾暨耿弘匡寇阙殳沃蔚夔巩厍聂晁勾敖訾辛阚饶毋乜鞠蒯荆竺逯桓仝鄢谯楚隋庹佟揭仉闫漆粟覃")
-_FUSE = set("送挑领背扛提拉推抱带跟随望盯攥捏握抽靠扶的了着过他她它我你们自说把被将让给叫令往从在于去来这那哪谁么呢吗吧啊却又也都便就才仍还本因原得离常心一二两头是和与跟同对向为以及而且蹲站坐住搬收连夜打已曾先后经正刚再更最很太总终竟只要想会能可应该当时日年月里中上下前外内说道讲写记看见听问答笑哭走跑进出回到起开关拿把用做作成变改换定落挪迁在")
 _BEFORE = set("，,、：:；;「『“\"（( 　那位叫作唤是的与和把让给对跟向道说讲见到名着了")
 _BIGR = set("始终 脸上 心里 身上 手里 眼里 面前 背后 头上 家里 屋里 原先 原本 当时 终于 最后 平时 从来 一直 已经 立刻 马上 忽然 突然 后来 先前 本来 听罢 听了 闻言 接着 随即 便是 总算 心头 眉头 脸色 嘴上 口中 这回 那回 此后 从此 自此".split())
 _PJ = re.compile(r"[\u4e00-\u9fff]{2}(?:项目|工程|计划)(?:·[\u4e00-\u9fff]{1,4}?(?:模块|组件))?(?:·(?:同名者|下属))?")

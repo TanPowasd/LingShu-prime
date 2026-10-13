@@ -1,15 +1,15 @@
 # COMPAT_MATRIX · ng 兼容门面 × 上游当前 API
 
 生成：`python tools/compat/compat_matrix.py <上游仓根> --md COMPAT_MATRIX.md`（只读上游 AST，不导入、不执行、不复制实现）。
-上游：FuRongJun-1999/lingshu main cb3a6ea（2026-10-11 22:25 +0800；2026-10-13 fetch 时仍为最新）。对照面：`lingshu.core.core`（SpacetimeMemoryEngine / LayeredStore / 数据类型 / 模块函数）→ `lingshu_ng.compat`；`lingshu.core.activation.ActivationEngine` → `lingshu_ng.compat_activation`；`lingshu.core.longterm_gate.LongTermMemoryGate` → `lingshu_ng.compat_gate`。
+上游：FuRongJun-1999/lingshu main cb3a6ea（2026-10-11 22:25 +0800；2026-10-13 16:10 CST fetch 时仍为最新）。对照面：`lingshu.core.core`（SpacetimeMemoryEngine / LayeredStore / 数据类型 / 模块函数）→ `lingshu_ng.compat`；`lingshu.core.activation.ActivationEngine` → `lingshu_ng.compat_activation`；`lingshu.core.longterm_gate.LongTermMemoryGate` → `lingshu_ng.compat_gate`。
 
 判定：**覆盖**＝同名可调用，且上游每个形参 ng 都接受、上游可省略的 ng 也可省略、ng 多出的形参都有缺省值；**部分**＝同名存在但签名不满足上一条；**缺失**＝无同名对象。**占位**＝签名覆盖、但只由 `compat_stubs` 动态提供：`not_ready` 返回「未装配」状态字典（与上游公开仓形态下这些器官模块未装配时同形，不伪造成功），`unsupported` 调用即 NotImplementedError。签名覆盖不等于语义逐项相同；有意不同之处写在各门面方法的 docstring。
 
 | 口径 | 读数 |
 |---|---|
 | 签名覆盖（含占位） | 260/260（100.0%） |
-| 真实覆盖（不含占位） | 198/260（76.2%） |
-| 占位 | 62/260（23.8%） |
+| 真实覆盖（不含占位） | 211/260（81.2%） |
+| 占位 | 49/260（18.8%） |
 | 部分 | 0/260（0.0%） |
 | 缺失 | 0/260（0.0%） |
 
@@ -23,7 +23,7 @@
 
 （无）
 
-## 占位（签名覆盖，无真实实现）（62）
+## 占位（签名覆盖，无真实实现）（49）
 
 | 名字 | 上游签名 | 频次 | 说明 |
 |---|---|---|---|
@@ -32,20 +32,17 @@
 | `SpacetimeMemoryEngine.predict_routes` | `(start_id=…, blindspot_id=…, horizon=…, max_branches=…)` | 6 | not_ready |
 | `SpacetimeMemoryEngine.export_structured_trajectories` | `(limit=…, output_path=…)` | 5 | not_ready |
 | `SpacetimeMemoryEngine.update_prediction_feedback` | `(predicted_node_id, actual_node_id, hit, note=…)` | 5 | not_ready |
-| `SpacetimeMemoryEngine.set_semantic_provider` | `(provider)` | 4 | not_ready |
 | `SpacetimeMemoryEngine.export_trajectory` | `(cycle_id=…, output_path=…, _limit=…)` | 3 | not_ready |
 | `SpacetimeMemoryEngine.semantic_neighbors` | `(node_id, k=…)` | 3 | not_ready |
 | `SpacetimeMemoryEngine.exploration_budget` | `()` | 2 | not_ready |
 | `SpacetimeMemoryEngine.get_body_capabilities` | `()` | 2 | not_ready |
 | `SpacetimeMemoryEngine.get_emotional_bias` | `(window=…)` | 2 | not_ready |
 | `SpacetimeMemoryEngine.world_generator` | `(action, params=…)` | 2 | unsupported |
-| `SpacetimeMemoryEngine.allocate_depth` | `(signal, context=…)` | 1 | not_ready |
 | `SpacetimeMemoryEngine.attention_shift` | `(window=…)` | 1 | not_ready |
 | `SpacetimeMemoryEngine.cognition_cycle` | `()` | 1 | not_ready |
 | `SpacetimeMemoryEngine.cognition_report` | `()` | 1 | not_ready |
 | `SpacetimeMemoryEngine.confirm_standby` | `(approved)` | 1 | not_ready |
 | `SpacetimeMemoryEngine.enter_standby` | `()` | 1 | not_ready |
-| `SpacetimeMemoryEngine.filter_attention` | `(signals, threshold=…)` | 1 | not_ready |
 | `SpacetimeMemoryEngine.get_next_candidate` | `()` | 1 | not_ready |
 | `SpacetimeMemoryEngine.learn_next` | `(force=…, use_prediction=…)` | 1 | not_ready |
 | `SpacetimeMemoryEngine.learning_impact` | `(window=…)` | 1 | not_ready |
@@ -58,7 +55,6 @@
 | `SpacetimeMemoryEngine.reconstruct_scene` | `(clue, depth=…, max_nodes=…)` | 1 | not_ready |
 | `SpacetimeMemoryEngine.render_semantic_cube_3d` | `(entity_id=…, limit=…)` | 1 | not_ready |
 | `SpacetimeMemoryEngine.render_semantic_map_2d` | `(limit=…)` | 1 | not_ready |
-| `SpacetimeMemoryEngine.resolve_concepts` | `(text)` | 1 | not_ready |
 | `SpacetimeMemoryEngine.resolve_contested` | `(node_id, verdict)` | 1 | not_ready |
 | `SpacetimeMemoryEngine.resolve_crisis` | `(directive, designer_key=…)` | 1 | not_ready |
 | `SpacetimeMemoryEngine.reverify` | `(node_id)` | 1 | not_ready |
@@ -67,30 +63,21 @@
 | `SpacetimeMemoryEngine.stop_lifecycle` | `(source)` | 1 | not_ready |
 | `SpacetimeMemoryEngine.universe_calibrate` | `()` | 1 | not_ready |
 | `SpacetimeMemoryEngine.adjust_attention_weight` | `(key, value, source, reason, role=…)` | 0 | not_ready |
-| `SpacetimeMemoryEngine.attend_query` | `(query, limit=…, source=…)` | 0 | not_ready |
 | `SpacetimeMemoryEngine.body_devices` | `()` | 0 | not_ready |
-| `SpacetimeMemoryEngine.compiler_introspect` | `()` | 0 | not_ready |
-| `SpacetimeMemoryEngine.compute_semantic_coordinates` | `(text)` | 0 | not_ready |
 | `SpacetimeMemoryEngine.device_call` | `(name, action, params=…)` | 0 | not_ready |
 | `SpacetimeMemoryEngine.evo_distill_cycle` | `(source_filter=…)` | 0 | not_ready |
 | `SpacetimeMemoryEngine.evo_flywheel_metrics` | `()` | 0 | not_ready |
-| `SpacetimeMemoryEngine.get_attention_policy` | `()` | 0 | not_ready |
 | `SpacetimeMemoryEngine.get_prediction_stats` | `()` | 0 | not_ready |
 | `SpacetimeMemoryEngine.get_self_reliability` | `(window=…)` | 0 | not_ready |
-| `SpacetimeMemoryEngine.get_semantic_provider` | `()` | 0 | not_ready |
-| `SpacetimeMemoryEngine.get_vision_provider` | `()` | 0 | not_ready |
 | `SpacetimeMemoryEngine.lifecycle_cycle` | `()` | 0 | not_ready |
 | `SpacetimeMemoryEngine.query_by_semantics` | `(text, limit=…, modality=…)` | 0 | not_ready |
 | `SpacetimeMemoryEngine.run_learning_cycle` | `(input_signal, context=…)` | 0 | not_ready |
-| `SpacetimeMemoryEngine.semantic_blindspot_report` | `()` | 0 | not_ready |
-| `SpacetimeMemoryEngine.set_attention_policy` | `(policy)` | 0 | not_ready |
-| `SpacetimeMemoryEngine.set_vision_provider` | `(provider)` | 0 | not_ready |
 | `SpacetimeMemoryEngine.sync_body_state` | `()` | 0 | not_ready |
 | `SpacetimeMemoryEngine.test_transfer_capability` | `()` | 0 | not_ready |
 | `SpacetimeMemoryEngine.wake_lifecycle` | `()` | 0 | not_ready |
 | `SpacetimeMemoryEngine.world_semantics` | `(action, params=…)` | 0 | unsupported |
 
-## 真实覆盖（198）
+## 真实覆盖（211）
 
 | 名字 | 上游签名 | 频次 | 说明 |
 |---|---|---|---|
@@ -217,6 +204,7 @@
 | `LayeredStore.increment_access` | `(node_id)` | 4 |  |
 | `SelfModel.from_dict` | `(data)` | 4 |  |
 | `SpacetimeMemoryEngine.induce_concepts` | `(min_cluster_size=…, similarity_threshold=…, max_concepts=…, condition_space=…)` | 4 |  |
+| `SpacetimeMemoryEngine.set_semantic_provider` | `(provider)` | 4 |  |
 | `SpacetimeMemoryEngine.spacetime_consistency` | `(action, params=…)` | 4 |  |
 | `LayeredStore.get_recent_context` | `(limit=…)` | 3 |  |
 | `LayeredStore.has_causal_cycle` | `()` | 3 |  |
@@ -259,8 +247,10 @@
 | `LongTermMemoryGate.promote_from_context` | `(limit=…)` | 1 |  |
 | `LongTermMemoryGate.write_snapshot` | `(content, source=…, tags=…, entities=…, importance_hint=…)` | 1 |  |
 | `SpacetimeMemoryEngine.action_log_stats` | `()` | 1 |  |
+| `SpacetimeMemoryEngine.allocate_depth` | `(signal, context=…)` | 1 |  |
 | `SpacetimeMemoryEngine.apply_value_candidate` | `(candidate_id, new_value=…)` | 1 |  |
 | `SpacetimeMemoryEngine.consume_events` | `()` | 1 |  |
+| `SpacetimeMemoryEngine.filter_attention` | `(signals, threshold=…)` | 1 |  |
 | `SpacetimeMemoryEngine.find_rejected_paths` | `(query, limit=…)` | 1 |  |
 | `SpacetimeMemoryEngine.get_action_log` | `(limit=…)` | 1 |  |
 | `SpacetimeMemoryEngine.get_entity_context` | `(entity_id, limit=…)` | 1 |  |
@@ -268,6 +258,7 @@
 | `SpacetimeMemoryEngine.mark_rejected_path_consumed` | `(rejected_id)` | 1 |  |
 | `SpacetimeMemoryEngine.promote_context_memories` | `(limit=…)` | 1 |  |
 | `SpacetimeMemoryEngine.record_info_gap` | `(d_norm=…, trust_complement=…, behavior_deviation=…, connection_drift=…, prediction_error=…)` | 1 |  |
+| `SpacetimeMemoryEngine.resolve_concepts` | `(text)` | 1 |  |
 | `SpacetimeMemoryEngine.run_maintenance_cycle` | `(decay_factor=…)` | 1 |  |
 | `SpacetimeMemoryEngine.session_summary` | `(window_seconds=…, limit=…)` | 1 |  |
 | `SpacetimeMemoryEngine.timeline` | `(node_id, direction=…, max_depth=…)` | 1 |  |
@@ -276,19 +267,70 @@
 | `LayeredStore.conn` | `()` | 0 |  |
 | `LayeredStore.insight_window` | `(conditions=…)` | 0 |  |
 | `LayeredStore.semantic_search` | `(query, provider, limit=…)` | 0 |  |
+| `SpacetimeMemoryEngine.attend_query` | `(query, limit=…, source=…)` | 0 |  |
 | `SpacetimeMemoryEngine.check_recursion_depth` | `(depth)` | 0 |  |
+| `SpacetimeMemoryEngine.compiler_introspect` | `()` | 0 |  |
+| `SpacetimeMemoryEngine.compute_semantic_coordinates` | `(text)` | 0 |  |
+| `SpacetimeMemoryEngine.get_attention_policy` | `()` | 0 |  |
 | `SpacetimeMemoryEngine.get_gap_trend` | `(window=…)` | 0 |  |
 | `SpacetimeMemoryEngine.get_resource_metrics` | `(window=…)` | 0 |  |
+| `SpacetimeMemoryEngine.get_semantic_provider` | `()` | 0 |  |
 | `SpacetimeMemoryEngine.get_timeline` | `(start_ts=…, end_ts=…, layer=…, limit=…)` | 0 |  |
+| `SpacetimeMemoryEngine.get_vision_provider` | `()` | 0 |  |
 | `SpacetimeMemoryEngine.notify_event` | `(event_type, payload=…)` | 0 |  |
 | `SpacetimeMemoryEngine.propose_verifier_standard` | `(name, param, value, reason, proposer)` | 0 |  |
 | `SpacetimeMemoryEngine.record_resource_usage` | `(tokens=…, seconds=…)` | 0 |  |
 | `SpacetimeMemoryEngine.scene_simulator` | `(action, params=…)` | 0 |  |
+| `SpacetimeMemoryEngine.semantic_blindspot_report` | `()` | 0 |  |
 | `SpacetimeMemoryEngine.semantic_search` | `(query, limit=…)` | 0 |  |
+| `SpacetimeMemoryEngine.set_attention_policy` | `(policy)` | 0 |  |
 | `SpacetimeMemoryEngine.set_dedup_config` | `(static_threshold=…, window=…)` | 0 |  |
 | `SpacetimeMemoryEngine.set_embedding_provider` | `(provider)` | 0 |  |
+| `SpacetimeMemoryEngine.set_vision_provider` | `(provider)` | 0 |  |
 | `SpacetimeMemoryEngine.voice_session_log` | `(turn)` | 0 |  |
 | `SpacetimeMemoryEngine.voxel_world` | `(action, params=…)` | 0 |  |
 | `SpacetimeMemoryEngine.vprim_query` | `(action, params=…)` | 0 |  |
 | `designer_key_configured` | `()` | 0 |  |
 | `verify_designer` | `(designer_key)` | 0 |  |
+
+## 扩展面（stab-r2 起计量，单独汇总）
+
+上游 `lingshu.core` 其余公开模块：`lingshu/core/provenance.py`、`lingshu/core/time_core.py`、`lingshu/core/condition_normalize.py`、`lingshu/core/verdict.py`、`lingshu/core/component_resolver.py`。ng 未提供同名模块，按 `lingshu_ng.compat` 查同名对象。这些是上游较新的内部工具面（来源记录、可信度时间核、条件规范化、部件判定、组件发现），ng 目前没有对应实现：27 项缺失；1 项「部分」是 `lingshu_ng.compat` 里恰有同名对象但签名不同（不是对应实现）。
+
+| 口径 | 读数 |
+|---|---|
+| 签名覆盖（含占位） | 0/28 |
+| 真实覆盖 | 0/28 |
+| 部分 | 1/28 |
+| 缺失 | 27/28 |
+
+| 名字 | 上游位置 | 上游签名 | 频次 | 状态 |
+|---|---|---|---|---|
+| `safe_search_path` | `lingshu/core/component_resolver.py` | `()` | 3 | 缺失 |
+| `install` | `lingshu/core/component_resolver.py` | `()` | 1 | 缺失 |
+| `configured_roots` | `lingshu/core/component_resolver.py` | `()` | 0 | 缺失 |
+| `discovery_report` | `lingshu/core/component_resolver.py` | `()` | 0 | 缺失 |
+| `is_installed` | `lingshu/core/component_resolver.py` | `()` | 0 | 缺失 |
+| `validate_edges` | `lingshu/core/condition_normalize.py` | `(domains)` | 7 | 缺失 |
+| `canonical_condition` | `lingshu/core/condition_normalize.py` | `(domains)` | 0 | 缺失 |
+| `canonical_sourced` | `lingshu/core/condition_normalize.py` | `(domains, asserted_by=…)` | 0 | 缺失 |
+| `cond_hash` | `lingshu/core/condition_normalize.py` | `(domains, salt=…)` | 0 | 缺失 |
+| `img0_domains` | `lingshu/core/condition_normalize.py` | `()` | 0 | 缺失 |
+| `part_cond_hash` | `lingshu/core/condition_normalize.py` | `(part_type, image_hash, part_idx)` | 0 | 缺失 |
+| `Provenance.to_json` | `lingshu/core/provenance.py` | `()` | 21 | 缺失 |
+| `Provenance.strength` | `lingshu/core/provenance.py` | `()` | 20 | 缺失 |
+| `Provenance.from_json` | `lingshu/core/provenance.py` | `(s)` | 15 | 缺失 |
+| `Provenance.is_traceable` | `lingshu/core/provenance.py` | `()` | 5 | 缺失 |
+| `Provenance.to_condition_space` | `lingshu/core/provenance.py` | `()` | 5 | 缺失 |
+| `Provenance.to_tags` | `lingshu/core/provenance.py` | `(extra=…)` | 5 | 缺失 |
+| `Provenance.to_sql` | `lingshu/core/provenance.py` | `(extra_tags=…)` | 3 | 缺失 |
+| `Provenance.validate` | `lingshu/core/provenance.py` | `()` | 2 | 缺失 |
+| `Provenance.extensions` | `lingshu/core/provenance.py` | `()` | 0 | 缺失 |
+| `from_legacy` | `lingshu/core/provenance.py` | `(tags, created_at=…, condition_space=…, modality=…)` | 0 | 缺失 |
+| `is_default_cs` | `lingshu/core/provenance.py` | `(cs)` | 0 | 缺失 |
+| `new_provenance` | `lingshu/core/provenance.py` | `(position, tool, source, session_id=…, existence_constraint=…, verify_status=…, verify_methods=…, verify_ref=…, observed_at=…, window=…)` | 0 | 缺失 |
+| `cred_step` | `lingshu/core/time_core.py` | `(x, decay)` | 7 | 部分 |
+| `cred_factor` | `lingshu/core/time_core.py` | `(gamma, dt, floor=…, ceil=…)` | 2 | 缺失 |
+| `cred` | `lingshu/core/time_core.py` | `(x0, x_inf, gamma, dt)` | 1 | 缺失 |
+| `cred_blend` | `lingshu/core/time_core.py` | `(last, incoming, retain)` | 0 | 缺失 |
+| `assess` | `lingshu/core/verdict.py` | `(part, image_domains, part_fg_px, part_area)` | 0 | 缺失 |

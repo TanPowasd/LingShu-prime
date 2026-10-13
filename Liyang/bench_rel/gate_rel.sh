@@ -1,7 +1,7 @@
 #!/bin/bash
 # rel-v1 集成回归门：集成树须与各线冻结交付逐题相同（中文 v7.1、英文 gen-v3.2），且 HMB/状态链/tests_ng 过门。
 # 用法：gate_rel.sh <stage>；每段 ≤1150s（工具后台上限），日志 bench_rel/logs/<stage>.log
-R=/workspace/work/ls/wt-rel; L=$R/bench_rel/logs; export LINGSHU_LLM_CACHE=/workspace/work/ls/_shared/llm_cache
+R=${GATE_ROOT:-/workspace/work/ls/wt-rel}; L=$R/bench_rel/logs; export LINGSHU_LLM_CACHE=/workspace/work/ls/_shared/llm_cache
 st=$1; exec > $L/$st.log 2>&1; echo "start $(date +%T)"
 case $st in
  cn) cd $R/bench_gen; G1_FROZEN_CLOCK=1760000000 timeout 1150 python3 gate_cn.py $R relhead_fz ;;

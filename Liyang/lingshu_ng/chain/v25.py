@@ -13,8 +13,7 @@ from __future__ import annotations
 import os
 import re
 
-from . import v16 as _v16
-from . import v21 as _v21
+from . import common as _cm   # stab-r2：原自 v16 / v21 的共享正则与取值函数（同一对象）
 from . import v24 as _v24
 from .extract import extract
 
@@ -57,7 +56,7 @@ def ba(sent: str, names=(), cattrs=()):
             continue
         end = tp.find(str(e.value), m.end()) if e.value is not None else -1
         head = tp[:end + len(str(e.value))] if end >= 0 else tp      # 非断言信号只看到取值为止（句尾议论不算）
-        if _v16._HYPO.search(head) or _v21._NONASSERT.search(head) or _v24._UNCONF.search(head):
+        if _cm._HYPO.search(head) or _cm._NONASSERT.search(head) or _v24._UNCONF.search(head):
             return None
         return e
     return None
@@ -96,15 +95,15 @@ def ewin(L, sent: str, ns: str, names, cattrs):
     raw = (sent or "").strip()
     if not raw or len(raw) > 200:
         return None
-    t = raw.translate(_v16._TR).rstrip("。！!；;").strip()
+    t = raw.translate(_cm._TR).rstrip("。！!；;").strip()
     if re.search(r"[｜|]", t):
         return None
     t0 = _v24._REPORT.sub(lambda m: " " * len(m.group(0)), t)
     from . import v27 as _v27
     tg = _v27.mask(t0)                                       # v27 A/H：叙事写法不算非断言（缺省关时 tg == t0）
-    if _v16._HYPO.search(tg) or _v21._NONASSERT.search(tg) or _v24._UNCONF.search(tg):
+    if _cm._HYPO.search(tg) or _cm._NONASSERT.search(tg) or _v24._UNCONF.search(tg):
         return None
-    if _v16._PAST.search(t0) and not sav._NOWCHG.search(_v16._PAST.sub("", t0)):
+    if _cm._PAST.search(t0) and not sav._NOWCHG.search(_cm._PAST.sub("", t0)):
         return None
     attrs = sorted((a for a in cattrs if len(a) >= 2), key=len, reverse=True)
     found = []
@@ -119,7 +118,7 @@ def ewin(L, sent: str, ns: str, names, cattrs):
     found.sort(key=lambda f: f[1])
     attr, k, z = found[0][0], found[0][1], found[-1][2]       # v27 Q：同一属性重复出现时，主体在第一次之前、动词在最后一次之后
     av = _v18.allvals(L)
-    subs = [s for s in _v16._find_names(t0, names) if s[0] not in av]
+    subs = [s for s in _cm._find_names(t0, names) if s[0] not in av]
     if any(s[1] >= z for s in subs):
         return None                                          # 属性之后还有已知名：宁漏
     pre = {s[0] for s in subs if s[2] <= k}
@@ -164,16 +163,16 @@ def ewin(L, sent: str, ns: str, names, cattrs):
     if any(a in t0[z:m.start()] for a in attrs if a != attr):
         return None
     rest = t0[m.end():]
-    reason = _v16._reason_of(t0)
+    reason = _cm._reason_of(t0)
     if reason and (len(reason) <= 1 or ent in reason or attr in reason):
         reason = None
     whole = t0.replace(reason, " ") if reason else t0
     wq = _v24._IDIOM.sub(lambda x: " " * len(x.group(0)), whole)
-    if _v16._RETIRE.search(wq) or _v16._UNDEC.search(wq) or _v16._TWOC.search(wq) or _v24._NUND.search(wq):
+    if _cm._RETIRE.search(wq) or _cm._UNDEC.search(wq) or _cm._TWOC.search(wq) or _v24._NUND.search(wq):
         return None
     if reason and reason in t0[z:m.start()] and False:
         return None
-    kv = _v16.known_vals(L, ns, attr) | _v16.gvals(L, attr)
+    kv = _cm.known_vals(L, ns, attr) | _cm.gvals(L, attr)
     pool = set(names) if ("信任" in attr or "对象" in attr) else set()
     v = None
     for x in sorted(kv | pool, key=len, reverse=True):
@@ -184,7 +183,7 @@ def ewin(L, sent: str, ns: str, names, cattrs):
         from .sav import _shape
         r2 = rest.lstrip()
         ma = re.match(r"([A-Za-z_]\w*\([^()]*\)|[A-Za-z_]\w*=\d+|\d+(?:\.\d+)?|[A-Za-z_][\w.\-]*)", r2)
-        want = _v16.want_of(L, ns, attr)
+        want = _cm.want_of(L, ns, attr)
         if not ma or not want or _shape(ma.group(1)) not in want:
             return None
         if not re.match(r"\s*(?:秒|个|次|毫秒|ms|s)?\s*(?:[，,。；;」』”\"（(—]|这个|这|那|$)", r2[len(ma.group(1)):]):

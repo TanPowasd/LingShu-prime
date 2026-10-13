@@ -2,7 +2,9 @@
 
 > **插件测评站**（另一条工作线）：见 [`plugin-eval-site/`](plugin-eval-site/README.md) —— 方案 v3.0 端到端验证结果、判分器缺陷与 v2 候选、多场景考卷 C。
 
-> **2026-10-13 增量升级 rel-v1.16（当前版本）：稳定性 · 可复跑 · 兼容性**。不含检索 / 版本链调优，检索与版本链指标对 rel-v1.15 逐项、逐题相同（持平门）。修复粗时钟（Windows 约 15.6 ms）下取「最新帧」可能取错的缺陷（同时间戳按写入序断开）；新增 `capabilities()` 报告可选依赖 / 模型件 / 中文语义通路实际档位与退回，每类退回打一次 WARNING；全包 34 处静默宽 except 改为记日志；非 chain 部分直接双向依赖 3→0；测试间单例 / 环境变量 / 时钟污染隔离，可选依赖导入期异常（如 DLL 被拒）改报 skip，最小环境（只装 pytest）可复跑；兼容门面补上游当前 API 缺口，兼容矩阵 `COMPAT_MATRIX.md`：上游 `core.core` / `core.activation` / `core.longterm_gate` 260 个公开方法，签名覆盖 260/260，**真实覆盖 198/260（76.2%）、占位 62**。照实：Windows 真机与 Python 3.11 / 3.13 未实测（Windows 项为模拟环境读数）；chain/ 内 5 对双向依赖仍在；版本链尾部名次运行间不完全确定（新旧代码都有，指标不受影响）。复跑前置条件与预期读数见 §3「复跑说明」；详见 [`CHANGELOG_rel-v1.16.md`](CHANGELOG_rel-v1.16.md)。
+> **2026-10-13 增量升级 rel-v1.17（当前版本）：依赖结构 · 兼容覆盖 · 多 Python 版本**。不含检索 / 版本链调优，检索与版本链指标对 rel-v1.16 持平（见 CHANGELOG 回归门）。chain/ 内 5 对直接双向依赖清零（共享正则与取值函数逐字下沉 `chain/common`，原名再导出同一对象），`lingshu_ng` 全包直接双向依赖 0 对；兼容门面语义 / 注意力 / 视觉提供者注入 13 个方法由占位转为真实实现（注入后委托，未注入退回值同上游），兼容矩阵真实覆盖 198→**211/260（81.2%）**、占位 62→49；矩阵另计上游 `lingshu.core` 其余 5 个公开模块 28 项（单独汇总：缺失 27、部分 1，照实未实现）；新增 `tools/ci/multi_python.sh`，Python 3.11 / 3.13 各 3116 passed、3 skipped、0 failed。照实：Windows 真机未测；占位仍 49 个。详见 [`CHANGELOG_rel-v1.17.md`](CHANGELOG_rel-v1.17.md)。
+>
+> **2026-10-13 增量升级 rel-v1.16：稳定性 · 可复跑 · 兼容性**。不含检索 / 版本链调优，检索与版本链指标对 rel-v1.15 逐项、逐题相同（持平门）。修复粗时钟（Windows 约 15.6 ms）下取「最新帧」可能取错的缺陷（同时间戳按写入序断开）；新增 `capabilities()` 报告可选依赖 / 模型件 / 中文语义通路实际档位与退回，每类退回打一次 WARNING；全包 34 处静默宽 except 改为记日志；非 chain 部分直接双向依赖 3→0；测试间单例 / 环境变量 / 时钟污染隔离，可选依赖导入期异常（如 DLL 被拒）改报 skip，最小环境（只装 pytest）可复跑；兼容门面补上游当前 API 缺口，兼容矩阵 `COMPAT_MATRIX.md`：上游 `core.core` / `core.activation` / `core.longterm_gate` 260 个公开方法，签名覆盖 260/260，**真实覆盖 198/260（76.2%）、占位 62**。照实：Windows 真机与 Python 3.11 / 3.13 未实测（Windows 项为模拟环境读数）；chain/ 内 5 对双向依赖仍在；版本链尾部名次运行间不完全确定（新旧代码都有，指标不受影响）。复跑前置条件与预期读数见 §3「复跑说明」；详见 [`CHANGELOG_rel-v1.16.md`](CHANGELOG_rel-v1.16.md)。
 >
 > **2026-10-13 增量升级 rel-v1.15**：带 bge 语义模型时说话人先验重排窗口 `sp_n` 20→40（只改一个常数；无模型路径逐位不变）。H-CM11（ConvoMem 未用文件，801 题）上 r@25 W0 .9320→.9519（27 胜 0 负）、W1 .9282→.9407（17:0），all@25 W0 .8851→.9189（27:0）、W1 .8851→.9039（15:0），四项 Holm 显著；**r@5 / r@10 没有提升**。照实：只有读取 ≥25 条且注入了 bge 时才看得到收益，缺省 `limit=10` 看不到；热查询 p95 对 R7 1.33×、冷首查 1.07×。gen 检索调优到此停止。详见 [`CHANGELOG_rel-v1.15.md`](CHANGELOG_rel-v1.15.md)。
 >
@@ -169,6 +171,12 @@ Linux、Python 3.12.15，全部用随机测试序（每次不同种子）：
 
 模拟环境的用法见 `tests_ng/_envsim/README.md`；随机序插件是仓内的 `tests_ng/shuffle_plugin.py`（`-p tests_ng.shuffle_plugin`，
 种子由 `LINGSHU_TEST_SHUFFLE_SEED` 给定、打印在结尾），不需要安装 pytest-randomly。
+
+#### 多 Python 版本（rel-v1.17 起）
+
+`tools/ci/multi_python.sh [3.11 3.13 …]`：每个版本建独立 venv（系统有 `pythonX.Y` 就用，否则 `uv python install`），依赖只装进 venv，
+缺省 `LINGSHU_NG_SEM=off`、装 pytest + numpy + Pillow（`MP_EXTRAS` 可加 onnxruntime / tokenizers，`MP_MINIMAL=1` 只装 pytest）。
+实测（Linux aarch64）：Python 3.11.17 与 3.13.5 各 **3116 passed, 3 skipped**（skip＝无 onnxruntime / 模型的预期跳过），0 failed。
 
 #### `capabilities()`：本机实际生效的是哪一档
 

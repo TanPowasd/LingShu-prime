@@ -10,6 +10,7 @@
   * :data:`NOT_READY` —— 旧版依赖仓外器官模块（预测/生命周期/飞轮/视觉/注意力/自我认知/
     语义空间/学习闭环……，#169），公开仓形态下这些方法本就恒返回「未装配」状态字典；
     ng 照原样返回同形状态字典（而非伪造成功），并在 ``error`` 里注明 ng 未内置。
+    语义 / 注意力 / 视觉的提供者注入与委托（13 个）已在 stab-r2 转为真实实现，见 :mod:`lingshu_ng.compat_providers`。
 
 不变量：这里的方法**从不写库**。
 """
@@ -62,16 +63,13 @@ NOT_READY: Dict[str, Callable[..., Any]] = {
     "render_semantic_map_2d": _status("status", "v19_not_ready"),
     "render_semantic_cube_3d": _status("status", "v19_not_ready"),
     "semantic_neighbors": lambda *a, **k: [],
-    "attend_query": lambda *a, **k: [], "filter_attention": lambda signals, threshold=None: list(signals),
-    "allocate_depth": lambda *a, **k: 1, "attention_shift": lambda *a, **k: 0.0,
+    "attention_shift": lambda *a, **k: 0.0,
     "adjust_attention_weight": _status("status", "v18_not_ready"),
     "run_learning_cycle": _status("status", "v13_not_ready"),
     "learn_next": _status("status", "v13_not_ready"),
     "get_next_candidate": lambda *a, **k: None,
     "query_by_semantics": lambda *a, **k: [],
-    "resolve_concepts": lambda *a, **k: [], "compute_semantic_coordinates": lambda *a, **k: {},
-    "annotate_semantics": lambda *a, **k: False, "compiler_introspect": _status("status", "not_ready"),
-    "semantic_blindspot_report": _status("status", "not_ready"),
+    "annotate_semantics": lambda *a, **k: False,
     "export_trajectory": _status("status", "not_ready"),
     "export_structured_trajectories": _status("status", "not_ready"),
     "pattern_separation_scan": lambda *a, **k: {"created": 0, "error": _ERR},
@@ -79,9 +77,6 @@ NOT_READY: Dict[str, Callable[..., Any]] = {
     "exploration_budget": lambda *a, **k: 1.0,
     "get_body_capabilities": lambda *a, **k: {"modalities": {"text": True, "image": False, "audio": False,
                                                              "video": False}, "devices": [], "note": _ERR},
-    "set_vision_provider": lambda *a, **k: None, "get_vision_provider": lambda *a, **k: None,
-    "set_attention_policy": lambda *a, **k: None, "get_attention_policy": lambda *a, **k: None,
-    "set_semantic_provider": lambda *a, **k: None, "get_semantic_provider": lambda *a, **k: None,
 }
 
 #: ng 世界线（lingshu_ng.world）尚无对应组件的世界外观——保持桩：调用即 NotImplementedError

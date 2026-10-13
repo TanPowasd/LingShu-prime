@@ -17,6 +17,7 @@ import re
 from typing import List, Optional, Set
 
 from . import v17 as _v17
+from .common import _CJK, _TR, _UNDEC, _TWOC, _RETIRE, _HYPO, _PAST, GLOB, _reason_of, known_vals, gvals, want_of, _find_names  # noqa: F401,E501（stab-r2：共享工具下沉 chain/common，原名再导出同一对象）
 
 _log = logging.getLogger(__name__)
 
@@ -26,7 +27,6 @@ POST = os.environ.get("LINGSHU_NG_CHAIN_V16_POST", "1") != "0"
 OPF = os.environ.get("LINGSHU_NG_CHAIN_V16_OP", "1") != "0"
 OPPREV = os.environ.get("LINGSHU_NG_CHAIN_V16_OPPREV", "0") != "0"
 OPFIN = os.environ.get("LINGSHU_NG_CHAIN_V16_OPFIN", "1") != "0"
-GLOB = os.environ.get("LINGSHU_NG_CHAIN_V16_GLOB", "1") != "0"
 GLOBV = os.environ.get("LINGSHU_NG_CHAIN_V16_GLOBV", "1") != "0"
 IDOK = os.environ.get("LINGSHU_NG_CHAIN_V16_IDOK", "1") != "0"
 COLDG = os.environ.get("LINGSHU_NG_CHAIN_V16_COLDG", "1") != "0"
@@ -35,21 +35,12 @@ LOCA = os.environ.get("LINGSHU_NG_CHAIN_V16_LOCA", "1") != "0"
 TWOV_CUT = False
 LOCW = os.environ.get("LINGSHU_NG_CHAIN_V16_LOC", "1") != "0"
 
-_CJK = r"\u4e00-\u9fff"
-_TR = str.maketrans("", "", "「」『』“”\"‘’*＊")
 # 动作信号（改写后仍保留的语义词）
 _RESOLVE = re.compile(r"争议|争论|分歧|之争|之议|裁定|终于|总算|最终|最后(?![的一])|尘埃落定|落幕|争到最后|吵了|"
                       r"(?<![A-Za-z_])(?:dispute\w*|settled|finally|ruling|verdict)(?![A-Za-z_])", re.I)
 _RESOLVE2 = re.compile(r"争议|争论|分歧|之争|之议|裁定|尘埃落定|落幕|争到最后|吵了|(?:最终|最后|终于|总算)\S{0,6}?(?:定了|定下|拍板|敲定|认定|结论|答案|裁)")
 _NARR = re.compile(r"(?:最终|最后|终于|总算)\S{0,3}?(?:落脚|搬|去了|到了|跑|走|只剩|落在|变得|成了|成为)")
-_UNDEC = re.compile(r"尚未|未定|待定|没定|还没|暂未|未最终|未有定论|暂无定论|没有定论|没有结论|暂时没有结论|悬而未决|没拍板|谁也没|留待|待确认|"
-                    r"先别|不好定|没个准|没个说法|存疑|(?<![A-Za-z_])(?:tbd|pending|undecided|unresolved|no\s+decision|not\s+(?:yet\s+)?(?:decided|settled|resolved))(?![A-Za-z_])", re.I)
-_TWOC = re.compile(r"两(?:个|种|样|套|项|份|类|值|说|版)|俩|二选一|并存|共存|并行|都在|都还|都挂|都有|挂着|候选|选项|之间|(?<![A-Za-z_])(?:vs\.?|or|two|both|coexist\w*|concurrent|candidates?)(?![A-Za-z_])", re.I)
-_RETIRE = re.compile(r"撤销|撤掉|撤了|取消|作废|废止|废除|不再保留|不再有|不再留|停止保留|没了值|没有值|无值|删除|删掉|移除|清空|置空|留空|失效|弃用|停用|注销|"
-                     r"(?<![A-Za-z_])(?:deprecated?|removed?|unset|cleared|retired)(?![A-Za-z_])", re.I)
 _RETIRE_NEG = re.compile(r"不再沿用|不再用旧|不再是旧|此前为空|此前无值|不再争|不再有争议|原「?[^，,。]{0,8}」?取值作废")
-_HYPO = re.compile(r"如果|假如|假设|若是|是否|要不要|会不会|能不能|建议|考虑|打算|计划|准备|可能|也许|或许|万一|待评估|[？?]")
-_PAST = re.compile(r"早先|一度|曾经|曾是|曾为|曾在|以前|原先|原本|当初|过去|从前|往日|旧时|那时候")
 # 无属性名的位置变化
 _MOVE = re.compile(r"搬去|搬到|搬进|搬至|迁到|迁往|迁至|迁去|挪到|挪去|挪至|移到|移至|去了|已去|跑去|跑到|调往|调到|调至|安排至|安排到|前往|转往|来到|到了|"
                    r"现驻|驻在|驻|位于|住进|住在|待在|人在|落脚|改到|改去|去|在|(?<![A-Za-z_])(?:moved?\s+to|relocated?|now\s+in|is\s+in)(?![A-Za-z_])", re.I)
@@ -64,66 +55,14 @@ def _sh():
     return _sav, _s
 
 
-def _reason_of(t: str) -> Optional[str]:
-    from .loose import _reason, split_clauses
-    try:
-        return _reason(split_clauses(t), -1, None)
-    except Exception:  # noqa: BLE001
-        _log.debug("原因从句抽取失败 → 视为无原因", exc_info=True)
-        return None
 
 
-def known_vals(L, ns: str, attr: str) -> Set[str]:
-    v = set(L.sinfo.vals.get((ns, attr), set()))
-    v |= L.lex.vals.get((ns, attr), set())
-    return {x for x in v if x and len(x) >= 2}
 
 
-def gvals(L, attr: str) -> Set[str]:
-    key = (len(L.recs), attr)
-    c = getattr(L, "_v16_gv", None)
-    if c is not None and key in c:
-        return c[key]
-    if c is None or (c and next(iter(c))[0] != key[0]):
-        c = L._v16_gv = {}
-    v = set()
-    for (n_, a), x in L.sinfo.vals.items():
-        if a == attr:
-            v |= x
-    for (n_, a), x in L.lex.vals.items():
-        if a == attr:
-            v |= x
-    c[key] = r = {x for x in v if x and len(x) >= 2}
-    return r
 
 
-def want_of(L, ns: str, attr: str) -> Set[str]:
-    w = L.sinfo.want(ns, attr)
-    if w or not GLOB:
-        return w
-    tot = {}
-    for (n_, a), d in L.sinfo.shapes.items():
-        if a == attr:
-            for s_, c in d.items():
-                tot[s_] = tot.get(s_, 0) + c
-    n = sum(tot.values())
-    return {s_ for s_, c in tot.items() if c * 4 >= n} if n else set()
 
 
-def _find_names(t: str, names: List[str]):
-    """句中已知名的出现（长名优先占位，含点分扩展）。不要求词界（窗口抽取另有属性/取值门）。"""
-    taken, out = [], []
-    for n in names:
-        k = t.find(n)
-        while k >= 0:
-            z = k + len(n)
-            if not any(k < b and a < z for a, b in taken):
-                m = re.match(r"(?:·[" + _CJK + r"]{1,6})+", t[z:])
-                if m:
-                    z += m.end()
-                taken.append((k, z)); out.append((t[k:z], k, z))
-            k = t.find(n, k + 1)
-    return sorted(out, key=lambda x: x[1])
 
 
 def _v25w() -> bool:
@@ -419,7 +358,7 @@ def fix_op(L, ev, ns: str, cattrs=(), names=()) -> None:
     prev = (L._by_key.get((ns, ev.entity, ev.attr)) or [None])[-1]
     if ev.op == "retire" or ev.attr not in cattrs:
         return                                              # 只改已确认属性上的事件（散文里的误登记不动）
-    if _v17.two_vals(L, ev, ns, names):
+    if _v17.two_vals(L, ev, ns, names, vals=_vals):
         return
     if ev.op in ("set", "resolve") and _UNDEC.search(body) and _TWOC.search(body):
         from . import v15 as _v15
