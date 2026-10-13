@@ -1,0 +1,742 @@
+From 3955d3ac60a2cb46aa15e7d9b98b175da0b165ce Mon Sep 17 00:00:00 2001
+From: TanPowasd <122092488+TanPowasd@users.noreply.github.com>
+Date: Tue, 13 Oct 2026 22:41:25 +0000
+Subject: [PATCH] =?UTF-8?q?feat(md=5Fcg):=20TriCue=20v3=20=E8=9E=8D?=
+ =?UTF-8?q?=E5=90=88=E9=87=8D=E6=8E=92=E6=8E=A5=E5=85=A5=20MdCGOS.search?=
+ =?UTF-8?q?=20=E5=85=A8=E5=B1=80=E9=98=B6=E6=AE=B5=EF=BC=88MDCG=5FTRICUE?=
+ =?UTF-8?q?=3D1=20opt-in=EF=BC=8C=E7=BC=BA=E7=9C=81=E5=85=B3=E9=80=90?=
+ =?UTF-8?q?=E4=BD=8D=E4=B8=8D=E5=8F=98=EF=BC=8C=E7=BA=AF=20stdlib=20?=
+ =?UTF-8?q?=E9=9B=B6=E6=A8=A1=E5=9E=8B=EF=BC=89+=20test=5Ftricue=5Frerank?=
+ =?UTF-8?q?=20=E5=AE=88=E5=8D=AB=2014=20=E6=9D=A1=20/=20=E5=AE=9A=E7=82=B9?=
+ =?UTF-8?q?=E5=8F=98=E5=BC=82=206=20=E6=9D=A1?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ ...5\217\202\346\225\260\350\241\250_v0.1.md" |  11 +-
+ md_cg/config_registry_bulk.py                 |   1 +
+ md_cg/config_validate.py                      |   1 +
+ md_cg/mdcg.py                                 |   4 +
+ md_cg/mdcos.py                                |  28 +-
+ md_cg/test_tricue_rerank.py                   | 274 ++++++++++++++++++
+ md_cg/tricue_rerank.py                        | 274 ++++++++++++++++++
+ 7 files changed, 582 insertions(+), 11 deletions(-)
+ create mode 100644 md_cg/test_tricue_rerank.py
+ create mode 100644 md_cg/tricue_rerank.py
+
+diff --git "a/docs/reference/\351\205\215\347\275\256\345\217\202\346\225\260\350\241\250_v0.1.md" "b/docs/reference/\351\205\215\347\275\256\345\217\202\346\225\260\350\241\250_v0.1.md"
+index 0ed842f..37be745 100644
+--- "a/docs/reference/\351\205\215\347\275\256\345\217\202\346\225\260\350\241\250_v0.1.md"
++++ "b/docs/reference/\351\205\215\347\275\256\345\217\202\346\225\260\350\241\250_v0.1.md"
+@@ -7,13 +7,13 @@
+ 
+ | 口径 | 数 |
+ |---|---|
+-| registry 条目合计 | 308 |
++| registry 条目合计 | 309 |
+ | 环境面 ENV（只登记分类） | 8 |
+ | 调参面 TUNE | 136 |
+-| 标定面 CALIB | 164 |
+-| 真数值型可调（tunable） | 244 |
++| 标定面 CALIB | 165 |
++| 真数值型可调（tunable） | 245 |
+ | 缺省分叉/跨副本不一致（conflict） | 4 |
+-| status | uncalibrated=288／calibrating=20／calibrated=0 |
++| status | uncalibrated=288／calibrating=21／calibrated=0 |
+ | 环境面分类登记（只登记分类） | 113 |
+ 
+ ## 分层表（谁能进用户配置文件）
+@@ -313,7 +313,7 @@
+ | _TRANSIENT_READ_SAMPLE_CAP | const | 是 | `32` | 见 default（上限/条数） | — | `md_cg/fsutil.py::_TRANSIENT_READ_SAMPLE_CAP` | uncalibrated |
+ | _TRANSIENT_READ_WARN_CAP | const | 是 | `32` | 见 default（上限/条数） | — | `md_cg/fsutil.py::_TRANSIENT_READ_WARN_CAP` | uncalibrated |
+ 
+-## CALIB 面（164 条）
++## CALIB 面（165 条）
+ 
+ | name | kind | tunable | 缺省 | 语义/值域 | env | 锚点 | status |
+ |---|---|---|---|---|---|---|---|
+@@ -420,6 +420,7 @@
+ | MDCG_SPREAD_GAIN | env | 是 | `'0.2'` | value | MDCG_SPREAD_GAIN | `md_cg/mdcg.py`（env） | uncalibrated |
+ | MDCG_SUSTAIN_AUTOHEAL | table | 是 | `True` | on | MDCG_SUSTAIN_AUTOHEAL | `md_cg/sustain.py::AUTO_DEFAULTS['auto_heal']`（既有真源表） | uncalibrated |
+ | MDCG_TEMPORAL_GAMMA | env | 是 | — | unset | MDCG_TEMPORAL_GAMMA | `md_cg/mdcos.py`（env） | uncalibrated |
++| MDCG_TRICUE | env | 是 | — | off | MDCG_TRICUE | `md_cg/tricue_rerank.py`（env） | calibrating |
+ | MDCG_UNIFY_QUERY | env | 是 | `'0'` | off | MDCG_UNIFY_QUERY | `md_cg/semantic/unify.py`（env） | uncalibrated |
+ | MIN_ACCEPT_SCORE | const | 是 | `5` | 见 default（阈值/权重） | — | `md_cg/whitebox_kb/wisdom/navigate.py::MIN_ACCEPT_SCORE` | uncalibrated |
+ | MIN_BODY | const | 是 | `200` | 见 default（阈值/权重） | — | `md_cg/docindex.py::MIN_BODY` | uncalibrated |
+diff --git a/md_cg/config_registry_bulk.py b/md_cg/config_registry_bulk.py
+index 80178e9..8443db1 100644
+--- a/md_cg/config_registry_bulk.py
++++ b/md_cg/config_registry_bulk.py
+@@ -320,6 +320,7 @@ ENV_ROWS = [
+     ('MDCG_RECONCILE', 'TUNE', 'tune', 'env', True, "''", 'str', 'on', 'MDCG_RECONCILE', 'on', 'env_literal', 'md_cg/reconcile.py', '', 'uncalibrated', '由生成器自 AST 复核（第一批未见标定读数）', 'unknown', ''),
+     ('MDCG_REACH', 'CALIB', 'calib', 'env', True, 'None', 'str', 'bool:1', 'MDCG_REACH', 'off', 'env_flag', 'md_cg/reach.py', '', 'uncalibrated', '由生成器自 AST 复核（第一批未见标定读数）；有效缺省（盘点文字，未 AST 复核）：未设 = 关（=="1"）', 'unknown', ''),
+     ('MDCG_REACH_DIFFUSE', 'CALIB', 'calib', 'env', True, "'0'", 'str', 'bool:1', 'MDCG_REACH_DIFFUSE', 'off', 'env_literal', 'md_cg/reach.py', '', 'uncalibrated', '由生成器自 AST 复核（第一批未见标定读数）', 'unknown', ''),
++    ('MDCG_TRICUE', 'CALIB', 'calib', 'env', True, 'None', 'str', 'bool:1', 'MDCG_TRICUE', 'off', 'env_flag', 'md_cg/tricue_rerank.py', '', 'calibrating', 'TriCue v3 融合重排开关（MdCGOS.search 全局阶段）；未设 = 关（=="1"）；融合权重 W_TRICUE=3.0 在 LoCoMo dev（conv-30、conv-47）上预注册选定', 'unknown', ''),
+     ('MDCG_REACH_TTL', 'TUNE', 'tune', 'env', True, '600.0', 'float', 'value', 'MDCG_REACH_TTL', 'value', 'env_literal', 'md_cg/reach.py', '', 'uncalibrated', '由生成器自 AST 复核（第一批未见标定读数）', 'unknown', ''),
+     ('MDCG_POOLING', 'CALIB', 'calib', 'env', True, 'None', 'str', 'off', 'MDCG_POOLING', 'off', 'env_flag', 'md_cg/pooling.py', '', 'uncalibrated', '由生成器自 AST 复核（第一批未见标定读数）；有效缺省（盘点文字，未 AST 复核）：未设 = 关（仅 1/on/true/yes/y 开）', 'unknown', ''),
+     ('MDCG_PROPOSAL_EMOTION', 'CALIB', 'calib', 'env', True, 'None', 'str', 'off', 'MDCG_PROPOSAL_EMOTION', 'off', 'env_flag', 'md_cg/autonomy.py', '', 'uncalibrated', '由生成器自 AST 复核（第一批未见标定读数）；有效缺省（盘点文字，未 AST 复核）：未设 = 关', 'unknown', ''),
+diff --git a/md_cg/config_validate.py b/md_cg/config_validate.py
+index e7a5fda..30b3a42 100644
+--- a/md_cg/config_validate.py
++++ b/md_cg/config_validate.py
+@@ -83,6 +83,7 @@ RULES = {
+     'MDCG_TEMPORAL_GAMMA': {'min': 0.0, 'type': 'float'},
+     'MDCG_TENANT': {'type': 'str'},
+     'MDCG_TOOL_FACE': {'bool_like': True, 'type': 'bool'},
++    'MDCG_TRICUE': {'bool_like': True, 'true_literals': ['1'], 'type': 'bool'},
+     'MDCG_UNIFY_QUERY': {'bool_like': True, 'true_literals': ['1'], 'type': 'bool'},
+     'MDCG_WRITELIMIT': {'bool_like': True, 'type': 'bool'},
+     'MDCG_WRITE_ATTEMPT_LEDGER': {'bool_like': True, 'type': 'bool'},
+diff --git a/md_cg/mdcg.py b/md_cg/mdcg.py
+index 257cb6d..c2edc4b 100644
+--- a/md_cg/mdcg.py
++++ b/md_cg/mdcg.py
+@@ -4978,6 +4978,10 @@ class MdCG:
+         # 未启用则 meta 键集合与改动前逐字节一致（默认关零变更纪律）。
+         if stat.get("time_filter"):
+             meta["time_filter"] = stat["time_filter"]
++        # TriCue 融合审计（MDCG_TRICUE=1 opt-in，md_cg/tricue_rerank.py）：同规则——
++        # 只在融合真的发生时落键，缺省关时 meta 键集合与改动前逐字节一致。
++        if stat.get("tricue"):
++            meta["tricue"] = stat["tricue"]
+         # issue #89①：次级排序键用毕即剥离——EXACT_HIT_KEY 是**内部键**，
+         # 不得随 doc 引用透出。MCP 面（_node_view / 三处显式取键）本就是白名单，
+         # 本步是第二道防线，也为将来新增的消费面兜底。
+diff --git a/md_cg/mdcos.py b/md_cg/mdcos.py
+index 15b4ac4..1b6b96b 100644
+--- a/md_cg/mdcos.py
++++ b/md_cg/mdcos.py
+@@ -41,7 +41,7 @@ from . import (nodefile, routing, chain, subgraph, forgetting, protect,
+                identity, consistency, metacognition, crypto, sustain,
+                self_state, predict, evolution, weights, pooling,
+                writelimit, reach, trust, roleviews, autonomy_modes, lifecycle,
+-               rrf_candidates)
++               rrf_candidates, tricue_rerank)
+ from .fsutil import (FileLock, atomic_write, append_jsonl, read_jsonl,
+                      read_jsonl_tail, count_jsonl, publish)
+ from .rotate import Rotator
+@@ -1244,9 +1244,20 @@ class MdCGOS(MdCG):
+         if gates:
+             stat["gates"] = gates
+         neg_coverage = self._neg_coverage(terms) if include_neg else []
+-
+-# 生效条件：scored 为 None 时对 docs 调 self._score(docs, q, qb, pool_cfg)，非 None 时直接以之为打分结果；分数 >0 的条数达到（search 作用域内的）min_results 就返回 self._emit(scored, k, tier, stat, route_bucket, record, len(docs), ...)，否则返回 None。
+-        def try_stage(docs, tier, scored=None):
++        # TriCue 融合重排（MDCG_TRICUE=1 opt-in，缺省关；判据与边界见 md_cg/tricue_rerank.py
++        # 模块头）：只在全局阶段（T2 含 reach / T3）接线，桶阶段不接；关时下面三个
++        # 接线点（reach 腿、T2 腿、T3 出口）一律不进入，排序与 meta 与改动前逐位一致（test_tricue_rerank P1 实测）。
++        _tc_on = tricue_rerank.enabled()
++
++        def _tricue(scored, domain):
++            fused, audit = tricue_rerank.fuse(
++                self, scored, domain, q,
++                lambda ds: self._score(ds, q, qb, pool_cfg))
++            stat["tricue"] = audit
++            return fused
++
++# 生效条件：scored 为 None 时对 docs 调 self._score(docs, q, qb, pool_cfg)，非 None 时直接以之为打分结果；分数 >0 的条数达到（search 作用域内的）min_results 就返回 self._emit(scored, k, tier, stat, route_bucket, record, len(docs), ...)（domain 非 None 且 MDCG_TRICUE=1 时，取定后先经 TriCue 融合再 _emit），否则返回 None。
++        def try_stage(docs, tier, scored=None, domain=None):
+             # P2-4 回移（v7 N51 留档修复，缺陷迭代第 14 轮）：支持传入已打分
+             # 结果——此前 T2/T3 均为「打分截断后又对 picked 重打」（600 池实测
+             # _score 4 调 [0,0,600,500]=1100 文档，500/1100≈45% 冗余）。与基类
+@@ -1256,6 +1267,9 @@ class MdCGOS(MdCG):
+                 scored = self._score(docs, q, qb, pool_cfg)
+             valid = sum(1 for _, s in scored if s > 0)
+             if valid >= min_results:
++                # TriCue：阶段取舍（valid）仍按 md_cg 原分判定，取定后才融合；domain=None（桶阶段）不融合
++                if _tc_on and domain is not None:
++                    scored = _tricue(scored, domain)
+                 return self._emit(scored, k, tier, stat, route_bucket, record,
+                                   len(docs), judge, context, neg_coverage,
+                                   big_domain, big_scores, pool_cfg)
+@@ -1332,7 +1346,7 @@ class MdCGOS(MdCG):
+             # P2-4：打分结果经 scored 透传，不再对同一 hits_r 二次 _score
+             # （与基类 reach 分支同模板）。
+             out = try_stage(hits_r, TIER_GLOBAL_LIKE,
+-                            scored=_prescored(hits_r, scored_r))
++                            scored=_prescored(hits_r, scored_r), domain=docs_r)
+             if out:
+                 return out
+             # 收敛阶段未产出结果 → 继续走下方全量 T2/T3；此时必须**改写 reach 审计**，
+@@ -1365,7 +1379,7 @@ class MdCGOS(MdCG):
+         pooling.record_audit(stat, _rep)
+         # P2-4：截断打分结果透传，T2 腿不再对 hits 二次 _score。
+         out = try_stage(hits, TIER_GLOBAL_LIKE,
+-                        scored=_prescored(hits, scored_h))
++                        scored=_prescored(hits, scored_h), domain=docs_all)
+         if out:
+             return out
+ 
+@@ -1379,6 +1393,8 @@ class MdCGOS(MdCG):
+         # P2-4：T3 不再对 picked 重打（600 池实测此腿冗余 500 文档/查询，
+         # GLOBAL_CAP=500 截断后 picked ⊆ docs_all，键表回填即得终榜打分）。
+         scored = _prescored(picked, scored_a)
++        if _tc_on:
++            scored = _tricue(scored, docs_all)
+         return self._emit(scored, k, TIER_GLOBAL_SCAN, stat, route_bucket,
+                           record, len(picked), judge,
+                           context, neg_coverage, big_domain, big_scores, pool_cfg)
+diff --git a/md_cg/test_tricue_rerank.py b/md_cg/test_tricue_rerank.py
+new file mode 100644
+index 0000000..f1259a1
+--- /dev/null
++++ b/md_cg/test_tricue_rerank.py
+@@ -0,0 +1,274 @@
++# -*- coding: utf-8 -*-
++"""TriCue 融合重排守卫（md_cg/tricue_rerank.py + MdCGOS.search 接线，MDCG_TRICUE opt-in）。
++
++判据面（合成小库，确定性，零模型，零网络；库建在系统临时目录）：
++  P1 缺省关：MDCG_TRICUE 未设 / "0" / "true" / "" 时 fuse 一次都不调用，meta 无 "tricue" 键，
++     且结果（id 与分）与「fuse 被替换成抛异常」时逐位相同
++  P2 打开生效：整词问句「What instrument does Dana play?」——关闭时目标轮不在前 3，
++     打开后目标轮排第一，meta["tricue"] 落键且 score_kind == "rrf_fused"
++  P3 写入邻接（AGM）：与问句零词面交集的答句，因紧跟强匹配轮写入而进入打开后的前 5；
++     关闭时它不在结果里
++  P4 候选域不越界：同文节点放在 contextual 层，search(layer="knowledge") 打开后也不出现
++  P5 正文立场：只在「# 不适用条件」段里含问句词的节点，TriCue 词法分为 0（与 md_cg 召回键同立场）
++  P6 桶阶段不接：有 context 路由且桶内命中时，打开也不融合（meta 无 "tricue"）
++  P7 确定性：同输入两次结果与融合名次逐位相同；第二次复用索引缓存（rebuilt=False）
++  P8 输入校验：TriCueIndex 的 ids / texts 长度不一致 ⇒ ValueError
++
++运行：
++  python -X utf8 -m md_cg.test_tricue_rerank             # 正向（P1–P8）
++  python -X utf8 -m md_cg.test_tricue_rerank --mutate    # 定点变异自证（每条变异恰好点红其目标判据）
++  python -X utf8 -m md_cg.test_tricue_rerank --mutate --list
++
++退出码（fail-closed）：0 全绿；1 有断言失败 / 变异未恰好点红；2 变异锚点在源码里不唯一（锚点漂移）。
++变异不写工作区：子进程在**内存里**把被测模块的源码文本做一次替换后 exec 成同名模块
++（sys.modules 注入），再跑全部判据；子进程崩溃（无红单）一律判变异失败。
++"""
++import atexit
++import os
++import shutil
++import subprocess
++import sys
++import tempfile
++import types
++
++_REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
++sys.path.insert(0, _REPO)
++
++PASS = 0
++FAIL = 0
++FAILS = []
++
++
++def check(name, cond, detail=""):
++    global PASS, FAIL
++    if cond:
++        PASS += 1
++        print(f"  OK   {name}")
++    else:
++        FAIL += 1
++        FAILS.append(name)
++        print(f"  FAIL {name}  {detail}")
++
++
++TARGET, ADJ_SEED, ADJ_ANS, NEGCOND = "dana_play", "kit_seed", "kit_answer", "neg_cond"
++Q_PLAY = "What instrument does Dana play?"
++Q_KIT = "What is the name of the kitten Alice adopted from the shelter?"
++
++
++def corpus():
++    """(id, 正文, layer, tags) 按写入先后。"""
++    fill = ["Bob: Morning! Did you sleep well after the long trip?",
++            "Alice: The bakery downtown finally reopened this week.",
++            "Bob: Congratulations on finishing the marathon.",
++            "Alice: The train was late again, so I walked.",
++            "Bob: We should repaint the fence before winter.",
++            "Alice: My cousin moved to a farm up north.",
++            "Bob: The library extended its weekend hours."]
++    rows = [("mid_0", fill[0], "knowledge", []),
++            (ADJ_SEED, "Alice: I adopted a little grey kitten from the shelter last spring.", "knowledge", []),
++            (ADJ_ANS, "Bob: Pepper suits her so well!", "knowledge", []),
++            ("mid_1", fill[1], "knowledge", []),
++            (TARGET, "Dana: I play the oboe in a small orchestra.", "knowledge", []),
++            ("mid_2", fill[2], "knowledge", []),
++            ("mid_3", fill[3], "knowledge", [])]
++    # 字二元组意义上与问句高度重叠、但没有整词「dana」「play」的干扰轮
++    for i in range(30):
++        rows.append((f"noise_{i}", f"Gina: instrumentation and display playlists at the instrumental "
++                                   f"plaza, danube daily notes {i}", "knowledge", []))
++    rows += [("mid_4", fill[4], "knowledge", []),
++             (NEGCOND, "Eve: the garden looks quiet today.\n# 不适用条件：oboe orchestra Dana play instrument",
++              "knowledge", []),
++             ("mid_5", fill[5], "knowledge", []),
++             ("ctx_dup", "Dana: I play the oboe in a small orchestra every weekend.", "contextual", []),
++             ("mid_6", fill[6], "knowledge", []),
++             ("bucket_0", "Frank: instrumental display stands at the plaza exhibition.", "knowledge",
++              ["domain:music"])]
++    return rows
++
++
++def build(root):
++    from md_cg.mdcos import MdCGOS
++    cg = MdCGOS(os.path.join(root, "mem"))
++    for nid, text, layer, tags in corpus():
++        cg.add(nid, text, layer=layer, verification_basis="data", tags=tags)
++    return cg
++
++
++def search(cg, q, env, k=5, **kw):
++    old = os.environ.get("MDCG_TRICUE")
++    try:
++        if env is None:
++            os.environ.pop("MDCG_TRICUE", None)
++        else:
++            os.environ["MDCG_TRICUE"] = env
++        r, m = cg.search(q, k=k, judge=False, record=False, **kw)
++    finally:
++        if old is None:
++            os.environ.pop("MDCG_TRICUE", None)
++        else:
++            os.environ["MDCG_TRICUE"] = old
++    return [(x[0]["id"], x[1]) for x in r], m
++
++
++def run():
++    from md_cg import tricue_rerank as tr
++    root = tempfile.mkdtemp(prefix="tricue_guard_")
++    # 删除登记在 atexit（后进先出）：库的退出期刷盘先跑完再删，免得刷盘时目录已不在
++    atexit.register(shutil.rmtree, root, True)
++    cg = build(root)
++
++    print("[P1] 缺省关")
++    calls = []
++    real = tr.fuse
++
++    def spy(*a, **kw):
++        calls.append(1)
++        raise RuntimeError("关闭态不应调用 fuse")
++    off_ref = {q: search(cg, q, None) for q in (Q_PLAY, Q_KIT)}
++    tr.fuse = spy
++    try:
++        same, nokey = True, True
++        for env in (None, "0", "true", ""):
++            for q in (Q_PLAY, Q_KIT):
++                try:
++                    r, m = search(cg, q, env)
++                except RuntimeError:
++                    r, m = None, {"tricue": "called"}
++                same &= r == off_ref[q][0]
++                nokey &= "tricue" not in m
++    finally:
++        tr.fuse = real
++    check("P1 关闭态 fuse 调用 0 次", not calls, f"calls={len(calls)}")
++    check("P1 关闭态 meta 无 tricue 键", nokey)
++    check("P1 关闭态结果逐位相同（未设/0/true/空串）", same)
++
++    print("[P2] 打开生效")
++    off, _ = search(cg, Q_PLAY, None)
++    on, m_on = search(cg, Q_PLAY, "1")
++    check("P2 关闭时目标轮不在前 3", TARGET not in [i for i, _ in off[:3]], f"off={off[:5]}")
++    check("P2 打开后目标轮排第一", [i for i, _ in on[:1]] == [TARGET], f"on={on[:5]}")
++    tc = m_on.get("tricue") or {}
++    check("P2 meta.tricue 落键且 score_kind=rrf_fused",
++          tc.get("on") is True and tc.get("score_kind") == "rrf_fused", str(tc)[:200])
++
++    print("[P3] 写入邻接（AGM）")
++    offk, _ = search(cg, Q_KIT, None)
++    onk, _ = search(cg, Q_KIT, "1")
++    check("P3 关闭时零交集答句不在结果", ADJ_ANS not in [i for i, _ in offk], f"off={offk}")
++    check("P3 打开后零交集答句进前 5", ADJ_ANS in [i for i, _ in onk[:5]], f"on={onk}")
++
++    print("[P4] 候选域不越界")
++    on4, _ = search(cg, Q_PLAY, "1", k=20, layer="knowledge")
++    check("P4 contextual 层同文节点不出现", "ctx_dup" not in [i for i, _ in on4], f"on={on4[:8]}")
++
++    print("[P5] 正文立场")
++    from md_cg.tricue_rerank import TriCueIndex
++    entries = list(cg.index["nodes"].values())      # 先取快照（H-4 契约：共享 nodes 不裸迭代）
++    docs = [d for d in cg._read_many(entries, {"scanned": 0}) if d[1].get("layer") == "knowledge"]
++    idx, _ = tr.index_for(cg, docs)
++    lex = {idx.ids[i] for i in idx.sdm.score(tr.seq_tokens(Q_PLAY))}
++    check("P5 只在不适用条件段命中的节点不得 TriCue 词法分", NEGCOND not in lex, f"lex={sorted(lex)}")
++
++    print("[P6] 桶阶段不接")
++    r6, m6 = search(cg, "instrumental display", "1", context={"tags": ["domain:music"]})
++    check("P6 桶阶段命中（前提）", str(m6.get("tier", "")).startswith("T0"), str(m6.get("tier")))
++    check("P6 桶阶段打开也不融合", "tricue" not in m6, str(m6.get("tricue"))[:120])
++
++    print("[P7] 确定性")
++    # 只比结果与融合名次；meta.tricue.rebuilt 首问为 True、复用缓存后为 False，属设计内差异
++    (r1, m1), (r2, m2) = search(cg, Q_PLAY, "1"), search(cg, Q_PLAY, "1")
++    check("P7 两次结果与融合名次逐位相同",
++          r1 == r2 and m1["tricue"]["top"] == m2["tricue"]["top"] and m2["tricue"]["rebuilt"] is False)
++
++    print("[P8] 输入校验")
++    try:
++        TriCueIndex(["a", "b"], ["x"])
++        ok = False
++    except ValueError:
++        ok = True
++    check("P8 长度不一致 ⇒ ValueError", ok)
++
++
++#: (名, 被测模块, 锚点, 替换, 期望点红的判据集合)
++MUTATIONS = [
++    ("M1 缺省改开", "md_cg.tricue_rerank", 'return os.environ.get("MDCG_TRICUE") == "1"',
++     'return os.environ.get("MDCG_TRICUE") != "0"',
++     {"P1 关闭态 fuse 调用 0 次", "P1 关闭态 meta 无 tricue 键", "P1 关闭态结果逐位相同（未设/0/true/空串）",
++      "P2 关闭时目标轮不在前 3", "P3 关闭时零交集答句不在结果"}),
++    ("M2 TriCue 路权重归零", "md_cg.tricue_rerank", "W_TRICUE = 3.0", "W_TRICUE = 0.0",
++     {"P2 打开后目标轮排第一", "P3 打开后零交集答句进前 5"}),
++    ("M3 去掉写入邻接边", "md_cg.tricue_rerank", "        if i + 1 < n:\n            yield i + 1, W_FWD",
++     "        if False:\n            yield i + 1, W_FWD", {"P3 打开后零交集答句进前 5"}),
++    ("M4 候选域换成全库", "md_cg.mdcos", "scored=_prescored(hits, scored_h), domain=docs_all)",
++     'scored=_prescored(hits, scored_h), domain=self._read_many(list(self.index["nodes"].values()), stat))',
++     {"P4 contextual 层同文节点不出现"}),
++    ("M5 正文不剥不适用条件", "md_cg.tricue_rerank", "texts = [cg._positive_body(d[0], d[2]) for _, d in order]",
++     "texts = [d[2] for _, d in order]",
++     # 不剥反例段时，反例节点在 TriCue 路成了强命中、挤到目标轮前面，故 P2 同红属语义必然
++     {"P5 只在不适用条件段命中的节点不得 TriCue 词法分", "P2 打开后目标轮排第一"}),
++    ("M6 桶阶段也融合", "md_cg.mdcos", "                if _tc_on and domain is not None:\n",
++     "                if _tc_on:\n                    domain = docs if domain is None else domain\n",
++     {"P6 桶阶段打开也不融合"}),
++]
++
++
++def _src_path(mod):
++    return os.path.join(_REPO, *mod.split(".")) + ".py"
++
++
++def _child(i):
++    """子进程：在内存里装入变异后的模块，再跑全部判据（不落盘）。"""
++    _, mod, anchor, repl, _ = MUTATIONS[i]
++    import md_cg  # 先装包（__init__ 不引入 mdcos / tricue_rerank）
++    path = _src_path(mod)
++    src = open(path, encoding="utf-8").read()
++    m = types.ModuleType(mod)
++    m.__file__ = path
++    m.__package__ = "md_cg"
++    sys.modules[mod] = m
++    setattr(md_cg, mod.split(".")[-1], m)
++    exec(compile(src.replace(anchor, repl), path, "exec"), m.__dict__)
++    run()
++
++
++def mutate(list_only=False):
++    if list_only:
++        for name, mod, *_, want in MUTATIONS:
++            print(f"{name}（{mod}） ⇒ 期望点红：{sorted(want)}")
++        return 0
++    for name, mod, anchor, _, _ in MUTATIONS:
++        n = open(_src_path(mod), encoding="utf-8").read().count(anchor)
++        if n != 1:
++            print(f"ANCHOR-MISS {name}: 锚点在 {mod} 命中 {n} 次")
++            return 2
++    bad = 0
++    for i, (name, _, _, _, want) in enumerate(MUTATIONS):
++        env = dict(os.environ, PYTHONUTF8="1")
++        env.pop("MDCG_TRICUE", None)
++        p = subprocess.run([sys.executable, "-X", "utf8", "-m", "md_cg.test_tricue_rerank", "--child", str(i)],
++                           cwd=_REPO, capture_output=True, text=True, encoding="utf-8", env=env)
++        reds = {ln[len("REDLIST "):] for ln in p.stdout.splitlines() if ln.startswith("REDLIST ")}
++        ok = bool(reds) and reds == want
++        bad += not ok
++        print(f"  {'OK  ' if ok else 'FAIL'} {name}: 红 {sorted(reds)}" + ("" if ok else f"  期望 {sorted(want)}"
++              + ("" if reds else f"  子进程 rc={p.returncode} stderr 尾：{p.stderr[-300:]}")))
++    print(f"变异 {len(MUTATIONS)} 条，未恰好点红 {bad} 条")
++    return 1 if bad else 0
++
++
++def _finish():
++    if "--json-fails" in sys.argv or "--child" in sys.argv:
++        for f in FAILS:
++            print("REDLIST " + f)
++    print(f"通过 {PASS} / 失败 {FAIL}")
++    return 1 if FAIL else 0
++
++
++if __name__ == "__main__":
++    if "--mutate" in sys.argv:
++        sys.exit(mutate("--list" in sys.argv))
++    if "--child" in sys.argv:
++        _child(int(sys.argv[sys.argv.index("--child") + 1]))
++        sys.exit(_finish())
++    run()
++    sys.exit(_finish())
+diff --git a/md_cg/tricue_rerank.py b/md_cg/tricue_rerank.py
+new file mode 100644
+index 0000000..8930527
+--- /dev/null
++++ b/md_cg/tricue_rerank.py
+@@ -0,0 +1,274 @@
++# -*- coding: utf-8 -*-
++"""TriCue v3 融合重排：BM25+×SDM 种子的 AGM 扩散单路 × md_cg 词法排序，倒数排名融合。
++
++开关：环境变量 ``MDCG_TRICUE``，**只有取值恰为 "1" 才打开**；未设或其它任何取值 = 关。
++关时 ``MdCGOS.search`` 只调用 ``enabled()`` 读一次开关（不建索引、不融合、meta 不落键），
++排序与读数和改动前逐位一致（守卫 ``md_cg/test_tricue_rerank.py`` 的 P1 实测证明）。
++纯标准库、零模型、零网络、无学习状态。
++
++依据（白箱三问之一：依据什么）
++------------------------------
++  · TriCue v3（TanPowasd/LingShu-prime ``agm/tricue/tricue.py`` 的 ``TriCueMemory.v3()``）
++    在 LoCoMo 留出 8 段对话上证据轮 @10 = .618（其预注册文档 gen_prereg3.md）；
++  · md_cg 自然问句的失败主要在排序：英文 1531 题里失败 848 题，260 题证据轮在 11–50 名、
++    142 题在 51–100 名、446 题不在前 100（dsh-memory 8d5c5f0 实测）。字二元组 lexical_sim
++    对英文整词问句区分度低，BM25+×SDM 的整词 idf + 邻接对特征补的正是这一块。
++
++算法（参数全部固定；只有融合权重 ``W_TRICUE`` 在 LoCoMo dev 两段对话上选定，见预注册）
++------------------------------------------------------------------------------------
++  词项    中日韩连续段取重叠字二元组（单字段取单字），其余字母数字串取小写整词（有序）；
++  打分    BM25+（k1=1.2, b=0.75, δ=1）× SDM 三类特征：单词项 0.85 / 有序相邻对 0.10 /
++          无序窗口对（窗口 8）0.05；无序对只在前两类得分前 ``UW_TOP`` 篇内计算；
++  图      候选域按写入先后（created_at，同值按 id）排成一列，相邻两节点连边：
++          前→后 0.4、后→前 0.25（TriCue 的「上一轮末块→本轮首块」问答邻接，一个节点 = 一块）；
++  AGM     打分前 8 名为种子（按最高分归一），沿图扩散 2 步，非种子每步衰减 35%，
++          阈值 0.05，k-WTA 80；放电节点按激活排序，其后接打分剩余节点；
++  融合    md_cg 路 = 本阶段 md_cg 打分 > 0 的候选，按 ``_emit`` 同一排序键排名；
++          TriCue 路 = 上述 AGM 序前 ``LIMIT`` 名；
++          融合分 = Σ_md_cg 1/(K+名次) + W_TRICUE · Σ_TriCue 1/(K+名次)（名次从 1 起）；
++          TriCue 路带进来、md_cg 本阶段没打过分的节点，用同一个 ``_score`` 补打（只为生成结果卡）。
++
++生效条件（白箱三问之二：在什么条件下成立）
++------------------------------------------
++  · 只在全局阶段生效：T2（全量 LIKE，含 reach 收敛实现）与 T3（全量兜底）；
++    桶阶段（有 context 路由）**不**生效——路由桶是调用方给的语义约束，本模块不越过它；
++  · 候选域 = 本阶段已读入的全部候选文档（T2/T3 = 治理过滤后的全量 ``docs_all``；
++    reach 打开时 = 其收敛集），结果只可能来自候选域，层/角色/会话/时效等过滤一律不被绕开；
++  · 阶段是否「有结果」（``try_stage`` 的 valid 计数）仍按 md_cg 原分判定，阶梯走向不变；
++  · 正文取 ``_positive_body``（剥掉「# 不适用条件」段），与 md_cg 召回键同一立场；
++  · 打开时结果的 score 是**融合分**（量级约 0.01–0.07），不再是 md_cg 的 [0,1] 相似度；
++    每条结果的 md_cg 原分、两路名次在 ``meta["tricue"]["top"]`` 里可查。
++
++错了怎么办 / 边界（白箱三问之三）
++--------------------------------
++  · 关掉开关即回到原排序（逐位）；
++  · 写入邻接边假设「相邻写入的节点在说同一段事」：多个对话交错写入时，这条边会把无关节点
++    连起来（推断：会拉低 AGM 扩散的净收益，未测）；
++  · 索引按（索引代际，候选域 id 序列）缓存，任何写入都会让下次查询整库重建（O(N)）；
++    reach 收敛集每问不同 ⇒ 每问重建，**reach 与本开关同开时的延迟未测（存疑）**；
++  · ``MdCG.search``（基类）与 ``search_rrf`` 未接入（本模块只接 MdCGOS.search 生产路径）。
++"""
++from __future__ import annotations
++
++import bisect
++import collections
++import math
++import os
++import re
++
++# BM25+（Lv & Zhai 2011）× SDM（Metzler & Croft 2005），文献默认值，与 TriCue v3 相同
++K1, B, DELTA = 1.2, 0.75, 1.0
++SDM_W = (0.85, 0.10, 0.05)          # 单词项 / 有序相邻对 / 无序窗口对
++SDM_WIN = 8
++UW_TOP = 1000
++# AGM 扩散，与 TriCue v3 相同
++SEEDS, DECAY, THETA, KWTA, STEPS = 8, 0.35, 0.05, 80, 2
++W_FWD, W_BWD = 0.4, 0.25            # 写入邻接：前→后 / 后→前
++# 融合：K 与 TriCue 的 RRF_K 相同；W_TRICUE 与 LIMIT 在 LoCoMo dev（conv-30、conv-47）上预注册选定
++RRF_K = 60
++W_TRICUE = 3.0
++LIMIT = 100
++
++_CJK = re.compile(r"[\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff\u3040-\u30ff\uac00-\ud7af]+")
++_WORD = re.compile(r"[^\W_]+", re.UNICODE)
++
++
++# 生效条件：环境变量 MDCG_TRICUE 恰为 "1" 时返回 True；未设或其它取值返回 False。
++def enabled() -> bool:
++    return os.environ.get("MDCG_TRICUE") == "1"
++
++
++# 生效条件：s 为任意字符串；中日韩连续段取重叠字二元组（单字段取单字），其余字母数字串取小写整词，保持原序。
++def seq_tokens(s: str) -> list:
++    out = []
++    for w in _WORD.findall(s or ""):
++        pos = 0
++        for m in _CJK.finditer(w):
++            if m.start() > pos:
++                out.append(w[pos:m.start()].lower())
++            run = m.group()
++            if len(run) > 1:
++                out.extend(run[i:i + 2] for i in range(len(run) - 1))
++            else:
++                out.append(run)
++            pos = m.end()
++        if pos < len(w):
++            out.append(w[pos:].lower())
++    return out
++
++
++class _SDM:
++    """文档级 BM25+ × SDM 三类特征（与 TriCue v3 的 BM25PlusSDM 同式）。"""
++
++    def __init__(self):
++        self.tf, self.tf2, self.pos, self.dl = [], [], [], []
++        self.inv = collections.defaultdict(list)
++        self.inv2 = collections.defaultdict(list)
++        self.total = 0
++
++    def add(self, toks):
++        d = len(self.dl)
++        c = collections.Counter(toks)
++        c2 = collections.Counter(zip(toks, toks[1:]))
++        p = collections.defaultdict(list)
++        for i, t in enumerate(toks):
++            p[t].append(i)
++        self.tf.append(c); self.tf2.append(c2); self.pos.append(dict(p)); self.dl.append(len(toks))
++        self.total += len(toks)
++        for t in c:
++            self.inv[t].append(d)
++        for t in c2:
++            self.inv2[t].append(d)
++
++    def _part(self, tf, df, dl, avg):
++        idf = math.log((len(self.dl) + 1) / df)
++        return idf * ((K1 + 1) * tf / (K1 * (1 - B + B * dl / avg) + tf) + DELTA)
++
++    @staticmethod
++    def _uw(pa, pb):
++        n = 0
++        for x in pa:
++            i = bisect.bisect_left(pb, x - SDM_WIN + 1)
++            while i < len(pb) and pb[i] <= x + SDM_WIN - 1:
++                if pb[i] != x:
++                    n += 1
++                    break
++                i += 1
++        return n
++
++    def score(self, q):
++        if not self.dl or not q:
++            return {}
++        avg = self.total / len(self.dl) or 1.0
++        sc = collections.defaultdict(float)
++        wt, wo, wu = SDM_W
++        for t in set(q):
++            post = self.inv.get(t)
++            if post:
++                for d in post:
++                    sc[d] += wt * self._part(self.tf[d][t], len(post), self.dl[d], avg)
++        pairs = {(a, b) for a, b in zip(q, q[1:]) if a != b}
++        for pr in pairs:
++            post = self.inv2.get(pr)
++            if post:
++                for d in post:
++                    sc[d] += wo * self._part(self.tf2[d][pr], len(post), self.dl[d], avg)
++        cand = set(sorted(sc, key=lambda d: (-sc[d], d))[:UW_TOP])
++        for a, b in pairs:
++            pa_, pb_ = self.inv.get(a), self.inv.get(b)
++            if not pa_ or not pb_:
++                continue
++            both = set(pa_).intersection(pb_) & cand
++            hits = {}
++            for d in both:
++                n = self._uw(self.pos[d][a], self.pos[d][b])
++                if n:
++                    hits[d] = n
++            for d, n in hits.items():
++                sc[d] += wu * self._part(n, len(hits), self.dl[d], avg)
++        return sc
++
++
++class TriCueIndex:
++    """候选域上的 TriCue v3 排序器。ids 与 texts 按写入先后给出。"""
++
++    def __init__(self, ids, texts):
++        if len(ids) != len(texts):
++            raise ValueError("ids 与 texts 长度不一致")
++        self.ids = list(ids)
++        self.sdm = _SDM()
++        for t in texts:
++            self.sdm.add(seq_tokens(t))
++
++    def _neighbors(self, i):
++        n = len(self.ids)
++        if i + 1 < n:
++            yield i + 1, W_FWD
++        if i > 0:
++            yield i - 1, W_BWD
++
++    # 生效条件：query 为字符串；无任何词项命中时返回 []；否则返回 AGM 放电节点（激活降序）+ 其余打分节点（分降序），元素为 id。
++    def rank(self, query):
++        sc = self.sdm.score(seq_tokens(query))
++        if not sc:
++            return []
++        top = sorted(sc, key=lambda i: (-sc[i], i))[:SEEDS]
++        m = sc[top[0]] or 1.0
++        x = {i: sc[i] / m for i in top}
++        a = dict(x)
++        for _ in range(STEPS):
++            nxt = collections.defaultdict(float)
++            for i, ai in a.items():
++                for j, w in self._neighbors(i):
++                    nxt[j] += ai * w
++            for i, v in x.items():
++                nxt[i] += v
++            nxt = {i: (v if i in x else (1 - DECAY) * v) for i, v in nxt.items()}
++            a = dict(sorted(((i, v) for i, v in nxt.items() if v >= THETA),
++                            key=lambda kv: (-kv[1], kv[0]))[:KWTA])
++        fired = sorted(a, key=lambda i: (-a[i], i))
++        rest = sorted((i for i in sc if i not in a), key=lambda i: (-sc[i], i))
++        return [self.ids[i] for i in fired + rest]
++
++
++# 生效条件：docs 为 (entry, fm, content) 序列；返回按 (created_at, id) 升序的 (id, doc) 列表——写入先后的唯一判据单点。
++def write_order(docs):
++    def key(d):
++        e, fm = d[0], d[1]
++        ca = e.get("created_at")
++        if ca is None:
++            ca = fm.get("created_at")
++        try:
++            ca = float(ca or 0)
++        except (TypeError, ValueError):
++            ca = 0.0
++        return (ca, str(fm.get("id") or e.get("path") or ""))
++    return [(str(d[1].get("id") or d[0].get("path")), d) for d in sorted(docs, key=key)]
++
++
++# 生效条件：cg 为 MdCGOS 实例、docs 为候选域；按（索引代际, 域 id 序列）命中实例缓存即复用，否则重建；返回 (index, rebuilt)。
++def index_for(cg, docs):
++    order = write_order(docs)
++    key = (cg._index_generation(), tuple(i for i, _ in order))
++    cached = getattr(cg, "_tricue_cache", None)
++    if cached is not None and cached[0] == key:
++        return cached[1], False
++    texts = [cg._positive_body(d[0], d[2]) for _, d in order]
++    idx = TriCueIndex([i for i, _ in order], texts)
++    cg._tricue_cache = (key, idx)
++    return idx, True
++
++
++# 生效条件：scored 为本阶段 md_cg 的 (card, score) 列表、docs 为候选域、score_fn(docs) 与 _score 同形；返回融合后的 (card, 融合分) 列表与审计块。
++def fuse(cg, scored, docs, query, score_fn):
++    from .mdcg import EXACT_HIT_KEY
++    idx, rebuilt = index_for(cg, docs)
++    md = sorted((x for x in scored if x[1] > 0),
++                key=lambda x: (-x[1], -int(x[0].get(EXACT_HIT_KEY) or 0),
++                               -float(x[0]["frontmatter"].get("importance") or 0),
++                               str(x[0].get("id") or "")))
++    tc = idx.rank(query)[:LIMIT]
++    fs = collections.defaultdict(float)
++    md_rank, tc_rank = {}, {}
++    for r, (card, _) in enumerate(md, 1):
++        cid = str(card.get("id"))
++        md_rank[cid] = r
++        fs[cid] += 1.0 / (RRF_K + r)
++    for r, cid in enumerate(tc, 1):
++        tc_rank[cid] = r
++        fs[cid] += W_TRICUE / (RRF_K + r)
++    cards = {str(c.get("id")): (c, s) for c, s in scored}
++    missing = [cid for cid in tc if cid not in cards]
++    if missing:
++        by_id = {i: d for i, d in write_order(docs)}
++        for c, s in score_fn([by_id[cid] for cid in missing]):
++            cards[str(c.get("id"))] = (c, s)
++    out = [(cards[cid][0], fs[cid]) for cid in fs]
++    out += [(c, s) for cid, (c, s) in cards.items() if cid not in fs]
++    top = sorted(fs, key=lambda cid: -fs[cid])[:20]
++    audit = {"on": True, "w": W_TRICUE, "k": RRF_K, "limit": LIMIT,
++             "domain": len(idx.ids), "rebuilt": rebuilt, "added": len(missing),
++             "score_kind": "rrf_fused",
++             "top": [{"id": cid, "mdcg_rank": md_rank.get(cid), "tricue_rank": tc_rank.get(cid),
++                      "mdcg_score": cards[cid][1]} for cid in top]}
++    return out, audit
+-- 
+2.47.3
+
