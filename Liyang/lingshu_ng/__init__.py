@@ -6,4 +6,4 @@
 """
 from . import _pathguard as _pathguard  # noqa: F401  最早落点：cwd 解析护栏（上游 #156/#273）
 
-__version__ = "1.18.0"
+__version__ = "1.19.0"

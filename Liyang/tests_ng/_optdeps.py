@@ -19,8 +19,8 @@ def require(name: str):
 
 
 def model_dir(*parts: str) -> str:
-    """本地模型根目录（``LINGSHU_NG_SEM``，缺省同 :data:`lingshu_ng.semrank.DEFAULT_DIR`）下的子路径。"""
+    """本地模型根目录（``LINGSHU_NG_SEM``，未设时同 :func:`lingshu_ng.semrank.model_root`）下的子路径。"""
     import os
 
     from lingshu_ng import semrank
-    return os.path.join(os.environ.get("LINGSHU_NG_SEM", semrank.DEFAULT_DIR).strip(), *parts)
+    return os.path.join(semrank.model_root(warn=False), *parts)

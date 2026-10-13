@@ -1,7 +1,7 @@
-# lingshu_ng 对外 API（rel-v1.18）
+# lingshu_ng 对外 API（rel-v1.19）
 
 本文覆盖 `lingshu_ng` 的公开类与方法、参数、返回值、异常、可选依赖与 `capabilities()` 用法。
-版本：`lingshu_ng.__version__ == "1.18.0"`（发行包 `lingshu-ng`，版本号 = `CHANGELOG_rel-v1.18.md`）。
+版本：`lingshu_ng.__version__ == "1.19.0"`（发行包 `lingshu-ng`，版本号 = `CHANGELOG_rel-v1.19.md`）。
 文末附录 A 由代码生成（`tools/ci/gen_api_appendix.py`），列出兼容门面每个公开方法的支持状态，与运行期
 `capabilities.compat_methods()` 一致。
 
@@ -200,14 +200,16 @@ caps["compat_methods"]   # 兼容门面每个公开方法：{"status": "supporte
 模型权重不随包发布。目录约定（`lingshu_ng.semrank`）：`$LINGSHU_NG_SEM/<模型名>/{tokenizer.json, onnx/<文件>}`，
 缺省模型名 `bge-reranker-base`（`LINGSHU_NG_SEM_MODEL`）、稠密 `bge-small-zh-v1.5`（`LINGSHU_NG_DENSE_MODEL`）、级联 `bge-reranker-v2-m3`（`LINGSHU_NG_SEM_CASC_MODEL`），
 ONNX 文件缺省 `model_quantized.onnx`。英文语义第二路用 `LINGSHU_NG_EMBED_MODEL=<模型目录>`（如 bge-small-en-v1.5）。
-**注意**：`LINGSHU_NG_SEM` 未设置时缺省目录是开发机路径 `/workspace/work/ls/_shared/models`，在其它机器上不存在 ⇒ 退回无模型；
-部署时请显式设置 `LINGSHU_NG_SEM`（或设 `off` 关闭）。打分缓存缺省写在 `<模型目录>/_score_cache`（`LINGSHU_NG_SEM_CACHE` 可改，空串关闭）。
+**模型根目录**（rel-v1.19 起，`semrank.model_root()`）：设了 `LINGSHU_NG_SEM` 就用它（`off` 或空串 = 关闭）；未设时退到
+`~/.cache/lingshu_ng/models`，进程内打一次 WARNING（logger `lingshu_ng`）并登记 `diag.fallbacks()["sem_model_dir_default"]`，写明所用目录、目录是否存在；
+目录不存在 ⇒ 语义件退回无模型路径（`capabilities()` 的 unavailable 原因里能看到该路径）。rel-v1.18 及以前未设时缺省是作者开发机路径。
+部署时建议显式设置 `LINGSHU_NG_SEM`（或设 `off` 关闭），即无此警告。打分缓存缺省写在 `<模型目录>/_score_cache`（`LINGSHU_NG_SEM_CACHE` 可改，空串关闭）。
 
 ## 9. 环境变量
 
 | 变量 | 作用 |
 |---|---|
-| `LINGSHU_NG_SEM` | 中文语义件模型根目录；`off` 关闭。 |
+| `LINGSHU_NG_SEM` | 中文语义件模型根目录；`off` 关闭；未设 → `~/.cache/lingshu_ng/models`（一次 WARNING）。 |
 | `LINGSHU_NG_SEM_MODEL` / `_ONNX` / `_CACHE` / `_THREADS` / `_MAXLEN` | 重排件模型名 / ONNX 文件 / 分数缓存目录 / 线程数 / 最大长度。 |
 | `LINGSHU_NG_DENSE_MODEL` / `_ONNX` / `_MAXLEN` | 稠密补入件。 |
 | `LINGSHU_NG_SEM_CASC_MODEL` / `_ONNX` | 级联复打件（缺省关）。 |

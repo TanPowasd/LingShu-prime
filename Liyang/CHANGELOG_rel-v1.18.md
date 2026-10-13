@@ -70,4 +70,7 @@
 
 ## 推送记录
 
-（待填）
+**已推送 LingShu-prime main 8795d266**（2026-10-13 17:10 CST，stab-r3b）：基于远端 860668ec（rel-v1.17），只改 `Liyang/`（36 个文件：lingshu_ng/ 与 tests_ng/ 改动及新增文件（含旧库夹具 2 个 .sqlite）、tools/ci 5 个新脚本、tools/compat、docs/API_ng.md、COMPAT_MATRIX.md、bench_rel/logs 四段日志、`pyproject.toml`（= release/Liyang/pyproject.toml）、本文件、README（v1.18 条目、API 文档链接、extras 表改为 embed/world/nn/gen/full/dev））。
+发布树 wt-rel rel-v1 = stab-v1@31a67c0c（快进）；gen 无模型 rel118 对 stab3a：loc_dev 383/383、LME dev 83/83 逐题名次相同（`_stab/r3/gen_rel118_vs_stab3a.txt`）。
+发布目录内 `python -m pytest tests_ng -q`：3196 passed, 1 skipped（skip＝缺上游 tests/ 的表面核对；首次 2 条失败系旧库夹具 .sqlite 被 .gitignore 忽略未入库，已于 31a67c0c 强制加入后复跑通过）。
+TanPowasd/agm learn 25/25、reason 14/14 只运行、未改动 TanPowasd/（hive_retrieval.cpython-312.pyc 已 git checkout 还原，未进提交）。LLM $0。

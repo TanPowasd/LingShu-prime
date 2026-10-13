@@ -3,7 +3,8 @@
 
 - 交叉编码重排：BAAI/bge-reranker-base（MIT；https://huggingface.co/BAAI/bge-reranker-base），ONNX 推理（onnxruntime + tokenizers），CPU。
 - 依赖全部可选：onnxruntime / tokenizers 未安装、或模型目录缺文件 → :func:`get_scorer` 返回 None，调用方逐位退回无模型路径。
-- 模型目录：环境变量 ``LINGSHU_NG_SEM``（目录；设为 ``off`` 即关闭），缺省 ``/workspace/work/ls/_shared/models``；
+- 模型目录：环境变量 ``LINGSHU_NG_SEM``（目录；设为 ``off`` 即关闭）；未设时退到 ``~/.cache/lingshu_ng/models``（:func:`model_root`，
+  进程内打一次 WARNING 并登记 diag ``sem_model_dir_default``，写明所用目录及其是否存在）；rel-v1.18 及以前缺省是作者开发机路径；
   其下 ``<LINGSHU_NG_SEM_MODEL，缺省 bge-reranker-base>/{tokenizer.json, onnx/<file>}``，文件名由 ``LINGSHU_NG_SEM_ONNX`` 选（缺省 model_quantized.onnx）。
 - 分数缓存：``LINGSHU_NG_SEM_CACHE`` 目录（缺省 <模型目录>/_score_cache），键 sha1(模型文件名, 问句, 段落)，一行一个 JSON；
   缓存命中与重算逐位相同（同一 ONNX、单线程顺序批）——缓存只为省时。
@@ -24,8 +25,34 @@ from . import anstype, diag
 
 _log = logging.getLogger(__name__)
 
-DEFAULT_DIR = "/workspace/work/ls/_shared/models"
+#: 未设 ``LINGSHU_NG_SEM`` 时的模型根目录（v1.19 起；此前为作者开发机路径 /workspace/work/ls/_shared/models）。
+#: 导入时按当前用户主目录展开；运行期以 :func:`model_root` 为准（每次调用重新展开，HOME 改了也跟着变）。
+DEFAULT_DIR = os.path.join(os.path.expanduser("~"), ".cache", "lingshu_ng", "models")
 _LOCK = threading.Lock()
+
+
+def default_model_dir() -> str:
+    """缺省模型根目录 ``~/.cache/lingshu_ng/models``（调用时展开当前用户主目录）。"""
+    return os.path.join(os.path.expanduser("~"), ".cache", "lingshu_ng", "models")
+
+
+def model_root(warn: bool = True) -> str:
+    """模型根目录：设了 ``LINGSHU_NG_SEM`` 就用它（``off`` / 空串 = 关闭，同旧版）；未设 → :func:`default_model_dir`。
+    退到缺省目录时（``warn=True``）进程内打一次 WARNING 并登记 diag ``sem_model_dir_default``：写明目录、是否存在、怎样改。"""
+    d = os.environ.get("LINGSHU_NG_SEM")
+    if d is not None:      # 设了就用（空串同旧版 = 关闭）
+        return d.strip()
+    d = default_model_dir()
+    if warn:
+        if os.path.isdir(d):
+            msg = f"未设 LINGSHU_NG_SEM → 模型目录用缺省 {d}（目录存在，按其中模型件启用语义件）；设 LINGSHU_NG_SEM=<目录> 或 off 可消除本警告"
+        else:
+            msg = (f"未设 LINGSHU_NG_SEM → 模型目录用缺省 {d}，但该目录不存在：语义件不可用，逐位退回无模型路径；"
+                   "设 LINGSHU_NG_SEM=<模型目录> 启用，或 LINGSHU_NG_SEM=off 明确关闭并消除本警告")
+        diag.warn_once("sem_model_dir_default", msg)
+    return d
+
+
 _SCORERS: Dict[str, Optional["CrossScorer"]] = {}
 #: 件不可用的原因（键同 _SCORERS / _EMBEDDERS）：关闭 / 缺模型文件 / 依赖加载失败（stab-r1：退回可见）
 _REASONS: Dict[str, str] = {}
@@ -180,7 +207,7 @@ def get_disc(sc) -> Optional[DiscHead]:
     """判别头（进程内单例）：LINGSHU_NG_SEM_DISC（缺省 <模型目录>/disc_head.json）；头或特征图缺失 / 加载失败 → None。"""
     if sc is None or not isinstance(sc, CrossScorer):
         return None
-    path = os.environ.get("LINGSHU_NG_SEM_DISC", os.path.join(os.environ.get("LINGSHU_NG_SEM", DEFAULT_DIR).strip(),
+    path = os.environ.get("LINGSHU_NG_SEM_DISC", os.path.join(model_root(),
                                                               os.environ.get("LINGSHU_NG_SEM_MODEL", "bge-reranker-base").strip(), "disc_head.json"))
     if path not in _DISC:
         try:
@@ -205,7 +232,7 @@ def get_casc_scorer() -> Optional[CrossScorer]:
 
 
 def _scorer(model: str, name: str) -> Optional[CrossScorer]:
-    d = os.environ.get("LINGSHU_NG_SEM", DEFAULT_DIR).strip()
+    d = model_root()
     k = f"{d}|{model}|{name}"
     if k in _SCORERS:
         return _SCORERS[k]
@@ -243,7 +270,7 @@ def warn_v4fb() -> None:
 
 def unavailable_reason(kind: str = "scorer") -> Optional[str]:
     """``kind`` ∈ {scorer, casc, dense}：对应件当前不可用的原因；可用或尚未探测 → None。"""
-    d = os.environ.get("LINGSHU_NG_SEM", DEFAULT_DIR).strip()
+    d = model_root()
     if kind == "dense":
         model = os.environ.get("LINGSHU_NG_DENSE_MODEL", "bge-small-zh-v1.5").strip()
         name = os.environ.get("LINGSHU_NG_DENSE_ONNX", "model.onnx").strip()
@@ -339,7 +366,7 @@ _EMBEDDERS: Dict[str, Optional[DenseEmbedder]] = {}
 
 def get_embedder() -> Optional[DenseEmbedder]:
     """稠密件可用时返回（进程内单例），否则 None（缺依赖 / 缺模型 / LINGSHU_NG_SEM 或 LINGSHU_NG_DENSE = off）→ 调用方不补稠密候选（= v7.1）。"""
-    d = os.environ.get("LINGSHU_NG_SEM", DEFAULT_DIR).strip()
+    d = model_root()
     model = os.environ.get("LINGSHU_NG_DENSE_MODEL", "bge-small-zh-v1.5").strip()
     name = os.environ.get("LINGSHU_NG_DENSE_ONNX", "model.onnx").strip()
     off = os.environ.get("LINGSHU_NG_DENSE", "").strip().lower() in ("off", "0", "none")
