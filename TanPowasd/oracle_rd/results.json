@@ -1,0 +1,3849 @@
+{
+ "model": "cline-pass/deepseek-v4.1-flash",
+ "arms": [
+  "C",
+  "S",
+  "R"
+ ],
+ "rows": [
+  {
+   "qid": "scene_0_q_10",
+   "conv": 0,
+   "cat": 2,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_0_q_10",
+   "conv": 0,
+   "cat": 2,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_0_q_10",
+   "conv": 0,
+   "cat": 2,
+   "arm": "R",
+   "hit10": false,
+   "answer": "4 years",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_0_q_53",
+   "conv": 0,
+   "cat": 2,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_0_q_53",
+   "conv": 0,
+   "cat": 2,
+   "arm": "S",
+   "hit10": true,
+   "answer": "this week",
+   "verdict": "incorrect",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_0_q_53",
+   "conv": 0,
+   "cat": 2,
+   "arm": "R",
+   "hit10": true,
+   "answer": "This week",
+   "verdict": "incorrect",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_0_q_78",
+   "conv": 0,
+   "cat": 1,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_0_q_78",
+   "conv": 0,
+   "cat": 1,
+   "arm": "S",
+   "hit10": true,
+   "answer": "figurines",
+   "verdict": "incorrect",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_0_q_78",
+   "conv": 0,
+   "cat": 1,
+   "arm": "R",
+   "hit10": true,
+   "answer": "new shoes and figurines",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_0_q_82",
+   "conv": 0,
+   "cat": 4,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_0_q_82",
+   "conv": 0,
+   "cat": 4,
+   "arm": "S",
+   "hit10": true,
+   "answer": "mental health",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_0_q_82",
+   "conv": 0,
+   "cat": 4,
+   "arm": "R",
+   "hit10": true,
+   "answer": "mental health",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_0_q_83",
+   "conv": 0,
+   "cat": 4,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_0_q_83",
+   "conv": 0,
+   "cat": 4,
+   "arm": "S",
+   "hit10": false,
+   "answer": "要关注心理健康",
+   "verdict": "incorrect",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_0_q_83",
+   "conv": 0,
+   "cat": 4,
+   "arm": "R",
+   "hit10": false,
+   "answer": "自我照顾很重要",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_0_q_87",
+   "conv": 0,
+   "cat": 4,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_0_q_87",
+   "conv": 0,
+   "cat": 4,
+   "arm": "S",
+   "hit10": true,
+   "answer": "因他们包容支持LGBTQ+收养。",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_0_q_87",
+   "conv": 0,
+   "cat": 4,
+   "arm": "R",
+   "hit10": true,
+   "answer": "They help LGBTQ+ folks with adoption.",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_0_q_88",
+   "conv": 0,
+   "cat": 4,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_0_q_88",
+   "conv": 0,
+   "cat": 4,
+   "arm": "S",
+   "hit10": false,
+   "answer": "开始新篇章，为需要家的孩子提供安全充满爱的家",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_0_q_88",
+   "conv": 0,
+   "cat": 4,
+   "arm": "R",
+   "hit10": false,
+   "answer": "为需要家庭的孩子组建家庭",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_0_q_91",
+   "conv": 0,
+   "cat": 4,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_0_q_91",
+   "conv": 0,
+   "cat": 4,
+   "arm": "S",
+   "hit10": true,
+   "answer": "love, faith and strength",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_0_q_91",
+   "conv": 0,
+   "cat": 4,
+   "arm": "R",
+   "hit10": true,
+   "answer": "love, faith and strength",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_0_q_92",
+   "conv": 0,
+   "cat": 4,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_0_q_92",
+   "conv": 0,
+   "cat": 4,
+   "arm": "S",
+   "hit10": true,
+   "answer": "Sweden",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_0_q_92",
+   "conv": 0,
+   "cat": 4,
+   "arm": "R",
+   "hit10": true,
+   "answer": "Sweden",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_0_q_99",
+   "conv": 0,
+   "cat": 4,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_0_q_99",
+   "conv": 0,
+   "cat": 4,
+   "arm": "S",
+   "hit10": true,
+   "answer": "{\"answer\":\"自己的经历与支持，",
+   "error": "RuntimeError: persistent_reject: 同一请求已失败 6 次（HTTP 500）",
+   "verdict": null
+  },
+  {
+   "qid": "scene_0_q_99",
+   "conv": 0,
+   "cat": 4,
+   "arm": "R",
+   "hit10": true,
+   "answer": "自身经历与得到的支持",
+   "error": "RuntimeError: persistent_reject: 同一请求已失败 12 次（HTTP 500）",
+   "verdict": null
+  },
+  {
+   "qid": "scene_0_q_140",
+   "conv": 0,
+   "cat": 4,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_0_q_140",
+   "conv": 0,
+   "cat": 4,
+   "arm": "S",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_0_q_140",
+   "conv": 0,
+   "cat": 4,
+   "arm": "R",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_1_q_1",
+   "conv": 1,
+   "cat": 2,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_1_q_1",
+   "conv": 1,
+   "cat": 2,
+   "arm": "S",
+   "hit10": true,
+   "answer": "This month",
+   "verdict": "incorrect",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_1_q_1",
+   "conv": 1,
+   "cat": 2,
+   "arm": "R",
+   "hit10": true,
+   "answer": "this month",
+   "verdict": "incorrect",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_1_q_20",
+   "conv": 1,
+   "cat": 2,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_1_q_20",
+   "conv": 1,
+   "cat": 2,
+   "arm": "S",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_1_q_20",
+   "conv": 1,
+   "cat": 2,
+   "arm": "R",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_1_q_32",
+   "conv": 1,
+   "cat": 2,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_1_q_32",
+   "conv": 1,
+   "cat": 2,
+   "arm": "S",
+   "hit10": true,
+   "answer": "last week",
+   "verdict": "incorrect",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_1_q_32",
+   "conv": 1,
+   "cat": 2,
+   "arm": "R",
+   "hit10": true,
+   "answer": "last week",
+   "verdict": "incorrect",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_1_q_56",
+   "conv": 1,
+   "cat": 4,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_1_q_56",
+   "conv": 1,
+   "cat": 4,
+   "arm": "S",
+   "hit10": false,
+   "error": "RuntimeError: persistent_reject: 同一请求已失败 12 次（HTTP 500）",
+   "verdict": null
+  },
+  {
+   "qid": "scene_1_q_56",
+   "conv": 1,
+   "cat": 4,
+   "arm": "R",
+   "hit10": false,
+   "answer": "结伴跳舞和各自不同道路",
+   "verdict": "incorrect",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_1_q_65",
+   "conv": 1,
+   "cat": 4,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_1_q_65",
+   "conv": 1,
+   "cat": 4,
+   "arm": "S",
+   "hit10": true,
+   "answer": "The Lean Startup",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_1_q_65",
+   "conv": 1,
+   "cat": 4,
+   "arm": "R",
+   "hit10": true,
+   "answer": "The Lean Startup",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_1_q_67",
+   "conv": 1,
+   "cat": 4,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_1_q_67",
+   "conv": 1,
+   "cat": 4,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_1_q_67",
+   "conv": 1,
+   "cat": 4,
+   "arm": "R",
+   "hit10": false,
+   "answer": "To stay organized and motivated.",
+   "verdict": "incorrect",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_2_q_8",
+   "conv": 2,
+   "cat": 3,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_2_q_8",
+   "conv": 2,
+   "cat": 3,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_2_q_8",
+   "conv": 2,
+   "cat": 3,
+   "arm": "R",
+   "hit10": false,
+   "answer": "Wealthy",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_2_q_41",
+   "conv": 2,
+   "cat": 3,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_2_q_41",
+   "conv": 2,
+   "cat": 3,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_2_q_41",
+   "conv": 2,
+   "cat": 3,
+   "arm": "R",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_2_q_45",
+   "conv": 2,
+   "cat": 3,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_2_q_45",
+   "conv": 2,
+   "cat": 3,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_2_q_45",
+   "conv": 2,
+   "cat": 3,
+   "arm": "R",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_2_q_64",
+   "conv": 2,
+   "cat": 3,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_2_q_64",
+   "conv": 2,
+   "cat": 3,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_2_q_64",
+   "conv": 2,
+   "cat": 3,
+   "arm": "R",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_2_q_66",
+   "conv": 2,
+   "cat": 4,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_2_q_66",
+   "conv": 2,
+   "cat": 4,
+   "arm": "S",
+   "hit10": false,
+   "error": "RuntimeError: persistent_reject: 同一请求已失败 12 次（HTTP 500）",
+   "verdict": null
+  },
+  {
+   "qid": "scene_2_q_66",
+   "conv": 2,
+   "cat": 4,
+   "arm": "R",
+   "hit10": false,
+   "answer": "儿时目睹教育和基础设施匮乏",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_2_q_88",
+   "conv": 2,
+   "cat": 4,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_2_q_88",
+   "conv": 2,
+   "cat": 4,
+   "arm": "S",
+   "hit10": true,
+   "answer": "politics and the government",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_2_q_88",
+   "conv": 2,
+   "cat": 4,
+   "arm": "R",
+   "hit10": true,
+   "answer": "politics and the government",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_2_q_103",
+   "conv": 2,
+   "cat": 4,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_2_q_103",
+   "conv": 2,
+   "cat": 4,
+   "arm": "S",
+   "hit10": true,
+   "answer": "Max",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_2_q_103",
+   "conv": 2,
+   "cat": 4,
+   "arm": "R",
+   "hit10": true,
+   "answer": "Max",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_2_q_122",
+   "conv": 2,
+   "cat": 4,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_2_q_122",
+   "conv": 2,
+   "cat": 4,
+   "arm": "S",
+   "hit10": false,
+   "error": "RuntimeError: persistent_reject: 同一请求已失败 12 次（HTTP 500）",
+   "verdict": null
+  },
+  {
+   "qid": "scene_2_q_122",
+   "conv": 2,
+   "cat": 4,
+   "arm": "R",
+   "hit10": false,
+   "answer": "约翰旧区遭洪水",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_11",
+   "conv": 3,
+   "cat": 1,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_11",
+   "conv": 3,
+   "cat": 1,
+   "arm": "S",
+   "hit10": true,
+   "answer": "{\"answer\": \"大多数爬行动物、毛茸茸的动物和",
+   "verdict": "incorrect",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_11",
+   "conv": 3,
+   "cat": 1,
+   "arm": "R",
+   "hit10": true,
+   "answer": "大多数爬行动物、有毛动物和蟑螂",
+   "verdict": "incorrect",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_19",
+   "conv": 3,
+   "cat": 1,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_19",
+   "conv": 3,
+   "cat": 1,
+   "arm": "S",
+   "hit10": true,
+   "answer": "Twice",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_19",
+   "conv": 3,
+   "cat": 1,
+   "arm": "R",
+   "hit10": true,
+   "answer": "2 times",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_21",
+   "conv": 3,
+   "cat": 2,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_21",
+   "conv": 3,
+   "cat": 2,
+   "arm": "S",
+   "hit10": true,
+   "answer": "Max",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_21",
+   "conv": 3,
+   "cat": 2,
+   "arm": "R",
+   "hit10": true,
+   "answer": "Max",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_32",
+   "conv": 3,
+   "cat": 2,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_32",
+   "conv": 3,
+   "cat": 2,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_32",
+   "conv": 3,
+   "cat": 2,
+   "arm": "R",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_53",
+   "conv": 3,
+   "cat": 1,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_53",
+   "conv": 3,
+   "cat": 1,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_53",
+   "conv": 3,
+   "cat": 1,
+   "arm": "R",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_96",
+   "conv": 3,
+   "cat": 4,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_96",
+   "conv": 3,
+   "cat": 4,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_96",
+   "conv": 3,
+   "cat": 4,
+   "arm": "R",
+   "hit10": false,
+   "answer": "Action and sci-fi",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_106",
+   "conv": 3,
+   "cat": 4,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_106",
+   "conv": 3,
+   "cat": 4,
+   "arm": "S",
+   "hit10": false,
+   "error": "RuntimeError: persistent_reject: 同一请求已失败 11 次（HTTP 500）",
+   "verdict": null
+  },
+  {
+   "qid": "scene_3_q_106",
+   "conv": 3,
+   "cat": 4,
+   "arm": "R",
+   "hit10": false,
+   "answer": "Personal experiences and self-discovery journey",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_107",
+   "conv": 3,
+   "cat": 4,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_107",
+   "conv": 3,
+   "cat": 4,
+   "arm": "S",
+   "hit10": false,
+   "answer": "{\"",
+   "verdict": "incorrect",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_107",
+   "conv": 3,
+   "cat": 4,
+   "arm": "R",
+   "hit10": false,
+   "answer": "独特、省心、 calming",
+   "verdict": "incorrect",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_120",
+   "conv": 3,
+   "cat": 4,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_120",
+   "conv": 3,
+   "cat": 4,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_120",
+   "conv": 3,
+   "cat": 4,
+   "arm": "R",
+   "hit10": false,
+   "answer": "写剧本并发表剧本",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_134",
+   "conv": 3,
+   "cat": 4,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_134",
+   "conv": 3,
+   "cat": 4,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_134",
+   "conv": 3,
+   "cat": 4,
+   "arm": "R",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_156",
+   "conv": 3,
+   "cat": 4,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_156",
+   "conv": 3,
+   "cat": 4,
+   "arm": "S",
+   "hit10": true,
+   "answer": "dairy-free chocolate mousse",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_156",
+   "conv": 3,
+   "cat": 4,
+   "arm": "R",
+   "hit10": true,
+   "answer": "dairy-free chocolate mousse",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_163",
+   "conv": 3,
+   "cat": 4,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_163",
+   "conv": 3,
+   "cat": 4,
+   "arm": "S",
+   "hit10": true,
+   "answer": "Inception",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_163",
+   "conv": 3,
+   "cat": 4,
+   "arm": "R",
+   "hit10": true,
+   "answer": "Inception",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_166",
+   "conv": 3,
+   "cat": 4,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_166",
+   "conv": 3,
+   "cat": 4,
+   "arm": "S",
+   "hit10": true,
+   "answer": "Awesome, gripping story, great actors.",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_166",
+   "conv": 3,
+   "cat": 4,
+   "arm": "R",
+   "hit10": true,
+   "answer": "Awesome and gripping",
+   "verdict": "incorrect",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_177",
+   "conv": 3,
+   "cat": 4,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_177",
+   "conv": 3,
+   "cat": 4,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_177",
+   "conv": 3,
+   "cat": 4,
+   "arm": "R",
+   "hit10": false,
+   "answer": "to bring characters alive so she can write better",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_191",
+   "conv": 3,
+   "cat": 4,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_191",
+   "conv": 3,
+   "cat": 4,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_3_q_191",
+   "conv": 3,
+   "cat": 4,
+   "arm": "R",
+   "hit10": false,
+   "answer": "{\"answer\": \"先看别人视频，了解",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_4_q_20",
+   "conv": 4,
+   "cat": 2,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_4_q_20",
+   "conv": 4,
+   "cat": 2,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_4_q_20",
+   "conv": 4,
+   "cat": 2,
+   "arm": "R",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_4_q_21",
+   "conv": 4,
+   "cat": 1,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_4_q_21",
+   "conv": 4,
+   "cat": 1,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_4_q_21",
+   "conv": 4,
+   "cat": 1,
+   "arm": "R",
+   "hit10": false,
+   "answer": "{\"answer\": \"New York",
+   "verdict": "incorrect",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_4_q_39",
+   "conv": 4,
+   "cat": 2,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_4_q_39",
+   "conv": 4,
+   "cat": 2,
+   "arm": "S",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_4_q_39",
+   "conv": 4,
+   "cat": 2,
+   "arm": "R",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_4_q_61",
+   "conv": 4,
+   "cat": 1,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_4_q_61",
+   "conv": 4,
+   "cat": 1,
+   "arm": "S",
+   "hit10": true,
+   "error": "RuntimeError: persistent_reject: 同一请求已失败 9 次（HTTP 500）",
+   "verdict": null
+  },
+  {
+   "qid": "scene_4_q_61",
+   "conv": 4,
+   "cat": 1,
+   "arm": "R",
+   "hit10": true,
+   "answer": "《The Alchemist》",
+   "verdict": "incorrect",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_4_q_83",
+   "conv": 4,
+   "cat": 4,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_4_q_83",
+   "conv": 4,
+   "cat": 4,
+   "arm": "S",
+   "hit10": false,
+   "answer": "fantasy novels",
+   "verdict": "incorrect",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_4_q_83",
+   "conv": 4,
+   "cat": 4,
+   "arm": "R",
+   "hit10": false,
+   "answer": "Fantasy novels",
+   "verdict": "incorrect",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_4_q_127",
+   "conv": 4,
+   "cat": 4,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_4_q_127",
+   "conv": 4,
+   "cat": 4,
+   "arm": "S",
+   "hit10": true,
+   "answer": "cooking",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_4_q_127",
+   "conv": 4,
+   "cat": 4,
+   "arm": "R",
+   "hit10": true,
+   "answer": "cooking",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_4_q_131",
+   "conv": 4,
+   "cat": 4,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_4_q_131",
+   "conv": 4,
+   "cat": 4,
+   "arm": "S",
+   "hit10": true,
+   "answer": "最爱球员签名的篮球",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_4_q_131",
+   "conv": 4,
+   "cat": 4,
+   "arm": "R",
+   "hit10": true,
+   "answer": "a signed basketball",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_4_q_138",
+   "conv": 4,
+   "cat": 4,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_4_q_138",
+   "conv": 4,
+   "cat": 4,
+   "arm": "S",
+   "hit10": true,
+   "answer": "通过专注康复并努力强化身体",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_4_q_138",
+   "conv": 4,
+   "cat": 4,
+   "arm": "R",
+   "hit10": true,
+   "answer": "通过休息、物理治疗和专注康复锻炼",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_4_q_142",
+   "conv": 4,
+   "cat": 4,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_4_q_142",
+   "conv": 4,
+   "cat": 4,
+   "arm": "S",
+   "hit10": true,
+   "answer": "It inspired him to follow his dreams.",
+   "error": "RuntimeError: persistent_reject: 同一请求已失败 6 次（HTTP 500）",
+   "verdict": null
+  },
+  {
+   "qid": "scene_4_q_142",
+   "conv": 4,
+   "cat": 4,
+   "arm": "R",
+   "hit10": true,
+   "answer": "激励他重新思考追随梦想，感到希望",
+   "error": "RuntimeError: persistent_reject: 同一请求已失败 6 次（HTTP 500）",
+   "verdict": null
+  },
+  {
+   "qid": "scene_4_q_143",
+   "conv": 4,
+   "cat": 4,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_4_q_143",
+   "conv": 4,
+   "cat": 4,
+   "arm": "S",
+   "hit10": true,
+   "answer": "Yoga",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_4_q_143",
+   "conv": 4,
+   "cat": 4,
+   "arm": "R",
+   "hit10": true,
+   "answer": "yoga",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_5_q_6",
+   "conv": 5,
+   "cat": 2,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_5_q_6",
+   "conv": 5,
+   "cat": 2,
+   "arm": "S",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_5_q_6",
+   "conv": 5,
+   "cat": 2,
+   "arm": "R",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_5_q_7",
+   "conv": 5,
+   "cat": 2,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_5_q_7",
+   "conv": 5,
+   "cat": 2,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_5_q_7",
+   "conv": 5,
+   "cat": 2,
+   "arm": "R",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_5_q_35",
+   "conv": 5,
+   "cat": 1,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_5_q_35",
+   "conv": 5,
+   "cat": 1,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_5_q_35",
+   "conv": 5,
+   "cat": 1,
+   "arm": "R",
+   "hit10": false,
+   "answer": "Toby, Buddy, Scout",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_5_q_37",
+   "conv": 5,
+   "cat": 2,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_5_q_37",
+   "conv": 5,
+   "cat": 2,
+   "arm": "S",
+   "hit10": true,
+   "answer": "last week",
+   "verdict": "incorrect",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_5_q_37",
+   "conv": 5,
+   "cat": 2,
+   "arm": "R",
+   "hit10": true,
+   "answer": "Last week",
+   "verdict": "incorrect",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_5_q_42",
+   "conv": 5,
+   "cat": 1,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_5_q_42",
+   "conv": 5,
+   "cat": 1,
+   "arm": "S",
+   "hit10": true,
+   "answer": "正面强化",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_5_q_42",
+   "conv": 5,
+   "cat": 1,
+   "arm": "R",
+   "hit10": true,
+   "answer": "positive reinforcement",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_5_q_44",
+   "conv": 5,
+   "cat": 3,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_5_q_44",
+   "conv": 5,
+   "cat": 3,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_5_q_44",
+   "conv": 5,
+   "cat": 3,
+   "arm": "R",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_5_q_56",
+   "conv": 5,
+   "cat": 1,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_5_q_56",
+   "conv": 5,
+   "cat": 1,
+   "arm": "S",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_5_q_56",
+   "conv": 5,
+   "cat": 1,
+   "arm": "R",
+   "hit10": true,
+   "answer": "No, he is still looking.",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_6_q_16",
+   "conv": 6,
+   "cat": 3,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_6_q_16",
+   "conv": 6,
+   "cat": 3,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_6_q_16",
+   "conv": 6,
+   "cat": 3,
+   "arm": "R",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_6_q_27",
+   "conv": 6,
+   "cat": 1,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_6_q_27",
+   "conv": 6,
+   "cat": 1,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_6_q_27",
+   "conv": 6,
+   "cat": 1,
+   "arm": "R",
+   "hit10": false,
+   "answer": "游戏编程课程和烹饪课",
+   "verdict": "incorrect",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_6_q_28",
+   "conv": 6,
+   "cat": 2,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_6_q_28",
+   "conv": 6,
+   "cat": 2,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_6_q_28",
+   "conv": 6,
+   "cat": 2,
+   "arm": "R",
+   "hit10": false,
+   "answer": "last month",
+   "verdict": "incorrect",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_6_q_38",
+   "conv": 6,
+   "cat": 1,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_6_q_38",
+   "conv": 6,
+   "cat": 1,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_6_q_38",
+   "conv": 6,
+   "cat": 1,
+   "arm": "R",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_6_q_41",
+   "conv": 6,
+   "cat": 2,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_6_q_41",
+   "conv": 6,
+   "cat": 2,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_6_q_41",
+   "conv": 6,
+   "cat": 2,
+   "arm": "R",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_6_q_48",
+   "conv": 6,
+   "cat": 2,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_6_q_48",
+   "conv": 6,
+   "cat": 2,
+   "arm": "S",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_6_q_48",
+   "conv": 6,
+   "cat": 2,
+   "arm": "R",
+   "hit10": true,
+   "answer": "next Sunday",
+   "verdict": "incorrect",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_6_q_58",
+   "conv": 6,
+   "cat": 2,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_6_q_58",
+   "conv": 6,
+   "cat": 2,
+   "arm": "S",
+   "hit10": true,
+   "answer": "yesterday",
+   "verdict": "incorrect",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_6_q_58",
+   "conv": 6,
+   "cat": 2,
+   "arm": "R",
+   "hit10": true,
+   "answer": "昨天",
+   "verdict": "incorrect",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_6_q_77",
+   "conv": 6,
+   "cat": 4,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_6_q_77",
+   "conv": 6,
+   "cat": 4,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_6_q_77",
+   "conv": 6,
+   "cat": 4,
+   "arm": "R",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_6_q_89",
+   "conv": 6,
+   "cat": 4,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_6_q_89",
+   "conv": 6,
+   "cat": 4,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_6_q_89",
+   "conv": 6,
+   "cat": 4,
+   "arm": "R",
+   "hit10": false,
+   "answer": "They bought groceries and cooked food for the homeless.",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_6_q_118",
+   "conv": 6,
+   "cat": 4,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_6_q_118",
+   "conv": 6,
+   "cat": 4,
+   "arm": "S",
+   "hit10": true,
+   "answer": "coding",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_6_q_118",
+   "conv": 6,
+   "cat": 4,
+   "arm": "R",
+   "hit10": true,
+   "answer": "coding",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_6_q_139",
+   "conv": 6,
+   "cat": 4,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_6_q_139",
+   "conv": 6,
+   "cat": 4,
+   "arm": "S",
+   "hit10": true,
+   "answer": "Playing Super Mario and The Legend of Zelda",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_6_q_139",
+   "conv": 6,
+   "cat": 4,
+   "arm": "R",
+   "hit10": true,
+   "answer": "他的第一台游戏机",
+   "verdict": "incorrect",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_7_q_3",
+   "conv": 7,
+   "cat": 2,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_7_q_3",
+   "conv": 7,
+   "cat": 2,
+   "arm": "S",
+   "hit10": true,
+   "answer": "last year",
+   "error": "RuntimeError: persistent_reject: 同一请求已失败 9 次（HTTP 500）",
+   "verdict": null
+  },
+  {
+   "qid": "scene_7_q_3",
+   "conv": 7,
+   "cat": 2,
+   "arm": "R",
+   "hit10": true,
+   "answer": "last year",
+   "error": "RuntimeError: persistent_reject: 同一请求已失败 9 次（HTTP 500）",
+   "verdict": null
+  },
+  {
+   "qid": "scene_7_q_31",
+   "conv": 7,
+   "cat": 2,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_7_q_31",
+   "conv": 7,
+   "cat": 2,
+   "arm": "S",
+   "hit10": true,
+   "answer": "last summer",
+   "error": "RuntimeError: persistent_reject: 同一请求已失败 9 次（HTTP 500）",
+   "verdict": null
+  },
+  {
+   "qid": "scene_7_q_31",
+   "conv": 7,
+   "cat": 2,
+   "arm": "R",
+   "hit10": true,
+   "answer": "last summer",
+   "error": "RuntimeError: persistent_reject: 同一请求已失败 9 次（HTTP 500）",
+   "verdict": null
+  },
+  {
+   "qid": "scene_7_q_42",
+   "conv": 7,
+   "cat": 4,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_7_q_42",
+   "conv": 7,
+   "cat": 4,
+   "arm": "S",
+   "hit10": true,
+   "answer": "Instrumental tracks with mellow melodies; favorite: Savana.",
+   "verdict": "incorrect",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_7_q_42",
+   "conv": 7,
+   "cat": 4,
+   "arm": "R",
+   "hit10": true,
+   "answer": "Savana; album Sleep",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_7_q_49",
+   "conv": 7,
+   "cat": 4,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_7_q_49",
+   "conv": 7,
+   "cat": 4,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_7_q_49",
+   "conv": 7,
+   "cat": 4,
+   "arm": "R",
+   "hit10": false,
+   "answer": "about 3 years",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_7_q_99",
+   "conv": 7,
+   "cat": 4,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_7_q_99",
+   "conv": 7,
+   "cat": 4,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_7_q_99",
+   "conv": 7,
+   "cat": 4,
+   "arm": "R",
+   "hit10": false,
+   "answer": "fresh pastries",
+   "verdict": "incorrect",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_7_q_105",
+   "conv": 7,
+   "cat": 4,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_7_q_105",
+   "conv": 7,
+   "cat": 4,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_7_q_105",
+   "conv": 7,
+   "cat": 4,
+   "arm": "R",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_7_q_110",
+   "conv": 7,
+   "cat": 4,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_7_q_110",
+   "conv": 7,
+   "cat": 4,
+   "arm": "S",
+   "hit10": true,
+   "answer": "A volunteer program where engineers teach STEM to underprivileged kids.",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_7_q_110",
+   "conv": 7,
+   "cat": 4,
+   "arm": "R",
+   "hit10": true,
+   "answer": "工程师志愿教贫困儿童STEM的项目",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_8_q_9",
+   "conv": 8,
+   "cat": 2,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_8_q_9",
+   "conv": 8,
+   "cat": 2,
+   "arm": "S",
+   "hit10": true,
+   "answer": "Last weekend",
+   "error": "RuntimeError: persistent_reject: 同一请求已失败 6 次（HTTP 500）",
+   "verdict": null
+  },
+  {
+   "qid": "scene_8_q_9",
+   "conv": 8,
+   "cat": 2,
+   "arm": "R",
+   "hit10": true,
+   "answer": "last weekend",
+   "verdict": "incorrect",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_8_q_15",
+   "conv": 8,
+   "cat": 1,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_8_q_15",
+   "conv": 8,
+   "cat": 1,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_8_q_15",
+   "conv": 8,
+   "cat": 1,
+   "arm": "R",
+   "hit10": false,
+   "answer": "soda and candy",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_8_q_18",
+   "conv": 8,
+   "cat": 1,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_8_q_18",
+   "conv": 8,
+   "cat": 1,
+   "arm": "S",
+   "hit10": false,
+   "error": "RuntimeError: persistent_reject: 同一请求已失败 6 次（HTTP 500）",
+   "verdict": null
+  },
+  {
+   "qid": "scene_8_q_18",
+   "conv": 8,
+   "cat": 1,
+   "arm": "R",
+   "hit10": false,
+   "answer": "气泡水、黑巧克力、水果、能量球等",
+   "error": "RuntimeError: persistent_reject: 同一请求已失败 7 次（HTTP 500）",
+   "verdict": null
+  },
+  {
+   "qid": "scene_8_q_28",
+   "conv": 8,
+   "cat": 1,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_8_q_28",
+   "conv": 8,
+   "cat": 1,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_8_q_28",
+   "conv": 8,
+   "cat": 1,
+   "arm": "R",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_8_q_78",
+   "conv": 8,
+   "cat": 1,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_8_q_78",
+   "conv": 8,
+   "cat": 1,
+   "arm": "S",
+   "hit10": true,
+   "answer": "extended family and work friends",
+   "verdict": "incorrect",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_8_q_78",
+   "conv": 8,
+   "cat": 1,
+   "arm": "R",
+   "hit10": true,
+   "error": "RuntimeError: persistent_reject: 同一请求已失败 6 次（HTTP 500）",
+   "verdict": null
+  },
+  {
+   "qid": "scene_8_q_107",
+   "conv": 8,
+   "cat": 4,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_8_q_107",
+   "conv": 8,
+   "cat": 4,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_8_q_107",
+   "conv": 8,
+   "cat": 4,
+   "arm": "R",
+   "hit10": false,
+   "answer": "observing nature",
+   "verdict": null,
+   "error": "judge 不可解析 {\"",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_8_q_108",
+   "conv": 8,
+   "cat": 4,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_8_q_108",
+   "conv": 8,
+   "cat": 4,
+   "arm": "S",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_8_q_108",
+   "conv": 8,
+   "cat": 4,
+   "arm": "R",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_8_q_109",
+   "conv": 8,
+   "cat": 4,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_8_q_109",
+   "conv": 8,
+   "cat": 4,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_8_q_109",
+   "conv": 8,
+   "cat": 4,
+   "arm": "R",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_8_q_136",
+   "conv": 8,
+   "cat": 4,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_8_q_136",
+   "conv": 8,
+   "cat": 4,
+   "arm": "S",
+   "hit10": true,
+   "answer": "His worth is not defined by his weight.",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_8_q_136",
+   "conv": 8,
+   "cat": 4,
+   "arm": "R",
+   "hit10": true,
+   "answer": "他的价值不由体重定义",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_8_q_146",
+   "conv": 8,
+   "cat": 4,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_8_q_146",
+   "conv": 8,
+   "cat": 4,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_8_q_146",
+   "conv": 8,
+   "cat": 4,
+   "arm": "R",
+   "hit10": false,
+   "answer": "Their marriage",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_8_q_148",
+   "conv": 8,
+   "cat": 4,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_8_q_148",
+   "conv": 8,
+   "cat": 4,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_8_q_148",
+   "conv": 8,
+   "cat": 4,
+   "arm": "R",
+   "hit10": false,
+   "answer": "snowshoeing",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_8",
+   "conv": 9,
+   "cat": 2,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_8",
+   "conv": 9,
+   "cat": 2,
+   "arm": "S",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_8",
+   "conv": 9,
+   "cat": 2,
+   "arm": "R",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_24",
+   "conv": 9,
+   "cat": 1,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_24",
+   "conv": 9,
+   "cat": 1,
+   "arm": "S",
+   "hit10": false,
+   "answer": "Yes",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_24",
+   "conv": 9,
+   "cat": 1,
+   "arm": "R",
+   "hit10": false,
+   "answer": "Yes",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_25",
+   "conv": 9,
+   "cat": 2,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_25",
+   "conv": 9,
+   "cat": 2,
+   "arm": "S",
+   "hit10": true,
+   "answer": "Last Friday",
+   "verdict": "incorrect",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_25",
+   "conv": 9,
+   "cat": 2,
+   "arm": "R",
+   "hit10": true,
+   "answer": "Last Friday",
+   "verdict": "incorrect",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_46",
+   "conv": 9,
+   "cat": 1,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_46",
+   "conv": 9,
+   "cat": 1,
+   "arm": "S",
+   "hit10": false,
+   "error": "RuntimeError: persistent_reject: 同一请求已失败 6 次（HTTP 500）",
+   "verdict": null
+  },
+  {
+   "qid": "scene_9_q_46",
+   "conv": 9,
+   "cat": 1,
+   "arm": "R",
+   "hit10": false,
+   "answer": "restoring cars",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_64",
+   "conv": 9,
+   "cat": 1,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_64",
+   "conv": 9,
+   "cat": 1,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_64",
+   "conv": 9,
+   "cat": 1,
+   "arm": "R",
+   "hit10": false,
+   "answer": "{\"answer\": \"庆祝开店、公园散步、",
+   "verdict": "incorrect",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_73",
+   "conv": 9,
+   "cat": 4,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_73",
+   "conv": 9,
+   "cat": 4,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_73",
+   "conv": 9,
+   "cat": 4,
+   "arm": "R",
+   "hit10": false,
+   "answer": "Tokyo",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_79",
+   "conv": 9,
+   "cat": 4,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_79",
+   "conv": 9,
+   "cat": 4,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_79",
+   "conv": 9,
+   "cat": 4,
+   "arm": "R",
+   "hit10": false,
+   "answer": "沉浸于自己热爱的事物",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_83",
+   "conv": 9,
+   "cat": 4,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_83",
+   "conv": 9,
+   "cat": 4,
+   "arm": "S",
+   "hit10": true,
+   "answer": "Fixing up things",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_83",
+   "conv": 9,
+   "cat": 4,
+   "arm": "R",
+   "hit10": true,
+   "answer": "修理东西",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_96",
+   "conv": 9,
+   "cat": 4,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_96",
+   "conv": 9,
+   "cat": 4,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_96",
+   "conv": 9,
+   "cat": 4,
+   "arm": "R",
+   "hit10": false,
+   "answer": "classic muscle car",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_109",
+   "conv": 9,
+   "cat": 4,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_109",
+   "conv": 9,
+   "cat": 4,
+   "arm": "S",
+   "hit10": true,
+   "answer": "探索并发展个人品牌",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_109",
+   "conv": 9,
+   "cat": 4,
+   "arm": "R",
+   "hit10": true,
+   "answer": "exploring and growing his brand",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_135",
+   "conv": 9,
+   "cat": 4,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_135",
+   "conv": 9,
+   "cat": 4,
+   "arm": "S",
+   "hit10": true,
+   "answer": "Paying attention to small details",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_135",
+   "conv": 9,
+   "cat": 4,
+   "arm": "R",
+   "hit10": true,
+   "answer": "Paying attention to small details",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_143",
+   "conv": 9,
+   "cat": 4,
+   "arm": "C",
+   "hit10": true,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_143",
+   "conv": 9,
+   "cat": 4,
+   "arm": "S",
+   "hit10": true,
+   "answer": "car mods",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_143",
+   "conv": 9,
+   "cat": 4,
+   "arm": "R",
+   "hit10": true,
+   "answer": "car mods",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_151",
+   "conv": 9,
+   "cat": 4,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_151",
+   "conv": 9,
+   "cat": 4,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    false,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_151",
+   "conv": 9,
+   "cat": 4,
+   "arm": "R",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_155",
+   "conv": 9,
+   "cat": 4,
+   "arm": "C",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_155",
+   "conv": 9,
+   "cat": 4,
+   "arm": "S",
+   "hit10": false,
+   "answer": "无法确定",
+   "verdict": "refused",
+   "cached": [
+    true,
+    true
+   ]
+  },
+  {
+   "qid": "scene_9_q_155",
+   "conv": 9,
+   "cat": 4,
+   "arm": "R",
+   "hit10": false,
+   "answer": "favorite artists, art, and music connecting us",
+   "verdict": "correct",
+   "cached": [
+    true,
+    true
+   ]
+  }
+ ]
+}

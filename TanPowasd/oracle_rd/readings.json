@@ -1,0 +1,229 @@
+{
+ "primary_complete": {
+  "n": 86,
+  "arms": {
+   "C": {
+    "correct": 0,
+    "refused": 86,
+    "incorrect": 0,
+    "missing": 0,
+    "acc_pct": 0.0
+   },
+   "S": {
+    "correct": 27,
+    "refused": 47,
+    "incorrect": 12,
+    "missing": 0,
+    "acc_pct": 31.4
+   },
+   "R": {
+    "correct": 45,
+    "refused": 23,
+    "incorrect": 18,
+    "missing": 0,
+    "acc_pct": 52.3
+   }
+  },
+  "deltas": {
+   "Δ_sys=Δ_doc (S−C)": {
+    "pp": 31.4,
+    "ci95": [
+     22.6,
+     39.1
+    ],
+    "档": "高"
+   },
+   "Δ_R (R−C)": {
+    "pp": 52.3,
+    "ci95": [
+     38.6,
+     63.6
+    ],
+    "档": "高"
+   },
+   "R−S (检索净损失)": {
+    "pp": 20.9,
+    "ci95": [
+     11.8,
+     29.7
+    ],
+    "档": "高"
+   }
+  }
+ },
+ "sens_missing_as_wrong": {
+  "n": 100,
+  "arms": {
+   "C": {
+    "correct": 0,
+    "refused": 100,
+    "incorrect": 0,
+    "missing": 0,
+    "acc_pct": 0.0
+   },
+   "S": {
+    "correct": 27,
+    "refused": 48,
+    "incorrect": 13,
+    "missing": 12,
+    "acc_pct": 27.0
+   },
+   "R": {
+    "correct": 49,
+    "refused": 23,
+    "incorrect": 21,
+    "missing": 7,
+    "acc_pct": 49.0
+   }
+  },
+  "deltas": {
+   "Δ_sys=Δ_doc (S−C)": {
+    "pp": 27.0,
+    "ci95": [
+     18.8,
+     34.0
+    ],
+    "档": "高"
+   },
+   "Δ_R (R−C)": {
+    "pp": 49.0,
+    "ci95": [
+     35.7,
+     60.2
+    ],
+    "档": "高"
+   },
+   "R−S (检索净损失)": {
+    "pp": 22.0,
+    "ci95": [
+     12.5,
+     29.7
+    ],
+    "档": "高"
+   }
+  }
+ },
+ "sens_missing_as_right": {
+  "n": 100,
+  "arms": {
+   "C": {
+    "correct": 0,
+    "refused": 100,
+    "incorrect": 0,
+    "missing": 0,
+    "acc_pct": 0.0
+   },
+   "S": {
+    "correct": 27,
+    "refused": 48,
+    "incorrect": 13,
+    "missing": 12,
+    "acc_pct": 39.0
+   },
+   "R": {
+    "correct": 49,
+    "refused": 23,
+    "incorrect": 21,
+    "missing": 7,
+    "acc_pct": 56.0
+   }
+  },
+  "deltas": {
+   "Δ_sys=Δ_doc (S−C)": {
+    "pp": 39.0,
+    "ci95": [
+     30.2,
+     47.2
+    ],
+    "档": "高"
+   },
+   "Δ_R (R−C)": {
+    "pp": 56.0,
+    "ci95": [
+     42.2,
+     67.0
+    ],
+    "档": "高"
+   },
+   "R−S (检索净损失)": {
+    "pp": 17.0,
+    "ci95": [
+     6.1,
+     26.1
+    ],
+    "档": "高"
+   }
+  }
+ },
+ "form": "sys 与 R 均高：系统交付已有净增益、R 仍有余量（表外形态；doc≡sys 故非二/四）",
+ "red": {
+  "1 Δ_doc−Δ_sys≤3pp": "构造性成立（doc≡sys，差恒 0）",
+  "2 Δ_R>0 且 Δ_doc≈0": false,
+  "3 准确率与拒答同步上升": {
+   "S": false,
+   "R": false
+  }
+ },
+ "aux": {
+  "hit10=True": {
+   "C": "0/42",
+   "S": "25/42",
+   "R": "26/42"
+  },
+  "hit10=False": {
+   "C": "0/44",
+   "S": "2/44",
+   "R": "19/44"
+  },
+  "cat1": {
+   "C": "0/14",
+   "S": "3/14",
+   "R": "7/14"
+  },
+  "cat2": {
+   "C": "0/18",
+   "S": "1/18",
+   "R": "2/18"
+  },
+  "cat3": {
+   "C": "0/6",
+   "S": "0/6",
+   "R": "1/6"
+  },
+  "cat4": {
+   "C": "0/48",
+   "S": "23/48",
+   "R": "35/48"
+  },
+  "S→R 配对转移": {
+   "correct→correct": 25,
+   "correct→incorrect": 2,
+   "incorrect→correct": 3,
+   "incorrect→incorrect": 9,
+   "refused→correct": 17,
+   "refused→incorrect": 7,
+   "refused→refused": 23
+  }
+ },
+ "missing_rows": [
+  "scene_0_q_99:R",
+  "scene_0_q_99:S",
+  "scene_1_q_56:S",
+  "scene_2_q_122:S",
+  "scene_2_q_66:S",
+  "scene_3_q_106:S",
+  "scene_4_q_142:R",
+  "scene_4_q_142:S",
+  "scene_4_q_61:S",
+  "scene_7_q_31:R",
+  "scene_7_q_31:S",
+  "scene_7_q_3:R",
+  "scene_7_q_3:S",
+  "scene_8_q_107:R",
+  "scene_8_q_18:R",
+  "scene_8_q_18:S",
+  "scene_8_q_78:R",
+  "scene_8_q_9:S",
+  "scene_9_q_46:S"
+ ]
+}

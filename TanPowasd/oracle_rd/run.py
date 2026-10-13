@@ -23,13 +23,23 @@ from md_cg.bench_e2e_locomo_qa import READER_USER  # noqa: E402
 
 API = "https://api.cline.bot/api/v1/chat/completions"
 MODEL = "cline-pass/deepseek-v4.1-flash"
-CAP = 650
+CAP = 650            # 成功返回补全（计费口径）上限，跨进程累计自 calls.jsonl
+ATTEMPT_CAP = 1100   # HTTP 尝试（含 429/500 拒绝）安全上限，跨进程累计自 attempts.log
 HERE = os.path.dirname(os.path.abspath(__file__))
 CACHE = os.environ.get("CACHE_DIR") or os.path.join(tempfile.gettempdir(), "oracle_rd_cache")
 CLOSED = "（无）"
 ARMS = ("C", "S", "R")
 _lock = threading.Lock()
-_n_http = [0]
+ATTEMPTS = os.path.join(HERE, "attempts.log")
+_n_http = [sum(1 for _ in open(ATTEMPTS, encoding="utf-8")) if os.path.isfile(ATTEMPTS) else 0]
+_CALLS = os.path.join(HERE, "calls.jsonl")
+_FAILS = {}
+if os.path.isfile(_CALLS):
+    for _l in open(_CALLS, encoding="utf-8"):
+        _r = json.loads(_l)
+        if not _r["ok"]:
+            _FAILS[_r["h"]] = _FAILS.get(_r["h"], 0) + 1
+_n_ok = [sum(1 for l in open(_CALLS, encoding="utf-8") if '"ok": true' in l) if os.path.isfile(_CALLS) else 0]
 
 
 class CapReached(RuntimeError):
@@ -37,10 +47,13 @@ class CapReached(RuntimeError):
 
 
 def _http(body):
+    # 发请求前先落一行 attempts.log（进程被超时杀掉时在途调用也计数；上限跨进程累计）
     with _lock:
-        if _n_http[0] >= CAP:
-            raise CapReached(f"已达上限 {CAP}")
+        if _n_ok[0] >= CAP or _n_http[0] >= ATTEMPT_CAP:
+            raise CapReached(f"已达上限 成功{_n_ok[0]}/{CAP} 尝试{_n_http[0]}/{ATTEMPT_CAP}")
         _n_http[0] += 1
+        with open(ATTEMPTS, "a", encoding="utf-8") as f:
+            f.write(time.strftime("%H:%M:%S") + "\n")
     req = urllib.request.Request(API, data=json.dumps(body).encode(),
                                  headers={"Content-Type": "application/json"})
     with urllib.request.urlopen(req, timeout=180) as r:
@@ -55,11 +68,14 @@ def chat(kind, messages, max_tokens, log):
     p = os.path.join(CACHE, f"{kind}_{h[:32]}.json")
     if os.path.isfile(p):
         return json.load(open(p, encoding="utf-8"))["out"], True
+    if _FAILS.get(h[:16], 0) >= 6:          # 同一请求跨进程累计失败 ≥6 次：判定持续性拒绝，不再重试
+        raise RuntimeError(f"persistent_reject: 同一请求已失败 {_FAILS[h[:16]]} 次（HTTP 500）")
     err = None
     for k in range(3):                       # 失败重试上限 3 次（每次计入调用数）
         try:
             out, usage = _http(body)
             with _lock:
+                _n_ok[0] += 1
                 log.write(json.dumps({"kind": kind, "h": h[:16], "try": k, "ok": True,
                                       "tokens": usage.get("total_tokens"), "out": out},
                                      ensure_ascii=False) + "\n"); log.flush()
@@ -74,7 +90,7 @@ def chat(kind, messages, max_tokens, log):
             with _lock:
                 log.write(json.dumps({"kind": kind, "h": h[:16], "try": k, "ok": False,
                                       "err": err[:200]}, ensure_ascii=False) + "\n"); log.flush()
-        time.sleep(3 * (k + 1))
+        time.sleep((15 if "429" in str(err) else 4) * (k + 1))   # 429 退避更长
     raise RuntimeError(err)
 
 
@@ -104,18 +120,18 @@ def one(q, arm, log):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--limit", type=int, default=0)
-    ap.add_argument("--workers", type=int, default=6)
+    ap.add_argument("--workers", type=int, default=3)
     a = ap.parse_args()
     os.makedirs(CACHE, exist_ok=True)
     sample = json.load(open(os.path.join(HERE, "sample.json"), encoding="utf-8"))["sample"]
     qs = sample[:a.limit] if a.limit else sample
-    tasks = [(q, arm) for q in qs for arm in ARMS]
+    # 同题三臂串行（同题同答案的 judge 走缓存复用，避免并发下重复判分），题间并发
     with open(os.path.join(HERE, "calls.jsonl"), "a", encoding="utf-8") as log:
         with ThreadPoolExecutor(a.workers) as ex:
-            rows = list(ex.map(lambda t: one(t[0], t[1], log), tasks))
+            rows = [r for rs in ex.map(lambda q: [one(q, arm, log) for arm in ARMS], qs) for r in rs]
     n_calls = sum(1 for _ in open(os.path.join(HERE, "calls.jsonl"), encoding="utf-8"))
     errs = [r for r in rows if r.get("error")]
-    print(f"本进程 HTTP {_n_http[0]} 次；calls.jsonl 累计 {n_calls} 次；错误行 {len(errs)}")
+    print(f"累计成功补全 {_n_ok[0]} 次；累计 HTTP 尝试 {_n_http[0]} 次（attempts.log）；calls.jsonl 累计 {n_calls} 次；错误行 {len(errs)}")
     for e in errs[:5]:
         print("  ", e["qid"], e["arm"], e["error"][:120])
     json.dump({"model": MODEL, "arms": ARMS, "rows": rows},

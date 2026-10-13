@@ -1,0 +1,803 @@
+{"kind": "reader", "h": "c3fc8973715b5820", "try": 0, "ok": true, "tokens": 259, "out": "{\"answer\":\"This week\"}"}
+{"kind": "reader", "h": "0a30d8cbd9b448bd", "try": 0, "ok": true, "tokens": 127, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "6194af17e2588dfc", "try": 0, "ok": true, "tokens": 145, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "e630d12ce053da61", "try": 0, "ok": true, "tokens": 251, "out": "{\"answer\": \"4 years\"}"}
+{"kind": "reader", "h": "334295597b6b8310", "try": 0, "ok": true, "tokens": 943, "out": "{\"answer\":\"this week\"}"}
+{"kind": "reader", "h": "05c15fe0b83a258b", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "520740ac12442028", "try": 0, "ok": true, "tokens": 189, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "judge", "h": "040fa952a2e67bba", "try": 0, "ok": true, "tokens": 245, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "7a34afb9f1291dd7", "try": 0, "ok": true, "tokens": 290, "out": "{\"verdict\": \"incorrect\"}"}
+{"kind": "judge", "h": "b9b58f5f1a393aae", "try": 0, "ok": true, "tokens": 223, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "5e15bd3fdfb59dde", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "05c15fe0b83a258b", "try": 1, "ok": true, "tokens": 986, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "judge", "h": "5e15bd3fdfb59dde", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "5e15bd3fdfb59dde", "try": 2, "ok": true, "tokens": 348, "out": "{\"verdict\": \"incorrect\"}"}
+{"kind": "reader", "h": "2a8aee052ab1b36b", "try": 0, "ok": true, "tokens": 146, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "4c91d79172e7551a", "try": 0, "ok": true, "tokens": 157, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "reader", "h": "83c0635a3decc6cf", "try": 0, "ok": true, "tokens": 131, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "4088ee5655a53224", "try": 0, "ok": true, "tokens": 165, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "cac06e09dfa3a712", "try": 0, "ok": true, "tokens": 188, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "reader", "h": "789f81512a3c6ef1", "try": 0, "ok": true, "tokens": 140, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "bef826878e3ec617", "try": 0, "ok": true, "tokens": 232, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "adce6fe37b8c5b34", "try": 0, "ok": true, "tokens": 241, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "b9fff05fd6c94a8b", "try": 0, "ok": true, "tokens": 280, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "20a2ec95f4c65dd6", "try": 0, "ok": true, "tokens": 311, "out": "{\"verdict\":\"refused\"}"}
+{"kind": "judge", "h": "edcd30527cd7fe93", "try": 0, "ok": true, "tokens": 294, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "e3958a550a682988", "try": 0, "ok": true, "tokens": 278, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "3ec42c3dc94e3f31", "try": 0, "ok": true, "tokens": 792, "out": "{\"answer\":\"mental health\"}"}
+{"kind": "reader", "h": "ea902f205680e0d8", "try": 0, "ok": true, "tokens": 734, "out": "{\"answer\": \"figurines\"}"}
+{"kind": "reader", "h": "37c894cf540589b5", "try": 0, "ok": true, "tokens": 945, "out": "{\"answer\":\"love, faith and strength\"}"}
+{"kind": "reader", "h": "99bcd95db265228d", "try": 0, "ok": true, "tokens": 884, "out": "{\"answer\": \"要关注心理健康\"}"}
+{"kind": "reader", "h": "6b841cdcfabdc5ad", "try": 0, "ok": true, "tokens": 988, "out": "{\"answer\": \"因他们包容支持LGBTQ+收养。\"}"}
+{"kind": "reader", "h": "547f7a48a4ff6171", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "64602c8cb310eec3", "try": 0, "ok": true, "tokens": 186, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "judge", "h": "d39a8934d5a4873d", "try": 0, "ok": true, "tokens": 265, "out": "{\"verdict\": \"incorrect\"}"}
+{"kind": "judge", "h": "ffdd65ff2b6c78a7", "try": 0, "ok": true, "tokens": 215, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "judge", "h": "28c22b7ed12561ce", "try": 0, "ok": true, "tokens": 247, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "1b4b37be7fdd81df", "try": 0, "ok": true, "tokens": 195, "out": "{\"answer\": \"mental health\"}"}
+{"kind": "judge", "h": "707377f39e2e0480", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "cf96baa31337f324", "try": 0, "ok": true, "tokens": 241, "out": "{\"answer\":\"love, faith and strength\"}"}
+{"kind": "reader", "h": "aa39333039714d87", "try": 0, "ok": true, "tokens": 125, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "436c8ec4f71805e2", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "98ebd66f1321acf9", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "cf7a825a781a3df9", "try": 0, "ok": true, "tokens": 154, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "reader", "h": "547f7a48a4ff6171", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "f8700a36d2ad9ce3", "try": 0, "ok": true, "tokens": 243, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "707377f39e2e0480", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "2ff8ddb0e6b0e806", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "4fd8f7531090b667", "try": 0, "ok": true, "tokens": 878, "out": "{\"answer\":\"Sweden\"}"}
+{"kind": "reader", "h": "436c8ec4f71805e2", "try": 1, "ok": true, "tokens": 264, "out": "{\"answer\": \"new shoes and figurines\"}"}
+{"kind": "reader", "h": "98ebd66f1321acf9", "try": 1, "ok": true, "tokens": 208, "out": "{\"answer\": \"They help LGBTQ+ folks with adoption.\"}"}
+{"kind": "judge", "h": "b428d9af9c5e70b6", "try": 0, "ok": true, "tokens": 194, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "judge", "h": "232b3b7a046ca7ce", "try": 0, "ok": true, "tokens": 247, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "ef91c00c2206e435", "try": 0, "ok": true, "tokens": 250, "out": "{\"answer\":\"Sweden\"}"}
+{"kind": "judge", "h": "486edd58990c7717", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "da533eb41eb56017", "try": 0, "ok": true, "tokens": 160, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "2ff8ddb0e6b0e806", "try": 1, "ok": true, "tokens": 226, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "c3a85242033effd8", "try": 0, "ok": true, "tokens": 173, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "judge", "h": "40b05d4c945dafcc", "try": 0, "ok": true, "tokens": 275, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "547f7a48a4ff6171", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "707377f39e2e0480", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "b3a2e202602cbc4a", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "ad2671c7fa5c126e", "try": 0, "ok": true, "tokens": 285, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "486edd58990c7717", "try": 1, "ok": true, "tokens": 284, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "c80173f13e72646c", "try": 0, "ok": true, "tokens": 799, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "ea11038290d1cf77", "try": 0, "ok": true, "tokens": 808, "out": "{\"answer\":\"This month\"}"}
+{"kind": "reader", "h": "6f2de25f72b5d3fe", "try": 0, "ok": true, "tokens": 126, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "b1094ccf6bad79dc", "try": 0, "ok": true, "tokens": 223, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "judge", "h": "7e7ce74877e7fe71", "try": 0, "ok": true, "tokens": 285, "out": "{\"verdict\": \"incorrect\"}"}
+{"kind": "judge", "h": "c224605527b8a649", "try": 0, "ok": true, "tokens": 261, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "f7f245439036a6c8", "try": 0, "ok": true, "tokens": 128, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "b3a2e202602cbc4a", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "8d154b47933909a3", "try": 0, "ok": true, "tokens": 211, "out": "{\"answer\": \"this month\"}"}
+{"kind": "judge", "h": "f0f10074adf5f869", "try": 0, "ok": true, "tokens": 241, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "49ca5a5e657b0d6f", "try": 0, "ok": true, "tokens": 953, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "judge", "h": "91e132e05a8920cc", "try": 0, "ok": true, "tokens": 312, "out": "{\"verdict\": \"incorrect\"}"}
+{"kind": "reader", "h": "2bbebea64262efff", "try": 0, "ok": true, "tokens": 831, "out": "{\"answer\": \"last week\"}"}
+{"kind": "reader", "h": "15972c48d183a0a5", "try": 0, "ok": true, "tokens": 352, "out": "{\"answer\": \"为需要家庭的孩子组建家庭\"}"}
+{"kind": "reader", "h": "86b50a6d38d4df37", "try": 0, "ok": true, "tokens": 205, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "2e8cf408d112d830", "try": 0, "ok": true, "tokens": 266, "out": "{\"answer\":\"自我照顾很重要\"}"}
+{"kind": "reader", "h": "a388863648fc8690", "try": 0, "ok": true, "tokens": 131, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "23b1222a12b1ca10", "try": 0, "ok": true, "tokens": 235, "out": "{\"verdict\": \"incorrect\"}"}
+{"kind": "judge", "h": "75d2ccf95e9730a5", "try": 0, "ok": true, "tokens": 249, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "ce06b6073cee77c0", "try": 0, "ok": true, "tokens": 143, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "3615bd2d4cc157ba", "try": 0, "ok": true, "tokens": 221, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "judge", "h": "53693122dbb6c553", "try": 0, "ok": true, "tokens": 240, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "b09f5488414ba4b1", "try": 0, "ok": true, "tokens": 221, "out": "{\"answer\":\"last week\"}"}
+{"kind": "reader", "h": "5e5a40ae46353764", "try": 0, "ok": true, "tokens": 146, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "c2446ea94e50bcf5", "try": 0, "ok": true, "tokens": 152, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "judge", "h": "867ff93added148a", "try": 0, "ok": true, "tokens": 245, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "b3a2e202602cbc4a", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "0538892a1b46cfb4", "try": 0, "ok": true, "tokens": 129, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "9858c7ab7f4cae99", "try": 0, "ok": true, "tokens": 291, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "c69ce93c9644d14e", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "a3a793e4182d5ae6", "try": 0, "ok": true, "tokens": 245, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "b465e24cc7e14ca5", "try": 0, "ok": true, "tokens": 593, "out": "{\"answer\": \"The Lean Startup\"}"}
+{"kind": "judge", "h": "52d389709cce912e", "try": 0, "ok": true, "tokens": 237, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "cc64d65fd206c72b", "try": 0, "ok": true, "tokens": 850, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "54bc0c4d13e5f0ae", "try": 0, "ok": true, "tokens": 189, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "07a91af2b1d38ecb", "try": 0, "ok": true, "tokens": 871, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "5adc451decb10179", "try": 0, "ok": true, "tokens": 926, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "e6b845c5683ef834", "try": 0, "ok": true, "tokens": 165, "out": "{\"answer\": \"The Lean Startup\"}"}
+{"kind": "reader", "h": "5efa0bd5bdbfac5b", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "3ef91b6882959bdc", "try": 0, "ok": true, "tokens": 223, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "eae08b6e74994731", "try": 0, "ok": true, "tokens": 278, "out": "{\"answer\": \"Wealthy\"}"}
+{"kind": "reader", "h": "078ef902c0975d3e", "try": 0, "ok": true, "tokens": 129, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "c69ce93c9644d14e", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "1393c2efa715b2bc", "try": 0, "ok": true, "tokens": 148, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "f344adcc9ad8907f", "try": 0, "ok": true, "tokens": 248, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "2db211459e81cc7a", "try": 0, "ok": true, "tokens": 351, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "2f7206238ee6077d", "try": 0, "ok": true, "tokens": 298, "out": "{\"answer\": \"自身经历与得到的支持\"}"}
+{"kind": "judge", "h": "8286e7cf4950b7b7", "try": 0, "ok": true, "tokens": 269, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "a680159a2d3eb2e4", "try": 0, "ok": true, "tokens": 144, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "5efa0bd5bdbfac5b", "try": 1, "ok": true, "tokens": 346, "out": "{\"answer\": \"To stay organized and motivated.\"}"}
+{"kind": "reader", "h": "41ead2ab6522fa78", "try": 0, "ok": true, "tokens": 882, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "fe472954db889af9", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "80af0a6c545126a7", "try": 0, "ok": true, "tokens": 714, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "judge", "h": "57b4fea4770b8b83", "try": 0, "ok": true, "tokens": 280, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "c3e10fe18dc491d1", "try": 0, "ok": true, "tokens": 270, "out": "{\"verdict\": \"incorrect\"}"}
+{"kind": "reader", "h": "0d9caaaeb0c3d871", "try": 0, "ok": true, "tokens": 253, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "b248e0d102119cef", "try": 0, "ok": true, "tokens": 149, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "901016b63778bf01", "try": 0, "ok": true, "tokens": 155, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "reader", "h": "c69ce93c9644d14e", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "9ac9b8698e7f75a5", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "63125c76b3b94992", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "4861f1856968caa5", "try": 0, "ok": true, "tokens": 266, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "ff33e8d433deba47", "try": 0, "ok": true, "tokens": 228, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "fe472954db889af9", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "d2a5c2007818c49c", "try": 0, "ok": true, "tokens": 830, "out": "{\"answer\": \"politics and the government\"}"}
+{"kind": "reader", "h": "babeb7680faaf6d2", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "caf0f8d5bb68a151", "try": 0, "ok": true, "tokens": 193, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "9ac9b8698e7f75a5", "try": 1, "ok": true, "tokens": 542, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "reader", "h": "63125c76b3b94992", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "86db5ffc49689cfa", "try": 0, "ok": true, "tokens": 213, "out": "{\"answer\": \"politics and the government\"}"}
+{"kind": "reader", "h": "0a0185fd8cae4f90", "try": 0, "ok": true, "tokens": 151, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "e4dccbb5592e8890", "try": 0, "ok": true, "tokens": 148, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "judge", "h": "662822f67881b120", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "5a7ac744654bc1af", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "judge", "h": "ddcae1988e4304e4", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "judge", "h": "fe472954db889af9", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "babeb7680faaf6d2", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "662822f67881b120", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "5a7ac744654bc1af", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "63125c76b3b94992", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "judge", "h": "ddcae1988e4304e4", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "babeb7680faaf6d2", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "judge", "h": "662822f67881b120", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "5a7ac744654bc1af", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "judge", "h": "ddcae1988e4304e4", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "10aad41a6641b48e", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "74e18de6c7c37f87", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "10aad41a6641b48e", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "74e18de6c7c37f87", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "2bc8d8e896896220", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "e116bdd195aee116", "try": 0, "ok": true, "tokens": 134, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "1b9672d0be79f1be", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "10aad41a6641b48e", "try": 2, "ok": true, "tokens": 138, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "85bbaed654692aad", "try": 0, "ok": true, "tokens": 304, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "5b6c87626a72d482", "try": 0, "ok": true, "tokens": 881, "out": "{\"answer\": \"大多数爬行动物、毛茸茸的动物和"}
+{"kind": "reader", "h": "2bc8d8e896896220", "try": 1, "ok": true, "tokens": 248, "out": "{\"answer\":\"Max\"}"}
+{"kind": "judge", "h": "077452723aa9ea3d", "try": 0, "ok": true, "tokens": 232, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "fa40d220fb415bab", "try": 0, "ok": true, "tokens": 237, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "45541b6db19b3b91", "try": 0, "ok": true, "tokens": 670, "out": "{\"answer\":\"Max\"}"}
+{"kind": "judge", "h": "4bd16236893c7e13", "try": 0, "ok": true, "tokens": 373, "out": "{\"verdict\": \"incorrect\"}"}
+{"kind": "reader", "h": "74e18de6c7c37f87", "try": 2, "ok": true, "tokens": 406, "out": "{\"answer\":\"儿时目睹教育和基础设施匮乏\"}"}
+{"kind": "reader", "h": "b3b0933a98d8404a", "try": 0, "ok": true, "tokens": 133, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "7880ad781a1d9377", "try": 0, "ok": true, "tokens": 221, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "d82060751915f7e7", "try": 0, "ok": true, "tokens": 929, "out": "{\"answer\":\"Twice\"}"}
+{"kind": "reader", "h": "1b9672d0be79f1be", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "02b505ba7e8e23c8", "try": 0, "ok": true, "tokens": 413, "out": "{\"answer\": \"大多数爬行动物、有毛动物和蟑螂\"}"}
+{"kind": "judge", "h": "01220a811ef46a41", "try": 0, "ok": true, "tokens": 288, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "judge", "h": "f3cded5e99b39ca5", "try": 0, "ok": true, "tokens": 321, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "eabb1dd2e06b5752", "try": 0, "ok": true, "tokens": 197, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "ac600a74a38cd52c", "try": 0, "ok": true, "tokens": 129, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "8cc8b6dc8aa9e804", "try": 0, "ok": true, "tokens": 298, "out": "{\"verdict\": \"incorrect\"}"}
+{"kind": "reader", "h": "a6a1994b66b9e230", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "d43c0e0d275f8445", "try": 0, "ok": true, "tokens": 798, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "judge", "h": "c9f6ec0505da1585", "try": 0, "ok": true, "tokens": 244, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "480210b9e27d18bc", "try": 0, "ok": true, "tokens": 132, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "8f21c4cbadd04e49", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "2af6cf583851cef7", "try": 0, "ok": true, "tokens": 299, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "97563ebc6ca68d3a", "try": 0, "ok": true, "tokens": 866, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "fb9240fdbd1ff88a", "try": 0, "ok": true, "tokens": 260, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "33a523026816b7df", "try": 0, "ok": true, "tokens": 148, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "reader", "h": "773c3151df3843e9", "try": 0, "ok": true, "tokens": 367, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "3ba06fd03eaee512", "try": 0, "ok": true, "tokens": 866, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "1b9672d0be79f1be", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "a987c03dbc5d3ae2", "try": 0, "ok": true, "tokens": 281, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "a6a1994b66b9e230", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "899ea4a559d0f50e", "try": 0, "ok": true, "tokens": 146, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "reader", "h": "8f21c4cbadd04e49", "try": 1, "ok": true, "tokens": 398, "out": "{\"answer\": \"2 times\"}"}
+{"kind": "reader", "h": "7741c042b3f66604", "try": 0, "ok": true, "tokens": 345, "out": "{\"answer\":\"Action and sci-fi\"}"}
+{"kind": "reader", "h": "4b38cb31efaa45ff", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "0bd951e680d88674", "try": 0, "ok": true, "tokens": 195, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "judge", "h": "bfeb5a2c9204006b", "try": 0, "ok": true, "tokens": 285, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "f59d39e39a9a0f88", "try": 0, "ok": true, "tokens": 205, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "54a3dd33caf319f9", "try": 0, "ok": true, "tokens": 228, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "8092039d04c0fb38", "try": 0, "ok": true, "tokens": 149, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "bbce79770d1f824e", "try": 0, "ok": true, "tokens": 1040, "out": "{\""}
+{"kind": "judge", "h": "b38bb4c8e293c836", "try": 0, "ok": true, "tokens": 307, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "d002b53718023eef", "try": 0, "ok": true, "tokens": 271, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "4b38cb31efaa45ff", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "14ce6488dba313d0", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "707377f39e2e0480", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "c69ce93c9644d14e", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "547f7a48a4ff6171", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "babeb7680faaf6d2", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "63125c76b3b94992", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "b3a2e202602cbc4a", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "707377f39e2e0480", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "547f7a48a4ff6171", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "c69ce93c9644d14e", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "63125c76b3b94992", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "b3a2e202602cbc4a", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "babeb7680faaf6d2", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "707377f39e2e0480", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "63125c76b3b94992", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "547f7a48a4ff6171", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "babeb7680faaf6d2", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "c69ce93c9644d14e", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "b3a2e202602cbc4a", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "662822f67881b120", "try": 0, "ok": true, "tokens": 243, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "ddcae1988e4304e4", "try": 0, "ok": true, "tokens": 211, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "fe472954db889af9", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "4b38cb31efaa45ff", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "a6a1994b66b9e230", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "5a7ac744654bc1af", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "1b9672d0be79f1be", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "14ce6488dba313d0", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "fe472954db889af9", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "a6a1994b66b9e230", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "4b38cb31efaa45ff", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "5a7ac744654bc1af", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "1b9672d0be79f1be", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "14ce6488dba313d0", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "fe472954db889af9", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "4b38cb31efaa45ff", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "a6a1994b66b9e230", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "5a7ac744654bc1af", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "14ce6488dba313d0", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "1b9672d0be79f1be", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "7f1c6edc8e2e9b4e", "try": 0, "ok": true, "tokens": 875, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "fa82dd9b33b159cd", "try": 0, "ok": true, "tokens": 150, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "reader", "h": "03d8dadfd6ccbdbf", "try": 0, "ok": true, "tokens": 250, "out": "{\"answer\":\"Personal experiences and self-discovery journey\"}"}
+{"kind": "reader", "h": "8d1fb3e19706aa68", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "df5f411f3b8e7579", "try": 0, "ok": true, "tokens": 383, "out": "{\"answer\":\"独特、省心、 calming\"}"}
+{"kind": "judge", "h": "b4345ae6e69bbacc", "try": 0, "ok": true, "tokens": 280, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "0c0e0621d5f374d1", "try": 0, "ok": true, "tokens": 253, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "57303ffcb80dcc89", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "8130d454fad7982c", "try": 0, "ok": true, "tokens": 135, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "0369a114ed99ef7c", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "873497f851e0554e", "try": 0, "ok": true, "tokens": 1097, "out": "{\"answer\":\"dairy-free chocolate mousse\"}"}
+{"kind": "judge", "h": "e9f2ae07bfb95c73", "try": 0, "ok": true, "tokens": 219, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "b7ac2995b7f8e0e5", "try": 0, "ok": true, "tokens": 202, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "57303ffcb80dcc89", "try": 1, "ok": true, "tokens": 285, "out": "{\"answer\":\"写剧本并发表剧本\"}"}
+{"kind": "reader", "h": "8d1fb3e19706aa68", "try": 1, "ok": true, "tokens": 1073, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "reader", "h": "fd66dfd895e69cf6", "try": 0, "ok": true, "tokens": 881, "out": "{\"answer\":\"Inception\"}"}
+{"kind": "reader", "h": "37f1dc2e87b2efac", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "aede1d0aff7655df", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "ef361fc547fc9e99", "try": 0, "ok": true, "tokens": 213, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "judge", "h": "0369a114ed99ef7c", "try": 1, "ok": true, "tokens": 335, "out": "{\"verdict\": \"incorrect\"}"}
+{"kind": "reader", "h": "d5d2ee76ee193abe", "try": 0, "ok": true, "tokens": 200, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "judge", "h": "65cda2ad8c253517", "try": 0, "ok": true, "tokens": 309, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "0eef4fee8f7b7cbf", "try": 0, "ok": true, "tokens": 152, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "reader", "h": "38e07e4a2014fa21", "try": 0, "ok": true, "tokens": 207, "out": "{\"answer\": \"Inception\"}"}
+{"kind": "reader", "h": "5de77ed5cfa7d60c", "try": 0, "ok": true, "tokens": 131, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "00e4f8649ebe64e9", "try": 0, "ok": true, "tokens": 168, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "reader", "h": "9253d529f55928d6", "try": 0, "ok": true, "tokens": 127, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "21587751f110b981", "try": 0, "ok": true, "tokens": 253, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "4448c8de57bb04f3", "try": 0, "ok": true, "tokens": 269, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "37f1dc2e87b2efac", "try": 1, "ok": true, "tokens": 233, "out": "{\"answer\": \"dairy-free chocolate mousse\"}"}
+{"kind": "judge", "h": "591819ede4924d0c", "try": 0, "ok": true, "tokens": 361, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "61eb2220509e651c", "try": 0, "ok": true, "tokens": 256, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "aede1d0aff7655df", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "ffb89e94ca396bd9", "try": 0, "ok": true, "tokens": 132, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "2a0518bacf7899b6", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "ca25acc00d5c7e55", "try": 0, "ok": true, "tokens": 947, "out": "{\"answer\":\"Awesome, gripping story, great actors.\"}"}
+{"kind": "reader", "h": "1442a91dff129fba", "try": 0, "ok": true, "tokens": 878, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "reader", "h": "07511034ff2f9df5", "try": 0, "ok": true, "tokens": 989, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "621df8701f6cf2af", "try": 0, "ok": true, "tokens": 282, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "d98bdb0553855963", "try": 0, "ok": true, "tokens": 279, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "9362c231e8185f56", "try": 0, "ok": true, "tokens": 427, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "e063aabebde0e270", "try": 0, "ok": true, "tokens": 438, "out": "{\"answer\": \"先看别人视频，了解"}
+{"kind": "reader", "h": "b263d6224d551c95", "try": 0, "ok": true, "tokens": 888, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "c98d1fbc069fb106", "try": 0, "ok": true, "tokens": 160, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "602cbcceac9898d8", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "2a0518bacf7899b6", "try": 1, "ok": true, "tokens": 940, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "judge", "h": "6c33d19c3196acf3", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "040b2c1d0887bb47", "try": 0, "ok": true, "tokens": 311, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "136cd16cb11d984a", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "aede1d0aff7655df", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "42cad55ea9510d11", "try": 0, "ok": true, "tokens": 787, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "0347fd91161e6393", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "620d5ee023b3275a", "try": 0, "ok": true, "tokens": 185, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "602cbcceac9898d8", "try": 1, "ok": true, "tokens": 325, "out": "{\"answer\": \"Awesome and gripping\"}"}
+{"kind": "judge", "h": "6c33d19c3196acf3", "try": 1, "ok": true, "tokens": 385, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "48981b4b2936f5f6", "try": 0, "ok": true, "tokens": 130, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "136cd16cb11d984a", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "00ef2c011265f2ec", "try": 0, "ok": true, "tokens": 147, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "6915cbee698292ee", "try": 0, "ok": true, "tokens": 306, "out": "{\"verdict\": \"incorrect\"}"}
+{"kind": "reader", "h": "0347fd91161e6393", "try": 1, "ok": true, "tokens": 288, "out": "{\"answer\": \"to bring characters alive so she can write better\"}"}
+{"kind": "judge", "h": "3a54f823a3d38ff1", "try": 0, "ok": true, "tokens": 241, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "b7c2d8754ab88416", "try": 0, "ok": true, "tokens": 138, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "b7a02ce59ffe1c0f", "try": 0, "ok": true, "tokens": 265, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "4a82bb0144c12354", "try": 0, "ok": true, "tokens": 264, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "26c341358d4e0d43", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "1c132cd331dd6063", "try": 0, "ok": true, "tokens": 837, "out": "{\"answer\": \"fantasy novels\"}"}
+{"kind": "judge", "h": "3361ff486f6f17ac", "try": 0, "ok": true, "tokens": 284, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "4b603c461e3b81d9", "try": 0, "ok": true, "tokens": 140, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "f8bf7b8ed8b73c8b", "try": 0, "ok": true, "tokens": 135, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "c9cc29f5c93e157b", "try": 0, "ok": true, "tokens": 959, "out": "{\"answer\":\"cooking\"}"}
+{"kind": "judge", "h": "0aef7af03ab91cc9", "try": 0, "ok": true, "tokens": 245, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "c48d0d85be79380c", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "62f7190190facf08", "try": 0, "ok": true, "tokens": 245, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "5f79eff0abd66c2f", "try": 0, "ok": true, "tokens": 220, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "136cd16cb11d984a", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "26c341358d4e0d43", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "26ee9a11f828bb1f", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "0d7074790a93cc73", "try": 0, "ok": true, "tokens": 953, "out": "{\"answer\":\"通过专注康复并努力强化身体\"}"}
+{"kind": "reader", "h": "ff85408dafd7bdcf", "try": 0, "ok": true, "tokens": 224, "out": "{\"answer\": \"cooking\"}"}
+{"kind": "judge", "h": "974c1072077c96fe", "try": 0, "ok": true, "tokens": 252, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "49f39757795df5d0", "try": 0, "ok": true, "tokens": 184, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "c48d0d85be79380c", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "9172befa4e54998a", "try": 0, "ok": true, "tokens": 382, "out": "{\"answer\":\"通过休息、物理治疗和专注康复锻炼\"}"}
+{"kind": "judge", "h": "c5388b64557eb229", "try": 0, "ok": true, "tokens": 249, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "26ee9a11f828bb1f", "try": 1, "ok": true, "tokens": 1040, "out": "{\"answer\":\"最爱球员签名的篮球\"}"}
+{"kind": "reader", "h": "26c341358d4e0d43", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "judge", "h": "110f91c3a93700e3", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "judge", "h": "9df49aeb66bedc47", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "10e156b48c686515", "try": 0, "ok": true, "tokens": 940, "out": "{\"answer\": \"It inspired him to follow his dreams.\"}"}
+{"kind": "reader", "h": "547f7a48a4ff6171", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "judge", "h": "707377f39e2e0480", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "c69ce93c9644d14e", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "babeb7680faaf6d2", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "b3a2e202602cbc4a", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "a6a1994b66b9e230", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "63125c76b3b94992", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "1b9672d0be79f1be", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "judge", "h": "707377f39e2e0480", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "547f7a48a4ff6171", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "babeb7680faaf6d2", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "a6a1994b66b9e230", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "b3a2e202602cbc4a", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "63125c76b3b94992", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "c69ce93c9644d14e", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "1b9672d0be79f1be", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "a6a1994b66b9e230", "try": 2, "ok": true, "tokens": 193, "out": "{\"answer\": \"Max\"}"}
+{"kind": "judge", "h": "707377f39e2e0480", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "babeb7680faaf6d2", "try": 2, "ok": true, "tokens": 892, "out": "{\"answer\":\"Max\"}"}
+{"kind": "reader", "h": "c69ce93c9644d14e", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "b3a2e202602cbc4a", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "1b9672d0be79f1be", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "547f7a48a4ff6171", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "63125c76b3b94992", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "14ce6488dba313d0", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "4b38cb31efaa45ff", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "14ce6488dba313d0", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "4b38cb31efaa45ff", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "c48d0d85be79380c", "try": 0, "ok": true, "tokens": 340, "out": "{\"verdict\": \"incorrect\"}"}
+{"kind": "judge", "h": "fe472954db889af9", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "136cd16cb11d984a", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "5a7ac744654bc1af", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "aede1d0aff7655df", "try": 0, "ok": true, "tokens": 417, "out": "{\"answer\":\"约翰旧区遭洪水\"}"}
+{"kind": "reader", "h": "26c341358d4e0d43", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "5b3c4ad94e6edd96", "try": 0, "ok": true, "tokens": 234, "out": "{\"answer\":\"Fantasy novels\"}"}
+{"kind": "judge", "h": "e859e1cc8447697a", "try": 0, "ok": true, "tokens": 257, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "judge", "h": "110f91c3a93700e3", "try": 0, "ok": true, "tokens": 256, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "judge", "h": "c931dcb849d62778", "try": 0, "ok": true, "tokens": 376, "out": "{\"verdict\": \"incorrect\"}"}
+{"kind": "judge", "h": "14ce6488dba313d0", "try": 2, "ok": true, "tokens": 359, "out": "{\"verdict\": \"incorrect\"}"}
+{"kind": "judge", "h": "fe472954db889af9", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "5a7ac744654bc1af", "try": 1, "ok": true, "tokens": 443, "out": "{\"answer\": \"结伴跳舞和各自不同道路\"}"}
+{"kind": "reader", "h": "4b38cb31efaa45ff", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "136cd16cb11d984a", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "26c341358d4e0d43", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "9df49aeb66bedc47", "try": 0, "ok": true, "tokens": 297, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "9ee424f190a3e2bc", "try": 0, "ok": true, "tokens": 403, "out": "{\"answer\": \"a signed basketball\"}"}
+{"kind": "judge", "h": "25503fc4a4d49480", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "0834fc381e37f433", "try": 0, "ok": true, "tokens": 155, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "80e0f55b423436cc", "try": 0, "ok": true, "tokens": 344, "out": "{\"verdict\": \"incorrect\"}"}
+{"kind": "judge", "h": "8e083af1e7335813", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "360b1c558ce89d93", "try": 0, "ok": true, "tokens": 122, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "cd4c8111f3c5ac6f", "try": 0, "ok": true, "tokens": 226, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "59dedd555e99d492", "try": 0, "ok": true, "tokens": 252, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "25503fc4a4d49480", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "0e9e09c8de2512cd", "try": 0, "ok": true, "tokens": 868, "out": "{\"answer\": \"Yoga\"}"}
+{"kind": "judge", "h": "fe472954db889af9", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "192b9a3c85ed61bd", "try": 0, "ok": true, "tokens": 640, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "741295dad3ef3ffc", "try": 0, "ok": true, "tokens": 217, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "26c341358d4e0d43", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "136cd16cb11d984a", "try": 2, "ok": true, "tokens": 522, "out": "{\"answer\": \"New York"}
+{"kind": "judge", "h": "8e083af1e7335813", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "2a7beec67d6cd72f", "try": 0, "ok": true, "tokens": 233, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "068f28c2dfeb4652", "try": 0, "ok": true, "tokens": 228, "out": "{\"answer\": \"yoga\"}"}
+{"kind": "reader", "h": "c9331a23bdf7e8e4", "try": 0, "ok": true, "tokens": 166, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "b4d8167c8571552d", "try": 0, "ok": true, "tokens": 275, "out": "{\"verdict\": \"incorrect\"}"}
+{"kind": "judge", "h": "9f08318985a9a42c", "try": 0, "ok": true, "tokens": 188, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "087d1a9ebaec92d7", "try": 0, "ok": true, "tokens": 138, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "bd02ca6a730a139c", "try": 0, "ok": true, "tokens": 332, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "d9fa53fcb92917ae", "try": 0, "ok": true, "tokens": 150, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "d92d528fa755e725", "try": 0, "ok": true, "tokens": 159, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "92bf4a949c78244e", "try": 0, "ok": true, "tokens": 264, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "25503fc4a4d49480", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "507e2c69d31912c2", "try": 0, "ok": true, "tokens": 245, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "3cabf19bca68738a", "try": 0, "ok": true, "tokens": 903, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "judge", "h": "ab1e53ca8af0c080", "try": 0, "ok": true, "tokens": 247, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "0ef2a78f7778fe10", "try": 0, "ok": true, "tokens": 822, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "8e083af1e7335813", "try": 2, "ok": true, "tokens": 377, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "7ed2f41b091e8a49", "try": 0, "ok": true, "tokens": 812, "out": "{\"answer\": \"last week\"}"}
+{"kind": "reader", "h": "ac8eaa9af9fe33fc", "try": 0, "ok": true, "tokens": 833, "out": "{\"answer\": \"正面强化\"}"}
+{"kind": "reader", "h": "8f6d4ce917d9cac6", "try": 0, "ok": true, "tokens": 168, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "7ef2204cb82dc845", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "9cac8da572827598", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "632c0e9b515661b7", "try": 0, "ok": true, "tokens": 135, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "judge", "h": "be80b0720d6b5728", "try": 0, "ok": true, "tokens": 300, "out": "{\"verdict\": \"incorrect\"}"}
+{"kind": "reader", "h": "58ffdf24d5eb82ad", "try": 0, "ok": true, "tokens": 435, "out": "{\"answer\": \"Toby, Buddy, Scout\"}"}
+{"kind": "judge", "h": "27ff55aa6ec9ad66", "try": 0, "ok": true, "tokens": 205, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "judge", "h": "91bd24a061a62d8e", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "c605a4a0406d5f1f", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "judge", "h": "713f670c2748112c", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "6f53231222c2c46f", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "52afd8c8daffdc4a", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "7ef2204cb82dc845", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "judge", "h": "9cac8da572827598", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "845d85f434d55ac4", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "judge", "h": "91bd24a061a62d8e", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "c605a4a0406d5f1f", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "judge", "h": "713f670c2748112c", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "6f53231222c2c46f", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "52afd8c8daffdc4a", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "845d85f434d55ac4", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "7ef2204cb82dc845", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "judge", "h": "9cac8da572827598", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "judge", "h": "91bd24a061a62d8e", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "c605a4a0406d5f1f", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "judge", "h": "713f670c2748112c", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "6f53231222c2c46f", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "52afd8c8daffdc4a", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "845d85f434d55ac4", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "feb4c6bd8c6555e6", "try": 0, "ok": true, "tokens": 162, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "reader", "h": "3735de8bb640a1e0", "try": 0, "ok": true, "tokens": 1028, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "2ad891f4abc4f0a1", "try": 0, "ok": true, "tokens": 156, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "78cd32837a399b01", "try": 0, "ok": true, "tokens": 239, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "9db7d79faedc6241", "try": 0, "ok": true, "tokens": 129, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "05268c02bbeaaee9", "try": 0, "ok": true, "tokens": 150, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "14359d1a18f95bd8", "try": 0, "ok": true, "tokens": 139, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "reader", "h": "6614958333b36e88", "try": 0, "ok": true, "tokens": 1101, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "judge", "h": "9cac8da572827598", "try": 0, "ok": true, "tokens": 237, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "007d7df7fc63685f", "try": 0, "ok": true, "tokens": 219, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "b9342a371f56648b", "try": 0, "ok": true, "tokens": 332, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "0bac046d13ae9e14", "try": 0, "ok": true, "tokens": 243, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "8e77ccbbc8dea8ae", "try": 0, "ok": true, "tokens": 237, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "b08f5983089e26f0", "try": 0, "ok": true, "tokens": 1190, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "7de3f122ed63ca65", "try": 0, "ok": true, "tokens": 150, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "reader", "h": "d4e55758e2c7d2c8", "try": 0, "ok": true, "tokens": 251, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "91bd24a061a62d8e", "try": 0, "ok": true, "tokens": 307, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "470548c6853c3778", "try": 0, "ok": true, "tokens": 881, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "reader", "h": "8bb332960fdbf43e", "try": 0, "ok": true, "tokens": 776, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "98d7145ed3bcab8e", "try": 0, "ok": true, "tokens": 952, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "9127c5739318beee", "try": 0, "ok": true, "tokens": 949, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "375cbdfebf2938a7", "try": 0, "ok": true, "tokens": 131, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "bdf0a4b7493da63b", "try": 0, "ok": true, "tokens": 237, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "ddc7405cf8aed02c", "try": 0, "ok": true, "tokens": 275, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "abfb897d76fe8705", "try": 0, "ok": true, "tokens": 385, "out": "{\"answer\": \"No, he is still looking.\"}"}
+{"kind": "reader", "h": "eb588953f925979d", "try": 0, "ok": true, "tokens": 344, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "97654c5d595f521a", "try": 0, "ok": true, "tokens": 233, "out": "{\"answer\": \"last month\"}"}
+{"kind": "reader", "h": "bfed1e533ae640bf", "try": 0, "ok": true, "tokens": 408, "out": "{\"answer\":\"游戏编程课程和烹饪课\"}"}
+{"kind": "reader", "h": "dc2871bec56a37df", "try": 0, "ok": true, "tokens": 158, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "a892a9726d99857d", "try": 0, "ok": true, "tokens": 278, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "8294d084a2d680ea", "try": 0, "ok": true, "tokens": 190, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "judge", "h": "9378c376d850867c", "try": 0, "ok": true, "tokens": 256, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "68fa32f252b72117", "try": 0, "ok": true, "tokens": 1042, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "7c74f2996a5475ac", "try": 0, "ok": true, "tokens": 156, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "judge", "h": "eaed020333e75dbb", "try": 0, "ok": true, "tokens": 281, "out": "{\"verdict\": \"incorrect\"}"}
+{"kind": "reader", "h": "d61a9e4a702ee4f1", "try": 0, "ok": true, "tokens": 160, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "judge", "h": "14ce09e4052d126e", "try": 0, "ok": true, "tokens": 298, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "e450e48db67e1a07", "try": 0, "ok": true, "tokens": 346, "out": "{\"verdict\": \"incorrect\"}"}
+{"kind": "reader", "h": "24ce1561c99fd677", "try": 0, "ok": true, "tokens": 806, "out": "{\"answer\": \"yesterday\"}"}
+{"kind": "reader", "h": "010d26dff42b9c55", "try": 0, "ok": true, "tokens": 147, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "reader", "h": "f884ea5b863db822", "try": 0, "ok": true, "tokens": 264, "out": "{\"answer\":\"next Sunday\"}"}
+{"kind": "reader", "h": "5e3d3498aacb71b1", "try": 0, "ok": true, "tokens": 149, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "b669e7b68de9991f", "try": 0, "ok": true, "tokens": 315, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "da2a91601e7741d9", "try": 0, "ok": true, "tokens": 148, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "judge", "h": "184c7c2ad66a9067", "try": 0, "ok": true, "tokens": 229, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "c99511d386076834", "try": 0, "ok": true, "tokens": 261, "out": "{\"verdict\": \"incorrect\"}"}
+{"kind": "reader", "h": "0dff93cb43dd67e3", "try": 0, "ok": true, "tokens": 899, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "judge", "h": "7cd5257e514b14fa", "try": 0, "ok": true, "tokens": 272, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "aa5b4dc1d7c60b20", "try": 0, "ok": true, "tokens": 245, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "0b7cb7fa3999ce54", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "7203494418df2da4", "try": 0, "ok": true, "tokens": 202, "out": "{\"answer\":\"昨天\"}"}
+{"kind": "reader", "h": "788de8edd7b291b6", "try": 0, "ok": true, "tokens": 782, "out": "{\"answer\": \"coding\"}"}
+{"kind": "judge", "h": "d5cea8a874bb0cc8", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "f52bf1a214eda40c", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "d90f7a144da019db", "try": 0, "ok": true, "tokens": 929, "out": "{\"answer\": \"last year\"}"}
+{"kind": "judge", "h": "53d87843c546fa3b", "try": 0, "ok": true, "tokens": 191, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "b01ea63078734a20", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "e7c90684997ee750", "try": 0, "ok": true, "tokens": 271, "out": "{\"verdict\": \"incorrect\"}"}
+{"kind": "reader", "h": "cd4f438b448f2455", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "38492a62bcce6ed9", "try": 0, "ok": true, "tokens": 188, "out": "{\"answer\": \"coding\"}"}
+{"kind": "judge", "h": "b7390507183b7849", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "2cf9268868d86119", "try": 0, "ok": true, "tokens": 155, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "d5cea8a874bb0cc8", "try": 1, "ok": true, "tokens": 240, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "0b7cb7fa3999ce54", "try": 1, "ok": true, "tokens": 269, "out": "{\"verdict\": \"incorrect\"}"}
+{"kind": "reader", "h": "f52bf1a214eda40c", "try": 1, "ok": true, "tokens": 815, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "reader", "h": "de9fbc107def0061", "try": 0, "ok": true, "tokens": 132, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "dfc4dbb924dbbb31", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "5f9b2db3b4f886f7", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "judge", "h": "d58c3a7971138815", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "judge", "h": "fdc026f9a9c0983f", "try": 0, "ok": true, "tokens": 324, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "b01ea63078734a20", "try": 1, "ok": true, "tokens": 959, "out": "{\"answer\": \"Playing Super Mario and The Legend of Zelda\"}"}
+{"kind": "judge", "h": "b7390507183b7849", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "b1f29fb5335b1897", "try": 0, "ok": true, "tokens": 833, "out": "{\"answer\": \"last summer\"}"}
+{"kind": "reader", "h": "c53a4988b86e67dd", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "judge", "h": "0bb07567bba036ef", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "judge", "h": "ee12ae5c75b2b5f6", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "cd4f438b448f2455", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "dfc4dbb924dbbb31", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "5f9b2db3b4f886f7", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "judge", "h": "d58c3a7971138815", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "c53a4988b86e67dd", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "judge", "h": "0bb07567bba036ef", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "judge", "h": "ee12ae5c75b2b5f6", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "judge", "h": "b7390507183b7849", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "cd4f438b448f2455", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "dfc4dbb924dbbb31", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "5f9b2db3b4f886f7", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "judge", "h": "d58c3a7971138815", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "reader", "h": "c53a4988b86e67dd", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "judge", "h": "0bb07567bba036ef", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "judge", "h": "ee12ae5c75b2b5f6", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 429: Too Many Requests"}
+{"kind": "judge", "h": "707377f39e2e0480", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "547f7a48a4ff6171", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "b3a2e202602cbc4a", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "707377f39e2e0480", "try": 1, "ok": true, "tokens": 295, "out": "{\"verdict\": \"incorrect\"}"}
+{"kind": "reader", "h": "547f7a48a4ff6171", "try": 1, "ok": true, "tokens": 981, "out": "{\"answer\":\"开始新篇章，为需要家的孩子提供安全充满爱的家\"}"}
+{"kind": "reader", "h": "b3a2e202602cbc4a", "try": 1, "ok": true, "tokens": 1042, "out": "{\"answer\":\"自己的经历与支持，"}
+{"kind": "judge", "h": "447e40548a2a2348", "try": 0, "ok": true, "tokens": 284, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "c69ce93c9644d14e", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "644d02183b3fb8f3", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "63125c76b3b94992", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "644d02183b3fb8f3", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "c69ce93c9644d14e", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "63125c76b3b94992", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "644d02183b3fb8f3", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "c69ce93c9644d14e", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "63125c76b3b94992", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "fe472954db889af9", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "1b9672d0be79f1be", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "4b38cb31efaa45ff", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "fe472954db889af9", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "1b9672d0be79f1be", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "4b38cb31efaa45ff", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "fe472954db889af9", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "1b9672d0be79f1be", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "4b38cb31efaa45ff", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "26c341358d4e0d43", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "25503fc4a4d49480", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "7ef2204cb82dc845", "try": 0, "ok": true, "tokens": 370, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "26c341358d4e0d43", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "713f670c2748112c", "try": 0, "ok": true, "tokens": 217, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "judge", "h": "25503fc4a4d49480", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "c605a4a0406d5f1f", "try": 0, "ok": true, "tokens": 268, "out": "{\"answer\": \"Last week\"}"}
+{"kind": "judge", "h": "c500b93933acc66f", "try": 0, "ok": true, "tokens": 320, "out": "{\"verdict\": \"incorrect\"}"}
+{"kind": "reader", "h": "6f53231222c2c46f", "try": 0, "ok": true, "tokens": 281, "out": "{\"answer\": \"positive reinforcement\"}"}
+{"kind": "reader", "h": "26c341358d4e0d43", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "7664bdff9dab1561", "try": 0, "ok": true, "tokens": 205, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "judge", "h": "25503fc4a4d49480", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "cd4f438b448f2455", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "cd4f438b448f2455", "try": 1, "ok": true, "tokens": 265, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "reader", "h": "5f9b2db3b4f886f7", "try": 0, "ok": true, "tokens": 285, "out": "{\"answer\": \"They bought groceries and cooked food for the homeless.\"}"}
+{"kind": "judge", "h": "3c03322ca95532f3", "try": 0, "ok": true, "tokens": 211, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "judge", "h": "0bb07567bba036ef", "try": 0, "ok": true, "tokens": 238, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "845d85f434d55ac4", "try": 0, "ok": true, "tokens": 258, "out": "{\"answer\":\"激励他重新思考追随梦想，感到希望\"}"}
+{"kind": "judge", "h": "644d02183b3fb8f3", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "52afd8c8daffdc4a", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "33b8ca90ba569dea", "try": 0, "ok": true, "tokens": 287, "out": "{\"answer\": \"他的第一台游戏机\"}"}
+{"kind": "judge", "h": "b7390507183b7849", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "9d85e81969eb7fa3", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "f2042fef8ce8a105", "try": 0, "ok": true, "tokens": 257, "out": "{\"verdict\": \"incorrect\"}"}
+{"kind": "judge", "h": "644d02183b3fb8f3", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "ee12ae5c75b2b5f6", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "52afd8c8daffdc4a", "try": 1, "ok": true, "tokens": 576, "out": "{\"answer\": \"《The Alchemist》\"}"}
+{"kind": "judge", "h": "b7390507183b7849", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "9d85e81969eb7fa3", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "08da763a1a150d08", "try": 0, "ok": true, "tokens": 342, "out": "{\"verdict\": \"incorrect\"}"}
+{"kind": "judge", "h": "ee12ae5c75b2b5f6", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "c53a4988b86e67dd", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "644d02183b3fb8f3", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "b7390507183b7849", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "9d85e81969eb7fa3", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "c53a4988b86e67dd", "try": 1, "ok": true, "tokens": 942, "out": "{\"answer\": \"Instrumental tracks with mellow melodies; favorite: Savana.\"}"}
+{"kind": "judge", "h": "714d4de0ead0f0dc", "try": 0, "ok": true, "tokens": 310, "out": "{\"verdict\": \"incorrect\"}"}
+{"kind": "judge", "h": "ee12ae5c75b2b5f6", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "425179ff925bf6be", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "d58c3a7971138815", "try": 0, "ok": true, "tokens": 253, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "4dae52f36180516f", "try": 0, "ok": true, "tokens": 247, "out": "{\"answer\": \"last year\"}"}
+{"kind": "reader", "h": "c83850c963cae9c0", "try": 0, "ok": true, "tokens": 833, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "dfc4dbb924dbbb31", "try": 0, "ok": true, "tokens": 157, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "reader", "h": "425179ff925bf6be", "try": 1, "ok": true, "tokens": 436, "out": "{\"answer\":\"Savana; album Sleep\"}"}
+{"kind": "reader", "h": "36a490d455566668", "try": 0, "ok": true, "tokens": 212, "out": "{\"answer\":\"about 3 years\"}"}
+{"kind": "judge", "h": "b7390507183b7849", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "bbd0e339a635b778", "try": 0, "ok": true, "tokens": 212, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "judge", "h": "6264ac868de0ca3a", "try": 0, "ok": true, "tokens": 260, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "af302fe6f1a52fe1", "try": 0, "ok": true, "tokens": 194, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "820b8704ef90f513", "try": 0, "ok": true, "tokens": 215, "out": "{\"answer\": \"last summer\"}"}
+{"kind": "reader", "h": "9505cefe1d22a2c9", "try": 0, "ok": true, "tokens": 136, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "d8100dcdfa663ac2", "try": 0, "ok": true, "tokens": 868, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "reader", "h": "70a80e52073bfe1c", "try": 0, "ok": true, "tokens": 249, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "e56b0a17cfe5ea06", "try": 0, "ok": true, "tokens": 266, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "7e7950300b7a6437", "try": 0, "ok": true, "tokens": 293, "out": "{\"answer\": \"fresh pastries\"}"}
+{"kind": "judge", "h": "ee12ae5c75b2b5f6", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "b7ada1baf9764d1c", "try": 0, "ok": true, "tokens": 290, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "b7390507183b7849", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "b14282684b567ba1", "try": 0, "ok": true, "tokens": 269, "out": "{\"verdict\": \"incorrect\"}"}
+{"kind": "reader", "h": "dceef2b4e884d81f", "try": 0, "ok": true, "tokens": 975, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "3d34d79120ea4e35", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "3012fbdffb2016f1", "try": 0, "ok": true, "tokens": 132, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "88b9b6cc83c7d034", "try": 0, "ok": true, "tokens": 238, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "b982ef5f2425d2be", "try": 0, "ok": true, "tokens": 302, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "ee12ae5c75b2b5f6", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "d2a9bbea214615ea", "try": 0, "ok": true, "tokens": 187, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "reader", "h": "358f9467c55f62d8", "try": 0, "ok": true, "tokens": 882, "out": "{\"answer\": \"Last weekend\"}"}
+{"kind": "judge", "h": "03259fe1f5ad8319", "try": 0, "ok": true, "tokens": 224, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "3d34d79120ea4e35", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "3d89c6049f91f5ec", "try": 0, "ok": true, "tokens": 885, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "47752ced8cf99625", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "b7390507183b7849", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "c73a3c953e6d1570", "try": 0, "ok": true, "tokens": 215, "out": "{\"answer\": \"soda and candy\"}"}
+{"kind": "judge", "h": "833ee42c7dcb71b3", "try": 0, "ok": true, "tokens": 210, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "judge", "h": "ee12ae5c75b2b5f6", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "f1bc06a620b80daa", "try": 0, "ok": true, "tokens": 162, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "47752ced8cf99625", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "3d204e298cbe2ac7", "try": 0, "ok": true, "tokens": 252, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "3d34d79120ea4e35", "try": 2, "ok": true, "tokens": 998, "out": "{\"answer\":\"A volunteer program where engineers teach STEM to underprivileged kids.\"}"}
+{"kind": "reader", "h": "19056b650d0fddce", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "e73c30169a7d5c26", "try": 0, "ok": true, "tokens": 228, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "5a3943dbe19f3f20", "try": 0, "ok": true, "tokens": 138, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "9e5a85532cf21944", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "e3cb991d65fa6707", "try": 0, "ok": true, "tokens": 282, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "47752ced8cf99625", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "9d4a1b2586b37c37", "try": 0, "ok": true, "tokens": 899, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "19056b650d0fddce", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "66436f98ecc03ce1", "try": 0, "ok": true, "tokens": 167, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "75e18fc82090439b", "try": 0, "ok": true, "tokens": 252, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "0629587b9392ee9d", "try": 0, "ok": true, "tokens": 369, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "9e5a85532cf21944", "try": 1, "ok": true, "tokens": 427, "out": "{\"answer\": \"工程师志愿教贫困儿童STEM的项目\"}"}
+{"kind": "reader", "h": "1b3601d2fb2c3e4e", "try": 0, "ok": true, "tokens": 137, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "67ff5c2ec617db93", "try": 0, "ok": true, "tokens": 249, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "f7e6aedb8cbc5219", "try": 0, "ok": true, "tokens": 265, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "35f1eddba2fd5b7c", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "9a75bf5a11a794be", "try": 0, "ok": true, "tokens": 132, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "6e67b4d32cec93b1", "try": 0, "ok": true, "tokens": 987, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "judge", "h": "5308fcf9a70c225f", "try": 0, "ok": true, "tokens": 264, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "19056b650d0fddce", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "e054dcb93145ff9b", "try": 0, "ok": true, "tokens": 310, "out": "{\"answer\":\"observing nature\"}"}
+{"kind": "reader", "h": "c67fa065b803804f", "try": 0, "ok": true, "tokens": 233, "out": "{\"answer\":\"last weekend\"}"}
+{"kind": "reader", "h": "b545eebf188f8009", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "35f1eddba2fd5b7c", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "cb3c34e6568e2cbf", "try": 0, "ok": true, "tokens": 383, "out": "{\""}
+{"kind": "judge", "h": "0261554dad75dcbd", "try": 0, "ok": true, "tokens": 266, "out": "{\"verdict\": \"incorrect\"}"}
+{"kind": "reader", "h": "9f1f48a3125bc70f", "try": 0, "ok": true, "tokens": 145, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "6e53023bbc6886ee", "try": 0, "ok": true, "tokens": 165, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "judge", "h": "4cd62fb3624fdf5d", "try": 0, "ok": true, "tokens": 248, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "dfc35ea284bf0572", "try": 0, "ok": true, "tokens": 268, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "665ffd2a5d53960f", "try": 0, "ok": true, "tokens": 754, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "b545eebf188f8009", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "a31dfc00e9031926", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "4056a61df94b1651", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "35f1eddba2fd5b7c", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "159673ccc59bb538", "try": 0, "ok": true, "tokens": 601, "out": "{\"answer\": \"气泡水、黑巧克力、水果、能量球等\"}"}
+{"kind": "judge", "h": "ac2b0b992744d178", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "a31dfc00e9031926", "try": 1, "ok": true, "tokens": 980, "out": "{\"answer\": \"His worth is not defined by his weight.\"}"}
+{"kind": "judge", "h": "81be123210948f18", "try": 0, "ok": true, "tokens": 251, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "4056a61df94b1651", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "b545eebf188f8009", "try": 2, "ok": true, "tokens": 910, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "9872f20083811a9d", "try": 0, "ok": true, "tokens": 197, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "19056b650d0fddce", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "9d85e81969eb7fa3", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "47752ced8cf99625", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "35f1eddba2fd5b7c", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "4056a61df94b1651", "try": 0, "ok": true, "tokens": 324, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "reader", "h": "da006cace24f9224", "try": 0, "ok": true, "tokens": 296, "out": "{\"answer\":\"他的价值不由体重定义\"}"}
+{"kind": "judge", "h": "93b0ebeccd5c4f8f", "try": 0, "ok": true, "tokens": 238, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "judge", "h": "9d85e81969eb7fa3", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "19056b650d0fddce", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "47752ced8cf99625", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "35f1eddba2fd5b7c", "try": 1, "ok": true, "tokens": 846, "out": "{\"answer\": \"extended family and work friends\"}"}
+{"kind": "reader", "h": "b41852dbcebcfddd", "try": 0, "ok": true, "tokens": 159, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "judge", "h": "7f36d3a7bf8077a7", "try": 0, "ok": true, "tokens": 329, "out": "{\"verdict\": \"incorrect\"}"}
+{"kind": "judge", "h": "63e45946fc80cca5", "try": 0, "ok": true, "tokens": 313, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "eb3cbcb7fde8a9ab", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "8a5b2bf839d7888f", "try": 0, "ok": true, "tokens": 932, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "reader", "h": "0ab8c1cb433b5f39", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "9d85e81969eb7fa3", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "47752ced8cf99625", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "19056b650d0fddce", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "eb3cbcb7fde8a9ab", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "0ab8c1cb433b5f39", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "e3b193ff63b9c752", "try": 0, "ok": true, "tokens": 135, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "807b7c7288108773", "try": 0, "ok": true, "tokens": 147, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "eb3cbcb7fde8a9ab", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "ac2b0b992744d178", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "b026482501777aa9", "try": 0, "ok": true, "tokens": 252, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "5efbba0a9089a316", "try": 0, "ok": true, "tokens": 223, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "0ab8c1cb433b5f39", "try": 2, "ok": true, "tokens": 342, "out": "{\"answer\": \"Their marriage\"}"}
+{"kind": "reader", "h": "dea84eb7ad374570", "try": 0, "ok": true, "tokens": 940, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "2e5d13323c6b44f1", "try": 0, "ok": true, "tokens": 950, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "b0dc758d61ad79ec", "try": 0, "ok": true, "tokens": 206, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "82e77016a372154c", "try": 0, "ok": true, "tokens": 229, "out": "{\"answer\": \"snowshoeing\"}"}
+{"kind": "reader", "h": "045071c50c279078", "try": 0, "ok": true, "tokens": 236, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "judge", "h": "ac2b0b992744d178", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "40fb18993f257607", "try": 0, "ok": true, "tokens": 163, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "judge", "h": "98d0d1d9861475ba", "try": 0, "ok": true, "tokens": 195, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "f4ff7ba32bfbca87", "try": 0, "ok": true, "tokens": 145, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "reader", "h": "c469a4116f168dd9", "try": 0, "ok": true, "tokens": 126, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "3df6d6ad9036964f", "try": 0, "ok": true, "tokens": 238, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "9d6b4608a6c92b34", "try": 0, "ok": true, "tokens": 259, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "5cde11d74b4a89e4", "try": 0, "ok": true, "tokens": 255, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "c5aefee3742c5d00", "try": 0, "ok": true, "tokens": 887, "out": "{\"answer\":\"Yes\"}"}
+{"kind": "reader", "h": "375d17c663dbfa66", "try": 0, "ok": true, "tokens": 962, "out": "{\"answer\": \"Last Friday\"}"}
+{"kind": "reader", "h": "7ede47d1b5466553", "try": 0, "ok": true, "tokens": 148, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "judge", "h": "6988be63f6490c6b", "try": 0, "ok": true, "tokens": 198, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "judge", "h": "e2230a6efd308474", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "83f9d23f94da2207", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "bc46b3f40b97d4c7", "try": 0, "ok": true, "tokens": 341, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "9ff06c391e5b85cf", "try": 0, "ok": true, "tokens": 402, "out": "{\"answer\": \"Yes\"}"}
+{"kind": "judge", "h": "ac2b0b992744d178", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "de9a2167ba6a4822", "try": 0, "ok": true, "tokens": 132, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "2b79dc94729f2d99", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "0198a8d7a956014c", "try": 0, "ok": true, "tokens": 258, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "e2230a6efd308474", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "83f9d23f94da2207", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "c1a0348f3f31f8fc", "try": 0, "ok": true, "tokens": 924, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "2b79dc94729f2d99", "try": 1, "ok": true, "tokens": 872, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "reader", "h": "5493cf474530e18d", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "44d903846bf76a42", "try": 0, "ok": true, "tokens": 626, "out": "{\"answer\": \"庆祝开店、公园散步、"}
+{"kind": "reader", "h": "2a11bac4e793d70d", "try": 0, "ok": true, "tokens": 161, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "judge", "h": "e2230a6efd308474", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "773962f3d94e0f75", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "5493cf474530e18d", "try": 1, "ok": true, "tokens": 230, "out": "{\"answer\": \"Tokyo\"}"}
+{"kind": "judge", "h": "b854a6727fef5a9b", "try": 0, "ok": true, "tokens": 226, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "83f9d23f94da2207", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "3558b17ec1e7af5e", "try": 0, "ok": true, "tokens": 208, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "a46152122989b974", "try": 0, "ok": true, "tokens": 164, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "13422353f47b78e6", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "773962f3d94e0f75", "try": 1, "ok": true, "tokens": 345, "out": "{\"verdict\": \"incorrect\"}"}
+{"kind": "judge", "h": "42f350c5e1f0bd7f", "try": 0, "ok": true, "tokens": 276, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "f3b8917a7dd2ebcb", "try": 0, "ok": true, "tokens": 131, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "dd8543ded004c493", "try": 0, "ok": true, "tokens": 1008, "out": "{\"answer\":\"Fixing up things\"}"}
+{"kind": "reader", "h": "13422353f47b78e6", "try": 1, "ok": true, "tokens": 773, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "bebfa07bb8f443f9", "try": 0, "ok": true, "tokens": 241, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "d7d58fa8da4245f9", "try": 0, "ok": true, "tokens": 194, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "24ebd8eb6e907b50", "try": 0, "ok": true, "tokens": 214, "out": "{\"answer\":\"Last Friday\"}"}
+{"kind": "reader", "h": "36eb617e9bbbf53f", "try": 0, "ok": true, "tokens": 376, "out": "{\"answer\": \"沉浸于自己热爱的事物\"}"}
+{"kind": "reader", "h": "d5ef4e9ccfa842aa", "try": 0, "ok": true, "tokens": 904, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "f57c534bbc04672b", "try": 0, "ok": true, "tokens": 236, "out": "{\"answer\":\"修理东西\"}"}
+{"kind": "judge", "h": "d269f39e31236839", "try": 0, "ok": true, "tokens": 230, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "judge", "h": "e2230a6efd308474", "try": 0, "ok": true, "tokens": 325, "out": "{\"verdict\": \"incorrect\"}"}
+{"kind": "judge", "h": "e56877f24dd97590", "try": 0, "ok": true, "tokens": 219, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "c426b96e1031d674", "try": 0, "ok": true, "tokens": 256, "out": "{\"answer\": \"classic muscle car\"}"}
+{"kind": "reader", "h": "a20e8b70ea84af56", "try": 0, "ok": true, "tokens": 506, "out": "{\"answer\": \"restoring cars\"}"}
+{"kind": "reader", "h": "8349ca301d45b524", "try": 0, "ok": true, "tokens": 155, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "0603b9060a8d8da7", "try": 0, "ok": true, "tokens": 135, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "05a51c1870d22cb0", "try": 0, "ok": true, "tokens": 196, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "c94d1c0a0d4a3414", "try": 0, "ok": true, "tokens": 123, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "judge", "h": "e95500c5f66082e8", "try": 0, "ok": true, "tokens": 197, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "judge", "h": "565704c7d72c29a5", "try": 0, "ok": true, "tokens": 252, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "487fe939349e3235", "try": 0, "ok": true, "tokens": 262, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "cc8a8b92b2a746e0", "try": 0, "ok": true, "tokens": 142, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "judge", "h": "02be836ad58548de", "try": 0, "ok": true, "tokens": 253, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "336c63fa6a211183", "try": 0, "ok": true, "tokens": 144, "out": "{\"answer\": \"无法确定\"}"}
+{"kind": "reader", "h": "8fe25d3329323e68", "try": 0, "ok": true, "tokens": 1005, "out": "{\"answer\": \"Paying attention to small details\"}"}
+{"kind": "judge", "h": "3d6a8cf611c1f8e8", "try": 0, "ok": true, "tokens": 268, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "reader", "h": "2cd92f2673526d10", "try": 0, "ok": true, "tokens": 908, "out": "{\"answer\": \"car mods\"}"}
+{"kind": "reader", "h": "9a1738b9db9e7cde", "try": 0, "ok": true, "tokens": 985, "out": "{\"answer\":\"探索并发展个人品牌\"}"}
+{"kind": "judge", "h": "d8ba3eca2037e333", "try": 0, "ok": true, "tokens": 273, "out": "{\"verdict\": \"refused\"}"}
+{"kind": "judge", "h": "d14f5d8384b27a36", "try": 0, "ok": true, "tokens": 200, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "judge", "h": "b1a46f8b87613c41", "try": 0, "ok": true, "tokens": 214, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "judge", "h": "ad4889535c334452", "try": 0, "ok": true, "tokens": 226, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "reader", "h": "65872b5cb0132467", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "c2f83b7cf8d66323", "try": 0, "ok": true, "tokens": 218, "out": "{\"answer\": \"car mods\"}"}
+{"kind": "reader", "h": "26badf560bd067e7", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "ed27d92a85331bcd", "try": 0, "ok": true, "tokens": 281, "out": "{\"answer\": \"Paying attention to small details\"}"}
+{"kind": "reader", "h": "451bd32216dae9ca", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "26badf560bd067e7", "try": 1, "ok": true, "tokens": 864, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "reader", "h": "65872b5cb0132467", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "451bd32216dae9ca", "try": 1, "ok": true, "tokens": 389, "out": "{\"answer\": \"exploring and growing his brand\"}"}
+{"kind": "reader", "h": "f1b9abf56c5b39a8", "try": 0, "ok": true, "tokens": 307, "out": "{\"answer\": \"favorite artists, art, and music connecting us\"}"}
+{"kind": "judge", "h": "a312182b1a7f2b63", "try": 0, "ok": true, "tokens": 197, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "judge", "h": "db87851dc39b1aa5", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "db87851dc39b1aa5", "try": 0, "ok": true, "tokens": 367, "out": "{\"verdict\": \"correct\"}"}
+{"kind": "judge", "h": "ac2b0b992744d178", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "65872b5cb0132467", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "eb3cbcb7fde8a9ab", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "83f9d23f94da2207", "try": 0, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "ac2b0b992744d178", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "83f9d23f94da2207", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "eb3cbcb7fde8a9ab", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "65872b5cb0132467", "try": 1, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "judge", "h": "ac2b0b992744d178", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "83f9d23f94da2207", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "eb3cbcb7fde8a9ab", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "65872b5cb0132467", "try": 2, "ok": false, "err": "HTTPError: HTTP Error 500: Internal Server Error"}
+{"kind": "reader", "h": "7478b09b214e1dda", "try": 0, "ok": true, "tokens": 210, "out": "{\"answer\":\"无法确定\"}"}
+{"kind": "reader", "h": "65872b5cb0132467", "try": 0, "ok": true, "tokens": 1048, "out": "{\"answer\":\"无法确定\"}"}
