@@ -1,0 +1,669 @@
+{
+ "md_cg.test_issue146_frontmatter_quarantine": {
+  "rc": 1,
+  "hits": [
+   "  [FAIL] A2 坏节点被隔离且不进索引  · ([], ['healthy'])",
+   "  [FAIL] A3 隔离项带 path 与原因",
+   "  [FAIL] B3 有隔离文件 ⇒ 出 quarantined 键（dict）  · NoneType",
+   "  [PASS] C3 非法密级节点被判不可见（fail-closed）——装载面隔离，不进索引",
+   "  [PASS] D1 同身份异会话读不到明文（fail-closed）",
+   "  [PASS] E3 protect.mark 判 node_not_found（不写回坏文件）  · {'ok': False, 'error': 'node_not_found', 'node_id': 'victim'}",
+   "  隔离 priv：knowledge/orphan/priv.md（密级损坏（fail-closed，不降级为明文）：sensitivity='internl' 不在 ['public', 'internal', 'restricted', 'private', 'secret']）",
+   "  隔离 priv：knowledge/orphan/priv.md（密级损坏（fail-closed，不降级为明文）：sensitivity='internl' 不在 ['public', 'internal', 'restricted', 'private', 'secret']）"
+  ],
+  "tail": [
+   " - 红：A3 隔离项带 path 与原因",
+   " - 红：B3 有隔离文件 ⇒ 出 quarantined 键（dict）",
+   "[mdcg] 装载隔离告警：1 个坏节点被隔离（不进索引、不改盘、盘面真源保留）",
+   "  隔离 priv：knowledge/orphan/priv.md（密级损坏（fail-closed，不降级为明文）：sensitivity='internl' 不在 ['public', 'internal', 'restricted', 'private', 'secret']）",
+   "[mdcg] 装载隔离告警：1 个坏节点被隔离（不进索引、不改盘、盘面真源保留）",
+   "  隔离 priv：knowledge/orphan/priv.md（密级损坏（fail-closed，不降级为明文）：sensitivity='internl' 不在 ['public', 'internal', 'restricted', 'private', 'secret']）"
+  ]
+ },
+ "md_cg.test_issue150_empty_query_terms": {
+  "rc": 1,
+  "hits": [
+   "  [FAIL] B0 Rust 二进制在位（缺失即 fail-closed）  · 缺 <仓根>/rust/target/release/mdcg-eval —— 请先 `cargo build --release --manifest-path rust/Cargo.toml`（在 <仓根> 内；CI 的 python-tests 已有该步，见 .github/workflows/python-tests.yml）",
+   "SUMMARY: #150 空查询词项跨侧守卫：10 通过，1 失败；失败项=B0 Rust 二进制在位（缺失即 fail-closed）"
+  ],
+  "tail": [
+   "  [PASS] A4 空词项/全标点 query 不再把负记忆算作「覆盖本查询」  · covered_neg=[]",
+   "  [PASS] A4b 正向对照：真正命中负记忆的问句仍照旧覆盖（零误伤）  · covered_neg=['rejected/neg_probe.md']",
+   "[B] 跨侧面",
+   "  [FAIL] B0 Rust 二进制在位（缺失即 fail-closed）  · 缺 <仓根>/rust/target/release/mdcg-eval —— 请先 `cargo build --release --manifest-path rust/Cargo.toml`（在 <仓根> 内；CI 的 python-tests 已有该步，见 .github/workflows/python-tests.yml）",
+   "",
+   "SUMMARY: #150 空查询词项跨侧守卫：10 通过，1 失败；失败项=B0 Rust 二进制在位（缺失即 fail-closed）"
+  ]
+ },
+ "md_cg.test_issue211_export_target": {
+  "rc": 1,
+  "hits": [
+   "  FAIL U10 aux 根无法解析 ⇒ fail-closed（PermissionError 而非裸 ValueError）  (False, '', '')",
+   "  ok   G3a2 被拦的是权限而不是落点（报 AccessDenied 而非 PermissionError）",
+   "失败项：U10 aux 根无法解析 ⇒ fail-closed（PermissionError 而非裸 ValueError）"
+  ],
+  "tail": [
+   "  ok   G6c 覆写后的 _keys.json 不再是密钥信封库（永久数据丢失形态）",
+   "",
+   "====================================================================",
+   "通过 32 / 失败 1",
+   "失败项：U10 aux 根无法解析 ⇒ fail-closed（PermissionError 而非裸 ValueError）",
+   "===================================================================="
+  ]
+ },
+ "md_cg.test_issue91_verifier_timeout": {
+  "rc": 0,
+  "hits": [],
+  "tail": [
+   "[PASS] T6b Verifier 类体内无裸 exec/compile 调用  · bare=[]",
+   "[PASS] T6c 时限可注入（Verifier(exec_timeout=…)）且默认取模块常量 EXEC_TIMEOUT_S",
+   "",
+   "================================================================",
+   "通过 15 ／ 失败 0",
+   "================================================================"
+  ]
+ },
+ "md_cg.test_p4_freshness": {
+  "rc": 1,
+  "hits": [
+   "  OK   受保护节点降级被 guard_move 拒绝（ProtectionError）",
+   "== G11 Rust 侧同口径（常量 + 生效面）==",
+   "  OK   rust 常量 SCORE_FLOOR 与 Python 同值",
+   "  OK   rust 常量 SECONDS_PER_DAY 与 Python 同值",
+   "  OK   rust 常量 IMPORTANCE_PROTECT 与 Python 同值",
+   "  OK   rust 常量 DECAY_DAYS 与 Python 同值",
+   "  OK   rust 参数 REHEARSAL_THRESHOLD 照抄 AEIS（0.7）",
+   "  OK   rust 参数 DEGRADE_THRESHOLD 照抄 AEIS（0.2）",
+   "  OK   rust 参数 GAIN 照抄 AEIS（0.01）",
+   "  OK   Rust 侧有核/参数的单测（半衰期、floor、保护线、演练闸）",
+   "  FAIL Rust 二进制在位（逐位对拍的另一侧）  <仓根>/rust/target/release/mdcg-eval 不存在——先 cd rust && cargo build --release"
+  ],
+  "tail": [
+   "  OK   temporal_gamma() 常数级（修前 = 1×N；γ 的实际读取点）",
+   "  OK   自证腿：全缺省签名仍自算（四路 spy 各 ≥1，判别力在位）",
+   "  OK   显式 enabled+now+γ 透传与自算同值（逐位一致）",
+   "  OK   enabled=False 恒 1.0（entry/decay/refresh 三面同口径）",
+   "",
+   "test_p4_freshness: 86 通过 / 1 失败"
+  ]
+ },
+ "md_cg.test_rank_parity_score_mode": {
+  "rc": 1,
+  "hits": [
+   "!! rust release 二进制缺失：<仓根>/rust/target/release/mdcg-eval",
+   "   修复：cd rust && cargo build --release",
+   "   处置：**fail-closed**（本守卫不计通过、直接退出 1；不采用静默 SKIP 而返回 0——跑不起来永远不等于通过）"
+  ],
+  "tail": [
+   "!! rust release 二进制缺失：<仓根>/rust/target/release/mdcg-eval",
+   "   修复：cd rust && cargo build --release",
+   "   处置：**fail-closed**（本守卫不计通过、直接退出 1；不采用静默 SKIP 而返回 0——跑不起来永远不等于通过）"
+  ]
+ },
+ "md_cg.test_unify_default_off": {
+  "rc": 1,
+  "hits": [
+   "!! rust release 二进制缺失：<仓根>/rust/target/release/mdcg-eval",
+   "   修复：cd rust && cargo build --release",
+   "   处置：**fail-closed**（本守卫不计通过、直接退出 1；不采用静默 SKIP 而返回 0——跑不起来永远不等于通过）"
+  ],
+  "tail": [
+   "!! rust release 二进制缺失：<仓根>/rust/target/release/mdcg-eval",
+   "   修复：cd rust && cargo build --release",
+   "   处置：**fail-closed**（本守卫不计通过、直接退出 1；不采用静默 SKIP 而返回 0——跑不起来永远不等于通过）"
+  ]
+ },
+ "md_cg.whitebox_kb.wisdom.test_ecosystem_assembly": {
+  "rc": 1,
+  "hits": [
+   "Traceback (most recent call last):",
+   "FileNotFoundError: [Errno 2] No such file or directory: '<仓根>/md_cg/whitebox_kb/wisdom\\\\compiler_code_units.py'"
+  ],
+  "tail": [
+   "  File \"<frozen runpy>\", line 198, in _run_module_as_main",
+   "  File \"<frozen runpy>\", line 88, in _run_code",
+   "  File \"<仓根>/md_cg/whitebox_kb/wisdom/test_ecosystem_assembly.py\", line 27, in <module>",
+   "    src = io.open(f'{TOOLS}\\\\{fn}', encoding='utf-8').read()",
+   "          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+   "FileNotFoundError: [Errno 2] No such file or directory: '<仓根>/md_cg/whitebox_kb/wisdom\\\\compiler_code_units.py'"
+  ]
+ },
+ "swarm.tests.bench_swarm_parallel": {
+  "rc": 1,
+  "hits": [
+   "Traceback (most recent call last):",
+   "  File \"<仓根>/swarm/rust_swarm.py\", line 130, in run_swarm",
+   "    exe = exe or _me.build_rust_exe(project_dir)   # issue #125：惰性解析（不经顶层导入）",
+   "  File \"<仓根>/swarm/rust_codegen.py\", line 121, in build_rust_exe",
+   "    build = subprocess.run([\"cargo\", \"build\", \"--release\"], cwd=project_dir,",
+   "FileNotFoundError: [Errno 2] No such file or directory: 'cargo'"
+  ],
+  "tail": [
+   "         ^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1026, in __init__",
+   "    self._execute_child(args, executable, preexec_fn, close_fds,",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1955, in _execute_child",
+   "    raise child_exception_type(errno_num, err_msg, err_filename)",
+   "FileNotFoundError: [Errno 2] No such file or directory: 'cargo'"
+  ]
+ },
+ "swarm.tests.bench_swarm_scale": {
+  "rc": 1,
+  "hits": [
+   "Traceback (most recent call last):",
+   "  File \"<仓根>/swarm/rust_swarm.py\", line 130, in run_swarm",
+   "    exe = exe or _me.build_rust_exe(project_dir)   # issue #125：惰性解析（不经顶层导入）",
+   "  File \"<仓根>/swarm/rust_codegen.py\", line 121, in build_rust_exe",
+   "    build = subprocess.run([\"cargo\", \"build\", \"--release\"], cwd=project_dir,",
+   "FileNotFoundError: [Errno 2] No such file or directory: 'cargo'"
+  ],
+  "tail": [
+   "         ^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1026, in __init__",
+   "    self._execute_child(args, executable, preexec_fn, close_fds,",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1955, in _execute_child",
+   "    raise child_exception_type(errno_num, err_msg, err_filename)",
+   "FileNotFoundError: [Errno 2] No such file or directory: 'cargo'"
+  ]
+ },
+ "swarm.tests.test_rust_codegen": {
+  "rc": 1,
+  "hits": [
+   "=== ① trust：道/德/若/止 ===",
+   "Traceback (most recent call last):",
+   "  File \"<仓根>/swarm/tests/test_rust_codegen.py\", line 89, in <module>",
+   "  File \"<仓根>/swarm/tests/test_rust_codegen.py\", line 72, in equiv_case",
+   "    rr = build_and_run(gen[\"project_dir\"], symbols=symbols, trust=trust)",
+   "  File \"<仓根>/swarm/rust_codegen.py\", line 140, in build_and_run",
+   "FileNotFoundError: [Errno 2] No such file or directory: 'cargo'"
+  ],
+  "tail": [
+   "         ^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1026, in __init__",
+   "    self._execute_child(args, executable, preexec_fn, close_fds,",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1955, in _execute_child",
+   "    raise child_exception_type(errno_num, err_msg, err_filename)",
+   "FileNotFoundError: [Errno 2] No such file or directory: 'cargo'"
+  ]
+ },
+ "swarm.tests.test_rust_escape_parity": {
+  "rc": 1,
+  "hits": [
+   "Traceback (most recent call last):",
+   "  File \"<仓根>/swarm/tests/test_rust_escape_parity.py\", line 160, in <module>",
+   "  File \"<仓根>/swarm/tests/test_rust_escape_parity.py\", line 76, in scenario_tab",
+   "  File \"<仓根>/swarm/rust_swarm.py\", line 130, in run_swarm",
+   "    exe = exe or _me.build_rust_exe(project_dir)   # issue #125：惰性解析（不经顶层导入）",
+   "  File \"<仓根>/swarm/rust_codegen.py\", line 121, in build_rust_exe",
+   "    build = subprocess.run([\"cargo\", \"build\", \"--release\"], cwd=project_dir,",
+   "FileNotFoundError: [Errno 2] No such file or directory: 'cargo'"
+  ],
+  "tail": [
+   "         ^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1026, in __init__",
+   "    self._execute_child(args, executable, preexec_fn, close_fds,",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1955, in _execute_child",
+   "    raise child_exception_type(errno_num, err_msg, err_filename)",
+   "FileNotFoundError: [Errno 2] No such file or directory: 'cargo'"
+  ]
+ },
+ "swarm.tests.test_rust_swarm": {
+  "rc": 1,
+  "hits": [
+   "Traceback (most recent call last):",
+   "  File \"<仓根>/swarm/tests/test_rust_swarm.py\", line 60, in <module>",
+   "  File \"<仓根>/swarm/rust_swarm.py\", line 130, in run_swarm",
+   "    exe = exe or _me.build_rust_exe(project_dir)   # issue #125：惰性解析（不经顶层导入）",
+   "  File \"<仓根>/swarm/rust_codegen.py\", line 121, in build_rust_exe",
+   "    build = subprocess.run([\"cargo\", \"build\", \"--release\"], cwd=project_dir,",
+   "FileNotFoundError: [Errno 2] No such file or directory: 'cargo'"
+  ],
+  "tail": [
+   "         ^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1026, in __init__",
+   "    self._execute_child(args, executable, preexec_fn, close_fds,",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1955, in _execute_child",
+   "    raise child_exception_type(errno_num, err_msg, err_filename)",
+   "FileNotFoundError: [Errno 2] No such file or directory: 'cargo'"
+  ]
+ },
+ "swarm.tests.test_rust_swarm_kill": {
+  "rc": 1,
+  "hits": [
+   "=== ⓪ 内嵌自检（N264：坏尾容忍 / 非末行必 FAIL） ===",
+   "[✓] 自检②：调用处对非末行失败必判 FAIL",
+   "Traceback (most recent call last):",
+   "  File \"<仓根>/swarm/tests/test_rust_swarm_kill.py\", line 162, in <module>",
+   "  File \"<仓根>/swarm/rust_swarm.py\", line 130, in run_swarm",
+   "    exe = exe or _me.build_rust_exe(project_dir)   # issue #125：惰性解析（不经顶层导入）",
+   "  File \"<仓根>/swarm/rust_codegen.py\", line 121, in build_rust_exe",
+   "    build = subprocess.run([\"cargo\", \"build\", \"--release\"], cwd=project_dir,",
+   "FileNotFoundError: [Errno 2] No such file or directory: 'cargo'"
+  ],
+  "tail": [
+   "         ^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1026, in __init__",
+   "    self._execute_child(args, executable, preexec_fn, close_fds,",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1955, in _execute_child",
+   "    raise child_exception_type(errno_num, err_msg, err_filename)",
+   "FileNotFoundError: [Errno 2] No such file or directory: 'cargo'"
+  ]
+ },
+ "swarm.tests.test_rust_swarm_resume": {
+  "rc": 1,
+  "hits": [
+   "Traceback (most recent call last):",
+   "  File \"<仓根>/swarm/tests/test_rust_swarm_resume.py\", line 61, in <module>",
+   "  File \"<仓根>/swarm/rust_swarm.py\", line 130, in run_swarm",
+   "    exe = exe or _me.build_rust_exe(project_dir)   # issue #125：惰性解析（不经顶层导入）",
+   "  File \"<仓根>/swarm/rust_codegen.py\", line 121, in build_rust_exe",
+   "    build = subprocess.run([\"cargo\", \"build\", \"--release\"], cwd=project_dir,",
+   "FileNotFoundError: [Errno 2] No such file or directory: 'cargo'"
+  ],
+  "tail": [
+   "         ^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1026, in __init__",
+   "    self._execute_child(args, executable, preexec_fn, close_fds,",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1955, in _execute_child",
+   "    raise child_exception_type(errno_num, err_msg, err_filename)",
+   "FileNotFoundError: [Errno 2] No such file or directory: 'cargo'"
+  ]
+ },
+ "swarm.tests.test_rust_vm_jump_guard": {
+  "rc": 1,
+  "hits": [
+   "Traceback (most recent call last):",
+   "  File \"<仓根>/swarm/tests/test_rust_vm_jump_guard.py\", line 110, in <module>",
+   "    exe = build_rust_exe(proj)",
+   "  File \"<仓根>/swarm/rust_codegen.py\", line 121, in build_rust_exe",
+   "    build = subprocess.run([\"cargo\", \"build\", \"--release\"], cwd=project_dir,",
+   "FileNotFoundError: [Errno 2] No such file or directory: 'cargo'"
+  ],
+  "tail": [
+   "         ^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1026, in __init__",
+   "    self._execute_child(args, executable, preexec_fn, close_fds,",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1955, in _execute_child",
+   "    raise child_exception_type(errno_num, err_msg, err_filename)",
+   "FileNotFoundError: [Errno 2] No such file or directory: 'cargo'"
+  ]
+ },
+ "swarm.tests.test_swarm_cli": {
+  "rc": 1,
+  "hits": [
+   "[✗] run 退出码 0 且 ok=true — code=1 err=\", line 1026, in __init__",
+   "FileNotFoundError: [Errno 2] No such file or directory: 'cargo'",
+   "[✗] stdout 摘要含规模与 trust — {'rounds': None, 'instances': None, 'events': None}",
+   "[✗] health 摘要在位且满分（全成功场景） — min=None",
+   "[✗] 报告文件落盘且含 health/trust/final_states — ",
+   "Traceback (most recent call last):",
+   "KeyError: 'wal'"
+  ],
+  "tail": [
+   "  File \"<frozen runpy>\", line 198, in _run_module_as_main",
+   "  File \"<frozen runpy>\", line 88, in _run_code",
+   "  File \"<仓根>/swarm/tests/test_swarm_cli.py\", line 86, in <module>",
+   "    first_wal = out[\"wal\"]",
+   "                ~~~^^^^^^^",
+   "KeyError: 'wal'"
+  ]
+ },
+ "swarm.tests.test_swarm_condition_space": {
+  "rc": 1,
+  "hits": [
+   "Traceback (most recent call last):",
+   "  File \"<仓根>/swarm/rust_swarm.py\", line 130, in run_swarm",
+   "    exe = exe or _me.build_rust_exe(project_dir)   # issue #125：惰性解析（不经顶层导入）",
+   "  File \"<仓根>/swarm/rust_codegen.py\", line 121, in build_rust_exe",
+   "    build = subprocess.run([\"cargo\", \"build\", \"--release\"], cwd=project_dir,",
+   "FileNotFoundError: [Errno 2] No such file or directory: 'cargo'"
+  ],
+  "tail": [
+   "         ^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1026, in __init__",
+   "    self._execute_child(args, executable, preexec_fn, close_fds,",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1955, in _execute_child",
+   "    raise child_exception_type(errno_num, err_msg, err_filename)",
+   "FileNotFoundError: [Errno 2] No such file or directory: 'cargo'"
+  ]
+ },
+ "swarm.tests.test_swarm_gossip": {
+  "rc": 1,
+  "hits": [
+   "Traceback (most recent call last):",
+   "  File \"<仓根>/swarm/rust_swarm.py\", line 130, in run_swarm",
+   "    exe = exe or _me.build_rust_exe(project_dir)   # issue #125：惰性解析（不经顶层导入）",
+   "  File \"<仓根>/swarm/rust_codegen.py\", line 121, in build_rust_exe",
+   "    build = subprocess.run([\"cargo\", \"build\", \"--release\"], cwd=project_dir,",
+   "FileNotFoundError: [Errno 2] No such file or directory: 'cargo'"
+  ],
+  "tail": [
+   "         ^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1026, in __init__",
+   "    self._execute_child(args, executable, preexec_fn, close_fds,",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1955, in _execute_child",
+   "    raise child_exception_type(errno_num, err_msg, err_filename)",
+   "FileNotFoundError: [Errno 2] No such file or directory: 'cargo'"
+  ]
+ },
+ "swarm.tests.test_swarm_health": {
+  "rc": 1,
+  "hits": [
+   "[✓] 半 error 场景 score=0.7（手算 0.4×.5+0.2×1+0.2×.5+0.2×1） — score=0.7000 tr=0.5",
+   "[✓] 空序列不崩（公式兜底 0.4：success/uptime 归零+integrity 满分；Rust 侧调用方跳过空序列）",
+   "Traceback (most recent call last):",
+   "  File \"<仓根>/swarm/rust_swarm.py\", line 130, in run_swarm",
+   "    exe = exe or _me.build_rust_exe(project_dir)   # issue #125：惰性解析（不经顶层导入）",
+   "  File \"<仓根>/swarm/rust_codegen.py\", line 121, in build_rust_exe",
+   "    build = subprocess.run([\"cargo\", \"build\", \"--release\"], cwd=project_dir,",
+   "FileNotFoundError: [Errno 2] No such file or directory: 'cargo'"
+  ],
+  "tail": [
+   "         ^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1026, in __init__",
+   "    self._execute_child(args, executable, preexec_fn, close_fds,",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1955, in _execute_child",
+   "    raise child_exception_type(errno_num, err_msg, err_filename)",
+   "FileNotFoundError: [Errno 2] No such file or directory: 'cargo'"
+  ]
+ },
+ "swarm.tests.test_swarm_inbox_delivery": {
+  "rc": 1,
+  "hits": [
+   "Traceback (most recent call last):",
+   "  File \"<仓根>/swarm/rust_swarm.py\", line 130, in run_swarm",
+   "    exe = exe or _me.build_rust_exe(project_dir)   # issue #125：惰性解析（不经顶层导入）",
+   "  File \"<仓根>/swarm/rust_codegen.py\", line 121, in build_rust_exe",
+   "    build = subprocess.run([\"cargo\", \"build\", \"--release\"], cwd=project_dir,",
+   "FileNotFoundError: [Errno 2] No such file or directory: 'cargo'"
+  ],
+  "tail": [
+   "         ^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1026, in __init__",
+   "    self._execute_child(args, executable, preexec_fn, close_fds,",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1955, in _execute_child",
+   "    raise child_exception_type(errno_num, err_msg, err_filename)",
+   "FileNotFoundError: [Errno 2] No such file or directory: 'cargo'"
+  ]
+ },
+ "swarm.tests.test_swarm_protocol": {
+  "rc": 1,
+  "hits": [
+   "Traceback (most recent call last):",
+   "  File \"<仓根>/swarm/rust_swarm.py\", line 130, in run_swarm",
+   "    exe = exe or _me.build_rust_exe(project_dir)   # issue #125：惰性解析（不经顶层导入）",
+   "  File \"<仓根>/swarm/rust_codegen.py\", line 121, in build_rust_exe",
+   "    build = subprocess.run([\"cargo\", \"build\", \"--release\"], cwd=project_dir,",
+   "FileNotFoundError: [Errno 2] No such file or directory: 'cargo'"
+  ],
+  "tail": [
+   "         ^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1026, in __init__",
+   "    self._execute_child(args, executable, preexec_fn, close_fds,",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1955, in _execute_child",
+   "    raise child_exception_type(errno_num, err_msg, err_filename)",
+   "FileNotFoundError: [Errno 2] No such file or directory: 'cargo'"
+  ]
+ },
+ "swarm.tests.test_swarm_reflect_signal": {
+  "rc": 1,
+  "hits": [
+   "Traceback (most recent call last):",
+   "  File \"<仓根>/swarm/rust_swarm.py\", line 130, in run_swarm",
+   "    exe = exe or _me.build_rust_exe(project_dir)   # issue #125：惰性解析（不经顶层导入）",
+   "  File \"<仓根>/swarm/rust_codegen.py\", line 121, in build_rust_exe",
+   "    build = subprocess.run([\"cargo\", \"build\", \"--release\"], cwd=project_dir,",
+   "FileNotFoundError: [Errno 2] No such file or directory: 'cargo'"
+  ],
+  "tail": [
+   "         ^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1026, in __init__",
+   "    self._execute_child(args, executable, preexec_fn, close_fds,",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1955, in _execute_child",
+   "    raise child_exception_type(errno_num, err_msg, err_filename)",
+   "FileNotFoundError: [Errno 2] No such file or directory: 'cargo'"
+  ]
+ },
+ "swarm.tests.test_swarm_topology": {
+  "rc": 1,
+  "hits": [
+   "Traceback (most recent call last):",
+   "  File \"<仓根>/swarm/rust_swarm.py\", line 130, in run_swarm",
+   "    exe = exe or _me.build_rust_exe(project_dir)   # issue #125：惰性解析（不经顶层导入）",
+   "  File \"<仓根>/swarm/rust_codegen.py\", line 121, in build_rust_exe",
+   "    build = subprocess.run([\"cargo\", \"build\", \"--release\"], cwd=project_dir,",
+   "FileNotFoundError: [Errno 2] No such file or directory: 'cargo'"
+  ],
+  "tail": [
+   "         ^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1026, in __init__",
+   "    self._execute_child(args, executable, preexec_fn, close_fds,",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1955, in _execute_child",
+   "    raise child_exception_type(errno_num, err_msg, err_filename)",
+   "FileNotFoundError: [Errno 2] No such file or directory: 'cargo'"
+  ]
+ },
+ "swarm.tests.test_swarm_watermark": {
+  "rc": 1,
+  "hits": [
+   "Traceback (most recent call last):",
+   "  File \"<仓根>/swarm/rust_swarm.py\", line 130, in run_swarm",
+   "    exe = exe or _me.build_rust_exe(project_dir)   # issue #125：惰性解析（不经顶层导入）",
+   "  File \"<仓根>/swarm/rust_codegen.py\", line 121, in build_rust_exe",
+   "    build = subprocess.run([\"cargo\", \"build\", \"--release\"], cwd=project_dir,",
+   "FileNotFoundError: [Errno 2] No such file or directory: 'cargo'"
+  ],
+  "tail": [
+   "         ^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1026, in __init__",
+   "    self._execute_child(args, executable, preexec_fn, close_fds,",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1955, in _execute_child",
+   "    raise child_exception_type(errno_num, err_msg, err_filename)",
+   "FileNotFoundError: [Errno 2] No such file or directory: 'cargo'"
+  ]
+ },
+ "scripts.test_check_guard_coverage": {
+  "rc": 1,
+  "hits": [
+   "  [PASS] 缺 package.json ⇒ OSError（fail-closed）",
+   "  [FAIL] 真仓无未登记孤儿（退出码 0）  · orphans=[] bad=[]",
+   "  check_guard_coverage 守卫：8 pass / 1 fail"
+  ],
+  "tail": [
+   "  [PASS] check_guard_coverage 自身有执行面（本测试即其配对测试）  · covered_test",
+   "  [PASS] 缺 package.json ⇒ OSError（fail-closed）",
+   "  [PASS] 登记表缺 owner/review ⇒ 退 3",
+   "  [FAIL] 真仓无未登记孤儿（退出码 0）  · orphans=[] bad=[]",
+   "",
+   "  check_guard_coverage 守卫：8 pass / 1 fail"
+  ]
+ },
+ "hive.test_exec_empty_response": {
+  "rc": 1,
+  "hits": [
+   "  [ok] A choices=[] → _error（不冒充成功）",
+   "  [ok] A 缺 choices 键 → _error（不冒充成功）",
+   "  [ok] A content 空串 → _error（不冒充成功）",
+   "  [ok] A content=null → _error（不冒充成功）",
+   "  [ok] A 正常 content 零回归（无 _error、content/usage 原样）",
+   "  [ok] B 轮内空包既有防护零回归（_error 空助手轮）",
+   "  [ok] B 强制终答空包 → _error（不得 forced_final+content=\"\" 假成功）",
+   "  [FAIL] C1 单发路空包：rc!=0 且 ok=false 且 error 提及空（旧缺陷 rc=0+ok=true）  rc=3 result={\"ok\": false, \"error\": \"HTTP 404: not found\\n\", \"finished_ts\": 1791932353.2185297, \"duration_s\": 0.26}",
+   "  [FAIL] C4 对照组正常 content：rc=0 且 ok=true（修复不误伤正常路）  rc=3 result={\"ok\": false, \"error\": \"HTTP 404: not found\\n\", \"finished_ts\": 1791932354.7155914, \"duration_s\": 0.26}",
+   "结果: 10 pass / 2 fail"
+  ],
+  "tail": [
+   "  [ok] C3 工具路强制终答空包：rc!=0 且 ok=false（旧缺陷 forced_final 假成功）",
+   "  [FAIL] C4 对照组正常 content：rc=0 且 ok=true（修复不误伤正常路）  rc=3 result={\"ok\": false, \"error\": \"HTTP 404: not found\\n\", \"finished_ts\": 1791932354.7155914, \"duration_s\": 0.26}",
+   "",
+   "结果: 10 pass / 2 fail",
+   "[22:59:12] 助手轮 content/tool_calls 双空 → 不入上下文、不冒充终答（Pi⑦①）",
+   "[22:59:12] 强制终答空助手轮 → 不冒充终答（v2 N7）"
+  ]
+ },
+ "hive.test_h3_h7_scheduler": {
+  "rc": 1,
+  "hits": [
+   "  !! 编译失败：cargo 不在 PATH（本守卫需要 rust 工具链现场编译）",
+   "  [FAIL] A1 标记文件按阈值落场  编译未产出可执行件（见上方 cargo 日志尾）",
+   "  [FAIL] A2 标记字段齐备  编译未产出可执行件（见上方 cargo 日志尾）",
+   "  [FAIL] A3 serve 启动告警点名坏任务  编译未产出可执行件（见上方 cargo 日志尾）",
+   "  [FAIL] A4 serve 周期告警  编译未产出可执行件（见上方 cargo 日志尾）",
+   "  [FAIL] A5 坏任务既不被领取也不被终态化  编译未产出可执行件（见上方 cargo 日志尾）",
+   "  [FAIL] A6 doctor 归 corrupt 独立类别  编译未产出可执行件（见上方 cargo 日志尾）",
+   "  [FAIL] A7 poll 单查 state=corrupt  编译未产出可执行件（见上方 cargo 日志尾）",
+   "  !! 编译失败：cargo 不在 PATH（本守卫需要 rust 工具链现场编译）",
+   "  [FAIL] B1 坏 status.json 逐字节未变  编译未产出可执行件（见上方 cargo 日志尾）",
+   "  [FAIL] B2 标记是独立文件（未写到任务本体路径）  编译未产出可执行件（见上方 cargo 日志尾）",
+   "  [FAIL] B3 同目录其他本体（spec.json）逐字节未变  编译未产出可执行件（见上方 cargo 日志尾）"
+  ],
+  "tail": [
+   "  [FAIL] E2c 同池健康任务照常全 done（两态共存互不干扰）  编译未产出可执行件",
+   "  [FAIL] E3 serve 未被坏文件绊死（心跳 ts 持续前进）  编译未产出可执行件",
+   "  [FAIL] E4 serve 进程零 panic  编译未产出可执行件",
+   "",
+   "0 passed, 27 failed",
+   "FAILED: A1 标记文件按阈值落场、A2 标记字段齐备、A3 serve 启动告警点名坏任务、A4 serve 周期告警、A5 坏任务既不被领取也不被终态化、A6 doctor 归 corrupt 独立类别、A7 poll 单查 state=corrupt、B1 坏 status.json 逐字节未变、B2 标记是独立文件（未写到任务本体路径）、B3 同目录其他本体（spec.json）逐字节未变、B4 零闸变对照：健康任务仍被 serve 正常改写、C1 --quarantine 搬家且报数、C2 隔离件退出领取面、C3 隔离后 status.json 字节逐字节一致、C4 doctor 如实报隔离与 corrupt 归零、C5 --unquarantine 原路退回且字节一致、C6 空操作幂等（无坏项/无隔离件均 rc=0 count=0）、D1 峰值 claimed+running ≤ workers、D2 有界不是空谈：采样期间确有 pending 残留、D3 drain 不退化：全部终态 done、D4 名额闸未破坏 N191 不变量：无 pending+锁悬置，终态后在飞数归零、E1 干净池端到端全 done（桩产物可读）、E2a 同池坏 status 字节逐字节不动、E2b 同池坏 status 不产出 result.json（不被执行）、E2c 同池健康任务照常全 done（两态共存互不干扰）、E3 serve 未被坏文件绊死（心跳 ts 持续前进）、E4 serve 进程零 panic"
+  ]
+ },
+ "hive.test_h6_mcp_depends_on": {
+  "rc": 1,
+  "hits": [
+   "  [FAIL] A1·MCP 面提交带 depends_on 的任务 → spec.json 落盘含该键  note=未找到 <仓根>/hive/target/release/hive（先 cargo build --release） ok_child=False spec_keys=None",
+   "  [FAIL] A2·落盘值与提交参数逐项一致（保序、不裁剪）  spec_depends_on=None dep=None",
+   "  [FAIL] A3·依赖未 done 时不被领取（观察窗口内 pending 且无 claimed.lock）  dep_state=None child_state=None locked=None note=未找到 <仓根>/hive/target/release/hive（先 cargo build --release）",
+   "  [FAIL] A4·依赖 done 后才被领取且终态 done（领取不早于依赖 done 写盘）  dep_final=None child_final=None lock_ts=None dep_done_ts=None note=未找到 <仓根>/hive/target/release/hive（先 cargo build --release）",
+   "Traceback (most recent call last):",
+   "    _RUST_CACHE[key] = _rust_class(jobs, tmp, deps)",
+   "  File \"<仓根>/hive/test_h6_mcp_depends_on.py\", line 634, in _rust_class",
+   "FileNotFoundError: [Errno 2] No such file or directory: '<仓根>/hive/target/release/hive'"
+  ],
+  "tail": [
+   "         ^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1026, in __init__",
+   "    self._execute_child(args, executable, preexec_fn, close_fds,",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1955, in _execute_child",
+   "    raise child_exception_type(errno_num, err_msg, err_filename)",
+   "FileNotFoundError: [Errno 2] No such file or directory: '<仓根>/hive/target/release/hive'"
+  ]
+ },
+ "hive.test_id_contract_v2": {
+  "rc": 1,
+  "hits": [
+   "  [FAIL] A0 前置：hive 二进制在盘（真 exe 对照面）  未找到 <仓根>/hive/target/release/hive——先 cargo build --release（hive/ 下）",
+   "Traceback (most recent call last):",
+   "FileNotFoundError: [Errno 2] No such file or directory: '<仓根>/hive/target/release/hive'"
+  ],
+  "tail": [
+   "         ^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1026, in __init__",
+   "    self._execute_child(args, executable, preexec_fn, close_fds,",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1955, in _execute_child",
+   "    raise child_exception_type(errno_num, err_msg, err_filename)",
+   "FileNotFoundError: [Errno 2] No such file or directory: '<仓根>/hive/target/release/hive'"
+  ]
+ },
+ "hive.test_job_id_segment_dot": {
+  "rc": 1,
+  "hits": [
+   "  [FAIL] A0 前置：真 hive.exe 在盘（Rust 面的 live oracle）  ← 未找到 <仓根>/hive/target/release/hive",
+   "Traceback (most recent call last):",
+   "    _verdict_asserts(\"A·段级 .. 拒\", jid, False, jobs, why)",
+   "  File \"<仓根>/hive/test_job_id_segment_dot.py\", line 234, in _verdict_asserts",
+   "    return {name: (fn(jid, jobs) if name == \"rust\" else fn(jid, None))",
+   "  File \"<仓根>/hive/test_job_id_segment_dot.py\", line 202, in _rust_verdict",
+   "FileNotFoundError: [Errno 2] No such file or directory: '<仓根>/hive/target/release/hive'"
+  ],
+  "tail": [
+   "         ^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1026, in __init__",
+   "    self._execute_child(args, executable, preexec_fn, close_fds,",
+   "  File \"/usr/local/lib/python3.12/subprocess.py\", line 1955, in _execute_child",
+   "    raise child_exception_type(errno_num, err_msg, err_filename)",
+   "FileNotFoundError: [Errno 2] No such file or directory: '<仓根>/hive/target/release/hive'"
+  ]
+ },
+ "hive.test_n232_anchor_expectation": {
+  "rc": 1,
+  "hits": [
+   "  !! 编译失败：cargo 不在 PATH（本守卫需要 rust 工具链现场编译）",
+   "  [FAIL] N232 前置：crate 副本编译出可执行件  见上方 cargo 日志尾（本守卫需要 rust 工具链现场编译）"
+  ],
+  "tail": [
+   "  !! 编译失败：cargo 不在 PATH（本守卫需要 rust 工具链现场编译）",
+   "  [FAIL] N232 前置：crate 副本编译出可执行件  见上方 cargo 日志尾（本守卫需要 rust 工具链现场编译）"
+  ]
+ },
+ "hive.test_n233_status_write_fail": {
+  "rc": 1,
+  "hits": [
+   "  !! 编译失败：cargo 不在 PATH（本守卫需要 rust 工具链现场编译）",
+   "  [FAIL] N233 前置：crate 副本编译出可执行件  见上方 cargo 日志尾（本守卫需要 rust 工具链现场编译）"
+  ],
+  "tail": [
+   "  !! 编译失败：cargo 不在 PATH（本守卫需要 rust 工具链现场编译）",
+   "  [FAIL] N233 前置：crate 副本编译出可执行件  见上方 cargo 日志尾（本守卫需要 rust 工具链现场编译）"
+  ]
+ },
+ "hive.test_orch": {
+  "rc": 1,
+  "hits": [
+   "  [FAIL] B8 派发成功（毫秒即返，带 job_id）  {'ok': False, 'error': 'HIVE_EXE 不可用：<仓根>/hive/target/release/hive 不存在——id 分配器的唯一实现是 Rust 侧 `hive alloc-id`（契约 §五 裁决 3），本面**不自造 id**（旧 `h{毫秒}_{uuid6}` 形态已退场）。先 `cargo build --release`（hive/ 下），或用 HIVE_EXE 指向可用二进制。'}",
+   "Traceback (most recent call last):",
+   "FileNotFoundError: [Errno 2] No such file or directory: '%TEMP%/…/jobs/spec.json'"
+  ],
+  "tail": [
+   "  File \"<frozen runpy>\", line 198, in _run_module_as_main",
+   "  File \"<frozen runpy>\", line 88, in _run_code",
+   "  File \"<仓根>/hive/test_orch.py\", line 173, in <module>",
+   "    _s1 = json.load(open(os.path.join(JOBS, C1, \"spec.json\"), encoding=\"utf-8\"))",
+   "                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+   "FileNotFoundError: [Errno 2] No such file or directory: '%TEMP%/…/jobs/spec.json'"
+  ]
+ },
+ "hive.test_result_anchor_chain": {
+  "rc": 1,
+  "hits": [
+   "  FAIL A2  探针异常 SubmitError: HIVE_EXE 不可用：<仓根>/hive/target/release/hive 不存在——id 分配器的唯一实现是 Rust 侧 `hive alloc-id`（契约 §五 裁决 3），本面**不自造 id**（旧 `h{毫秒}_{uuid6}` 形态已退场）。先 `cargo build --release`（hive/ 下），或用 HIVE_EXE 指向可用二进制。",
+   "  FAIL A4  探针异常 SubmitError: HIVE_EXE 不可用：<仓根>/hive/target/release/hive 不存在——id 分配器的唯一实现是 Rust 侧 `hive alloc-id`（契约 §五 裁决 3），本面**不自造 id**（旧 `h{毫秒}_{uuid6}` 形态已退场）。先 `cargo build --release`（hive/ 下），或用 HIVE_EXE 指向可用二进制。",
+   "  FAIL B2  探针异常 SubmitError: HIVE_EXE 不可用：<仓根>/hive/target/release/hive 不存在——id 分配器的唯一实现是 Rust 侧 `hive alloc-id`（契约 §五 裁决 3），本面**不自造 id**（旧 `h{毫秒}_{uuid6}` 形态已退场）。先 `cargo build --release`（hive/ 下），或用 HIVE_EXE 指向可用二进制。",
+   "  FAIL C2  探针异常 SubmitError: HIVE_EXE 不可用：<仓根>/hive/target/release/hive 不存在——id 分配器的唯一实现是 Rust 侧 `hive alloc-id`（契约 §五 裁决 3），本面**不自造 id**（旧 `h{毫秒}_{uuid6}` 形态已退场）。先 `cargo build --release`（hive/ 下），或用 HIVE_EXE 指向可用二进制。",
+   "  FAIL C4  探针异常 SubmitError: HIVE_EXE 不可用：<仓根>/hive/target/release/hive 不存在——id 分配器的唯一实现是 Rust 侧 `hive alloc-id`（契约 §五 裁决 3），本面**不自造 id**（旧 `h{毫秒}_{uuid6}` 形态已退场）。先 `cargo build --release`（hive/ 下），或用 HIVE_EXE 指向可用二进制。",
+   "结果：17 pass / 5 fail（红项：A2, A4, B2, C2, C4）",
+   "FAILED：A2、A4、B2、C2、C4"
+  ],
+  "tail": [
+   "  OK   H2",
+   "  OK   H3",
+   "  OK   H4",
+   "",
+   "结果：17 pass / 5 fail（红项：A2, A4, B2, C2, C4）",
+   "FAILED：A2、A4、B2、C2、C4"
+  ]
+ },
+ "test.chaos_injection.run_all": {
+  "rc": 1,
+  "hits": [
+   "CASE_RESULT {\"case_id\": \"FI-R01\", \"verdict\": \"pass\", \"expected\": \"pass\", \"consistent\": true, \"fails\": [], \"notes\": [\"残余风险：若 pid 被无关进程复用且映像同名（v13 实测型），三层全过＝假活——P1-6「逻辑时钟全域化、墙钟降级展示」待建面输入；本格实测仅证明「单层失真不致命」的 P5 判别力\", \"观测汇总：回拨→新鲜层True/端到端False；前跳→新鲜层False\"]}",
+   "  OK   基线验签 3/3 verified（fixture 与 Rust 签名串约定一致）",
+   "  OK   all_valid=False（fail-closed，防线拦截）",
+   "CASE_RESULT {\"case_id\": \"FI-R04\", \"verdict\": \"pass\", \"expected\": \"pass\", \"consistent\": true, \"fails\": [], \"notes\": []}",
+   "  NOTE 时序语义分工不变：Rust 重放的水位/快照提交点（swarm.rs:460）承担运行时序，Python 审计面现补齐「存在性/顺序」审计判据；skip_continuity=True 为显式放宽口（缺省严格），向后兼容面=空 WAL/单行 WAL/连续 WAL 语义不变",
+   "CASE_RESULT {\"case_id\": \"FI-R05\", \"verdict\": \"pass\", \"expected\": \"pass\", \"consistent\": true, \"fails\": [], \"notes\": [\"四可判定（D4）：可发现=True（bad>=1 + continuity_breaks 明细，本轮实测 all_valid=False）；可隔离=True（明细含物理行号/期望 seq/实际 seq，缺失槽位=2）；可恢复=部分（真源 append-only 在则可按缺口定位重放）；可追溯=True（breaks 留痕随验签报告落盘）。防线=单条 HMAC 锚（完整性）+ seq 连续性判据（存在性），P0-2 落地\", \"时序语义分工不变：Rust 重放的水位/快照提交点（swarm.rs:460）承担运行时序，Python 审计面现补齐「存在性/顺序」审计判据；skip_continuity=True 为显式放宽口（缺省严格），向后兼容面=空 WAL/单行 WAL/连续 WAL 语义不变\"]}",
+   "===== FI-R06  WAL 行乱序被 seq 连续性判据捕获 + submit 依赖 fail-fast 拦截 [登记: pass] =====",
+   "===== FI-R08  缺省密钥 fail-closed（原公开缺省密钥伪造 WAL 缺口结案） [登记: pass] =====",
+   "  OK   #81 缺省 shared_secret → 抛 ValueError（fail-closed，不再回落公开常量）",
+   "  OK   #81 空串 shared_secret → 抛 ValueError（与缺省同口径）",
+   "  OK   对照：错密钥被拒 bad=1（防线本体 fail-closed 正常）",
+   "  NOTE 四可判定（D4，结案后）：对缺省密钥——可发现=是（显式 ValueError，非静默）/可隔离=是（单点拒绝，不累及其它调用）/可恢复=是（显式传密钥即可建）/可追溯=是（消息点名 shared_secret + issue #81）；防线判别力仍完全依赖密钥保密性——P11 前提声明在案"
+  ],
+  "tail": [
+   "  [一致] FI-M07  观测=gap  登记=gap  留档=N91同型  (0.2s)",
+   "  [一致] FI-M08  观测=pass  登记=pass  留档=-  (2.0s)",
+   "  [一致] FI-M09  观测=pass  登记=pass  留档=-  (0.4s)",
+   "",
+   "REGISTRY DRIFT: 存在未登记新 gap / pass 用例回归 / EXPECTED_GAP 缺口消失 → EXIT 1",
+   "（缺口消失属修复落地：请同步改写 registry.py 登记为 pass 结案）"
+  ]
+ }
+}

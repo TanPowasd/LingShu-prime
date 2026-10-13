@@ -1,0 +1,665 @@
+{
+ "stats": {
+  "<root>": {
+   "prod_files": 1,
+   "prod_loc": 237
+  },
+  "compiler": {
+   "prod_files": 13,
+   "prod_loc": 6251,
+   "test_files": 26,
+   "test_loc": 3671
+  },
+  "data": {
+   "prod_files": 1,
+   "prod_loc": 356
+  },
+  "docs": {
+   "prod_files": 1,
+   "prod_loc": 140
+  },
+  "hive": {
+   "prod_files": 13,
+   "prod_loc": 7086,
+   "test_files": 37,
+   "test_loc": 13842
+  },
+  "md_cg": {
+   "prod_files": 230,
+   "prod_loc": 137937,
+   "test_files": 348,
+   "test_loc": 121311
+  },
+  "scripts": {
+   "prod_files": 73,
+   "prod_loc": 23727,
+   "test_files": 42,
+   "test_loc": 11596
+  },
+  "skills": {
+   "prod_files": 1,
+   "prod_loc": 545,
+   "test_files": 1,
+   "test_loc": 61
+  },
+  "swarm": {
+   "prod_files": 4,
+   "prod_loc": 792,
+   "test_files": 25,
+   "test_loc": 3987
+  },
+  "test": {
+   "test_files": 28,
+   "test_loc": 4092
+  },
+  "tests": {
+   "test_files": 1,
+   "test_loc": 10
+  }
+ },
+ "long_funcs_top40": [
+  [
+   574,
+   "md_cg/mcp_server.py",
+   "_cg_dispatch"
+  ],
+  [
+   562,
+   "md_cg/mdcg.py",
+   "add"
+  ],
+  [
+   462,
+   "md_cg/whitebox_kb/wisdom/semantic_translate.py",
+   "graph_retrieve"
+  ],
+  [
+   460,
+   "md_cg/mdcg.py",
+   "search"
+  ],
+  [
+   458,
+   "md_cg/whitebox_kb/wisdom/chat_engine.py",
+   "chat"
+  ],
+  [
+   455,
+   "md_cg/mdcos.py",
+   "search_rrf"
+  ],
+  [
+   452,
+   "md_cg/mcp_server.py",
+   "_dispatch"
+  ],
+  [
+   345,
+   "md_cg/consistency.py",
+   "check"
+  ],
+  [
+   294,
+   "md_cg/mdcos.py",
+   "remember_gated"
+  ],
+  [
+   244,
+   "md_cg/mcp_server.py",
+   "main"
+  ],
+  [
+   242,
+   "md_cg/mdcos.py",
+   "review_decide"
+  ],
+  [
+   236,
+   "md_cg/mdcg.py",
+   "_emit"
+  ],
+  [
+   231,
+   "md_cg/whitebox_kb/wisdom/chat_engine.py",
+   "_assemble"
+  ],
+  [
+   221,
+   "scripts/check_publish_smoke.py",
+   "main"
+  ],
+  [
+   216,
+   "md_cg/bench_bm25_incremental.py",
+   "main"
+  ],
+  [
+   214,
+   "scripts/dsh_log_index.py",
+   "main"
+  ],
+  [
+   211,
+   "md_cg/mdcos.py",
+   "search"
+  ],
+  [
+   198,
+   "md_cg/ccgc.py",
+   "compile_dialog"
+  ],
+  [
+   192,
+   "md_cg/whitebox_kb/wisdom/semantic_translate.py",
+   "two_stage_retrieve"
+  ],
+  [
+   189,
+   "md_cg/readcache.py",
+   "install"
+  ],
+  [
+   188,
+   "scripts/check_op_table_parity.py",
+   "parity"
+  ],
+  [
+   187,
+   "md_cg/whitebox_kb/wisdom/semantic_translate.py",
+   "recursive_item_answer"
+  ],
+  [
+   186,
+   "md_cg/mdcos.py",
+   "maintain"
+  ],
+  [
+   185,
+   "md_cg/consolidate.py",
+   "consolidate"
+  ],
+  [
+   177,
+   "scripts/p2p4_probe.py",
+   "probe"
+  ],
+  [
+   177,
+   "md_cg/whitebox_kb/wisdom/wisdom_book.py",
+   "dex_respond"
+  ],
+  [
+   177,
+   "md_cg/bench_e2e_judge.py",
+   "main"
+  ],
+  [
+   173,
+   "md_cg/mcp_server.py",
+   "_ccg_call"
+  ],
+  [
+   172,
+   "md_cg/self_state.py",
+   "audit"
+  ],
+  [
+   166,
+   "scripts/dsh_log_index.py",
+   "parse_session_log"
+  ],
+  [
+   165,
+   "scripts/bootstrap_loop.py",
+   "run_channel_b"
+  ],
+  [
+   165,
+   "md_cg/imgskill.py",
+   "run"
+  ],
+  [
+   163,
+   "scripts/check_publish_artifact.py",
+   "registry_mode"
+  ],
+  [
+   162,
+   "md_cg/bench_membench.py",
+   "main"
+  ],
+  [
+   159,
+   "md_cg/mdcos.py",
+   "session_recall"
+  ],
+  [
+   154,
+   "md_cg/mdcos.py",
+   "_mutation_execute"
+  ],
+  [
+   154,
+   "compiler/codegen.py",
+   "_write_header"
+  ],
+  [
+   153,
+   "md_cg/whitebox_kb/aeis_core/core.py",
+   "world3d"
+  ],
+  [
+   153,
+   "md_cg/provenance.py",
+   "find_edges"
+  ],
+  [
+   153,
+   "md_cg/consolidate.py",
+   "induce_memories"
+  ]
+ ],
+ "funcs_ge200": 17,
+ "funcs_ge100": 119,
+ "funcs_total_prod": 5275,
+ "broad_except": {
+  "Exception|silent=False": 452,
+  "Exception|silent=True": 336,
+  "BaseException|silent=False": 4
+ },
+ "silent_broad_by_file_top25": [
+  [
+   "md_cg/whitebox_kb/aeis_core/core.py",
+   31
+  ],
+  [
+   "md_cg/whitebox_kb/wisdom/semantic_translate.py",
+   16
+  ],
+  [
+   "md_cg/whitebox_kb/wisdom/chat_engine.py",
+   15
+  ],
+  [
+   "md_cg/mcp_server.py",
+   12
+  ],
+  [
+   "md_cg/sustain.py",
+   11
+  ],
+  [
+   "md_cg/whitebox_kb/wisdom/causal_discover.py",
+   11
+  ],
+  [
+   "md_cg/predict.py",
+   8
+  ],
+  [
+   "md_cg/whitebox_kb/aeis_core/api.py",
+   8
+  ],
+  [
+   "md_cg/whitebox_kb/wisdom/verifier.py",
+   8
+  ],
+  [
+   "md_cg/mdcg.py",
+   7
+  ],
+  [
+   "md_cg/refindex.py",
+   7
+  ],
+  [
+   "md_cg/whitebox_kb/wisdom/pattern_separation.py",
+   6
+  ],
+  [
+   "md_cg/auditview.py",
+   5
+  ],
+  [
+   "md_cg/mdcos.py",
+   5
+  ],
+  [
+   "md_cg/protect.py",
+   5
+  ],
+  [
+   "md_cg/scrub.py",
+   5
+  ],
+  [
+   "md_cg/whitebox_kb/engine.py",
+   5
+  ],
+  [
+   "scripts/zcode_compact_hook.py",
+   5
+  ],
+  [
+   "md_cg/forgetting.py",
+   4
+  ],
+  [
+   "md_cg/subgraph.py",
+   4
+  ],
+  [
+   "md_cg/whitebox.py",
+   4
+  ],
+  [
+   "md_cg/whitebox_kb/wisdom/compose_engine.py",
+   4
+  ],
+  [
+   "md_cg/whitebox_kb/wisdom/route_memory.py",
+   4
+  ],
+  [
+   "scripts/bootstrap_loop.py",
+   4
+  ],
+  [
+   "md_cg/selfreport.py",
+   3
+  ]
+ ],
+ "silent_broad_total": 336,
+ "global_stmt_total": 34,
+ "global_stmt_by_file_top20": [
+  [
+   "md_cg/fsutil.py",
+   9
+  ],
+  [
+   "hive/exec.py",
+   3
+  ],
+  [
+   "md_cg/whitebox_kb/wisdom/semantic_translate.py",
+   3
+  ],
+  [
+   "md_cg/bench_blind_comp.py",
+   1
+  ],
+  [
+   "md_cg/coldverify.py",
+   1
+  ],
+  [
+   "md_cg/config_registry.py",
+   1
+  ],
+  [
+   "md_cg/crypto.py",
+   1
+  ],
+  [
+   "md_cg/freshness.py",
+   1
+  ],
+  [
+   "md_cg/hotcache.py",
+   1
+  ],
+  [
+   "md_cg/mdcg.py",
+   1
+  ],
+  [
+   "md_cg/mreview/locate.py",
+   1
+  ],
+  [
+   "md_cg/semantic/canonical.py",
+   1
+  ],
+  [
+   "md_cg/semantic/en_normalizer.py",
+   1
+  ],
+  [
+   "md_cg/state_events.py",
+   1
+  ],
+  [
+   "md_cg/whitebox_kb/engine.py",
+   1
+  ],
+  [
+   "md_cg/whitebox_kb/wisdom/chat_engine.py",
+   1
+  ],
+  [
+   "md_cg/whitebox_kb/wisdom/condition_frame.py",
+   1
+  ],
+  [
+   "md_cg/whitebox_kb/wisdom/danmaku_bridge.py",
+   1
+  ],
+  [
+   "md_cg/whitebox_kb/wisdom/verifier.py",
+   1
+  ],
+  [
+   "md_cg/writepipe.py",
+   1
+  ]
+ ],
+ "modlevel_mutable_lowercase_total": 27,
+ "modlevel_mutable_top20": [
+  [
+   "scripts/mdcg_verify_render_meta.py",
+   3
+  ],
+  [
+   "compiler/__init__.py",
+   1
+  ],
+  [
+   "md_cg/__init__.py",
+   1
+  ],
+  [
+   "md_cg/admission.py",
+   1
+  ],
+  [
+   "md_cg/auditview.py",
+   1
+  ],
+  [
+   "md_cg/autonomy_modes.py",
+   1
+  ],
+  [
+   "md_cg/ccgc.py",
+   1
+  ],
+  [
+   "md_cg/generation.py",
+   1
+  ],
+  [
+   "md_cg/ghostref.py",
+   1
+  ],
+  [
+   "md_cg/goal_gen.py",
+   1
+  ],
+  [
+   "md_cg/imgskill.py",
+   1
+  ],
+  [
+   "md_cg/linkref.py",
+   1
+  ],
+  [
+   "md_cg/mreview/__init__.py",
+   1
+  ],
+  [
+   "md_cg/mreview/locate.py",
+   1
+  ],
+  [
+   "md_cg/mreview/pipeline.py",
+   1
+  ],
+  [
+   "md_cg/rollback.py",
+   1
+  ],
+  [
+   "md_cg/security.py",
+   1
+  ],
+  [
+   "md_cg/whitebox_kb/__init__.py",
+   1
+  ],
+  [
+   "md_cg/whitebox_kb/aeis_core/__init__.py",
+   1
+  ],
+  [
+   "md_cg/whitebox_kb/wisdom/danmaku_bridge.py",
+   1
+  ]
+ ],
+ "dup_func_groups_crossfile": 25,
+ "dup_examples_top25": [
+  [
+   "compiler/condition_vm.py::assemble(47行)",
+   "md_cg/whitebox_kb/wisdom/condition_vm.py::assemble(47行)",
+   "md_cg/whitebox_kb/wisdom/core/condition_vm.py::assemble(47行)"
+  ],
+  [
+   "compiler/lexer.py::tokenize(65行)",
+   "md_cg/whitebox_kb/wisdom/core/lexer.py::tokenize(65行)"
+  ],
+  [
+   "compiler/parser.py::_parse_statement(53行)",
+   "md_cg/whitebox_kb/wisdom/core/parser.py::_parse_statement(53行)"
+  ],
+  [
+   "compiler/parser.py::_parse_assign_or_call(41行)",
+   "md_cg/whitebox_kb/wisdom/core/parser.py::_parse_assign_or_call(41行)"
+  ],
+  [
+   "compiler/name_checker.py::report(39行)",
+   "md_cg/whitebox_kb/wisdom/core/name_checker.py::report(39行)"
+  ],
+  [
+   "compiler/name_checker.py::_count_logical_operands(38行)",
+   "md_cg/whitebox_kb/wisdom/core/name_checker.py::_count_logical_operands(38行)"
+  ],
+  [
+   "compiler/lexer.py::_read_number(34行)",
+   "md_cg/whitebox_kb/wisdom/core/lexer.py::_read_number(34行)"
+  ],
+  [
+   "compiler/parser.py::_parse_single_statement(34行)",
+   "md_cg/whitebox_kb/wisdom/core/parser.py::_parse_single_statement(34行)"
+  ],
+  [
+   "compiler/name_checker.py::_check_instruction_in_condition_space(28行)",
+   "md_cg/whitebox_kb/wisdom/core/name_checker.py::_check_instruction_in_condition_space(28行)"
+  ],
+  [
+   "compiler/name_checker.py::_check_trust_comparison(26行)",
+   "md_cg/whitebox_kb/wisdom/core/name_checker.py::_check_trust_comparison(26行)"
+  ],
+  [
+   "compiler/lexer.py::_read_and_segment(24行)",
+   "md_cg/whitebox_kb/wisdom/core/lexer.py::_read_and_segment(24行)"
+  ],
+  [
+   "compiler/lexer.py::_read_string(23行)",
+   "md_cg/whitebox_kb/wisdom/core/lexer.py::_read_string(23行)"
+  ],
+  [
+   "compiler/parser.py::_parse_binary_tail(17行)",
+   "md_cg/whitebox_kb/wisdom/core/parser.py::_parse_binary_tail(17行)"
+  ],
+  [
+   "scripts/probe_b_state_events_v4.py::assert_outside_repo(11行)",
+   "scripts/probe_c_ledger_integrity.py::assert_outside_repo(11行)",
+   "scripts/probe_d_retirement_discipline.py::assert_outside_repo(11行)"
+  ],
+  [
+   "compiler/parser.py::_parse_loop(16行)",
+   "md_cg/whitebox_kb/wisdom/core/parser.py::_parse_loop(16行)"
+  ],
+  [
+   "md_cg/backfill.py::history(14行)",
+   "md_cg/crosscheck.py::history(14行)"
+  ],
+  [
+   "md_cg/conformance.py::_read_jsonl(14行)",
+   "md_cg/mreview/candidates.py::_read_jsonl(14行)"
+  ],
+  [
+   "swarm/rust_codegen.py::__getattr__(14行)",
+   "swarm/rust_swarm.py::__getattr__(14行)"
+  ],
+  [
+   "md_cg/config_render.py::_cell(9行)",
+   "scripts/state_atlas.py::_cell(9行)",
+   "scripts/whale_state_atlas.py::_cell(9行)"
+  ],
+  [
+   "compiler/parser.py::_collect_until(12行)",
+   "md_cg/whitebox_kb/wisdom/core/parser.py::_collect_until(12行)"
+  ],
+  [
+   "compiler/name_checker.py::get_predefined_symbol_list(11行)",
+   "md_cg/whitebox_kb/wisdom/core/name_checker.py::get_predefined_symbol_list(11行)"
+  ],
+  [
+   "md_cg/mdcg.py::try_stage(11行)",
+   "md_cg/mdcos.py::try_stage(14行)"
+  ],
+  [
+   "compiler/name_checker.py::declare(9行)",
+   "md_cg/whitebox_kb/wisdom/core/name_checker.py::declare(9行)"
+  ],
+  [
+   "md_cg/migrate_aeis.py::_j(9行)",
+   "md_cg/migrate_wisdom_graph.py::_j(9行)"
+  ],
+  [
+   "scripts/probe_b_state_events_v4.py::dwell_value(9行)",
+   "scripts/probe_b_whale_statechain.py::dwell_value(9行)"
+  ]
+ ],
+ "cross_top_imports": {
+  "compiler[prod]->swarm": 1,
+  "hive[prod]->md_cg": 10,
+  "hive[prod]->utf8_boot": 4,
+  "hive[test]->md_cg": 9,
+  "hive[test]->utf8_boot": 3,
+  "md_cg[prod]->utf8_boot": 2,
+  "md_cg[test]->hive": 3,
+  "md_cg[test]->utf8_boot": 1,
+  "scripts[prod]->md_cg": 106,
+  "scripts[prod]->utf8_boot": 3,
+  "scripts[test]->md_cg": 13,
+  "scripts[test]->utf8_boot": 1,
+  "swarm[prod]->compiler": 2,
+  "swarm[test]->compiler": 9,
+  "test[test]->hive": 1,
+  "test[test]->md_cg": 20,
+  "test[test]->swarm": 4,
+  "tests[test]->md_cg": 1
+ }
+}
