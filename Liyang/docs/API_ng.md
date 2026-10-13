@@ -1,7 +1,7 @@
-# lingshu_ng 对外 API（rel-v1.20）
+# lingshu_ng 对外 API（rel-v1.22）
 
 本文覆盖 `lingshu_ng` 的公开类与方法、参数、返回值、异常、可选依赖与 `capabilities()` 用法。
-版本：`lingshu_ng.__version__ == "1.20.0"`（发行包 `lingshu-ng`，版本号 = `CHANGELOG_rel-v1.20.md`）。
+版本：`lingshu_ng.__version__ == "1.22.0"`（发行包 `lingshu-ng`，版本号 = `CHANGELOG_rel-v1.22.md`）。
 文末附录 A 由代码生成（`tools/ci/gen_api_appendix.py`），列出兼容门面每个公开方法的支持状态，与运行期
 `capabilities.compat_methods()` 一致。
 
@@ -17,6 +17,8 @@
 - [10. 存储、并发与数据安全](#10-存储并发与数据安全)
 - [11. 确定性](#11-确定性)
 - [附录 A：兼容门面方法支持状态](#附录-a兼容门面方法支持状态)
+
+另见：命令行 / HTTP 服务 / MCP 适配器 [`docs/INTEGRATION_ng.md`](INTEGRATION_ng.md)；版本、弃用策略与公开 API 清单 [`docs/STABILITY_ng.md`](STABILITY_ng.md)。
 
 ## 1. 安装
 
@@ -243,7 +245,7 @@ ONNX 文件缺省 `model_quantized.onnx`。英文语义第二路用 `LINGSHU_NG_
 
 ## 10. 存储、并发与数据安全
 
-- **结构版本**：`schema.SCHEMA_VERSION`（当前 3）。打开库时只读比对表 / 列 / 索引 / 触发器；齐全则零写入，缺失则单事务补齐并写版本标记
+- **结构版本**：`schema.SCHEMA_VERSION`（当前 4；rel-v1.21 起，此前 3）。各版本能打开哪个结构版本见 [`docs/STABILITY_ng.md`](STABILITY_ng.md) §4。打开库时只读比对表 / 列 / 索引 / 触发器；齐全则零写入，缺失则单事务补齐并写版本标记
   （`engine_meta._schema_version`）。`MemoryEngine(...).store.db.schema_version` 或 `capabilities()["engine"]["schema_version"]` 可读。
 - **旧库升级**：rel-v1.10 写出的库、上游旧引擎（cb3a6ea）写出的库都能直接打开、读、写（`tests_ng/test_db_safety.py`，夹具在 `tests_ng/fixtures/`）。
 - **更新版本写出的库**：结构版本高于本代码时抛 `SchemaTooNewError` 拒绝打开（避免旧代码按旧结构写入新库）；确认只做了追加式变更时可设 `LINGSHU_NG_ALLOW_NEWER_SCHEMA=1`。

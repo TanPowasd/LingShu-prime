@@ -46,4 +46,9 @@ print(json.dumps({"python": sys.version.split()[0], "lingshu_ng": lingshu_ng.__v
                   "compat_unsupported": sum(v["status"] == "unsupported" for v in tab.values())}, ensure_ascii=False))
 assert hits, "兼容门面召回为空"
 PY
+# stab-r6：命令行入口（[project.scripts] lingshu-ng）与 python -m lingshu_ng 都可用、版本一致
+CLI_V=$("$V/bin/lingshu-ng" version | "$V/bin/python" -c "import json,sys;print(json.load(sys.stdin)['version'])")
+MOD_V=$("$V/bin/python" -m lingshu_ng version | "$V/bin/python" -c "import json,sys;print(json.load(sys.stdin)['version'])")
+[ -n "$CLI_V" ] && [ "$CLI_V" = "$MOD_V" ] || { echo "CLI_FAIL $CLI_V $MOD_V"; exit 1; }
+echo "CLI_OK $CLI_V"
 echo "PKG_OK extras=${EXTRA:-none}"

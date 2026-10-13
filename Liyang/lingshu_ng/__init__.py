@@ -6,7 +6,7 @@
 """
 from . import _pathguard as _pathguard  # noqa: F401  最早落点：cwd 解析护栏（上游 #156/#273）
 
-__version__ = "1.21.0"
+__version__ = "1.22.0"
 
 #: 对外入口模块（stab-r5 登记）：宿主与旧 API 别名（tests_ng/ng_switch.py：lingshu.core.core / activation / provenance）
 #: 按名导入，包内不 import 它们。``lingshu_ng.<名>`` 属性访问时懒加载，不增加 ``import lingshu_ng`` 的耗时。

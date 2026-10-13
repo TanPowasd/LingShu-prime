@@ -256,7 +256,8 @@ def stem(w: str) -> str:
     return w
 
 
-@lru_cache(maxsize=4096)
+# stab-r6：上限恢复 16384（4096 时 100k 召回 p95 ABBA 211→245 ms，8192 仍 237，见 CHANGELOG_rel-v1.22）
+@lru_cache(maxsize=16384)
 def _tokens(text: str, use_stem: bool, use_stop: bool) -> Tuple[str, ...]:
     t = unicodedata.normalize("NFKC", text).casefold().replace("\u2019", "'")
     out: List[str] = []
