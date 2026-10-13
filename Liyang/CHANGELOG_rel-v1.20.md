@@ -13,7 +13,7 @@
 | 孤儿模块（公平口径：上游 `core/` 对 ng 去 `world/`、`nn/`） | **3** | 8 |
 | 冷 import 兼容门面 `SpacetimeMemoryEngine` | **72–76 ms** | 147–148 ms（原生 `lingshu_ng.engine` 68–75 ms） |
 | 常驻内存峰值（1k / 10k，零模型） | **26.3 / 50.2 MB** | 36.7 / 96.1 MB |
-| 库文件体积（1k / 10k） | **0.82 / 6.77 MB** | 3.65 / 32.31 MB（多存 FTS5 与派生索引） |
+| 库文件体积（1k / 10k） | **0.82 / 6.77 MB** | 3.65 / 32.31 MB（多存自建倒排与派生索引；原写「FTS5」有误，ng 未用 FTS5，rel-v1.21 更正） |
 | 晋升延迟（propose→verify→adjudicate） | **0.19–0.20 ms/次** | 3.69–4.25 ms/次 |
 | 包源码体积 | 1692 KB | 1711 KB（基本持平） |
 | HMB excl（37 题） | .2297 | .3108，10 胜 5 负，p = .30，**不显著** |
@@ -62,3 +62,7 @@
 - gen 无模型 stab5b 对 stab3a：loc_dev 383/383、LME dev 83/83 逐题名次相同。
 - 版本链 h100 / h50：对 `_stab/r3/det/fix_*_1` 逐字段相同。误登记逐条对照：99 个文件 0 处不同。
 - LLM 花费 $0。
+
+## 推送记录
+
+- 2026-10-13 20:5x CST：LingShu-prime main **18e2fa1f**（基于 71edc2eb，Liyang/ only 36 文件，含 README v1.20 条目）。Liyang 内 tests_ng 3230 passed 1 skipped（发布目录无上游 tests/）；TanPowasd learn 25/25、reason 14/14 只运行，TanPowasd/ 未改（.pyc 已还原）。

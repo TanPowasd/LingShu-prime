@@ -129,7 +129,7 @@ def content_keys(texts: Sequence[Optional[str]]) -> List[str]:
     return [sha1(n.encode("utf-8")).hexdigest() if n else "" for n in normalize_many(texts)]
 
 
-@lru_cache(maxsize=2048)
+@lru_cache(maxsize=1024)
 def bigrams(text: str) -> FrozenSet[str]:
     """规范化文本的字符二元组集合（长度 ≤1 时为自身）。"""
     s = normalize(text)

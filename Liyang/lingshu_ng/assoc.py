@@ -18,7 +18,6 @@ import os
 from dataclasses import dataclass, fields, replace
 from typing import Dict, List, Optional, Sequence, Set, Tuple
 
-from . import semrank
 from .dedup import bigrams, normalize
 
 __all__ = ["AssocConfig", "config_from_env", "Associator"]
@@ -263,6 +262,7 @@ class Associator:
                 fill.append((nid, run))
             fn = self._spread if cfg.ax2 == "spread" else self._ppr
             order = fn(order, _norm_scores(fill[:cfg.pool] if cfg.ax2 == "spread" else fill), ctx, cfg)
+        from . import semrank             # stab-r5：懒加载（limit ≤ lc_head 的请求不载入语义件与 anstype）
         if cfg.sem_v4fb and cfg.sem_n > 0 and limit is not None and limit > cfg.lc_head and semrank.get_scorer() is None:
             cfg = semrank.v4_fallback(cfg)  # v7 缺可选依赖/模型 → 逐位退回 v4（PREREG_ZH 修订 5.2）；stab-r1：退回打一次 WARNING
         qw = None

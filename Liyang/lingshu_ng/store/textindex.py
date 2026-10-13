@@ -103,10 +103,11 @@ class TextIndex:
                         layer: Optional[str], existed: bool) -> None:
         """仓储写路径的快捷维护：刚写入的节点行已在手，直接重写其 node_index（免回读 nodes 与脏表扫描），
         随后若还有其它脏节点（旧代码裸写）再走 :meth:`flush`。须在写入的同一事务内调用。"""
-        if existed:
-            c.execute("DELETE FROM node_index WHERE node_id=?", (nid,))
-        c.execute("INSERT INTO node_index (node_id, terms, feats, grams) VALUES (?,?,?,?)",
-                  self._row(nid, content, tags_json, layer, self.feats_ready(c)))
+        row = self._row(nid, content, tags_json, layer, self.feats_ready(c))
+        if not (existed and self._move_row(c, row)):
+            if existed:
+                c.execute("DELETE FROM node_index WHERE node_id=?", (nid,))
+            c.execute("INSERT INTO node_index (node_id, terms, feats, grams) VALUES (?,?,?,?)", row)
         c.execute("DELETE FROM index_dirty WHERE node_id=?", (nid,))
         hw = self._hw(c)
         row = c.execute("SELECT rowid FROM nodes WHERE id=?", (nid,)).fetchone()
@@ -160,8 +161,26 @@ class TextIndex:
             self.db.need_lazy_indexes()                   # 灌库后的首次读：惰性二级索引一并建齐（S5）
         return len(ids)
 
+    @staticmethod
+    def _move_row(c: Any, row: tuple) -> bool:
+        """单个已索引节点的重建走原位差量（``trg_index_upd``）：nkey 取「删掉旧行后再插入」会分配到的键
+        （其余行的最大 nkey + 1，与 SQLite 整数主键的分配规则相同），词元/特征/grams 改成新值——
+        结果与删旧插新逐值相同。节点尚未索引 ⇒ False（调用方照旧插入）。"""
+        old = c.execute("SELECT nkey FROM node_index WHERE node_id=?", (row[0],)).fetchone()
+        if old is None:
+            return False
+        mx = c.execute("SELECT nkey FROM node_index WHERE nkey <> ? ORDER BY nkey DESC LIMIT 1", (old[0],)).fetchone()
+        c.execute("UPDATE node_index SET nkey=?, terms=?, feats=?, grams=? WHERE nkey=?",
+                  ((mx[0] if mx else 0) + 1, row[1], row[2], row[3], old[0]))
+        return True
+
     def _row_flush(self, c: Any, ids: List[str], ready: bool) -> None:
-        """少量脏节点：逐行删旧插新（计数由 node_index 的触发器逐行维护）。"""
+        """少量脏节点：逐行删旧插新（计数由 node_index 的触发器逐行维护）；只有一个脏节点且已索引时走原位差量
+        （:meth:`_move_row`，结果相同）。"""
+        if len(ids) == 1:
+            got = c.execute("SELECT id, content, tags, layer FROM nodes WHERE id=?", (ids[0],)).fetchall()
+            if got and self._move_row(c, self._row(*got[0], ready)):
+                return
         for part in chunks(ids):
             ph = placeholders(len(part))
             got = c.execute(f"SELECT id, content, tags, layer FROM nodes WHERE id IN ({ph})", part).fetchall()

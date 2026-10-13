@@ -21,7 +21,7 @@ import re
 import threading
 from typing import Dict, List, Optional, Sequence
 
-from . import anstype, diag
+from . import diag
 
 _log = logging.getLogger(__name__)
 
@@ -546,6 +546,7 @@ def rerank(sc, q: str, order: List[str], text: Dict[str, str], cfg, extra: Seque
         lg = {c: lg[c] + al * d for c, d in zip(head, dh.score(q, [text[c] for c in head]))}
     be = getattr(cfg, "sem_ans", 0.0)
     if be and not chain_intent(q):   # v9：+ β·答案类型相容分（anstype，修订 7b；零模型；权重缺失 → 0 = v7.1）
+        from . import anstype       # stab-r5：懒加载（β = 0 的交付缺省从不载入）
         lg = {c: lg[c] + be * a for c, a in zip(head, anstype.score(q, [text[c] for c in head]))}
     v = {c: lg[c] - cfg.sem_lam * pos[c] for c in head}
     fw = getattr(cfg, "sem_fuse", 0.0)

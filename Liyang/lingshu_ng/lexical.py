@@ -33,6 +33,7 @@ import re
 import unicodedata
 from dataclasses import asdict, dataclass, field, replace
 from functools import lru_cache
+from sys import intern as _intern
 from typing import Dict, Iterable, List, Optional, Sequence, Tuple
 
 __all__ = ["LexicalConfig", "WORD_PREFIX", "STOPWORDS", "stem", "tokens", "query_terms", "index_words",
@@ -57,7 +58,15 @@ you'd you'll you're you've your yours yourself yourselves also just will shall m
 """.split())
 
 _CJK = "\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff\uac00-\ud7af"
-_RUN = re.compile(rf"([{_CJK}]+)|([^\W_{_CJK}]+(?:'[^\W_{_CJK}]+)*)")
+_RUN_PAT = rf"([{_CJK}]+)|([^\W_{_CJK}]+(?:'[^\W_{_CJK}]+)*)"
+
+
+@lru_cache(maxsize=1)
+def _run_re() -> "re.Pattern":
+    """stab-r5：分词主正则懒编译（编译约 4 ms，只在首次分词时付出；模式与旧 ``_RUN`` 逐字相同）。"""
+    return re.compile(_RUN_PAT)
+
+
 _VOWEL = re.compile(r"[aeiouy]")
 #: H1 说话人标签：字母开头、≤ 32 字符、后接冒号与空白
 _LABEL = re.compile(r"^\s*([^\W\d_][\w.'\- ]{0,31}?):\s+")
@@ -247,23 +256,24 @@ def stem(w: str) -> str:
     return w
 
 
-@lru_cache(maxsize=16384)
+@lru_cache(maxsize=4096)
 def _tokens(text: str, use_stem: bool, use_stop: bool) -> Tuple[str, ...]:
     t = unicodedata.normalize("NFKC", text).casefold().replace("\u2019", "'")
     out: List[str] = []
-    for m in _RUN.finditer(t):
+    for m in _run_re().finditer(t):
         cjk, lat = m.group(1), m.group(2)
         if cjk:
             if len(cjk) == 1:
-                out.append(cjk)
+                out.append(_intern(cjk))
             else:
-                out.extend(cjk[i:i + 2] for i in range(len(cjk) - 1))
+                out.extend(_intern(cjk[i:i + 2]) for i in range(len(cjk) - 1))
         else:
             if use_stop and lat in STOPWORDS:
                 continue
             w = stem(lat) if use_stem else lat
             if w and not (use_stop and w in STOPWORDS):
-                out.append(w)
+                out.append(_intern(w))
+    # stab-r5：词元驻留（sys.intern）——缓存里上万条词元序列共用同一批词元字符串对象（值不变，只省内存）
     return tuple(out)
 
 
@@ -275,8 +285,11 @@ def tokens(text: Optional[str], cfg: Optional[LexicalConfig] = None) -> Tuple[st
     return _tokens(str(text), c.stem, c.stop)
 
 
+_CJK_CH = re.compile(rf"[{_CJK}]")
+
+
 def _is_cjk_token(t: str) -> bool:
-    return bool(t) and re.match(rf"[{_CJK}]", t) is not None
+    return bool(t) and _CJK_CH.match(t) is not None
 
 
 def index_words(text: Optional[str]) -> List[str]:
@@ -293,8 +306,8 @@ def index_term(tok: str) -> str:
 
 def cjk_ratio(q: str) -> float:
     """中日韩字符 /（中日韩字符 + 其他字母）；无字母时为 1.0（按中文处理，走旧通路）。"""
-    cj = len(re.findall(rf"[{_CJK}]", q))
-    la = sum(1 for ch in q if ch.isalpha() and not re.match(rf"[{_CJK}]", ch))
+    cj = len(_CJK_CH.findall(q))
+    la = sum(1 for ch in q if ch.isalpha() and not _CJK_CH.match(ch))
     return cj / (cj + la) if cj + la else 1.0
 
 

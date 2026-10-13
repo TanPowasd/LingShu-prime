@@ -11,3 +11,33 @@
 - multi_seed    同 prompt 多次渲染量测的模板解析/选题/稳定 id/三件事统计
 - align_probe   跨源对齐探针的命名映射/距离贡献/命中统计
 """
+
+#: 对外入口（stab-r5 登记）：研究脚本 / 评测按名使用、包内其它模块不 import 的子模块。
+#: ``lingshu_ng.gen.<名>`` 属性访问时懒加载（文生图件依赖 PIL，不随 ``import lingshu_ng.gen`` 载入）。
+ENTRY_MODULES = ("hexgen", "composite", "pack_certify", "align_probe")
+
+
+_LOADING = set()
+
+
+def __getattr__(name):
+    # 重入（``from . import`` 的 fromlist 处理先 hasattr(包, 名)）⇒ AttributeError，交还导入系统去载入子模块
+    if name not in ENTRY_MODULES or name in _LOADING:
+        raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
+    _LOADING.add(name)
+    try:
+        if name == "hexgen":
+            from . import hexgen as m
+        elif name == "composite":
+            from . import composite as m
+        elif name == "pack_certify":
+            from . import pack_certify as m
+        elif name == "align_probe":
+            from . import align_probe as m
+    finally:
+        _LOADING.discard(name)
+    return m
+
+
+def __dir__():
+    return sorted(set(globals()) | set(ENTRY_MODULES))

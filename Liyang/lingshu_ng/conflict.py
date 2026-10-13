@@ -28,7 +28,6 @@ from __future__ import annotations
 
 import math
 import re
-from difflib import SequenceMatcher
 from typing import Dict, Iterable, List, Optional, Sequence, Tuple
 
 from .dedup import _NEG, normalize
@@ -130,6 +129,7 @@ class Verdict(tuple):
 
 def _diffs(a: str, b: str) -> Tuple[float, List[Tuple[int, int, int, int]]]:
     """对齐相似度 + 逐处不同（未合并）：[(i1, i2, j1, j2)]。"""
+    from difflib import SequenceMatcher             # stab-r5：懒加载（首个冲突候选对齐时才载入 difflib）
     sm = SequenceMatcher(None, a, b, autojunk=False)
     if sm.real_quick_ratio() < MIN_RATIO or sm.quick_ratio() < MIN_RATIO:
         return 0.0, []                                 # 上界已不达标（字符多重集交），免做完整对齐

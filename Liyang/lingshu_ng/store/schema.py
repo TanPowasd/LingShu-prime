@@ -21,7 +21,7 @@ from typing import Dict, Iterable, List, Sequence, Set, Tuple
 __all__ = ["SchemaTooNewError", "stored_version", "ALLOW_NEWER_ENV", "SCHEMA_VERSION", "TABLES", "INDEXES", "LAZY_INDEXES", "PENDING_KEY", "KEY_MISSING", "lazy_indexes_missing", "ensure_lazy_indexes", "TRIGGERS", "columns_of", "missing_parts", "migrate",
            "existing_tables", "DERIVED_TABLES"]
 
-SCHEMA_VERSION = 3
+SCHEMA_VERSION = 4
 #: 允许打开「比本代码新」的库的逃生口（只在确认新版本只做了追加式变更时使用）
 ALLOW_NEWER_ENV = "LINGSHU_NG_ALLOW_NEWER_SCHEMA"
 
@@ -141,7 +141,7 @@ DERIVED_TABLES = frozenset({"node_terms", "term_df", "feature_df", "node_index",
 _TABLE_OPTIONS = {"node_terms": " WITHOUT ROWID", "term_df": " WITHOUT ROWID", "feature_df": " WITHOUT ROWID",
                   "index_state": " WITHOUT ROWID"}
 #: 引用派生表结构的触发器（派生表重建时一并重建）
-_DERIVED_TRIGGERS = ("trg_index_ins", "trg_index_del", "trg_nodes_ins")
+_DERIVED_TRIGGERS = ("trg_index_ins", "trg_index_del", "trg_index_upd", "trg_nodes_ins")
 
 #: 索引名 → (表, 列表达式, 是否唯一)
 INDEXES: Dict[str, Tuple[str, str, bool]] = {
@@ -204,6 +204,29 @@ TRIGGERS: Dict[str, str] = {
                      "AND term IN (SELECT value FROM json_each(OLD.terms)); "
                      "UPDATE term_df SET df = df - 1 WHERE term IN (SELECT value FROM json_each(OLD.terms)); "
                      "UPDATE feature_df SET df = df - 1 WHERE feat IN (SELECT value FROM json_each(OLD.feats)); END",
+    # v4（stab-r5）：单行重建的原位差量路径（textindex._row_flush / reindex_written 对单个已索引节点用
+    # ``UPDATE node_index SET nkey=<删后插入会拿到的新键>, terms, feats, grams``）——结果与「删旧行 + 插新行」逐值相同
+    # （倒排行、df、新奇特征计数、nkey 分配都一样），只是未变的词元不再「减一再加一」、倒排只改键不删插。
+    # 只在 SET 含 terms 时触发：ensure_feats 回填 feats 不经此触发器（其计数另行聚合）。
+    "trg_index_upd": "AFTER UPDATE OF terms ON node_index "
+                     "WHEN NOT EXISTS (SELECT 1 FROM index_state WHERE key = 'bulk') BEGIN "
+                     "DELETE FROM node_terms WHERE nkey = OLD.nkey AND term IN "
+                     "(SELECT value FROM json_each(OLD.terms) EXCEPT SELECT value FROM json_each(NEW.terms)); "
+                     "UPDATE term_df SET df = df - 1 WHERE term IN "
+                     "(SELECT value FROM json_each(OLD.terms) EXCEPT SELECT value FROM json_each(NEW.terms)); "
+                     "UPDATE node_terms SET nkey = NEW.nkey, grams = NEW.grams "
+                     "WHERE (NEW.nkey <> OLD.nkey OR NEW.grams <> OLD.grams) AND nkey = OLD.nkey "
+                     "AND term IN (SELECT value FROM json_each(OLD.terms)); "
+                     "INSERT INTO node_terms(term, nkey, grams) SELECT value, NEW.nkey, NEW.grams FROM json_each(NEW.terms) "
+                     "WHERE value NOT IN (SELECT value FROM json_each(OLD.terms)); "
+                     "INSERT INTO term_df(term, df) SELECT value, 1 FROM json_each(NEW.terms) "
+                     "WHERE value NOT IN (SELECT value FROM json_each(OLD.terms)) "
+                     "ON CONFLICT(term) DO UPDATE SET df = df + 1; "
+                     "UPDATE feature_df SET df = df - 1 WHERE feat IN "
+                     "(SELECT value FROM json_each(OLD.feats) EXCEPT SELECT value FROM json_each(NEW.feats)); "
+                     "INSERT INTO feature_df(feat, df) SELECT value, 1 FROM json_each(NEW.feats) "
+                     "WHERE value NOT IN (SELECT value FROM json_each(OLD.feats)) "
+                     "ON CONFLICT(feat) DO UPDATE SET df = df + 1; END",
 }
 
 
