@@ -183,7 +183,7 @@ class LexicalConfig:
     #: 与查询指向（助手/用户，:func:`lingshu_ng.speaker.query_intent`）一致的轮再加 sp/(sf_k + 一致者名次)；
     #: 轮的说话人 = 角色前缀，否则伪说话人推断，sp_win > 0 时再按写入序 ±sp_win 邻轮交替结构平滑。
     sp: float = 0.5   # gen-r10 H-CM10 判定后设为缺省（只在 sf ≠ 0 且注入语义模型时生效；sp = 0 逐位退回 rel-v1.8）
-    sp_n: int = 20
+    sp_n: int = 40    # gen-r13 F4w（PREREG_GEN_v3 修订 14，H-CM11 判定）：20 → 40；只影响前 40 名内的重排（r@25/all@25），r@5/r@10 不变
     sp_win: int = 2
     #: 候选精排上限与倒排展开行数预算
     cand_max: int = 3000
