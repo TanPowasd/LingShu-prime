@@ -18,3 +18,9 @@
 dev 同前（LME md5%3==0 的 162 题 + LoCoMo conv-30/47 231 题），指标管线 r@10 两集宏平均。
 每个候选在 dev 上取最优设定；若某候选 dev 宏平均比 Lex 高不到 .005，则不进 test。进 test 的候选（至多 CC、G/F 各一，外加若两者都进则加 CC+G 组合一臂，参数沿用各自 dev 最优）各跑一次 test，各自对 Lex 判定。
 多臂同时上 test 的多重比较：判定阈值按 Holm 校正（如实标注）。
+
+## dev 读数与判定（23:05，test 未跑）
+管线 r@10 宏平均（LME dev / LoCoMo dev）：Lex .709（.763/.655）；CC λ=.1 .707、.2 .693、.3 .675；F .689（LME .790 但 LoCoMo .589，4/20）；G 最优（τ=75 分位）.685。
+**两个候选在 dev 上都没超过 Lex，按预注册均不进 test。**
+归因（dev，描述性）：CC 逐题只动了极少题（LME 2/1，LoCoMo 5/4），WordNet 上位链在对话语料里太稀；锐度 s 不能区分「该不该扩散」（LoCoMo 中位 s .546 反而高于 LME .492）；管线/单独逐题择优的上限也只有 LME .792、LoCoMo .668，路由类方法空间很小。
+剩余空间集中在多证据题：LME multi-session .639、preference .424；LoCoMo 多跳 cat1 .246、cat3 .308。
