@@ -28,7 +28,7 @@ def rrf(*orders, k=60):
 
 def build(texts):
     m = (cc.CCMemory(lam=0.0, delta=1.0, stem=True, rm3=True) if "cc" in ARMS
-         else lex.LexMemory(delta=1.0, stem=True, rm3=True))
+         else tm.TMMemory(lam=0.0))
     for t in texts:
         m.add_turn("user", t)
     return m
