@@ -1,0 +1,8776 @@
+{
+ "meta": {
+  "seed": 4,
+  "n": 630
+ },
+ "summary": {
+  "RA-AGM_zh": {
+   "历史": {
+    "hit@1": 0.9577,
+    "hit@5": 1.0,
+    "n": 189
+   },
+   "变更": {
+    "r@g": 0.4704,
+    "n": 63
+   },
+   "时点": {
+    "hit@1": 0.7778,
+    "hit@5": 1.0,
+    "n": 63
+   },
+   "状态归属": {
+    "hit@1": 0.6667,
+    "hit@5": 0.8095,
+    "n": 189
+   },
+   "现值": {
+    "hit@1": 0.0635,
+    "hit@5": 0.6667,
+    "n": 63
+   },
+   "缘由": {
+    "hit@1": 0.9365,
+    "hit@5": 1.0,
+    "n": 63
+   },
+   "单段题": {
+    "hit@1": 0.739,
+    "hit@5": 0.8995,
+    "n": 567
+   }
+  },
+  "RA-AGM_zh+链": {
+   "历史": {
+    "hit@1": 1.0,
+    "hit@5": 1.0,
+    "n": 189
+   },
+   "变更": {
+    "r@g": 1.0,
+    "n": 63
+   },
+   "时点": {
+    "hit@1": 1.0,
+    "hit@5": 1.0,
+    "n": 63
+   },
+   "状态归属": {
+    "hit@1": 1.0,
+    "hit@5": 1.0,
+    "n": 189
+   },
+   "现值": {
+    "hit@1": 1.0,
+    "hit@5": 1.0,
+    "n": 63
+   },
+   "缘由": {
+    "hit@1": 1.0,
+    "hit@5": 1.0,
+    "n": 63
+   },
+   "单段题": {
+    "hit@1": 1.0,
+    "hit@5": 1.0,
+    "n": 567
+   }
+  }
+ },
+ "per": [
+  {
+   "qid": "A1-060-present-0001",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-060-state-0002",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-031-history-0003",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-042-history-0004",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-047-history-0005",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-053-timepoint-0006",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-060-change-0007",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-047-reason-0008",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-053-state-0009",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-042-state-0010",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-060-present-0011",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-060-state-0012",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-001-history-0013",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-021-history-0014",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-041-history-0015",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-030-timepoint-0016",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-060-change-0017",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-041-reason-0018",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-030-state-0019",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-021-state-0020",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-060-present-0021",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-060-state-0022",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-016-history-0023",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-026-history-0024",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-041-history-0025",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-052-timepoint-0026",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-060-change-0027",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.5333333333333333
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-041-reason-0028",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-052-state-0029",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-026-state-0030",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-060-present-0031",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-060-state-0032",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-001-history-0033",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-011-history-0034",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-027-history-0035",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-015-timepoint-0036",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-060-change-0037",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.5666666666666667
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-027-reason-0038",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-015-state-0039",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-011-state-0040",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-060-present-0041",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-060-state-0042",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-001-history-0043",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-016-history-0044",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-031-history-0045",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-029-timepoint-0046",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-060-change-0047",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.9333333333333333
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-031-reason-0048",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-029-state-0049",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A1-016-state-0050",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-060-present-0051",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-060-state-0052",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-016-history-0053",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-026-history-0054",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-039-history-0055",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-030-timepoint-0056",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-060-change-0057",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.5333333333333333
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-039-reason-0058",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-030-state-0059",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-026-state-0060",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-060-present-0061",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-060-state-0062",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-032-history-0063",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-043-history-0064",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-048-history-0065",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-052-timepoint-0066",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-060-change-0067",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.875
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-048-reason-0068",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-052-state-0069",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-043-state-0070",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-060-present-0071",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-060-state-0072",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-001-history-0073",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-011-history-0074",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-027-history-0075",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-005-timepoint-0076",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-060-change-0077",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.4666666666666667
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-027-reason-0078",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-005-state-0079",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-011-state-0080",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-060-present-0081",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-060-state-0082",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-001-history-0083",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-016-history-0084",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-031-history-0085",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-029-timepoint-0086",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-060-change-0087",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.9111111111111111
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-031-reason-0088",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-029-state-0089",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-016-state-0090",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-060-present-0091",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-060-state-0092",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-001-history-0093",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-021-history-0094",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-041-history-0095",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-060-timepoint-0096",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-060-change-0097",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-041-reason-0098",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-060-state-0099",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A2-021-state-0100",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-060-present-0101",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-060-state-0102",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-030-history-0103",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-041-history-0104",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-047-history-0105",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-045-timepoint-0106",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-060-change-0107",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.875
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-047-reason-0108",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-045-state-0109",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-041-state-0110",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-060-present-0111",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-060-state-0112",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-001-history-0113",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-021-history-0114",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-041-history-0115",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-022-timepoint-0116",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-060-change-0117",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-041-reason-0118",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-022-state-0119",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-021-state-0120",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-060-present-0121",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-060-state-0122",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-001-history-0123",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-016-history-0124",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-031-history-0125",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-040-timepoint-0126",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-060-change-0127",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.8444444444444444
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-031-reason-0128",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-040-state-0129",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-016-state-0130",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-060-present-0131",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-060-state-0132",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-016-history-0133",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-026-history-0134",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-042-history-0135",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-031-timepoint-0136",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-060-change-0137",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.5333333333333333
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-042-reason-0138",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-031-state-0139",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-026-state-0140",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-060-present-0141",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-060-state-0142",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-001-history-0143",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-011-history-0144",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-027-history-0145",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-006-timepoint-0146",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-060-change-0147",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.7333333333333333
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-027-reason-0148",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-006-state-0149",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "A3-011-state-0150",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-present-0151",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-state-0152",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-001-history-0153",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-005-history-0154",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-015-history-0155",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-015-timepoint-0156",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-change-0157",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.2727272727272727
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-015-reason-0158",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-015-state-0159",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-005-state-0160",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-present-0161",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-state-0162",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-001-history-0163",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-006-history-0164",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-018-history-0165",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-004-timepoint-0166",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-change-0167",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.1111111111111111
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-018-reason-0168",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-004-state-0169",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-006-state-0170",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-present-0171",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-state-0172",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-007-history-0173",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-015-history-0174",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-024-history-0175",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-029-timepoint-0176",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-change-0177",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.5
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-024-reason-0178",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-029-state-0179",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-015-state-0180",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-present-0181",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-state-0182",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-001-history-0183",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-005-history-0184",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-019-history-0185",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-024-timepoint-0186",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-change-0187",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.4
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-019-reason-0188",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-024-state-0189",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-005-state-0190",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-present-0191",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-state-0192",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-002-history-0193",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-009-history-0194",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-018-history-0195",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-027-timepoint-0196",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-change-0197",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.375
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-018-reason-0198",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-027-state-0199",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-009-state-0200",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-present-0201",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-state-0202",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-001-history-0203",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-005-history-0204",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-013-history-0205",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-013-timepoint-0206",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-change-0207",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.25
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-013-reason-0208",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-013-state-0209",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-005-state-0210",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-present-0211",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-state-0212",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-010-history-0213",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-018-history-0214",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-023-history-0215",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-014-timepoint-0216",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-change-0217",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.6
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-023-reason-0218",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-014-state-0219",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-018-state-0220",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-present-0221",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-state-0222",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-010-history-0223",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-018-history-0224",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-023-history-0225",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-027-timepoint-0226",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-change-0227",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.4
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-023-reason-0228",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-027-state-0229",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-018-state-0230",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-present-0231",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-state-0232",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-009-history-0233",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-017-history-0234",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-021-history-0235",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-026-timepoint-0236",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-change-0237",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.2
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-021-reason-0238",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-026-state-0239",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-017-state-0240",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-present-0241",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-state-0242",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-008-history-0243",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-017-history-0244",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-021-history-0245",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-017-timepoint-0246",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-change-0247",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.4
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-021-reason-0248",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-017-state-0249",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-017-state-0250",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-present-0251",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-state-0252",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-009-history-0253",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-017-history-0254",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-022-history-0255",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-017-timepoint-0256",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-change-0257",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.2
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-022-reason-0258",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-017-state-0259",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-017-state-0260",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-present-0261",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-state-0262",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-006-history-0263",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-013-history-0264",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-022-history-0265",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-013-timepoint-0266",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-change-0267",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.3333333333333333
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-022-reason-0268",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-013-state-0269",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-013-state-0270",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-present-0271",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-state-0272",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-008-history-0273",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-016-history-0274",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-020-history-0275",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-016-timepoint-0276",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-change-0277",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.4
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-020-reason-0278",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-016-state-0279",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-016-state-0280",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-present-0281",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-state-0282",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-003-history-0283",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-008-history-0284",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-020-history-0285",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-008-timepoint-0286",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-change-0287",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.2857142857142857
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-020-reason-0288",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-008-state-0289",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-008-state-0290",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-present-0291",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-state-0292",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-008-history-0293",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-017-history-0294",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-021-history-0295",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-017-timepoint-0296",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-change-0297",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.4
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-021-reason-0298",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-017-state-0299",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-017-state-0300",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-present-0301",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-state-0302",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-001-history-0303",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-006-history-0304",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-010-history-0305",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-025-timepoint-0306",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-030-change-0307",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.2857142857142857
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-010-reason-0308",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-025-state-0309",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B1-006-state-0310",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-present-0311",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-state-0312",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-001-history-0313",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-005-history-0314",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-014-history-0315",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-028-timepoint-0316",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-change-0317",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.25
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-014-reason-0318",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-028-state-0319",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-005-state-0320",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-present-0321",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-state-0322",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-007-history-0323",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-014-history-0324",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-023-history-0325",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-010-timepoint-0326",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-change-0327",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.5
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-023-reason-0328",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-010-state-0329",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-014-state-0330",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-present-0331",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-state-0332",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-010-history-0333",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-019-history-0334",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-023-history-0335",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-019-timepoint-0336",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-change-0337",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.4
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-023-reason-0338",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-019-state-0339",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-019-state-0340",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-present-0341",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-state-0342",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-001-history-0343",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-007-history-0344",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-019-history-0345",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-007-timepoint-0346",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-change-0347",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.4444444444444444
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-019-reason-0348",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-007-state-0349",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-007-state-0350",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-present-0351",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-state-0352",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-002-history-0353",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-007-history-0354",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-016-history-0355",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-011-timepoint-0356",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-change-0357",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.375
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-016-reason-0358",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-011-state-0359",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-007-state-0360",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-present-0361",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-state-0362",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-007-history-0363",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-015-history-0364",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-020-history-0365",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-020-timepoint-0366",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-change-0367",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.4
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-020-reason-0368",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-020-state-0369",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-015-state-0370",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-present-0371",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-state-0372",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-001-history-0373",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-005-history-0374",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-012-history-0375",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-025-timepoint-0376",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-change-0377",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.2727272727272727
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-012-reason-0378",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-025-state-0379",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-005-state-0380",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-present-0381",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-state-0382",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-008-history-0383",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-016-history-0384",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-020-history-0385",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-025-timepoint-0386",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-change-0387",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-020-reason-0388",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-025-state-0389",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-016-state-0390",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-present-0391",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-state-0392",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-004-history-0393",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-008-history-0394",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-021-history-0395",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-026-timepoint-0396",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-change-0397",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.14285714285714285
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-021-reason-0398",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-026-state-0399",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-008-state-0400",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-present-0401",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-state-0402",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-008-history-0403",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-016-history-0404",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-021-history-0405",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-025-timepoint-0406",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-change-0407",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.2
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-021-reason-0408",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-025-state-0409",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-016-state-0410",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-present-0411",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-state-0412",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-001-history-0413",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-004-history-0414",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-017-history-0415",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-026-timepoint-0416",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-change-0417",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.4
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-017-reason-0418",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-026-state-0419",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-004-state-0420",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-present-0421",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-state-0422",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-006-history-0423",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-012-history-0424",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-021-history-0425",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-021-timepoint-0426",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-change-0427",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.3333333333333333
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-021-reason-0428",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-021-state-0429",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-012-state-0430",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-present-0431",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-state-0432",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-009-history-0433",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-017-history-0434",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-022-history-0435",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-027-timepoint-0436",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-change-0437",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.4
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-022-reason-0438",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-027-state-0439",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-017-state-0440",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-present-0441",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-state-0442",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-009-history-0443",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-017-history-0444",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-022-history-0445",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-013-timepoint-0446",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-change-0447",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.4
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-022-reason-0448",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-013-state-0449",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-017-state-0450",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-present-0451",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-state-0452",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-009-history-0453",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-018-history-0454",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-023-history-0455",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-018-timepoint-0456",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-change-0457",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.6
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-023-reason-0458",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-018-state-0459",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-018-state-0460",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-present-0461",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-state-0462",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-001-history-0463",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-006-history-0464",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-010-history-0465",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-022-timepoint-0466",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-030-change-0467",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.5714285714285714
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-010-reason-0468",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-022-state-0469",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B2-006-state-0470",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-present-0471",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-state-0472",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-010-history-0473",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-018-history-0474",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-022-history-0475",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-013-timepoint-0476",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-change-0477",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.2
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-022-reason-0478",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-013-state-0479",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-018-state-0480",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-present-0481",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-state-0482",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-005-history-0483",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-013-history-0484",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-022-history-0485",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-022-timepoint-0486",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-change-0487",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.5
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-022-reason-0488",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-022-state-0489",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-013-state-0490",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-present-0491",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-state-0492",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-001-history-0493",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-006-history-0494",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-010-history-0495",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-009-timepoint-0496",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-change-0497",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.6428571428571429
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-010-reason-0498",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-009-state-0499",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-006-state-0500",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-present-0501",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-state-0502",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-001-history-0503",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-005-history-0504",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-014-history-0505",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-027-timepoint-0506",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-change-0507",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.4166666666666667
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-014-reason-0508",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-027-state-0509",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-005-state-0510",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-present-0511",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-state-0512",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-008-history-0513",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-016-history-0514",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-020-history-0515",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-025-timepoint-0516",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-change-0517",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.4
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-020-reason-0518",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-025-state-0519",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-016-state-0520",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-present-0521",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-state-0522",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-007-history-0523",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-016-history-0524",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-020-history-0525",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-025-timepoint-0526",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-change-0527",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.2
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-020-reason-0528",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-025-state-0529",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-016-state-0530",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-present-0531",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-state-0532",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-001-history-0533",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-005-history-0534",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-012-history-0535",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-002-timepoint-0536",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-change-0537",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.5454545454545454
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-012-reason-0538",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-002-state-0539",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-005-state-0540",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-present-0541",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-state-0542",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-008-history-0543",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-016-history-0544",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-021-history-0545",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-025-timepoint-0546",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-change-0547",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.2
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-021-reason-0548",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-025-state-0549",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-016-state-0550",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-present-0551",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-state-0552",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-003-history-0553",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-009-history-0554",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-021-history-0555",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-005-timepoint-0556",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-change-0557",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.5714285714285714
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-021-reason-0558",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-005-state-0559",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-009-state-0560",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-present-0561",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-state-0562",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-008-history-0563",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-016-history-0564",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-021-history-0565",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-021-timepoint-0566",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-change-0567",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.4
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-021-reason-0568",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-021-state-0569",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-016-state-0570",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-present-0571",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-state-0572",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-009-history-0573",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-017-history-0574",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-022-history-0575",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-013-timepoint-0576",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-change-0577",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.6
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-022-reason-0578",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-013-state-0579",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-017-state-0580",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-present-0581",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-state-0582",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-005-history-0583",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-013-history-0584",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-021-history-0585",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-009-timepoint-0586",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-change-0587",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.6666666666666666
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-021-reason-0588",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-009-state-0589",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-013-state-0590",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-present-0591",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-state-0592",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-001-history-0593",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-006-history-0594",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-019-history-0595",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-028-timepoint-0596",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-change-0597",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.3333333333333333
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-019-reason-0598",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-028-state-0599",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-006-state-0600",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-present-0601",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-state-0602",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-010-history-0603",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-018-history-0604",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-023-history-0605",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-014-timepoint-0606",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-change-0607",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.4
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-023-reason-0608",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-014-state-0609",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-018-state-0610",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-present-0611",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-state-0612",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-001-history-0613",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-011-history-0614",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-019-history-0615",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-024-timepoint-0616",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-change-0617",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.25
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-019-reason-0618",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-024-state-0619",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-011-state-0620",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-present-0621",
+   "type": "现值",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-state-0622",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 0.0,
+     "hit@5": 0.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-001-history-0623",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-004-history-0624",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-019-history-0625",
+   "type": "历史",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-002-timepoint-0626",
+   "type": "时点",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-030-change-0627",
+   "type": "变更",
+   "arms": {
+    "RA-AGM_zh": {
+     "r@g": 0.4
+    },
+    "RA-AGM_zh+链": {
+     "r@g": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-019-reason-0628",
+   "type": "缘由",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-002-state-0629",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  },
+  {
+   "qid": "B3-004-state-0630",
+   "type": "状态归属",
+   "arms": {
+    "RA-AGM_zh": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    },
+    "RA-AGM_zh+链": {
+     "hit@1": 1.0,
+     "hit@5": 1.0
+    }
+   }
+  }
+ ]
+}

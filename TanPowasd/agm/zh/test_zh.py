@@ -4,6 +4,7 @@
   Z1 英文问句：ZhMemory 的打分与排序与 Lex+RA-AGM 逐位相同
   Z2 qterms 去掉「什么」这类两字皆虚的二元组，保留实词二元组；全是虚字时原样保留
   Z3 中文问句确实走了去虚字（打分与 Lex+RA-AGM 不同）
+  Z4 中文问句不做 RM3（打分 = 关 RM3 的打分），英文问句照做
   C1 认不出主体/属性的问句：ZhChain(chain=True) 与 chain=False 排序逐位相同
   C2 现值问：排头是最新一版所在段（检索单路排不到第一）
   C3 变更问：排头是整条链各版所在段，按序号
@@ -46,7 +47,12 @@ def run():
     for t in ["陈默走进巨子塔，什么也没看见。", "什么时候开饭？什么什么。", "巨子塔是系统核心指令的备份点。"]:
         a2.add_turn("user", t); b2.add_turn("user", t)
     qz = "巨子塔里有什么？"
-    check("Z3 中文问句走去虚字", a2.bm25(qz) != b2.bm25(qz))
+    c2 = L.LexMemory(delta=1.0, stem=True, rm3=False)
+    for t in ["陈默走进巨子塔，什么也没看见。", "什么时候开饭？什么什么。", "巨子塔是系统核心指令的备份点。"]:
+        c2.add_turn("user", t)
+    check("Z3 中文问句走去虚字", a2.bm25(qz) != c2.c_sdm.score(c2._toks(qz)))
+    check("Z4 中文问句不做 RM3", a2.bm25(qz) == c2.c_sdm.score(zh.qterms(c2._toks(qz))))
+    check("Z4 闸门只认中文", zh.is_zh(qz) and not zh.is_zh("What is my beagle called?"))
     on, off = chain.ZhChain(True), chain.ZhChain(False)
     for s in SEGS:
         on.add(*s); off.add(*s)
@@ -64,6 +70,8 @@ MUT = {
                          {"Z1 英文打分与排序逐位相同", "Z2 去掉「什么」保留实词", "Z3 中文问句走去虚字"}),
     "M2 不去虚字": (lambda: setattr(zh, "qterms", lambda toks: toks),
                  {"Z2 去掉「什么」保留实词", "Z3 中文问句走去虚字"}),
+    "M4 中文也做 RM3": (lambda: setattr(zh, "is_zh", lambda q: False), {"Z4 中文问句不做 RM3", "Z4 闸门只认中文"}),
+    "M5 英文也关 RM3": (lambda: setattr(zh, "is_zh", lambda q: True), {"Z1 英文打分与排序逐位相同", "Z4 闸门只认中文"}),
     "M3 不接逻辑链条": (lambda: setattr(chain.ZhChain, "head", lambda self, q: []),
                    {"C2 现值问排头是最新版所在段", "C3 变更问排头是整条链"}),
 }
