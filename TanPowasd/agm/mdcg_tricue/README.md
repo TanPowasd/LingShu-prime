@@ -94,3 +94,16 @@ PYTHONUTF8=1 python -X utf8 proto_select.py --base off.json --data <locomo10.jso
 ## 上游
 PR 草稿：`PR_DRAFT_dsh-memory.md`（只写未发；需用户点头）。
 许可存疑：`agm/tricue/tricue.py` 标注 LicenseRef-TanPowasd-Proprietary；上游 PR 里的 `md_cg/tricue_rerank.py` 是重写的实现，提交即按 dsh-memory 的 LICENSE 贡献，需作者确认。
+
+## 端到端问答读数（带 key，2026-10-14，用户批准一次）
+`reader_locomo.py`：MDCG_TRICUE=1 检索前 10 条（每条带会话日期）→ cline-pass/deepseek-v4.1-flash 阅读器（LoCoMo 官方短语提示，temperature 0，不带 system）→ LoCoMo 官方 F1。test 1300 题，1300 次调用，口径运行前固定。
+| | F1 | n |
+|---|---:|---:|
+| 全部 | **0.448** | 1300 |
+| cat1 多跳 | 0.200 | 250 |
+| cat2 时间 | 0.519 | 260 |
+| cat3 开放推理 | 0.209 | 76 |
+| cat4 单跳 | 0.535 | 714 |
+| 证据进前 10 | 0.623 | 844 |
+| 证据不在前 10 | 0.126 | 456 |
+只跑了开态一个臂，没有关态/直读对照，不能把 F1 差归给融合本身。cat1 低一半来自阅读器只答一个点（多点题官方 F1 按 gold 各点平均）。原始预测 `readings/reader_pred_test.jsonl`，汇总 `readings/reader_f1_test.json`。
