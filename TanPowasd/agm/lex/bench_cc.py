@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: LicenseRef-TanPowasd-Proprietary
 # -*- coding: utf-8 -*-
-"""PREREG_cc.md 读数（零模型零网络；WordNet 由 NLTK_DATA 指向本地数据）。
+"""PREREG_cc.md / PREREG_tm.md 读数（零模型零网络；WordNet 由 NLTK_DATA 指向本地数据）。
 每题记录：Lex 管线/单独、CC λ∈{.1,.2,.3} 管线/单独、F=RRF(单独,管线)、锐度 s；G 与 CC+G 由 agg_cc.py 按 τ 事后组合。
   NLTK_DATA=<目录> PYTHONUTF8=1 python -X utf8 bench_cc.py lme --data <json> --split dev|test --out <json>
   ... bench_cc.py locomo --split dev|test --out <json>
@@ -9,7 +9,9 @@ import argparse, hashlib, json, pathlib, sys, time
 
 HERE = pathlib.Path(__file__).resolve().parent
 sys.path[:0] = [str(HERE), str(HERE.parent / "bench"), str(HERE.parent / "confluence")]
-import cc, lex, rq  # noqa: E402
+import cc, lex, rq, tm  # noqa: E402
+import os
+ARMS = os.environ.get('BENCH_ARMS', 'cc,rq,tm').split(',')
 from bench_lex import dedup  # noqa: E402
 from lme_zerokey import score  # noqa: E402
 
@@ -25,7 +27,8 @@ def rrf(*orders, k=60):
 
 
 def build(texts):
-    m = cc.CCMemory(lam=0.0, delta=1.0, stem=True, rm3=True)
+    m = (cc.CCMemory(lam=0.0, delta=1.0, stem=True, rm3=True) if "cc" in ARMS
+         else lex.LexMemory(delta=1.0, stem=True, rm3=True))
     for t in texts:
         m.add_turn("user", t)
     return m
@@ -33,16 +36,22 @@ def build(texts):
 
 def run(m, q, n):
     base = lex.LexMemory.bm25(m, q)
-    ex = m.cc(q)
+    ex = m.cc(q) if "cc" in ARMS else {}
     out = {}
     top = sorted(base.values(), reverse=True)
     s = (top[0] - top[min(9, len(top) - 1)]) / top[0] if top and top[0] > 0 else 0.0
-    for name, sc in [("Lex", base)] + [(f"CC{l}", cc.CCMemory.fuse(base, ex, l)) for l in LAMS]:
+    arms = [("Lex", base)]
+    if "cc" in ARMS:
+        arms += [(f"CC{l}", cc.CCMemory.fuse(base, ex, l)) for l in LAMS]
+    if "tm" in ARMS:
+        tx = tm.TMMemory.tm(m, q)
+        arms += [(f"TM{l}", tm.TMMemory.fuse(base, tx, l)) for l in LAMS]
+    for name, sc in arms:
         out[name] = dedup(m.rank_agm(sc), m.turn_of, n)
         out[name + "/单"] = dedup(sorted(sc, key=lambda i: (-sc[i], i)), m.turn_of, n)
     out["F"] = rrf(out["Lex/单"], out["Lex"])
-    res = rq.RQMemory.residual(m, q, base)
-    for mu in (0.3, 0.5, 1.0):
+    res = rq.RQMemory.residual(m, q, base) if "rq" in ARMS else {}
+    for mu in ((0.3, 0.5, 1.0) if "rq" in ARMS else ()):
         sc = rq.RQMemory.fuse(base, res, mu)
         out[f"RQ{mu}"] = dedup(m.rank_agm(sc), m.turn_of, n)
         out[f"RQ{mu}/单"] = dedup(sorted(sc, key=lambda i: (-sc[i], i)), m.turn_of, n)
