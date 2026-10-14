@@ -33,6 +33,16 @@ def checks():
     ok.append(("Z3 种子保留", [i for i in r if i in seeds][:1] == [i for i in agm if i in seeds][:1]))
     r2 = role.rank(m, sc, relay=False)
     ok.append(("Z4 R2 不中继", r2 != r))
+    import tricue as T
+    v = T.TriCueMemory.v3(); vr = role.attach(T.TriCueMemory.v3())
+    for r_, t in TURNS:
+        v.add_turn("user", t); vr.add_turn("user", t)
+    ok.append(("Z5 attach 无助手≡v3", v.rank(Q) == vr.rank(Q)))
+    sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent / "bench"))
+    import hive_retrieval as HR
+    ch = [{"cid": str(i), "text": t, "i": i, "n": HR.norm(t)} for i, (_, t) in enumerate(TURNS)]
+    g = HR.AGM(ch, HR.BM25(ch))
+    ok.append(("Z6 旧AGM 无角色≡原式", role.old_agm_rank(g, Q, None) == g.rank(Q)))
     return ok
 
 

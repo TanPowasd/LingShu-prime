@@ -38,3 +38,34 @@ def rank(m, sc, relay=True):
 
 
 ARMS = {"R1": dict(relay=True), "R2": dict(relay=False)}
+
+
+def attach(m):
+    """把记忆对象 m 的 rank_agm 换成拓展 AGM（R2）。适用于 tricue.TriCueMemory 及其子类（v3、Lex）。"""
+    import types
+    m.rank_agm = types.MethodType(lambda self, sc: rank(self, sc, relay=False), m)
+    return m
+
+
+def old_agm_rank(agm, q, roles):
+    """bench/hive_retrieval.AGM.rank 的拓展版（同常数、同图），只加 R2 角色闸门；roles=None 时与原式逐位相同。"""
+    s = agm.bm25.scores(q)
+    top = sorted(range(agm.N), key=lambda i: -s[i])[: agm.SEEDS]
+    mx = s[top[0]] or 1.0
+    x = {i: s[i] / mx for i in top}
+    blocked = (lambda j: roles[j] == ASSIST and j not in x) if roles else (lambda j: False)
+    a = dict(x)
+    for _ in range(agm.STEPS):
+        nxt = collections.defaultdict(float)
+        for i, ai in a.items():
+            for j, w in agm.out[i].items():
+                if blocked(j):
+                    continue
+                nxt[j] += ai * w
+        for i, v in x.items():
+            nxt[i] += v
+        nxt = {i: (1 - agm.DECAY) * v if i not in x else v for i, v in nxt.items()}
+        nxt = {i: v for i, v in nxt.items() if v >= agm.THETA}
+        a = dict(sorted(nxt.items(), key=lambda kv: -kv[1])[: agm.KWTA])
+    rest = sorted((i for i in range(agm.N) if i not in a), key=lambda i: -s[i])
+    return sorted(a, key=lambda i: -a[i]) + rest
