@@ -21,3 +21,11 @@ test_role.py：Z1 无助手≡AGM 逐位；Z2 非种子助手块不被推前；Z
 
 ## 复跑
 `BENCH_ARMS=role PYTHONUTF8=1 python -X utf8 bench_cc.py lme --data part{0,1,2}.json --split dev --out roledev_lme_{i}.json`；`... locomo --split dev --out roledev_loc.json`
+
+## dev 读数（2026-10-15，test 前提交）
+| 臂 | LME r@10 | LoCoMo r@10 | 宏平均 | LME 胜/负 vs Lex |
+|---|---:|---:|---:|---|
+| Lex（AGM） | .763 | .655 | .709 | — |
+| R1 | .773 | .655 | .714 | 3/0 |
+| R2 | .782 | .655 | **.719** | 6/0 |
+LoCoMo 两臂逐题与 Lex 相同（符合守卫 Z1）。按规则选中 R2，进 test（只跑一次）。
