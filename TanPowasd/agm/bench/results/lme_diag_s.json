@@ -1,0 +1,269 @@
+{
+ "n": 479,
+ "type_n": {
+  "knowledge-update": 72,
+  "multi-session": 125,
+  "single-session-assistant": 56,
+  "single-session-preference": 30,
+  "single-session-user": 64,
+  "temporal-reasoning": 132
+ },
+ "total": {
+  "L0 BM25(整词)": {
+   "r@5": 0.673,
+   "r@10": 0.771,
+   "r@25": 0.857,
+   "hit@10": 0.854
+  },
+  "L1 BM25+单词项δ0": {
+   "r@5": 0.673,
+   "r@10": 0.772,
+   "r@25": 0.857,
+   "hit@10": 0.854
+  },
+  "L2 BM25+单词项δ1": {
+   "r@5": 0.643,
+   "r@10": 0.748,
+   "r@25": 0.833,
+   "hit@10": 0.837
+  },
+  "L3 BM25+×SDM整轮": {
+   "r@5": 0.651,
+   "r@10": 0.757,
+   "r@25": 0.839,
+   "hit@10": 0.843
+  },
+  "L4 SDM块→轮": {
+   "r@5": 0.675,
+   "r@10": 0.77,
+   "r@25": 0.847,
+   "hit@10": 0.862
+  },
+  "L5 v3": {
+   "r@5": 0.655,
+   "r@10": 0.742,
+   "r@25": 0.833,
+   "hit@10": 0.839
+  },
+  "W4 BM25(整词)块→轮": {
+   "r@5": 0.674,
+   "r@10": 0.772,
+   "r@25": 0.85,
+   "hit@10": 0.864
+  },
+  "W6 BM25(整词)+AGM": {
+   "r@5": 0.651,
+   "r@10": 0.768,
+   "r@25": 0.835,
+   "hit@10": 0.866
+  }
+ },
+ "by_type_r@10": {
+  "L0 BM25(整词)": {
+   "knowledge-update": 0.903,
+   "multi-session": 0.644,
+   "single-session-assistant": 0.911,
+   "single-session-preference": 0.444,
+   "single-session-user": 0.93,
+   "temporal-reasoning": 0.759
+  },
+  "L1 BM25+单词项δ0": {
+   "knowledge-update": 0.903,
+   "multi-session": 0.642,
+   "single-session-assistant": 0.911,
+   "single-session-preference": 0.444,
+   "single-session-user": 0.93,
+   "temporal-reasoning": 0.762
+  },
+  "L2 BM25+单词项δ1": {
+   "knowledge-update": 0.882,
+   "multi-session": 0.591,
+   "single-session-assistant": 0.893,
+   "single-session-preference": 0.428,
+   "single-session-user": 0.922,
+   "temporal-reasoning": 0.75
+  },
+  "L3 BM25+×SDM整轮": {
+   "knowledge-update": 0.896,
+   "multi-session": 0.606,
+   "single-session-assistant": 0.893,
+   "single-session-preference": 0.444,
+   "single-session-user": 0.922,
+   "temporal-reasoning": 0.757
+  },
+  "L4 SDM块→轮": {
+   "knowledge-update": 0.896,
+   "multi-session": 0.628,
+   "single-session-assistant": 0.893,
+   "single-session-preference": 0.411,
+   "single-session-user": 0.938,
+   "temporal-reasoning": 0.785
+  },
+  "L5 v3": {
+   "knowledge-update": 0.847,
+   "multi-session": 0.588,
+   "single-session-assistant": 0.929,
+   "single-session-preference": 0.35,
+   "single-session-user": 0.953,
+   "temporal-reasoning": 0.736
+  },
+  "W4 BM25(整词)块→轮": {
+   "knowledge-update": 0.896,
+   "multi-session": 0.644,
+   "single-session-assistant": 0.893,
+   "single-session-preference": 0.439,
+   "single-session-user": 0.938,
+   "temporal-reasoning": 0.771
+  },
+  "W6 BM25(整词)+AGM": {
+   "knowledge-update": 0.903,
+   "multi-session": 0.612,
+   "single-session-assistant": 0.929,
+   "single-session-preference": 0.483,
+   "single-session-user": 0.961,
+   "temporal-reasoning": 0.745
+  }
+ },
+ "pairs_r@10": {
+  "L0 BM25(整词) vs L1 BM25+单词项δ0": [
+   1,
+   2,
+   1.0
+  ],
+  "L0 BM25(整词) vs L2 BM25+单词项δ1": [
+   26,
+   3,
+   1.5e-05
+  ],
+  "L0 BM25(整词) vs L3 BM25+×SDM整轮": [
+   24,
+   5,
+   0.00055
+  ],
+  "L0 BM25(整词) vs L4 SDM块→轮": [
+   18,
+   16,
+   0.86
+  ],
+  "L0 BM25(整词) vs L5 v3": [
+   39,
+   9,
+   1.5e-05
+  ],
+  "L0 BM25(整词) vs W4 BM25(整词)块→轮": [
+   14,
+   17,
+   0.72
+  ],
+  "L0 BM25(整词) vs W6 BM25(整词)+AGM": [
+   22,
+   15,
+   0.32
+  ],
+  "L1 BM25+单词项δ0 vs L2 BM25+单词项δ1": [
+   26,
+   2,
+   3e-06
+  ],
+  "L1 BM25+单词项δ0 vs L3 BM25+×SDM整轮": [
+   26,
+   6,
+   0.00054
+  ],
+  "L1 BM25+单词项δ0 vs L4 SDM块→轮": [
+   19,
+   16,
+   0.74
+  ],
+  "L1 BM25+单词项δ0 vs L5 v3": [
+   40,
+   9,
+   9.3e-06
+  ],
+  "L1 BM25+单词项δ0 vs W4 BM25(整词)块→轮": [
+   14,
+   16,
+   0.86
+  ],
+  "L1 BM25+单词项δ0 vs W6 BM25(整词)+AGM": [
+   23,
+   15,
+   0.26
+  ],
+  "L2 BM25+单词项δ1 vs L3 BM25+×SDM整轮": [
+   6,
+   11,
+   0.33
+  ],
+  "L2 BM25+单词项δ1 vs L4 SDM块→轮": [
+   10,
+   32,
+   0.00094
+  ],
+  "L2 BM25+单词项δ1 vs L5 v3": [
+   23,
+   18,
+   0.53
+  ],
+  "L2 BM25+单词项δ1 vs W4 BM25(整词)块→轮": [
+   10,
+   36,
+   0.00016
+  ],
+  "L2 BM25+单词项δ1 vs W6 BM25(整词)+AGM": [
+   10,
+   27,
+   0.0076
+  ],
+  "L3 BM25+×SDM整轮 vs L4 SDM块→轮": [
+   9,
+   26,
+   0.006
+  ],
+  "L3 BM25+×SDM整轮 vs L5 v3": [
+   26,
+   15,
+   0.12
+  ],
+  "L3 BM25+×SDM整轮 vs W4 BM25(整词)块→轮": [
+   15,
+   37,
+   0.0032
+  ],
+  "L3 BM25+×SDM整轮 vs W6 BM25(整词)+AGM": [
+   18,
+   30,
+   0.11
+  ],
+  "L4 SDM块→轮 vs L5 v3": [
+   35,
+   6,
+   4.9e-06
+  ],
+  "L4 SDM块→轮 vs W4 BM25(整词)块→轮": [
+   12,
+   17,
+   0.46
+  ],
+  "L4 SDM块→轮 vs W6 BM25(整词)+AGM": [
+   28,
+   23,
+   0.58
+  ],
+  "L5 v3 vs W4 BM25(整词)块→轮": [
+   9,
+   43,
+   2e-06
+  ],
+  "L5 v3 vs W6 BM25(整词)+AGM": [
+   16,
+   39,
+   0.0027
+  ],
+  "W4 BM25(整词)块→轮 vs W6 BM25(整词)+AGM": [
+   32,
+   21,
+   0.17
+  ]
+ }
+}
