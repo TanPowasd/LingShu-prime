@@ -1,0 +1,323 @@
+{
+ "n": 162,
+ "type_n": {
+  "knowledge-update": 22,
+  "multi-session": 45,
+  "single-session-assistant": 19,
+  "single-session-preference": 11,
+  "single-session-user": 20,
+  "temporal-reasoning": 45
+ },
+ "total": {
+  "BM25(整词)": {
+   "r@5": 0.667,
+   "r@10": 0.737,
+   "r@25": 0.837,
+   "hit@10": 0.815
+  },
+  "d0c-": {
+   "r@5": 0.659,
+   "r@10": 0.732,
+   "r@25": 0.809,
+   "hit@10": 0.815
+  },
+  "d0c1": {
+   "r@5": 0.659,
+   "r@10": 0.726,
+   "r@25": 0.824,
+   "hit@10": 0.809
+  },
+  "d0c2": {
+   "r@5": 0.659,
+   "r@10": 0.726,
+   "r@25": 0.814,
+   "hit@10": 0.809
+  },
+  "d0c3": {
+   "r@5": 0.659,
+   "r@10": 0.726,
+   "r@25": 0.812,
+   "hit@10": 0.809
+  },
+  "d1c-": {
+   "r@5": 0.655,
+   "r@10": 0.712,
+   "r@25": 0.815,
+   "hit@10": 0.796
+  },
+  "d1c1": {
+   "r@5": 0.655,
+   "r@10": 0.712,
+   "r@25": 0.818,
+   "hit@10": 0.796
+  },
+  "d1c2": {
+   "r@5": 0.655,
+   "r@10": 0.712,
+   "r@25": 0.817,
+   "hit@10": 0.796
+  },
+  "d1c3": {
+   "r@5": 0.655,
+   "r@10": 0.712,
+   "r@25": 0.815,
+   "hit@10": 0.796
+  }
+ },
+ "by_type_r@10": {
+  "BM25(整词)": {
+   "knowledge-update": 0.864,
+   "multi-session": 0.593,
+   "single-session-assistant": 1.0,
+   "single-session-preference": 0.333,
+   "single-session-user": 0.95,
+   "temporal-reasoning": 0.711
+  },
+  "d0c-": {
+   "knowledge-update": 0.795,
+   "multi-session": 0.56,
+   "single-session-assistant": 1.0,
+   "single-session-preference": 0.455,
+   "single-session-user": 1.0,
+   "temporal-reasoning": 0.707
+  },
+  "d0c1": {
+   "knowledge-update": 0.795,
+   "multi-session": 0.549,
+   "single-session-assistant": 1.0,
+   "single-session-preference": 0.455,
+   "single-session-user": 0.95,
+   "temporal-reasoning": 0.719
+  },
+  "d0c2": {
+   "knowledge-update": 0.795,
+   "multi-session": 0.549,
+   "single-session-assistant": 1.0,
+   "single-session-preference": 0.455,
+   "single-session-user": 0.95,
+   "temporal-reasoning": 0.719
+  },
+  "d0c3": {
+   "knowledge-update": 0.795,
+   "multi-session": 0.549,
+   "single-session-assistant": 1.0,
+   "single-session-preference": 0.455,
+   "single-session-user": 0.95,
+   "temporal-reasoning": 0.719
+  },
+  "d1c-": {
+   "knowledge-update": 0.795,
+   "multi-session": 0.544,
+   "single-session-assistant": 1.0,
+   "single-session-preference": 0.394,
+   "single-session-user": 0.95,
+   "temporal-reasoning": 0.689
+  },
+  "d1c1": {
+   "knowledge-update": 0.795,
+   "multi-session": 0.549,
+   "single-session-assistant": 1.0,
+   "single-session-preference": 0.424,
+   "single-session-user": 0.95,
+   "temporal-reasoning": 0.678
+  },
+  "d1c2": {
+   "knowledge-update": 0.795,
+   "multi-session": 0.544,
+   "single-session-assistant": 1.0,
+   "single-session-preference": 0.394,
+   "single-session-user": 0.95,
+   "temporal-reasoning": 0.689
+  },
+  "d1c3": {
+   "knowledge-update": 0.795,
+   "multi-session": 0.544,
+   "single-session-assistant": 1.0,
+   "single-session-preference": 0.394,
+   "single-session-user": 0.95,
+   "temporal-reasoning": 0.689
+  }
+ },
+ "pairs_r@10": {
+  "BM25(整词) vs d0c-": [
+   10,
+   7,
+   0.63
+  ],
+  "BM25(整词) vs d0c1": [
+   9,
+   5,
+   0.42
+  ],
+  "BM25(整词) vs d0c2": [
+   9,
+   5,
+   0.42
+  ],
+  "BM25(整词) vs d0c3": [
+   9,
+   5,
+   0.42
+  ],
+  "BM25(整词) vs d1c-": [
+   12,
+   2,
+   0.013
+  ],
+  "BM25(整词) vs d1c1": [
+   11,
+   2,
+   0.022
+  ],
+  "BM25(整词) vs d1c2": [
+   12,
+   2,
+   0.013
+  ],
+  "BM25(整词) vs d1c3": [
+   12,
+   2,
+   0.013
+  ],
+  "d0c- vs d0c1": [
+   2,
+   1,
+   1.0
+  ],
+  "d0c- vs d0c2": [
+   2,
+   1,
+   1.0
+  ],
+  "d0c- vs d0c3": [
+   2,
+   1,
+   1.0
+  ],
+  "d0c- vs d1c-": [
+   8,
+   1,
+   0.039
+  ],
+  "d0c- vs d1c1": [
+   6,
+   0,
+   0.031
+  ],
+  "d0c- vs d1c2": [
+   8,
+   1,
+   0.039
+  ],
+  "d0c- vs d1c3": [
+   8,
+   1,
+   0.039
+  ],
+  "d0c1 vs d0c2": [
+   0,
+   0,
+   1.0
+  ],
+  "d0c1 vs d0c3": [
+   0,
+   0,
+   1.0
+  ],
+  "d0c1 vs d1c-": [
+   7,
+   1,
+   0.07
+  ],
+  "d0c1 vs d1c1": [
+   5,
+   0,
+   0.062
+  ],
+  "d0c1 vs d1c2": [
+   7,
+   1,
+   0.07
+  ],
+  "d0c1 vs d1c3": [
+   7,
+   1,
+   0.07
+  ],
+  "d0c2 vs d0c3": [
+   0,
+   0,
+   1.0
+  ],
+  "d0c2 vs d1c-": [
+   7,
+   1,
+   0.07
+  ],
+  "d0c2 vs d1c1": [
+   5,
+   0,
+   0.062
+  ],
+  "d0c2 vs d1c2": [
+   7,
+   1,
+   0.07
+  ],
+  "d0c2 vs d1c3": [
+   7,
+   1,
+   0.07
+  ],
+  "d0c3 vs d1c-": [
+   7,
+   1,
+   0.07
+  ],
+  "d0c3 vs d1c1": [
+   5,
+   0,
+   0.062
+  ],
+  "d0c3 vs d1c2": [
+   7,
+   1,
+   0.07
+  ],
+  "d0c3 vs d1c3": [
+   7,
+   1,
+   0.07
+  ],
+  "d1c- vs d1c1": [
+   1,
+   2,
+   1.0
+  ],
+  "d1c- vs d1c2": [
+   0,
+   0,
+   1.0
+  ],
+  "d1c- vs d1c3": [
+   0,
+   0,
+   1.0
+  ],
+  "d1c1 vs d1c2": [
+   2,
+   1,
+   1.0
+  ],
+  "d1c1 vs d1c3": [
+   2,
+   1,
+   1.0
+  ],
+  "d1c2 vs d1c3": [
+   0,
+   0,
+   1.0
+  ]
+ }
+}
