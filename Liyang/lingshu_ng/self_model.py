@@ -31,7 +31,7 @@ from .types import ConditionSpace, Edge, EdgeType, MemoryLayer, Node, dumps, loa
 __all__ = ["SelfModel", "SelfStore", "CORE_ID", "MUTABLE"]
 
 CORE_ID = "self_core"
-SNAPSHOT_KEEP = 200
+from ._consts import SNAPSHOT_KEEP  # noqa: E402  = 200，值定义在 _consts（同一对象）
 # values 不在白名单：价值观只能经 record_value_change / change_value 按条修正并留演化记录（#182）
 MUTABLE = frozenset({"identity", "state_description", "current_goal"})
 

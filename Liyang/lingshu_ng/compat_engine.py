@@ -22,16 +22,11 @@ from .compat_providers import ProvidersMixin
 from .compat_world import WorldFacade
 from .compat_world_sim import WorldSimFacade
 from .compat_frame import FrameMixin
-from .decay import elapsed_factor
-from .compat_store import CAUSAL_MAX_PATHS
-from .engine import MemoryEngine
-from .governance import verify_designer
-from .graphquery import timeline as _timeline
-from .scheduler import AutoDecay
-from .self_model import SNAPSHOT_KEEP
+from ._consts import CAUSAL_MAX_PATHS, SNAPSHOT_KEEP
+from ._consts import TABLES as _EXPORT_TABLES
 from .types import ConditionSpace, Edge, EdgeType, MemoryLayer, Node, Role, dumps, now
-
-from .exchange import TABLES as _EXPORT_TABLES
+# stab-r13：engine / compat_store / decay / governance / graphquery / scheduler 改在用到的方法里导入
+# （它们连带载入存储层与检索层；``import lingshu_ng.compat`` 不再载入，见 tests_ng/test_import_lazy.py）。
 
 __all__ = ["SpacetimeMemoryEngine", "PromotionRejected"]
 
@@ -63,6 +58,7 @@ class SpacetimeMemoryEngine(WorldFacade, WorldSimFacade, FrameMixin, ProvidersMi
                  role: Role = Role.PRIMARY) -> None:
         """内部辅助函数。"""
         from .compat_store import LayeredStore
+        from .engine import MemoryEngine
         self.ng = MemoryEngine(db_path, identity, role)
         self.store = LayeredStore(db_path, role, _ng_store=self.ng.store)
         self.role = self.ng.store.role
@@ -79,6 +75,8 @@ class SpacetimeMemoryEngine(WorldFacade, WorldSimFacade, FrameMixin, ProvidersMi
         self.migrate_v17_coordinates()          # D-003 旧库坐标字段分离（旧 v1.7 构造期迁移）
 
     def _default_autodecay(self) -> AutoDecay:
+        from .decay import elapsed_factor
+        from .scheduler import AutoDecay
         return AutoDecay(lambda el: self.store.decay_cycle(elapsed_factor(0.02, el, 60.0)))
 
     def capabilities(self) -> Dict:
@@ -284,6 +282,7 @@ class SpacetimeMemoryEngine(WorldFacade, WorldSimFacade, FrameMixin, ProvidersMi
 
     def timeline(self, node_id: str, direction: str = "forward", max_depth: int = 20) -> List[Node]:
         """时间线。"""
+        from .graphquery import timeline as _timeline
         return _timeline(self.ng.store, node_id, direction, max_depth)
 
     def get_timeline(self, start_ts: Optional[float] = None, end_ts: Optional[float] = None,
@@ -377,6 +376,7 @@ class SpacetimeMemoryEngine(WorldFacade, WorldSimFacade, FrameMixin, ProvidersMi
         if isinstance(override_rejected, str):
             override_rejected_id, override_rejected = override_rejected, False
         if override_rejected and override_rejected_id is None:
+            from .governance import verify_designer
             if not verify_designer(designer_key):
                 raise PermissionError("#216 override 否决负记忆须过设计者密钥闸（fail-closed）")
             node = self.ng.store.nodes.get(node_id)

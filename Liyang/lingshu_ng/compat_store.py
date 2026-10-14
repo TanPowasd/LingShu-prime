@@ -36,7 +36,7 @@ __all__ = ["LayeredStore", "CAUSAL_MAX_PATHS"]
 _log = logging.getLogger(__name__)
 
 #: 上游 ``_CAUSAL_MAX_PATHS``（#327）：因果路径枚举的缺省上限
-CAUSAL_MAX_PATHS = 1000
+from ._consts import CAUSAL_MAX_PATHS  # noqa: E402  = 1000，值定义在 _consts（同一对象）
 #: 上游 ``_DECAY_PERIOD_SECONDS`` / ``_LAST_DECAY_META_KEY``（#176）：时间模式衰减的周期与「上次衰减时刻」键
 DECAY_PERIOD_SECONDS = 60.0
 LAST_DECAY_META_KEY = "_last_decay_at"

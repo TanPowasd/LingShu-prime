@@ -11,7 +11,7 @@ description = "灵枢 ng 插件：蜂窝 CNN 线重写（旧路径 lingshu_ng.nn
 readme = "README.md"
 requires-python = ">=3.11"
 license = "MIT"
-dependencies = ["lingshu-ng>=1.27,<2", "numpy>=2.3.5,<2.6", "Pillow>=12.2,<13"]
+dependencies = ["lingshu-ng>=1.28,<2", "numpy>=2.3.5,<2.6", "Pillow>=12.2,<13"]
 
 [project.entry-points."lingshu_ng.plugins"]
 nn = "lingshu_ng_nn.plugin:PLUGIN"

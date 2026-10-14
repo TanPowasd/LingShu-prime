@@ -12,24 +12,14 @@
 """
 from __future__ import annotations
 
+import importlib
 import itertools
 from typing import Dict, List, Optional, Sequence, Tuple
 
-from . import causal, graphquery
-from .decay import Maintenance
-from .dedup import bigrams, jaccard
 from .governance import designer_key_configured, verify_designer
-from .insight import Insights
-from .layers import LayerPolicy, LayerViolation
-from .negative import NegativeMemory
-from .retrieval import SYNONYM_GROUPS, Retriever, expand_terms
-from .self_model import SelfModel
-from .skills import SkillBook
-from .store import Store, schema
 from .timecore import cred_step
 from .types import (CausalChain, ConditionSpace, Edge, EdgeType, MemoryLayer, Node, NodeType, Role,
                     now)
-from .compat_store import LayeredStore  # noqa: E402,F401  stab-r1：LayeredStore 自本模块拆出（消除 compat ↔ compat_engine 双向依赖）
 
 STNode = Node
 STEdge = Edge
@@ -41,3 +31,34 @@ __all__ = ["ConditionSpace", "NodeType", "EdgeType", "MemoryLayer", "Role", "STN
 
 from .compat_txguard import _loads_tags, _store_tx_guard  # noqa: E402,F401  旧模块级辅助名（#184/#267）
 from .compat_engine import SpacetimeMemoryEngine  # noqa: E402  （门面类在独立模块，避免本文件超长）
+
+#: stab-r13：旧版在本模块顶层导入的其余名字改为首次属性访问时载入（PEP 562），取到的是同一对象；
+#: ``from lingshu_ng.compat import X`` / ``import *`` 照旧可用。它们连带载入存储层与检索层（约 40 个模块），
+#: ``import lingshu_ng.compat`` 本身不再载入（tests_ng/test_import_lazy.py）。名字 → (子模块, 属性；None = 子模块本身)。
+_LAZY: Dict[str, Tuple[str, Optional[str]]] = {
+    "causal": ("causal", None), "graphquery": ("graphquery", None),
+    "Maintenance": ("decay", "Maintenance"),
+    "bigrams": ("dedup", "bigrams"), "jaccard": ("dedup", "jaccard"),
+    "Insights": ("insight", "Insights"),
+    "LayerPolicy": ("layers", "LayerPolicy"), "LayerViolation": ("layers", "LayerViolation"),
+    "NegativeMemory": ("negative", "NegativeMemory"),
+    "SYNONYM_GROUPS": ("retrieval", "SYNONYM_GROUPS"), "Retriever": ("retrieval", "Retriever"),
+    "expand_terms": ("retrieval", "expand_terms"),
+    "SelfModel": ("self_model", "SelfModel"), "SkillBook": ("skills", "SkillBook"),
+    "Store": ("store", "Store"), "schema": ("store.schema", None),
+    "LayeredStore": ("compat_store", "LayeredStore"),
+}
+
+
+def __getattr__(name: str):
+    spec = _LAZY.get(name)
+    if spec is None:
+        raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
+    mod = importlib.import_module("." + spec[0], __package__)
+    val = mod if spec[1] is None else getattr(mod, spec[1])
+    globals()[name] = val
+    return val
+
+
+def __dir__():
+    return sorted(set(globals()) | set(_LAZY))

@@ -26,12 +26,7 @@ from .types import now
 
 __all__ = ["TABLES", "GOVERNANCE_TABLES", "export_all", "import_all", "verify_integrity"]
 
-TABLES: Tuple[str, ...] = ("nodes", "edges", "blindspots", "skills", "promotion_proposals",
-                           "protections", "rejected_paths", "verifier_standards",
-                           "escalation_points", "entities",
-                           # 上游 #270：OBS-REV1 持久化表（D 序列 / 行为日志 / 飞轮基线等）同样进全库备份
-                           "gap_history", "action_logs", "engine_meta", "flywheel_reuse",
-                           "self_snapshots", "activation_nodes")
+from ._consts import TABLES  # noqa: E402  值定义在 _consts（兼容门面类定义期要用，免载入本模块），同一对象
 GOVERNANCE_TABLES = frozenset({"promotion_proposals", "protections", "verifier_standards",
                                "escalation_points", "self_snapshots"})
 

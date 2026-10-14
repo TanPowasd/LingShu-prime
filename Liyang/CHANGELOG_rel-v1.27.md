@@ -97,3 +97,7 @@ A = rel-v1.26（`/workspace/work/ls/_stab11/a126`，git archive 69496d3f），B 
 ## 推送记录
 
 （推送后补。）
+
+## 推送记录
+
+- 2026-10-14（主对话接手 stab-r12 收尾）：LingShu-prime main 5f32856c → **6ae69ab8**（只改 `Liyang/` 27 个文件：同步 26 个 + README 加 v1.27 条目）。内容 = wt-rel rel-v1 @ 344c2074。推送前 Liyang/ 内 tests_ng + 插件测试 3346 passed 1 skipped；TanPowasd `agm/learn/test_learn.py` 25 / 0、`agm/reason/test_reason.py` 14 / 0（只运行，跑完 checkout 还原）。注：沙箱重启使 stab-r12 的全量门记录在 05:38 UTC 后丢失，由主对话续跑 q_r11.sh 至 Q11_ALL_DONE（commit 344c2074）。
