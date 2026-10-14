@@ -23,3 +23,14 @@ test_role.py 新增 Z5（attach 后无助手≡v3）、Z6（旧AGM 无角色≡�
 
 ## 复跑
 `PYTHONUTF8=1 python -X utf8 bench_swap.py lme --data partK.json --out swap_lme_K.json`（K=0,1,2）；`bench_swap.py locomo --out swap_loc.json`
+
+## test 读数（2026-10-15 01:38，只跑一次）
+| 算法 | LME test r@10 原→RA | 胜/负 | p | LoCoMo test r@10 |
+|---|---|---|---:|---|
+| 旧AGM | .437 → .467 | 22/1 | <.0001 | .459 不变（逐题相同） |
+| TriCue v3 | .757 → .767 | 11/2 | .022 | .618 不变 |
+| Lex | .789 → .810 | 16/2 | .0013 | .632 不变 |
+LME r@5：旧AGM .335→.374，v3 .655→.660，Lex .677→.684。
+
+判定：三个算法换成拓展 AGM 后，LME 都显著提升，LoCoMo 都不变 → 全部替换（本仓内）。md_cg×TriCue（dsh-memory）未测，存疑。
+读数：results/swap_lme_{0,1,2}.json、results/swap_loc.json。
