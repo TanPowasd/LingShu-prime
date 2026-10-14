@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: LicenseRef-TanPowasd-Proprietary
-"""拓展 AGM（Lex+RA，角色感知扩散）原理图。CJK_FONT_DIR=字体目录 python agm_ra_schematic.py"""
+"""RA-AGM（Lex+RA，角色感知扩散）原理图。CJK_FONT_DIR=字体目录 python agm_ra_schematic.py"""
 import os, pathlib
 import matplotlib; matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -27,7 +27,7 @@ def arr(x1, y1, x2, y2, lab=None, col="#5b6478", ls="-", rad=0.0, lw=1.6):
         ax.text((x1 + x2) / 2, (y1 + y2) / 2 + 0.17, lab, fontsize=9, color=col, ha="center")
 
 
-ax.text(W / 2, H - 0.4, "拓展 AGM 原理图：角色感知扩散（Lex + RA）", ha="center", va="top", fontsize=18, weight="bold", color=X)
+ax.text(W / 2, H - 0.4, "RA-AGM 原理图：角色感知扩散（Lex + RA）", ha="center", va="top", fontsize=18, weight="bold", color=X)
 ax.text(W / 2, H - 0.95, "零模型 · 白箱 · 只改扩散的一条规则    LingShu-prime 37b3cc8 · PREREG_role.md", ha="center", va="top", fontsize=10.5, color="#6b7280")
 
 # 流程
@@ -48,7 +48,7 @@ arr(6, 10.75, 6, 10.25)
 
 # 示意图
 ax.text(W / 2, 8.35, "示意：问「我那只比格犬叫什么？」（一段用户—助手对话的邻接链）", ha="center", fontsize=12.5, weight="bold", color=X)
-rows = [(6.6, "原 AGM", False), (4.0, "拓展 AGM（RA，R2）", True)]
+rows = [(6.6, "原 AGM", False), (4.0, "RA-AGM（R2）", True)]
 names = [("U1a", "我领养了一只\n比格犬", U), ("U1b", "名字叫 Max，\n去年春天", U), ("A1", "恭喜！比格犬\n活泼友好", A), ("U2", "我还报了\n陶艺课", U)]
 xs = [1.6, 4.4, 7.2, 10.0]
 for y, title, blocked in rows:

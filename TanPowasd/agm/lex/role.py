@@ -41,7 +41,7 @@ ARMS = {"R1": dict(relay=True), "R2": dict(relay=False)}
 
 
 def attach(m):
-    """把记忆对象 m 的 rank_agm 换成拓展 AGM（R2）。适用于 tricue.TriCueMemory 及其子类（v3、Lex）。"""
+    """把记忆对象 m 的 rank_agm 换成 RA-AGM（R2）。适用于 tricue.TriCueMemory 及其子类（v3、Lex）。"""
     import types
     m.rank_agm = types.MethodType(lambda self, sc: rank(self, sc, relay=False), m)
     return m

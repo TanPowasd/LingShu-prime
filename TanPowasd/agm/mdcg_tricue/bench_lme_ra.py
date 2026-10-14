@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: LicenseRef-TanPowasd-Proprietary
 # -*- coding: utf-8 -*-
-"""md_cg×TriCue 原 AGM vs 拓展 AGM（RA）在 LongMemEval-S test 上的成对读数（零模型零 key）。
+"""md_cg×TriCue 原 AGM vs RA-AGM在 LongMemEval-S test 上的成对读数（零模型零 key）。
 每题一个独立 MdCGOS 库，haystack 各轮按序 add（role=原角色，layer=knowledge，verification_basis=data）；
 MDCG_TRICUE=1；同一库上先查 RA 关（tricue_rerank.RA_ROLES 置空）、再查 RA 开，两次之间清索引缓存。
 划分与 agm/lex 相同：md5(question_id)%3==0 为 dev，其余 test。指标 r@5/10/25、hit@10（轮级）。

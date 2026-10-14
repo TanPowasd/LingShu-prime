@@ -1,4 +1,4 @@
-# 预注册：md_cg×TriCue 换拓展 AGM（RA）
+# 预注册：md_cg×TriCue 换 RA-AGM
 
 日期 2026-10-15，读数前提交。用户「可以」（同意在 dsh-memory 本地分支替换并测试后备 PR）。
 

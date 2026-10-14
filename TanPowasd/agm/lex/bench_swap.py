@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: LicenseRef-TanPowasd-Proprietary
 # -*- coding: utf-8 -*-
-"""RA 替换读数（PREREG_ra_swap.md）：所有用 AGM 的算法，原 AGM vs 拓展 AGM（R2）成对比较。
+"""RA 替换读数（PREREG_ra_swap.md）：所有用 AGM 的算法，原 AGM vs RA-AGM（R2）成对比较。
 臂：旧AGM / 旧AGM+RA（bench/hive_retrieval.AGM）、v3 / v3+RA（TriCue v3，RRF 中的 AGM 一路替换）、Lex / Lex+RA。
 LME 按 md5(qid)%3 划分取 test；LoCoMo 取 test。轮级去重，r@5/10/25、hit@10。零模型。
 用法：PYTHONUTF8=1 python -X utf8 bench_swap.py lme --data partK.json --out x.json | bench_swap.py locomo --out y.json"""

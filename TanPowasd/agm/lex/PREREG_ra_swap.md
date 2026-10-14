@@ -1,4 +1,6 @@
-# 预注册：把所有用 AGM 的算法换成拓展 AGM（RA，R2）
+# 命名：RA-AGM（Role-Aware AGM，角色感知扩散；2026-10-15 用户定名，原称「拓展 AGM」）
+
+# 预注册：把所有用 AGM 的算法换成 RA-AGM（R2）
 
 日期 2026-10-15，读数前提交。用户「将原来用 agm 的算法替换为拓展 agm，再测试一下两个测试集」。
 
@@ -32,5 +34,5 @@ test_role.py 新增 Z5（attach 后无助手≡v3）、Z6（旧AGM 无角色≡�
 | Lex | .789 → .810 | 16/2 | .0013 | .632 不变 |
 LME r@5：旧AGM .335→.374，v3 .655→.660，Lex .677→.684。
 
-判定：三个算法换成拓展 AGM 后，LME 都显著提升，LoCoMo 都不变 → 全部替换（本仓内）。md_cg×TriCue（dsh-memory）未测，存疑。
+判定：三个算法换成 RA-AGM 后，LME 都显著提升，LoCoMo 都不变 → 全部替换（本仓内）。md_cg×TriCue（dsh-memory）未测，存疑。
 读数：results/swap_lme_{0,1,2}.json、results/swap_loc.json。
