@@ -9,7 +9,7 @@ import argparse, hashlib, json, pathlib, sys, time
 
 HERE = pathlib.Path(__file__).resolve().parent
 sys.path[:0] = [str(HERE), str(HERE.parent / "bench"), str(HERE.parent / "confluence")]
-import cc, lex, rq, tm, ax, ppr  # noqa: E402
+import cc, lex, rq, tm, ax, ppr, role  # noqa: E402
 import os
 ARMS = os.environ.get('BENCH_ARMS', 'cc,rq,tm').split(',')
 from bench_lex import dedup  # noqa: E402
@@ -26,11 +26,11 @@ def rrf(*orders, k=60):
     return sorted(s, key=lambda t: (-s[t], t))
 
 
-def build(texts):
+def build(texts, roles=None):
     m = (cc.CCMemory(lam=0.0, delta=1.0, stem=True, rm3=True) if "cc" in ARMS
          else tm.TMMemory(lam=0.0))
-    for t in texts:
-        m.add_turn("user", t)
+    for k, t in enumerate(texts):
+        m.add_turn(roles[k] if roles and "role" in ARMS else "user", t)
     return m
 
 
@@ -57,6 +57,9 @@ def run(m, q, n):
         qt = m._toks(q)
         for k, cfg in ppr.ARMS.items():
             out[k] = dedup(ppr.rank(m, base, qtoks=qt, **cfg), m.turn_of, n)
+    if "role" in ARMS:
+        for k, cfg in role.ARMS.items():
+            out[k] = dedup(role.rank(m, base, **cfg), m.turn_of, n)
     res = rq.RQMemory.residual(m, q, base) if "rq" in ARMS else {}
     for mu in ((0.3, 0.5, 1.0) if "rq" in ARMS else ()):
         sc = rq.RQMemory.fuse(base, res, mu)
@@ -74,18 +77,18 @@ def main():
     per, t0 = [], time.time()
     if a.dataset == "lme":
         for it in json.load(open(a.data, encoding="utf-8")):
-            texts, gold = [], set()
+            texts, gold, roles = [], set(), []
             for ses in it["haystack_sessions"]:
                 for t in ses:
                     if t.get("has_answer"):
                         gold.add(len(texts))
-                    texts.append(f"{t['role']}: {t['content']}")
+                    texts.append(f"{t['role']}: {t['content']}"); roles.append(t["role"])
             if not gold:
                 continue
             sp = "dev" if int(hashlib.md5(it["question_id"].encode()).hexdigest(), 16) % 3 == 0 else "test"
             if sp != a.split:
                 continue
-            r, s = run(build(texts), it["question"], len(texts))
+            r, s = run(build(texts, roles), it["question"], len(texts))
             per.append({"qid": it["question_id"], "type": it["question_type"], "s": s, "arms": {k: score(v, gold) for k, v in r.items()}})
     elif a.dataset == "locomo":
         import extract as X
