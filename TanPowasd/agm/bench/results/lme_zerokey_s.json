@@ -1,0 +1,176 @@
+{
+ "n": 479,
+ "type_n": {
+  "knowledge-update": 72,
+  "multi-session": 125,
+  "single-session-assistant": 56,
+  "single-session-preference": 30,
+  "single-session-user": 64,
+  "temporal-reasoning": 132
+ },
+ "total": {
+  "BM25(字二元组)": {
+   "r@5": 0.379,
+   "r@10": 0.424,
+   "r@25": 0.509,
+   "hit@10": 0.532
+  },
+  "BM25(整词)": {
+   "r@5": 0.673,
+   "r@10": 0.771,
+   "r@25": 0.857,
+   "hit@10": 0.854
+  },
+  "md_cg": {
+   "r@5": 0.086,
+   "r@10": 0.128,
+   "r@25": 0.186,
+   "hit@10": 0.152
+  },
+  "md_cg×TriCue": {
+   "r@5": 0.438,
+   "r@10": 0.685,
+   "r@25": 0.813,
+   "hit@10": 0.81
+  },
+  "v3": {
+   "r@5": 0.655,
+   "r@10": 0.742,
+   "r@25": 0.833,
+   "hit@10": 0.839
+  },
+  "旧AGM": {
+   "r@5": 0.334,
+   "r@10": 0.44,
+   "r@25": 0.55,
+   "hit@10": 0.555
+  }
+ },
+ "by_type_r@10": {
+  "BM25(字二元组)": {
+   "knowledge-update": 0.674,
+   "multi-session": 0.188,
+   "single-session-assistant": 0.786,
+   "single-session-preference": 0.017,
+   "single-session-user": 0.617,
+   "temporal-reasoning": 0.359
+  },
+  "BM25(整词)": {
+   "knowledge-update": 0.903,
+   "multi-session": 0.644,
+   "single-session-assistant": 0.911,
+   "single-session-preference": 0.444,
+   "single-session-user": 0.93,
+   "temporal-reasoning": 0.759
+  },
+  "md_cg": {
+   "knowledge-update": 0.213,
+   "multi-session": 0.031,
+   "single-session-assistant": 0.268,
+   "single-session-preference": 0.0,
+   "single-session-user": 0.32,
+   "temporal-reasoning": 0.049
+  },
+  "md_cg×TriCue": {
+   "knowledge-update": 0.84,
+   "multi-session": 0.496,
+   "single-session-assistant": 0.893,
+   "single-session-preference": 0.244,
+   "single-session-user": 0.953,
+   "temporal-reasoning": 0.66
+  },
+  "v3": {
+   "knowledge-update": 0.847,
+   "multi-session": 0.588,
+   "single-session-assistant": 0.929,
+   "single-session-preference": 0.35,
+   "single-session-user": 0.953,
+   "temporal-reasoning": 0.736
+  },
+  "旧AGM": {
+   "knowledge-update": 0.66,
+   "multi-session": 0.237,
+   "single-session-assistant": 0.75,
+   "single-session-preference": 0.05,
+   "single-session-user": 0.594,
+   "temporal-reasoning": 0.394
+  }
+ },
+ "pairs_r@10": {
+  "BM25(字二元组) vs BM25(整词)": [
+   5,
+   232,
+   5.5e-62
+  ],
+  "BM25(字二元组) vs md_cg": [
+   196,
+   3,
+   3.3e-54
+  ],
+  "BM25(字二元组) vs md_cg×TriCue": [
+   7,
+   183,
+   2.1e-45
+  ],
+  "BM25(字二元组) vs v3": [
+   9,
+   218,
+   3.6e-53
+  ],
+  "BM25(字二元组) vs 旧AGM": [
+   18,
+   36,
+   0.02
+  ],
+  "BM25(整词) vs md_cg": [
+   358,
+   1,
+   6.1e-106
+  ],
+  "BM25(整词) vs md_cg×TriCue": [
+   84,
+   7,
+   7.1e-18
+  ],
+  "BM25(整词) vs v3": [
+   39,
+   9,
+   1.5e-05
+  ],
+  "BM25(整词) vs 旧AGM": [
+   231,
+   17,
+   3.9e-49
+  ],
+  "md_cg vs md_cg×TriCue": [
+   0,
+   333,
+   1.1e-100
+  ],
+  "md_cg vs v3": [
+   1,
+   349,
+   3.1e-103
+  ],
+  "md_cg vs 旧AGM": [
+   6,
+   210,
+   2.6e-54
+  ],
+  "md_cg×TriCue vs v3": [
+   11,
+   62,
+   9.1e-10
+  ],
+  "md_cg×TriCue vs 旧AGM": [
+   184,
+   25,
+   4.1e-31
+  ],
+  "v3 vs 旧AGM": [
+   215,
+   20,
+   1.9e-42
+  ]
+ }
+}
