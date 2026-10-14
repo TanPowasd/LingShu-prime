@@ -9,7 +9,7 @@ import argparse, hashlib, json, pathlib, sys, time
 
 HERE = pathlib.Path(__file__).resolve().parent
 sys.path[:0] = [str(HERE), str(HERE.parent / "bench"), str(HERE.parent / "confluence")]
-import cc, lex  # noqa: E402
+import cc, lex, rq  # noqa: E402
 from bench_lex import dedup  # noqa: E402
 from lme_zerokey import score  # noqa: E402
 
@@ -41,6 +41,11 @@ def run(m, q, n):
         out[name] = dedup(m.rank_agm(sc), m.turn_of, n)
         out[name + "/单"] = dedup(sorted(sc, key=lambda i: (-sc[i], i)), m.turn_of, n)
     out["F"] = rrf(out["Lex/单"], out["Lex"])
+    res = rq.RQMemory.residual(m, q, base)
+    for mu in (0.3, 0.5, 1.0):
+        sc = rq.RQMemory.fuse(base, res, mu)
+        out[f"RQ{mu}"] = dedup(m.rank_agm(sc), m.turn_of, n)
+        out[f"RQ{mu}/单"] = dedup(sorted(sc, key=lambda i: (-sc[i], i)), m.turn_of, n)
     return out, s
 
 
