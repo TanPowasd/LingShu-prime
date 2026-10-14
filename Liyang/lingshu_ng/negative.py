@@ -57,6 +57,11 @@ class NegativeMemory:
 
     def check(self, kind: Optional[str], text: str, fuzzy: bool = True) -> List[Dict]:
         """X2：与 ``text`` 相同（或高度相似）的开放负记忆，按重犯次数降序。"""
+        if kind is not None:                         # 精确同键走 idx_rejected_key（stab-r12；结果与下方全表筛选逐条相同）
+            exact = self._rows("SELECT * FROM rejected_paths WHERE path_key=? AND status='open' AND path_type=? "
+                               "ORDER BY created_at, id", (path_key(kind, text), kind))
+            if exact or not fuzzy:
+                return sorted(exact, key=lambda r: -(r.get("hits") or 1))
         rows = self.list(status="open")
         if kind is not None:
             rows = [r for r in rows if r["path_type"] == kind]
@@ -79,7 +84,10 @@ class NegativeMemory:
         sql, p = "SELECT * FROM rejected_paths", ()
         if status:
             sql, p = sql + " WHERE status=?", (status,)
-        rows = [dict(r) for r in self.store.db.all(sql + " ORDER BY created_at, id", p)]
+        return self._rows(sql + " ORDER BY created_at, id", p)
+
+    def _rows(self, sql: str, p: tuple) -> List[Dict]:
+        rows = [dict(r) for r in self.store.db.all(sql, p)]
         for r in rows:
             r["count"] = r.get("hits") or 1          # 旧字段名（上游 #216：重犯计数可查）
         return rows

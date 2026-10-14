@@ -36,7 +36,9 @@ _LAST = ("SELECT b.term, b.bno, b.n, b.nk, b.gr FROM json_each(?) j JOIN term_bl
 _AT = ("SELECT DISTINCT b.term, b.bno, b.n, b.nk, b.gr FROM json_each(?) j JOIN term_blocks b "
        "ON b.term = json_extract(j.value, '$[0]') AND b.bno = (SELECT bno FROM term_blocks "
        "WHERE term = json_extract(j.value, '$[0]') AND bno <= json_extract(j.value, '$[1]') ORDER BY bno DESC LIMIT 1)")
-_PUT = "INSERT OR REPLACE INTO term_blocks(term, bno, n, nk, gr) VALUES (?,?,?,?,?)"
+#: 写块：主键冲突时原位更新（stab-r11；与 INSERT OR REPLACE 终值相同——本表无触发器与二级索引——而免去删后重插）
+_PUT = ("INSERT INTO term_blocks(term, bno, n, nk, gr) VALUES (?,?,?,?,?) ON CONFLICT(term, bno) DO UPDATE SET "
+        "n = excluded.n, nk = excluded.nk, gr = excluded.gr")
 #: members()：键数不超过该值时只读含这些键的块（逐键定位），否则读整条倒排
 _SEEK_MAX = 48
 

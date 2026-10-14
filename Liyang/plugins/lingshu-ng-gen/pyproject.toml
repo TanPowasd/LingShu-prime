@@ -11,7 +11,7 @@ description = "灵枢 ng 插件：白箱文生图主干（旧路径 lingshu_ng.g
 readme = "README.md"
 requires-python = ">=3.11"
 license = "MIT"
-dependencies = ["lingshu-ng>=1.26,<2", "lingshu-ng-nn>=1.26,<2", "numpy>=2.3.5,<2.6", "Pillow>=12.2,<13"]
+dependencies = ["lingshu-ng>=1.27,<2", "lingshu-ng-nn>=1.27,<2", "numpy>=2.3.5,<2.6", "Pillow>=12.2,<13"]
 
 [project.entry-points."lingshu_ng.plugins"]
 gen = "lingshu_ng_gen.plugin:PLUGIN"

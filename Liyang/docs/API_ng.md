@@ -1,7 +1,7 @@
-# lingshu_ng 对外 API（rel-v1.26）
+# lingshu_ng 对外 API（rel-v1.27）
 
 本文覆盖 `lingshu_ng` 的公开类与方法、参数、返回值、异常、可选依赖与 `capabilities()` 用法。
-版本：`lingshu_ng.__version__ == "1.26.0"`（发行包 `lingshu-ng`，版本号 = `CHANGELOG_rel-v1.26.md`）。
+版本：`lingshu_ng.__version__ == "1.27.0"`（发行包 `lingshu-ng`，版本号 = `CHANGELOG_rel-v1.27.md`）。
 文末附录 A 由代码生成（`tools/ci/gen_api_appendix.py`），列出兼容门面每个公开方法的支持状态，与运行期
 `capabilities.compat_methods()` 一致。
 

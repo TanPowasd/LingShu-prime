@@ -36,7 +36,7 @@ from ..lexical import LEXV, index_words
 from ..layers import LayerPolicy
 from ..novelty import feature_set, novelty_with
 from .db import Database
-from . import neardup, postings
+from . import blockmove, neardup, postings
 from .schema import chunks, placeholders
 
 __all__ = ["TextIndex", "TAG_PREFIX", "terms_of"]
@@ -154,6 +154,8 @@ class TextIndex:
             return True
         return c.execute("SELECT 1 FROM nodes WHERE rowid > ? LIMIT 1", (self._hw(c),)).fetchone() is not None
 
+    #: 单节点重建（原位改写 / 换键）的倒排改写走 :func:`blockmove.move`（False = 原 remove + add，供等价核对）
+    FAST_MOVE = True
     #: 一次 flush 的脏节点数达到该值时走批量路径（nkey 分配与 v4 批量路径相同，见 :meth:`_bulk_flush`）
     BULK_MIN = 32
     #: 批量路径每批算词元并落 node_index / 倒排块的节点数（Python 侧峰值内存与批大小成正比）
@@ -212,8 +214,10 @@ class TextIndex:
                 ad.setdefault(t, []).append((k, grams))
             dt.update(terms)
             df_.update(feats)
-        postings.remove(c, rm)
-        postings.add(c, ad)
+        if not (len(olds) == 1 and len(news) == 1 and TextIndex.FAST_MOVE and blockmove.move(
+                c, olds[0][1], olds[0][0], news[0][1], news[0][0], news[0][3])):
+            postings.remove(c, rm)                         # 单节点换键走 blockmove.move（只写变了的块，结果逐值相同）
+            postings.add(c, ad)
         TextIndex._counts(c, "term_df", "term", dt)
         TextIndex._counts(c, "feature_df", "feat", df_)
 
@@ -282,8 +286,9 @@ class TextIndex:
         old = c.execute("SELECT nkey, feats, grams FROM node_index WHERE node_id=?", (row[0],)).fetchone()
         if old is None:
             return False
-        mx = c.execute("SELECT nkey FROM node_index WHERE nkey <> ? ORDER BY nkey DESC LIMIT 1", (old[0],)).fetchone()
-        nk = (mx[0] if mx else 0) + 1
+        mx = c.execute("SELECT COALESCE((SELECT MAX(nkey) FROM node_index WHERE nkey > ?1), (SELECT MAX(nkey) FROM "
+                       "node_index WHERE nkey < ?1), 0)", (old[0],)).fetchone()     # 其余行最大 nkey（两段主键范围查找）
+        nk = mx[0] + 1
         p = TextIndex._packed(row)
         ot = TextIndex._old_terms(c, old[0], row[0])
         if nk == old[0] and ot == row[1] and p[1] == old[1] and p[2] == old[2]:

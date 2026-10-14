@@ -35,6 +35,7 @@ from dataclasses import asdict, dataclass, field, replace
 from functools import lru_cache
 from sys import intern as _intern
 from typing import Dict, Iterable, List, Optional, Sequence, Tuple
+from .diag import cache_cap
 
 __all__ = ["LexicalConfig", "WORD_PREFIX", "STOPWORDS", "stem", "tokens", "query_terms", "index_words",
            "is_latin_query", "mixed_route", "cjk_ratio", "Scorer", "config_from_env", "LEXV",
@@ -256,8 +257,7 @@ def stem(w: str) -> str:
     return w
 
 
-# stab-r6：上限恢复 16384（4096 时 100k 召回 p95 ABBA 211→245 ms，8192 仍 237，见 CHANGELOG_rel-v1.22）
-@lru_cache(maxsize=16384)
+@lru_cache(maxsize=cache_cap("LINGSHU_NG_TOKEN_CACHE", 16384))  # stab-r6 定 16384；r11 起可调小（读数不变）
 def _tokens(text: str, use_stem: bool, use_stop: bool) -> Tuple[str, ...]:
     t = unicodedata.normalize("NFKC", text).casefold().replace("\u2019", "'")
     out: List[str] = []

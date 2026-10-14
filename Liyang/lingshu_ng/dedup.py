@@ -27,6 +27,8 @@ from dataclasses import dataclass
 from functools import lru_cache, partial
 from typing import Callable, Dict, FrozenSet, Iterable, List, Optional, Sequence, Tuple
 
+from .diag import cache_cap
+
 __all__ = ["normalize", "normalize_many", "content_key", "content_keys", "bigrams", "jaccard", "polarity", "signature",
            "is_duplicate", "MergePlan", "merge_plan", "SOURCE_TAGS", "DEFAULT_THRESHOLD",
            "clamp_threshold"]
@@ -61,7 +63,7 @@ _DROP = _DropTable()
 _NUM_SEP = re.compile(r"\d[.,:]\d")
 
 
-@lru_cache(maxsize=2048)
+@lru_cache(maxsize=cache_cap("LINGSHU_NG_NORM_CACHE", 2048))
 def normalize(text: Optional[str]) -> str:
     """NFKC + casefold + 去空白与标点；数字内部的小数点/分隔符保留（纯函数，带缓存）。"""
     if not text:
@@ -129,7 +131,7 @@ def content_keys(texts: Sequence[Optional[str]]) -> List[str]:
     return [sha1(n.encode("utf-8")).hexdigest() if n else "" for n in normalize_many(texts)]
 
 
-@lru_cache(maxsize=1024)
+@lru_cache(maxsize=cache_cap("LINGSHU_NG_BIGRAM_CACHE", 1024))  # stab-r11：可调小（256 时 1k 召回 p50 2×，缺省不动）
 def bigrams(text: str) -> FrozenSet[str]:
     """规范化文本的字符二元组集合（长度 ≤1 时为自身）。"""
     s = normalize(text)

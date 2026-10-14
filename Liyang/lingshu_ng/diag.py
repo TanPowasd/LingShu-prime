@@ -29,6 +29,19 @@ def warn_once(key: str, msg: str) -> bool:
     return True
 
 
+def cache_cap(name: str, default: int) -> int:
+    """进程内缓存上限的环境变量（stab-r11）：非负整数，0 = 不缓存；未设/空串 → ``default``；非法值 → ``default``
+    并打一条 WARNING（只影响内存与速度，不影响任何读数）。在模块导入时读取一次。"""
+    import os
+    raw = os.environ.get(name, "").strip()
+    if not raw:
+        return default
+    if raw.isdigit():
+        return int(raw)
+    log.warning("lingshu_ng：%s=%r 不是非负整数，按缺省 %d", name, raw, default)
+    return default
+
+
 def fallbacks() -> Dict[str, str]:
     """本进程迄今发生过的退回：{类别: 说明}（副本）。"""
     with _LOCK:
