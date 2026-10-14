@@ -36,7 +36,7 @@ from ..lexical import LEXV, index_words
 from ..layers import LayerPolicy
 from ..novelty import feature_set, novelty_with
 from .db import Database
-from . import postings
+from . import neardup, postings
 from .schema import chunks, placeholders
 
 __all__ = ["TextIndex", "TAG_PREFIX", "terms_of"]
@@ -403,6 +403,11 @@ class TextIndex:
             ks, gs = postings.read(self.db.conn, term)
         return list(zip(ks, gs))
 
+    def postings_arrays(self, term: str) -> Tuple[Any, Any]:
+        """单个词元的倒排 (nkey 数组, grams 数组)，内容同 :meth:`postings_g`（不展开成 Python 列表）。"""
+        with self.db.lock:
+            return postings.read_arrays(self.db.conn, term)
+
     def postings_len(self, term: str, lo: int, hi: int) -> List[Tuple[int, int]]:
         """:meth:`postings_g` 只留二元组数在 [lo, hi] 内或未知（0）的行。"""
         with self.db.lock:
@@ -475,51 +480,13 @@ class TextIndex:
            每步剔除「已命中 + 剩余可命中 < need_B」的候选，存活为空即停。
 
         所有剪枝都是必要条件，因此结果 ⊇ 全部真近重复；调用方随后逐条核对 Jaccard 与签名，返回值与旧版逐位相同
-        （tests_ng/test_perf_scale.py 对照旧算法）。t ≤ 0 或 t > 1 时沿用旧算法。``extra`` 只用于旧算法。"""
+        （tests_ng/test_perf_scale.py 对照旧算法）。主体在 :mod:`lingshu_ng.store.neardup`（stab-r10：同一判定，常数更小）。t ≤ 0 或 t > 1 时沿用旧算法。``extra`` 只用于旧算法。"""
         self.flush()
         if not grams:
             return set()
         if not 0 < threshold <= 1:
             return self._ndc_prefix(grams, threshold, extra)
-        a = len(grams)
-        need = max(1, math.ceil(threshold * a - 1e-9))
-        dfs = self.df(grams)
-        self.last_probe = (grams, dfs)          # 写入期矛盾检测（conflict C1）复用，免再查一次 df
-        if len(dfs) < need:
-            return set()                      # 库里连 need 个二元组都凑不齐 ⇒ 不可能近重复
-        order = sorted(grams, key=lambda g: (dfs.get(g, 0), g))
-        r = a - need + 1
-        lo = math.floor(threshold * a * (1 - 1e-9))
-        hi = math.ceil(a / threshold * (1 + 1e-9))
-        cnt: Dict[int, int] = {}
-        nb: Dict[int, int] = {}
-        for g in order[:r]:
-            if dfs.get(g, 0) <= 0:
-                continue
-            for k, n in self.postings_len(g, lo, hi):
-                cnt[k] = cnt.get(k, 0) + 1
-                nb[k] = n
-        t1 = threshold / (1.0 + threshold) * (1 - 1e-9)
-        req = {k: (max(need, math.ceil(t1 * (a + n))) if n else need) for k, n in nb.items()}
-        done = r
-        for g in order[r:]:
-            left = a - done
-            dead = [k for k, c in cnt.items() if c + left < req[k]]
-            for k in dead:
-                del cnt[k]
-            if not cnt:
-                break
-            d = dfs.get(g, 0)
-            if d > 0:
-                if d <= len(cnt):
-                    got = [k for k in self.postings(g) if k in cnt]
-                else:
-                    got = self.members(g, sorted(cnt))
-                for k in got:
-                    cnt[k] += 1
-            done += 1
-        keep = [k for k, c in cnt.items() if c >= req[k]]
-        return set(self.node_ids(keep).values())
+        return neardup.candidates(self, grams, threshold)
 
     def _ndc_prefix(self, grams: frozenset, threshold: float, extra: int = 3) -> Set[str]:
         """旧版近重复候选（rel-v1.19 及以前，前缀过滤 + 固定 j）：Jaccard(A,B) ≥ t ⇒ |A∩B| ≥ need=⌈t·|A|⌉ ⇒

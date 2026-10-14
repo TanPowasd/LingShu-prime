@@ -1,7 +1,7 @@
-# lingshu_ng 对外 API（rel-v1.25）
+# lingshu_ng 对外 API（rel-v1.26）
 
 本文覆盖 `lingshu_ng` 的公开类与方法、参数、返回值、异常、可选依赖与 `capabilities()` 用法。
-版本：`lingshu_ng.__version__ == "1.25.0"`（发行包 `lingshu-ng`，版本号 = `CHANGELOG_rel-v1.25.md`）。
+版本：`lingshu_ng.__version__ == "1.26.0"`（发行包 `lingshu-ng`，版本号 = `CHANGELOG_rel-v1.26.md`）。
 文末附录 A 由代码生成（`tools/ci/gen_api_appendix.py`），列出兼容门面每个公开方法的支持状态，与运行期
 `capabilities.compat_methods()` 一致。
 
@@ -36,7 +36,7 @@ pip install lingshu-ng-gen      # 插件：numpy / Pillow / lingshu-ng-nn——l
 **不兼容点**：rel-v1.23 及以前的 extras（`".[embed]"`、`".[world]"`、`".[nn]"`、`".[gen]"`、`".[full]"`、`".[dev]"`）已删除；
 pip 对不存在的 extra 只给警告、照装核心，所以旧命令不会报错但**不会再装上 numpy / onnxruntime 等**，请改装对应插件包。
 
-要求 Python ≥ 3.11。实测（rel-v1.25，`tools/ci/pkg_check.sh` 核心 3.12.15 / 3.11.17 / 3.13.5，`tools/ci/pkg_check_plugins.sh` 核心 / 核心 + embed / + world / + nn / + nn + gen 五组：
+要求 Python ≥ 3.11。实测（rel-v1.26，`tools/ci/pkg_check.sh` 核心 3.12.15 / 3.11.17 / 3.13.5，`tools/ci/pkg_check_plugins.sh` 核心 / 核心 + embed / + world / + nn / + nn + gen 五组：
 干净 venv、非 editable 安装、换到无关目录 import 并跑最小用例）全部通过（Linux aarch64）。Windows 真机未测。
 核心发行包只含 `lingshu_ng`（不含 world / nn / gen 源码）；`Liyang/lingshu/`（上游旧包副本）只用于仓内差分测试，不会被安装。
 

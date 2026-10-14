@@ -78,3 +78,5 @@ stab-r9b 首版（修复前 ec3dc24e）同口径：10k 写入 1.182×（4 个 B 
 - 数据安全：`stress_db.sh` 30 轮（含写入中途 SIGKILL 的 kill 安全用例）86 passed；旧库夹具 rel-v1.10（v3）/ rel-v1.22（v4）/ rel-v1.23（v5）/ 上游 cb3a6ea 在全量内通过。
 - schema 兼容矩阵：发版后代码重跑（`schema_matrix.json`）与发版前（`schema_matrix_pre.json`）90 格逐格相同。
 - LLM 花费 $0。
+
+- 2026-10-14（主代理代推）：LingShu-prime main d6092a59 → **594425cc**（父提交 d6092a59 为 TanPowasd 新提交，34b46f93 之后 4 个 TanPowasd 提交未涉及 `Liyang/`；本提交只改 `Liyang/` 26 个文件）。内容 = wt-rel rel-v1 @ 0863de6a 的发布树。

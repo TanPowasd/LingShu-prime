@@ -20,5 +20,5 @@
 - compat   旧 lingshu.world.* 同名适配（含 scene_model 惰性派生）
 """
 
-__version__ = "1.25.0"   # 插件 lingshu-ng-world 的版本（独立于核心；首个独立发布与核心 1.24.0 同号）
+__version__ = "1.26.0"   # 插件 lingshu-ng-world 的版本（独立于核心；首个独立发布与核心 1.24.0 同号）
 

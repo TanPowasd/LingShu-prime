@@ -26,7 +26,7 @@ import sys
 from bisect import bisect_right
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Set, Tuple
 
-__all__ = ["BLOCK", "BlockCache", "encode", "decode", "read", "read_many", "members", "members_multi", "add", "add_node", "remove", "count", "all_postings", "check"]
+__all__ = ["BLOCK", "BlockCache", "encode", "decode", "read", "read_arrays", "read_many", "members", "members_multi", "add", "add_node", "remove", "count", "all_postings", "check"]
 
 #: 每块最多条数（stab-r6 原型：块 128 时单块 ≤ 768 字节，落在 WITHOUT ROWID 索引 B 树单格本地载荷上限内、无溢出页）
 BLOCK = 128
@@ -78,12 +78,20 @@ def _cur(conn: Any) -> Any:
 
 def read(conn: Any, term: str) -> Tuple[List[int], List[int]]:
     """单个词元的整条倒排：(nkey 升序列表, 对应 grams 列表)。"""
-    ks: List[int] = []
-    gs: List[int] = []
-    for n, nk, gr in _cur(conn).execute("SELECT n, nk, gr FROM term_blocks WHERE term=? ORDER BY bno", (term,)):
+    ks, gs = read_arrays(conn, term)
+    return ks.tolist(), gs.tolist()
+
+
+def read_arrays(conn: Any, term: str) -> Tuple[array.array, array.array]:
+    """:func:`read` 的数组版（内容逐值相同）：各块都是窄编码时拼接字节一次解码（常态），否则逐块解码后拼接。"""
+    rows = _cur(conn).execute("SELECT n, nk, gr FROM term_blocks WHERE term=? ORDER BY bno", (term,)).fetchall()
+    if all(len(nk) == 4 * n and len(gr) == 2 * n for n, nk, gr in rows):
+        return _un("I", b"".join([r[1] for r in rows])), _un("H", b"".join([r[2] for r in rows]))
+    ks, gs = array.array("Q"), array.array("I")
+    for n, nk, gr in rows:
         a, g = decode(n, nk, gr)
-        ks.extend(a)
-        gs.extend(g)
+        ks.fromlist(a.tolist())
+        gs.fromlist(g.tolist())
     return ks, gs
 
 
@@ -380,8 +388,53 @@ def _add_one(c: Any, terms: List[str], k: int, g: int) -> None:
               (BLOCK, k, k, k.to_bytes(4, "little"), g.to_bytes(2, "little"), json.dumps(terms, ensure_ascii=False)))
 
 
+_PREV: Dict[int, str] = {}
+
+
+def _prev_sql(n: int) -> str:
+    sql = _PREV.get(n)
+    if sql is None:
+        sql = _PREV[n] = ("WITH k(t, v) AS (VALUES " + ",".join(["(?,?)"] * n) + ") SELECT k.t, k.v, b.bno, b.n, b.nk, b.gr "
+                          "FROM k JOIN term_blocks b ON b.term = k.t AND b.bno = (SELECT bno FROM term_blocks "
+                          "WHERE term = k.t AND bno < k.v ORDER BY bno DESC LIMIT 1)")
+    return sql
+
+
+def _drop(n: int, nk: bytes, gr: bytes, drop: Set[int]) -> Tuple[int, bytes, bytes]:
+    """块删去 drop 中的键 → 新块 (n, nk, gr)，与「解码 → 过滤 → :func:`encode`」逐字节相同。窄编码块（常态）删后仍窄，
+    直接按键位置切字节（键在块内升序，二分定位）；宽编码块解码重编（删后可能变窄）。"""
+    if len(nk) == 4 * n and len(gr) == 2 * n and not _SWAP:
+        a = memoryview(nk).cast("I")
+        if len(drop) <= 16:
+            pos = []
+            for k in drop:
+                i = bisect_left(a, k)
+                if i < n and a[i] == k:
+                    pos.append(i)
+        else:                                     # 批量删除（大量墓碑）：逐条扫块，免 |drop| × 块数次二分
+            pos = [i for i, k in enumerate(a) if k in drop]
+        if not pos:
+            return n, nk, gr
+        pos.sort()
+        bk, bg, last = [], [], 0
+        for i in pos:
+            bk.append(nk[4 * last:4 * i])
+            bg.append(gr[2 * last:2 * i])
+            last = i + 1
+        bk.append(nk[4 * last:])
+        bg.append(gr[2 * last:])
+        return n - len(pos), b"".join(bk), b"".join(bg)
+    a, g = decode(n, nk, gr)
+    keep = [i for i, k in enumerate(a) if k not in drop]
+    if len(keep) == n:
+        return n, nk, gr
+    return encode([a[i] for i in keep], [g[i] for i in keep])
+
+
 def remove(c: Any, by_term: Dict[str, Set[int]]) -> int:
-    """P3：删除 {词元: {nkey}}。返回实际删掉的条数（调用方可据此核对）。须在写事务内调用。"""
+    """P3：删除 {词元: {nkey}}。返回实际删掉的条数（调用方可据此核对）。须在写事务内调用。
+    stab-r10：块内删除按位置切字节（:func:`_drop`），「改后过小的块并入前一块」所需的前一块一条语句批量读出——
+    读的都是本次改写前的库状态（与 v1.25 逐块查询相同），合并判定与写出的行逐值同 v1.25。"""
     if not by_term:
         return 0
     pairs = [[t, k] for t in sorted(by_term) for k in sorted(by_term[t])]
@@ -391,41 +444,42 @@ def remove(c: Any, by_term: Dict[str, Set[int]]) -> int:
         for t, bno, n, nk, gr in cur.execute(_AT, (json.dumps(part, ensure_ascii=False),)):
             blocks[(t, bno)] = (n, nk, gr)
     removed = 0
-    put: Dict[Tuple[str, int], Tuple[List[int], List[int]]] = {}
-    for (t, bno) in sorted(blocks):
-        n, nk, gr = blocks[(t, bno)]
-        a, g = decode(n, nk, gr)
-        drop = by_term[t]
-        ks = [k for k in a if k not in drop]
-        removed += n - len(ks)
-        if len(ks) == n:
-            continue
-        gs = [x for k, x in zip(a, g) if k not in drop]
-        put[(t, bno)] = (ks, gs)
+    put: Dict[Tuple[str, int], Tuple[int, bytes, bytes]] = {}
+    for key in sorted(blocks):
+        n, nk, gr = blocks[key]
+        new = _drop(n, nk, gr, by_term[key[0]])
+        removed += n - new[0]
+        if new[0] != n:
+            put[key] = new
+    small = [key for key in sorted(put) if 0 < put[key][0] < BLOCK // 4]
+    prevs: Dict[Tuple[str, int], tuple] = {}
+    for part in _chunks(small, 400):
+        for t, v, bno, n, nk, gr in cur.execute(_prev_sql(len(part)), [x for key in part for x in key]):
+            prevs[(t, v)] = (bno, n, nk, gr)
     dels: List[Tuple[str, int]] = []
     for (t, bno) in sorted(put):
-        ks, gs = put[(t, bno)]
-        if not ks:
+        n = put[(t, bno)][0]
+        if not n:
             dels.append((t, bno))
             continue
-        if len(ks) < BLOCK // 4:
+        if n < BLOCK // 4:
             prev = None                           # 紧邻的前一块（库里 bno < 本块的最大者；若本批改过则取改后内容）
-            r = cur.execute("SELECT bno, n, nk, gr FROM term_blocks WHERE term=? AND bno<? ORDER BY bno DESC LIMIT 1",
-                            (t, bno)).fetchone()
+            r = prevs.get((t, bno))
             if r is not None:
                 if (t, r[0]) in put:
                     if put[(t, r[0])][0]:
                         prev = (r[0], put[(t, r[0])])
                 else:
-                    a, g = decode(r[1], r[2], r[3])
-                    prev = (r[0], (list(a), list(g)))
-            if prev is not None and len(prev[1][0]) + len(ks) <= BLOCK:
-                pb, (pk, pg) = prev
-                put[(t, pb)] = (pk + ks, pg + gs)
-                put[(t, bno)] = ([], [])
+                    prev = (r[0], r[1:])
+            if prev is not None and prev[1][0] + n <= BLOCK:
+                pb, (pn, pk, pg) = prev
+                a, g = decode(pn, pk, pg)
+                b, h = decode(*put[(t, bno)])
+                put[(t, pb)] = encode(list(a) + list(b), list(g) + list(h))
+                put[(t, bno)] = (0, b"", b"")
                 dels.append((t, bno))
     c.executemany("DELETE FROM term_blocks WHERE term=? AND bno=?", dels)
-    c.executemany(_PUT, [(t, b) + encode(ks, gs) for (t, b), (ks, gs) in sorted(put.items()) if ks])
+    c.executemany(_PUT, [(t, b) + v for (t, b), v in sorted(put.items()) if v[0]])
     return removed
 
 
