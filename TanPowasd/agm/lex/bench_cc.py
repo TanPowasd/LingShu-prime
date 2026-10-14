@@ -9,7 +9,7 @@ import argparse, hashlib, json, pathlib, sys, time
 
 HERE = pathlib.Path(__file__).resolve().parent
 sys.path[:0] = [str(HERE), str(HERE.parent / "bench"), str(HERE.parent / "confluence")]
-import cc, lex, rq, tm  # noqa: E402
+import cc, lex, rq, tm, ax  # noqa: E402
 import os
 ARMS = os.environ.get('BENCH_ARMS', 'cc,rq,tm').split(',')
 from bench_lex import dedup  # noqa: E402
@@ -46,6 +46,9 @@ def run(m, q, n):
     if "tm" in ARMS:
         tx = tm.TMMemory.tm(m, q)
         arms += [(f"TM{l}", tm.TMMemory.fuse(base, tx, l)) for l in LAMS]
+    if "ax" in ARMS:
+        qt = m._toks(q)
+        arms += [(k, ax.score(m.c_sdm, qt, **cfg)) for k, cfg in ax.ARMS.items()]
     for name, sc in arms:
         out[name] = dedup(m.rank_agm(sc), m.turn_of, n)
         out[name + "/单"] = dedup(sorted(sc, key=lambda i: (-sc[i], i)), m.turn_of, n)
