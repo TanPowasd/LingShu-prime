@@ -145,4 +145,4 @@ A = rel-v1.28（`/workspace/work/ls/_stab14/a128`，`git archive 3fcabc6e` 整�
 
 ## 推送记录
 
-（推送后补。）
+- 2026-10-14 18:36（UTC+8）推送 TanPowasd/LingShu-prime main **705e13dc**（只改 Liyang/ 32 个文件）；发布树 wt-rel rel-v1 = 31aa20fb。

@@ -25,6 +25,7 @@ import re
 import unicodedata
 from dataclasses import dataclass
 from functools import lru_cache, partial
+from operator import add
 from typing import Callable, Dict, FrozenSet, Iterable, List, Optional, Sequence, Tuple
 
 from .diag import cache_cap
@@ -131,21 +132,38 @@ def content_keys(texts: Sequence[Optional[str]]) -> List[str]:
     return [sha1(n.encode("utf-8")).hexdigest() if n else "" for n in normalize_many(texts)]
 
 
-@lru_cache(maxsize=cache_cap("LINGSHU_NG_BIGRAM_CACHE", 1024))  # stab-r11：可调小（256 时 1k 召回 p50 2×，缺省不动）
+@lru_cache(maxsize=cache_cap("LINGSHU_NG_BIGRAM_CACHE", 1024))  # stab-r11：可调小
+def _bigram_src(text: str) -> str:
+    """stab-r15：二元组缓存只存规范化串（与 normalize 缓存共用同一对象），不再常驻上千个 frozenset（10k 时约 11.6 MB）。"""
+    return normalize(text)
+
+
 def bigrams(text: str) -> FrozenSet[str]:
     """规范化文本的字符二元组集合（长度 ≤1 时为自身）。"""
-    s = normalize(text)
+    s = _bigram_src(text)
     if len(s) <= 1:
         return frozenset({s}) if s else frozenset()
-    return frozenset(s[i:i + 2] for i in range(len(s) - 1))
+    return frozenset(map(add, s, s[1:]))
+
+
+@lru_cache(maxsize=cache_cap("LINGSHU_NG_BIGRAM_CACHE", 1024))
+def bigram_count(text: str) -> int:
+    """``len(bigrams(text))``（stab-r15：只缓存整数，供只要个数的调用方）。"""
+    return len(bigrams(text))
+
+
+bigrams.cache_info = _bigram_src.cache_info  # type: ignore[attr-defined]  # 环境变量/诊断沿用 bigrams 名
+bigrams.cache_clear = _bigram_src.cache_clear  # type: ignore[attr-defined]
 
 
 def jaccard(a: Iterable[str], b: Iterable[str]) -> float:
-    """集合 Jaccard（任一为空 ⇒ 0）。"""
-    sa, sb = set(a), set(b)
+    """集合 Jaccard（任一为空 ⇒ 0）。stab-r15：已是集合时不复制，并集大小按 |A|+|B|−|A∩B| 计（逐值相同）。"""
+    sa = a if isinstance(a, (set, frozenset)) else set(a)
+    sb = b if isinstance(b, (set, frozenset)) else set(b)
     if not sa or not sb:
         return 0.0
-    return len(sa & sb) / len(sa | sb)
+    i = len(sa & sb)
+    return i / (len(sa) + len(sb) - i)
 
 
 def polarity(text: str, tags: Sequence[str] = ()) -> str:

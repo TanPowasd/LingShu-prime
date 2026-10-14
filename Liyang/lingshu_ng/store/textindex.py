@@ -63,7 +63,7 @@ def _pack(items: Sequence[str]) -> str:
 def terms_of(content: Optional[str], tags: Sequence[str]) -> Tuple[List[str], int]:
     """(词元表, 正文二元组个数)。"""
     grams = dedup.bigrams(content or "")
-    terms = set(grams) | {TAG_PREFIX + t for t in tags if t} | set(index_words(content))
+    terms = grams.union({TAG_PREFIX + t for t in tags if t}, index_words(content))
     return sorted(terms), len(grams)
 
 

@@ -10,19 +10,15 @@ ng 原词面检索（:mod:`lingshu_ng.retrieval` Q1/Q2 + :mod:`lingshu_ng.rerank
 本模块给「以拉丁文字为主」的查询换一条词面通路（中文查询仍走原通路，逐位不变）：
   L1 分词：NFKC + casefold；拉丁/数字串按词切分，去英文停用词，做轻量词干（复数、-ing/-ed/-ly、尾 e）；
      中日韩串取字二元组（单字串取单字）。:func:`tokens`。
-  L2 索引：拉丁词干以 ``WORD_PREFIX`` + 词干写进同一张派生倒排（store.textindex，写时维护，df 精确）；
-     中日韩二元组与原索引词元相同（规范化二元组的子集），不重复登记。
-  L3 打分：BM25（k1、b；dl/avgdl 以正文字符数计，avgdl 读库内统计并缓存）
-     + SDM 邻近项（相邻查询词的有序紧邻 #1 与无序窗口 #uwN，各按 BM25 饱和函数计）
-     + 可选段落项（正文切成定长词窗，取最佳窗的 BM25，缓解「长轮里只有一处相关」被长度归一压低）
+  L2 索引：拉丁词干以 ``WORD_PREFIX`` + 词干写进同一张派生倒排（store.textindex，写时维护，df 精确）；中日韩二元组不重复登记。
+  L3 打分：BM25（k1、b；dl/avgdl 以正文字符数计，avgdl 读库内统计并缓存）+ SDM 邻近项（相邻查询词的有序紧邻 #1
+     与无序窗口 #uwN，各按 BM25 饱和函数计）+ 可选段落项（定长词窗最佳窗 BM25，缓解长轮只有一处相关被压低）
      + 可选上下文聚合（写入序相邻节点的分数按 β 叠加：同一会话前后轮彼此作证）。
      相关度 = 分数 / 池内最高分（∈[0,1]，与原相关度同量纲，Q4 组合分权重不变）。
-  L4 候选：查询词元按 df 升序（idf 降序）展开倒排，累计行数超 ``budget`` 停止展开；
-     以「已命中词元 idf 和」取前 ``cand_max`` 名精排。候选不超过 cand_max 且未超预算时与暴力全库精排
-     (:func:`brute_force_v2`) 逐名次相同。
+  L4 候选：查询词元按 df 升序展开倒排，累计行数超 ``budget`` 停止；以「已命中词元 idf 和」取前 ``cand_max`` 名精排
+     （候选不超过 cand_max 且未超预算时与暴力全库精排 :func:`brute_force_v2` 逐名次相同）。
 
-配置 :class:`LexicalConfig`：引擎构造参数 / ``MemoryEngine.set_lexical`` / 环境变量 ``LINGSHU_NG_LEXICAL``（JSON 覆盖）。
-``enabled=False`` 即完全回到旧通路。
+配置 :class:`LexicalConfig`：引擎构造参数 / ``MemoryEngine.set_lexical`` / 环境变量 ``LINGSHU_NG_LEXICAL``（JSON 覆盖）；``enabled=False`` 即回到旧通路。
 """
 from __future__ import annotations
 
@@ -33,7 +29,7 @@ import re
 import unicodedata
 from dataclasses import asdict, dataclass, field, replace
 from functools import lru_cache
-from sys import intern as _intern
+from operator import add
 from typing import Dict, Iterable, List, Optional, Sequence, Tuple
 from .diag import cache_cap
 
@@ -258,24 +254,19 @@ def stem(w: str) -> str:
 
 
 @lru_cache(maxsize=cache_cap("LINGSHU_NG_TOKEN_CACHE", 16384))  # stab-r6 定 16384；r11 起可调小（读数不变）
-def _tokens(text: str, use_stem: bool, use_stop: bool) -> Tuple[str, ...]:
+def _tokens(text: str, use_stem: bool, use_stop: bool) -> str:
+    """stab-r15：缓存紧凑串——段以空格相连，CJK 段存整段（取用时展开为二元组），见 tokens。"""
     t = unicodedata.normalize("NFKC", text).casefold().replace("\u2019", "'")
     out: List[str] = []
     for m in _run_re().finditer(t):
         cjk, lat = m.group(1), m.group(2)
         if cjk:
-            if len(cjk) == 1:
-                out.append(_intern(cjk))
-            else:
-                out.extend(_intern(cjk[i:i + 2]) for i in range(len(cjk) - 1))
-        else:
-            if use_stop and lat in STOPWORDS:
-                continue
+            out.append(cjk)
+        elif not (use_stop and lat in STOPWORDS):
             w = stem(lat) if use_stem else lat
             if w and not (use_stop and w in STOPWORDS):
-                out.append(_intern(w))
-    # stab-r5：词元驻留（sys.intern）——缓存里上万条词元序列共用同一批词元字符串对象（值不变，只省内存）
-    return tuple(out)
+                out.append(w)
+    return " ".join(out)
 
 
 def tokens(text: Optional[str], cfg: Optional[LexicalConfig] = None) -> Tuple[str, ...]:
@@ -283,7 +274,16 @@ def tokens(text: Optional[str], cfg: Optional[LexicalConfig] = None) -> Tuple[st
     if not text:
         return ()
     c = cfg or _DEFAULT
-    return _tokens(str(text), c.stem, c.stop)
+    p = _tokens(str(text), c.stem, c.stop)
+    if not p or p.isascii():
+        return tuple(p.split(" ")) if p else ()
+    out: List[str] = []  # 段不含空格/不为空；拉丁段无 CJK 字；CJK 段长 ≤2 即其词元，≥3 展开为相邻二元组（同序同值）
+    for g in p.split(" "):
+        if len(g) > 2 and _CJK_CH.match(g):
+            out.extend(map(add, g, g[1:]))
+        else:
+            out.append(g)
+    return tuple(out)
 
 
 _CJK_CH = re.compile(rf"[{_CJK}]")
@@ -294,10 +294,10 @@ def _is_cjk_token(t: str) -> bool:
 
 
 def index_words(text: Optional[str]) -> List[str]:
-    """L2：要写进派生倒排的拉丁词干词元（带 WORD_PREFIX；按默认分词规则，去重）。
-    倒排只用于候选展开——打分时按查询所用配置重新分词，故改 stem/stop 配置不需要重建索引
-    （关闭词干/停用词时候选可能略少，属近似，见 Scorer.rank 的说明）。"""
-    return sorted({WORD_PREFIX + t for t in tokens(text, _DEFAULT) if not _is_cjk_token(t)})
+    """L2：要写进派生倒排的拉丁词干词元（带 WORD_PREFIX；按默认分词规则，去重）。倒排只用于候选展开——打分时按查询所用
+    配置重新分词，故改 stem/stop 配置不需要重建索引（关闭词干/停用词时候选可能略少，属近似，见 Scorer.rank 的说明）。"""
+    p = _tokens(str(text), _DEFAULT.stem, _DEFAULT.stop) if text else ""  # stab-r15：直接读紧凑串，中日韩段整段跳过（同值）
+    return sorted({WORD_PREFIX + g for g in p.split(" ") if g and not _CJK_CH.match(g)})
 
 
 def index_term(tok: str) -> str:

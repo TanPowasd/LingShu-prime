@@ -495,5 +495,5 @@
 "lingshu_ng.types.WriteResult.fields": "node_id, action, layer, reason",
 "lingshu_ng.types.WriteResult.reason": "attr str"
 },
-"version": "1.29.0"
+"version": "1.30.0"
 }

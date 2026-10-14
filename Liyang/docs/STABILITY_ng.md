@@ -1,4 +1,4 @@
-# lingshu_ng 版本与弃用策略（rel-v1.22 起；rel-v1.24 补插件包；rel-v1.25 schema v6；rel-v1.26 / rel-v1.27 / rel-v1.28 无结构变化；rel-v1.29 schema v7）
+# lingshu_ng 版本与弃用策略（rel-v1.22 起；rel-v1.24 补插件包；rel-v1.25 schema v6；rel-v1.26 / rel-v1.27 / rel-v1.28 无结构变化；rel-v1.29 schema v7；rel-v1.30 无结构变化）
 
 本文规定 `lingshu_ng` 的版本号含义、哪些名字算公开 API、怎样弃用与删除、以及哪个版本能打开哪个结构版本（schema）的库。
 公开 API 清单（文末附录）与签名快照 `tests_ng/api_snapshot.json` 都由代码生成（`tools/ci/gen_api_appendix.py --stability / --snapshot`，
@@ -29,7 +29,7 @@
   `lingshu_ng.world`、`nn`、`gen` 子包（另一条重写线，未纳入本策略；rel-v1.24 起源码在插件包 lingshu-ng-world / -nn / -gen，旧导入路径照旧）、
   插件能力名（`cross_backend` 等）与插件内部模块（`lingshu_ng_embed.*` 等）、`bench_*` / `tools/` 脚本。
 - **插件包版本**：每个插件包（`lingshu-ng-embed` / `-world` / `-nn` / `-gen`）有自己的版本号（`lingshu_ng_<名>.__version__`，同样按 semver），
-  首次独立发布为 1.24.0，rel-v1.25 为 1.25.0、rel-v1.26 为 1.26.0、rel-v1.27 为 1.27.0、rel-v1.28 为 1.28.0、rel-v1.29 为 1.29.0（与核心同号发布，插件代码未改）；插件声明所需核心区间（当前 `lingshu-ng>=1.29,<2`）。核心与插件可分别升级；核心的插件接口按本策略演进。
+  首次独立发布为 1.24.0，rel-v1.25 为 1.25.0、rel-v1.26 为 1.26.0、rel-v1.27 为 1.27.0、rel-v1.28 为 1.28.0、rel-v1.29 为 1.29.0、rel-v1.30 为 1.30.0（与核心同号发布，插件代码未改）；插件声明所需核心区间（当前 `lingshu-ng>=1.30,<2`）。核心与插件可分别升级；核心的插件接口按本策略演进。
 - `capabilities()` 返回字典的**键**算公开；取值随环境变化（这正是它的用途）。
 
 ## 3. 弃用流程
@@ -44,7 +44,7 @@
    只有新增而版本号未升且未点名 ⇒ 拒绝。快照的版本不得高于代码版本（`test_snapshot_version_not_ahead`）。
 5. 签名快照只记参数名、种类、缺省值，不记类型注解（注解的字符串形式随 Python 小版本变化）；Python 3.11 / 3.12 / 3.13 下快照相同（多 Python 矩阵跑同一测试）。
 
-截至 rel-v1.29 没有处于弃用期的名字。rel-v1.29 公开名字不变，只有常量 `lingshu_ng.store.schema.SCHEMA_VERSION` 的值 6 → 7（快照随之更新）。rel-v1.26、rel-v1.27、rel-v1.28 公开名字与签名都不变（快照只改版本号）。rel-v1.25 公开名字不变，只有常量 `lingshu_ng.store.schema.SCHEMA_VERSION` 的值 5 → 6（快照随之更新）。rel-v1.24 拆包没有删除或改签名任何公开名字（快照 469 → 494 项，只有新增 `lingshu_ng.plugins` 的 25 项）；
+截至 rel-v1.30 没有处于弃用期的名字。rel-v1.30 公开名字与签名都不变（快照只改版本号）。rel-v1.29 公开名字不变，只有常量 `lingshu_ng.store.schema.SCHEMA_VERSION` 的值 6 → 7（快照随之更新）。rel-v1.26、rel-v1.27、rel-v1.28 公开名字与签名都不变（快照只改版本号）。rel-v1.25 公开名字不变，只有常量 `lingshu_ng.store.schema.SCHEMA_VERSION` 的值 5 → 6（快照随之更新）。rel-v1.24 拆包没有删除或改签名任何公开名字（快照 469 → 494 项，只有新增 `lingshu_ng.plugins` 的 25 项）；
 发行包层面的不兼容（extras 删除、`capabilities()["dependencies"]` 只列插件声明的依赖）见 CHANGELOG_rel-v1.24「不兼容点」。
 
 ## 4. schema 前后兼容矩阵
@@ -53,7 +53,7 @@
 v2（ng 早期，ec5a2aea，未发布）→ **v3**（4bfafa7b 派生倒排索引；rel-v1 … rel-v1.20）→ **v4**（368c3323 触发器 `trg_index_upd`；rel-v1.21、rel-v1.22）
 → **v5**（4e3fbb8a 倒排分块 blob `term_blocks` + 墓碑 `index_tomb` / `trg_index_tomb`，删除 `node_terms` 与 `trg_index_ins/del/upd`；rel-v1.23、rel-v1.24）
 → **v6**（60331504 `node_index` 删除 `terms` 列；新增 `index_old` 与 `trg_nodes_bins`，墓碑改带旧正文，`index_state('tokfp')` 分词指纹；rel-v1.25–v1.28）
-→ **v7**（stab-r14：删除派生表 `term_df`（词元 df = 倒排块条数之和），倒排块 grams 窄编码 uint16 → uint8；rel-v1.29）。
+→ **v7**（rel-v1.30 无结构变化，仍为 v7；stab-r14：删除派生表 `term_df`（词元 df = 倒排块条数之和），倒排块 grams 窄编码 uint16 → uint8；rel-v1.29）。
 上游旧引擎（FuRongJun-1999/lingshu cb3a6ea）写出的库没有 ng 的版本标记。
 
 **实测**（`_stab/r14/schema_matrix.py`，读数 `_stab/r14/qgate/schema_matrix.json`（rel-v1.29 代码，182 格；其中与 `_stab/r13/qgate/schema_matrix.json` 共有的 132 格逐格相同，r13 的「cur」（= rel-v1.28 代码）24 格与本次 rel-v1.28 行 / 列逐格相同）；

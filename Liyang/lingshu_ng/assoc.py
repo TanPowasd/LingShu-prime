@@ -18,7 +18,7 @@ import os
 from dataclasses import dataclass, fields, replace
 from typing import Dict, List, Optional, Sequence, Set, Tuple
 
-from .dedup import bigrams, normalize
+from .dedup import bigram_count, bigrams, normalize
 
 __all__ = ["AssocConfig", "config_from_env", "Associator"]
 
@@ -208,7 +208,7 @@ class Associator:
                     want.update(k - d for d in range(1, 3 * span + 1))
         for rid, (nid, c) in self._rows_by_seq({w for w in want if w not in ctx.inv}).items():
             if nid not in ctx.rows:
-                ctx.rows[nid] = (c, len(bigrams(c)), rid)
+                ctx.rows[nid] = (c, bigram_count(c), rid)
             ctx.seq.setdefault(nid, rid)
             ctx.inv.setdefault(rid, nid)
         fresh = [ctx.inv[w] for w in want if w in ctx.inv and ctx.inv[w] not in ctx.ok]
@@ -573,8 +573,8 @@ def _walk(W: List[Dict[int, float]], p: List[float], alpha: float, iters: int) -
 
 
 def _jac(a, b) -> float:
-    """集合 Jaccard。"""
-    return len(a & b) / max(1, len(a | b))
+    i = len(a & b)  # 集合 Jaccard；stab-r15：并集大小按 |A|+|B|−|A∩B| 计（不建并集，逐值相同）
+    return i / max(1, len(a) + len(b) - i)
 
 
 def _rrf(head: List[str], a: List[str], b: List[str], k: int, wb: float) -> List[str]:

@@ -12,7 +12,7 @@ from . import _alias as _alias  # noqa: E402  split-r1：旧子包 lingshu_ng.{w
 
 _alias.install()
 
-__version__ = "1.29.0"
+__version__ = "1.30.0"
 
 #: 对外入口模块（stab-r5 登记）：宿主与旧 API 别名（tests_ng/ng_switch.py：lingshu.core.core / activation / provenance）
 #: 按名导入，包内不 import 它们。``lingshu_ng.<名>`` 属性访问时懒加载，不增加 ``import lingshu_ng`` 的耗时。
