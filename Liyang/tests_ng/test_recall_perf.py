@@ -95,7 +95,7 @@ def test_reopen_legacy_db_backfills_index(tmp_path):
     c = sqlite3.connect(p)                                     # 模拟旧库：无派生表与触发器
     for t in ("trg_nodes_ins", "trg_nodes_bins", "trg_nodes_upd", "trg_nodes_del"):
         c.execute(f"DROP TRIGGER {t}")
-    for t in ("term_blocks", "index_tomb", "index_old", "term_df", "feature_df", "node_index", "index_dirty"):
+    for t in ("term_blocks", "index_tomb", "index_old", "feature_df", "node_index", "index_dirty"):
         c.execute(f"DROP TABLE {t}")
     c.execute("INSERT INTO nodes (id, content, layer, tags) VALUES ('legacy_1', '旧版写入的钥匙记录', 'knowledge', '[]')")
     c.commit()

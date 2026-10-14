@@ -18,7 +18,6 @@ def _db():
     c = sqlite3.connect(":memory:", isolation_level=None)
     c.execute("CREATE TABLE term_blocks(term TEXT NOT NULL, bno INTEGER NOT NULL, n INTEGER NOT NULL, nk BLOB NOT NULL, "
               "gr BLOB NOT NULL, PRIMARY KEY(term, bno)) WITHOUT ROWID")
-    c.execute("CREATE TABLE term_df(term TEXT PRIMARY KEY, df INTEGER NOT NULL DEFAULT 0)")
     return c
 
 
@@ -29,7 +28,6 @@ def _rows(c):
 def _clone(c):
     d = _db()
     d.executemany("INSERT INTO term_blocks VALUES (?,?,?,?,?)", _rows(c))
-    d.executemany("INSERT INTO term_df VALUES (?,?)", c.execute("SELECT term, df FROM term_df").fetchall())
     return d
 
 
@@ -69,9 +67,6 @@ def test_move_equals_remove_then_add(small_blocks, seed):
             ref = _clone(c)
             postings.remove(ref, {t: {k} for t in old})
             postings.add(ref, {t: [(kn, g)] for t in new})
-            c.execute("UPDATE term_df SET df = 0")
-            c.executemany("INSERT INTO term_df VALUES (?, ?) ON CONFLICT(term) DO UPDATE SET df = excluded.df",
-                          [(t, n) for t, n in c.execute("SELECT term, SUM(n) FROM term_blocks GROUP BY term").fetchall()])
             assert blockmove.move(c, old, k, new, kn, g) is True
             assert _rows(c) == _rows(ref), (seed, step)
             have[kn] = new
@@ -104,7 +99,8 @@ def test_move_declines_out_of_narrow_range():
 def _dump_raw(e):
     c = e.store.conn
     out = {t: [tuple(r) for r in c.execute(f"SELECT * FROM {t} ORDER BY 1, 2").fetchall()]
-           for t in ("term_df", "feature_df", "term_blocks")}
+           for t in ("feature_df", "term_blocks")}
+    out["df"] = [tuple(r) for r in c.execute("SELECT term, SUM(n) FROM term_blocks GROUP BY term ORDER BY term")]
     out["node_index"] = [tuple(r) for r in c.execute(
         "SELECT ni.nkey, n.rowid, ni.feats, ni.grams FROM node_index ni JOIN nodes n ON n.id = ni.node_id ORDER BY 1")]
     return out

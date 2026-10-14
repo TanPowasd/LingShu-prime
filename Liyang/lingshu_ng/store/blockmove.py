@@ -18,15 +18,16 @@ from .postings import _utf8
 __all__ = ["move"]
 
 _MVQ: Dict[int, str] = {}
-#: move()：term_df 不超过该值的词元整条读块（一条语句；df 只影响读法，不影响结果）
+#: move()：df（块条数之和；v6 为 term_df）不超过该值的词元整条读块（一条语句；df 只影响读法，不影响结果）
 _MV_DF = 4 * postings.BLOCK
-_MV_SMALL = ("SELECT j.value, COALESCE(d.df, 0) > ?1, b.bno, b.n, b.nk, b.gr FROM json_each(?2) j LEFT JOIN term_df d "
-             "ON d.term = j.value LEFT JOIN term_blocks b ON b.term = j.value AND COALESCE(d.df, 0) <= ?1")
+_MV_SMALL = ("WITH d(t, df) AS (SELECT j.value, (SELECT COALESCE(SUM(n), 0) FROM term_blocks WHERE term = j.value) "
+             "FROM json_each(?2) j) SELECT d.t, d.df > ?1, b.bno, b.n, b.nk, b.gr FROM d LEFT JOIN term_blocks b "
+             "ON b.term = d.t AND d.df <= ?1")
 
 
 #: stab-r12 末块摘要（不读块字节）：bno / n / 窄编码与否 / 末键 / 末 grams / 紧邻前一块的 n
-_TAIL = ("SELECT j.value, b.bno, b.n, length(b.nk) = 4 * b.n AND length(b.gr) = 2 * b.n, substr(b.nk, -4), "
-         "substr(b.gr, -2), (SELECT p.n FROM term_blocks p WHERE p.term = j.value AND p.bno < b.bno ORDER BY p.bno DESC "
+_TAIL = ("SELECT j.value, b.bno, b.n, length(b.nk) = 4 * b.n AND length(b.gr) IN (b.n, 2 * b.n), substr(b.nk, -4), "
+         "substr(b.gr, -(length(b.gr) / b.n)), (SELECT p.n FROM term_blocks p WHERE p.term = j.value AND p.bno < b.bno ORDER BY p.bno DESC "
          "LIMIT 1) FROM json_each(?) j JOIN term_blocks b ON b.term = j.value AND b.bno = "
          "(SELECT bno FROM term_blocks WHERE term = j.value ORDER BY bno DESC LIMIT 1)")
 #: stab-r12 删除侧：每个词元含待删键 ?1 的块（bno ≤ ?1 的最大者，同 postings._AT）与其紧邻前一块（前一块的字节只在
@@ -41,12 +42,13 @@ _RM = ("SELECT j.value, b.bno, b.n, b.nk, b.gr, p.bno, p.n, CASE WHEN b.n <= ?3 
 _ADD = ("INSERT INTO term_blocks(term, bno, n, nk, gr) SELECT j.value, COALESCE((SELECT CASE WHEN n < ?1 THEN bno "
         "ELSE ?2 END FROM term_blocks WHERE term = j.value ORDER BY bno DESC LIMIT 1), ?2), 1, ?3, ?4 FROM json_each(?5) j "
         "WHERE 1 ON CONFLICT(term, bno) DO UPDATE SET n = n + 1, nk = CAST(nk || excluded.nk AS BLOB), "
-        "gr = CAST(gr || excluded.gr AS BLOB) WHERE length(nk) = 4 * n AND length(gr) = 2 * n")
+        "gr = CAST(gr || CASE WHEN length(gr) = n THEN excluded.gr ELSE ?6 END AS BLOB) "
+        "WHERE length(nk) = 4 * n AND length(gr) IN (n, 2 * n)")
 
 
-def _tail_ok(bno: int, n: int, narrow: Any, lk: Any, lg: Any, pn: Optional[int], k: int, kb: bytes, gb: bytes) -> bool:
+def _tail_ok(bno: int, n: int, narrow: Any, lk: Any, lg: Any, pn: Optional[int], k: int, kb: bytes, g: int) -> bool:
     """:func:`_same_tail` 的摘要版（判定条件逐条相同）：只凭末块摘要判定「同键删后追加回原值、块不变」。"""
-    if not narrow or bytes(lk) != kb or bytes(lg) != gb:
+    if not narrow or bytes(lk) != kb or int.from_bytes(bytes(lg), "little") != g:
         return False
     if n == 1:
         return bno == k and (pn is None or pn >= postings.BLOCK)
@@ -66,14 +68,14 @@ def _mv_sql(n: int) -> str:
 
 
 def _narrow(b: tuple) -> bool:
-    return len(b[1]) == 4 * b[0] and len(b[2]) == 2 * b[0]
+    return len(b[1]) == 4 * b[0] and len(b[2]) in (b[0], 2 * b[0])
 
 
 def _same_tail(bl: Dict[int, tuple], k: int, g: int) -> bool:
     """同键删后追加回原值、块不变的常态：k 是末块（窄编码）的末键且 grams 未变，删后既不删空也不并入前一块。"""
     lb = max(bl)
     n, nk, gr = bl[lb]
-    if not _narrow(bl[lb]) or nk[-4:] != k.to_bytes(4, "little") or gr[-2:] != g.to_bytes(2, "little"):
+    if not _narrow(bl[lb]) or nk[-4:] != k.to_bytes(4, "little") or int.from_bytes(gr[-(len(gr) // n):], "little") != g:
         return False
     prev = [b for b in bl if b < lb]
     pn = bl[max(prev)][0] if prev else None
@@ -108,7 +110,7 @@ def _mv_term(bl: Dict[int, tuple], ko: Optional[int], kn: Optional[int], g: int)
                     bl[bk] = new
     if kn is None:
         return True
-    ent = (1, kn.to_bytes(4, "little"), g.to_bytes(2, "little"))
+    ent = (1, kn.to_bytes(4, "little"), g.to_bytes(1, "little"))     # g < 256（调用方已保证）
     if not bl:
         bl[kn] = ent
         return True
@@ -116,7 +118,8 @@ def _mv_term(bl: Dict[int, tuple], ko: Optional[int], kn: Optional[int], g: int)
     n, nk, gr = bl[lb]
     if not _narrow(bl[lb]) or (n and kn <= int.from_bytes(nk[-4:], "little")):
         return False
-    bl[lb if n < postings.BLOCK else kn] = (n + 1, nk + ent[1], gr + ent[2]) if n < postings.BLOCK else ent
+    bl[lb if n < postings.BLOCK else kn] = ((n + 1, nk + ent[1], gr + g.to_bytes(len(gr) // n, "little"))
+                                            if n < postings.BLOCK else ent)
     return True
 
 
@@ -124,8 +127,8 @@ def _move_r11(c: Any, old_terms: Sequence[str], ko: int, new_terms: Sequence[str
     """单个节点换键/换词元（stab-r11）：等价于 ``remove({t: {ko} for t in old_terms})`` 后接
     ``add({t: [(kn, g)] for t in new_terms})``，但一条语句读出所涉块、在内存里按两者的规则模拟、只写出内容真正变了的块
     （同键改标签时绝大多数词元的末块删后又追加回原字节，不再写）。前提同 :func:`add`：kn 大于删除后这些词元的全部键。
-    返回 False 表示未做任何写入、调用方应走原路径（宽编码 / 超窄编码范围 / 前提不成立）。须在写事务内调用。"""
-    if _SWAP or kn >= 1 << 32 or g >= 1 << 16:
+    返回 False 表示未做任何写入、调用方应走原路径（宽编码 / 超窄编码范围（grams ≥ 2^8）/ 前提不成立）。须在写事务内调用。"""
+    if _SWAP or kn >= 1 << 32 or g >= 1 << 8:
         return False
     rm, ad = set(old_terms), set(new_terms)
     terms = sorted(rm | ad)
@@ -172,15 +175,15 @@ def move(c: Any, old_terms: Sequence[str], ko: int, new_terms: Sequence[str], kn
        发现后对这些词元调用 :func:`postings.add`（解码重编，同原路径）。
 
     前提同 :func:`postings.add`（P2）：kn 大于删除后这些词元的全部键（textindex 的换键取其余行最大 nkey + 1）。
-    返回 False 表示未做任何写入、调用方应走原路径（键 ≥ 2^32 / grams ≥ 2^16 / 大端）。须在写事务内调用。"""
-    if _SWAP or kn >= 1 << 32 or g >= 1 << 16:
+    返回 False 表示未做任何写入、调用方应走原路径（键 ≥ 2^32 / grams ≥ 2^8（v7；v6 为 2^16）/ 大端）。须在写事务内调用。"""
+    if _SWAP or kn >= 1 << 32 or g >= 1 << 8:
         return False
     rm, ad = set(old_terms), set(new_terms)
     cur = _cur(c)
     if ko == kn and rm & ad:
-        kb, gb = ko.to_bytes(4, "little"), g.to_bytes(2, "little")
+        kb = ko.to_bytes(4, "little")
         same = {r[0] for r in cur.execute(_TAIL, (json.dumps(sorted(rm & ad), ensure_ascii=False),))
-                if _tail_ok(*r[1:], ko, kb, gb)}
+                if _tail_ok(*r[1:], ko, kb, g)}
         rm -= same
         ad -= same
     dels, put = _rm_rows(cur, rm, ko) if rm else ([], [])
@@ -220,8 +223,8 @@ def _append(c: Any, cur: Any, ts: List[str], kn: int, g: int) -> None:
         postings.add(c, {t: [(kn, g)] for t in ts})
         return
     before = c.total_changes
-    c.execute(_ADD, (postings.BLOCK, kn, kn.to_bytes(4, "little"), g.to_bytes(2, "little"),
-                     json.dumps(ts, ensure_ascii=False)))
+    c.execute(_ADD, (postings.BLOCK, kn, kn.to_bytes(4, "little"), g.to_bytes(1, "little"),
+                     json.dumps(ts, ensure_ascii=False), g.to_bytes(2, "little")))
     if c.total_changes - before == len(ts):
         return
     kb = kn.to_bytes(4, "little")

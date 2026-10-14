@@ -1,4 +1,4 @@
-# lingshu_ng 版本与弃用策略（rel-v1.22 起；rel-v1.24 补插件包；rel-v1.25 schema v6；rel-v1.26 / rel-v1.27 / rel-v1.28 无结构变化）
+# lingshu_ng 版本与弃用策略（rel-v1.22 起；rel-v1.24 补插件包；rel-v1.25 schema v6；rel-v1.26 / rel-v1.27 / rel-v1.28 无结构变化；rel-v1.29 schema v7）
 
 本文规定 `lingshu_ng` 的版本号含义、哪些名字算公开 API、怎样弃用与删除、以及哪个版本能打开哪个结构版本（schema）的库。
 公开 API 清单（文末附录）与签名快照 `tests_ng/api_snapshot.json` 都由代码生成（`tools/ci/gen_api_appendix.py --stability / --snapshot`，
@@ -29,7 +29,7 @@
   `lingshu_ng.world`、`nn`、`gen` 子包（另一条重写线，未纳入本策略；rel-v1.24 起源码在插件包 lingshu-ng-world / -nn / -gen，旧导入路径照旧）、
   插件能力名（`cross_backend` 等）与插件内部模块（`lingshu_ng_embed.*` 等）、`bench_*` / `tools/` 脚本。
 - **插件包版本**：每个插件包（`lingshu-ng-embed` / `-world` / `-nn` / `-gen`）有自己的版本号（`lingshu_ng_<名>.__version__`，同样按 semver），
-  首次独立发布为 1.24.0，rel-v1.25 为 1.25.0、rel-v1.26 为 1.26.0、rel-v1.27 为 1.27.0、rel-v1.28 为 1.28.0（与核心同号发布，插件代码未改）；插件声明所需核心区间（当前 `lingshu-ng>=1.28,<2`）。核心与插件可分别升级；核心的插件接口按本策略演进。
+  首次独立发布为 1.24.0，rel-v1.25 为 1.25.0、rel-v1.26 为 1.26.0、rel-v1.27 为 1.27.0、rel-v1.28 为 1.28.0、rel-v1.29 为 1.29.0（与核心同号发布，插件代码未改）；插件声明所需核心区间（当前 `lingshu-ng>=1.29,<2`）。核心与插件可分别升级；核心的插件接口按本策略演进。
 - `capabilities()` 返回字典的**键**算公开；取值随环境变化（这正是它的用途）。
 
 ## 3. 弃用流程
@@ -44,7 +44,7 @@
    只有新增而版本号未升且未点名 ⇒ 拒绝。快照的版本不得高于代码版本（`test_snapshot_version_not_ahead`）。
 5. 签名快照只记参数名、种类、缺省值，不记类型注解（注解的字符串形式随 Python 小版本变化）；Python 3.11 / 3.12 / 3.13 下快照相同（多 Python 矩阵跑同一测试）。
 
-截至 rel-v1.28 没有处于弃用期的名字。rel-v1.26、rel-v1.27、rel-v1.28 公开名字与签名都不变（快照只改版本号）。rel-v1.25 公开名字不变，只有常量 `lingshu_ng.store.schema.SCHEMA_VERSION` 的值 5 → 6（快照随之更新）。rel-v1.24 拆包没有删除或改签名任何公开名字（快照 469 → 494 项，只有新增 `lingshu_ng.plugins` 的 25 项）；
+截至 rel-v1.29 没有处于弃用期的名字。rel-v1.29 公开名字不变，只有常量 `lingshu_ng.store.schema.SCHEMA_VERSION` 的值 6 → 7（快照随之更新）。rel-v1.26、rel-v1.27、rel-v1.28 公开名字与签名都不变（快照只改版本号）。rel-v1.25 公开名字不变，只有常量 `lingshu_ng.store.schema.SCHEMA_VERSION` 的值 5 → 6（快照随之更新）。rel-v1.24 拆包没有删除或改签名任何公开名字（快照 469 → 494 项，只有新增 `lingshu_ng.plugins` 的 25 项）；
 发行包层面的不兼容（extras 删除、`capabilities()["dependencies"]` 只列插件声明的依赖）见 CHANGELOG_rel-v1.24「不兼容点」。
 
 ## 4. schema 前后兼容矩阵
@@ -52,19 +52,22 @@
 结构版本：`lingshu_ng.store.schema.SCHEMA_VERSION`，库里记在 `engine_meta._schema_version`。历史：
 v2（ng 早期，ec5a2aea，未发布）→ **v3**（4bfafa7b 派生倒排索引；rel-v1 … rel-v1.20）→ **v4**（368c3323 触发器 `trg_index_upd`；rel-v1.21、rel-v1.22）
 → **v5**（4e3fbb8a 倒排分块 blob `term_blocks` + 墓碑 `index_tomb` / `trg_index_tomb`，删除 `node_terms` 与 `trg_index_ins/del/upd`；rel-v1.23、rel-v1.24）
-→ **v6**（60331504 `node_index` 删除 `terms` 列；新增 `index_old` 与 `trg_nodes_bins`，墓碑改带旧正文，`index_state('tokfp')` 分词指纹；rel-v1.25）。
+→ **v6**（60331504 `node_index` 删除 `terms` 列；新增 `index_old` 与 `trg_nodes_bins`，墓碑改带旧正文，`index_state('tokfp')` 分词指纹；rel-v1.25–v1.28）
+→ **v7**（stab-r14：删除派生表 `term_df`（词元 df = 倒排块条数之和），倒排块 grams 窄编码 uint16 → uint8；rel-v1.29）。
 上游旧引擎（FuRongJun-1999/lingshu cb3a6ea）写出的库没有 ng 的版本标记。
 
-**实测**（`_stab/r13/schema_matrix.py`，读数 `_stab/r13/qgate/schema_matrix.json`（rel-v1.28 代码，156 格；其中与 `_stab/r11/qgate/schema_matrix.json` 共有的 132 格逐格相同，rel-v1.28 的行 / 列与 rel-v1.27 的行 / 列逐格相同；rel-v1.27 发版时的 132 格见 `_stab/r11/qgate/`，rel-v1.26 的 110 格见 `_stab/r10/qgate/`）；rel-v1.23 及以前的行列与 `_stab/r8`、`_stab/r7` 读数相同）：每个写出版本建库写 3 条，每个读取版本在副本上打开 → 召回旧内容 →
+**实测**（`_stab/r14/schema_matrix.py`，读数 `_stab/r14/qgate/schema_matrix.json`（rel-v1.29 代码，182 格；其中与 `_stab/r13/qgate/schema_matrix.json` 共有的 132 格逐格相同，r13 的「cur」（= rel-v1.28 代码）24 格与本次 rel-v1.28 行 / 列逐格相同）；
+上一版读数 `_stab/r13/qgate/schema_matrix.json`（rel-v1.28 代码，156 格；其中与 `_stab/r11/qgate/schema_matrix.json` 共有的 132 格逐格相同，rel-v1.28 的行 / 列与 rel-v1.27 的行 / 列逐格相同；rel-v1.27 发版时的 132 格见 `_stab/r11/qgate/`，rel-v1.26 的 110 格见 `_stab/r10/qgate/`）；rel-v1.23 及以前的行列与 `_stab/r8`、`_stab/r7` 读数相同）：每个写出版本建库写 3 条，每个读取版本在副本上打开 → 召回旧内容 →
 写一条 → 召回新内容；能打开的再用写出版本重开该副本（往返）。各版本代码为 wt-rel 对应提交的 `lingshu_ng/`（git archive），零模型。
 
-| 写出 ↓ / 打开 → | rel-v1.10 | rel-v1.17 | rel-v1.18 | rel-v1.20 | rel-v1.21 | rel-v1.22 | rel-v1.23 | rel-v1.24 | rel-v1.25 | rel-v1.26 | rel-v1.27 | rel-v1.28 |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 上游 cb3a6ea（无标记） | 可（→ v3） | 可（→ v3） | 可（→ v3） | 可（→ v3） | 可（→ v4） | 可（→ v4） | 可（→ v5） | 可（→ v5） | 可（→ v6） | 可（→ v6） | 可（→ v6） | 可（→ v6） |
-| rel-v1.10 / v1.17 / v1.18 / v1.20（v3） | 可 | 可 | 可 | 可 | 可（迁移 → v4） | 可（迁移 → v4） | 可（迁移 → v5） | 可（迁移 → v5） | 可（迁移 → v6） | 可（迁移 → v6） | 可（迁移 → v6） | 可（迁移 → v6） |
-| rel-v1.21 / v1.22（v4） | **可**（不检查版本，保留 v4 标记） | **可**（同左） | **拒绝** `SchemaTooNewError` | **拒绝** | 可 | 可 | 可（迁移 → v5） | 可（迁移 → v5） | 可（迁移 → v6） | 可（迁移 → v6） | 可（迁移 → v6） | 可（迁移 → v6） |
-| rel-v1.23 / v1.24（v5） | **可**（不检查版本，标记改回 3） | **可**（同左） | **拒绝** | **拒绝** | **拒绝** | **拒绝** | 可 | 可 | 可（迁移 → v6） | 可（迁移 → v6） | 可（迁移 → v6） | 可（迁移 → v6） |
-| rel-v1.25 / v1.26 / v1.27 / v1.28（v6） | **可**（不检查版本，标记改回 3） | **可**（同左） | **拒绝** | **拒绝** | **拒绝** | **拒绝** | **拒绝** | **拒绝** | 可 | 可 | 可 | 可 |
+| 写出 ↓ / 打开 → | rel-v1.10 | rel-v1.17 | rel-v1.18 | rel-v1.20 | rel-v1.21 | rel-v1.22 | rel-v1.23 | rel-v1.24 | rel-v1.25 | rel-v1.26 | rel-v1.27 | rel-v1.28 | rel-v1.29 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 上游 cb3a6ea（无标记） | 可（→ v3） | 可（→ v3） | 可（→ v3） | 可（→ v3） | 可（→ v4） | 可（→ v4） | 可（→ v5） | 可（→ v5） | 可（→ v6） | 可（→ v6） | 可（→ v6） | 可（→ v6） | 可（→ v7） |
+| rel-v1.10 / v1.17 / v1.18 / v1.20（v3） | 可 | 可 | 可 | 可 | 可（迁移 → v4） | 可（迁移 → v4） | 可（迁移 → v5） | 可（迁移 → v5） | 可（迁移 → v6） | 可（迁移 → v6） | 可（迁移 → v6） | 可（迁移 → v6） | 可（迁移 → v7） |
+| rel-v1.21 / v1.22（v4） | **可**（不检查版本，保留 v4 标记） | **可**（同左） | **拒绝** `SchemaTooNewError` | **拒绝** | 可 | 可 | 可（迁移 → v5） | 可（迁移 → v5） | 可（迁移 → v6） | 可（迁移 → v6） | 可（迁移 → v6） | 可（迁移 → v6） | 可（迁移 → v7） |
+| rel-v1.23 / v1.24（v5） | **可**（不检查版本，标记改回 3） | **可**（同左） | **拒绝** | **拒绝** | **拒绝** | **拒绝** | 可 | 可 | 可（迁移 → v6） | 可（迁移 → v6） | 可（迁移 → v6） | 可（迁移 → v6） | 可（迁移 → v7） |
+| rel-v1.25 / v1.26 / v1.27 / v1.28（v6） | **可**（不检查版本，标记改回 3） | **可**（同左） | **拒绝** | **拒绝** | **拒绝** | **拒绝** | **拒绝** | **拒绝** | 可 | 可 | 可 | 可 | 可（迁移 → v7） |
+| rel-v1.29（v7） | **可**（不检查版本，标记改回 3） | **可**（同左） | **拒绝** | **拒绝** | **拒绝** | **拒绝** | **拒绝** | **拒绝** | **拒绝** | **拒绝** | **拒绝** | **拒绝** | 可 |
 
 - 「可」= 打开、旧内容可召回、写入并召回新内容都成功。v3 库被 v1.21+ 打开后迁移成 v4，此后 rel-v1.18–v1.20 **不能再打开它**（往返实测拒绝）；
   rel-v1.10 / v1.17 仍能打开并照常读写（往返实测）。
@@ -72,6 +75,13 @@ v2（ng 早期，ec5a2aea，未发布）→ **v3**（4bfafa7b 派生倒排索引
 - **rel-v1.26**：未改库结构（`SCHEMA_VERSION` 仍为 6），rel-v1.25 与 rel-v1.26 读写同一种 v6 库；矩阵实测 v1.25 ↔ v1.26 双向打开与往返均可（标记保持 6），rel-v1.26 对其余各版本的行 / 列与 rel-v1.25 逐格相同（`_stab/r10/qgate/schema_matrix.json`）。
 - **rel-v1.27**：未改库结构（`SCHEMA_VERSION` 仍为 6，未加索引），与 rel-v1.25 / v1.26 读写同一种 v6 库；矩阵实测 v1.26 ↔ v1.27、v1.25 ↔ v1.27 双向打开与往返均可（标记保持 6），rel-v1.27 对其余各版本的行 / 列与 rel-v1.26 逐格相同（`_stab/r11/qgate/schema_matrix.json`）。
 - **rel-v1.28**：未改库结构（`SCHEMA_VERSION` 仍为 6），与 rel-v1.25–v1.27 读写同一种 v6 库；矩阵实测 v1.27 ↔ v1.28、v1.26 ↔ v1.28、v1.25 ↔ v1.28 双向打开与往返均可（标记保持 6），rel-v1.28 对其余各版本的行 / 列与 rel-v1.27 逐格相同（`_stab/r13/qgate/schema_matrix.json`）。
+- **v7（rel-v1.29）补充**（`_stab/r14/qgate/schema_matrix.json`、`_stab/r14/qgate/allow_newer.txt`、`_stab/r14/mig/mig.txt`）：
+  - v3–v6 库被 rel-v1.29 打开后迁移成 v7（删 `term_df`、派生索引整体重建），此后 **rel-v1.18–v1.28 不能再打开**（往返实测：v1.25–v1.28 抛 `SchemaTooNewError`「库结构版本 7 高于本代码支持的 6」，库不被改动，标记仍为 7）。
+  - rel-v1.28 设 `LINGSHU_NG_ALLOW_NEWER_SCHEMA=1` 强制打开 v7 库：会补建空的 `term_df`（df 全 0，旧内容召回不到），按 v6 规则解码 uint8 grams 块时抛 `ValueError`，并把标记改写为 6；
+    rel-v1.29 再打开时按「旧版派生对象 `term_df` 存在」整体重建，旧版本写入的条目可召回、`rebuild_equals()` = True。**v7 不是追加式变更，不要对 v7 库用这个逃生口。**
+  - rel-v1.10 / v1.17（不检查版本）打开 v7 库：标记改回 3 并照常读写；rel-v1.29 重开后按 v3 重新迁移（往返实测可，标记 7）。
+  - 以上旧版本打开新库的行为均属未承诺行为；降级仍请 `export_all` → 旧版本 `import_all`。
+  - 迁移要整体重建派生索引：rel-v1.28 建的零模型库 10k 约 3.5 s、100k 约 50 s（2 核 aarch64）。迁移后**文件不缩小**（释放的页留在空闲链表里供以后写入复用；10k 21.23 → 21.23 MB、100k 171.97 → 179.02 MB）；新建库才是 v7 的体积。
 - **v6（rel-v1.25）补充**（`_stab/r9/gate/schema_matrix_pre.json`、`_stab/r9/rt/schema_extra.txt`）：
   - v3 / v4 / v5 库被 rel-v1.25 打开后迁移成 v6，此后 **rel-v1.18–v1.24 不能再打开**（往返实测：rel-v1.23 / v1.24 抛 `SchemaTooNewError`「库结构版本 6 高于本代码支持的 5」，库不被改动，标记仍为 6）。
   - rel-v1.23 / v1.24 设 `LINGSHU_NG_ALLOW_NEWER_SCHEMA=1` 强制打开 v6 库：能打开并写入，标记被改写为 5（按 v5 结构重建派生表）；rel-v1.25 再打开时按 v5 重新迁移，`rebuild_equals()` = True，旧版本写入的条目可召回、旧版本连接裸删的条目不再召回，墓碑与 `index_old` 清空。
@@ -87,13 +97,13 @@ v2（ng 早期，ec5a2aea，未发布）→ **v3**（4bfafa7b 派生倒排索引
   v4 相对 v3 只多一个触发器（追加式变更），旧代码不走它，所以这几个旧版本读写 v4 库结果正常；但这属于未承诺的行为。
 - **承诺**：新版本总能打开所有旧版本（含上游 cb3a6ea）写出的库并自动迁移（`tests_ng/test_db_safety.py` 用 rel-v1.10 与上游夹具守）；
   旧版本打开新版本的库**不承诺**：rel-v1.18 起会拒绝，降级前请先 `export_all`，用旧版本 `import_all`。
-- 派生检索索引（v5 起 `term_blocks` / `index_tomb`，v6 起另有 `index_old`；v4 及以前 `node_terms`；`term_df` / `node_index` 等）可由 `nodes` 完全重建，不随导出导入迁移；结构不符时打开库会整体重建（耗时随库规模）。
+- 派生检索索引（v5 起 `term_blocks` / `index_tomb`，v6 起另有 `index_old`；v4 及以前 `node_terms`；v6 及以前另有 `term_df`；`node_index` / `feature_df` 等）可由 `nodes` 完全重建，不随导出导入迁移；结构不符时打开库会整体重建（耗时随库规模）。
 
 ## 5. 发布检查清单（每次发布）
 
 1. `__version__` 与 `CHANGELOG_rel-vX.Y.md` 同一提交（插件包有改动时一并升插件版本）；`tests_ng/test_api_snapshot.py` 通过（必要时按 §3 更新快照）。
 2. `python tools/ci/gen_api_appendix.py`（API_ng 附录 A）与 `--stability`（本文附录）重新生成，无手改。
-3. schema 有变化：更新 §4 矩阵（重跑最新一轮的 `_stab/r*/schema_matrix.py`，rel-v1.25 为 `_stab/r9/`，rel-v1.26 为 `_stab/r10/`，rel-v1.27 为 `_stab/r11/`，rel-v1.28 为 `_stab/r13/`）并加旧库夹具测试。
+3. schema 有变化：更新 §4 矩阵（重跑最新一轮的 `_stab/r*/schema_matrix.py`，rel-v1.25 为 `_stab/r9/`，rel-v1.26 为 `_stab/r10/`，rel-v1.27 为 `_stab/r11/`，rel-v1.28 为 `_stab/r13/`，rel-v1.29 为 `_stab/r14/`）并加旧库夹具测试。
 
 ## 附录：公开 API 清单
 
@@ -287,7 +297,7 @@ v2（ng 早期，ec5a2aea，未发布）→ **v3**（4bfafa7b 派生倒排索引
 
 #### `lingshu_ng.store.schema.SCHEMA_VERSION`
 
-- `·` const int = 6
+- `·` const int = 7
 
 #### `lingshu_ng.store.schema.SchemaTooNewError`
 

@@ -39,8 +39,10 @@ _HI0 = bytes([1] + [0] * 255)
 
 
 def _select(gs: Any, lo: int, hi: int, tbl: bytes) -> Any:
-    """窄编码 grams 数组的合格位（每条一个 0/1）。hi < 256 时按字节查表：低字节查 tbl、高字节须为 0，两串按位与
+    """窄编码 grams 数组的合格位（每条一个 0/1）。uint8 数组（schema v7）直接按字节查表；uint16 且 hi < 256 时按字节查表：低字节查 tbl、高字节须为 0，两串按位与
     （与逐条查 65536 项表结果相同）；否则逐条查表。"""
+    if gs.itemsize == 1:                  # v7 uint8 块：值都 < 256，直接按字节查表
+        return gs.tobytes().translate(tbl[:256])
     if hi < 256 and gs.itemsize == 2 and not _BIG:
         raw = gs.tobytes()
         n = len(gs)
@@ -57,7 +59,7 @@ def _prefix(ti: Any, terms: List[str], lo: int, hi: int) -> Tuple[Counter, Dict[
     tbl = None
     for g in terms:
         ks, gs = ti.postings_arrays(g)
-        if gs.typecode == "H":
+        if gs.typecode in ("H", "B"):
             if tbl is None:
                 tbl = _mask(lo, hi)
             sel = _select(gs, lo, hi, tbl)

@@ -3,7 +3,9 @@
 
 ``term_blocks(term, bno, n, nk, gr)``（WITHOUT ROWID，主键 (term, bno)）：一个词元的倒排按节点整数键 nkey 升序切成块，
 每块至多 :data:`BLOCK` 条；``nk`` = nkey 数组（小端 uint32，超出时 uint64），``gr`` = 对应节点的正文二元组数
-（小端 uint16，超出时 uint32），``n`` = 条数（据此判定两列宽度）。v4 的 ``node_terms(term, nkey, grams)`` 每条一行，
+（schema v7：块内全部 < 256 时 uint8，否则小端 uint16，再超出时 uint32；v5/v6 最窄为 uint16），``n`` = 条数（据此判定两列宽度）。
+「窄编码」= nk 为 uint32 且 gr 为 uint8 或 uint16：追加 / 删除的字节级快路径只走窄编码块，其余解码重编（结果与快路径
+逐字节相同：每块恒为 :func:`encode` 对其内容的输出）。v4 的 ``node_terms(term, nkey, grams)`` 每条一行，
 本表一块一行——体积约省一半（stab-r6 原型 SIZE_PROTO：100k 库倒排 127 → 67 MB）、整条倒排一次读出。
 
 不变量：
@@ -14,7 +16,7 @@
   P3 删除按 (词元, nkey) 定位到「bno ≤ nkey 的最大块」改写；改空即删行；改后不足 BLOCK/4 且与前一块合计不超过
      BLOCK 时并入前一块（定期合并，避免删改多的库留下大量碎块）。块的切分方式随历史而异，但 P1 下读出结果只取决于内容。
 
-本模块只做块的编解码与读改写；何时增删、计数（term_df/feature_df）怎么改由 :mod:`lingshu_ng.store.textindex` 决定。
+本模块只做块的编解码与读改写；何时增删、计数（feature_df；词元 df 即块条数之和）怎么改由 :mod:`lingshu_ng.store.textindex` 决定。
 """
 from __future__ import annotations
 
@@ -50,11 +52,26 @@ def _arr(code: str, vals: Iterable[int]) -> bytes:
     return a.tobytes()
 
 
+def _gcode(mx: int) -> str:
+    """grams 数组的最窄类型码（v7：uint8 / uint16 / uint32）。"""
+    return "B" if mx < 1 << 8 else ("H" if mx < 1 << 16 else "I")
+
+
 def encode(nks: Sequence[int], grs: Sequence[int]) -> Tuple[int, bytes, bytes]:
     """(n, nk, gr)：键与二元组数各自取能容纳全部值的最窄宽度。"""
     nk = _arr("I" if not nks or max(nks) < 1 << 32 else "Q", nks)
-    gr = _arr("H" if not grs or max(grs) < 1 << 16 else "I", grs)
+    gr = _arr(_gcode(max(grs)) if grs else "B", grs)
     return len(nks), nk, gr
+
+
+def _gw(n: int, gr: bytes) -> int:
+    """块 grams 的每条字节数（1 / 2 / 4）。"""
+    return len(gr) // n if n else 1
+
+
+def _narrow(n: int, nk: bytes, gr: bytes) -> bool:
+    """窄编码块：nk 为 uint32、gr 为 uint8 或 uint16（字节级快路径的前提）。"""
+    return len(nk) == 4 * n and (len(gr) == n or len(gr) == 2 * n)
 
 
 def _un(code: str, raw: bytes) -> array.array:
@@ -68,8 +85,11 @@ def _un(code: str, raw: bytes) -> array.array:
 def decode(n: int, nk: bytes, gr: bytes) -> Tuple[array.array, array.array]:
     """块 → (nkey 数组, grams 数组)。"""
     if not n:
-        return array.array("I"), array.array("H")
-    return (_un("I" if len(nk) == 4 * n else "Q", nk), _un("H" if len(gr) == 2 * n else "I", gr))
+        return array.array("I"), array.array("B")
+    return (_un("I" if len(nk) == 4 * n else "Q", nk), _un(_GC[len(gr) // n], gr))
+
+
+_GC = {1: "B", 2: "H", 4: "I"}
 
 
 def _cur(conn: Any) -> Any:
@@ -85,10 +105,22 @@ def read(conn: Any, term: str) -> Tuple[List[int], List[int]]:
 
 
 def read_arrays(conn: Any, term: str) -> Tuple[array.array, array.array]:
-    """:func:`read` 的数组版（内容逐值相同）：各块都是窄编码时拼接字节一次解码（常态），否则逐块解码后拼接。"""
+    """:func:`read` 的数组版（内容逐值相同）：各块都是窄编码时拼接字节一次解码（常态；grams 各块同宽 ⇒ 该宽度，
+    uint8 与 uint16 混合 ⇒ 统一为 uint16），否则逐块解码后拼接。"""
     rows = _cur(conn).execute("SELECT n, nk, gr FROM term_blocks WHERE term=? ORDER BY bno", (term,)).fetchall()
-    if all(len(nk) == 4 * n and len(gr) == 2 * n for n, nk, gr in rows):
-        return _un("I", b"".join([r[1] for r in rows])), _un("H", b"".join([r[2] for r in rows]))
+    if all(len(nk) == 4 * n for n, nk, _ in rows):
+        if all(len(gr) == n for n, _, gr in rows):
+            return _un("I", b"".join([r[1] for r in rows])), _un("B", b"".join([r[2] for r in rows]))
+        if all(len(gr) == 2 * n for n, _, gr in rows):
+            return _un("I", b"".join([r[1] for r in rows])), _un("H", b"".join([r[2] for r in rows]))
+        if all(len(gr) <= 2 * n for n, _, gr in rows):
+            gs = array.array("H")
+            for n, _, gr in rows:
+                if len(gr) == n:
+                    gs.fromlist(list(gr))             # uint8 字节即取值
+                else:
+                    gs.extend(_un("H", gr))
+            return _un("I", b"".join([r[1] for r in rows])), gs
     ks, gs = array.array("Q"), array.array("I")
     for n, nk, gr in rows:
         a, g = decode(n, nk, gr)
@@ -335,16 +367,17 @@ def add(c: Any, by_term: Dict[str, List[Tuple[int, int]]]) -> None:
         lb = last.get(t)
         if lb is not None:
             bno, n, nk, gr = lb
-            narrow = len(nk) == 4 * n and len(gr) == 2 * n
-            if n and ents[0][0] <= (int.from_bytes(nk[-4:], "little") if narrow else decode(n, nk, gr)[0][-1]):
+            nar = _narrow(n, nk, gr)
+            if n and ents[0][0] <= (int.from_bytes(nk[-4:], "little") if nar else decode(n, nk, gr)[0][-1]):
                 ins.extend(_rewrite_term(c, t, ents))
                 continue
             room = BLOCK - n
             if room > 0:
                 take, ents = ents[:room], ents[room:]
-                if narrow and take[-1][0] < 1 << 32 and max(g for _, g in take) < 1 << 16 and not _SWAP:
+                w = _gw(n, gr)
+                if nar and take[-1][0] < 1 << 32 and max(g for _, g in take) < 1 << (8 * w) and not _SWAP:
                     upd.append((n + len(take), nk + _arr("I", [k for k, _ in take]),
-                                gr + _arr("H", [g for _, g in take]), t, bno))
+                                gr + _arr("B" if w == 1 else "H", [g for _, g in take]), t, bno))
                 else:
                     a, g = decode(n, nk, gr)
                     upd.append(encode(list(a) + [k for k, _ in take], list(g) + [x for _, x in take]) + (t, bno))
@@ -369,25 +402,31 @@ def _utf8(c: Any) -> bool:
 
 
 def add_node(c: Any, terms: List[str], k: int, g: int) -> None:
-    """一个节点（nkey k、grams g）进入这些词元的倒排（单条写入的常态，等价于 ``add({t: [(k, g)]})``）。"""
+    """一个节点（nkey k、grams g）进入这些词元的倒排（单条写入的常态，等价于 ``add({t: [(k, g)]})``）。
+    g ≥ 256（v7：放不进 uint8 末块，可能要把末块整体加宽）走 :func:`add`。"""
     if not terms:
         return
-    if k < 1 << 32 and g < 1 << 16 and not _SWAP and _utf8(c):
+    if k < 1 << 32 and g < 1 << 8 and not _SWAP and _utf8(c):
         _add_one(c, terms, k, g)
     else:
         add(c, {t: [(k, g)] for t in terms})
 
 
 def _add_one(c: Any, terms: List[str], k: int, g: int) -> None:
-    """一个节点（同一 nkey/grams）进入多个词元的倒排：**一条语句**完成（单条写入的常态）。末块未满且为窄编码
-    ⇒ 字节尾部拼接（ON CONFLICT 原位更新）；否则（无块 / 末块已满 / 宽编码）以 bno = nkey 开新块。
-    前提（P2）：k 大于这些词元现存的全部键——textindex 分配的新 nkey 恒为最大值，墓碑已先行清除。"""
-    c.execute("INSERT INTO term_blocks(term, bno, n, nk, gr) SELECT j.value, COALESCE((SELECT CASE WHEN n < ? "
-              "AND length(nk) = 4 * n AND length(gr) = 2 * n THEN bno ELSE ? END FROM term_blocks WHERE term = j.value "
-              "ORDER BY bno DESC LIMIT 1), ?), 1, ?, ? FROM json_each(?) j WHERE 1 "
-              "ON CONFLICT(term, bno) DO UPDATE SET n = n + 1, nk = CAST(nk || excluded.nk AS BLOB), "
-              "gr = CAST(gr || excluded.gr AS BLOB)",
-              (BLOCK, k, k, k.to_bytes(4, "little"), g.to_bytes(2, "little"), json.dumps(terms, ensure_ascii=False)))
+    """一个节点（同一 nkey/grams，g < 256）进入多个词元的倒排：**一条语句**完成（单条写入的常态）。末块未满且为窄编码
+    ⇒ 字节尾部拼接（ON CONFLICT 原位更新；uint8 末块拼 1 字节、uint16 末块拼 2 字节）；否则（无块 / 末块已满 / 宽编码）
+    以 bno = nkey 开新块（uint8）。前提（P2）：k 大于这些词元现存的全部键——textindex 分配的新 nkey 恒为最大值，墓碑已先行清除。"""
+    c.execute(_ADD1, (BLOCK, k, k.to_bytes(4, "little"), g.to_bytes(1, "little"), g.to_bytes(2, "little"),
+                      json.dumps(terms, ensure_ascii=False)))
+
+
+#: 单键追加（?1 BLOCK、?2 nkey、?3 nkey 4 字节、?4 grams 1 字节、?5 grams 2 字节、?6 词元 JSON；grams < 256）。
+#: DO UPDATE 里未限定的列名取冲突行的旧值（n 为追加前条数）
+_ADD1 = ("INSERT INTO term_blocks(term, bno, n, nk, gr) SELECT j.value, COALESCE((SELECT CASE WHEN n < ?1 "
+         "AND length(nk) = 4 * n AND length(gr) IN (n, 2 * n) THEN bno ELSE ?2 END FROM term_blocks WHERE term = j.value "
+         "ORDER BY bno DESC LIMIT 1), ?2), 1, ?3, ?4 FROM json_each(?6) j WHERE 1 "
+         "ON CONFLICT(term, bno) DO UPDATE SET n = n + 1, nk = CAST(nk || excluded.nk AS BLOB), "
+         "gr = CAST(gr || CASE WHEN length(gr) = n THEN excluded.gr ELSE ?5 END AS BLOB)")
 
 
 _PREV: Dict[int, str] = {}
@@ -403,9 +442,9 @@ def _prev_sql(n: int) -> str:
 
 
 def _drop(n: int, nk: bytes, gr: bytes, drop: Set[int]) -> Tuple[int, bytes, bytes]:
-    """块删去 drop 中的键 → 新块 (n, nk, gr)，与「解码 → 过滤 → :func:`encode`」逐字节相同。窄编码块（常态）删后仍窄，
-    直接按键位置切字节（键在块内升序，二分定位）；宽编码块解码重编（删后可能变窄）。"""
-    if len(nk) == 4 * n and len(gr) == 2 * n and not _SWAP:
+    """块删去 drop 中的键 → 新块 (n, nk, gr)，与「解码 → 过滤 → :func:`encode`」逐字节相同。最窄编码块（nk uint32、
+    gr uint8；常态）删后仍最窄，直接按键位置切字节（键在块内升序，二分定位）；其余块（含 gr uint16）解码重编（删后可能变窄）。"""
+    if len(nk) == 4 * n and len(gr) == n and not _SWAP:
         a = memoryview(nk).cast("I")
         if len(drop) <= 16:
             pos = []
@@ -421,10 +460,10 @@ def _drop(n: int, nk: bytes, gr: bytes, drop: Set[int]) -> Tuple[int, bytes, byt
         bk, bg, last = [], [], 0
         for i in pos:
             bk.append(nk[4 * last:4 * i])
-            bg.append(gr[2 * last:2 * i])
+            bg.append(gr[last:i])
             last = i + 1
         bk.append(nk[4 * last:])
-        bg.append(gr[2 * last:])
+        bg.append(gr[last:])
         return n - len(pos), b"".join(bk), b"".join(bg)
     a, g = decode(n, nk, gr)
     keep = [i for i, k in enumerate(a) if k not in drop]

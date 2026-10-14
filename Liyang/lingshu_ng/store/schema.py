@@ -23,7 +23,7 @@ from typing import Dict, Iterable, List, Sequence, Set, Tuple
 __all__ = ["SchemaTooNewError", "stored_version", "ALLOW_NEWER_ENV", "SCHEMA_VERSION", "TABLES", "INDEXES", "LAZY_INDEXES", "PENDING_KEY", "KEY_MISSING", "lazy_indexes_missing", "ensure_lazy_indexes", "TRIGGERS", "columns_of", "missing_parts", "migrate",
            "existing_tables", "DERIVED_TABLES", "LEGACY_TABLES", "LEGACY_TRIGGERS"]
 
-SCHEMA_VERSION = 6   # v6（rel-v1.25）：node_index 去掉 terms 列（旧词元由 index_old / 节点正文按 terms_of 重算），新增 index_old；v5→v6 迁移按派生表结构过期整体重建
+SCHEMA_VERSION = 7   # v7（rel-v1.29）：删除 term_df（词元 df = 倒排块条数之和）、倒排块 grams 窄编码改 1 字节；v6→v7 迁移删 term_df 并整体重建派生索引。v6（rel-v1.25）：node_index 去掉 terms 列（旧词元由 index_old / 节点正文按 terms_of 重算），新增 index_old；v5→v6 迁移按派生表结构过期整体重建
 #: 允许打开「比本代码新」的库的逃生口（只在确认新版本只做了追加式变更时使用）
 ALLOW_NEWER_ENV = "LINGSHU_NG_ALLOW_NEWER_SCHEMA"
 
@@ -130,7 +130,7 @@ TABLES: Dict[str, Tuple[Tuple[Column, ...], str]] = {
     # 旧正文：已索引节点自上次索引以来第一次被改（正文/标签/层/id、REPLACE 覆盖、删除）前的正文与标签——
     # node_index 不再存词元（schema v6），退出倒排时由它（或节点当前正文，若未改过）按同一 terms_of 重算旧词元
     "index_old": ((("nkey", "INTEGER PRIMARY KEY"), ("content", "TEXT"), ("tags", "TEXT")), ""),
-    "term_df": ((("term", "TEXT PRIMARY KEY"), ("df", "INTEGER NOT NULL DEFAULT 0")), ""),
+    # v7（stab-r14）：term_df 删除——词元 df = 该词元 term_blocks 各块 n 之和（v3–v6 的 term_df 与之逐值相同，T1）
     "feature_df": ((("feat", "TEXT PRIMARY KEY"), ("df", "INTEGER NOT NULL DEFAULT 0")), ""),
     "node_index": ((
         ("nkey", "INTEGER PRIMARY KEY"), ("node_id", "TEXT NOT NULL UNIQUE"),
@@ -145,12 +145,12 @@ TABLES: Dict[str, Tuple[Tuple[Column, ...], str]] = {
 }
 
 #: 派生表（索引数据，可由 nodes 重建；导出/导入与完整性校验不涉及）
-DERIVED_TABLES = frozenset({"term_blocks", "index_tomb", "index_old", "term_df", "feature_df", "node_index", "index_dirty", "index_state"})
-#: 旧版派生对象（v3/v4）：迁移时删除
-LEGACY_TABLES = ("node_terms",)
+DERIVED_TABLES = frozenset({"term_blocks", "index_tomb", "index_old", "feature_df", "node_index", "index_dirty", "index_state"})
+#: 旧版派生对象（node_terms / 触发器：v3/v4；term_df：v3–v6）：迁移时删除（并整体重建派生索引）
+LEGACY_TABLES = ("node_terms", "term_df")       # term_df：v3–v6（v7 起 df 由倒排块条数求和）
 LEGACY_TRIGGERS = ("trg_index_ins", "trg_index_del", "trg_index_upd")
 #: 表选项（CREATE TABLE … 之后的修饰）
-_TABLE_OPTIONS = {"term_blocks": " WITHOUT ROWID", "term_df": " WITHOUT ROWID", "feature_df": " WITHOUT ROWID",
+_TABLE_OPTIONS = {"term_blocks": " WITHOUT ROWID", "feature_df": " WITHOUT ROWID",
                   "index_state": " WITHOUT ROWID"}
 #: 引用派生表结构的触发器（派生表重建时一并重建）
 _DERIVED_TRIGGERS = ("trg_nodes_ins", "trg_nodes_bins", "trg_nodes_upd", "trg_nodes_del", "trg_index_tomb")
@@ -319,7 +319,7 @@ def migrate(conn: sqlite3.Connection) -> Dict[str, List]:
         if gap["triggers"]:
             # 触发器缺失/过期期间的写入未进派生索引：全部记脏，由 textindex 在首次读前重建；
             # 新奇特征计数一并清空并标记「未构建」（首次新奇度查询时按需补建）
-            for t in ("node_index", "term_blocks", "index_tomb", "index_old", "term_df", "feature_df", "index_state"):   # node_index 先删：其删除触发器写的墓碑随后一并清掉
+            for t in ("node_index", "term_blocks", "index_tomb", "index_old", "feature_df", "index_state"):   # node_index 先删：其删除触发器写的墓碑随后一并清掉
                 conn.execute(f"DELETE FROM {t}")
             conn.execute("INSERT INTO index_state(key, value) VALUES ('feats', '0')")
             conn.execute("INSERT OR IGNORE INTO index_dirty(node_id) SELECT id FROM nodes")

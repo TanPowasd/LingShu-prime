@@ -5,6 +5,7 @@
   * db_rel_v1_10.sqlite / .json —— rel-v1.10（wt-rel 5782f4f4）代码写出的库与内容清单（tools/ci/make_legacy_db.py）；
   * db_rel_v1_22.sqlite / .json —— rel-v1.22（stab-v1 1a8cdeb4，schema v4，逐条倒排 node_terms + trg_index_* 触发器）写出的库；
   * db_rel_v1_23.sqlite / .json —— rel-v1.23（stab-v1 1bf79a1c = prime 367335b1，schema v5，node_index 带 terms 列）写出的库；
+  * db_rel_v1_28.sqlite / .json —— rel-v1.28（wt-rel 3fcabc6e = prime f22fa698，schema v6，带 term_df、倒排块 grams 最窄 uint16）写出的库；
   * db_upstream_cb3a6ea.sqlite —— 上游旧引擎（FuRongJun-1999/lingshu cb3a6ea）写出的库（tools/ci/make_upstream_db.py）。
 """
 import json
@@ -43,7 +44,7 @@ def _nid(n):
 
 
 # ---------------------------------------------------------------- 结构版本 / 旧库升级
-@pytest.mark.parametrize("fx", ["db_rel_v1_10", "db_rel_v1_22", "db_rel_v1_23"])   # schema v3 / v4 / v5 → 当前（v6）
+@pytest.mark.parametrize("fx", ["db_rel_v1_10", "db_rel_v1_22", "db_rel_v1_23", "db_rel_v1_28"])   # schema v3 / v4 / v5 / v6 → 当前（v7）
 def test_rel_v1_10_db_reopens_readable_and_writable(tmp_path, fx):
     man = json.load(open(os.path.join(FIX, fx + ".json"), encoding="utf-8"))
     p = str(tmp_path / "old.sqlite")
@@ -70,6 +71,7 @@ def test_rel_v1_10_db_reopens_readable_and_writable(tmp_path, fx):
     names = {r[0] for r in c.execute("SELECT name FROM sqlite_master")}
     c.close()
     assert "node_terms" not in names and "trg_index_ins" not in names and "term_blocks" in names and "index_old" in names
+    assert "term_df" not in names                                    # v7：词元 df 由倒排块条数求和
     c = sqlite3.connect(p)
     assert "terms" not in {r[1] for r in c.execute("PRAGMA table_info(node_index)")}
     c.close()

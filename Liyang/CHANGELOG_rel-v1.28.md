@@ -98,3 +98,7 @@ A = rel-v1.27（`/workspace/work/ls/_stab13/a127`，git archive 344c2074），B 
 ## 推送记录
 
 （推送后补。）
+
+## 推送记录
+
+- 2026-10-14（主对话接手 stab-r13 收尾）：LingShu-prime main 6ae69ab8 → **f22fa698**（只改 `Liyang/` 25 个文件：同步 24 个 + README 加 v1.28 条目）。内容 = wt-rel rel-v1 @ 3fcabc6e。推送前 Liyang/ 内 3351 passed 1 skipped；TanPowasd learn 25 / 0、reason 14 / 0（只运行，跑完 checkout 还原）。

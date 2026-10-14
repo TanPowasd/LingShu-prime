@@ -119,12 +119,12 @@ def relevance(query: str, qg: frozenset, content: str, tags: Iterable[str]) -> f
 
 
 def corpus_cjk_share(store: Store) -> float:
-    """库的中日韩词元份额 Σdf(中日韩二元组) / Σdf(中日韩二元组 + 拉丁字母词元)（派生倒排 term_df 的两段主键区间求和；
+    """库的中日韩词元份额 Σdf(中日韩二元组) / Σdf(中日韩二元组 + 拉丁字母词元)（派生倒排块条数 n 的主键区间求和，schema v6 及以前为 term_df.df；
     纯数字词元不计）。按库缓存，代理键上界漂移超过 2% 才重读（同 :func:`lex_stats`）。空库视为 1.0（按中文处理）。"""
     mk = store.db.scalar("SELECT MAX(nkey) FROM node_index") or 0
     k0, share = getattr(store.text, "_cjk_share", (-1, 1.0))
     if k0 < 0 or abs(mk - k0) > 0.02 * max(1, k0):
-        rng = lambda lo, hi: float(store.db.scalar("SELECT COALESCE(SUM(df), 0) FROM term_df WHERE term >= ? AND term < ?",
+        rng = lambda lo, hi: float(store.db.scalar("SELECT COALESCE(SUM(n), 0) FROM term_blocks WHERE term >= ? AND term < ?",
                                                    (lo, hi)) or 0)
         cj = rng("\u3040", "\u3100") + rng("\u3400", "\u4dc0") + rng("\u4e00", "\ua000") + rng("\uf900", "\ufb00") \
             + rng("\uac00", "\ud7b0")
@@ -151,7 +151,7 @@ def _route(store: Store, q: str, cfg: "lx.LexicalConfig") -> bool:
         store.text.flush()
         return corpus_cjk_share(store)
 
-    # 路由判定本身无副作用：纯中文/纯数字查询不 flush、不读 term_df（与 v1 的执行路径逐步相同）
+    # 路由判定本身无副作用：纯中文/纯数字查询不 flush、不读 df（与 v1 的执行路径逐步相同）
     return lx.mixed_route(q, cfg, df_of, share)
 
 
@@ -243,7 +243,7 @@ class Retriever:
         if len(q) <= _TAG_ENUM_MAX:
             subs = {q} | {q[i:j] for i in range(len(q)) for j in range(i + 2, len(q) + 1)}
             return [TAG_PREFIX + t for t in subs]
-        rows = self.store.db.all("SELECT term FROM term_df WHERE term >= ? AND term < ? AND df > 0",
+        rows = self.store.db.all("SELECT DISTINCT term FROM term_blocks WHERE term >= ? AND term < ? ORDER BY term",
                                  (TAG_PREFIX, chr(ord(TAG_PREFIX) + 1)))
         return [r[0] for r in rows if tag_hit(q, [r[0][1:]])]
 
@@ -336,7 +336,7 @@ class Retriever:
                                        f"WHERE n.id IN ({placeholders(len(part))})", part):
                 light[r[0]] = tuple(r)[1:6]
                 rows[r[0]] = (r[6], r[7], r[8])
-        # Q7（:mod:`lingshu_ng.rerank` R1）：池内 idf 重排；df 读写入时维护的 term_df
+        # Q7（:mod:`lingshu_ng.rerank` R1）：池内 idf 重排；df 读倒排块条数之和（v6 及以前为 term_df）
         rel = {nid: sim for nid, sim in hits if nid in light}
         if lex:
             sims = rel                    # Q10：词级通路已含 idf 与长度归一，不再做二元组 idf 重排

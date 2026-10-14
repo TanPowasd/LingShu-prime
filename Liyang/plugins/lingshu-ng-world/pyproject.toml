@@ -11,7 +11,7 @@ description = "灵枢 ng 插件：世界线重写（旧路径 lingshu_ng.world.*
 readme = "README.md"
 requires-python = ">=3.11"
 license = "MIT"
-dependencies = ["lingshu-ng>=1.28,<2", "numpy>=2.3.5,<2.6", "Pillow>=12.2,<13"]
+dependencies = ["lingshu-ng>=1.29,<2", "numpy>=2.3.5,<2.6", "Pillow>=12.2,<13"]
 
 [project.entry-points."lingshu_ng.plugins"]
 world = "lingshu_ng_world.plugin:PLUGIN"

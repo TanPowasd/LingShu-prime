@@ -8,7 +8,8 @@
     grams = 正文二元组个数（相关度上界用；不可检索层记 0）。
   * 倒排：schema v5 起为 ``term_blocks``（:mod:`lingshu_ng.store.postings`，按词元分块打包 (nkey, grams)，每块 ≤ 128 条，
     WITHOUT ROWID）；v3/v4 是逐条一行的 ``node_terms(term, nkey, grams)``。读出顺序与内容同 v4（按 nkey 升序）；
-    grams 冗余自 node_index（检索读倒排即得精确率分母）。``term_df``：词元 df；``feature_df``：新奇特征在可检索层的节点数。
+    grams 冗余自 node_index（检索读倒排即得精确率分母）。词元 df = 该词元各块条数 n 之和（schema v7 起不再单存
+    ``term_df`` 表，v3–v6 的 ``term_df`` 与之逐值相同）；``feature_df``：新奇特征在可检索层的节点数。
   * 水位（arch-scale）：``index_state('hw')`` = 已处理到的最大 nodes.rowid。rowid 高于水位的行一律视为脏
     （新行是 rowid 递增追加的常态——灌库时不再逐行写 ``index_dirty``，省一棵 B 树的随机写）；落在水位以下的
     插入（REPLACE 复用 rowid、显式小 rowid）由插入触发器显式记脏。flush 处理「脏表 ∪ 水位以上」后同事务推水位到 MAX(rowid)。
@@ -190,35 +191,30 @@ class TextIndex:
     @staticmethod
     def _apply(c: Any, olds: Sequence[tuple], news: Sequence[tuple]) -> None:
         """olds = [(nkey, 词元表, 特征表)] 退出索引，news = [(nkey, 词元表, 特征表, grams)] 进入索引：
-        倒排块先删后加；term_df / feature_df 按净变化增减（与 v4 触发器「旧项减一、新项加一（无行则建行）」终值相同，
-        df 减到 0 的行照旧保留）。"""
+        倒排块先删后加（词元 df 即块条数之和，随之而变）；feature_df 按净变化增减（与 v4 触发器「旧项减一、新项加一
+        （无行则建行）」终值相同，df 减到 0 的行照旧保留）。"""
         if not olds and len(news) == 1 and news[0][1]:     # 单条写入的常态：一个新节点，各一条语句
             k, terms, feats, grams = news[0]
             postings.add_node(c, terms, k, grams)
-            for table, col, items in (("term_df", "term", terms), ("feature_df", "feat", feats)):
-                if items:
-                    c.execute(f"INSERT INTO {table}({col}, df) SELECT value, 1 FROM json_each(?) WHERE 1 "
-                              f"ON CONFLICT({col}) DO UPDATE SET df = df + 1", (_pack(items),))
+            if feats:
+                c.execute("INSERT INTO feature_df(feat, df) SELECT value, 1 FROM json_each(?) WHERE 1 "
+                          "ON CONFLICT(feat) DO UPDATE SET df = df + 1", (_pack(feats),))
             return
         rm: Dict[str, Set[int]] = {}
-        dt: Counter = Counter()
         df_: Counter = Counter()
         for k, terms, feats in olds:
             for t in terms:
                 rm.setdefault(t, set()).add(k)
-            dt.subtract(terms)
             df_.subtract(feats)
         ad: Dict[str, List[Tuple[int, int]]] = {}
         for k, terms, feats, grams in sorted(news, key=lambda r: r[0]):
             for t in terms:
                 ad.setdefault(t, []).append((k, grams))
-            dt.update(terms)
             df_.update(feats)
         if not (len(olds) == 1 and len(news) == 1 and TextIndex.FAST_MOVE and blockmove.move(
                 c, olds[0][1], olds[0][0], news[0][1], news[0][0], news[0][3])):
             postings.remove(c, rm)                         # 单节点换键走 blockmove.move（只写变了的块，结果逐值相同）
             postings.add(c, ad)
-        TextIndex._counts(c, "term_df", "term", dt)
         TextIndex._counts(c, "feature_df", "feat", df_)
 
     @staticmethod
@@ -257,7 +253,7 @@ class TextIndex:
     def _wipe(c: Any) -> None:
         """派生索引整体清空并全部记脏（首次读前批量重建）；新奇特征回到「未构建」。"""
         c.execute("DELETE FROM node_index")
-        for t in ("index_tomb", "index_old", "term_blocks", "term_df", "feature_df"):
+        for t in ("index_tomb", "index_old", "term_blocks", "feature_df"):
             c.execute(f"DELETE FROM {t}")
         c.execute("INSERT OR REPLACE INTO index_state(key, value) VALUES ('feats', '0')")
         c.execute("INSERT OR IGNORE INTO index_dirty(node_id) SELECT id FROM nodes")
@@ -389,11 +385,12 @@ class TextIndex:
 
     # ------------------------------------------------------------ 读（调用方负责先 flush）
     def df(self, terms: Iterable[str]) -> Dict[str, int]:
-        """词元 df（只返回 df>0 的项）。"""
+        """词元 df（只返回 df>0 的项，按词元升序）。schema v7：df = 该词元各倒排块条数之和（块 n ≥ 1，故无块 ⇔ df = 0），
+        与 v6 写入时维护的 ``term_df``（同一批词元增减，T1）逐值相同。"""
         out: Dict[str, int] = {}
         for part in chunks(sorted(set(terms))):
-            for t, d in self.db.all(f"SELECT term, df FROM term_df WHERE term IN ({placeholders(len(part))}) "
-                                    "AND df > 0", part):
+            for t, d in self.db.all(f"SELECT term, SUM(n) FROM term_blocks WHERE term IN ({placeholders(len(part))}) "
+                                    "GROUP BY term ORDER BY term", part):
                 out[t] = int(d)
         return out
 
@@ -558,7 +555,7 @@ class TextIndex:
                     want_post.setdefault(t, []).append((keys[nid], grams))
             for f in feats:
                 want_feats[f] = want_feats.get(f, 0) + 1
-        have_terms = {t: d for t, d in self.db.all("SELECT term, df FROM term_df WHERE df > 0")}
+        have_terms = {t: int(d) for t, d in self.db.all("SELECT term, SUM(n) FROM term_blocks GROUP BY term")}
         have_feats = {f: d for f, d in self.db.all("SELECT feat, df FROM feature_df WHERE df > 0")}
         with self.db.lock:
             have_post = postings.all_postings(self.db.conn)

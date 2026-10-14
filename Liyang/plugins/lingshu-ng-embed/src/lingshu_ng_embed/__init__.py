@@ -10,4 +10,4 @@
 - ``onnx_embedder`` → :mod:`lingshu_ng_embed.onnx_embed`（旧路径 ``lingshu_ng.embed.OnnxEmbedder``）
 - ``onnx_cross_encoder`` → :mod:`lingshu_ng_embed.cross`（旧路径 ``lingshu_ng.embed.cross.OnnxCrossEncoder``）
 """
-__version__ = "1.28.0"
+__version__ = "1.29.0"

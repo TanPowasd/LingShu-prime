@@ -6,7 +6,7 @@
 （作者基准 hive-memory-bench 零 LLM 检索轨上不如朴素 BM25）。本模块只在候选池内做两件事：
 
   R1 idf 重排：bm25(d) = Σ_{t∈q∩d} idf(t)·tf·(k1+1)/(tf + k1·(1−b+b·|d|/avgdl))，
-     idf(t) = ln(1 + (N − df + 0.5)/(df + 0.5))。df 直接读写入时维护的 ``term_df``（建库时预计算，查询不扫库）；
+     idf(t) = ln(1 + (N − df + 0.5)/(df + 0.5))。df 直接读写入时维护的倒排块条数（schema v6 及以前为 ``term_df``；建库时预计算，查询不扫库）；
      N / avgdl 取 node_index 统计并缓存，节点代理键上界变化超过 :data:`STATS_DRIFT` 才刷新。
      tf 只对候选池内的正文按查询二元组计数（规范化文本上 ``str.count``）。
      重排相关度 = a·rel + (1−a)·rel_max·bm25/bm25_max（rel_max = 池内最大相关度，保持原有 [0,1] 量纲，
