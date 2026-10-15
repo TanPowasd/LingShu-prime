@@ -21,6 +21,9 @@ def ranker(bench, cards):
 def contexts(bench, questions):
     cards = HR.load_cards(pathlib.Path(bench))
     chunks, _, rank = ranker(bench, cards)
+    nh = sum(1 for c in cards if c["qid"] in hx.load("hive"))
+    if nh < len(cards):             # dsh-bounty#466 F2：追问缓存缺题（含 LLM_SYS=1 而 cache_h_sys/ 未抽）不得静默退回单跳
+        raise RuntimeError(f"追问缓存 {hx.cache_dir('hive')} 只覆盖 {nh}/{len(cards)} 题；先跑 hx.py hive 补抽")
     out = {}
     for q in questions:
         got, used = [], 0

@@ -16,6 +16,8 @@ def load_triples(it):
         for k, v in turns.items():
             m[k.strip("[] ")] = [t for t in v if isinstance(t, list) and len(t) == 3]
     cov = sum(1 for i in it["ids"] if i in m) / len(it["ids"])
+    if not m:                       # dsh-bounty#466 F3：空源图（如 LLM_SYS=1 而 cache_sys/ 未抽）显式报错，不当作图继续跑
+        raise RuntimeError(f"{it['sid']}：源图缓存 {X.CACHE} 里没有任何三元组（LLM_SYS_GRAPH=0 可显式沿用旧源图）")
     return [m.get(i, []) for i in it["ids"]], cov
 
 

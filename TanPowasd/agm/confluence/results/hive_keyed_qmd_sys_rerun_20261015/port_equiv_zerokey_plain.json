@@ -1,0 +1,16 @@
+{
+ "hint_cache": "cache_q/hive",
+ "graph_cache": "cache_hive",
+ "graph_coverage": 1.0,
+ "hints": 92,
+ "questions": 92,
+ "qmd_rank_differ": [],
+ "qmd_ctx_differ": [],
+ "md_rank_differ": [],
+ "v3_rank_differ": [],
+ "port_ctx_sha256": "9c70dbb89b80922cad0a8f6a9b3f525f3718d31ea0c9b501a2b8e5c4af6c8999",
+ "qmd_rank_differ_n": 0,
+ "qmd_ctx_differ_n": 0,
+ "md_rank_differ_n": 0,
+ "v3_rank_differ_n": 0
+}

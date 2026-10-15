@@ -18,7 +18,7 @@ class HiveQMD(Q.QMD):
 
 
 def build(bench, cards):
-    chunks, tri, cov = HX.load(bench)
+    chunks, tri, cov = HX.load_full(bench)
     H = qx.load("hive")
     hints = {c["question"]: H.get(c["qid"]) for c in cards}
     return chunks, HiveQMD(chunks, tri, hints, **FROZEN), sum(1 for v in hints.values() if v)
@@ -26,7 +26,9 @@ def build(bench, cards):
 
 def contexts(bench, questions):
     cards = HR.load_cards(pathlib.Path(bench))
-    chunks, g, _ = build(bench, cards)
+    chunks, g, nh = build(bench, cards)
+    if nh < len(cards):             # dsh-bounty#466 同族：题面扩展缺题时 QMD 会对该题退回多维，端到端臂不得静默混用
+        raise RuntimeError(f"题面扩展缓存 {qx.cache_dir('hive')} 只覆盖 {nh}/{len(cards)} 题；先补抽 qx.py hive")
     out = {}
     for q in questions:
         got, used = [], 0

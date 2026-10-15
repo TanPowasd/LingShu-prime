@@ -68,6 +68,19 @@ def main():
     print("done", calls, flush=True)
 
 
+class PartialGraph(RuntimeError):
+    """源图没有覆盖全部块（dsh-bounty#466 F3）：截断/空源图不得被当作完整图使用。"""
+
+
+def load_full(bench):
+    """同 load()，但源图覆盖率 <1 时抛 PartialGraph（hive 主轮的提交缓存 cache_hive/ 覆盖率为 1.0）。"""
+    chunks, tri, cov = load(bench)
+    if cov < 1.0:
+        raise PartialGraph(f"源图缓存 {CACHE} 只覆盖 {cov:.4f} 的块（LLM_SYS={os.environ.get('LLM_SYS')}，"
+                           f"LLM_SYS_GRAPH={os.environ.get('LLM_SYS_GRAPH', '1')}）；先补抽，或 LLM_SYS_GRAPH=0 显式沿用旧源图")
+    return chunks, tri, cov
+
+
 def load(bench):
     chunks = HR.load_chunks(pathlib.Path(bench)); ids = ids_of(chunks); m = {}
     for f in sorted(CACHE.glob("b*.json")):

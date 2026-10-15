@@ -26,7 +26,7 @@ class HiveMDLLM(M.MultiDim):
 
 
 def build(bench, w_v3=3.0):
-    chunks, tri, cov = HX.load(bench)
+    chunks, tri, cov = HX.load_full(bench)
     return chunks, HiveMDLLM(chunks, tri, w_v3=w_v3), cov
 
 

@@ -7,9 +7,12 @@ from concurrent.futures import ThreadPoolExecutor
 HERE = pathlib.Path(__file__).resolve().parent
 sys.path[:0] = [str(HERE.parent / "tricue"), str(HERE.parent / "bench")]
 import gen_bench3 as G            # noqa: E402  locomo_items（dev = conv-30、conv-47）
-from hive_official import chat, parse_json, MODEL  # noqa: E402
+from hive_official import chat, parse_json, MODEL, SYS_SUFFIX  # noqa: E402
+import os  # noqa: E402
 
-CACHE = HERE / "cache"
+# 源图缓存与 hive_extract.py 同一规则（dsh-bounty#466 F2 同族）：LLM_SYS=1 且 LLM_SYS_GRAPH≠0 时读写 cache_sys/，
+# 不再静默拿 SYS=0 的源图；LLM_SYS_GRAPH=0 显式声明沿用旧源图。
+CACHE = HERE / ("cache" + (SYS_SUFFIX if os.environ.get("LLM_SYS_GRAPH", "1") == "1" else ""))
 PROMPT = """You convert dialogue turns into a knowledge graph. For EACH turn below, list its facts as
 [subject, predicate, object] triples.
 Rules:

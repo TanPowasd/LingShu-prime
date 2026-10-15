@@ -11,10 +11,13 @@ from __future__ import annotations
 
 import argparse
 import concurrent.futures as cf
+import hashlib
 import json
 import pathlib
 import re
+import subprocess
 import sys
+import threading
 import time
 import urllib.request
 
@@ -25,7 +28,10 @@ API = "https://api.cline.bot/api/v1/chat/completions"
 MODEL = "cline-pass/deepseek-v4.1-flash"
 BUDGET = 8000
 # 统一系统提示词（实验开关）：环境变量 LLM_SYS=1 时，我们这侧所有 LLM 环节（源图抽取、题面扩展、追问、作答）
-# 都带同一条 system 消息，缓存目录加 _sys 后缀与旧缓存隔离；官方判官始终不带（system=False），保证与基线可比。
+# 都带同一条 system 消息，缓存目录加 _sys 后缀与旧缓存隔离（qx.py cache_q、hx.py cache_h、extract.py cache、
+# hive_extract.py cache_hive；后两者受 LLM_SYS_GRAPH 控制）；官方判官始终不带（system=False），保证与基线可比。
+# 作答/判官产物目录带臂身份清单 _identity.json（dsh-bounty#466 F1 修复）：身份或逐题输入指纹不一致 ⇒ 拒绝、退出码 2，
+# 不再「存在即 skip」。
 import os  # noqa: E402
 SYS_ON = os.environ.get("LLM_SYS") == "1"
 SYS_SUFFIX = "_sys" if SYS_ON else ""
@@ -133,6 +139,74 @@ def tricue_contexts(chunks, arm, questions):
     return out
 
 
+class IdentityMismatch(SystemExit):
+    """产物目录里的既有结果不属于本次运行的臂身份（dsh-bounty#466 F1）。退出码 2。"""
+
+    def __init__(self, msg):
+        print("[身份不一致] " + msg, file=sys.stderr, flush=True)
+        super().__init__(2)
+
+
+def sha(s):
+    return hashlib.sha256(s.encode("utf-8")).hexdigest()[:16]
+
+
+def bench_commit(bench):
+    """基准仓的 git commit；取不到就写 "存疑:无git"（不猜）。"""
+    try:
+        r = subprocess.run(["git", "-C", str(bench), "rev-parse", "HEAD"], capture_output=True, text=True, timeout=20)
+        return r.stdout.strip() or "存疑:无git"
+    except (OSError, subprocess.SubprocessError):
+        return "存疑:无git"
+
+
+def gen_identity(A, bench):
+    return {"kind": "gen", "arm": A.arm, "tag": A.tag, "model": A.model,
+            "LLM_SYS": SYS_ON, "LLM_SYS_GRAPH": os.environ.get("LLM_SYS_GRAPH", "1"),
+            "system_sha": sha(SYSTEM) if SYS_ON else None, "bench_commit": bench_commit(bench)}
+
+
+class Manifest:
+    """产物目录身份清单：{"identity": {...}, "inputs": {名字: 输入指纹}}。
+    规则：目录里已有结果文件 ⇒ 清单必须存在且 identity 逐项相等，否则拒绝；
+    单个结果只在「其输入指纹与本次相同」时复用，否则拒绝（不覆盖、不 skip）。"""
+
+    def __init__(self, d, identity, results):
+        self.f = d / "_identity.json"
+        self.lock = threading.Lock()
+        have = [g for g in results if g.exists()]
+        if self.f.exists():
+            m = json.loads(self.f.read_text(encoding="utf-8"))
+            if m.get("identity") != identity:
+                raise IdentityMismatch(f"{d} 的既有身份 {m.get('identity')} ≠ 本次 {identity}；换 --tag 或换目录")
+            self.inputs = m.get("inputs", {})
+        elif have:
+            raise IdentityMismatch(f"{d} 已有 {len(have)} 个结果但没有身份清单（修复前产物）；换 --tag 或换目录")
+        else:
+            self.inputs = {}
+        self.identity = identity
+        self._save()
+
+    def _save(self):
+        self.f.write_text(json.dumps({"identity": self.identity, "inputs": self.inputs}, ensure_ascii=False, indent=1),
+                          encoding="utf-8")
+
+    def reusable(self, name, result, fp):
+        """True = 结果存在且输入指纹相同，可复用；False = 需要调用；指纹不同 ⇒ 拒绝。"""
+        with self.lock:
+            old = self.inputs.get(name)
+        if not result.exists():
+            return False
+        if old != fp:
+            raise IdentityMismatch(f"{result} 的输入指纹 {old} ≠ 本次 {fp}（上下文或请求变了）；换 --tag 或换目录")
+        return True
+
+    def record(self, name, fp):
+        with self.lock:
+            self.inputs[name] = fp
+            self._save()
+
+
 def cmd_gen(A):
     bench = pathlib.Path(A.bench)
     qs = json.loads((bench / "questions" / "题目_主轮.json").read_text(encoding="utf-8"))
@@ -144,27 +218,39 @@ def cmd_gen(A):
         print(f"{A.arm}: {len(L)} 题，上下文字数 均值 {sum(L) / len(L):.0f} 最小 {min(L)} 最大 {max(L)}")
         return
     head = contract(bench)
-    outdir = bench / "sut" / f"out_{A.tag or A.arm}"
+    outdir = bench / "sut" / f"out_{A.tag or (A.arm + SYS_SUFFIX)}"
     outdir.mkdir(parents=True, exist_ok=True)
+    man = Manifest(outdir, gen_identity(A, bench), [outdir / f"{q['qid']}.json" for q in qs])
+    prompts = {q["qid"]: f"{head}\n\n======== 正文 ========\n{ctx[q['qid']]}\n\n======== 问题 ========\n{q['qid']}：{q['question']}"
+               for q in qs}
+    print(f"[gen] outdir={outdir} identity={man.identity}", flush=True)
+
+    reuse = {q["qid"]: man.reusable(q["qid"], outdir / f"{q['qid']}.json", sha(prompts[q["qid"]])) for q in qs}  # 先全量核对，再发任何调用
 
     def one(q):
         f = outdir / f"{q['qid']}.json"
-        if f.exists():
+        prompt = prompts[q["qid"]]
+        if reuse[q["qid"]]:
             return q["qid"], "skip"
-        prompt = f"{head}\n\n======== 正文 ========\n{ctx[q['qid']]}\n\n======== 问题 ========\n{q['qid']}：{q['question']}"
         for _ in range(3):
             try:
                 obj = parse_json(chat(prompt, A.model))
                 obj["qid"] = q["qid"]
                 f.write_text(json.dumps(obj, ensure_ascii=False, indent=1), encoding="utf-8")
+                man.record(q["qid"], sha(prompt))
                 return q["qid"], "ok"
             except Exception as e:  # noqa: BLE001
                 last = e
         return q["qid"], f"fail {last}"
 
+    bad = 0
     with cf.ThreadPoolExecutor(A.workers) as ex:
         for qid, st in ex.map(one, qs):
             print(qid, st, flush=True)
+            bad += st.startswith("fail")
+    if bad:
+        print(f"[gen] {bad} 题失败", file=sys.stderr)
+        raise SystemExit(1)
 
 
 def cmd_judge(A):
@@ -173,23 +259,36 @@ def cmd_judge(A):
     out = bench / "semantic" / "out" / A.real
     out.mkdir(parents=True, exist_ok=True)
     files = sorted(req.glob("*.md"))
+    man = Manifest(out, {"kind": "judge", "real": A.real, "model": A.model, "system": False,
+                         "bench_commit": bench_commit(bench)}, [out / (f.stem + ".json") for f in files])
+    print(f"[judge] out={out} identity={man.identity}", flush=True)
+
+    bodies = {f.stem: f.read_text(encoding="utf-8") for f in files}
+    reuse = {f.stem: man.reusable(f.stem, out / (f.stem + ".json"), sha(bodies[f.stem])) for f in files}  # 先全量核对
 
     def one(f):
         g = out / (f.stem + ".json")
-        if g.exists():
+        body = bodies[f.stem]
+        if reuse[f.stem]:
             return f.stem, "skip"
         for _ in range(3):
             try:
-                obj = parse_json(chat(f.read_text(encoding="utf-8"), A.model, system=False))
+                obj = parse_json(chat(body, A.model, system=False))
                 g.write_text(json.dumps(obj, ensure_ascii=False, indent=1), encoding="utf-8")
+                man.record(f.stem, sha(body))
                 return f.stem, "ok"
             except Exception as e:  # noqa: BLE001
                 last = e
         return f.stem, f"fail {last}"
 
+    bad = 0
     with cf.ThreadPoolExecutor(A.workers) as ex:
         for s, st in ex.map(one, files):
             print(s, st, flush=True)
+            bad += st.startswith("fail")
+    if bad:
+        print(f"[judge] {bad} 条失败", file=sys.stderr)
+        raise SystemExit(1)
 
 
 def main():

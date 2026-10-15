@@ -7,7 +7,7 @@ import argparse, json, pathlib, sys, threading, time
 from concurrent.futures import ThreadPoolExecutor
 HERE = pathlib.Path(__file__).resolve().parent
 sys.path[:0] = [str(HERE), str(HERE.parent / "bench"), str(HERE.parent / "tricue")]
-from hive_official import chat, parse_json, MODEL  # noqa: E402
+from hive_official import chat, parse_json, MODEL, SYS_SUFFIX  # noqa: E402
 import qx  # noqa: E402
 
 N1 = {"locomo-dev": 15, "hive": 20}
@@ -59,9 +59,14 @@ def clean(v):
     return {"found": bool(v.get("found")), "follow": f}
 
 
+def cache_dir(which):
+    """追问缓存目录：LLM_SYS=1 时加 _sys 后缀，与不带系统提示词的旧追问式隔离（dsh-bounty#466 F2）。"""
+    return HERE / ("cache_h" + SYS_SUFFIX) / which
+
+
 def load(which):
     m = {}
-    for f in (HERE / "cache_h" / which).glob("b_*.json"):
+    for f in cache_dir(which).glob("b_*.json"):
         m.update(json.loads(f.read_text(encoding="utf-8")))
     return m
 
@@ -73,7 +78,7 @@ def main():
     ap.add_argument("--cap", type=int, default=80); ap.add_argument("--secs", type=int, default=1000)
     ap.add_argument("--dry", action="store_true")
     a = ap.parse_args()
-    d = HERE / "cache_h" / a.which; d.mkdir(parents=True, exist_ok=True); cf = d / "calls.json"
+    d = cache_dir(a.which); d.mkdir(parents=True, exist_ok=True); cf = d / "calls.json"
     calls = json.loads(cf.read_text()) if cf.exists() else {"n": 0, "fail": 0}
     have = load(a.which)
     qs = [x for x in first_hop(a.which, a.root) if x[0] not in have]

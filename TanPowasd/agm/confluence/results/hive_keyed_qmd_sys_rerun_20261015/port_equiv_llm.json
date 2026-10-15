@@ -1,0 +1,56 @@
+{
+ "answer_prompt_sha_match_rerun": 92,
+ "n_answer": 92,
+ "n_judge": 65,
+ "request_messages_identical": 157,
+ "requests": 157,
+ "judge_without_system": true,
+ "query_prompt_identical": true,
+ "graph_prompt_identical_zh": true,
+ "query_prompt_batch0_identical": true,
+ "live": {
+  "answer": [
+   {
+    "qid": "o001",
+    "parsed": true,
+    "keys_same": true
+   },
+   {
+    "qid": "o002",
+    "parsed": true,
+    "keys_same": true
+   },
+   {
+    "qid": "o003",
+    "parsed": true,
+    "keys_same": true
+   }
+  ],
+  "judge": [
+   {
+    "case": "o001__o001",
+    "parsed": true,
+    "same_json": false,
+    "same_keys": true
+   },
+   {
+    "case": "o002__o002",
+    "parsed": true,
+    "same_json": false,
+    "same_keys": true
+   },
+   {
+    "case": "o003__o003",
+    "parsed": true,
+    "same_json": false,
+    "same_keys": true
+   }
+  ],
+  "hints": {
+   "got": 10,
+   "missing": [],
+   "ents_jaccard_vs_cache_q_sys_mean": 0.492
+  },
+  "calls": 7
+ }
+}
