@@ -27,8 +27,9 @@ def rrf(*orders, k=60):
 
 
 def build(texts, roles=None):
-    m = (cc.CCMemory(lam=0.0, delta=1.0, stem=True, rm3=True) if "cc" in ARMS
-         else tm.TMMemory(lam=0.0))
+    rm3 = os.environ.get("LEX_RM3", "1") != "0"   # LEX_RM3=0：关伪相关反馈（默认开，与既有读数一致）
+    m = (cc.CCMemory(lam=0.0, delta=1.0, stem=True, rm3=rm3) if "cc" in ARMS
+         else tm.TMMemory(lam=0.0, rm3=rm3))
     for k, t in enumerate(texts):
         m.add_turn(roles[k] if roles and "role" in ARMS else "user", t)
     return m

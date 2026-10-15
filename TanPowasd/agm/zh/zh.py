@@ -38,8 +38,10 @@ def qterms(toks):
 
 
 class ZhMemory(L.LexMemory):
-    def __init__(self, ra=True):
-        super().__init__(delta=1.0, stem=True, rm3=True)
+    def __init__(self, ra=True, rm3=False):
+        # rm3：英文问句是否做 RM3。2026-10-15 起默认关（PREREG_rm3_off.md）；rm3=True 复现旧读数。
+        super().__init__(delta=1.0, stem=True, rm3=rm3)
+        self.rm3_en = rm3
         if ra:
             role.attach(self)
 
@@ -52,4 +54,4 @@ class ZhMemory(L.LexMemory):
         try:
             return s.score(toks)
         finally:
-            s.rm3 = True
+            s.rm3 = self.rm3_en
