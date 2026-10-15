@@ -1,0 +1,479 @@
+{"_id": "gpt4_1916e0ea", "text": "How many days passed between the day I cancelled my FarmFresh subscription and the day I did my online grocery shopping from Instacart?", "src": "part0.json", "idx": 84, "n": 252, "type": "temporal-reasoning"}
+{"_id": "eace081b", "text": "Where am I planning to stay for my birthday trip to Hawaii?", "src": "part1.json", "idx": 137, "n": 412, "type": "knowledge-update"}
+{"_id": "a89d7624", "text": "I'm planning a trip to Denver soon. Any suggestions on what to do there?", "src": "part0.json", "idx": 52, "n": 156, "type": "single-session-preference"}
+{"_id": "1568498a", "text": "I'm looking back at our previous chess game and I was wondering, what was the move you made after 27. Kg2 Bd5+?", "src": "part0.json", "idx": 157, "n": 471, "type": "single-session-assistant"}
+{"_id": "dcfa8644", "text": "How many days had passed since I bought my Adidas running shoes when I realized one of the shoelaces on my old Converse sneakers had broken?", "src": "part0.json", "idx": 111, "n": 333, "type": "temporal-reasoning"}
+{"_id": "edced276_abs", "text": "How many days did I spend in total traveling in Hawaii and in Seattle?", "src": "part1.json", "idx": 43, "n": 130, "type": "multi-session"}
+{"_id": "0f05491a", "text": "How many stars do I need to reach the gold level on my Starbucks Rewards app?", "src": "part0.json", "idx": 127, "n": 381, "type": "knowledge-update"}
+{"_id": "c14c00dd", "text": "What brand of shampoo do I currently use?", "src": "part0.json", "idx": 20, "n": 60, "type": "single-session-user"}
+{"_id": "726462e0", "text": "What was the discount I got on my first purchase from the new clothing brand?", "src": "part2.json", "idx": 4, "n": 14, "type": "single-session-user"}
+{"_id": "d01c6aa8", "text": "How old was I when I moved to the United States?", "src": "part1.json", "idx": 113, "n": 340, "type": "temporal-reasoning"}
+{"_id": "1da05512", "text": "I'm trying to decide whether to buy a NAS device now or wait. What do you think?", "src": "part0.json", "idx": 51, "n": 153, "type": "single-session-preference"}
+{"_id": "b6019101", "text": "How many MCU films did I watch in the last 3 months?", "src": "part2.json", "idx": 128, "n": 386, "type": "knowledge-update"}
+{"_id": "gpt4_b0863698", "text": "How many days ago did I participate in the 5K charity run?", "src": "part2.json", "idx": 93, "n": 281, "type": "temporal-reasoning"}
+{"_id": "gpt4_7f6b06db", "text": "What is the order of the three trips I took in the past three months, from earliest to latest?", "src": "part1.json", "idx": 82, "n": 247, "type": "temporal-reasoning"}
+{"_id": "00ca467f", "text": "How many doctor's appointments did I go to in March?", "src": "part1.json", "idx": 33, "n": 100, "type": "multi-session"}
+{"_id": "ce6d2d27", "text": "What day of the week do I take a cocktail-making class?", "src": "part2.json", "idx": 124, "n": 374, "type": "knowledge-update"}
+{"_id": "85fa3a3f", "text": "What is the total cost of the new food bowl, measuring cup, dental chews, and flea and tick collar I got for Max?", "src": "part2.json", "idx": 55, "n": 167, "type": "multi-session"}
+{"_id": "9ee3ecd6", "text": "How many points do I need to earn to redeem a free skincare product at Sephora?", "src": "part0.json", "idx": 62, "n": 186, "type": "multi-session"}
+{"_id": "e66b632c", "text": "What was my previous personal best time for the charity 5K run?", "src": "part1.json", "idx": 138, "n": 415, "type": "knowledge-update"}
+{"_id": "59524333", "text": "What time do I usually go to the gym?", "src": "part2.json", "idx": 136, "n": 410, "type": "knowledge-update"}
+{"_id": "118b2229", "text": "How long is my daily commute to work?", "src": "part1.json", "idx": 0, "n": 1, "type": "single-session-user"}
+{"_id": "577d4d32", "text": "What time do I stop checking work emails and messages?", "src": "part2.json", "idx": 12, "n": 38, "type": "single-session-user"}
+{"_id": "ac031881", "text": "I'm trying to recall what the designation on my jumpsuit was that helped me find the file number in the records room?", "src": "part1.json", "idx": 163, "n": 490, "type": "single-session-assistant"}
+{"_id": "71017277", "text": "I received a piece of jewelry last Saturday from whom?", "src": "part0.json", "idx": 96, "n": 288, "type": "temporal-reasoning"}
+{"_id": "0a995998", "text": "How many items of clothing do I need to pick up or return from a store?", "src": "part1.json", "idx": 23, "n": 70, "type": "multi-session"}
+{"_id": "5c40ec5b", "text": "How many times have I met up with Alex from Germany?", "src": "part0.json", "idx": 144, "n": 432, "type": "knowledge-update"}
+{"_id": "80ec1f4f", "text": "How many different museums or galleries did I visit in the month of February?", "src": "part0.json", "idx": 30, "n": 90, "type": "multi-session"}
+{"_id": "gpt4_70e84552", "text": "Which task did I complete first, fixing the fence or trimming the goats' hooves?", "src": "part2.json", "idx": 106, "n": 320, "type": "temporal-reasoning"}
+{"_id": "9a707b82", "text": "I mentioned cooking something for my friend a couple of days ago. What was it?", "src": "part1.json", "idx": 99, "n": 298, "type": "temporal-reasoning"}
+{"_id": "a1cc6108", "text": "How old was I when Alex was born?", "src": "part2.json", "idx": 61, "n": 185, "type": "multi-session"}
+{"_id": "16c90bf4", "text": "I'm looking back at our previous conversation about the Seco de Cordero recipe from Ancash. You mentioned using a light or medium-bodied beer, but I was wondering if you could remind me what type of beer you specifically recommended?", "src": "part0.json", "idx": 164, "n": 492, "type": "single-session-assistant"}
+{"_id": "b5ef892d", "text": "How many days did I spend on camping trips in the United States this year?", "src": "part1.json", "idx": 24, "n": 73, "type": "multi-session"}
+{"_id": "2ebe6c92", "text": "Which book did I finish a week ago?", "src": "part1.json", "idx": 95, "n": 286, "type": "temporal-reasoning"}
+{"_id": "dad224aa", "text": "What time do I wake up on Saturday mornings?", "src": "part0.json", "idx": 143, "n": 429, "type": "knowledge-update"}
+{"_id": "bb7c3b45", "text": "How much did I save on the Jimmy Choo heels?", "src": "part1.json", "idx": 67, "n": 202, "type": "multi-session"}
+{"_id": "c4a1ceb8", "text": "How many different types of citrus fruits have I used in my cocktail recipes?", "src": "part2.json", "idx": 26, "n": 80, "type": "multi-session"}
+{"_id": "41275add", "text": "I wanted to follow up on our previous conversation about YouTube videos for workplace posture. Can you remind me of the Mayo Clinic video you recommended?", "src": "part2.json", "idx": 161, "n": 485, "type": "single-session-assistant"}
+{"_id": "45dc21b6", "text": "How many of Emma's recipes have I tried out?", "src": "part0.json", "idx": 129, "n": 387, "type": "knowledge-update"}
+{"_id": "cc5ded98", "text": "How much time do I dedicate to coding exercises each day?", "src": "part1.json", "idx": 139, "n": 418, "type": "knowledge-update"}
+{"_id": "8fb83627", "text": "How many issues of National Geographic have I finished reading?", "src": "part1.json", "idx": 134, "n": 403, "type": "knowledge-update"}
+{"_id": "e48988bc", "text": "I was looking back at our previous conversation about environmentally responsible supply chain practices, and I was wondering if you could remind me of the company you mentioned that's doing a great job with sustainability?", "src": "part1.json", "idx": 165, "n": 496, "type": "single-session-assistant"}
+{"_id": "gpt4_78cf46a3", "text": "Which event happened first, the narrator losing their phone charger or the narrator receiving their new phone case?", "src": "part0.json", "idx": 117, "n": 351, "type": "temporal-reasoning"}
+{"_id": "6456829e_abs", "text": "How many plants did I initially plant for tomatoes and chili peppers?", "src": "part0.json", "idx": 76, "n": 228, "type": "multi-session"}
+{"_id": "36580ce8", "text": "What health issue did I initially think was just a cold?", "src": "part1.json", "idx": 20, "n": 61, "type": "single-session-user"}
+{"_id": "71a3fd6b", "text": "I'm planning my trip to Speyer again and I wanted to confirm, what's the phone number of the Speyer tourism board that you provided me earlier?", "src": "part0.json", "idx": 155, "n": 465, "type": "single-session-assistant"}
+{"_id": "gpt4_e414231f", "text": "Which bike did I fixed or serviced the past weekend?", "src": "part0.json", "idx": 98, "n": 294, "type": "temporal-reasoning"}
+{"_id": "e493bb7c", "text": "Where is the painting 'Ethereal Dreams' by Emma Taylor currently hanging?", "src": "part0.json", "idx": 130, "n": 390, "type": "knowledge-update"}
+{"_id": "852ce960", "text": "What was the amount I was pre-approved for when I got my mortgage from Wells Fargo?", "src": "part0.json", "idx": 123, "n": 369, "type": "knowledge-update"}
+{"_id": "8ebdbe50", "text": "What certification did I complete last month?", "src": "part0.json", "idx": 7, "n": 21, "type": "single-session-user"}
+{"_id": "gpt4_a1b77f9c", "text": "How many weeks in total do I spent on reading 'The Nightingale' and listening to 'Sapiens: A Brief History of Humankind' and 'The Power'?", "src": "part2.json", "idx": 83, "n": 251, "type": "temporal-reasoning"}
+{"_id": "gpt4_9a159967", "text": "Which airline did I fly with the most in March and April?", "src": "part2.json", "idx": 111, "n": 335, "type": "temporal-reasoning"}
+{"_id": "5831f84d", "text": "How many Crash Course videos have I watched in the past few weeks?", "src": "part0.json", "idx": 137, "n": 411, "type": "knowledge-update"}
+{"_id": "6cb6f249", "text": "How many days did I take social media breaks in total?", "src": "part1.json", "idx": 27, "n": 82, "type": "multi-session"}
+{"_id": "fca70973", "text": "I am planning another theme park weekend; do you have any suggestions?", "src": "part1.json", "idx": 51, "n": 154, "type": "single-session-preference"}
+{"_id": "a3332713", "text": "What is the total amount I spent on gifts for my coworker and brother?", "src": "part1.json", "idx": 71, "n": 214, "type": "multi-session"}
+{"_id": "184da446", "text": "How many pages of 'A Short History of Nearly Everything' have I read so far?", "src": "part0.json", "idx": 126, "n": 378, "type": "knowledge-update"}
+{"_id": "1b9b7252", "text": "I wanted to follow up on our previous conversation about mindfulness techniques. You mentioned some great resources for guided imagery exercises, can you remind me of the website that had free exercises like 'The Mountain Meditation' and 'The Body Scan Meditation'?", "src": "part2.json", "idx": 156, "n": 470, "type": "single-session-assistant"}
+{"_id": "cc539528", "text": "I wanted to follow up on our previous conversation about front-end and back-end development. Can you remind me of the specific back-end programming languages you recommended I learn?", "src": "part0.json", "idx": 152, "n": 456, "type": "single-session-assistant"}
+{"_id": "618f13b2", "text": "How many times have I worn my new black Converse Chuck Taylor All Star sneakers?", "src": "part1.json", "idx": 130, "n": 391, "type": "knowledge-update"}
+{"_id": "a96c20ee", "text": "At which university did I present a poster on my thesis research?", "src": "part2.json", "idx": 64, "n": 194, "type": "multi-session"}
+{"_id": "8464fc84", "text": "I'm planning to visit the Vatican again and I was wondering if you could remind me of the name of that famous deli near the Vatican that serves the best cured meats and cheeses?", "src": "part1.json", "idx": 154, "n": 463, "type": "single-session-assistant"}
+{"_id": "1d4e3b97", "text": "I noticed my bike seems to be performing even better during my Sunday group rides. Could there be a reason for this?", "src": "part2.json", "idx": 52, "n": 158, "type": "single-session-preference"}
+{"_id": "81507db6", "text": "How many graduation ceremonies have I attended in the past three months?", "src": "part2.json", "idx": 41, "n": 125, "type": "multi-session"}
+{"_id": "09ba9854_abs", "text": "How much will I save by taking the bus from the airport to my hotel instead of a taxi?", "src": "part1.json", "idx": 77, "n": 232, "type": "multi-session"}
+{"_id": "bf659f65", "text": "How many music albums or EPs have I purchased or downloaded?", "src": "part2.json", "idx": 40, "n": 122, "type": "multi-session"}
+{"_id": "aae3761f", "text": "How many hours in total did I spend driving to my three road trip destinations combined?", "src": "part2.json", "idx": 25, "n": 77, "type": "multi-session"}
+{"_id": "95228167", "text": "I'm getting excited about my visit to the music store this weekend. Any tips on what to look for in a new guitar?", "src": "part2.json", "idx": 49, "n": 149, "type": "single-session-preference"}
+{"_id": "09ba9854", "text": "How much will I save by taking the train from the airport to my hotel instead of a taxi?", "src": "part0.json", "idx": 70, "n": 210, "type": "multi-session"}
+{"_id": "129d1232", "text": "How much money did I raise in total through all the charity events I participated in?", "src": "part2.json", "idx": 35, "n": 107, "type": "multi-session"}
+{"_id": "gpt4_18c2b244", "text": "What is the order of the three events: 'I signed up for the rewards program at ShopRite', 'I used a Buy One Get One Free coupon on Luvs diapers at Walmart', and 'I redeemed $12 cashback for a $10 Amazon gift card from Ibotta'?", "src": "part1.json", "idx": 83, "n": 250, "type": "temporal-reasoning"}
+{"_id": "5e1b23de", "text": "How many months ago did I attend the photography workshop?", "src": "part1.json", "idx": 91, "n": 274, "type": "temporal-reasoning"}
+{"_id": "dfde3500", "text": "What day of the week did I meet with my previous language exchange tutor Juan?", "src": "part2.json", "idx": 139, "n": 419, "type": "knowledge-update"}
+{"_id": "d7c942c3", "text": "Is my mom using the same grocery list method as me?", "src": "part2.json", "idx": 123, "n": 371, "type": "knowledge-update"}
+{"_id": "6222b6eb", "text": "I was going through our previous conversation about atmospheric correction methods, and I wanted to confirm - you mentioned that 6S, MAJA, and Sen2Cor are all algorithms for atmospheric correction of remote sensing images. Can you remind me which one is implemented in the SIAC_GEE tool?", "src": "part1.json", "idx": 157, "n": 472, "type": "single-session-assistant"}
+{"_id": "7161e7e2", "text": "I'm checking our previous chat about the shift rotation sheet for GM social media agents. Can you remind me what was the rotation for Admon on a Sunday?", "src": "part0.json", "idx": 148, "n": 444, "type": "single-session-assistant"}
+{"_id": "d851d5ba", "text": "How much money did I raise for charity in total?", "src": "part0.json", "idx": 37, "n": 111, "type": "multi-session"}
+{"_id": "6a27ffc2", "text": "How many videos of Corey Schafer's Python programming series have I completed so far?", "src": "part2.json", "idx": 131, "n": 395, "type": "knowledge-update"}
+{"_id": "gpt4_a2d1d1f6", "text": "How many days ago did I harvest my first batch of fresh herbs from the herb garden kit?", "src": "part0.json", "idx": 93, "n": 279, "type": "temporal-reasoning"}
+{"_id": "0edc2aef", "text": "Can you suggest a hotel for my upcoming trip to Miami?", "src": "part0.json", "idx": 45, "n": 135, "type": "single-session-preference"}
+{"_id": "gpt4_2655b836", "text": "What was the first issue I had with my new car after its first service?", "src": "part0.json", "idx": 102, "n": 306, "type": "temporal-reasoning"}
+{"_id": "57f827a0", "text": "I was thinking about rearranging the furniture in my bedroom this weekend. Any tips?", "src": "part1.json", "idx": 49, "n": 148, "type": "single-session-preference"}
+{"_id": "078150f1", "text": "How much more money did I raise than my initial goal in the charity cycling event?", "src": "part2.json", "idx": 72, "n": 218, "type": "multi-session"}
+{"_id": "08f4fc43", "text": "How many days had passed between the Sunday mass at St. Mary's Church and the Ash Wednesday service at the cathedral?", "src": "part2.json", "idx": 103, "n": 311, "type": "temporal-reasoning"}
+{"_id": "3249768e", "text": "I'm looking back at our previous conversation about building a cocktail bar. You recommended five bottles to make the widest variety of gin-based cocktails. Can you remind me what the fifth bottle was?", "src": "part1.json", "idx": 156, "n": 469, "type": "single-session-assistant"}
+{"_id": "gpt4_d6585ce8", "text": "What is the order of the concerts and musical events I attended in the past two months, starting from the earliest?", "src": "part0.json", "idx": 88, "n": 264, "type": "temporal-reasoning"}
+{"_id": "d682f1a2", "text": "How many different types of food delivery services have I used recently?", "src": "part0.json", "idx": 31, "n": 93, "type": "multi-session"}
+{"_id": "gpt4_cd90e484", "text": "How long did I use my new binoculars before I saw the American goldfinches returning to the area?", "src": "part2.json", "idx": 114, "n": 344, "type": "temporal-reasoning"}
+{"_id": "720133ac", "text": "What is the total cost of Lola's vet visit and flea medication?", "src": "part1.json", "idx": 63, "n": 190, "type": "multi-session"}
+{"_id": "195a1a1b", "text": "Can you suggest some activities that I can do in the evening?", "src": "part0.json", "idx": 46, "n": 138, "type": "single-session-preference"}
+{"_id": "f685340e", "text": "How often do I play tennis with my friends at the local park previously? How often do I play now?", "src": "part0.json", "idx": 139, "n": 417, "type": "knowledge-update"}
+{"_id": "gpt4_e05b82a6", "text": "How many times did I ride rollercoasters across all the events I attended from July to October?", "src": "part0.json", "idx": 38, "n": 114, "type": "multi-session"}
+{"_id": "06f04340", "text": "What should I serve for dinner this weekend with my homegrown ingredients?", "src": "part1.json", "idx": 47, "n": 142, "type": "single-session-preference"}
+{"_id": "d6233ab6", "text": "I've been feeling nostalgic lately. Do you think it would be a good idea to attend my high school reunion?", "src": "part2.json", "idx": 50, "n": 152, "type": "single-session-preference"}
+{"_id": "gpt4_8279ba03", "text": "What kitchen appliance did I buy 10 days ago?", "src": "part0.json", "idx": 101, "n": 303, "type": "temporal-reasoning"}
+{"_id": "0db4c65d", "text": "How many days had passed since I finished reading 'The Seven Husbands of Evelyn Hugo' when I attended the book reading event at the local library, where the author of 'The Silent Patient' is discussing her latest thriller novel?", "src": "part2.json", "idx": 81, "n": 245, "type": "temporal-reasoning"}
+{"_id": "41698283", "text": "What type of camera lens did I purchase most recently?", "src": "part0.json", "idx": 128, "n": 384, "type": "knowledge-update"}
+{"_id": "87f22b4a", "text": "How much have I made from selling eggs this month?", "src": "part1.json", "idx": 74, "n": 223, "type": "multi-session"}
+{"_id": "1c549ce4", "text": "What is the total cost of the car cover and detailing spray I purchased?", "src": "part2.json", "idx": 65, "n": 197, "type": "multi-session"}
+{"_id": "7a87bd0c", "text": "How long have I been sticking to my daily tidying routine?", "src": "part0.json", "idx": 133, "n": 399, "type": "knowledge-update"}
+{"_id": "031748ae", "text": "How many engineers do I lead when I just started my new role as Senior Software Engineer? How many engineers do I lead now?", "src": "part1.json", "idx": 126, "n": 379, "type": "knowledge-update"}
+{"_id": "6aeb4375", "text": "How many Korean restaurants have I tried in my city?", "src": "part1.json", "idx": 122, "n": 367, "type": "knowledge-update"}
+{"_id": "bc149d6b", "text": "What is the total weight of the new feed I purchased in the past two months?", "src": "part1.json", "idx": 69, "n": 208, "type": "multi-session"}
+{"_id": "91b15a6e", "text": "What is the minimum amount I could get if I sold the vintage diamond necklace and the antique vanity?", "src": "part2.json", "idx": 62, "n": 188, "type": "multi-session"}
+{"_id": "e6041065", "text": "What percentage of packed shoes did I wear on my last trip?", "src": "part2.json", "idx": 56, "n": 170, "type": "multi-session"}
+{"_id": "gpt4_4929293a", "text": "Which event happened first, my cousin's wedding or Michael's engagement party?", "src": "part0.json", "idx": 80, "n": 240, "type": "temporal-reasoning"}
+{"_id": "bcbe585f", "text": "How many weeks ago did I attend a bird watching workshop at the local Audubon society?", "src": "part2.json", "idx": 90, "n": 272, "type": "temporal-reasoning"}
+{"_id": "6456829e", "text": "How many plants did I initially plant for tomatoes and cucumbers?", "src": "part1.json", "idx": 58, "n": 175, "type": "multi-session"}
+{"_id": "caf9ead2", "text": "How long did it take to move to the new apartment?", "src": "part0.json", "idx": 11, "n": 33, "type": "single-session-user"}
+{"_id": "2788b940", "text": "How many fitness classes do I attend in a typical week?", "src": "part2.json", "idx": 34, "n": 104, "type": "multi-session"}
+{"_id": "6e984301", "text": "How many weeks have I been taking sculpting classes when I invested in my own set of sculpting tools?", "src": "part0.json", "idx": 89, "n": 267, "type": "temporal-reasoning"}
+{"_id": "58ef2f1c", "text": "When did I volunteer at the local animal shelter's fundraising dinner?", "src": "part2.json", "idx": 2, "n": 8, "type": "single-session-user"}
+{"_id": "gpt4_e414231e", "text": "How many days passed between the day I fixed my mountain bike and the day I decided to upgrade my road bike's pedals?", "src": "part1.json", "idx": 94, "n": 283, "type": "temporal-reasoning"}
+{"_id": "cc06de0d", "text": "For my daily commute, how much more expensive was the taxi ride compared to the train fare?", "src": "part2.json", "idx": 54, "n": 164, "type": "multi-session"}
+{"_id": "8c18457d", "text": "How many days had passed between the day I bought a gift for my brother's graduation ceremony and the day I bought a birthday gift for my best friend?", "src": "part2.json", "idx": 119, "n": 359, "type": "temporal-reasoning"}
+{"_id": "06878be2", "text": "Can you suggest some accessories that would complement my current photography setup?", "src": "part1.json", "idx": 44, "n": 133, "type": "single-session-preference"}
+{"_id": "3e321797", "text": "I wanted to follow up on our previous conversation about natural remedies for dark circles under the eyes. You mentioned applying tomato juice mixed with lemon juice, how long did you say I should leave it on for?", "src": "part0.json", "idx": 159, "n": 477, "type": "single-session-assistant"}
+{"_id": "681a1674", "text": "How many Marvel movies did I re-watch?", "src": "part2.json", "idx": 59, "n": 179, "type": "multi-session"}
+{"_id": "18bc8abd", "text": "What brand of BBQ sauce am I currently obsessed with?", "src": "part1.json", "idx": 132, "n": 397, "type": "knowledge-update"}
+{"_id": "19b5f2b3", "text": "How long was I in Japan for?", "src": "part1.json", "idx": 15, "n": 46, "type": "single-session-user"}
+{"_id": "b3c15d39", "text": "How many days did it take for me to receive the new remote shutter release after I ordered it?", "src": "part2.json", "idx": 33, "n": 101, "type": "multi-session"}
+{"_id": "b86304ba", "text": "How much is the painting of a sunset worth in terms of the amount I paid for it?", "src": "part0.json", "idx": 10, "n": 30, "type": "single-session-user"}
+{"_id": "9a707b81", "text": "How many days ago did I attend a baking class at a local culinary school when I made my friend's birthday cake?", "src": "part2.json", "idx": 80, "n": 242, "type": "temporal-reasoning"}
+{"_id": "06db6396", "text": "How many projects have I completed since starting painting classes?", "src": "part2.json", "idx": 141, "n": 425, "type": "knowledge-update"}
+{"_id": "gpt4_1d4ab0c9", "text": "How many days passed between the day I started watering my herb garden and the day I harvested my first batch of fresh herbs?", "src": "part0.json", "idx": 81, "n": 243, "type": "temporal-reasoning"}
+{"_id": "4bc144e2", "text": "How much did I spend on car wash and parking ticket?", "src": "part2.json", "idx": 60, "n": 182, "type": "multi-session"}
+{"_id": "gpt4_6ed717ea", "text": "Which item did I purchase first, the dog bed for Max or the training pads for Luna?", "src": "part1.json", "idx": 106, "n": 319, "type": "temporal-reasoning"}
+{"_id": "gpt4_65aabe59", "text": "Which device did I set up first, the smart thermostat or the mesh network system?", "src": "part0.json", "idx": 108, "n": 324, "type": "temporal-reasoning"}
+{"_id": "37d43f65", "text": "How much RAM did I upgrade my laptop to?", "src": "part2.json", "idx": 9, "n": 29, "type": "single-session-user"}
+{"_id": "5809eb10", "text": "I'm looking back at our previous conversation about the Bajimaya v Reward Homes Pty Ltd case. Can you remind me what year the construction of the house began?", "src": "part1.json", "idx": 161, "n": 484, "type": "single-session-assistant"}
+{"_id": "42ec0761", "text": "Do I have a spare screwdriver for opening up my laptop?", "src": "part2.json", "idx": 143, "n": 431, "type": "knowledge-update"}
+{"_id": "gpt4_2312f94c", "text": "Which device did I got first, the Samsung Galaxy S22 or the Dell XPS 13?", "src": "part0.json", "idx": 103, "n": 309, "type": "temporal-reasoning"}
+{"_id": "e831120c", "text": "How many weeks did it take me to watch all the Marvel Cinematic Universe movies and the main Star Wars films?", "src": "part2.json", "idx": 24, "n": 74, "type": "multi-session"}
+{"_id": "8752c811", "text": "I remember you provided a list of 100 prompt parameters that I can specify to influence your output. Can you remind me what was the 27th parameter on that list?", "src": "part0.json", "idx": 156, "n": 468, "type": "single-session-assistant"}
+{"_id": "gpt4_e061b84g", "text": "I mentioned participating in a sports event two weeks ago. What was the event?", "src": "part2.json", "idx": 95, "n": 287, "type": "temporal-reasoning"}
+{"_id": "0ea62687", "text": "How much more miles per gallon was my car getting a few months ago compared to now?", "src": "part2.json", "idx": 66, "n": 200, "type": "multi-session"}
+{"_id": "e3038f8c", "text": "How many rare items do I have in total?", "src": "part1.json", "idx": 39, "n": 118, "type": "multi-session"}
+{"_id": "d3ab962e", "text": "What is the total distance of the hikes I did on two consecutive weekends?", "src": "part0.json", "idx": 54, "n": 162, "type": "multi-session"}
+{"_id": "830ce83f", "text": "Where did Rachel move to after her recent relocation?", "src": "part2.json", "idx": 122, "n": 368, "type": "knowledge-update"}
+{"_id": "853b0a1d", "text": "How old was I when my grandma gave me the silver necklace?", "src": "part0.json", "idx": 9, "n": 27, "type": "single-session-user"}
+{"_id": "7024f17c", "text": "How many hours of jogging and yoga did I do last week?", "src": "part1.json", "idx": 31, "n": 94, "type": "multi-session"}
+{"_id": "b01defab", "text": "Did I finish reading 'The Nightingale' by Kristin Hannah?", "src": "part2.json", "idx": 134, "n": 404, "type": "knowledge-update"}
+{"_id": "1d4da289", "text": "I was thinking about our previous conversation about data privacy and security. You mentioned that companies use two-factor authentication to enhance security. Can you remind me what kind of two-factor authentication methods you were referring to?", "src": "part0.json", "idx": 154, "n": 462, "type": "single-session-assistant"}
+{"_id": "e982271f", "text": "I was going through our previous chat. Can you remind me of the name of the last venue you recommended in the list of popular venues in Portland for indie music shows?", "src": "part1.json", "idx": 159, "n": 478, "type": "single-session-assistant"}
+{"_id": "6613b389", "text": "How many months before my anniversary did Rachel get engaged?", "src": "part2.json", "idx": 116, "n": 350, "type": "temporal-reasoning"}
+{"_id": "gpt4_4cd9eba1", "text": "How many weeks have I been accepted into the exchange program when I started attending the pre-departure orientation sessions?", "src": "part1.json", "idx": 115, "n": 346, "type": "temporal-reasoning"}
+{"_id": "22d2cb42", "text": "Where did I get my guitar serviced?", "src": "part0.json", "idx": 135, "n": 405, "type": "knowledge-update"}
+{"_id": "28bcfaac", "text": "I'm going back to our previous conversation about music theory. You mentioned some online resources for learning music theory. Can you remind me of the website you recommended for free lessons and exercises?", "src": "part2.json", "idx": 163, "n": 491, "type": "single-session-assistant"}
+{"_id": "gpt4_7de946e7", "text": "Which health issue did I deal with first, the persistent cough or the skin tag removal?", "src": "part0.json", "idx": 113, "n": 339, "type": "temporal-reasoning"}
+{"_id": "gpt4_2f56ae70", "text": "Which streaming service did I start using most recently?", "src": "part1.json", "idx": 116, "n": 349, "type": "temporal-reasoning"}
+{"_id": "efc3f7c2", "text": "How much earlier do I wake up on Fridays compared to other weekdays?", "src": "part0.json", "idx": 75, "n": 225, "type": "multi-session"}
+{"_id": "07b6f563", "text": "Can you suggest some useful accessories for my phone?", "src": "part0.json", "idx": 53, "n": 159, "type": "single-session-preference"}
+{"_id": "8550ddae", "text": "What type of cocktail recipe did I try last weekend?", "src": "part1.json", "idx": 11, "n": 34, "type": "single-session-user"}
+{"_id": "0bb5a684", "text": "How many days before the team meeting I was preparing for did I attend the workshop on 'Effective Communication in the Workplace'?", "src": "part1.json", "idx": 103, "n": 310, "type": "temporal-reasoning"}
+{"_id": "1f2b8d4f", "text": "What is the difference in price between my luxury boots and the similar pair found at the budget store?", "src": "part1.json", "idx": 56, "n": 169, "type": "multi-session"}
+{"_id": "4dfccbf7", "text": "How many days had passed since I started taking ukulele lessons when I decided to take my acoustic guitar to the guitar tech for servicing?", "src": "part0.json", "idx": 86, "n": 258, "type": "temporal-reasoning"}
+{"_id": "1192316e", "text": "What is the total time it takes I to get ready and commute to work?", "src": "part1.json", "idx": 66, "n": 199, "type": "multi-session"}
+{"_id": "gpt4_af6db32f", "text": "How many days ago did I watch the Super Bowl?", "src": "part0.json", "idx": 92, "n": 276, "type": "temporal-reasoning"}
+{"_id": "9ea5eabc", "text": "Where did I go on my most recent family trip?", "src": "part0.json", "idx": 125, "n": 375, "type": "knowledge-update"}
+{"_id": "gpt4_61e13b3c", "text": "How many weeks passed between the time I sold homemade baked goods at the Farmers' Market for the last time and the time I participated in the Spring Fling Market?", "src": "part1.json", "idx": 86, "n": 259, "type": "temporal-reasoning"}
+{"_id": "gpt4_8e165409", "text": "How many days passed between the day I repotted the previous spider plant and the day I gave my neighbor, Mrs. Johnson, a few cuttings from my spider plant?", "src": "part0.json", "idx": 90, "n": 270, "type": "temporal-reasoning"}
+{"_id": "01493427", "text": "How many new postcards have I added to my collection since I started collecting again?", "src": "part1.json", "idx": 131, "n": 394, "type": "knowledge-update"}
+{"_id": "gpt4_c27434e8_abs", "text": "Which project did I start first, the Ferrari model or the Porsche 991 Turbo S model?", "src": "part1.json", "idx": 121, "n": 364, "type": "temporal-reasoning"}
+{"_id": "46a3abf7", "text": "How many tanks do I currently have, including the one I set up for my friend's kid?", "src": "part2.json", "idx": 27, "n": 83, "type": "multi-session"}
+{"_id": "gpt4_7a0daae1", "text": "How many weeks passed between the day I bought my new tennis racket and the day I received it?", "src": "part1.json", "idx": 84, "n": 253, "type": "temporal-reasoning"}
+{"_id": "1903aded", "text": "I think we discussed work from home jobs for seniors earlier. Can you remind me what was the 7th job in the list you provided?", "src": "part1.json", "idx": 150, "n": 451, "type": "single-session-assistant"}
+{"_id": "af082822", "text": "How many weeks ago did I attend the friends and family sale at Nordstrom?", "src": "part2.json", "idx": 79, "n": 239, "type": "temporal-reasoning"}
+{"_id": "8a137a7f", "text": "What type of bulb did I replace in my bedside lamp?", "src": "part1.json", "idx": 16, "n": 49, "type": "single-session-user"}
+{"_id": "gpt4_4fc4f797", "text": "How many days passed between the day I received feedback about my car's suspension and the day I tested my new suspension setup?", "src": "part2.json", "idx": 85, "n": 257, "type": "temporal-reasoning"}
+{"_id": "5025383b", "text": "What are the two hobbies that led me to join online communities?", "src": "part1.json", "idx": 61, "n": 184, "type": "multi-session"}
+{"_id": "gpt4_0a05b494", "text": "Who did I meet first, the woman selling jam at the farmer's market or the tourist from Australia?", "src": "part1.json", "idx": 117, "n": 352, "type": "temporal-reasoning"}
+{"_id": "75499fd8", "text": "What breed is my dog?", "src": "part2.json", "idx": 7, "n": 23, "type": "single-session-user"}
+{"_id": "gpt4_1d80365e", "text": "How many days did I spend on my solo camping trip to Yosemite National Park?", "src": "part0.json", "idx": 82, "n": 246, "type": "temporal-reasoning"}
+{"_id": "3ba21379", "text": "What type of vehicle model am I currently working on?", "src": "part0.json", "idx": 142, "n": 426, "type": "knowledge-update"}
+{"_id": "3c1045c8", "text": "How much older am I than the average age of employees in my department?", "src": "part0.json", "idx": 59, "n": 177, "type": "multi-session"}
+{"_id": "7e974930", "text": "How much did I earn at the Downtown Farmers Market on my most recent visit?", "src": "part0.json", "idx": 136, "n": 408, "type": "knowledge-update"}
+{"_id": "gpt4_fa19884c", "text": "How many days passed between the day I started playing along to my favorite songs on my old keyboard and the day I discovered a bluegrass band?", "src": "part0.json", "idx": 79, "n": 237, "type": "temporal-reasoning"}
+{"_id": "gpt4_b4a80587", "text": "Which event happened first, the road trip to the coast or the arrival of the new prime lens?", "src": "part1.json", "idx": 111, "n": 334, "type": "temporal-reasoning"}
+{"_id": "ba61f0b9", "text": "How many women are on the team led by my former manager Rachel?", "src": "part1.json", "idx": 143, "n": 430, "type": "knowledge-update"}
+{"_id": "cf22b7bf", "text": "How much weight have I lost since I started going to the gym consistently?", "src": "part2.json", "idx": 140, "n": 422, "type": "knowledge-update"}
+{"_id": "e25c3b8d", "text": "How much did I save on the designer handbag at TK Maxx?", "src": "part0.json", "idx": 60, "n": 180, "type": "multi-session"}
+{"_id": "603deb26", "text": "How many times have I tried making a Negroni at home since my friend Emma showed me how to make it?", "src": "part1.json", "idx": 136, "n": 409, "type": "knowledge-update"}
+{"_id": "gpt4_98f46fc6", "text": "Which event did I participate in first, the charity gala or the charity bake sale?", "src": "part2.json", "idx": 91, "n": 275, "type": "temporal-reasoning"}
+{"_id": "d596882b", "text": "I'm planning another trip to New York City and I was wondering if you could remind me of that vegan eatery you recommended last time, the one with multiple locations throughout the city?", "src": "part0.json", "idx": 158, "n": 474, "type": "single-session-assistant"}
+{"_id": "gpt4_468eb064", "text": "Who did I meet with during the lunch last Tuesday?", "src": "part2.json", "idx": 98, "n": 296, "type": "temporal-reasoning"}
+{"_id": "0a34ad58", "text": "I’m a bit anxious about getting around Tokyo. Do you have any helpful tips?", "src": "part2.json", "idx": 53, "n": 161, "type": "single-session-preference"}
+{"_id": "26bdc477", "text": "How many trips have I taken my Canon EOS 80D camera on?", "src": "part2.json", "idx": 144, "n": 434, "type": "knowledge-update"}
+{"_id": "c8090214", "text": "How many days before I bought the iPhone 13 Pro did I attend the Holiday Market?", "src": "part1.json", "idx": 109, "n": 328, "type": "temporal-reasoning"}
+{"_id": "71017276", "text": "How many weeks ago did I meet up with my aunt and receive the crystal chandelier?", "src": "part1.json", "idx": 78, "n": 235, "type": "temporal-reasoning"}
+{"_id": "2133c1b5", "text": "How long have I been living in my current apartment in Harajuku?", "src": "part0.json", "idx": 132, "n": 396, "type": "knowledge-update"}
+{"_id": "3a704032", "text": "How many plants did I acquire in the last month?", "src": "part0.json", "idx": 25, "n": 75, "type": "multi-session"}
+{"_id": "e61a7584", "text": "How long have I had my cat, Luna?", "src": "part1.json", "idx": 133, "n": 400, "type": "knowledge-update"}
+{"_id": "gpt4_6dc9b45b", "text": "How many months ago did I attend the Seattle International Film Festival?", "src": "part2.json", "idx": 82, "n": 248, "type": "temporal-reasoning"}
+{"_id": "3d86fd0a", "text": "Where did I meet Sophia?", "src": "part2.json", "idx": 20, "n": 62, "type": "single-session-user"}
+{"_id": "89527b6b", "text": "I'm going back to our previous conversation about the children's book on dinosaurs. Can you remind me what color was the scaly body of the Plesiosaur in the image?", "src": "part2.json", "idx": 148, "n": 446, "type": "single-session-assistant"}
+{"_id": "10d9b85a", "text": "How many days did I spend attending workshops, lectures, and conferences in April?", "src": "part0.json", "idx": 39, "n": 117, "type": "multi-session"}
+{"_id": "c960da58", "text": "How many playlists do I have on Spotify?", "src": "part0.json", "idx": 4, "n": 12, "type": "single-session-user"}
+{"_id": "eaca4986", "text": "I'm looking back at our previous conversation where you created two sad songs for me. Can you remind me what was the chord progression for the chorus in the second song?", "src": "part2.json", "idx": 164, "n": 494, "type": "single-session-assistant"}
+{"_id": "561fabcd", "text": "I was thinking back to our previous conversation about the Radiation Amplified zombie, and I was wondering if you remembered what we finally decided to name it?", "src": "part2.json", "idx": 162, "n": 488, "type": "single-session-assistant"}
+{"_id": "f35224e0", "text": "What is the total number of episodes I've listened to from 'How I Built This' and 'My Favorite Murder'?", "src": "part0.json", "idx": 58, "n": 174, "type": "multi-session"}
+{"_id": "54026fce", "text": "I've been thinking about ways to stay connected with my colleagues. Any suggestions?", "src": "part0.json", "idx": 47, "n": 141, "type": "single-session-preference"}
+{"_id": "ed4ddc30", "text": "How many dozen eggs do we currently have stocked up in our refrigerator?", "src": "part0.json", "idx": 134, "n": 402, "type": "knowledge-update"}
+{"_id": "1de5cff2", "text": "I was going through our previous conversation about high-end fashion brands, and I was wondering if you could remind me of the brand that uses wild rubber sourced from the Amazon rainforest?", "src": "part2.json", "idx": 165, "n": 497, "type": "single-session-assistant"}
+{"_id": "gpt4_76048e76", "text": "Which vehicle did I take care of first in February, the bike or the car?", "src": "part2.json", "idx": 102, "n": 308, "type": "temporal-reasoning"}
+{"_id": "gpt4_e072b769", "text": "How many weeks ago did I start using the cashback app 'Ibotta'?", "src": "part1.json", "idx": 81, "n": 244, "type": "temporal-reasoning"}
+{"_id": "gpt4_731e37d7", "text": "How much total money did I spend on attending workshops in the last four months?", "src": "part1.json", "idx": 38, "n": 115, "type": "multi-session"}
+{"_id": "69fee5aa", "text": "How many pre-1920 American coins do I have in my collection?", "src": "part0.json", "idx": 140, "n": 420, "type": "knowledge-update"}
+{"_id": "28dc39ac", "text": "How many hours have I spent playing games in total?", "src": "part1.json", "idx": 28, "n": 85, "type": "multi-session"}
+{"_id": "8e9d538c", "text": "How many skeins of worsted weight yarn did I find in my stash?", "src": "part1.json", "idx": 17, "n": 52, "type": "single-session-user"}
+{"_id": "7401057b", "text": "How many free night's stays can I redeem at any Hilton property with my accumulated points?", "src": "part1.json", "idx": 140, "n": 421, "type": "knowledge-update"}
+{"_id": "7527f7e2", "text": "How much did I spend on a designer handbag?", "src": "part2.json", "idx": 3, "n": 11, "type": "single-session-user"}
+{"_id": "c5e8278d", "text": "What was my last name before I changed it?", "src": "part2.json", "idx": 1, "n": 5, "type": "single-session-user"}
+{"_id": "eac54add", "text": "What was the significant buisiness milestone I mentioned four weeks ago?", "src": "part2.json", "idx": 99, "n": 299, "type": "temporal-reasoning"}
+{"_id": "92a0aa75", "text": "How long have I been working in my current role?", "src": "part0.json", "idx": 65, "n": 195, "type": "multi-session"}
+{"_id": "gpt4_f49edff3", "text": "Which three events happened in the order from first to last: the day I helped my friend prepare the nursery, the day I helped my cousin pick out stuff for her baby shower, and the day I ordered a customized phone case for my friend's birthday?", "src": "part0.json", "idx": 78, "n": 234, "type": "temporal-reasoning"}
+{"_id": "c7cf7dfd", "text": "I'm going back to our previous conversation about traditional Indian embroidery and tailoring techniques. Can you remind me of the name of that online store based in India that sells traditional Indian fabrics, threads, and embellishments?", "src": "part0.json", "idx": 165, "n": 495, "type": "single-session-assistant"}
+{"_id": "2ebe6c90", "text": "How many days did it take me to finish 'The Nightingale' by Kristin Hannah?", "src": "part0.json", "idx": 87, "n": 261, "type": "temporal-reasoning"}
+{"_id": "55241a1f", "text": "What is the total number of comments on my recent Facebook Live session and my most popular YouTube video?", "src": "part2.json", "idx": 71, "n": 215, "type": "multi-session"}
+{"_id": "gpt4_2487a7cb", "text": "Which event did I attend first, the 'Effective Time Management' workshop or the 'Data Analysis using Python' webinar?", "src": "part1.json", "idx": 102, "n": 307, "type": "temporal-reasoning"}
+{"_id": "70b3e69b", "text": "I was going through our previous conversation about the impact of the political climate in Catalonia on its literature and music. Can you remind me of the example you gave of a Spanish-Catalan singer-songwriter who supports unity between Catalonia and Spain?", "src": "part2.json", "idx": 155, "n": 467, "type": "single-session-assistant"}
+{"_id": "7e00a6cb", "text": "I'm planning my trip to Amsterdam again and I was wondering, what was the name of that hostel near the Red Light District that you recommended last time?", "src": "part0.json", "idx": 150, "n": 450, "type": "single-session-assistant"}
+{"_id": "3fe836c9", "text": "How much more was the pre-approval amount than the final sale price of the house?", "src": "part1.json", "idx": 65, "n": 196, "type": "multi-session"}
+{"_id": "gpt4_b5700ca9", "text": "How many days ago did I attend the Maundy Thursday service at the Episcopal Church?", "src": "part1.json", "idx": 80, "n": 241, "type": "temporal-reasoning"}
+{"_id": "0bc8ad92", "text": "How many months have passed since I last visited a museum with a friend?", "src": "part1.json", "idx": 79, "n": 238, "type": "temporal-reasoning"}
+{"_id": "51c32626", "text": "When did I submit my research paper on sentiment analysis?", "src": "part0.json", "idx": 57, "n": 171, "type": "multi-session"}
+{"_id": "8b9d4367", "text": "I wanted to follow up on our previous conversation about private sector businesses in Chaudhary. Can you remind me of the company that employs over 40,000 people in the rug-manufacturing industry?", "src": "part0.json", "idx": 161, "n": 483, "type": "single-session-assistant"}
+{"_id": "gpt4_68e94287", "text": "Which event happened first, my participation in the #PlankChallenge or my post about vegan chili recipe?", "src": "part0.json", "idx": 94, "n": 282, "type": "temporal-reasoning"}
+{"_id": "4388e9dd", "text": "I was going through our previous chat and I was wondering, what was Andy wearing in the script you wrote for the comedy movie scene?", "src": "part0.json", "idx": 162, "n": 486, "type": "single-session-assistant"}
+{"_id": "gpt4_93159ced", "text": "How long have I been working before I started my current job at NovaTech?", "src": "part1.json", "idx": 107, "n": 322, "type": "temporal-reasoning"}
+{"_id": "a06e4cfe", "text": "What is my preferred gin-to-vermouth ratio for a classic gin martini?", "src": "part1.json", "idx": 9, "n": 28, "type": "single-session-user"}
+{"_id": "gpt4_a56e767c", "text": "How many movie festivals that I attended?", "src": "part0.json", "idx": 27, "n": 81, "type": "multi-session"}
+{"_id": "6b168ec8", "text": "How many bikes do I own?", "src": "part1.json", "idx": 7, "n": 22, "type": "single-session-user"}
+{"_id": "2b8f3739", "text": "What is the total amount of money I earned from selling my products at the markets?", "src": "part2.json", "idx": 39, "n": 119, "type": "multi-session"}
+{"_id": "ef9cf60a", "text": "How much did I spend on gifts for my sister?", "src": "part2.json", "idx": 68, "n": 206, "type": "multi-session"}
+{"_id": "1faac195", "text": "Where does my sister Emily live?", "src": "part0.json", "idx": 19, "n": 57, "type": "single-session-user"}
+{"_id": "gpt4_e061b84f", "text": "What is the order of the three sports events I participated in during the past month, from earliest to latest?", "src": "part1.json", "idx": 87, "n": 262, "type": "temporal-reasoning"}
+{"_id": "08e075c7", "text": "How long have I been using my Fitbit Charge 3?", "src": "part1.json", "idx": 127, "n": 382, "type": "knowledge-update"}
+{"_id": "gpt4_2d58bcd6", "text": "Which book did I finish reading first, 'The Hate U Give' or 'The Nightingale'?", "src": "part2.json", "idx": 107, "n": 323, "type": "temporal-reasoning"}
+{"_id": "a11281a2", "text": "What was the approximate increase in Instagram followers I experienced in two weeks?", "src": "part0.json", "idx": 55, "n": 165, "type": "multi-session"}
+{"_id": "ceb54acb", "text": "In our previous chat, you suggested 'sexual compulsions' and a few other options for alternative terms for certain behaviors. Can you remind me what the other four options were?", "src": "part2.json", "idx": 150, "n": 452, "type": "single-session-assistant"}
+{"_id": "60d45044", "text": "What type of rice is my favorite?", "src": "part2.json", "idx": 11, "n": 35, "type": "single-session-user"}
+{"_id": "gpt4_b5700ca0", "text": "Where did I attend the religious activity last week?", "src": "part1.json", "idx": 101, "n": 304, "type": "temporal-reasoning"}
+{"_id": "a9f6b44c", "text": "How many bikes did I service or plan to service in March?", "src": "part2.json", "idx": 36, "n": 110, "type": "multi-session"}
+{"_id": "4c36ccef", "text": "Can you remind me of the name of the romantic Italian restaurant in Rome you recommended for dinner?", "src": "part1.json", "idx": 149, "n": 448, "type": "single-session-assistant"}
+{"_id": "157a136e", "text": "How many years older is my grandma than me?", "src": "part2.json", "idx": 70, "n": 212, "type": "multi-session"}
+{"_id": "gpt4_88806d6e", "text": "Who did I meet first, Mark and Sarah or Tom?", "src": "part0.json", "idx": 115, "n": 345, "type": "temporal-reasoning"}
+{"_id": "32260d93", "text": "Can you recommend a show or movie for me to watch tonight?", "src": "part2.json", "idx": 45, "n": 137, "type": "single-session-preference"}
+{"_id": "51b23612", "text": "I was going through our previous conversation about political propaganda and humor, and I was wondering if you could remind me of that Soviet cartoon you mentioned that mocked Western culture?", "src": "part2.json", "idx": 158, "n": 476, "type": "single-session-assistant"}
+{"_id": "fca762bc", "text": "I wanted to follow up on our previous conversation about language learning apps. You mentioned a few options, and I was wondering if you could remind me of the one that uses mnemonics to help learners memorize words and phrases?", "src": "part0.json", "idx": 160, "n": 480, "type": "single-session-assistant"}
+{"_id": "4b24c848", "text": "How many tops have I bought from H&M so far?", "src": "part2.json", "idx": 135, "n": 407, "type": "knowledge-update"}
+{"_id": "6d550036", "text": "How many projects have I led or am currently leading?", "src": "part2.json", "idx": 23, "n": 71, "type": "multi-session"}
+{"_id": "a82c026e", "text": "What game did I finally beat last weekend?", "src": "part0.json", "idx": 21, "n": 63, "type": "single-session-user"}
+{"_id": "2311e44b", "text": "How many pages do I have left to read in 'The Nightingale'?", "src": "part1.json", "idx": 54, "n": 163, "type": "multi-session"}
+{"_id": "1a8a66a6", "text": "How many magazine subscriptions do I currently have?", "src": "part0.json", "idx": 40, "n": 120, "type": "multi-session"}
+{"_id": "e01b8e2f", "text": "Where did I go on a week-long trip with my family?", "src": "part2.json", "idx": 13, "n": 41, "type": "single-session-user"}
+{"_id": "b0479f84", "text": "I've got some free time tonight, any documentary recommendations?", "src": "part1.json", "idx": 52, "n": 157, "type": "single-session-preference"}
+{"_id": "2bf43736", "text": "I was going through our previous chat and I wanted to clarify something about the prayer of beginners in Tanqueray's Spiritual Life treatise. Can you remind me which chapter of the second part discusses vocal prayer and meditation?", "src": "part1.json", "idx": 155, "n": 466, "type": "single-session-assistant"}
+{"_id": "gpt4_f420262c", "text": "What is the order of airlines I flew with from earliest to latest before today?", "src": "part2.json", "idx": 89, "n": 269, "type": "temporal-reasoning"}
+{"_id": "gpt4_d9af6064", "text": "Which device did I set up first, the smart thermostat or the new router?", "src": "part2.json", "idx": 112, "n": 338, "type": "temporal-reasoning"}
+{"_id": "945e3d21", "text": "How often do I attend yoga classes to help with my anxiety?", "src": "part1.json", "idx": 123, "n": 370, "type": "knowledge-update"}
+{"_id": "89941a93", "text": "How many bikes do I currently own?", "src": "part1.json", "idx": 124, "n": 373, "type": "knowledge-update"}
+{"_id": "6b7dfb22", "text": "I've been feeling a bit stuck with my paintings lately. Do you have any ideas on how I can find new inspiration?", "src": "part2.json", "idx": 47, "n": 143, "type": "single-session-preference"}
+{"_id": "1a1907b4", "text": "I've been thinking about making a cocktail for an upcoming get-together, but I'm not sure which one to choose. Any suggestions?", "src": "part0.json", "idx": 48, "n": 144, "type": "single-session-preference"}
+{"_id": "gpt4_d31cdae3", "text": "Which trip did the narrator take first, the solo trip to Europe or the family road trip across the American Southwest?", "src": "part1.json", "idx": 114, "n": 343, "type": "temporal-reasoning"}
+{"_id": "6f9b354f", "text": "What color did I repaint my bedroom walls?", "src": "part1.json", "idx": 2, "n": 7, "type": "single-session-user"}
+{"_id": "gpt4_2c50253f", "text": "What time do I wake up on Tuesdays and Thursdays?", "src": "part2.json", "idx": 110, "n": 332, "type": "temporal-reasoning"}
+{"_id": "gpt4_4ef30696", "text": "How many days passed between the day I finished reading 'The Nightingale' and the day I started reading 'The Hitchhiker's Guide to the Galaxy'?", "src": "part1.json", "idx": 88, "n": 265, "type": "temporal-reasoning"}
+{"_id": "95bcc1c8", "text": "How many amateur comedians did I watch perform at the open mic night?", "src": "part1.json", "idx": 8, "n": 25, "type": "single-session-user"}
+{"_id": "c9f37c46", "text": "How long had I been watching stand-up comedy specials regularly when I attended the open mic night at the local comedy club?", "src": "part1.json", "idx": 110, "n": 331, "type": "temporal-reasoning"}
+{"_id": "gpt4_15e38248", "text": "How many pieces of furniture did I buy, assemble, sell, or fix in the past few months?", "src": "part1.json", "idx": 29, "n": 88, "type": "multi-session"}
+{"_id": "e5ba910e_abs", "text": "What is the total cost of my recently purchased headphones and the iPad?", "src": "part1.json", "idx": 76, "n": 229, "type": "multi-session"}
+{"_id": "bc8a6e93", "text": "What did I bake for my niece's birthday party?", "src": "part0.json", "idx": 14, "n": 42, "type": "single-session-user"}
+{"_id": "gpt4_59c863d7", "text": "How many model kits have I worked on or bought?", "src": "part0.json", "idx": 24, "n": 72, "type": "multi-session"}
+{"_id": "9bbe84a2", "text": "What was my previous goal for my Apex Legends level before I updated my goal?", "src": "part1.json", "idx": 142, "n": 427, "type": "knowledge-update"}
+{"_id": "b759caee", "text": "I was looking back at our previous conversation about buying unique engagement rings directly from designers. Can you remind me of the Instagram handle of the UK-based designer who works with unusual gemstones?", "src": "part0.json", "idx": 163, "n": 489, "type": "single-session-assistant"}
+{"_id": "25e5aa4f", "text": "Where did I complete my Bachelor's degree in Computer Science?", "src": "part2.json", "idx": 10, "n": 32, "type": "single-session-user"}
+{"_id": "0100672e", "text": "How much did I spend on each coffee mug for my coworkers?", "src": "part1.json", "idx": 64, "n": 193, "type": "multi-session"}
+{"_id": "c7dc5443", "text": "What is my current record in the recreational volleyball league?", "src": "part1.json", "idx": 141, "n": 424, "type": "knowledge-update"}
+{"_id": "gpt4_4edbafa2", "text": "What was the date on which I attended the first BBQ event in June?", "src": "part0.json", "idx": 109, "n": 327, "type": "temporal-reasoning"}
+{"_id": "21d02d0d", "text": "How many fun runs did I miss in March due to work commitments?", "src": "part1.json", "idx": 75, "n": 226, "type": "multi-session"}
+{"_id": "5a7937c8", "text": "How many days did I spend participating in faith-related activities in December?", "src": "part1.json", "idx": 37, "n": 112, "type": "multi-session"}
+{"_id": "d52b4f67", "text": "Where did I attend my cousin's wedding?", "src": "part1.json", "idx": 10, "n": 31, "type": "single-session-user"}
+{"_id": "gpt4_8279ba02", "text": "How many days ago did I buy a smoker?", "src": "part0.json", "idx": 83, "n": 249, "type": "temporal-reasoning"}
+{"_id": "60472f9c", "text": "How many projects have I been working on simultaneously, excluding my thesis?", "src": "part0.json", "idx": 36, "n": 108, "type": "multi-session"}
+{"_id": "gpt4_0b2f1d21", "text": "Which event happened first, the purchase of the coffee maker or the malfunction of the stand mixer?", "src": "part2.json", "idx": 105, "n": 317, "type": "temporal-reasoning"}
+{"_id": "8a2466db", "text": "Can you recommend some resources where I can learn more about video editing?", "src": "part0.json", "idx": 44, "n": 132, "type": "single-session-preference"}
+{"_id": "88432d0a", "text": "How many times did I bake something in the past two weeks?", "src": "part2.json", "idx": 29, "n": 89, "type": "multi-session"}
+{"_id": "b46e15ed", "text": "How many months have passed since I participated in two charity events in a row, on consecutive days?", "src": "part2.json", "idx": 78, "n": 236, "type": "temporal-reasoning"}
+{"_id": "gpt4_ec93e27f", "text": "Which mode of transport did I use most recently, a bus or a train?", "src": "part2.json", "idx": 88, "n": 266, "type": "temporal-reasoning"}
+{"_id": "gpt4_31ff4165", "text": "How many health-related devices do I use in a day?", "src": "part0.json", "idx": 34, "n": 102, "type": "multi-session"}
+{"_id": "29f2956b", "text": "How much time do I dedicate to practicing guitar every day?", "src": "part2.json", "idx": 18, "n": 56, "type": "single-session-user"}
+{"_id": "gpt4_85da3956", "text": "How many weeks ago did I attend the 'Summer Nights' festival at Universal Studios Hollywood?", "src": "part1.json", "idx": 93, "n": 280, "type": "temporal-reasoning"}
+{"_id": "1e043500", "text": "What is the name of the playlist I created on Spotify?", "src": "part1.json", "idx": 1, "n": 4, "type": "single-session-user"}
+{"_id": "f8c5f88b", "text": "Where did I buy my new tennis racket from?", "src": "part0.json", "idx": 3, "n": 9, "type": "single-session-user"}
+{"_id": "gpt4_d12ceb0e", "text": "What is the average age of me, my parents, and my grandparents?", "src": "part0.json", "idx": 33, "n": 99, "type": "multi-session"}
+{"_id": "gpt4_468eb063", "text": "How many days ago did I meet Emma?", "src": "part2.json", "idx": 84, "n": 254, "type": "temporal-reasoning"}
+{"_id": "3fdac837", "text": "What is the total number of days I spent in Japan and Chicago?", "src": "part1.json", "idx": 62, "n": 187, "type": "multi-session"}
+{"_id": "gpt4_d6585ce9", "text": "Who did I go with to the music event last Saturday?", "src": "part2.json", "idx": 96, "n": 290, "type": "temporal-reasoning"}
+{"_id": "c4f10528", "text": "I'm planning to visit Bandung again and I was wondering if you could remind me of the name of that restaurant in Cihampelas Walk that serves a great Nasi Goreng?", "src": "part1.json", "idx": 148, "n": 445, "type": "single-session-assistant"}
+{"_id": "gpt4_7bc6cf22", "text": "How many days ago did I read the March 15th issue of The New Yorker?", "src": "part0.json", "idx": 95, "n": 285, "type": "temporal-reasoning"}
+{"_id": "3f1e9474", "text": "Who did I have a conversation with about destiny?", "src": "part0.json", "idx": 12, "n": 36, "type": "single-session-user"}
+{"_id": "2a1811e2", "text": "How many days had passed between the Hindu festival of Holi and the Sunday mass at St. Mary's Church?", "src": "part2.json", "idx": 104, "n": 314, "type": "temporal-reasoning"}
+{"_id": "c8090214_abs", "text": "How many days before I bought my iPad did I attend the Holiday Market?", "src": "part0.json", "idx": 121, "n": 363, "type": "temporal-reasoning"}
+{"_id": "gpt4_5438fa52", "text": "Which event happened first, my attendance at a cultural festival or the start of my Spanish classes?", "src": "part2.json", "idx": 118, "n": 356, "type": "temporal-reasoning"}
+{"_id": "gpt4_fe651585_abs", "text": "Who became a parent first, Tom or Alex?", "src": "part2.json", "idx": 121, "n": 365, "type": "temporal-reasoning"}
+{"_id": "afdc33df", "text": "My kitchen's becoming a bit of a mess again. Any tips for keeping it clean?", "src": "part1.json", "idx": 46, "n": 139, "type": "single-session-preference"}
+{"_id": "fea54f57", "text": "I was thinking about our previous conversation about the Fifth Album, and I was wondering if you could remind me what song you said best exemplified the band's growth and development as artists?", "src": "part2.json", "idx": 151, "n": 455, "type": "single-session-assistant"}
+{"_id": "4dfccbf8", "text": "What did I do with Rachel on the Wednesday two months ago?", "src": "part0.json", "idx": 100, "n": 300, "type": "temporal-reasoning"}
+{"_id": "9aaed6a3", "text": "How much cashback did I earn at SaveMart last Thursday?", "src": "part0.json", "idx": 56, "n": 168, "type": "multi-session"}
+{"_id": "f0e564bc", "text": "What is the total amount I spent on the designer handbag and high-end skincare products?", "src": "part1.json", "idx": 72, "n": 217, "type": "multi-session"}
+{"_id": "ec81a493", "text": "How many copies of my favorite artist's debut album were released worldwide?", "src": "part0.json", "idx": 13, "n": 39, "type": "single-session-user"}
+{"_id": "e56a43b9", "text": "How much discount will I get on my next purchase at FreshMart?", "src": "part2.json", "idx": 74, "n": 224, "type": "multi-session"}
+{"_id": "d905b33f", "text": "What percentage discount did I get on the book from my favorite author?", "src": "part1.json", "idx": 57, "n": 172, "type": "multi-session"}
+{"_id": "f9e8c073", "text": "How many sessions of the bereavement support group did I attend?", "src": "part2.json", "idx": 127, "n": 383, "type": "knowledge-update"}
+{"_id": "505af2f5", "text": "I was thinking of trying a new coffee creamer recipe. Any recommendations?", "src": "part0.json", "idx": 50, "n": 150, "type": "single-session-preference"}
+{"_id": "21436231", "text": "How many largemouth bass did I catch on my fishing trip to Lake Michigan?", "src": "part0.json", "idx": 8, "n": 24, "type": "single-session-user"}
+{"_id": "0e4e4c46", "text": "What is my current highest score in Ticket to Ride?", "src": "part1.json", "idx": 135, "n": 406, "type": "knowledge-update"}
+{"_id": "ef66a6e5", "text": "How many sports have I played competitively in the past?", "src": "part0.json", "idx": 61, "n": 183, "type": "multi-session"}
+{"_id": "a40e080f", "text": "I was going through our previous conversation and I was wondering if you could remind me of the two companies you mentioned that prioritize employee safety and well-being like Triumvirate?", "src": "part2.json", "idx": 160, "n": 482, "type": "single-session-assistant"}
+{"_id": "4adc0475", "text": "What is the total number of goals and assists I have in the recreational indoor soccer league?", "src": "part1.json", "idx": 60, "n": 181, "type": "multi-session"}
+{"_id": "71315a70", "text": "How many hours have I spent on my abstract ocean sculpture?", "src": "part0.json", "idx": 124, "n": 372, "type": "knowledge-update"}
+{"_id": "b29f3365", "text": "How long had I been taking guitar lessons when I bought the new guitar amp?", "src": "part0.json", "idx": 116, "n": 348, "type": "temporal-reasoning"}
+{"_id": "61f8c8f8", "text": "How much faster did I finish the 5K run compared to my previous year's time?", "src": "part0.json", "idx": 68, "n": 204, "type": "multi-session"}
+{"_id": "6a1eabeb", "text": "What was my personal best time in the charity 5K run?", "src": "part0.json", "idx": 122, "n": 366, "type": "knowledge-update"}
+{"_id": "982b5123", "text": "How many months ago did I book the Airbnb in San Francisco?", "src": "part1.json", "idx": 108, "n": 325, "type": "temporal-reasoning"}
+{"_id": "gpt4_21adecb5", "text": "How many months passed between the completion of my undergraduate degree and the submission of my master's thesis?", "src": "part0.json", "idx": 91, "n": 273, "type": "temporal-reasoning"}
+{"_id": "35a27287", "text": "Can you recommend some interesting cultural events happening around me this weekend?", "src": "part1.json", "idx": 45, "n": 136, "type": "single-session-preference"}
+{"_id": "dccbc061", "text": "What was my previous stance on spirituality?", "src": "part1.json", "idx": 6, "n": 19, "type": "single-session-user"}
+{"_id": "5a4f22c0", "text": "What company is Rachel, an old colleague from my previous company, currently working at?", "src": "part1.json", "idx": 129, "n": 388, "type": "knowledge-update"}
+{"_id": "8979f9ec", "text": "What is the total number of lunch meals I got from the chicken fajitas and lentil soup?", "src": "part0.json", "idx": 64, "n": 192, "type": "multi-session"}
+{"_id": "75f70248", "text": "I've been sneezing quite a bit lately. Do you think it might be my living room?", "src": "part1.json", "idx": 50, "n": 151, "type": "single-session-preference"}
+{"_id": "c4ea545c", "text": "Do I go to the gym more frequently than I did previously?", "src": "part0.json", "idx": 131, "n": 393, "type": "knowledge-update"}
+{"_id": "66f24dbb", "text": "What did I buy for my sister's birthday gift?", "src": "part1.json", "idx": 5, "n": 16, "type": "single-session-user"}
+{"_id": "a3838d2b", "text": "How many charity events did I participate in before the 'Run for the Cure' event?", "src": "part0.json", "idx": 107, "n": 321, "type": "temporal-reasoning"}
+{"_id": "d24813b1", "text": "I'm thinking of inviting my colleagues over for a small gathering. Any tips on what to bake?", "src": "part0.json", "idx": 49, "n": 147, "type": "single-session-preference"}
+{"_id": "b46e15ee", "text": "What charity event did I participate in a month ago?", "src": "part1.json", "idx": 96, "n": 289, "type": "temporal-reasoning"}
+{"_id": "5d3d2817", "text": "What was my previous occupation?", "src": "part1.json", "idx": 3, "n": 10, "type": "single-session-user"}
+{"_id": "bbf86515", "text": "How many days before the 'Rack Fest' did I participate in the 'Turbocharged Tuesdays' event?", "src": "part0.json", "idx": 105, "n": 315, "type": "temporal-reasoning"}
+{"_id": "db467c8c", "text": "How long have my parents been staying with me in the US?", "src": "part2.json", "idx": 132, "n": 398, "type": "knowledge-update"}
+{"_id": "gpt4_4929293b", "text": "What was the the life event of one of my relatives that I participated in a week ago?", "src": "part1.json", "idx": 98, "n": 295, "type": "temporal-reasoning"}
+{"_id": "b320f3f8", "text": "What type of action figure did I buy from a thrift store?", "src": "part0.json", "idx": 15, "n": 45, "type": "single-session-user"}
+{"_id": "gpt4_194be4b3", "text": "How many musical instruments do I currently own?", "src": "part1.json", "idx": 36, "n": 109, "type": "multi-session"}
+{"_id": "4d6b87c8", "text": "How many titles are currently on my to-watch list?", "src": "part2.json", "idx": 126, "n": 380, "type": "knowledge-update"}
+{"_id": "8cf4d046", "text": "What is the average GPA of my undergraduate and graduate studies?", "src": "part0.json", "idx": 73, "n": 219, "type": "multi-session"}
+{"_id": "a2f3aa27", "text": "How many followers do I have on Instagram now?", "src": "part0.json", "idx": 141, "n": 423, "type": "knowledge-update"}
+{"_id": "gpt4_45189cb4", "text": "What is the order of the sports events I watched in January?", "src": "part2.json", "idx": 86, "n": 260, "type": "temporal-reasoning"}
+{"_id": "2e6d26dc", "text": "How many babies were born to friends and family members in the last few months?", "src": "part0.json", "idx": 29, "n": 87, "type": "multi-session"}
+{"_id": "a08a253f", "text": "How many days a week do I attend fitness classes?", "src": "part0.json", "idx": 72, "n": 216, "type": "multi-session"}
+{"_id": "affe2881", "text": "How many different species of birds have I seen in my local park?", "src": "part2.json", "idx": 137, "n": 413, "type": "knowledge-update"}
+{"_id": "gpt4_372c3eed", "text": "How many years in total did I spend in formal education from high school to the completion of my Bachelor's degree?", "src": "part0.json", "idx": 41, "n": 123, "type": "multi-session"}
+{"_id": "gpt4_f2262a51", "text": "How many different doctors did I visit?", "src": "part0.json", "idx": 26, "n": 78, "type": "multi-session"}
+{"_id": "edced276", "text": "How many days did I spend in total traveling in Hawaii and in New York City?", "src": "part2.json", "idx": 38, "n": 116, "type": "multi-session"}
+{"_id": "c18a7dc8", "text": "How many years older am I than when I graduated from college?", "src": "part0.json", "idx": 71, "n": 213, "type": "multi-session"}
+{"_id": "caf03d32", "text": "I've been struggling with my slow cooker recipes. Any advice on getting better results?", "src": "part2.json", "idx": 46, "n": 140, "type": "single-session-preference"}
+{"_id": "76d63226", "text": "What size is my new Samsung TV?", "src": "part2.json", "idx": 16, "n": 50, "type": "single-session-user"}
+{"_id": "1cea1afa", "text": "How many Instagram followers do I currently have?", "src": "part2.json", "idx": 133, "n": 401, "type": "knowledge-update"}
+{"_id": "4fd1909e", "text": "Where did I attend the Imagine Dragons concert?", "src": "part2.json", "idx": 15, "n": 47, "type": "single-session-user"}
+{"_id": "gpt4_68e94288", "text": "What was the social media activity I participated 5 days ago?", "src": "part2.json", "idx": 101, "n": 305, "type": "temporal-reasoning"}
+{"_id": "ad7109d1", "text": "What speed is my new internet plan?", "src": "part2.json", "idx": 5, "n": 17, "type": "single-session-user"}
+{"_id": "73d42213", "text": "What time did I reach the clinic on Monday?", "src": "part0.json", "idx": 69, "n": 207, "type": "multi-session"}
+{"_id": "c8c3f81d", "text": "What brand are my favorite running shoes?", "src": "part2.json", "idx": 6, "n": 20, "type": "single-session-user"}
+{"_id": "e9327a54", "text": "I'm planning to revisit Orlando. I was wondering if you could remind me of that unique dessert shop with the giant milkshakes we talked about last time?", "src": "part0.json", "idx": 149, "n": 447, "type": "single-session-assistant"}
+{"_id": "gpt4_f420262d", "text": "What was the airline that I flied with on Valentine's day?", "src": "part1.json", "idx": 97, "n": 292, "type": "temporal-reasoning"}
+{"_id": "51a45a95", "text": "Where did I redeem a $5 coupon on coffee creamer?", "src": "part2.json", "idx": 0, "n": 2, "type": "single-session-user"}
+{"_id": "gpt4_d84a3211", "text": "How much total money have I spent on bike-related expenses since the start of the year?", "src": "part1.json", "idx": 25, "n": 76, "type": "multi-session"}
+{"_id": "f523d9fe", "text": "I wanted to check back on our previous conversation about Netflix. I mentioned that I wanted to be able to access all seasons of old shows? Do you remember what show I used as an example, the one that only had the last season available?", "src": "part0.json", "idx": 151, "n": 453, "type": "single-session-assistant"}
+{"_id": "8cf51dda", "text": "I'm going back to our previous conversation about the grant aim page on molecular subtypes and endometrial cancer. Can you remind me what were the three objectives we outlined for the project?", "src": "part2.json", "idx": 153, "n": 461, "type": "single-session-assistant"}
+{"_id": "gpt4_59149c78", "text": "I mentioned that I participated in an art-related event two weeks ago. Where was that event held at?", "src": "part2.json", "idx": 97, "n": 293, "type": "temporal-reasoning"}
+{"_id": "gpt4_2f91af09", "text": "How many total pieces of writing have I completed since I started writing again three weeks ago, including short stories, poems, and pieces for the writing challenge?", "src": "part1.json", "idx": 41, "n": 124, "type": "multi-session"}
+{"_id": "9d25d4e0", "text": "How many pieces of jewelry did I acquire in the last two months?", "src": "part1.json", "idx": 35, "n": 106, "type": "multi-session"}
+{"_id": "c2ac3c61", "text": "How many online courses have I completed in total?", "src": "part1.json", "idx": 40, "n": 121, "type": "multi-session"}
+{"_id": "d23cf73b", "text": "How many different cuisines have I learned to cook or tried out in the past few months?", "src": "part1.json", "idx": 30, "n": 91, "type": "multi-session"}
+{"_id": "2698e78f", "text": "How often do I see my therapist, Dr. Smith?", "src": "part1.json", "idx": 128, "n": 385, "type": "knowledge-update"}
+{"_id": "gpt4_93f6379c", "text": "Which group did I join first, 'Page Turners' or 'Marketing Professionals'?", "src": "part2.json", "idx": 115, "n": 347, "type": "temporal-reasoning"}
+{"_id": "60036106", "text": "What was the total number of people reached by my Facebook ad campaign and Instagram influencer collaboration?", "src": "part1.json", "idx": 59, "n": 178, "type": "multi-session"}
+{"_id": "0bc8ad93", "text": "I mentioned visiting a museum two months ago. Did I visit with a friend or not?", "src": "part1.json", "idx": 100, "n": 301, "type": "temporal-reasoning"}
+{"_id": "67e0d0f2", "text": "What is the total number of online courses I've completed?", "src": "part0.json", "idx": 67, "n": 201, "type": "multi-session"}
+{"_id": "8077ef71", "text": "How many days ago did I attend a networking event?", "src": "part1.json", "idx": 89, "n": 268, "type": "temporal-reasoning"}
+{"_id": "c6853660", "text": "Did I mostly recently increase or decrease the limit on the number of cups of coffee in the morning?", "src": "part1.json", "idx": 144, "n": 433, "type": "knowledge-update"}
+{"_id": "dd2973ad", "text": "What time did I go to bed on the day before I had a doctor's appointment?", "src": "part1.json", "idx": 26, "n": 79, "type": "multi-session"}
+{"_id": "50635ada", "text": "What was my previous frequent flyer status on United Airlines before I got the current status?", "src": "part0.json", "idx": 138, "n": 414, "type": "knowledge-update"}
+{"_id": "7405e8b1", "text": "Did I receive a higher percentage discount on my first order from HelloFresh, compared to my first UberEats order?", "src": "part2.json", "idx": 57, "n": 173, "type": "multi-session"}
+{"_id": "0977f2af", "text": "What new kitchen gadget did I invest in before getting the Air Fryer?", "src": "part0.json", "idx": 145, "n": 435, "type": "knowledge-update"}
+{"_id": "a4996e51", "text": "How many hours do I work in a typical week during peak campaign seasons?", "src": "part2.json", "idx": 58, "n": 176, "type": "multi-session"}
+{"_id": "dc439ea3", "text": "I was looking back at our previous conversation about Native American powwows and I was wondering, which traditional game did you say was often performed by skilled dancers at powwows?", "src": "part1.json", "idx": 152, "n": 457, "type": "single-session-assistant"}
+{"_id": "gpt4_5501fe77", "text": "Which social media platform did I gain the most followers on over the past month?", "src": "part2.json", "idx": 31, "n": 95, "type": "multi-session"}
+{"_id": "gpt4_7fce9456", "text": "How many properties did I view before making an offer on the townhouse in the Brookside neighborhood?", "src": "part2.json", "idx": 30, "n": 92, "type": "multi-session"}
+{"_id": "86b68151", "text": "Where did I buy my new bookshelf from?", "src": "part1.json", "idx": 12, "n": 37, "type": "single-session-user"}
+{"_id": "af8d2e46", "text": "How many shirts did I pack for my 5-day trip to Costa Rica?", "src": "part0.json", "idx": 6, "n": 18, "type": "single-session-user"}
+{"_id": "gpt4_70e84552_abs", "text": "Which task did I complete first, fixing the fence or purchasing three cows from Peter?", "src": "part0.json", "idx": 120, "n": 360, "type": "temporal-reasoning"}
+{"_id": "370a8ff4", "text": "How many weeks had passed since I recovered from the flu when I went on my 10th jog outdoors?", "src": "part2.json", "idx": 87, "n": 263, "type": "temporal-reasoning"}
+{"_id": "75832dbd", "text": "Can you recommend some recent publications or conferences that I might find interesting?", "src": "part2.json", "idx": 44, "n": 134, "type": "single-session-preference"}
+{"_id": "b9cfe692", "text": "How long did I take to finish 'The Seven Husbands of Evelyn Hugo' and 'The Nightingale' combined?", "src": "part2.json", "idx": 108, "n": 326, "type": "temporal-reasoning"}
+{"_id": "488d3006", "text": "I'm planning to go back to the Natural Park of Moncayo mountain in Aragón and I was wondering, what was the name of that hiking trail you recommended that takes you through the park's most stunning landscapes and offers panoramic views of the surrounding mountainside?", "src": "part0.json", "idx": 153, "n": 459, "type": "single-session-assistant"}
+{"_id": "gpt4_483dd43c", "text": "Which show did I start watching first, 'The Crown' or 'Game of Thrones'?", "src": "part2.json", "idx": 109, "n": 329, "type": "temporal-reasoning"}
+{"_id": "gpt4_7ddcf75f", "text": "How many days ago did I go on a whitewater rafting trip in the Oregon mountains?", "src": "part2.json", "idx": 92, "n": 278, "type": "temporal-reasoning"}
+{"_id": "gpt4_fa19884d", "text": "What is the artist that I started to listen to last Friday?", "src": "part0.json", "idx": 99, "n": 297, "type": "temporal-reasoning"}
+{"_id": "352ab8bd", "text": "Can you remind me what was the average improvement in framerate when using the Hardware-Aware Modular Training (HAMT) agent in the 'To Adapt or Not to Adapt? Real-Time Adaptation for Semantic Segmentation' submission?", "src": "part2.json", "idx": 159, "n": 479, "type": "single-session-assistant"}
+{"_id": "27016adc", "text": "What percentage of the countryside property's price is the cost of the renovations I plan to do on my current house?", "src": "part0.json", "idx": 63, "n": 189, "type": "multi-session"}
+{"_id": "545bd2b5", "text": "How much screen time have I been averaging on Instagram per day?", "src": "part0.json", "idx": 16, "n": 48, "type": "single-session-user"}
+{"_id": "gpt4_2f584639", "text": "Which gift did I buy first, the necklace for my sister or the photo album for my mom?", "src": "part0.json", "idx": 118, "n": 354, "type": "temporal-reasoning"}
+{"_id": "gpt4_59149c77", "text": "How many days passed between my visit to the Museum of Modern Art (MoMA) and the 'Ancient Civilizations' exhibit at the Metropolitan Museum of Art?", "src": "part2.json", "idx": 77, "n": 233, "type": "temporal-reasoning"}
+{"_id": "eac54adc", "text": "How many days ago did I launch my website when I signed a contract with my first client?", "src": "part1.json", "idx": 92, "n": 277, "type": "temporal-reasoning"}
+{"_id": "993da5e2", "text": "How long had I been using the new area rug when I rearranged my living room furniture?", "src": "part2.json", "idx": 113, "n": 341, "type": "temporal-reasoning"}
+{"_id": "6ae235be", "text": "I remember you told me about the refining processes at CITGO's three refineries earlier. Can you remind me what kind of processes are used at the Lake Charles Refinery?", "src": "part2.json", "idx": 149, "n": 449, "type": "single-session-assistant"}
+{"_id": "a3045048", "text": "How many days before my best friend's birthday party did I order her gift?", "src": "part0.json", "idx": 114, "n": 342, "type": "temporal-reasoning"}
+{"_id": "38146c39", "text": "I've been feeling like my chocolate chip cookies need something extra. Any advice?", "src": "part2.json", "idx": 48, "n": 146, "type": "single-session-preference"}
+{"_id": "6071bd76", "text": "For the coffee-to-water ratio in my French press, did I switch to more water per tablespoon of coffee, or less?", "src": "part2.json", "idx": 129, "n": 389, "type": "knowledge-update"}
+{"_id": "8e91e7d9", "text": "What is the total number of siblings I have?", "src": "part0.json", "idx": 74, "n": 222, "type": "multi-session"}
+{"_id": "7a8d0b71", "text": "I'm looking back at our previous chat about the DHL Wellness Retreats campaign. Can you remind me how much was allocated for influencer marketing in the campaign plan?", "src": "part1.json", "idx": 160, "n": 481, "type": "single-session-assistant"}
+{"_id": "faba32e5", "text": "How long did Alex marinate the BBQ ribs in special sauce?", "src": "part1.json", "idx": 19, "n": 58, "type": "single-session-user"}
+{"_id": "86f00804", "text": "What book am I currently reading?", "src": "part0.json", "idx": 17, "n": 51, "type": "single-session-user"}
+{"_id": "07741c45", "text": "Where do I currently keep my old sneakers?", "src": "part2.json", "idx": 147, "n": 443, "type": "knowledge-update"}
+{"_id": "4100d0a0", "text": "What is my ethnicity?", "src": "part1.json", "idx": 18, "n": 55, "type": "single-session-user"}
+{"_id": "778164c6", "text": "I was looking back at our previous conversation about Caribbean dishes and I was wondering, what was the name of that Jamaican dish you recommended I try with snapper that has fruit in it?", "src": "part1.json", "idx": 166, "n": 499, "type": "single-session-assistant"}
+{"_id": "gpt4_c27434e8", "text": "Which project did I start first, the Ferrari model or the Japanese Zero fighter plane model?", "src": "part0.json", "idx": 119, "n": 357, "type": "temporal-reasoning"}
+{"_id": "58bf7951", "text": "What play did I attend at the local community theater?", "src": "part0.json", "idx": 1, "n": 3, "type": "single-session-user"}
+{"_id": "2ce6a0f2", "text": "How many different art-related events did I attend in the past month?", "src": "part2.json", "idx": 32, "n": 98, "type": "multi-session"}
+{"_id": "gpt4_ab202e7f", "text": "How many kitchen items did I replace or fix?", "src": "part2.json", "idx": 37, "n": 113, "type": "multi-session"}
+{"_id": "4f54b7c9", "text": "How many antique items did I inherit or acquire from my family members?", "src": "part1.json", "idx": 55, "n": 166, "type": "multi-session"}
+{"_id": "0e5e2d1a", "text": "I wanted to follow up on our previous conversation about binaural beats for anxiety and depression. Can you remind me how many subjects were in the study published in the journal Music and Medicine that found significant reductions in symptoms of depression, anxiety, and stress?", "src": "part1.json", "idx": 151, "n": 454, "type": "single-session-assistant"}
+{"_id": "ccb36322", "text": "What is the name of the music streaming service have I been using lately?", "src": "part1.json", "idx": 14, "n": 43, "type": "single-session-user"}
+{"_id": "60159905", "text": "How many dinner parties have I attended in the past month?", "src": "part1.json", "idx": 68, "n": 205, "type": "multi-session"}
+{"_id": "gpt4_5dcc0aab", "text": "Which pair of shoes did I clean last month?", "src": "part1.json", "idx": 105, "n": 316, "type": "temporal-reasoning"}
+{"_id": "6e984302", "text": "I mentioned an investment for a competition four weeks ago? What did I buy?", "src": "part2.json", "idx": 100, "n": 302, "type": "temporal-reasoning"}
+{"_id": "f4f1d8a4", "text": "Who gave me a new stand mixer as a birthday gift?", "src": "part2.json", "idx": 19, "n": 59, "type": "single-session-user"}
+{"_id": "cc6d1ec1", "text": "How long had I been bird watching when I attended the bird watching workshop?", "src": "part0.json", "idx": 112, "n": 336, "type": "temporal-reasoning"}
+{"_id": "gpt4_8c8961ae", "text": "Which trip did I take first, the one to Europe with family or the solo trip to Thailand?", "src": "part1.json", "idx": 112, "n": 337, "type": "temporal-reasoning"}
+{"_id": "18dcd5a5", "text": "I'm going back to our previous chat about the Lost Temple of the Djinn one-shot. Can you remind me how many mummies the party will face in the temple?", "src": "part2.json", "idx": 152, "n": 458, "type": "single-session-assistant"}
+{"_id": "099778bb", "text": "What percentage of leadership positions do women hold in the my company?", "src": "part2.json", "idx": 69, "n": 209, "type": "multi-session"}
+{"_id": "c19f7a0b", "text": "What time do I usually get home from work on weeknights?", "src": "part0.json", "idx": 18, "n": 54, "type": "single-session-user"}
+{"_id": "65240037", "text": "I remember you told me to dilute tea tree oil with a carrier oil before applying it to my skin. Can you remind me what the recommended ratio is?", "src": "part0.json", "idx": 166, "n": 498, "type": "single-session-assistant"}
+{"_id": "a346bb18", "text": "How many minutes did I exceed my target time by in the marathon?", "src": "part1.json", "idx": 73, "n": 220, "type": "multi-session"}
+{"_id": "60bf93ed", "text": "How many days did it take for my laptop backpack to arrive after I bought it?", "src": "part0.json", "idx": 35, "n": 105, "type": "multi-session"}
+{"_id": "10e09553", "text": "How many largemouth bass did I catch with Alex on the earlier fishing trip to Lake Michigan before the 7/22 trip?", "src": "part2.json", "idx": 142, "n": 428, "type": "knowledge-update"}
+{"_id": "gpt4_213fd887", "text": "Which event did I participate in first, the volleyball league or the charity 5K run to raise money for a local children's hospital?", "src": "part1.json", "idx": 118, "n": 355, "type": "temporal-reasoning"}
+{"_id": "001be529", "text": "How long did I wait for the decision on my asylum application?", "src": "part2.json", "idx": 14, "n": 44, "type": "single-session-user"}
+{"_id": "6ade9755", "text": "Where do I take yoga classes?", "src": "part0.json", "idx": 2, "n": 6, "type": "single-session-user"}
+{"_id": "e8a79c70", "text": "I was going through our previous conversation about making a classic French omelette, and I wanted to confirm - how many eggs did you say we need for the recipe?", "src": "part2.json", "idx": 157, "n": 473, "type": "single-session-assistant"}
+{"_id": "2c63a862", "text": "How many days did it take for me to find a house I loved after starting to work with Rachel?", "src": "part0.json", "idx": 104, "n": 312, "type": "temporal-reasoning"}
+{"_id": "gpt4_2ba83207", "text": "Which grocery store did I spend the most money at in the past month?", "src": "part0.json", "idx": 32, "n": 96, "type": "multi-session"}
+{"_id": "b6025781", "text": "I'm planning my meal prep next week, any suggestions for new recipes?", "src": "part2.json", "idx": 51, "n": 155, "type": "single-session-preference"}
+{"_id": "gpt4_7ca326fa", "text": "Who graduated first, second and third among Emma, Rachel and Alex?", "src": "part2.json", "idx": 94, "n": 284, "type": "temporal-reasoning"}
+{"_id": "a1eacc2a", "text": "How many short stories have I written since I started writing regularly?", "src": "part2.json", "idx": 125, "n": 377, "type": "knowledge-update"}
+{"_id": "gpt4_74aed68e", "text": "How many days passed between the day I replaced my spark plugs and the day I participated in the Turbocharged Tuesdays auto racking event?", "src": "part1.json", "idx": 90, "n": 271, "type": "temporal-reasoning"}
+{"_id": "8aef76bc", "text": "I'm going back to our previous conversation about DIY home decor projects using recycled materials. Can you remind me what sealant you recommended for the newspaper flower vase?", "src": "part2.json", "idx": 154, "n": 464, "type": "single-session-assistant"}
+{"_id": "3b6f954b", "text": "Where did I attend for my study abroad program?", "src": "part1.json", "idx": 4, "n": 13, "type": "single-session-user"}
+{"_id": "gpt4_1e4a8aec", "text": "What gardening-related activity did I do two weeks ago?", "src": "part0.json", "idx": 97, "n": 291, "type": "temporal-reasoning"}
+{"_id": "d6062bb9", "text": "What is the total number of views on my most popular videos on YouTube and TikTok?", "src": "part1.json", "idx": 70, "n": 211, "type": "multi-session"}
+{"_id": "ba358f49", "text": "How many years will I be when my friend Rachel gets married?", "src": "part2.json", "idx": 67, "n": 203, "type": "multi-session"}
+{"_id": "f0853d11", "text": "How many days had passed between the 'Walk for Hunger' event and the 'Coastal Cleanup' event?", "src": "part0.json", "idx": 106, "n": 318, "type": "temporal-reasoning"}
+{"_id": "2318644b", "text": "How much more did I spend on accommodations per night in Hawaii compared to Tokyo?", "src": "part1.json", "idx": 32, "n": 97, "type": "multi-session"}
+{"_id": "e4e14d04", "text": "How long had I been a member of 'Book Lovers Unite' when I attended the meetup?", "src": "part0.json", "idx": 110, "n": 330, "type": "temporal-reasoning"}
+{"_id": "e3fc4d6e", "text": "I wanted to follow up on our previous conversation about the fusion breakthrough at Lawrence Livermore National Laboratory. Can you remind me who is the President's Chief Advisor for Science and Technology mentioned in the article?", "src": "part1.json", "idx": 158, "n": 475, "type": "single-session-assistant"}
+{"_id": "6c49646a", "text": "What is the total distance I covered in my four road trips?", "src": "part0.json", "idx": 66, "n": 198, "type": "multi-session"}
+{"_id": "09d032c9", "text": "I've been having trouble with the battery life on my phone lately. Any tips?", "src": "part1.json", "idx": 48, "n": 145, "type": "single-session-preference"}
+{"_id": "94f70d80", "text": "How long did it take me to assemble the IKEA bookshelf?", "src": "part0.json", "idx": 5, "n": 15, "type": "single-session-user"}
+{"_id": "gpt4_fe651585", "text": "Who became a parent first, Rachel or Alex?", "src": "part1.json", "idx": 119, "n": 358, "type": "temporal-reasoning"}
+{"_id": "72e3ee87", "text": "How many episodes of the Science series have I completed on Crash Course?", "src": "part2.json", "idx": 130, "n": 392, "type": "knowledge-update"}
+{"_id": "gpt4_1e4a8aeb", "text": "How many days passed between the day I attended the gardening workshop and the day I planted the tomato saplings?", "src": "part1.json", "idx": 85, "n": 256, "type": "temporal-reasoning"}
+{"_id": "982b5123_abs", "text": "When did I book the Airbnb in Sacramento?", "src": "part2.json", "idx": 120, "n": 362, "type": "temporal-reasoning"}
+{"_id": "15745da0", "text": "How long have I been collecting vintage cameras?", "src": "part1.json", "idx": 13, "n": 40, "type": "single-session-user"}
+{"_id": "77eafa52", "text": "How much more did I have to pay for the trip after the initial quote?", "src": "part2.json", "idx": 63, "n": 191, "type": "multi-session"}
+{"_id": "311778f1", "text": "How many hours did I spend watching documentaries on Netflix last month?", "src": "part2.json", "idx": 17, "n": 53, "type": "single-session-user"}
+{"_id": "gpt4_385a5000", "text": "Which seeds were started first, the tomatoes or the marigolds?", "src": "part1.json", "idx": 104, "n": 313, "type": "temporal-reasoning"}
+{"_id": "gpt4_2f8be40d", "text": "How many weddings have I attended in this year?", "src": "part2.json", "idx": 28, "n": 86, "type": "multi-session"}
+{"_id": "36b9f61e", "text": "What is the total amount I spent on luxury items in the past few months?", "src": "part0.json", "idx": 28, "n": 84, "type": "multi-session"}
+{"_id": "4baee567", "text": "I was looking back at our previous chat and I wanted to confirm, how many times did the Chiefs play the Jaguars at Arrowhead Stadium?", "src": "part1.json", "idx": 162, "n": 487, "type": "single-session-assistant"}
+{"_id": "e47becba", "text": "What degree did I graduate with?", "src": "part0.json", "idx": 0, "n": 0, "type": "single-session-user"}
+{"_id": "eeda8a6d", "text": "How many fish are there in total in both of my aquariums?", "src": "part1.json", "idx": 34, "n": 103, "type": "multi-session"}
+{"_id": "gpt4_7abb270c", "text": "What is the order of the six museums I visited from earliest to latest?", "src": "part0.json", "idx": 85, "n": 255, "type": "temporal-reasoning"}
+{"_id": "0ddfec37", "text": "How many autographed baseballs have I added to my collection in the first three months of collection?", "src": "part2.json", "idx": 138, "n": 416, "type": "knowledge-update"}
+{"_id": "89941a94", "text": "Before I purchased the gravel bike, do I have other bikes in addition to my mountain bike and my commuter bike?", "src": "part1.json", "idx": 147, "n": 442, "type": "knowledge-update"}
+{"_id": "0862e8bf", "text": "What is the name of my cat?", "src": "part2.json", "idx": 8, "n": 26, "type": "single-session-user"}
+{"_id": "07741c44", "text": "Where do I initially keep my old sneakers?", "src": "part1.json", "idx": 125, "n": 376, "type": "knowledge-update"}
+{"_id": "1c0ddc50", "text": "Can you suggest some activities I can do during my commute to work?", "src": "part1.json", "idx": 53, "n": 160, "type": "single-session-preference"}
+{"_id": "58470ed2", "text": "I was going through our previous conversation about The Library of Babel, and I wanted to confirm - what did Borges say about the center and circumference of the Library?", "src": "part1.json", "idx": 153, "n": 460, "type": "single-session-assistant"}
+{"_id": "gpt4_1a1dc16d", "text": "Which event happened first, the meeting with Rachel or the pride parade?", "src": "part2.json", "idx": 117, "n": 353, "type": "temporal-reasoning"}
+{"_id": "37f165cf", "text": "What was the page count of the two novels I finished in January and March?", "src": "part2.json", "idx": 73, "n": 221, "type": "multi-session"}
+{"_id": "c8f1aeed", "text": "I wanted to follow up on our previous conversation about fracking in the Marcellus Shale region. You mentioned that some states require fracking companies to monitor groundwater quality at nearby wells before drilling and for a certain period after drilling is complete. Can you remind me which state you mentioned as an example that has this requirement?", "src": "part1.json", "idx": 164, "n": 493, "type": "single-session-assistant"}

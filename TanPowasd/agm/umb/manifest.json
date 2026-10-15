@@ -1,0 +1,710 @@
+{
+ "name": "UMB",
+ "version": "0.1",
+ "rules": {
+  "max_queries": 500,
+  "query_order": "sha256(\"umb-v0.1|\"+set+\"|\"+qid) asc, only queries with positive qrels",
+  "corpus": "gold docs + others by sha256(\"umb-v0.1|\"+set+\"|\"+docid) asc until next doc would exceed 6000000 chars (len(title)+len(text))",
+  "split": "sha256(\"umb-split|\"+qid)[0] even -> dev, odd -> test",
+  "memory_sets": "corpus not copied; source.json = source paths (${VAR}/relative) + sha256 + qid list",
+  "repo_excludes": [
+   "corpus.jsonl"
+  ]
+ },
+ "path_vars": {
+  "UMB_BEIR": "BEIR 官方 zip 解压目录（含 scifact/ nfcorpus/ arguana/ scidocs/）",
+  "UMB_CMTEB": "C-MTEB 检索集转 BEIR 格式后的目录（含 EcomRetrieval/ 等，见 xbench/fetch.py）",
+  "UMB_LME": "LongMemEval-S 目录：part0-2.json，或官方 longmemeval_s_cleaned.json（自动按 n%3 拆）",
+  "UMB_HIVE": "hive-memory-bench 克隆（commit f4509d7）",
+  "UMB_LOCOMO": "locomo10.json 文件路径"
+ },
+ "groups": {
+  "mem": [
+   "lme",
+   "locomo",
+   "hive"
+  ],
+  "en": [
+   "scifact",
+   "nfcorpus",
+   "arguana",
+   "scidocs"
+  ],
+  "zh": [
+   "EcomRetrieval",
+   "VideoRetrieval",
+   "MedicalRetrieval",
+   "DuRetrieval",
+   "MMarcoRetrieval"
+  ]
+ },
+ "built_at": "2026-10-15 16:06:37 +0000",
+ "ported_at": "2026-10-16",
+ "sets": {
+  "hive": {
+   "group": "mem",
+   "kind": "memory",
+   "metric": "r@10",
+   "metric_def": "bench_cc hive 口径：r@10 := 8000 字上下文中金标证据句完整出现比例（budget=8000）",
+   "n_queries": 92,
+   "n_dev": 46,
+   "n_test": 46,
+   "n_docs": 303,
+   "n_chars": 61335,
+   "source_full": {
+    "cards": 92,
+    "cards_with_gold": 92
+   },
+   "sources": {
+    "commit": "f4509d7282f82982af5de9c8fe71863fc95b38cb",
+    "${UMB_HIVE}/corpus/u01.json": "abe918aa050c9fbfac98695c63dd3a8c1e609963d3b4b59434647ede47aa195a",
+    "${UMB_HIVE}/corpus/u02.json": "a17493c92524930ede636d7531065d3cef2c093a5fda9023908cc1cb634f0fbe",
+    "${UMB_HIVE}/corpus/u03.json": "417c34513f13368b5fd79afb86cb85ad7a38a22eeff86982f08e10cf2d30fabd",
+    "${UMB_HIVE}/cards/o001.yaml": "24c30ffbda8e0019a33c26ceae93073800be06b2219969afc18a84114e87485a",
+    "${UMB_HIVE}/cards/o002.yaml": "b208cbf96a13089711fa717da8534eba113255b2762ad699946b5d55973da27a",
+    "${UMB_HIVE}/cards/o003.yaml": "9d24aa95555663b6c038bdf4021ab607b464d40d7b4e61d9ed147d8facc237cb",
+    "${UMB_HIVE}/cards/o004.yaml": "cb3d83b094288f718b75ddcf5c29016e0a622f25989de0de7c0a01f6616a394a",
+    "${UMB_HIVE}/cards/o005.yaml": "1eec9d87984e0015626d25cf4ee311c7cda3e7f2498385a0ff31d356df44743c",
+    "${UMB_HIVE}/cards/o006.yaml": "4b8f0c4f3b34b208e83e2286a31fc2ab58baf22accb43722ba1821d4302718df",
+    "${UMB_HIVE}/cards/o007.yaml": "5db84a791e76f381e2b0e4e26791d66ec53c54e1fd87c45b0ed0de1fea5a157b",
+    "${UMB_HIVE}/cards/o008.yaml": "897ca8d25d12d05b33e4f59ea486dac4ead3bfc7d07bc3dc4ac9f0e1ecff35a1",
+    "${UMB_HIVE}/cards/o009.yaml": "4a779b8626fe770342ac2d445dab2af78d21762e0f133791ac6ebbd3455f4d21",
+    "${UMB_HIVE}/cards/o010.yaml": "533ba862fcaf8a3c24ee2850b9a60cb24e3dfb5685d508211a616d6c39a732a6",
+    "${UMB_HIVE}/cards/o011.yaml": "6c35dbeee29fcb1bf8b7183288453294129346588407d9863a9091b9c24dd2fd",
+    "${UMB_HIVE}/cards/o012.yaml": "5dbabe106c36a0f5ab75d59558bddea4fd458638233a01c1b4e56da3b71052f7",
+    "${UMB_HIVE}/cards/o013.yaml": "0eae271e4e09349223ede973ebb2c54ee588beb2b71f5544961856b846c5d650",
+    "${UMB_HIVE}/cards/o014.yaml": "f52ce3f7ba7b6a7ea8a5cae6f97f03a1941cf25bcc0878361d44e0b38b4ed6ad",
+    "${UMB_HIVE}/cards/o015.yaml": "ee18522798bf7d1354140f6bf487fea391ca6e6662ca660c20dcec7a5e9f1764",
+    "${UMB_HIVE}/cards/o016.yaml": "aa67eb952badcf4047a7a359e8b251f9a6eb672275d06080a88d106ea0cf2a2a",
+    "${UMB_HIVE}/cards/o017.yaml": "c1dda8f10516b6cae260c1e0dd2374d55c4ac5dbd0e1569d46c39fe3a5845ad2",
+    "${UMB_HIVE}/cards/o018.yaml": "5591b1d888e8a46571ff5fe33b744791b2eb860fb1b3d57152385265ea4ee3f1",
+    "${UMB_HIVE}/cards/o019.yaml": "6d3dfeb2a28a7a79e9043a040fac39d990f55ec7051f62e4835f96e3921d0413",
+    "${UMB_HIVE}/cards/o020.yaml": "25cc328e213deaabc957250ebe15ea9fc2d06e6853d79edd25c714a37d414278",
+    "${UMB_HIVE}/cards/o021.yaml": "04e0b8c3116032fec5e088f85b70a8e3af3670b406061ded173fb7178838a3b5",
+    "${UMB_HIVE}/cards/o022.yaml": "2cee58074ec19261916901da15b56e62c9884c83d55675d36d64947443fa3b19",
+    "${UMB_HIVE}/cards/o023.yaml": "de89e485c9abf99945a408716fa18ce9fb54d2f3a21219486d2d75b8947a1558",
+    "${UMB_HIVE}/cards/o024.yaml": "9f8f92ffc4e3eaef8cdc2adde9a9dd2f09485c32e6d757a48ddac87fa005c265",
+    "${UMB_HIVE}/cards/o025.yaml": "cdbfd9f0b95bd0a0476af29169ed66b832a7796701490eea681e5210d825f30b",
+    "${UMB_HIVE}/cards/o026.yaml": "44da52179607bb73f9faaab4270eb4fddd3c0e37a45bf4ccdb0a736f88b43b15",
+    "${UMB_HIVE}/cards/o027.yaml": "16a5068e1969bb7775ec60adf3251072d7f378161d2b31afecf1b1af783d709b",
+    "${UMB_HIVE}/cards/o028.yaml": "783159d1781cdaa35ecea3086d2241e890d4c679a75b2c96a9c3329e616cecd9",
+    "${UMB_HIVE}/cards/o029.yaml": "204d4145d19d77079b9edbfe8e4f5f9c507919afa659bbedd046d567d2bb8416",
+    "${UMB_HIVE}/cards/o030.yaml": "529588fd31fa3e51a71884ef256fee05cfe763f5573d0b51ab66681e4632d01f",
+    "${UMB_HIVE}/cards/o031.yaml": "18aba8e6e3786feacb2e6faca07842e87f313464cbf3e905e5f48425d0d98310",
+    "${UMB_HIVE}/cards/o032.yaml": "aad812717c58704fda76542871f7b1ae9583b8d56684c1c3cea6c9806a453a04",
+    "${UMB_HIVE}/cards/o033.yaml": "789ae28c175d7da0c5eb06838c1e4d200b037692cb3ecff01f847c209f4a4f27",
+    "${UMB_HIVE}/cards/o034.yaml": "493b282944a347ef8711fbdfa63c8e9043a2d030690ddcb52a66b4f662075172",
+    "${UMB_HIVE}/cards/o035.yaml": "cf9d2a8981a13ce0e6daf3e1516520e81eb5913d3089185cbe42f89d716f5507",
+    "${UMB_HIVE}/cards/o036.yaml": "bad739d0a4d4e254583690a7fefcaaa9be4d3b98650c159b1f6a55a18558e878",
+    "${UMB_HIVE}/cards/o037.yaml": "89500ea3c3a9c2ef90a9a127b5ad87db676a483214d4aa0562eaa125654decf0",
+    "${UMB_HIVE}/cards/o038.yaml": "be1a1cc501ec4de02cfa7a75e226615100c9d9b7bb5f6640fc5e872de5970c3e",
+    "${UMB_HIVE}/cards/o039.yaml": "6d0e662b76c1b3fd4e8f27890ad2c00f3870a8fff75446e5a9adc848932f8a22",
+    "${UMB_HIVE}/cards/o040.yaml": "6e49f606e846fce8df4414020158987382ae4617635c01cb7aa67aeedecd18c8",
+    "${UMB_HIVE}/cards/o041.yaml": "c58883b827da8e57aed088a3341319d81e189cbc759012f8c2c7b0a1f69797cd",
+    "${UMB_HIVE}/cards/o042.yaml": "63c949032d368efc3a7eefd746efe3417f3eb151ea447ded7051f8df29b037dc",
+    "${UMB_HIVE}/cards/o043.yaml": "ee761cbb542f95fe98661fba8fb678d4c21eae908b4ef86cc91f220873936337",
+    "${UMB_HIVE}/cards/o044.yaml": "59d5e60c0f2565ec16a4f2ac0751483fa794dae975df66f6c55680ff404c4848",
+    "${UMB_HIVE}/cards/o045.yaml": "276f2223a0e2a612e89bc7f14fe180b96fb0552297d56a8062ab2226e18b3a4e",
+    "${UMB_HIVE}/cards/o046.yaml": "29f032c87134bb7d269d681b2f8ae3149ef7d8429781760aa21bad1988eea242",
+    "${UMB_HIVE}/cards/o047.yaml": "c27f93d76c0638f14cb1bdd1eab7d025f7f5e4398e07536e4c5efac8ef07723f",
+    "${UMB_HIVE}/cards/o048.yaml": "9c4d74dd39a52aeb55fa74b982cefa8b31953e4471ff3f7176f2238f56389366",
+    "${UMB_HIVE}/cards/o049.yaml": "33b2aa6d2e369f564579f9109a74836f3eb8207e39bb355f4e84e2c2f34612b7",
+    "${UMB_HIVE}/cards/o050.yaml": "74a6020ac316058c991d7cfb767e719d49431ffdee6b3587138c7095969db6f0",
+    "${UMB_HIVE}/cards/o051.yaml": "691c01eda8c76e1b2d718f60528a6ef497f33a74c8327698c65894ecddefd6af",
+    "${UMB_HIVE}/cards/o052.yaml": "44ccb0ccf36e2770d402a18e4e11fa5fa8531494feff561c06519762e1ffb959",
+    "${UMB_HIVE}/cards/o053.yaml": "b0df637c3d6e8393fabe54efd5238ef6c41c9acedab6453d4e3aedc7b5b9d7c0",
+    "${UMB_HIVE}/cards/o054.yaml": "7caf2302617ae4bee7fc92cf4d6db2398ca15c6bfb08160a89906d928fea5c7b",
+    "${UMB_HIVE}/cards/q001.yaml": "d8aa2e6b5fe282bd97a6961c04e9c9331d7914827562e813ae1b25e886d37ae8",
+    "${UMB_HIVE}/cards/q002.yaml": "1872c4ac889f9ed91026aa481f8dd21e258d40f7d36e348042daf7e5fc52bbc8",
+    "${UMB_HIVE}/cards/q003.yaml": "8fedbaa4ee9514949400b8b12ec57a3377b22a986f9a826a9307a7de8545fbcb",
+    "${UMB_HIVE}/cards/q004.yaml": "f729584d9c3cd9d76894a4d4842bca9dfabe515b8170b8231f288910d7aebe5f",
+    "${UMB_HIVE}/cards/q005.yaml": "1322e0cd60413c6776849695519db0819ed19bf0dc43657af70a1cc799aa6882",
+    "${UMB_HIVE}/cards/q006.yaml": "a17e3d2389300d0a38873dd57ffdb0ceefe8aa28e2c4f188b4c09a4db79c812f",
+    "${UMB_HIVE}/cards/q007.yaml": "4e0aabf3c909aebde50aba0320f1157628ad507e5f9ad5019b93f7ea77a3b49a",
+    "${UMB_HIVE}/cards/q008.yaml": "dadb9f0fbd1ef65d5626cfd786ae76ed95e9fb108cece78de0d440c09928e885",
+    "${UMB_HIVE}/cards/q009.yaml": "38f2bb3933c8a860973305d521b5f421abdd3b359b01c558011ea6d6f6c0a85f",
+    "${UMB_HIVE}/cards/q010.yaml": "0b951a47c038884bf6cc390e37e585402a0438c7d89fca4de89e80bb72e6f533",
+    "${UMB_HIVE}/cards/q011.yaml": "2d7f82a516a9921134fa9ad2a419b7fe5342db67b283fd0dcd34088aabe15edd",
+    "${UMB_HIVE}/cards/q012.yaml": "9040e5abb837162fca955d37b05a4e1c8a04649b39b9a88c057fc3deb924f70c",
+    "${UMB_HIVE}/cards/q013.yaml": "ef9104a547d2a8820674eecda125ee06e3fcf70f10484aace4f07de38aa6b1d2",
+    "${UMB_HIVE}/cards/q014.yaml": "ce6a24c689a0ec199ab7cf8b829e5629560d579ca3370e41735e9b5012c8e85f",
+    "${UMB_HIVE}/cards/q015.yaml": "907f969d7d4eb0ef69bcbce720a47029f1e0ebb596210b2e98a3aa841496d80d",
+    "${UMB_HIVE}/cards/q016.yaml": "f739ffae93b56ea640adbf94f12087af0a89c27c4017b9c4848f03ea4be44e2b",
+    "${UMB_HIVE}/cards/q017.yaml": "f572db9262fd122b981434bbada72048be4d81067fd3f45c4421b545e02152e2",
+    "${UMB_HIVE}/cards/q018.yaml": "c37b7f0d7831a9aa35da66b9cc35c57a406da79cf5854ae90facc2d49b578307",
+    "${UMB_HIVE}/cards/q019.yaml": "678011172f835df38c23747cb94b11c002dc0f44a7d3a78655f73b8d8a8d119b",
+    "${UMB_HIVE}/cards/q020.yaml": "96c47d2afda9ae382e67f4d5cda71cff29101f0bd6c650b4c1f2dc33042ff5bf",
+    "${UMB_HIVE}/cards/q021.yaml": "d57c8ced6dcbbc472fa02e3a965b0095e490d4201bdfd52e4262a05cfdd313c8",
+    "${UMB_HIVE}/cards/q022.yaml": "e9e78c0e12fb4809d471e86f3b599fe26ba5a62eb38ea4ac1bf843724a571cec",
+    "${UMB_HIVE}/cards/q023.yaml": "1dcb04391f5f03300574de6f52a10ea033a06e5ab0a0fb1f70dd58eca0411b5e",
+    "${UMB_HIVE}/cards/q024.yaml": "16bdb80dd72a6a6c38c97b6cc16c63b86214b02c71e8e183378d3b87962221dc",
+    "${UMB_HIVE}/cards/q025.yaml": "f9ac92e9d2fc2c238b271202079bff36858b47bad9c6bb1ccf8b6892b741a3b1",
+    "${UMB_HIVE}/cards/q026.yaml": "a49f55ad21be903d7e7a33ae3b18da538eb0369b9cea1fc6046b150ee65f0725",
+    "${UMB_HIVE}/cards/q027.yaml": "5f093a26cee9f8371dd074ff21bd4122e8e6a13a54c00f41db08d97890c2c274",
+    "${UMB_HIVE}/cards/q028.yaml": "0aca07b9216db32ff155b976149810152139fc3ec871f3b378d612d6618bf4bf",
+    "${UMB_HIVE}/cards/q029.yaml": "069c4bed59470bacfbca34b709d15dbaca1ab8ede9ffa3b2bd8a14b6d2589c1c",
+    "${UMB_HIVE}/cards/q030.yaml": "f74667c2b52721d1f4505052ba2fce27b5eb6c2ce9ca0c93eb11a4eabdc76ad8",
+    "${UMB_HIVE}/cards/q031.yaml": "19f6c6e467b25dce6f8b63e39bedbcd04a6f6b9769af7c1fcfd1b8581469bea7",
+    "${UMB_HIVE}/cards/q032.yaml": "c2c23b9f907524b065585e2de3aed7b81db7670670658d496edececab4e4a8d0",
+    "${UMB_HIVE}/cards/q033.yaml": "72bbf2c02832e8884de6b76e86824d10d753d457ba283d6ed60da1a1a31f46fb",
+    "${UMB_HIVE}/cards/q034.yaml": "9c82a173956df4df889fd2c4aba785ecc8725590dbcd7b2ed1f7165652966900",
+    "${UMB_HIVE}/cards/q035.yaml": "369e5bc72fcc78a98d3d47583c643d524f181e91e36c3265706c2365e8d33759",
+    "${UMB_HIVE}/cards/q036.yaml": "482aa932189fb4014a6d6960efcd6e1dc82d4ec7ff7201ed2bcfc5086ac97733",
+    "${UMB_HIVE}/cards/q037.yaml": "6e18d3693ef193416b876ca05497f55caa9ff18a7d28bc144aa775a3892eb708",
+    "${UMB_HIVE}/cards/q038.yaml": "753805942e6ba55a162bc77fd03205cc2dd0122a74233c8af6977d8c3ebb73dd"
+   },
+   "doubt": [
+    "gold 取 bench_zh 两口径并集：38 题 primary supporting_evidence + 54 道开放题 evidence_pool（bench_cc 只用前 38 题）"
+   ],
+   "files": {
+    "gold_quotes.json": {
+     "sha256": "e6bb42e2ccdcbdcc2d4635e368e56952bd14da472dc35dfe267719ccff6d7e8a",
+     "bytes": 43425
+    },
+    "qrels.tsv": {
+     "sha256": "3af97239185105fab4ac51ebcc19b7e970b0f75b6de1c6f78ec9d8dde99b3444",
+     "bytes": 15471
+    },
+    "queries.jsonl": {
+     "sha256": "264471fec337a7bfd0e0d02cf0ad256e76fb249edf76a1f016e08bdb2cae49e4",
+     "bytes": 13218
+    },
+    "source.json": {
+     "sha256": "bfae611e12a2deb2cd0dbd149d0eec51037b58f4b37e6b796d049392bb0b3ad4",
+     "bytes": 10911
+    },
+    "split.json": {
+     "sha256": "e69ce13043c3fc2ad88b72eb5c7704f6303225378736497f90cee9204879ee21",
+     "bytes": 818
+    }
+   },
+   "status": "ok",
+   "build_secs": 2.6
+  },
+  "locomo": {
+   "group": "mem",
+   "kind": "memory",
+   "metric": "r@10",
+   "metric_def": "lme_zerokey.score：前 10 轮中 evidence 轮占比；每题在本会话全部轮内检索",
+   "n_queries": 500,
+   "n_dev": 257,
+   "n_test": 243,
+   "n_docs": 5882,
+   "n_chars": 847960,
+   "source_full": {
+    "queries_with_evidence": 1532,
+    "conversations": 10
+   },
+   "sources": {
+    "${UMB_LOCOMO}": "79fa87e90f04081343b8c8debecb80a9a6842b76a7aa537dc9fdf651ea698ff4"
+   },
+   "doubt": [],
+   "files": {
+    "qrels.tsv": {
+     "sha256": "378451b8895cf6b5c5404199280bb532b97057bfefc97be3edefabdf4e3cd866",
+     "bytes": 15112
+    },
+    "queries.jsonl": {
+     "sha256": "9b2959a5c55263e5a87fa1d5fd1cdc9126c4c87b146b03a7020dce1eb4405218",
+     "bytes": 66434
+    },
+    "source.json": {
+     "sha256": "182e2aba70b0f6dd4044d7c556a64518ec8f63301f585d8c4517be7ec4bf2d16",
+     "bytes": 8506
+    },
+    "split.json": {
+     "sha256": "99126427b48cb73af5a1f0566c72d87a973ecae2361e0650322108603ecfe8a0",
+     "bytes": 7221
+    }
+   },
+   "status": "ok",
+   "build_secs": 1.1
+  },
+  "scifact": {
+   "group": "en",
+   "kind": "retrieval",
+   "metric": "ndcg@10",
+   "metric_def": "xbench bench_ir.metrics：nDCG@10（分级 qrels，gain=2^rel-1），ArguAna 惯例去掉与问句同号文档",
+   "n_queries": 300,
+   "n_dev": 145,
+   "n_test": 155,
+   "n_docs": 3982,
+   "n_chars": 5998341,
+   "n_gold_docs": 283,
+   "source_full": {
+    "docs": 5183,
+    "chars": 7766286,
+    "queries_with_pos_qrels": 300
+   },
+   "sources": {
+    "${UMB_BEIR}/scifact/corpus.jsonl": "dec31c8182f3d744c7d2c09423756fd1d17cbef75808db13ba01cc0aab4d1ac6",
+    "${UMB_BEIR}/scifact/queries.jsonl": "8ff84a7c903f722981cd8d595c022660140c51867b27608a6d4910db86080313",
+    "${UMB_BEIR}/scifact/qrels/test.tsv": "0864bb985e0ca2367ba217977e72004d549054b2b06666ed9d4825ac7c21284c"
+   },
+   "source_qrels_split": "test",
+   "doubt": [],
+   "files": {
+    "corpus.jsonl": {
+     "sha256": "72800543759075f273d16fc6279c977c1116670d67faaf5f5a7c7b191f8e3c91",
+     "bytes": 6181864
+    },
+    "doc_ids.txt": {
+     "sha256": "13efc703bff02c22bb934c9d25e4a5f733eaef876c3ed2a9bf02d7139186d80e",
+     "bytes": 34411
+    },
+    "qrels.tsv": {
+     "sha256": "71514b35924ef771f0e8e25e33f096d4bee3d94e3cec34cb318541f4e2e4ecb4",
+     "bytes": 5024
+    },
+    "queries.jsonl": {
+     "sha256": "de9d087c6faa0d3793fe68602411bcd26040e6734fc8998b4aee78e8bfe772c3",
+     "bytes": 35277
+    },
+    "split.json": {
+     "sha256": "f1c071aa393e47aebd55f88237c9ae6cea46a69db8417f4b2e33e98abde56b5c",
+     "bytes": 2246
+    }
+   },
+   "status": "ok",
+   "build_secs": 1.3,
+   "gold_missing_upstream": []
+  },
+  "nfcorpus": {
+   "group": "en",
+   "kind": "retrieval",
+   "metric": "ndcg@10",
+   "metric_def": "xbench bench_ir.metrics：nDCG@10（分级 qrels，gain=2^rel-1），ArguAna 惯例去掉与问句同号文档",
+   "n_queries": 323,
+   "n_dev": 171,
+   "n_test": 152,
+   "n_docs": 3633,
+   "n_chars": 5775685,
+   "n_gold_docs": 3128,
+   "source_full": {
+    "docs": 3633,
+    "chars": 5775685,
+    "queries_with_pos_qrels": 323
+   },
+   "sources": {
+    "${UMB_BEIR}/nfcorpus/corpus.jsonl": "10cc83ef1826b1425e6a87090b5140b39b27755d5a27e48215a88611c899991f",
+    "${UMB_BEIR}/nfcorpus/queries.jsonl": "d024e6621b84925d485ae473d316a0c3af31c62c8068a59fb29d22f7613aef2a",
+    "${UMB_BEIR}/nfcorpus/qrels/test.tsv": "f8fba6ef3d4dd9c3a242a8ba4ae38276fc3622fce7dcbae764766d564542fd2a"
+   },
+   "source_qrels_split": "test",
+   "doubt": [],
+   "files": {
+    "corpus.jsonl": {
+     "sha256": "23387b398d8cc2067ac56f2c22095fcae94824438ec8bd86db9272136ac091d8",
+     "bytes": 5948224
+    },
+    "doc_ids.txt": {
+     "sha256": "d55937871851680984031a1fa9456373a4d15072bcc005c186f4b30338aaae12",
+     "bytes": 32473
+    },
+    "qrels.tsv": {
+     "sha256": "846892567272523d7477f618c4e21607c75945d25491420cc124ae015dbb27d9",
+     "bytes": 267212
+    },
+    "queries.jsonl": {
+     "sha256": "4d4076145f9fcc7a941da53fbcbc357efe1fc459f4da1693a97ccf1f1f258454",
+     "bytes": 17922
+    },
+    "split.json": {
+     "sha256": "0a4076775f271036a1199be648f538e5e7abf661707ace03e3692ff8c788e37e",
+     "bytes": 4503
+    }
+   },
+   "status": "ok",
+   "build_secs": 1.7,
+   "gold_missing_upstream": []
+  },
+  "arguana": {
+   "group": "en",
+   "kind": "retrieval",
+   "metric": "ndcg@10",
+   "metric_def": "xbench bench_ir.metrics：nDCG@10（分级 qrels，gain=2^rel-1），ArguAna 惯例去掉与问句同号文档",
+   "n_queries": 500,
+   "n_dev": 252,
+   "n_test": 248,
+   "n_docs": 5867,
+   "n_chars": 5998688,
+   "n_gold_docs": 500,
+   "source_full": {
+    "docs": 8674,
+    "chars": 8927565,
+    "queries_with_pos_qrels": 1406
+   },
+   "sources": {
+    "${UMB_BEIR}/arguana/corpus.jsonl": "0627982cec4ee896df6dc98604ef6b499c83fd87a19eaaeb3f23b88bbef6cbce",
+    "${UMB_BEIR}/arguana/queries.jsonl": "f8b7c903f95d9a2d291de3915a8fac25085e9db679f19f59fea4145bfd1df618",
+    "${UMB_BEIR}/arguana/qrels/test.tsv": "0c47b481fa8b47fb9ca5e74bc8a017bdea14518c0e4a5d21345291180b3aca76"
+   },
+   "source_qrels_split": "test",
+   "gold_missing_upstream": [
+    "test-science-sghwbdgmo-con03b"
+   ],
+   "doubt": [
+    "存疑：1 篇金标文档原语料里就没有（上游缺陷，保留该题，该文档永远检索不到）：['test-science-sghwbdgmo-con03b']"
+   ],
+   "files": {
+    "corpus.jsonl": {
+     "sha256": "82012f321e01c81d9b69abeb4bc41edf2b8f849b2c9ed3f054a91699a17a7776",
+     "bytes": 6458076
+    },
+    "doc_ids.txt": {
+     "sha256": "72f4859f8f17a1601b3acfee7ba2b5aeb0232df23bddd439adc6075077e39873",
+     "bytes": 209649
+    },
+    "qrels.tsv": {
+     "sha256": "0f3a35ae6c714bd399e5523312763714c479060d3360eee7ef5f1d7244831ae0",
+     "bytes": 33684
+    },
+    "queries.jsonl": {
+     "sha256": "4398e22fcfd1dbfa361aa54fd07964ce5b4831e3b9a382d4f607ae1c1f68247a",
+     "bytes": 619494
+    },
+    "split.json": {
+     "sha256": "48dd967c32cf6c2c13eb42052870fd077f8af0d3d014fddca4335af90616ea99",
+     "bytes": 17924
+    }
+   },
+   "status": "ok",
+   "build_secs": 0.2
+  },
+  "lme": {
+   "group": "mem",
+   "kind": "memory",
+   "metric": "r@10",
+   "metric_def": "lme_zerokey.score：前 10 轮中 gold 轮占全部 gold 轮比例；每题只在本题 haystack 内检索",
+   "n_queries": 479,
+   "n_dev": 236,
+   "n_test": 243,
+   "n_docs": 236184,
+   "n_chars": 236381917,
+   "source_full": {
+    "queries_with_gold": 479,
+    "instances": 500
+   },
+   "sources": {
+    "${UMB_LME}/part0.json": "39364854983cba3602c44702927ed4698e56587630f741d3b4839bdf05dd141d",
+    "${UMB_LME}/part1.json": "575cbc2d44e4abc293a861a3c9f3447ed6d3413907b9df4880acc3965587dbca",
+    "${UMB_LME}/part2.json": "4a2017bffb92e40eda7ea4f4a35e5c27b1353a782c3b47e215903cf401185d30"
+   },
+   "doubt": [],
+   "files": {
+    "qrels.tsv": {
+     "sha256": "8e7d39ba745ce676469c495d5cccdbb40927aa639581efa242ce71b06637a5c7",
+     "bytes": 14521
+    },
+    "queries.jsonl": {
+     "sha256": "d5bf4fa83056a3895c59041bbffaa726ae4e1e45f244af0f62f7f8a506cf5097",
+     "bytes": 91526
+    },
+    "source.json": {
+     "sha256": "4c2a61e7966bb03c0d3c47cfcad03bd3ee64e8e7f1a10caf37cfb3fb59374710",
+     "bytes": 7838
+    },
+    "split.json": {
+     "sha256": "436d5d2d86bc15b8b737b4d4eb5c7657a4209de7b36042e692eeb65acd89c5bf",
+     "bytes": 6391
+    }
+   },
+   "status": "ok",
+   "build_secs": 1.2
+  },
+  "scidocs": {
+   "group": "en",
+   "kind": "retrieval",
+   "metric": "ndcg@10",
+   "metric_def": "xbench bench_ir.metrics：nDCG@10（分级 qrels，gain=2^rel-1），ArguAna 惯例去掉与问句同号文档",
+   "n_queries": 500,
+   "n_dev": 254,
+   "n_test": 246,
+   "n_docs": 5104,
+   "n_chars": 5999561,
+   "n_gold_docs": 2137,
+   "source_full": {
+    "docs": 25657,
+    "chars": 30874761,
+    "queries_with_pos_qrels": 1000
+   },
+   "sources": {
+    "${UMB_BEIR}/scidocs/corpus.jsonl": "328bb38854179c83ee40d4f49fae2ef7209ede7163785193cbdcd5906b28eecc",
+    "${UMB_BEIR}/scidocs/queries.jsonl": "3c85b68419bd579ff52edb58f9e7b32eb3d18bc83435edb71dbb68aaf79531d6",
+    "${UMB_BEIR}/scidocs/qrels/test.tsv": "dcd3d7f77417294bb6f338537f3c28d8a5ea72b30fe6633f407fa85528767e35"
+   },
+   "source_qrels_split": "test",
+   "doubt": [],
+   "files": {
+    "corpus.jsonl": {
+     "sha256": "14e43950f22bb8095529d7612d846098bc8d83c48326d68d0468d1aa8c1bfd5e",
+     "bytes": 6409321
+    },
+    "doc_ids.txt": {
+     "sha256": "fa3cf257351e53508059dcc74877dfec9c50377168275d0a9f9f5d0b98d14b2b",
+     "bytes": 209264
+    },
+    "qrels.tsv": {
+     "sha256": "68d73ebf8bb3672bd51ec156f2f4862b06369af06e4af2135d1ffb1af1477e16",
+     "bytes": 207480
+    },
+    "queries.jsonl": {
+     "sha256": "fe7eb35998e3ef68e29439ed4576aa5859aabea0510a2020ec8c8f436f8c933f",
+     "bytes": 67969
+    },
+    "split.json": {
+     "sha256": "1890712be9e679f1ebb85fdab81f1a639234ec7a32efa0a85ab0e9c273b6e6c1",
+     "bytes": 22082
+    }
+   },
+   "status": "ok",
+   "build_secs": 7.6,
+   "gold_missing_upstream": []
+  },
+  "EcomRetrieval": {
+   "group": "zh",
+   "kind": "retrieval",
+   "metric": "ndcg@10",
+   "metric_def": "xbench bench_ir.metrics：nDCG@10（分级 qrels，gain=2^rel-1），ArguAna 惯例去掉与问句同号文档",
+   "n_queries": 500,
+   "n_dev": 257,
+   "n_test": 243,
+   "n_docs": 100902,
+   "n_chars": 3327790,
+   "n_gold_docs": 500,
+   "source_full": {
+    "docs": 100902,
+    "chars": 3327790,
+    "queries_with_pos_qrels": 1000
+   },
+   "sources": {
+    "${UMB_CMTEB}/EcomRetrieval/corpus.jsonl": "359eff2a50940912f81950574500616547a43e668fd928726fdd5e012c2eb59b",
+    "${UMB_CMTEB}/EcomRetrieval/queries.jsonl": "757e8faad532ece8e4efbd478aa263baecdea5224deb5e1f2530e5802aad2e56",
+    "${UMB_CMTEB}/EcomRetrieval/qrels/dev.tsv": "a29417722b6d907dd98dc86ff2cfc2cd553308579071b8d102af38a6c9b6319c"
+   },
+   "source_qrels_split": "dev",
+   "doubt": [],
+   "files": {
+    "corpus.jsonl": {
+     "sha256": "359eff2a50940912f81950574500616547a43e668fd928726fdd5e012c2eb59b",
+     "bytes": 12856886
+    },
+    "doc_ids.txt": {
+     "sha256": "80e5bf40f5376e94ea58a3b3018951c6f2344822437bac623f8f81ff1638e037",
+     "bytes": 595209
+    },
+    "qrels.tsv": {
+     "sha256": "047c6dab66c9db266104ee920026e9343f7fcd49cae733533600874b3407f314",
+     "bytes": 7947
+    },
+    "queries.jsonl": {
+     "sha256": "59e5d65049262ddd91b42e1a8a3fec6b3f4078ee51212bae89a304ca5d06f964",
+     "bytes": 24122
+    },
+    "split.json": {
+     "sha256": "fdb258454b19f0499ac357099c72d43ec40b98312e381c51e5a66a60a5c39187",
+     "bytes": 5082
+    }
+   },
+   "status": "ok",
+   "build_secs": 2.0,
+   "gold_missing_upstream": []
+  },
+  "VideoRetrieval": {
+   "group": "zh",
+   "kind": "retrieval",
+   "metric": "ndcg@10",
+   "metric_def": "xbench bench_ir.metrics：nDCG@10（分级 qrels，gain=2^rel-1），ArguAna 惯例去掉与问句同号文档",
+   "n_queries": 500,
+   "n_dev": 260,
+   "n_test": 240,
+   "n_docs": 100930,
+   "n_chars": 3133761,
+   "n_gold_docs": 500,
+   "source_full": {
+    "docs": 100930,
+    "chars": 3133761,
+    "queries_with_pos_qrels": 1000
+   },
+   "sources": {
+    "${UMB_CMTEB}/VideoRetrieval/corpus.jsonl": "733e19e0092934a07ccfd7469c3f40e64a6541b56a920fbefb1c2a6172c0709d",
+    "${UMB_CMTEB}/VideoRetrieval/queries.jsonl": "98e35bc10dd616feb33ca2a181715456f1043a8e028f472ef92744aee8fd3902",
+    "${UMB_CMTEB}/VideoRetrieval/qrels/dev.tsv": "e82f466f567bd728887d0d7444fc9c9616d1c7908c1a944ef0e63870043b1b69"
+   },
+   "source_qrels_split": "dev",
+   "doubt": [],
+   "files": {
+    "corpus.jsonl": {
+     "sha256": "733e19e0092934a07ccfd7469c3f40e64a6541b56a920fbefb1c2a6172c0709d",
+     "bytes": 11103784
+    },
+    "doc_ids.txt": {
+     "sha256": "1afb560b22558871d56a43dac291ac2ae203c288c59a725c64284ee4182d75ec",
+     "bytes": 595793
+    },
+    "qrels.tsv": {
+     "sha256": "a43d2fe01ace2478d107bcb9060e6598d71a5bd4cc628e07fb9d86311f8d4a7c",
+     "bytes": 7962
+    },
+    "queries.jsonl": {
+     "sha256": "f1bcad0e29c1b4320e81d36f1450f93d65e9db1fd68d3b7a15dd1e2668bc605d",
+     "bytes": 25204
+    },
+    "split.json": {
+     "sha256": "f9a468590723f1682a790d66fdf76d46164c48685a8a9f3770ac79571b3e7053",
+     "bytes": 4900
+    }
+   },
+   "status": "ok",
+   "build_secs": 1.9,
+   "gold_missing_upstream": []
+  },
+  "MedicalRetrieval": {
+   "group": "zh",
+   "kind": "retrieval",
+   "metric": "ndcg@10",
+   "metric_def": "xbench bench_ir.metrics：nDCG@10（分级 qrels，gain=2^rel-1），ArguAna 惯例去掉与问句同号文档",
+   "n_queries": 500,
+   "n_dev": 227,
+   "n_test": 273,
+   "n_docs": 49234,
+   "n_chars": 5999959,
+   "n_gold_docs": 500,
+   "source_full": {
+    "docs": 100999,
+    "chars": 12326152,
+    "queries_with_pos_qrels": 1000
+   },
+   "sources": {
+    "${UMB_CMTEB}/MedicalRetrieval/corpus.jsonl": "83344cf4b4a00ed5f5e6f1f90d2f046515babca51e602dcadd35e9dc0a3094b0",
+    "${UMB_CMTEB}/MedicalRetrieval/queries.jsonl": "4eefe744bbb8527fdbc411a1cd2a4e0830593109e41a7816b05cb2358ac65ef2",
+    "${UMB_CMTEB}/MedicalRetrieval/qrels/dev.tsv": "934203d09e95e26e0d04ee2b93ada41dd0c4f987c38af2904c7d4c2f9a49e883"
+   },
+   "source_qrels_split": "dev",
+   "doubt": [],
+   "files": {
+    "corpus.jsonl": {
+     "sha256": "81da86e5a2b1c3783f36cd93dbce619243122c29734912927116dfdbc0f080a7",
+     "bytes": 19630048
+    },
+    "doc_ids.txt": {
+     "sha256": "425914a2525e57029a15ac33b3fb4c1da76b76c509af7b096b3e473b9ceceeb3",
+     "bytes": 292243
+    },
+    "qrels.tsv": {
+     "sha256": "298536f99e12ac507aa9fbe4b53ae356c129cb1ee1e5773ef06f3d6c6e03d652",
+     "bytes": 7448
+    },
+    "queries.jsonl": {
+     "sha256": "420341d30e5c8b2a6c92e2a8468b7aca5954499349e5cf95a55b223b3b3be8df",
+     "bytes": 40151
+    },
+    "split.json": {
+     "sha256": "cc8856e67a08d1ad8a534ebeed5b005c6ffecb1562776a24186b05bfcddfe79b",
+     "bytes": 3530
+    }
+   },
+   "status": "ok",
+   "build_secs": 2.4,
+   "gold_missing_upstream": []
+  },
+  "DuRetrieval": {
+   "group": "zh",
+   "kind": "retrieval",
+   "metric": "ndcg@10",
+   "metric_def": "xbench bench_ir.metrics：nDCG@10（分级 qrels，gain=2^rel-1），ArguAna 惯例去掉与问句同号文档",
+   "n_queries": 500,
+   "n_dev": 233,
+   "n_test": 267,
+   "n_docs": 17538,
+   "n_chars": 5999892,
+   "n_gold_docs": 2545,
+   "source_full": {
+    "docs": 100001,
+    "chars": 33132531,
+    "queries_with_pos_qrels": 2000
+   },
+   "sources": {
+    "${UMB_CMTEB}/DuRetrieval/corpus.jsonl": "bb4029b5212e0e81fc5b834363e623eb0bb58c36016329d175e68f9baf34c5da",
+    "${UMB_CMTEB}/DuRetrieval/queries.jsonl": "492343fdb1d72168438f39d2c6b642d154c62c75b650c73a3495d2b3318caaf2",
+    "${UMB_CMTEB}/DuRetrieval/qrels/dev.tsv": "f6e8acd75da1c138d87b92c0457ae88776a624a46de29ab00a4e220e32accda2"
+   },
+   "source_qrels_split": "dev",
+   "doubt": [],
+   "files": {
+    "corpus.jsonl": {
+     "sha256": "1fe5a488fdddadce5b04a8fe556e50adf0bb14f86b6bc065b566e7153536007e",
+     "bytes": 17083476
+    },
+    "doc_ids.txt": {
+     "sha256": "16ce8022b197429d01c238c2c23e84b20b45270fa2b2cd1ac3bdd8e9dad1dff4",
+     "bytes": 578754
+    },
+    "qrels.tsv": {
+     "sha256": "b4cd1542c8fb92de9aae5d7112a64b487f7bb6aca7c750babbf637aa85d7b9cd",
+     "bytes": 173400
+    },
+    "queries.jsonl": {
+     "sha256": "0fa9218ed5d7aa01cd54cbce64835f8b73fb90a06e871f682d7cdbfdea4f0782",
+     "bytes": 40547
+    },
+    "split.json": {
+     "sha256": "4e074d1a61aae85cb61526b60fe4a1413728151dac91021c473e2f0af5293d99",
+     "bytes": 18082
+    }
+   },
+   "status": "ok",
+   "build_secs": 3.9,
+   "gold_missing_upstream": []
+  },
+  "MMarcoRetrieval": {
+   "group": "zh",
+   "kind": "retrieval",
+   "metric": "ndcg@10",
+   "metric_def": "xbench bench_ir.metrics：nDCG@10（分级 qrels，gain=2^rel-1），ArguAna 惯例去掉与问句同号文档",
+   "n_queries": 500,
+   "n_dev": 258,
+   "n_test": 242,
+   "n_docs": 52391,
+   "n_chars": 5999983,
+   "n_gold_docs": 532,
+   "source_full": {
+    "docs": 106813,
+    "chars": 12221316,
+    "queries_with_pos_qrels": 6980
+   },
+   "sources": {
+    "${UMB_CMTEB}/MMarcoRetrieval/corpus.jsonl": "55b9b3c6b43bf165fa815df4be7ab87a204ce495f0901f21fe289b8bb6c84e10",
+    "${UMB_CMTEB}/MMarcoRetrieval/queries.jsonl": "02f917c13ccde0d18974ef13e3e76b8398b66fd00985858d8fb27bf3eeba967b",
+    "${UMB_CMTEB}/MMarcoRetrieval/qrels/dev.tsv": "a4ea5516eb36c954834a9db2123e3101fe7d6ebd7d0d6a0bfae584dc9516fc8a"
+   },
+   "source_qrels_split": "dev",
+   "doubt": [],
+   "files": {
+    "corpus.jsonl": {
+     "sha256": "6753185bae3310ea0ea5b199851409a310348cc634b7807767bfa9a23be3f2b0",
+     "bytes": 17506127
+    },
+    "doc_ids.txt": {
+     "sha256": "de8c6acc8fbdacba1422e2e5d335f2cb4671baa667e55b1684283ed65daf48c8",
+     "bytes": 418978
+    },
+    "qrels.tsv": {
+     "sha256": "e3f662888fc2bc9ade52d8142856ed8a393e01280630586481c500d5cad73b9c",
+     "bytes": 9181
+    },
+    "queries.jsonl": {
+     "sha256": "1c0faa0a6e82e32a48510aba4d7514b93444d4b310915fae27bf555b15001c5f",
+     "bytes": 29699
+    },
+    "split.json": {
+     "sha256": "d833bf19a3c9e2df1b99b0e8733d96f78ed53bcb7cb32264aadcd559e8266604",
+     "bytes": 5229
+    }
+   },
+   "status": "ok",
+   "build_secs": 2.4,
+   "gold_missing_upstream": []
+  }
+ }
+}
