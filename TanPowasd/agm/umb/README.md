@@ -60,6 +60,11 @@ python -X utf8 run_umb.py --arms bm25,zh,ra_zh --split test --budget-secs 1200
 ```
 跑分汇总写 `$UMB_OUT/runs/summary_<split>[_lim<N>].md/json`：每集主指标、12 集等权宏平均、mem/en/zh 组宏平均、各臂 vs bm25 配对符号检验。
 
+## Windows 检出
+冻结文件按字节登记 sha256，必须保持 LF。本目录 `.gitattributes` 已对 `*.json *.jsonl *.tsv *.txt` 关闭换行改写（`-text`）。
+在加入该文件之前、且 `core.autocrlf=true` 下检出的工作区会被改成 CRLF，表现为 G2 sha 与 G7 docids 假红（dsh-bounty#788 隔离复核）。
+已有这样的工作区：拉取后执行 `git rm -r --cached TanPowasd/agm/umb && git checkout -- TanPowasd/agm/umb`（或重新克隆）。守卫与 verify 在检测到 CRLF 时会给出该诊断。
+
 ## 口径与存疑
 - 臂：`bm25` = xbench `bench_ir.Okapi`（k1=.9 b=.4，`tricue.seq_tokens` 汉字二元组）；`zh` = `zh.ZhMemory()` 默认（rm3 关）打分不扩散；
   `ra_zh` = zh + RA-AGM 扩散（记忆集上 bench_zh 用的是后者）。跑器固定 `PYTHONHASHSEED=0`。

@@ -33,7 +33,9 @@ def verify_set(name, info, frozen_only):
     on_disk = {p.name for p in d.iterdir() if p.is_file()} if d.is_dir() else set()
     check(on_disk == want, f"{name}: 仓内文件与 manifest 不符 {sorted(on_disk ^ want)}")
     for fn in sorted(want & on_disk):
-        check(sha_file(d / fn) == info["files"][fn]["sha256"], f"{name}/{fn}: sha256 不符")
+        check(sha_file(d / fn) == info["files"][fn]["sha256"], f"{name}/{fn}: sha256 不符"
+              + ("（文件含 CRLF：疑似 Windows git core.autocrlf 检出改写，见 umb/.gitattributes）"
+                 if (d / fn).exists() and b"\r\n" in (d / fn).read_bytes() else ""))
     qs = [json.loads(l) for l in open(d / "queries.jsonl", encoding="utf-8")]
     qids = [q["_id"] for q in qs]
     check(len(qids) == len(set(qids)), f"{name}: 题号重复")

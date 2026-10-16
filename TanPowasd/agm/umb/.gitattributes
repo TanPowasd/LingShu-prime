@@ -1,0 +1,6 @@
+# 冻结文件按字节登记 sha256（manifest.json），检出时禁止任何换行改写（Windows core.autocrlf=true 会把 LF 改成 CRLF，
+# 导致 G2 sha / G7 docids 假红，dsh-bounty#788 隔离复核即此情形）。
+*.json  -text
+*.jsonl -text
+*.tsv   -text
+*.txt   -text

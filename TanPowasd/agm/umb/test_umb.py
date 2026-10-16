@@ -38,7 +38,7 @@ def split_of(qid):
 # ---------------------------------------------------------------- 读入（一次读盘，变异只改内存结构）
 def load():
     man = json.loads((UMB / "manifest.json").read_text(encoding="utf-8"))
-    st = {"man": man, "sets": {}, "texts": {}, "disk": {}}
+    st = {"man": man, "sets": {}, "texts": {}, "disk": {}, "crlf": []}
     for p in sorted(UMB.rglob("*")):
         if p.is_file() and "__pycache__" not in p.parts and p.suffix in (".py", ".md", ".json", ".jsonl", ".tsv", ".txt") \
                 and not p.relative_to(UMB).parts[0] in ("data", "runs"):
@@ -47,6 +47,7 @@ def load():
         d = UMB / name
         files = {p.name: p.read_bytes() for p in d.iterdir() if p.is_file()} if d.is_dir() else {}
         st["disk"][name] = {fn: (hashlib.sha256(b).hexdigest(), len(b)) for fn, b in files.items()}
+        st["crlf"] += [f"{name}/{fn}" for fn, b in files.items() if b"\r\n" in b]
         s = {"queries": [json.loads(l) for l in files["queries.jsonl"].decode("utf-8").splitlines()],
              "qrels": [l.split("\t") for l in files["qrels.tsv"].decode("utf-8").splitlines()],
              "split": json.loads(files["split.json"])}
@@ -88,6 +89,9 @@ def g_sha(st):
         want = {k: (v["sha256"], v["bytes"]) for k, v in info["files"].items() if k != "corpus.jsonl"}
         if want != st["disk"][name]:
             bad.append(f"{name}: 冻结文件与 manifest 不符 {sorted(set(want.items()) ^ set(st['disk'][name].items()))[:3]}")
+    if bad and st.get("crlf"):
+        bad.append(f"诊断：{len(st['crlf'])} 个冻结文件含 CRLF（如 {st['crlf'][0]}），冻结文件一律 LF；"
+                   "疑似 Windows git core.autocrlf 检出改写，见 umb/.gitattributes 与 README「Windows 检出」")
     return bad
 
 
