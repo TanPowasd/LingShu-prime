@@ -31,7 +31,7 @@ python -X utf8 scripts/check_config_env_registry.py   # 结果：PASS
 python -X utf8 scripts/gen_config_doc.py --check      # 生成件最新
 python -X utf8 scripts/gen_config_validate.py --check # 生成件最新
 ```
-- 撤掉修订（`qmd_llm.py` 换回 `11602d2` 版）重跑正向：P4-P5 块红（`Cache.get()` 签名不收 max_tokens），说明新判据会对修订红。「缓存文件不含 key 明文」在旧版也成立（旧版身份不含 key），它属于防回归判据，由 M14 自证有牙。
+- 撤掉修订（`qmd_llm.py` 换回 `11602d2` 版）重跑正向：P4-P5 块红（`Cache.get()` 签名不收 max_tokens），说明撤掉修订即红，新判据能分辨修订前后。「缓存文件不含 key 明文」在旧版也成立（旧版身份不含 key），它属于防回归判据，由 M14 自证有牙。
 - P14 金标、P15 提示词 sha 未改：排序与提示词都没动。
 - `scripts/run_tests.py md_cg --jobs 3`：main `a49fde2` 与 head 的失败名单**逐名相同**（7 条：`test_issue146_frontmatter_quarantine`、`test_issue150_empty_query_terms`、`test_issue404_heal_receipt`、`test_issue409_compact_index_completeness`、`test_p4_freshness`、`test_rank_parity_score_mode`、`test_unify_default_off`），**无新增**。head 汇总 `406/426 通过，18 跳过`；多出的一条是 `md_cg.test_qmd`，PASS。本机缺 Rust 二进制、numpy 等，跳过的项见 SKIP 行。
 - gate 子项与 main 逐行对比：`workspace_index --check`、`check_local_paths --selftest`、`check_placeholder_leak`、`check_duplicate_keys`、`cogmap_sync check`、`link_check`（OK=270 BROKEN=0）、`check_config_env_registry`、`config_registry_guard`、`gen_config_doc --check`、`gen_config_validate --check`、`check_guard_coverage` 两侧均过。`check_local_paths`（命中 1，`test_issue405_git_pathspec.py`）、`check_unreachable`（命中 2，`test_issue398` / `test_issue400`）、`check_line_anchors`（红 164，五计数逐位相同）两侧读数相同，都是 main 存量，**本件零新增红**。完整对比表见 PR 草稿：https://github.com/TanPowasd/LingShu-prime/blob/main/TanPowasd/agm/confluence/PR_DRAFT_dsh-memory_qmd.md
