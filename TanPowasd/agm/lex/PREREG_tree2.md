@@ -30,3 +30,34 @@ PREREG_tree.md：层级（TH）在 dev 上与 F1 逐题相同（虚节点两跳�
 BENCH_ARMS=role,fd2,tree,tree2 LEX_RM3=0 PYTHONUTF8=1 python -X utf8 bench_cc.py convomem --data <LMEB/Dialogue/ConvoMem> --split dev|test --out <json>
 （lme / locomo / realtalk / hive 同 PREREG_tree.md）
 ```
+
+## dev 读数（2026-10-17 00:0x，LEX_RM3=0）
+| 臂 | LME 162 | LoCoMo 231 | ConvoMem 1936 | 宏平均 |
+|---|---:|---:|---:|---:|
+| R2 | .7725 | .6517 | .7257 | .71663 |
+| F1 | .7869 | .6628 | .7577 | .73583 |
+| TE（现默认） | .7952 | .6549 | .7640 | .73804 |
+| H2 | .7880 | .6639 | .7551 | .73566 |
+| **H2E** | .7941 | .6639 | .7624 | **.74017** |
+| H3 | .7910 | .6596 | .7541 | .73493 |
+| H3E | .7941 | .6596 | .7630 | .73892 |
+按第 1 条 H2E（.74017 > .73804）进保留集。注意：H2E 在 ConvoMem dev 上低于 TE（20/35），领先全靠 LoCoMo dev。
+
+## 保留集（一次，2026-10-17 00:2x）
+| 集 | n | TE | H2E | H2E vs TE 胜/负 | r@5 TE/H2E | r@25 TE/H2E |
+|---|---:|---:|---:|---:|---:|---:|
+| **ConvoMem test（新）** | 3931 | **.77156** | .76972 | 49/71 p=.055 | .613/.607 | .907/.909 |
+| LME test | 317 | .80652 | .80873 | 2/1 | .689/.685 | .889/.889 |
+| LoCoMo test | 1301 | .64257 | .64899 | 18/12 | .521/.523 | .740/.759 |
+| REALTALK | 679 | .51528 | .51687 | 11/7 | .449/.446 | .605/.619 |
+| hive @8000 | 38 | .51972 | .51621 | 2/3 | — | — |
+ConvoMem 各子集 TE/H2E：abstention .907/.905，assistant_facts .868/.863，changing .667/.662，implicit_connection .614/.620，preference .763/.761，user .844/.843。
+耗时 ConvoMem test：TE 7.3s、H2E 25.0s（3931 题）。
+
+**判定（第 2 条）：不采纳 H2E，维持 TE。** ConvoMem test 低于 TE，hive 亦低于 TE。
+
+附带确认（同次运行，未触碰数据）：TE vs F1 在 ConvoMem test 上 .77156 vs .76529，114/38，p≈5e-10；R2 .73742。
+即上一轮仅以 .00028 险胜采纳的 TE，在全新 3.9k 题上被显著确认。
+事后观察（不作结论，存疑）：加强层级在 LoCoMo/REALTALK 的 r@25 上持续变好（.740→.759，.605→.619），但挤占前 5/前 10；
+ConvoMem 场景短（平均约 80 轮），段级扩散更容易把同段无关轮推进前 10。implicit_connection 子集是唯一 H2E 胜的子集。
+ConvoMem 已消耗，今后不得再作保留集。
