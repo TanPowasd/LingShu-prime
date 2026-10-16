@@ -57,6 +57,11 @@ def checks():
     tree.attach(mt)
     gt = tree.build(m, SESS, types=("E",), speakers={t.split(": ", 1)[0] for t in m.raw})
     ok.append(("T10 attach ≡ build(E)+rank", mt.rank_agm(sc) == tree.rank(gt, sc)))
+    g3 = tree.build(m, SESS, **tree.ARMS2["H3E"], speakers=("Alice", "Bob"))
+    ok.append(("T11 加强层级后全部节点行和 ≤ 1.15", max(sum(g3.out[i].values()) for i in g3.out) <= 1.15 + 1e-12))
+    gth = tree.build(m, SESS, types=("H",)); gh2 = tree.build(m, SESS, **tree.ARMS2["H2"])
+    a1, _ = fd.activate(gth, sc, theta=0.0); a2, _ = fd.activate(gh2, sc, theta=0.0)
+    ok.append(("T12 加强层级：同段兄弟激活更强", a2.get(2, 0) > a1.get(2, 0) + 1e-6, f"{a2.get(2, 0):.4f} vs {a1.get(2, 0):.4f}"))
     ma = mem({1: "assistant"})
     sa = ma.bm25(q)
     ga = tree.build(ma, SESS, types=("H", "E"), speakers=("Alice", "Bob"))
@@ -89,12 +94,25 @@ def mut_update():
     tree.W_U = 0.0
 
 
+def mut_cap_real_only():
+    o = tree.build
+    def b(m, sess, **k):
+        g = o(m, sess, **k)
+        n = len(m.raw)
+        for i in list(g.out):
+            if i >= n:
+                g.out[i] = {j: w * 3 for j, w in g.out[i].items()}
+        return g
+    tree.build = b
+
+
 def mut_noseg():
     tree.SEG_WIN = 0
 
 
 MUT = {"M1 不缩放行和": (mut_rowcap, "T5"), "M2 虚节点进排序": (mut_rank_virtual, "T2"),
-       "M3 不过滤句首/说话人": (mut_initial, "T7"), "M4 去掉更新边": (mut_update, "T8"), "M5 不切话题段": (mut_noseg, "T9")}
+       "M3 不过滤句首/说话人": (mut_initial, "T7"), "M4 去掉更新边": (mut_update, "T8"), "M5 不切话题段": (mut_noseg, "T9"),
+       "M6 虚节点不缩行和": (mut_cap_real_only, "T11")}
 
 if __name__ == "__main__":
     if "--mutate" in sys.argv:

@@ -65,7 +65,7 @@ def segments(turn_words, sess):
     return seg
 
 
-def build(m, sess, types=("H", "E"), speakers=()):
+def build(m, sess, types=("H", "E"), speakers=(), w_up=None, dn="mean"):
     """返回类型化图视图 G（G.out 含虚节点，G.n_real = 真实块数）。sess[t] = 第 t 轮的会话号。不改 m。"""
     n = len(m.raw)
     turns = collections.defaultdict(list)
@@ -73,6 +73,8 @@ def build(m, sess, types=("H", "E"), speakers=()):
         turns[m.turn_of[i]].append(i)
     nt = max(turns) + 1 if turns else 0
     sess = list(sess) + [sess[-1] if sess else 0] * (nt - len(sess))
+    wu = W_UP if w_up is None else w_up
+    split = {"mean": lambda k: W_DN / k, "sqrt": lambda k: W_DN / k ** 0.5, "full": lambda k: W_DN}[dn]
     out = collections.defaultdict(dict)
     for i, e in m.out.items():
         out[i].update(e)
@@ -88,16 +90,16 @@ def build(m, sess, types=("H", "E"), speakers=()):
         seg_of_sess = collections.defaultdict(set)
         for t in range(nt):
             for i in turns.get(t, []):
-                out[i][S0 + seg[t]] = out[i].get(S0 + seg[t], 0) + W_UP
+                out[i][S0 + seg[t]] = out[i].get(S0 + seg[t], 0) + wu
                 kids[seg[t]].append(i)
             seg_of_sess[sid[sess[t]]].add(seg[t])
         for g, ch in kids.items():
             for i in ch:
-                out[S0 + g][i] = W_DN / len(ch)
+                out[S0 + g][i] = split(len(ch))
         for v, gs in seg_of_sess.items():
             for g in gs:
-                out[S0 + g][V0 + v] = W_UP
-                out[V0 + v][S0 + g] = W_DN / len(gs)
+                out[S0 + g][V0 + v] = wu
+                out[V0 + v][S0 + g] = split(len(gs))
             if v + 1 < len(sv):
                 out[V0 + v][V0 + v + 1] = W_T; out[V0 + v + 1][V0 + v] = W_T
         tot = V0 + len(sv)
@@ -122,7 +124,7 @@ def build(m, sess, types=("H", "E"), speakers=()):
             later = [j for j in js if sess[m.turn_of[j]] > sess[m.turn_of[i]]]
             for j in later:
                 out[i][j] += W_U / len(later)
-    for i in range(n):
+    for i in list(out):   # 真实块与虚节点一律缩到 ROW_CAP（dn="sqrt"/"full" 时虚节点也可能超）
         s = sum(out[i].values())
         if s > ROW_CAP:
             out[i] = {j: w * ROW_CAP / s for j, w in out[i].items()}
@@ -160,6 +162,9 @@ def rank(g, sc, theta=0.01, decay=None, beta=1.0):
 
 
 ARMS = {"TH": dict(types=("H",)), "TE": dict(types=("E",)), "THE": dict(types=("H", "E"))}
+# PREREG_tree2.md：加强层级（上行 .4；下行按 √段长 或不均分，行和仍缩到 ROW_CAP）
+ARMS2 = {"H2": dict(types=("H",), w_up=0.4, dn="sqrt"), "H2E": dict(types=("H", "E"), w_up=0.4, dn="sqrt"),
+         "H3": dict(types=("H",), w_up=0.4, dn="full"), "H3E": dict(types=("H", "E"), w_up=0.4, dn="full")}
 
 
 #: 采纳配置（PREREG_tree.md 保留集判定：REALTALK r@10 TE .51528 为候选最高，≥ R2 .50439；hive @8000 TE .520 = F1）

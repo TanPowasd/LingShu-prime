@@ -82,6 +82,13 @@ def run(m, q, n):
                 t1 = time.perf_counter()
                 out[name] = dedup(tree.rank(m._tg[k], base, decay=dk), m.turn_of, n)
                 TIMES[name] = TIMES.get(name, 0.0) + time.perf_counter() - t1
+    if "tree2" in ARMS:  # PREREG_tree2.md：加强层级
+        for k, cfg in tree.ARMS2.items():
+            if k not in m._tg:
+                m._tg[k] = tree.build(m, m._sess, speakers=m._spk, **cfg)
+            t1 = time.perf_counter()
+            out[k] = dedup(tree.rank(m._tg[k], base), m.turn_of, n)
+            TIMES[k] = TIMES.get(k, 0.0) + time.perf_counter() - t1
     res = rq.RQMemory.residual(m, q, base) if "rq" in ARMS else {}
     for mu in ((0.3, 0.5, 1.0) if "rq" in ARMS else ()):
         sc = rq.RQMemory.fuse(base, res, mu)
@@ -92,7 +99,7 @@ def run(m, q, n):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("dataset", choices=["lme", "locomo", "hive", "realtalk"])
+    ap.add_argument("dataset", choices=["lme", "locomo", "hive", "realtalk", "convomem"])
     ap.add_argument("--data"); ap.add_argument("--root"); ap.add_argument("--split", default="dev")
     ap.add_argument("--out", required=True)
     a = ap.parse_args()
@@ -125,6 +132,14 @@ def main():
                 r, s = run(m, q["question"], len(it["turns"]))
                 per.append({"qid": f"{it['sid']}_{qi}", "type": str(q.get("category")), "s": s, "arms": {k: score(v, ev) for k, v in r.items()}})
             print(it["sid"], len(per), f"{time.time() - t0:.0f}s", flush=True)
+    elif a.dataset == "convomem":   # PREREG_tree2.md：ConvoMem（LMEB Dialogue/ConvoMem，6 子集），按场景 md5%3 分 dev/test
+        import convomem as CM
+        for sub, it in CM.items(a.data, a.split):
+            m = build(it["turns"], it["roles"], it["sess"])
+            for q in it["qa"]:
+                r, s = run(m, q["question"], len(it["turns"]))
+                per.append({"qid": q["qid"], "type": sub, "s": s, "arms": {k: score(v, q["gold"]) for k, v in r.items()}})
+        print("convomem", len(per), f"{time.time() - t0:.0f}s", flush=True)
     elif a.dataset == "realtalk":   # PREREG_tree.md 保留集：REALTALK（danny911kr/REALTALK@b903e06 data/Chat_*.json），只跑一次
         import realtalk as RT
         for it in RT.items(a.data):
