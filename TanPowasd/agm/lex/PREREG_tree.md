@@ -37,3 +37,15 @@ BENCH_ARMS=role,fd2,tree LEX_RM3=0 ... bench_cc.py locomo --split dev --out <jso
 BENCH_ARMS=role,fd2,tree TREE_D15=1 LEX_RM3=0 ... bench_cc.py realtalk --data <REALTALK/data> --out <json>
 BENCH_ARMS=role,fd2,tree TREE_D15=1 LEX_RM3=0 ... bench_cc.py hive --root <hive-memory-bench> --out <json>
 ```
+
+## dev 读数（2026-10-16 23:3x，保留集前追加）
+| 臂 | LME r@10（162） | LoCoMo r@10（231） | 宏平均 | 胜/负 vs F1（LME；LoCoMo） | LoCoMo r@25 | ms/题（LME；LoCoMo） |
+|---|---:|---:|---:|---|---:|---|
+| R2 | .773 | .652 | .7125 | 0/4；7/10 | .758 | 1.1；0.7 |
+| F1（现行） | .787 | .663 | .72489 | — | .754 | 2.2；3.8 |
+| DF1 | .787 | .657 | .7220 | 0/0；2/4 | .777 | 2.2；5.5 |
+| TH | .787 | .663 | .72489 | 0/0；0/0 | .758 | 8.6；12.0 |
+| **TE** | .795 | .655 | **.72504** | 2/0；2/4 | .763 | 10.6；6.1 |
+| THE | .795 | .652 | .72341 | 2/0；1/5 | .767 | 14.3；16.1 |
+按判定 1，TE（.72504 > .72489）记为 T*，进保留集。如实记：领先只有 .00015，LoCoMo 是 2 胜 4 负，实质接近持平。
+层级/时序（TH）在 r@10 上与 F1 逐题相同（推断：虚节点中继两跳后激活 ≈ .2×.5/段长 × .65²，太弱，进不了前 10；只动了 r@25）。
