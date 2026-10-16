@@ -29,6 +29,7 @@ RUNS = B.OUT / "runs"
 ARMS_OK = ("bm25", "zh", "ra_zh")
 MEM = ("lme", "locomo", "hive")
 SAVE_EVERY = 30.0
+STORE = "compact"   # 块打分器存储：compact = lex/compact.py 紧凑倒排（打分逐位相同，守卫 test_compact.py）；dict = 原 LexScorer
 
 
 def sha_file(p):
@@ -89,6 +90,7 @@ def run_one(name, arms, split, limit, budget):
     import bench_ir as BI
     import tricue as T
     import zh
+    import compact
     from bench_lex import dedup
     from lme_zerokey import score
     t_start = time.time()
@@ -140,8 +142,12 @@ def run_one(name, arms, split, limit, budget):
         s = set(o)
         return o + [i for i in range(len(texts)) if i not in s]
 
-    def zh_build(texts):
+    def new_zh():
         m = zh.ZhMemory()
+        return compact.compact(m) if STORE == "compact" else m
+
+    def zh_build(texts):
+        m = new_zh()
         for t in texts:
             m.add_turn("user", t)
         return m
@@ -167,7 +173,7 @@ def run_one(name, arms, split, limit, budget):
         ids = [d for d, _ in docs]
         m = ok = None
         if any(need[a] for a in ("zh", "ra_zh") if a in arms):
-            m = zh.ZhMemory()
+            m = new_zh()
         if need.get("bm25"):
             ok = BI.Okapi()
         for _, t in docs:
@@ -354,10 +360,13 @@ def main():
     ap.add_argument("--arms", default="bm25,zh"); ap.add_argument("--split", default="dev", choices=["dev", "test", "all"])
     ap.add_argument("--sets"); ap.add_argument("--limit", type=int); ap.add_argument("--budget-secs", type=float)
     ap.add_argument("--one", help=argparse.SUPPRESS); ap.add_argument("--no-summary", action="store_true")
+    ap.add_argument("--store", default="compact", choices=["compact", "dict"], help="块打分器存储（结果逐位相同，compact 省内存）")
     a = ap.parse_args()
     arms = a.arms.split(",")
     assert all(x in ARMS_OK for x in arms), arms
     if a.one:
+        global STORE
+        STORE = a.store
         run_one(a.one, arms, a.split, a.limit, a.budget_secs); return
     man = manifest()
     sets = a.sets.split(",") if a.sets else list(man["sets"])
@@ -367,7 +376,7 @@ def main():
     for s in sets:
         if a.budget_secs and time.time() - t0 > a.budget_secs:
             print("预算用尽，余下集下次续跑"); break
-        cmd = [sys.executable, "-X", "utf8", __file__, "--one", s, "--arms", a.arms, "--split", a.split]
+        cmd = [sys.executable, "-X", "utf8", __file__, "--one", s, "--arms", a.arms, "--split", a.split, "--store", a.store]
         if a.limit:
             cmd += ["--limit", str(a.limit)]
         if a.budget_secs:
