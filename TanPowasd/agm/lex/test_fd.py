@@ -71,6 +71,8 @@ def checks():
     ok.append(("F6 β=0≡Lex 单独", r6[:len(q8)] == sorted(q8, key=lambda i: (-q8[i], i))))
     r0 = fd.rank(mn, q8, theta=0.01, beta=0.0); p5 = {d: k for k, d in enumerate(r8)}; p0 = {d: k for k, d in enumerate(r0)}
     ok.append(("F8 β 融合生效", any(p5[z] < p5[l] and p0[z] > p0[l] for z in r8 if z not in q8 for l in q8)))
+    ma = fd.attach(mem())
+    ok.append(("F9 attach≡F1", all(ma.rank_agm(ma.bm25(q)) == fd.rank(m, m.bm25(q), **fd.ARMS2["F1"]) for q in QS)))
     fd.MAX_STEPS = saved
     return ok
 

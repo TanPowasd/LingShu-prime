@@ -96,3 +96,15 @@ ARMS = {"FD05": dict(theta=0.05), "FD01": dict(theta=0.01), "FD0": dict(theta=0.
 ARMS2 = {"D15": dict(theta=0.01, decay=0.15),
          "F05": dict(theta=0.01, beta=0.5), "F1": dict(theta=0.01, beta=1.0), "F2": dict(theta=0.01, beta=2.0),
          "DF1": dict(theta=0.01, decay=0.15, beta=1.0)}
+
+
+#: 采纳配置（2026-10-16 用户「任意一点的提升都是可取的，只要没有倒退」：F1 在 test 三集均值都升、无一集下降，按此规则采纳）
+ADOPTED = ARMS2["F1"]
+
+
+def attach(m, **cfg):
+    """把 m.rank_agm 换成 FD 单分数融合（默认 ADOPTED=F1：θ=.01、扩散到收敛、β=1）。"""
+    import types
+    c = dict(ADOPTED, **cfg)
+    m.rank_agm = types.MethodType(lambda self, sc: rank(self, sc, **c), m)
+    return m
