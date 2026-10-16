@@ -1,10 +1,10 @@
-<!-- 草稿：只写不发。在 FuRongJun-1999/dsh-memory 开 PR 须用户点头。分支：TanPowasd/dsh-memory feat/qmd-confluence（基于上游 main fffa4f2）。 -->
+<!-- 草稿：只写不发。已作为 FuRongJun-1999/dsh-memory PR #395 开出（用户点头后）。分支：TanPowasd/dsh-memory feat/qmd-confluence；2026-10-16 rebase 到上游 main a49fde2，head 771e045（原 1c2ae80 基于 fffa4f2）。 -->
 
 # 标题
 
 feat(md_cg): QMD 多维汇流检索 + 统一系统提示词——md_cg/qmd.py 零模型核 + md_cg/qmd_llm.py LLM 接入（MDCG_QMD_SYS opt-in 缺省关，判官恒不带 system，缓存按调用身份隔离）+ test_qmd 守卫 38 / 变异 11
 
-（150 字符，≤160；格式 `type(scope): 摘要`。）
+（150 字符，≤160；格式 `type(scope): 摘要`。PR 标题沿用开 PR 时的写法；守卫读数以下文为准：41 / 14。）
 
 # 正文
 
@@ -14,13 +14,13 @@ feat(md_cg): QMD 多维汇流检索 + 统一系统提示词——md_cg/qmd.py �
 | 文件 | 改动 |
 |---|---|
 | `md_cg/qmd.py` | 新增：零模型排序核。`V3`（TriCue v3 最小核：BM25+×SDM 种子 + 写入邻接 AGM 扩散）、`MultiDim`（源图分维 ent/pred/syn/tmp 一跳扩散 + **枢纽抑制** hub=.02 + 加权 RRF）、`QMD`（再加 qent/qtri/qx 三个题面扩展维）、`FROZEN`、`PartialGraph`、`MissingHint`；判据与边界全在模块头 |
-| `md_cg/qmd_llm.py` | 新增：`SYSTEM`（统一系统提示词）、`system_for`（**judge 恒返回 None**）、`messages`、`config`（`MDCG_QMD_LLM_BASE/MODEL/KEY` 缺一即 `LLMUnavailable`，不回落其它密钥变量）、`chat`（`{"data":{...}}` 外包可解；无 choices / 空 content / length 截断一律抛错）、`Cache`（键 = 角色+模型+地址+**实际发出的 system 的 sha256**+prompt 的 sha256，读出时逐项比对身份）、`extract_hints` / `extract_triples`（整批失败先重试再拆半，单条仍失败进 `missing`）、`query_prompt` / `graph_prompt` |
-| `md_cg/test_qmd.py` | 新增守卫 P1–P15（38 条断言）+ 定点变异 M1–M11（脚本式，`scripts/run_tests.py` 的 md_cg 组自动收集） |
+| `md_cg/qmd_llm.py` | 新增：`SYSTEM`（统一系统提示词）、`system_for`（**judge 恒返回 None**）、`messages`、`config`（`MDCG_QMD_LLM_BASE/MODEL/KEY` 缺一即 `LLMUnavailable`，不回落其它密钥变量）、`chat`（`{"data":{...}}` 外包可解；无 choices / 空 content / length 截断一律抛错）、`Cache`（键 = 角色+模型+地址+**密钥 sha256（明文不落盘）**+**max_tokens**+**实际发出的 system 的 sha256**+prompt 的 sha256，读出时逐项比对身份；`call` 把 max_tokens 透传给 `Cache.get/put`）、`extract_hints` / `extract_triples`（整批失败先重试再拆半，单条仍失败进 `missing`）、`query_prompt` / `graph_prompt` |
+| `md_cg/test_qmd.py` | 新增守卫 P1–P15（41 条断言）+ 定点变异 M1–M14（脚本式，`scripts/run_tests.py` 的 md_cg 组自动收集） |
 | `tests/test_qmd.py` | 新增：与 `tests/test_rrf_unique_votes.py` 同形的直接验收入口，调用 `md_cg.test_qmd.main` |
 | `md_cg/config_registry_bulk.py` · `ENV_ROWS`、`ENV_CATEGORY_ROWS` | 登记 `MDCG_QMD_SYS`（env_flag，`bool:1`，锚点 `md_cg/qmd_llm.py`，status `calibrating`）与 `MDCG_QMD_LLM_BASE / MDCG_QMD_LLM_MODEL / MDCG_QMD_LLM_KEY`（环境面分类） |
 | `md_cg/config_validate.py` · `RULES`、`docs/reference/配置参数表_v0.1.md` | 生成件；`scripts/gen_config_validate.py --check`、`scripts/gen_config_doc.py --check` 在本提交上均报「生成件最新」 |
 
-7 个文件，+1298 / −6。除上表外无格式、重命名、重构改动。
+7 个文件，+1329 / −6（相对 main a49fde2，两个提交合计）。除上表外无格式、重命名、重构改动。
 
 ## 原因
 hive-memory-bench 主轮 92 题（中文长篇，同数据、同官方阅读器与判官），QMD + 统一系统提示词的端到端覆盖率高于 TriCue v3 / BM25（下表），而本仓尚无「LLM 源图 + 题面扩展」的检索核，也没有能把「系统提示词只给被测侧、判官不带」写成可检断言的 LLM 接入层。原型审计 dsh-bounty#466 证实：只靠目录约定做 `_sys` 隔离会漏（追问缓存 92/92 复用非系统提示词结果、产物按臂名存在即 skip）⇒ 本 PR 把隔离做成**缓存键的一部分 + 读出时身份比对**，并用变异自证。
@@ -31,7 +31,7 @@ QMD 的 v3 维与 qx 维依赖 TriCue v3 排序。本 PR **自带最小必要部
 ## 生效条件与边界（理论核：条件显式、边界诚实）
 - `MDCG_QMD_SYS` **只有恰为 `"1"`** 才给 extract / query / answer 带 `SYSTEM`；未设、`"0"`、`"true"`、空串都是关（P1，变异 M4）。
 - **判官恒不带 system**：`system_for("judge")` 在任何开关取值下返回 None，实际请求体也无 system（P3，变异 M1）。
-- **缓存隔离**：开/关态同一 prompt 的缓存身份不同，关态写入后开态是干净 miss（P4，变异 M2）；条目身份被改 ⇒ `CacheIdentityError`（P5，变异 M7）。
+- **缓存隔离**：开/关态同一 prompt 的缓存身份不同，关态写入后开态是干净 miss（P4，变异 M2）；max_tokens 不同 ⇒ 干净 miss（P4，变异 M12）；同 base+model 不同 key ⇒ 干净 miss（P4，变异 M13）；缓存文件不含 key 明文（P4，变异 M14）；条目身份被改 ⇒ `CacheIdentityError`（P5，变异 M7）。
 - **无 LLM 显式边界**：缺 BASE/MODEL/KEY 任一 ⇒ `LLMUnavailable` 点名、0 次请求（P6，变异 M5）；不回落 `MDCG_LLM_KEY` / `DEEPSEEK_API_KEY`（P7，变异 M6；与 issue #96 同一立场）。无新的宽 except：`_batched` 只显式列举 `ValueError/KeyError/TypeError/RuntimeError/OSError/URLError`，失败条目写进返回的 `missing`（P15，变异 M11）。
 - **源图**：`triples` 里有 `None`（没抽过）或与 `texts` 不等长 ⇒ `PartialGraph`；`[]`（抽过、无事实）合法（P10，变异 M8）。
 - **题面扩展**：`QMD.rank` 缺 hint ⇒ `MissingHint`；只有显式 `require_hints=False` 才退回，且与 `MultiDim` 逐位相同（P11，变异 M9）。
@@ -72,8 +72,8 @@ BM25 .483 ｜ TriCue v3 .466 ｜ 多维 v3×3 .461 ｜ QMD .526（原型 `result
 ## 复跑
 ```
 # 守卫
-python -X utf8 -m md_cg.test_qmd                       # 期望末行「通过 38 / 失败 0」
-python -X utf8 -m md_cg.test_qmd --mutate              # 期望「变异 11 条，未恰好点红 0 条」
+python -X utf8 -m md_cg.test_qmd                       # 期望末行「通过 41 / 失败 0」
+python -X utf8 -m md_cg.test_qmd --mutate              # 期望「变异 14 条，未恰好点红 0 条」
 python -X utf8 tests/test_qmd.py                       # 同上正向
 python -X utf8 scripts/check_config_env_registry.py    # 期望 结果：PASS
 python -X utf8 -m md_cg.config_registry_guard          # 期望 PASS 7 / FAIL 0
@@ -101,27 +101,65 @@ python -X utf8 TanPowasd/agm/confluence/port_golden.py --repo <仓根>   # 重�
 ```
 带 key 的命令需要 OpenAI 兼容网关；原型脚本走 `api.cline.bot`（运行环境注入 key），本 PR 的 `qmd_llm` 读 `MDCG_QMD_LLM_BASE/MODEL/KEY`，仓内只出现假凭据 `GOV-IMPL-DUMMY-KEY`。
 
-## 守卫原始读数（本机，Linux / Python 3.12，基线 fffa4f2）
+## 守卫原始读数（本机，Linux / Python 3.12，head 771e045，基线 a49fde2）
 ```
-通过 38 / 失败 0
+通过 41 / 失败 0
   OK   M1 判官带 system（关掉判官隔离）: 红 ['P3 判官开/关两态都不带 system（含实际请求体）']
   OK   M2 缓存身份不含 system（缓存不隔离）: 红 ['P4 关态写入后开态干净 miss、各自命中各自', 'P4 开/关态缓存身份不同']
   OK   M3 关掉枢纽抑制（hub 缺省 0）: 红 ['P14 夹具排序与原型金标逐位相同', 'P9 枢纽实体进 hubs、不进 prov', 'P9 缺省（hub=.02）前 10 不含枢纽噪声文本、答句在前 4']
   OK   M4 开关判真放宽: 红 ["P1 关闭态只有 user（MDCG_QMD_SYS='true'）"]
-  OK   M5 缺配置静默放行: 红 [P6 ×3, 'P7 不回落 MDCG_LLM_KEY / DEEPSEEK_API_KEY']
+  OK   M5 缺配置静默放行: 红 ['P6 缺 MDCG_QMD_LLM_BASE ⇒ LLMUnavailable 点名且 0 调用', 'P6 缺 MDCG_QMD_LLM_KEY ⇒ LLMUnavailable 点名且 0 调用', 'P6 缺 MDCG_QMD_LLM_MODEL ⇒ LLMUnavailable 点名且 0 调用', 'P7 不回落 MDCG_LLM_KEY / DEEPSEEK_API_KEY']
   OK   M6 回落通用密钥: 红 ['P7 不回落 MDCG_LLM_KEY / DEEPSEEK_API_KEY']
   OK   M7 缓存身份不校验: 红 ['P5 条目身份被改 ⇒ CacheIdentityError']
   OK   M8 源图缺块不报错: 红 ['P10 源图含 None ⇒ PartialGraph']
   OK   M9 缺 hint 静默退回多维: 红 ['P11 缺 hint ⇒ MissingHint']
   OK   M10 不读题面扩展: 红 ['P12 有 hint 时零交集答句排第 1', 'P14 夹具排序与原型金标逐位相同']
   OK   M11 单条失败静默丢弃: 红 ['P15 拆半补抽：q0–q2 抽到，q3 进 missing']
-变异 11 条，未恰好点红 0 条
+  OK   M12 缓存身份不含 max_tokens: 红 ['P4 max_tokens 不同 ⇒ 干净 miss']
+  OK   M13 缓存身份不含密钥摘要: 红 ['P4 不同 key 同 base+model ⇒ 干净 miss']
+  OK   M14 缓存身份存密钥明文: 红 ['P4 缓存文件不含 key 明文']
+变异 14 条，未恰好点红 0 条
 ```
 #85 正文承诺的三条变异对应：关掉判官 system 隔离 = M1，关掉枢纽抑制 = M3，缓存不隔离 = M2。M3、M10 同时点红 P14 属语义必然（排序变了，金标就不再逐位相同）。
 变异不写工作区：子进程在内存里把被测模块源码替换一次后 exec 成同名模块，再跑全部判据。
 
 ## 跑过的既有测试
-<!-- SUITE -->
+本机 Linux / Python 3.12，2 核；main `a49fde2` 与 head `771e045` 各一棵干净工作树，同一命令、同时跑（2026-10-16）。
+
+**md_cg 组全量**（`PYTHONUTF8=1 python -X utf8 scripts/run_tests.py md_cg --jobs 3`）
+- head：`===== SUMMARY 406/426 通过，18 跳过`，RC=1。失败 7 条：`md_cg.test_issue146_frontmatter_quarantine`、`md_cg.test_issue150_empty_query_terms`、`md_cg.test_issue404_heal_receipt`、`md_cg.test_issue409_compact_index_completeness`、`md_cg.test_p4_freshness`、`md_cg.test_rank_parity_score_mode`、`md_cg.test_unify_default_off`。
+- main：429 个模块出了结果（`md_cg.test_p27_docindex` 跑到一半时沙箱重启，随后单独补跑 `python -X utf8 -m md_cg.test_p27_docindex`，RC=0），没有拿到汇总行。失败 7 条，与 head **逐名相同**。
+- 结论：**无新增失败**。head 多出的一个模块是 `md_cg.test_qmd`，PASS。这 7 条在 main 上同样失败；本机缺 Rust 二进制、numpy、白箱库等，`test_issue150` 的失败项就是「B0 Rust 二进制在位（缺失即 fail-closed）」。其余 6 条的失败原因未逐条取证（存疑，推断与环境/并行负载有关），反正与本件无关：失败名单两侧相同。
+- 跳过项（依赖缺失 / 平台不符）见原始输出 SKIP 行，两侧口径相同。
+
+**gate 子项**（main vs head，读数逐行对比）
+| 子项 | main | head | 说明 |
+|---|---|---|---|
+| `scripts/workspace_index.py --check` | OK（追踪 2591） | OK（追踪 2595） | +4 = 本件新增 4 个文件 |
+| `scripts/check_local_paths.py` | FAIL 命中 1 | FAIL 命中 1 | 同一条存量：`md_cg/test_issue405_git_pathspec.py` 里的 `D:\dsh-home`，非本件 |
+| `scripts/check_local_paths.py --selftest` | PASS | PASS | |
+| `scripts/check_placeholder_leak.py` | PASS | PASS | |
+| `scripts/check_duplicate_keys.py` | PASS | PASS | |
+| `scripts/check_unreachable.py` | 命中 2（830 文件） | 命中 2（833 文件） | 同两条存量：`test_issue398_toolface_op_parity.py`、`test_issue400_hive_dirty_args.py`，非本件 |
+| `scripts/cogmap_sync.py check` | 通过 | 通过 | |
+| `scripts/link_check.py` | OK=270 BROKEN=0 | OK=270 BROKEN=0 | |
+| `scripts/check_config_env_registry.py` | PASS（未判 24） | PASS（未判 25） | +1 = `MDCG_QMD_SYS` |
+| `python -X utf8 -m md_cg.config_registry_guard` | PASS 7 / FAIL 0 | PASS 7 / FAIL 0 | |
+| `scripts/gen_config_doc.py --check` | 生成件最新 | 生成件最新 | 重渲染，非手改 |
+| `scripts/gen_config_validate.py --check` | 生成件最新 | 生成件最新 | 同上 |
+| `scripts/check_guard_coverage.py` | 孤儿 0 | 孤儿 0 | |
+| `scripts/check_line_anchors.py` | FAIL 红 164 | FAIL 红 164 | 五计数逐位相同，存量 |
+| `md_cg.test_time_core_lint` | PASS（套件内） | PASS（套件内） | head 的 gate 脚本在这一项前被沙箱重启打断，取套件读数 |
+
+**本件专项**：`python -X utf8 -m md_cg.test_qmd` 通过 41 / 失败 0；`--mutate` 变异 14 条，未恰好点红 0 条；`python -X utf8 tests/test_qmd.py` 通过 41 / 失败 0。
+
+## 本轮修订（2026-10-16，回应维护者 rebase 要求与 ybyz2 对抗复核）
+- **rebase**：基线 `fffa4f2` → `a49fde2`（上游 main 前进了 34 个提交）。原提交 `1c2ae80` 改写为 `11602d2`，另加修订提交 `771e045`。
+- **生成件**：冲突只在 `docs/reference/配置参数表_v0.1.md`。`md_cg/config_registry_bulk.py` 的两行登记自动并入（与 main 新增登记取并集），然后用 `scripts/gen_config_doc.py`、`scripts/gen_config_validate.py` 重写两份生成件，没有手改。重渲染后环境面分类登记是 115、calibrating=21。
+- **缓存身份两维**：`Cache.identity` 加 `max_tokens`（假值记 None）和 `key_sha = sha256(key)`；`call` → `Cache.get/put` 透传 max_tokens，命中后仍逐项比对身份。明文 key 不进任何缓存文件。
+- **守卫与变异**：P4 新增三条判据（max_tokens 不同 ⇒ 干净 miss；不同 key 同 base+model ⇒ 干净 miss；缓存文件不含 key 明文），新增变异 M12（身份去 max_tokens）、M13（身份去 key_sha）、M14（身份存明文 key）。原 38 条断言与 M1–M11 未删改。读数 38/0 → **41/0**，变异 11 → **14**，未恰好点红 0。
+- **P14 / P15**：金标与提示词 sha 未改（排序与提示词没动）。
+- **与 pr299**：两者撞同一份生成件。若 pr299 先合，再 rebase 一次并重渲染。
 
 ## 不在本 PR / needs-owner-decision
 1. **`MDCG_QMD_SYS` 是否缺省打开**——策略选择，本 PR 缺省关。选项：(a) 保持关；(b) 打开（extract/query/answer 带 SYSTEM，判官仍不带）。
