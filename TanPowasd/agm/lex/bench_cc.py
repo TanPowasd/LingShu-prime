@@ -65,7 +65,7 @@ def run(m, q, n):
             out[k] = dedup(role.rank(m, base, **cfg), m.turn_of, n)
             TIMES[k] = TIMES.get(k, 0.0) + time.perf_counter() - t1
     if "fd" in ARMS or "fd2" in ARMS:
-        for k, cfg in (fd.ARMS if "fd" in ARMS else {}).items() | (fd.ARMS2 if "fd2" in ARMS else {}).items():
+        for k, cfg in {**(fd.ARMS if "fd" in ARMS else {}), **(fd.ARMS2 if "fd2" in ARMS else {})}.items():
             t1 = time.perf_counter()
             out[k] = dedup(fd.rank(m, base, **cfg), m.turn_of, n)
             TIMES[k] = TIMES.get(k, 0.0) + time.perf_counter() - t1
