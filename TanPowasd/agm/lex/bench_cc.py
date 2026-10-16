@@ -9,7 +9,7 @@ import argparse, hashlib, json, pathlib, sys, time
 
 HERE = pathlib.Path(__file__).resolve().parent
 sys.path[:0] = [str(HERE), str(HERE.parent / "bench"), str(HERE.parent / "confluence")]
-import cc, lex, rq, tm, ax, ppr, role, fd  # noqa: E402
+import cc, lex, rq, tm, ax, ppr, role, fd, tree  # noqa: E402
 import os
 ARMS = os.environ.get('BENCH_ARMS', 'cc,rq,tm').split(',')
 from bench_lex import dedup  # noqa: E402
@@ -27,12 +27,15 @@ def rrf(*orders, k=60):
     return sorted(s, key=lambda t: (-s[t], t))
 
 
-def build(texts, roles=None):
+def build(texts, roles=None, sess=None):
     rm3 = os.environ.get("LEX_RM3", "1") != "0"   # LEX_RM3=0：关伪相关反馈（默认开，与既有读数一致）
     m = (cc.CCMemory(lam=0.0, delta=1.0, stem=True, rm3=rm3) if "cc" in ARMS
          else tm.TMMemory(lam=0.0, rm3=rm3))
     for k, t in enumerate(texts):
         m.add_turn(roles[k] if roles and "role" in ARMS else "user", t)
+    m._sess = sess or [0] * len(texts)
+    m._spk = {t.split(": ", 1)[0] for t in texts if ": " in t[:40]}
+    m._tg = {}
     return m
 
 
@@ -69,6 +72,16 @@ def run(m, q, n):
             t1 = time.perf_counter()
             out[k] = dedup(fd.rank(m, base, **cfg), m.turn_of, n)
             TIMES[k] = TIMES.get(k, 0.0) + time.perf_counter() - t1
+    if "tree" in ARMS:   # PREREG_tree.md：层级树 + 类型化交叉引用，单分数融合（β=1, θ=.01）
+        dks = [None] + ([0.15] if os.environ.get("TREE_D15") == "1" else [])
+        for k, cfg in tree.ARMS.items():
+            if k not in m._tg:
+                m._tg[k] = tree.build(m, m._sess, types=cfg["types"], speakers=m._spk)
+            for dk in dks:
+                name = k + ("+D15" if dk else "")
+                t1 = time.perf_counter()
+                out[name] = dedup(tree.rank(m._tg[k], base, decay=dk), m.turn_of, n)
+                TIMES[name] = TIMES.get(name, 0.0) + time.perf_counter() - t1
     res = rq.RQMemory.residual(m, q, base) if "rq" in ARMS else {}
     for mu in ((0.3, 0.5, 1.0) if "rq" in ARMS else ()):
         sc = rq.RQMemory.fuse(base, res, mu)
@@ -79,16 +92,17 @@ def run(m, q, n):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("dataset", choices=["lme", "locomo", "hive"])
+    ap.add_argument("dataset", choices=["lme", "locomo", "hive", "realtalk"])
     ap.add_argument("--data"); ap.add_argument("--root"); ap.add_argument("--split", default="dev")
     ap.add_argument("--out", required=True)
     a = ap.parse_args()
     per, t0 = [], time.time()
     if a.dataset == "lme":
         for it in json.load(open(a.data, encoding="utf-8")):
-            texts, gold, roles = [], set(), []
-            for ses in it["haystack_sessions"]:
+            texts, gold, roles, sess = [], set(), [], []
+            for si, ses in enumerate(it["haystack_sessions"]):
                 for t in ses:
+                    sess.append(si)
                     if t.get("has_answer"):
                         gold.add(len(texts))
                     texts.append(f"{t['role']}: {t['content']}"); roles.append(t["role"])
@@ -97,15 +111,27 @@ def main():
             sp = "dev" if int(hashlib.md5(it["question_id"].encode()).hexdigest(), 16) % 3 == 0 else "test"
             if sp != a.split:
                 continue
-            r, s = run(build(texts, roles), it["question"], len(texts))
+            r, s = run(build(texts, roles, sess), it["question"], len(texts))
             per.append({"qid": it["question_id"], "type": it["question_type"], "s": s, "arms": {k: score(v, gold) for k, v in r.items()}})
     elif a.dataset == "locomo":
         import extract as X
         for it in X.items(a.split):
             idx = {d: i for i, d in enumerate(it["ids"])}
-            m = build(it["turns"])
+            m = build(it["turns"], sess=[int(d.split(":")[0].lstrip("D")) for d in it["ids"]])
             for qi, q in enumerate(it["qa"]):
                 ev = {idx[p.strip()] for e in q.get("evidence", []) for p in str(e).replace(";", ",").split(",") if p.strip() in idx}
+                if not ev:
+                    continue
+                r, s = run(m, q["question"], len(it["turns"]))
+                per.append({"qid": f"{it['sid']}_{qi}", "type": str(q.get("category")), "s": s, "arms": {k: score(v, ev) for k, v in r.items()}})
+            print(it["sid"], len(per), f"{time.time() - t0:.0f}s", flush=True)
+    elif a.dataset == "realtalk":   # PREREG_tree.md 保留集：REALTALK（danny911kr/REALTALK@b903e06 data/Chat_*.json），只跑一次
+        import realtalk as RT
+        for it in RT.items(a.data):
+            idx = {d: i for i, d in enumerate(it["ids"])}
+            m = build(it["turns"], sess=it["sess"])
+            for qi, q in enumerate(it["qa"]):
+                ev = {idx[e] for e in q.get("evidence", []) if e in idx}
                 if not ev:
                     continue
                 r, s = run(m, q["question"], len(it["turns"]))
