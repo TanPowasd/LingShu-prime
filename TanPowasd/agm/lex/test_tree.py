@@ -52,6 +52,11 @@ def checks():
           {"guitar", "strings"}, {"guitar", "snapped"}, {"guitar"}]
     sg = tree.segments(tw, [1] * 6)
     ok.append(("T9 左右窗口实词无交集处切段", sg == [0, 0, 0, 1, 1, 1], str(sg)))
+    mt = mem()
+    mt._sess = SESS
+    tree.attach(mt)
+    gt = tree.build(m, SESS, types=("E",), speakers={t.split(": ", 1)[0] for t in m.raw})
+    ok.append(("T10 attach ≡ build(E)+rank", mt.rank_agm(sc) == tree.rank(gt, sc)))
     ma = mem({1: "assistant"})
     sa = ma.bm25(q)
     ga = tree.build(ma, SESS, types=("H", "E"), speakers=("Alice", "Bob"))

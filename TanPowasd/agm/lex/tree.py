@@ -160,3 +160,25 @@ def rank(g, sc, theta=0.01, decay=None, beta=1.0):
 
 
 ARMS = {"TH": dict(types=("H",)), "TE": dict(types=("E",)), "THE": dict(types=("H", "E"))}
+
+
+#: 采纳配置（PREREG_tree.md 保留集判定：REALTALK r@10 TE .51528 为候选最高，≥ R2 .50439；hive @8000 TE .520 = F1）
+ADOPTED = "TE"
+
+
+def attach(m, types=ARMS[ADOPTED]["types"], **cfg):
+    """把 m.rank_agm 换成 TR（默认 TE：实体 + 更新边，β=1、θ=.01、收敛）。
+    会话号读 m._sess（每轮一个；缺省视为同一会话 ⇒ 没有更新边，仍有实体边）；图在块数变化后自动重建。"""
+    import types as _t
+
+    def rank_agm(self, sc):
+        n = len(self.raw)
+        g = getattr(self, "_tree_g", None)
+        if g is None or g[0] != n:
+            sess = list(getattr(self, "_sess", []))
+            sess += [sess[-1] if sess else 0] * (self.n_turns - len(sess))
+            spk = {t.split(": ", 1)[0] for t in self.raw if ": " in t[:40]}
+            self._tree_g = g = (n, build(self, sess, types=types, speakers=spk))
+        return rank(g[1], sc, **cfg)
+    m.rank_agm = _t.MethodType(rank_agm, m)
+    return m

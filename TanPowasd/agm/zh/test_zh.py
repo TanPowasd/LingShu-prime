@@ -34,15 +34,15 @@ SEGS = [(1, "d#1", "第 1 次提交。甲服务 的依赖名首次确立为 redi
 
 
 def run():
-    import lex as L, role, fd
-    a, b = zh.ZhMemory(rm3=True), fd.attach(L.LexMemory(delta=1.0, stem=True, rm3=True))
+    import lex as L, role, fd, tree
+    a, b = zh.ZhMemory(rm3=True), tree.attach(L.LexMemory(delta=1.0, stem=True, rm3=True))
     for t in EN:
         r, x = t.split(": ", 1)
         a.add_turn(r, x); b.add_turn(r, x)
     q = "What is my beagle called?"
     sa, sb = a.bm25(q), b.bm25(q)
     check("Z1 英文打分与排序逐位相同（rm3=True 复现旧路径）", sa == sb and a.rank_agm(sa) == b.rank_agm(sb))
-    c, d = zh.ZhMemory(), fd.attach(L.LexMemory(delta=1.0, stem=True, rm3=False))
+    c, d = zh.ZhMemory(), tree.attach(L.LexMemory(delta=1.0, stem=True, rm3=False))
     for t in EN:
         r, x = t.split(": ", 1)
         c.add_turn(r, x); d.add_turn(r, x)
@@ -51,10 +51,15 @@ def run():
         r, x = t.split(": ", 1)
         e.add_turn(r, x); f.add_turn(r, x)
     check("Z7 fusion=False 复现 RA-AGM 旧排序", e.rank_agm(e.bm25(q)) == f.rank_agm(f.bm25(q)))
+    g, h = zh.ZhMemory(typed=False), fd.attach(L.LexMemory(delta=1.0, stem=True, rm3=False))
+    for t in EN:
+        r, x = t.split(": ", 1)
+        g.add_turn(r, x); h.add_turn(r, x)
+    check("Z8 typed=False 复现 F1 排序", g.rank_agm(g.bm25(q)) == h.rank_agm(h.bm25(q)))
     check("Z6 默认英文问句不做 RM3", c.bm25(q) == d.bm25(q) and c.bm25(q) != sa)
     check("Z2 去掉「什么」保留实词", zh.qterms(["陈默", "什么", "么时"]) == ["陈默", "么时"], str(zh.qterms(["陈默", "什么", "么时"])))
     check("Z2 全是虚字时原样保留", zh.qterms(["什么", "哪些"]) == ["什么", "哪些"])
-    a2, b2 = zh.ZhMemory(rm3=True), fd.attach(L.LexMemory(delta=1.0, stem=True, rm3=True))
+    a2, b2 = zh.ZhMemory(rm3=True), tree.attach(L.LexMemory(delta=1.0, stem=True, rm3=True))
     for t in ["陈默走进巨子塔，什么也没看见。", "什么时候开饭？什么什么。", "巨子塔是系统核心指令的备份点。"]:
         a2.add_turn("user", t); b2.add_turn("user", t)
     qz = "巨子塔里有什么？"
@@ -82,14 +87,14 @@ def run():
 
 MUT = {
     "M1 去掉所有两字词项（不看是否虚字）": (lambda: setattr(zh, "qterms", lambda toks: [t for t in toks if len(t) != 2] or toks),
-                         {"Z1 英文打分与排序逐位相同（rm3=True 复现旧路径）", "Z2 去掉「什么」保留实词", "Z3 中文问句走去虚字", "Z6 默认英文问句不做 RM3", "Z7 fusion=False 复现 RA-AGM 旧排序"}),
+                         {"Z1 英文打分与排序逐位相同（rm3=True 复现旧路径）", "Z2 去掉「什么」保留实词", "Z3 中文问句走去虚字", "Z6 默认英文问句不做 RM3", "Z7 fusion=False 复现 RA-AGM 旧排序", "Z8 typed=False 复现 F1 排序"}),
     "M2 不去虚字": (lambda: setattr(zh, "qterms", lambda toks: toks),
                  {"Z2 去掉「什么」保留实词", "Z3 中文问句走去虚字"}),
     "M4 中文也做 RM3": (lambda: setattr(zh, "is_zh", lambda q: False), {"Z4 中文问句不做 RM3", "Z4 闸门只认中文", "Z5 混排问句判中文"}),
     "M5 英文也关 RM3": (lambda: setattr(zh, "is_zh", lambda q: True), {"Z1 英文打分与排序逐位相同（rm3=True 复现旧路径）", "Z4 闸门只认中文", "Z5 单个汉字的英文句不判中文", "Z6 默认英文问句不做 RM3"}),
     "M6 只按字符占比（#493 回退）": (lambda: setattr(zh, "CJK_RUN", 10 ** 9), {"Z5 混排问句判中文"}),
     "M7 单字即算中文": (lambda: setattr(zh, "CJK_RUN", 1), {"Z5 单个汉字的英文句不判中文"}),
-    "M8 英文默认仍开 RM3（回退 2026-10-15 前）": (lambda: setattr(zh.ZhMemory.__init__, "__defaults__", (True, True, True)), {"Z6 默认英文问句不做 RM3"}),
+    "M8 英文默认仍开 RM3（回退 2026-10-15 前）": (lambda: setattr(zh.ZhMemory.__init__, "__defaults__", (True, True, True, True)), {"Z6 默认英文问句不做 RM3", "Z8 typed=False 复现 F1 排序"}),
     "M3 不接逻辑链条": (lambda: setattr(chain.ZhChain, "head", lambda self, q: []),
                    {"C2 现值问排头是最新版所在段", "C3 变更问排头是整条链"}),
 }

@@ -16,6 +16,7 @@ sys.path[:0] = [str(_H / "lex"), str(_H / "tricue")]
 import lex as L  # noqa: E402
 import role  # noqa: E402
 import fd  # noqa: E402
+import tree  # noqa: E402
 import tricue as T  # noqa: E402
 
 CJK_Q = 0.5
@@ -39,13 +40,19 @@ def qterms(toks):
 
 
 class ZhMemory(L.LexMemory):
-    def __init__(self, ra=True, rm3=False, fusion=True):
+    def __init__(self, ra=True, rm3=False, fusion=True, typed=True):
+        # typed：2026-10-16 起在 fusion 之上加 TR 实体+更新边（lex/PREREG_tree.md，TE）；typed=False 复现 F1；会话号用 add_turn(..., session=)。
         # fusion：2026-10-16 起扩散默认用 fd.attach（RA 闸门 + 收敛 + 单分数融合 β=1，lex/PREREG_fd2.md）；fusion=False 复现 RA-AGM 旧读数。
         # rm3：英文问句是否做 RM3。2026-10-15 起默认关（PREREG_rm3_off.md）；rm3=True 复现旧读数。
         super().__init__(delta=1.0, stem=True, rm3=rm3)
         self.rm3_en = rm3
         if ra:
-            fd.attach(self) if fusion else role.attach(self)
+            (tree.attach(self) if typed else fd.attach(self)) if fusion else role.attach(self)
+        self._sess = []
+
+    def add_turn(self, role, text, session=None):
+        self._sess.append(session if session is not None else (self._sess[-1] if self._sess else 0))
+        return super().add_turn(role, text)
 
     def bm25(self, query):
         toks = qterms(self._toks(query))
