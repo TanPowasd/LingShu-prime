@@ -1,0 +1,25 @@
+# 预注册：FD2 让深层激活真正影响排序（衰减 / 单分数融合）
+
+日期 2026-10-16，读数前提交。前一轮 PREREG_fd.md：只放开深度，r@10 与 RA-AGM 逐题相同（每跳 ≈×.33，深层排不进前 10）。用户 22:10「可以试试」。
+
+## 方法（fd.py activate/rank，ARMS2；守卫 test_fd.py F1–F8，--mutate M1–M5）
+全部：RA 闸门、扩散到收敛、无 k-WTA、θ=.01、CSR 图。两个旋钮：
+- decay：每跳衰减（现行 .35）。
+- β：单一分数 score_j = Lex_j/max(Lex) + β·a_j，一次排序（一条打分、一个排序，不是多路投票/RRF）；β 缺省 = 激活段整体排前（现行方式）。
+
+| 臂 | decay | β |
+|---|---|---|
+| D15 | .15 | 排前 |
+| F05 | .35 | .5 |
+| F1 | .35 | 1 |
+| F2 | .35 | 2 |
+| DF1 | .15 | 1 |
+基线 R2（现行 Lex+RA-AGM），同次运行；LEX_RM3=0。不加其他旋钮。
+
+## 判定
+- dev（LME 162 + LoCoMo 231）r@10 宏平均：最好臂 ≥ R2 + .005（即 ≥ .717）才进 test；多臂过线取最高，同分取编号靠前。
+- test 只跑一次：被选臂 vs R2 两集均不显著更差（符号检验 p<.05）且至少一集显著更好；hive @8000 不显著更差。否则维持 R2。
+- 另报 r@5、r@25、扩散耗时、收敛步数。
+
+## 复跑
+`BENCH_ARMS=role,fd2 LEX_RM3=0 PYTHONUTF8=1 python -X utf8 bench_cc.py lme --data part{0,1,2}.json --split dev --out ...`；`... locomo --split dev --out ...`

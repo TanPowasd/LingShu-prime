@@ -34,11 +34,10 @@ def csr(m):
     return ptr, nbr, w
 
 
-def rank(m, sc, theta=T.THETA, kwta=None, steps=None, relay=False):
-    """steps=None：迭代到收敛；steps=k：固定 k 步（守卫 F1 用 steps=2, kwta=80 复现 role.rank）。"""
-    if not sc:
-        return []
+def activate(m, sc, theta=T.THETA, kwta=None, steps=None, relay=False, decay=None):
+    """返回 (激活表 a, 种子表 x)。decay=None 用 T.DECAY；steps=None 迭代到收敛。"""
     ptr, nbr, w = csr(m)
+    dk = T.DECAY if decay is None else decay
     top = sorted(sc, key=lambda i: -sc[i])[:T.SEEDS]
     mx = sc[top[0]] or 1.0
     x = {i: sc[i] / mx for i in top}
@@ -57,7 +56,7 @@ def rank(m, sc, theta=T.THETA, kwta=None, steps=None, relay=False):
                 nxt[j] += ai * w[p]
         for i, v in x.items():
             nxt[i] += v
-        nxt = {i: (v if i in x else (1 - T.DECAY) * v) for i, v in nxt.items()}
+        nxt = {i: (v if i in x else (1 - dk) * v) for i, v in nxt.items()}
         kept = sorted(((i, v) for i, v in nxt.items() if v >= theta and v > 0), key=lambda kv: -kv[1])
         new = dict(kept[:kwta] if kwta else kept)
         if steps is not None:
@@ -73,9 +72,27 @@ def rank(m, sc, theta=T.THETA, kwta=None, steps=None, relay=False):
         if k >= MAX_STEPS:
             STATS["触顶未收敛"] += 1
             break
-    act = [i for i in sorted(a, key=lambda i: -a[i]) if not blocked(i)]
+    return {i: v for i, v in a.items() if not blocked(i)}, x
+
+
+def rank(m, sc, theta=T.THETA, kwta=None, steps=None, relay=False, decay=None, beta=None):
+    """beta=None：激活段整体排前（与 rank_agm 同）；beta=b：单一分数 score_j = Lex_j/max + b·a_j，一次排序（深融合，非多路投票）。"""
+    if not sc:
+        return []
+    a, _ = activate(m, sc, theta, kwta, steps, relay, decay)
+    if beta is not None:
+        mx = max(sc.values()) or 1.0
+        f = {i: v / mx for i, v in sc.items()}
+        for i, v in a.items():
+            f[i] = f.get(i, 0.0) + beta * v
+        return sorted(f, key=lambda i: (-f[i], i))
+    act = sorted(a, key=lambda i: -a[i])
     s = set(act)
     return act + sorted((i for i in sc if i not in s), key=lambda i: -sc[i])
 
 
 ARMS = {"FD05": dict(theta=0.05), "FD01": dict(theta=0.01), "FD0": dict(theta=0.0)}
+# PREREG_fd2.md：深层生效（衰减 / 单分数融合），全部收敛、无 k-WTA、θ=.01
+ARMS2 = {"D15": dict(theta=0.01, decay=0.15),
+         "F05": dict(theta=0.01, beta=0.5), "F1": dict(theta=0.01, beta=1.0), "F2": dict(theta=0.01, beta=2.0),
+         "DF1": dict(theta=0.01, decay=0.15, beta=1.0)}
