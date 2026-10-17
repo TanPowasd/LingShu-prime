@@ -35,9 +35,11 @@ def _body(t):
     return t.split(": ", 1)[1] if ": " in t[:40] else t
 
 
-def entities(text, speakers=(), known=None, poss=False):
+def entities(text, speakers=(), known=None, poss=False, labels=False):
     """known：句首词若在此集合中也算（CA 共指：句中出现过的专名在句首被认回）；poss：去掉所有格 's。"""
     b = _body(text)
+    if labels:   # 块内「; Assistant: …」：去标签并另起一句（MemBench 一块含 User+Assistant）
+        b = re.sub(r"[;.!?]?\s*\b[A-Z][a-z]+:\s+", ". ", b)
     out = set()
     for s in re.split(r"(?<=[.!?;])\s+", b) if known is not None else re.split(r"(?<=[.!?])\s+", b):
         for k, mt in enumerate(_WORD.finditer(s)):
@@ -59,12 +61,13 @@ PRON_BACK = 3
 
 
 def coref_entities(raw, turn_of, sess, speakers, mode):
-    """CA（mode 含 A）：所有格归一 + 句首认回已知专名（已知 = 本对话里在非句首出现过的专名）；
+    """共同（勘误 PREREG_coref.md §勘误）：所有格归一、去块内说话人标签。
+    CA（mode 含 A）：句首认回已知专名（已知 = 本对话里在非句首出现过的专名）；
     CP（mode 含 P）：块里有第三人称单数代词且自身无专名 ⇒ 继承同会话内往前 ≤PRON_BACK 个块中最近一个有专名块的专名。
     只改实体集合，不改边的定义与权重。返回每块实体集合。"""
     a = "A" in mode
-    known = set().union(*[entities(t, speakers, poss=True) for t in raw]) if a else None
-    ent = [entities(t, speakers, known=known, poss=a) for t in raw]
+    known = set().union(*[entities(t, speakers, poss=True, labels=True) for t in raw]) if a else None
+    ent = [entities(t, speakers, known=known, poss=True, labels=True) for t in raw]
     if "P" in mode:
         base = [set(e) for e in ent]
         for i, t in enumerate(raw):

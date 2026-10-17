@@ -32,3 +32,10 @@ TE 的实体边只认「句中大写专名」的字面相同。两类漏连（�
 BENCH_ARMS=role,fd2,tree,coref LEX_RM3=0 PYTHONUTF8=1 python -X utf8 bench_cc.py membench --data <LMEB/Dialogue/MemBench> --split dev|B --out <json>
 （其余数据集同 PREREG_tree3.md，BENCH_ARMS 换成上式；MemBench A 用 --split A）
 ```
+
+## 勘误（2026-10-17 22:2x，第一次 dev 之后、任何保留集读取之前）
+第一次 dev（0b1550a）r@10 宏平均：TE .72601，CA .72395，CP .72601（与 TE 逐题相同），CAP .72250。
+CP 逐题相同不合理，取证：MemBench 一块 = 「User: …; Assistant: …」，块内的「Assistant」被当成大写专名，
+⇒ 每块都「自身有专名」，CP 一次都没触发（首个 dev 场景 163 块中 0 块变化）。这是实现缺陷，不是策略结论；第一次 dev 读数作废（仍记录于此）。
+修正（只在共指路径，TE 逐位不变）：块内「; 标签: 」去掉并另起一句（守卫 T17/变异 M11）；三臂共同做所有格归一（原只属 CA）。
+CA 的区别仍是「句首认回已知专名 + 分号句界」。其余定义、数据、判定规则不变；用修正后的实现重跑 dev 一次，按第 1 条选臂。

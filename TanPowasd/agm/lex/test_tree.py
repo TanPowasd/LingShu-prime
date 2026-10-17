@@ -76,6 +76,9 @@ def checks():
     ok.append(("T14 CA：句首所有格「Maya's」认回已知专名", "Maya" in ea[1] and "Maya" not in e0[1], f"{sorted(ea[1])} vs {sorted(e0[1])}"))
     ep = tree.coref_entities(raw, to, sp, frozenset({"user"}), "P")
     ok.append(("T15 CP：无专名代词块继承同会话最近专名", "Maya" in ep[2] and not e0[2], str(sorted(ep[2]))))
+    eb = tree.coref_entities(["User: Ethan Cooper is my brother.; Assistant: Nice.",
+                              "User: He is 28.; Assistant: That's young!"], [0, 1], [1, 1], frozenset({"user"}), "P")
+    ok.append(("T17 块内说话人标签/That's 不算专名，CP 照常继承", eb == [{"Cooper"}, {"Cooper"}], str(eb)))
     ok.append(("T16 CP：代词不跨会话、无代词块不继承", not ep[4] and not ep[1], f"{ep[4]} {ep[1]}"))
     ma = mem({1: "assistant"})
     sa = ma.bm25(q)
@@ -102,7 +105,7 @@ def mut_rank_virtual():
 
 def mut_initial():
     o = tree.entities
-    tree.entities = lambda text, speakers=(), known=None, poss=False: set(w for w in tree._WORD.findall(tree._body(text)) if w[0].isupper())
+    tree.entities = lambda text, speakers=(), known=None, poss=False, labels=False: set(w for w in tree._WORD.findall(tree._body(text)) if w[0].isupper())
 
 
 def mut_update():
@@ -127,7 +130,7 @@ def mut_bf_headonly():
 
 def mut_noknown():
     o = tree.entities
-    tree.entities = lambda text, speakers=(), known=None, poss=False: o(text, speakers, None, poss)
+    tree.entities = lambda text, speakers=(), known=None, poss=False, labels=False: o(text, speakers, None, poss, labels)
 
 
 def mut_pron_any():
@@ -141,6 +144,11 @@ def mut_pron_cross():
     tree.coref_entities = c
 
 
+def mut_labels():
+    o = tree.entities
+    tree.entities = lambda text, speakers=(), known=None, poss=False, labels=False: o(text, speakers, known, poss, False)
+
+
 def mut_noseg():
     tree.SEG_WIN = 0
 
@@ -150,7 +158,7 @@ MUT = {"M1 不缩放行和": (mut_rowcap, "T5"), "M2 虚节点进排序": (mut_r
        "M6 虚节点不缩行和": (mut_cap_real_only, "T11"),
        "M7 BF 不补位": (mut_bf_headonly, "T13"),
        "M8 不认回句首已知专名": (mut_noknown, "T14"), "M9 代词不识别": (mut_pron_any, "T15"),
-       "M10 代词跨会话继承": (mut_pron_cross, "T16")}
+       "M10 代词跨会话继承": (mut_pron_cross, "T16"), "M11 不去块内标签": (mut_labels, "T17")}
 
 if __name__ == "__main__":
     if "--mutate" in sys.argv:
