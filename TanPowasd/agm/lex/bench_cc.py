@@ -89,6 +89,13 @@ def run(m, q, n):
             t1 = time.perf_counter()
             out[k] = dedup(tree.rank(m._tg[k], base), m.turn_of, n)
             TIMES[k] = TIMES.get(k, 0.0) + time.perf_counter() - t1
+    if "coref" in ARMS:  # PREREG_coref.md：零模型实体共指（TE 上只改实体集合）
+        for k, cfg in tree.ARMS4.items():
+            if k not in m._tg:
+                m._tg[k] = tree.build(m, m._sess, speakers=m._spk, **cfg)
+            t1 = time.perf_counter()
+            out[k] = dedup(tree.rank(m._tg[k], base), m.turn_of, n)
+            TIMES[k] = TIMES.get(k, 0.0) + time.perf_counter() - t1
     if "tree3" in ARMS:  # PREREG_tree3.md：中间档层级 + BF 补位
         for k, cfg in {**tree.ARMS3, "H2E": tree.ARMS2["H2E"]}.items():
             if k not in m._tg:

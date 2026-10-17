@@ -64,6 +64,19 @@ def checks():
     ok.append(("T12 加强层级：同段兄弟激活更强", a2.get(2, 0) > a1.get(2, 0) + 1e-6, f"{a2.get(2, 0):.4f} vs {a1.get(2, 0):.4f}"))
     bf = tree.backfill([5, 1, 9, 2], [7, 5, 3, 1, 8], k=2)
     ok.append(("T13 BF：前 k 逐位同 head，其后按 tail 补、无重复、不丢", bf == [5, 1, 7, 3, 8, 9, 2], str(bf)))
+    raw = ["User: I talked about my colleague, Maya Carter, today.",
+           "User: Maya's office moved again.",
+           "User: Her phone number is 415 555 0101.",
+           "User: Totally different, the weather in Boston was awful.",
+           "User: She also likes chess."]
+    sp = [1, 1, 1, 1, 2]
+    to = list(range(5))
+    e0 = tree.coref_entities(raw, to, sp, frozenset({"user"}), "")
+    ea = tree.coref_entities(raw, to, sp, frozenset({"user"}), "A")
+    ok.append(("T14 CA：句首所有格「Maya's」认回已知专名", "Maya" in ea[1] and "Maya" not in e0[1], f"{sorted(ea[1])} vs {sorted(e0[1])}"))
+    ep = tree.coref_entities(raw, to, sp, frozenset({"user"}), "P")
+    ok.append(("T15 CP：无专名代词块继承同会话最近专名", "Maya" in ep[2] and not e0[2], str(sorted(ep[2]))))
+    ok.append(("T16 CP：代词不跨会话、无代词块不继承", not ep[4] and not ep[1], f"{ep[4]} {ep[1]}"))
     ma = mem({1: "assistant"})
     sa = ma.bm25(q)
     ga = tree.build(ma, SESS, types=("H", "E"), speakers=("Alice", "Bob"))
@@ -89,7 +102,7 @@ def mut_rank_virtual():
 
 def mut_initial():
     o = tree.entities
-    tree.entities = lambda text, speakers=(): set(w for w in tree._WORD.findall(tree._body(text)) if w[0].isupper())
+    tree.entities = lambda text, speakers=(), known=None, poss=False: set(w for w in tree._WORD.findall(tree._body(text)) if w[0].isupper())
 
 
 def mut_update():
@@ -112,6 +125,22 @@ def mut_bf_headonly():
     tree.backfill = lambda head, tail, k=10: list(head)
 
 
+def mut_noknown():
+    o = tree.entities
+    tree.entities = lambda text, speakers=(), known=None, poss=False: o(text, speakers, None, poss)
+
+
+def mut_pron_any():
+    tree._PRON = __import__("re").compile(r"\bnever-matches\b")
+
+
+def mut_pron_cross():
+    o = tree.coref_entities
+    def c(raw, turn_of, sess, speakers, mode):
+        return o(raw, turn_of, [0] * len(sess), speakers, mode)
+    tree.coref_entities = c
+
+
 def mut_noseg():
     tree.SEG_WIN = 0
 
@@ -119,7 +148,9 @@ def mut_noseg():
 MUT = {"M1 不缩放行和": (mut_rowcap, "T5"), "M2 虚节点进排序": (mut_rank_virtual, "T2"),
        "M3 不过滤句首/说话人": (mut_initial, "T7"), "M4 去掉更新边": (mut_update, "T8"), "M5 不切话题段": (mut_noseg, "T9"),
        "M6 虚节点不缩行和": (mut_cap_real_only, "T11"),
-       "M7 BF 不补位": (mut_bf_headonly, "T13")}
+       "M7 BF 不补位": (mut_bf_headonly, "T13"),
+       "M8 不认回句首已知专名": (mut_noknown, "T14"), "M9 代词不识别": (mut_pron_any, "T15"),
+       "M10 代词跨会话继承": (mut_pron_cross, "T16")}
 
 if __name__ == "__main__":
     if "--mutate" in sys.argv:
@@ -127,7 +158,7 @@ if __name__ == "__main__":
         out = []
         for k in MUT:
             p = subprocess.run([sys.executable, "-X", "utf8", __file__, "--one", k], capture_output=True, text=True)
-            out.append(f"{k.split()[0]} {'killed' if MUT[k][1] in p.stdout.split('RED:')[-1] else 'SURVIVED'}")
+            out.append(f"{k.split()[0]} {'killed' if MUT[k][1] in p.stdout.split('RED:')[-1].strip().split(',') else 'SURVIVED'}")
         print(" | ".join(out)); sys.exit(0 if all("killed" in o for o in out) else 1)
     if "--one" in sys.argv:
         MUT[sys.argv[sys.argv.index("--one") + 1]][0]()

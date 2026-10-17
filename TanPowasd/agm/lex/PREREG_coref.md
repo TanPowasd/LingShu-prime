@@ -1,0 +1,34 @@
+# 预注册：CR 零模型实体共指（MemBench 保留 B）
+
+日期 2026-10-17 22:1x，读数前提交。用户 21:41「先继续，然后再换路线」：层级线已收尾（PREREG_tree3.md），转实体共指。
+采纳规则：用户 2026-10-16「任意一点的提升都是可取的，只要没有倒退」。
+
+## 动机
+TE 的实体边只认「句中大写专名」的字面相同。两类漏连（推断，来自读样例，非统计）：
+1. 名字在句首（被过滤）或带所有格（Maya's）⇒ 同一人的块没连上；
+2. 「Her contact number is …」「She works at …」这类块只有代词 ⇒ 与该人的其它块完全不连（MemBench multi_hop 的典型形态：先问属性 A 找人，再取属性 B）。
+
+## 方法（tree.coref_entities；在 TE 图上只改每块的实体集合，边的定义、权重、ENT_DF、行和上限一律不变）
+| 臂 | 定义 |
+|---|---|
+| CA | 所有格 's 归一；句首词若在本对话里于非句首出现过（已知专名）则认回；分号也作句界 |
+| CP | 块含 he/she/him/her/his/hers 且自身无专名 ⇒ 继承同会话内向前 ≤3 块中最近一个有专名块的专名（只用原始专名，不链式传递） |
+| CAP | CA + CP |
+守卫：test_tree T14（CA 认回）、T15（CP 继承）、T16（不跨会话、无代词不继承）；变异 M8–M10 全杀。
+顺带收紧变异判定：原来按子串判 RED（"T1" 会被 "T16" 误判为杀死），改为按逗号分隔精确匹配；全部 M1–M10 在新判定下仍全杀。
+
+## 数据
+- dev：LME dev 162、LoCoMo dev 231、MemBench dev 3353（TR3 已用作 dev，继续只作 dev）。
+- **保留 B：MemBench md5%3==2（约 3.3k 题，本项目从未读过），只跑一次。**
+- 不倒退检查（已见过）：LME test、LoCoMo test、REALTALK、ConvoMem test、MemBench A、hive @8000（f4509d7）。
+
+## 判定
+1. CA/CP/CAP 中 dev 三集 r@10 宏平均最高者若 > TE（同次运行）⇒ C* 进保留 B；否则止步。
+2. 保留 B 一次：C* 的 MemBench B r@10 > TE，且六个不倒退集 r@10 均 ≥ TE ⇒ 采纳 C*（tree.attach 默认改为 C*）。否则维持 TE。
+3. 另报符号检验、r@5/r@25、ms/题、MemBench 各子集。
+
+## 复跑
+```
+BENCH_ARMS=role,fd2,tree,coref LEX_RM3=0 PYTHONUTF8=1 python -X utf8 bench_cc.py membench --data <LMEB/Dialogue/MemBench> --split dev|B --out <json>
+（其余数据集同 PREREG_tree3.md，BENCH_ARMS 换成上式；MemBench A 用 --split A）
+```

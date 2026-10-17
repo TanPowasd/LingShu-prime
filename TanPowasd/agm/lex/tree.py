@@ -35,18 +35,47 @@ def _body(t):
     return t.split(": ", 1)[1] if ": " in t[:40] else t
 
 
-def entities(text, speakers=()):
+def entities(text, speakers=(), known=None, poss=False):
+    """known：句首词若在此集合中也算（CA 共指：句中出现过的专名在句首被认回）；poss：去掉所有格 's。"""
     b = _body(text)
     out = set()
-    for s in re.split(r"(?<=[.!?])\s+", b):
+    for s in re.split(r"(?<=[.!?;])\s+", b) if known is not None else re.split(r"(?<=[.!?])\s+", b):
         for k, mt in enumerate(_WORD.finditer(s)):
             w = mt.group(0).strip("'-")
-            if k == 0 or len(w) < 3 or not w[0].isupper() or not w[1:2].islower():
+            if poss and w.endswith("'s"):
+                w = w[:-2]
+            if len(w) < 3 or not w[0].isupper() or not w[1:2].islower():
+                continue
+            if k == 0 and (known is None or w not in known):
                 continue
             if w in _STOP or w.lower() in speakers:
                 continue
             out.add(w)
     return out
+
+
+_PRON = re.compile(r"\b(?:he|she|him|her|his|hers)\b", re.I)
+PRON_BACK = 3
+
+
+def coref_entities(raw, turn_of, sess, speakers, mode):
+    """CA（mode 含 A）：所有格归一 + 句首认回已知专名（已知 = 本对话里在非句首出现过的专名）；
+    CP（mode 含 P）：块里有第三人称单数代词且自身无专名 ⇒ 继承同会话内往前 ≤PRON_BACK 个块中最近一个有专名块的专名。
+    只改实体集合，不改边的定义与权重。返回每块实体集合。"""
+    a = "A" in mode
+    known = set().union(*[entities(t, speakers, poss=True) for t in raw]) if a else None
+    ent = [entities(t, speakers, known=known, poss=a) for t in raw]
+    if "P" in mode:
+        base = [set(e) for e in ent]
+        for i, t in enumerate(raw):
+            if base[i] or not _PRON.search(_body(t)):
+                continue
+            for j in range(i - 1, max(-1, i - 1 - PRON_BACK), -1):
+                if sess[turn_of[j]] != sess[turn_of[i]]:
+                    break
+                if base[j]:
+                    ent[i] = set(base[j]); break
+    return ent
 
 
 def segments(turn_words, sess):
@@ -65,7 +94,7 @@ def segments(turn_words, sess):
     return seg
 
 
-def build(m, sess, types=("H", "E"), speakers=(), w_up=None, dn="mean"):
+def build(m, sess, types=("H", "E"), speakers=(), w_up=None, dn="mean", coref=""):
     """返回类型化图视图 G（G.out 含虚节点，G.n_real = 真实块数）。sess[t] = 第 t 轮的会话号。不改 m。"""
     n = len(m.raw)
     turns = collections.defaultdict(list)
@@ -106,7 +135,7 @@ def build(m, sess, types=("H", "E"), speakers=(), w_up=None, dn="mean"):
     else:
         tot = n
     if "E" in types:
-        ent = [entities(m.raw[i], spk) for i in range(n)]
+        ent = coref_entities(m.raw, m.turn_of, sess, spk, coref) if coref else [entities(m.raw[i], spk) for i in range(n)]
         post = collections.defaultdict(list)
         for i, es in enumerate(ent):
             for e in es:
@@ -168,6 +197,9 @@ ARMS2 = {"H2": dict(types=("H",), w_up=0.4, dn="sqrt"), "H2E": dict(types=("H", 
 
 # PREREG_tree3.md：层级强度取中间档（介于 THE 与 H2E）
 ARMS3 = {"HM": dict(types=("H", "E"), w_up=0.4, dn="mean"), "HS": dict(types=("H", "E"), w_up=0.2, dn="sqrt")}
+
+# PREREG_coref.md：零模型实体共指（在 TE 上只改实体集合）
+ARMS4 = {"CA": dict(types=("E",), coref="A"), "CP": dict(types=("E",), coref="P"), "CAP": dict(types=("E",), coref="AP")}
 
 
 def backfill(head, tail, k=10):
