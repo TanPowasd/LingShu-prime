@@ -7,15 +7,16 @@ import collections, hashlib, json, os, re
 
 SUBS = ("abstention_evidence", "assistant_facts_evidence", "changing_evidence",
         "implicit_connection_evidence", "preference_evidence", "user_evidence")
-_ID = re.compile(r"^(scene_\d+)_session_(\d+)_turn_(\d+)$")
+_ID = re.compile(r"^(scene_\d+)_session_(\d+)_(?:turn|round)_(\d+)$")
 
 
 def split_of(sub, scene):
     return "dev" if int(hashlib.md5(f"{sub}/{scene}".encode()).hexdigest(), 16) % 3 == 0 else "test"
 
 
-def items(root, split):
-    for sub in SUBS:
+def items(root, split, subs=SUBS, nsplit=None):
+    """nsplit=None：ConvoMem 两分（dev/test）；nsplit=(名, 余数) 供 MemBench 三分（md5%3==余数）。"""
+    for sub in subs:
         d = os.path.join(root, sub)
         corpus = {}
         for l in open(os.path.join(d, "corpus.jsonl"), encoding="utf-8"):
@@ -31,7 +32,10 @@ def items(root, split):
         for l in open(os.path.join(d, "candidates.jsonl"), encoding="utf-8"):
             c = json.loads(l)
             sc = c["scene_id"]
-            if split != "all" and split_of(sub, sc) != split:
+            if nsplit is not None:
+                if int(hashlib.md5(f"{sub}/{sc}".encode()).hexdigest(), 16) % 3 != nsplit:
+                    continue
+            elif split != "all" and split_of(sub, sc) != split:
                 continue
             ids = sorted(c["candidate_doc_ids"], key=lambda i: tuple(int(v) for v in _ID.match(i).groups()[1:]))
             idx = {i: k for k, i in enumerate(ids)}

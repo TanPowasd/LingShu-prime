@@ -62,6 +62,8 @@ def checks():
     gth = tree.build(m, SESS, types=("H",)); gh2 = tree.build(m, SESS, **tree.ARMS2["H2"])
     a1, _ = fd.activate(gth, sc, theta=0.0); a2, _ = fd.activate(gh2, sc, theta=0.0)
     ok.append(("T12 加强层级：同段兄弟激活更强", a2.get(2, 0) > a1.get(2, 0) + 1e-6, f"{a2.get(2, 0):.4f} vs {a1.get(2, 0):.4f}"))
+    bf = tree.backfill([5, 1, 9, 2], [7, 5, 3, 1, 8], k=2)
+    ok.append(("T13 BF：前 k 逐位同 head，其后按 tail 补、无重复、不丢", bf == [5, 1, 7, 3, 8, 9, 2], str(bf)))
     ma = mem({1: "assistant"})
     sa = ma.bm25(q)
     ga = tree.build(ma, SESS, types=("H", "E"), speakers=("Alice", "Bob"))
@@ -106,13 +108,18 @@ def mut_cap_real_only():
     tree.build = b
 
 
+def mut_bf_headonly():
+    tree.backfill = lambda head, tail, k=10: list(head)
+
+
 def mut_noseg():
     tree.SEG_WIN = 0
 
 
 MUT = {"M1 不缩放行和": (mut_rowcap, "T5"), "M2 虚节点进排序": (mut_rank_virtual, "T2"),
        "M3 不过滤句首/说话人": (mut_initial, "T7"), "M4 去掉更新边": (mut_update, "T8"), "M5 不切话题段": (mut_noseg, "T9"),
-       "M6 虚节点不缩行和": (mut_cap_real_only, "T11")}
+       "M6 虚节点不缩行和": (mut_cap_real_only, "T11"),
+       "M7 BF 不补位": (mut_bf_headonly, "T13")}
 
 if __name__ == "__main__":
     if "--mutate" in sys.argv:

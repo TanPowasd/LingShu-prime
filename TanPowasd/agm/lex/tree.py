@@ -166,6 +166,18 @@ ARMS = {"TH": dict(types=("H",)), "TE": dict(types=("E",)), "THE": dict(types=("
 ARMS2 = {"H2": dict(types=("H",), w_up=0.4, dn="sqrt"), "H2E": dict(types=("H", "E"), w_up=0.4, dn="sqrt"),
          "H3": dict(types=("H",), w_up=0.4, dn="full"), "H3E": dict(types=("H", "E"), w_up=0.4, dn="full")}
 
+# PREREG_tree3.md：层级强度取中间档（介于 THE 与 H2E）
+ARMS3 = {"HM": dict(types=("H", "E"), w_up=0.4, dn="mean"), "HS": dict(types=("H", "E"), w_up=0.2, dn="sqrt")}
+
+
+def backfill(head, tail, k=10):
+    """BF（PREREG_tree3.md）：前 k 名逐位取 head（TE），其后按 tail（H2E）顺序补入未出现者，再接 head 余下。
+    构造上 r@k 与 head 逐题相同，只改变 k 之后的候选。"""
+    top = list(head[:k])
+    seen = set(top)
+    rest = [i for i in list(tail) + list(head[k:]) if not (i in seen or seen.add(i))]
+    return top + rest
+
 
 #: 采纳配置（PREREG_tree.md 保留集判定：REALTALK r@10 TE .51528 为候选最高，≥ R2 .50439；hive @8000 TE .520 = F1）
 ADOPTED = "TE"
