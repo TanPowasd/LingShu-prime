@@ -8,6 +8,9 @@ import collections, json, os
 
 TABLE = {}
 ARMS = {"DX3a": dict(k=3, w=0.2), "DX3b": dict(k=3, w=0.4), "DX8a": dict(k=8, w=0.2), "DX8b": dict(k=8, w=0.4)}
+# PREREG_dist2.md：只对「本记忆里找不到自己」的问题词联想（gate）；ctx=邻居须被整句问题共同支持
+ARMS2 = {"DG3a": dict(k=3, w=0.2, gate=True), "DG3b": dict(k=3, w=0.4, gate=True),
+         "DGC3a": dict(k=3, w=0.2, gate=True, ctx=True), "DGC3b": dict(k=3, w=0.4, gate=True, ctx=True)}
 
 
 def load(path=None):
@@ -17,14 +20,24 @@ def load(path=None):
     return TABLE
 
 
-def expand(m, q, k):
-    """返回 {扩展词: 权重} 与溯源 {扩展词: [(问题词, ppmi, 次数)]}。"""
+def expand(m, q, k, gate=False, ctx=False):
+    """返回 {扩展词: 权重} 与溯源 {扩展词: [(问题词, ppmi, 次数)]}。
+    gate：只扩展本记忆里 df=0 的问题词（已经找到自己的词不需要「意思」）。
+    ctx：邻居 nb 的分 = cos(t,nb)·(1 + Σ_{问题里其它词 t'} cos(t',nb))（nb 在 t' 的表里才计），按此重排后取前 k——
+         同一个词在不同语境下的意思由整句问题决定（run 在「跑步鞋」句里不该联想到板球）。"""
     S = m.c_sdm
     qt = set(m._toks(q))
     e, why = collections.defaultdict(float), collections.defaultdict(list)
+    lut = {t: {nb: pm for nb, pm, _ in TABLE.get(t, ())} for t in qt} if ctx else None
     for t in qt:
+        if gate and t in S.inv:
+            continue
+        rows = TABLE.get(t, ())
+        if ctx:
+            rows = sorted(([nb, pm * (1 + sum(lut[u].get(nb, 0.0) for u in qt if u != t)), c] for nb, pm, c in rows),
+                          key=lambda r: -r[1])
         n = 0
-        for nb, pm, c in TABLE.get(t, ()):
+        for nb, pm, c in rows:
             if n >= k:
                 break
             if nb in qt:
@@ -35,10 +48,10 @@ def expand(m, q, k):
     return dict(e), dict(why)
 
 
-def score(m, base, q, k, w):
+def score(m, base, q, k, w, gate=False, ctx=False):
     if not base or w <= 0:
         return base
-    e, _ = expand(m, q, k)
+    e, _ = expand(m, q, k, gate, ctx)
     if not e:
         return base
     S = m.c_sdm

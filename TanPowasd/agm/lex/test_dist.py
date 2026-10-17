@@ -30,6 +30,15 @@ def checks():
     ok.append(("D3 w=0 ⇒ 相同", dist.score(m, base, q, 3, 0.0) == base))
     s = dist.score(m, base, q, 3, 0.4)
     ok.append(("D4 零重叠的「小狗」轮经联想得分最高", max(s, key=s.get) == 0 and lex.LexMemory.bm25(m, "pet").get(0, 0) == 0))
+    dist.TABLE["beagl"] = [["violin", 1.0, 0]]
+    g1, _ = dist.expand(m, "beagle pet", 3, gate=True)
+    g0, _ = dist.expand(m, "beagle pet", 3, gate=False)
+    ok.append(("D6 gate：本记忆里已有的问题词（beagl）不扩展，缺的（pet）扩展", "puppy" in g1 and "violin" not in g1 and "violin" in g0, f"{g1} {g0}"))
+    dist.TABLE.clear()
+    dist.TABLE.update({"pet": [["run", 0.9, 0], ["puppy", 0.7, 0]], "beagl": [["puppy", 0.9, 0]]})
+    c0, _ = dist.expand(m, "beagle pet", 1, gate=True, ctx=False)
+    c1, _ = dist.expand(m, "beagle pet", 1, gate=True, ctx=True)
+    ok.append(("D7 ctx：被问题里其它词共同支持的邻居（puppy）排到前面", set(c0) == {"run"} and set(c1) == {"puppy"}, f"{c0} {c1}"))
     dist.TABLE.clear()
     ok.append(("D2 空表 ⇒ 相同", dist.score(m, base, q, 3, 0.4) == base))
     return ok
@@ -42,8 +51,8 @@ def run():
 
 def mut_noexcl():
     o = dist.expand
-    def f(m, q, k):
-        e, w = o(m, q, k)
+    def f(m, q, k, gate=False, ctx=False):
+        e, w = o(m, q, k, gate, ctx)
         e["pet"] = 1.0
         return e, w
     dist.expand = f
@@ -56,10 +65,21 @@ def mut_now():
 
 def mut_nok():
     o = dist.expand
-    dist.expand = lambda m, q, k: o(m, q, 99)
+    dist.expand = lambda m, q, k, gate=False, ctx=False: o(m, q, 99, gate, ctx)
 
 
-MUTS = {"M1 不排除问题词": (mut_noexcl, "D1"), "M2 忽略 w": (mut_now, "D3"), "M3 不截断 k": (mut_nok, "D5")}
+def mut_nogate():
+    o = dist.expand
+    dist.expand = lambda m, q, k, gate=False, ctx=False: o(m, q, k, False, ctx)
+
+
+def mut_noctx():
+    o = dist.expand
+    dist.expand = lambda m, q, k, gate=False, ctx=False: o(m, q, k, gate, False)
+
+
+MUTS = {"M1 不排除问题词": (mut_noexcl, "D1"), "M2 忽略 w": (mut_now, "D3"), "M3 不截断 k": (mut_nok, "D5"),
+        "M4 gate 失效": (mut_nogate, "D6"), "M5 ctx 失效": (mut_noctx, "D7")}
 
 if __name__ == "__main__":
     if "--mutate" in sys.argv:

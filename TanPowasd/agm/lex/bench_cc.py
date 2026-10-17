@@ -102,7 +102,7 @@ def run(m, q, n):
             dist.load()
         if "TE" not in m._tg:
             m._tg["TE"] = tree.build(m, m._sess, speakers=m._spk, **tree.ARMS["TE"])
-        for k, cfg in dist.ARMS.items():
+        for k, cfg in {**dist.ARMS, **(dist.ARMS2 if "dist2" in ARMS else {})}.items():
             t1 = time.perf_counter()
             out[k] = dedup(tree.rank(m._tg["TE"], dist.score(m, base, q, **cfg)), m.turn_of, n)
             TIMES[k] = TIMES.get(k, 0.0) + time.perf_counter() - t1
