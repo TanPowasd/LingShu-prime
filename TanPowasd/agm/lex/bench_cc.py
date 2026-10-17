@@ -106,6 +106,14 @@ def run(m, q, n):
             t1 = time.perf_counter()
             out[k] = dedup(tree.rank(m._tg["TE"], dist.score(m, base, q, **cfg)), m.turn_of, n)
             TIMES[k] = TIMES.get(k, 0.0) + time.perf_counter() - t1
+    if "fdm" in ARMS:  # PREREG_fdm.md：MRF 全依赖（不相邻词对的无序窗口）→ 照常走 TE
+        import fdm
+        if "TE" not in m._tg:
+            m._tg["TE"] = tree.build(m, m._sess, speakers=m._spk, **tree.ARMS["TE"])
+        for k, cfg in fdm.ARMS.items():
+            t1 = time.perf_counter()
+            out[k] = dedup(tree.rank(m._tg["TE"], fdm.score(m, base, q, **cfg)), m.turn_of, n)
+            TIMES[k] = TIMES.get(k, 0.0) + time.perf_counter() - t1
     if "attn" in ARMS:  # PREREG_attn.md：零模型注意力
         for gk, cfg in (("TE", tree.ARMS["TE"]), ("CP", tree.ARMS4["CP"])):
             if gk not in m._tg:
