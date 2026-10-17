@@ -35,3 +35,30 @@ MemBench（LMEB Dialogue/MemBench，10 子集，约 1 万题，本项目从未�
 BENCH_ARMS=role,fd2,tree,tree3 LEX_RM3=0 PYTHONUTF8=1 python -X utf8 bench_cc.py membench --data <LMEB/Dialogue/MemBench> --split dev|A --out <json>
 （lme/locomo/realtalk/convomem/hive 同 PREREG_tree2.md，BENCH_ARMS 换成上式）
 ```
+
+## dev 读数（2026-10-17 21:5x，LEX_RM3=0；括号内为对 TE 胜/负）
+| 臂 | LME 162 | LoCoMo 231 | MemBench dev 3353 | r@10 宏平均 | r@25 宏平均 |
+|---|---:|---:|---:|---:|---:|
+| TE | .7952 | .6549 | .7279 | .72601 | .83991 |
+| HM | .7931 | .6592 | .7276 (55/53) | .72664 | .84276 |
+| **HS** | .7952 | .6603 | .7263 (50/82) | **.72727** | .84376 |
+| **BF** | ＝TE | ＝TE | ＝TE | .72601 | **.84749** |
+（参考 H2E r@10 .72906，非本轮候选。）按第 1、2 条：HS 与 BF 进保留 A。
+
+## 保留 A（一次，2026-10-17 22:0x）
+| 集 | n | TE r@10 | HS r@10 | TE r@25 | BF r@25 |
+|---|---:|---:|---:|---:|---:|
+| **MemBench A（新）** | 3364 | .7183 | **.7204**（54/70） | .9045 | **.9118**（69/61） |
+| LME test | 317 | .8065 | .8087 | .8888 | .8888 |
+| LoCoMo test | 1301 | .6426 | .6438 | .7399 | .7586（37/6） |
+| REALTALK | 679 | .5153 | .5165 | .6048 | .6187（27/9） |
+| ConvoMem test | 3931 | .7716 | **.7707**（33/47） | .9068 | .9086 |
+| hive @8000 | 38 | .5197 | **.5183**（1/1） | .5197 | **.5162**（2/3） |
+
+**判定（第 3 条）：HS、BF 均不通过，维持 TE。**
+- HS：MemBench A 胜，但 ConvoMem test 与 hive 低于 TE。
+- BF：MemBench A 与 LoCoMo/REALTALK/ConvoMem 的 r@25 都更高，唯 hive 低于 TE（2/3）。
+  hive 指标是 8000 字预算覆盖，不是固定前 10，所以「r@10 构造上同 TE」在 hive 上不成立——这是预注册时的疏漏（存疑），不事后改判。
+MemBench A 各子集（TE/HS r@10）：knowledge_updating .620/.647 最大增益；aggregative .554/.548 最大损失。BF r@25 knowledge_updating .851→.924。
+耗时 MemBench A：TE 24.9s、HS 56.3s。
+层级这条线到此收尾：加强/中间档/补位三种形式都没能在全部集合上不倒退。MemBench A 已消耗；**MemBench B 未读，留给实体共指轮。**
