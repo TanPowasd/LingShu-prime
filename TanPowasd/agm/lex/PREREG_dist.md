@@ -14,7 +14,7 @@ AT/AR 注意力（fb1ba33）也未过 dev。零模型下，意思只能来自「
 - 实际使用的是**二阶表** sim.json（dist_build.py sim）：每词 PPMI 向量 L2 归一化后两两余弦，查询词与邻居限频次前 20,000 词干，每词前 30。
   原因（读任何基准数之前，只看表本身）：一阶 PPMI 邻居被稀有专名搭配占满（dog→naughty/sled/dimaggio；pet 因 pete→pet 词干合并成人名），
   二阶余弦给出语义邻居（dog→cat/animal/spaniel，sport→tennis/soccer，instrument→percussion/flute/drum/piano/violin）。已知缺陷：pet 仍被 Pete 污染。
-- 表冻结：sim.json sha256 前 16 位 ``；之后不改。
+- 表冻结：sim.json sha256 前 16 位 `55b0dcda3f847982`；之后不改。
 
 ## 方法（dist.py）
 问题词 → 每词前 k 个 PPMI 邻居（排除问题词、排除不在本记忆里的词），扩展词权重 = Σ ppmi；扩展词按 BM25+ 打分，
