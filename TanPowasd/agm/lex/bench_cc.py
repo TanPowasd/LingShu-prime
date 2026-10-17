@@ -96,6 +96,15 @@ def run(m, q, n):
             t1 = time.perf_counter()
             out[k] = dedup(tree.rank(m._tg[k], base), m.turn_of, n)
             TIMES[k] = TIMES.get(k, 0.0) + time.perf_counter() - t1
+    if "attn" in ARMS:  # PREREG_attn.md：零模型注意力
+        for gk, cfg in (("TE", tree.ARMS["TE"]), ("CP", tree.ARMS4["CP"])):
+            if gk not in m._tg:
+                m._tg[gk] = tree.build(m, m._sess, speakers=m._spk, **cfg)
+        rel = tree.residual_rel(m, q)
+        for k, cfg in tree.ARMS5.items():
+            t1 = time.perf_counter()
+            out[k] = dedup(tree.rank(m._tg[cfg["g"]], base, attn=cfg["attn"], rel=rel if cfg.get("res") else None), m.turn_of, n)
+            TIMES[k] = TIMES.get(k, 0.0) + time.perf_counter() - t1
     if "tree3" in ARMS:  # PREREG_tree3.md：中间档层级 + BF 补位
         for k, cfg in {**tree.ARMS3, "H2E": tree.ARMS2["H2E"]}.items():
             if k not in m._tg:
@@ -115,7 +124,7 @@ def run(m, q, n):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("dataset", choices=["lme", "locomo", "hive", "realtalk", "convomem", "membench"])
+    ap.add_argument("dataset", choices=["lme", "locomo", "hive", "realtalk", "convomem", "membench", "tmd", "kmb"])
     ap.add_argument("--data"); ap.add_argument("--root"); ap.add_argument("--split", default="dev")
     ap.add_argument("--out", required=True)
     a = ap.parse_args()
@@ -148,6 +157,15 @@ def main():
                 r, s = run(m, q["question"], len(it["turns"]))
                 per.append({"qid": f"{it['sid']}_{qi}", "type": str(q.get("category")), "s": s, "arms": {k: score(v, ev) for k, v in r.items()}})
             print(it["sid"], len(per), f"{time.time() - t0:.0f}s", flush=True)
+    elif a.dataset in ("tmd", "kmb"):   # PREREG_attn.md：LMEB TMD content_time_qs（整套保留）、KnowMeBench（md5%2 dev/hold）
+        import lmeb_extra as LX
+        src = LX.tmd(a.data) if a.dataset == "tmd" else LX.kmb(a.data, a.split)
+        for sub, it in src:
+            m = build(it["turns"], it["roles"], it["sess"])
+            for q in it["qa"]:
+                r, s = run(m, q["question"], len(it["turns"]))
+                per.append({"qid": q["qid"], "type": q.get("type", sub), "s": s, "arms": {k: score(v, q["gold"]) for k, v in r.items()}})
+            print(sub, len(per), f"{time.time() - t0:.0f}s", flush=True)
     elif a.dataset == "membench":   # PREREG_tree3.md：MemBench（LMEB Dialogue/MemBench，10 子集），md5%3 三分 dev/A/B
         import membench as MB
         for sub, it in MB.items(a.data, a.split):

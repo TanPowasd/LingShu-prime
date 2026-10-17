@@ -13,6 +13,7 @@ score_j = Lex_j/max + β·a_j（一条打分、一次排序）：
 虚节点出边和 ≤ W_DN + W_UP + 2·W_T < ROW_CAP ⇒ (1-DECAY)·ROW_CAP < 1，幂迭代收敛（同 fd.py）。
 中文（无大写）没有实体边，只有层级/时序（推断：hive 上影响应很小，读数里报告）。"""
 import collections
+import math
 import re
 
 import fd
@@ -179,10 +180,67 @@ class _Roles:
         return self.r[j] if j < len(self.r) else "hub"
 
 
-def rank(g, sc, theta=0.01, decay=None, beta=1.0):
-    """同 fd.rank(beta=…)，图用 build() 给出的层级树 + 类型化引用视图 g；虚节点不排序。"""
+_EXP = math.exp
+
+
+def residual_rel(m, q):
+    """AR 用：返回 rel(i, j) —— 问题里「源块 i 没覆盖」的词，在目标块 j 中出现的 idf 份额（0..1，分母为问题全部词 idf）。
+    这是把 query 按已找到的内容更新（残差 query），注意力偏向能补上缺口的邻居，而不是重复命中同样词的邻居。"""
+    S = m.c_sdm
+    Q = {t for t in m._toks(q) if t in S.inv}
+    idf = {t: math.log((S.N + 1) / len(S.inv[t])) for t in Q}
+    tot = sum(idf.values()) or 1.0
+    n = len(m.raw)
+
+    def rel(i, j):
+        if j >= n or i >= n:
+            return 0.0
+        ti, tj = S.tf[i], S.tf[j]
+        return sum(idf[t] for t in Q if t in tj and t not in ti) / tot
+    return rel
+
+
+def attend(g, sc, tau, rel=None):
+    """AT 零模型注意力（PREREG_attn.md）：节点 i 的出边按「目标与问题的词法相关度」重新分配，行和不变。
+    e_j = exp(rel_j / τ)，rel_j = sc_j / max(sc)（不在 sc 或为虚节点 ⇒ 0 ⇒ e_j = 1）；
+    w'_ij = w_ij · e_j · Σ_k w_ik / Σ_k w_ik e_k。只有「至少一个出边邻居在 sc 中」的行会变，其余逐位不变。
+    行和不变 ⇒ ROW_CAP 收敛条件照旧。返回新视图（不改 g）。"""
+    from array import array
+    ptr, nbr, w = fd.csr(g)
+    n = g.n_real
+    rev = getattr(g, "_rev", None)
+    if rev is None:
+        rev = collections.defaultdict(list)
+        for i in range(len(ptr) - 1):
+            for p in range(ptr[i], ptr[i + 1]):
+                rev[nbr[p]].append(i)
+        g._rev = rev
+    mx = max(sc.values()) or 1.0
+    rows = {i for j in sc if j < n for i in rev.get(j, ())}
+    w2 = array("d", w)
+    for i in rows:
+        lo, hi = ptr[i], ptr[i + 1]
+        if rel is None:
+            es = [_EXP(sc.get(nbr[p], 0.0) / mx / tau) if nbr[p] < n else 1.0 for p in range(lo, hi)]
+        else:   # AR：残差相关度（源 i 已覆盖的问题词不再算）
+            es = [_EXP(rel(i, nbr[p]) / tau) for p in range(lo, hi)]
+        s0 = sum(w[p] for p in range(lo, hi))
+        s1 = sum(w[p] * e for p, e in zip(range(lo, hi), es))
+        if s1 > 0:
+            for p, e in zip(range(lo, hi), es):
+                w2[p] = w[p] * e * s0 / s1
+    v = _View.__new__(_View)
+    v.out, v.n_real, v.raw, v.role_of = g.out, n, g.raw, g.role_of
+    v._csr = (len(g.raw), ptr, nbr, w2)
+    return v
+
+
+def rank(g, sc, theta=0.01, decay=None, beta=1.0, attn=None, rel=None):
+    """同 fd.rank(beta=…)，图用 build() 给出的层级树 + 类型化引用视图 g；虚节点不排序。attn=τ 时先做 AT 注意力重加权。"""
     if not sc:
         return []
+    if attn is not None:
+        g = attend(g, sc, attn, rel)
     a, _ = fd.activate(g, sc, theta=theta, decay=decay)
     n = g.n_real
     mx = max(sc.values()) or 1.0
@@ -203,6 +261,12 @@ ARMS3 = {"HM": dict(types=("H", "E"), w_up=0.4, dn="mean"), "HS": dict(types=("H
 
 # PREREG_coref.md：零模型实体共指（在 TE 上只改实体集合）
 ARMS4 = {"CA": dict(types=("E",), coref="A"), "CP": dict(types=("E",), coref="P"), "CAP": dict(types=("E",), coref="AP")}
+
+# PREREG_attn.md：零模型注意力（τ 两档；TE 或 TE+CP 图）
+ARMS5 = {"AT5": dict(g="TE", attn=0.5), "AT2": dict(g="TE", attn=0.2),
+         "ATP5": dict(g="CP", attn=0.5), "ATP2": dict(g="CP", attn=0.2),
+         "AR5": dict(g="TE", attn=0.5, res=True), "AR2": dict(g="TE", attn=0.2, res=True),
+         "ARP5": dict(g="CP", attn=0.5, res=True), "ARP2": dict(g="CP", attn=0.2, res=True)}
 
 
 def backfill(head, tail, k=10):

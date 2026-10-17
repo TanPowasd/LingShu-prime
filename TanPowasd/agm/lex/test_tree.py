@@ -80,6 +80,28 @@ def checks():
                               "User: He is 28.; Assistant: That's young!"], [0, 1], [1, 1], frozenset({"user"}), "P")
     ok.append(("T17 块内说话人标签/That's 不算专名，CP 照常继承", eb == [{"Cooper"}, {"Cooper"}], str(eb)))
     ok.append(("T16 CP：代词不跨会话、无代词块不继承", not ep[4] and not ep[1], f"{ep[4]} {ep[1]}"))
+    import math as _m
+    gA = tree.build(m, SESS, types=("E",), speakers=("Alice", "Bob"))
+    ptr, nbr, w = fd.csr(gA)
+    vz = tree.attend(gA, {99: 1.0}, 0.5)
+    ok.append(("T18 AT：sc 不触及任何邻居 ⇒ 权重逐位不变", list(vz._csr[3]) == list(w)))
+    va = tree.attend(gA, sc, 0.2)
+    p2, n2, w2 = va._csr[1:]
+    rs = all(abs(sum(w[p] for p in range(ptr[i], ptr[i + 1])) - sum(w2[p] for p in range(ptr[i], ptr[i + 1]))) < 1e-9 for i in range(len(ptr) - 1))
+    ok.append(("T19 AT：每行出边和不变", rs))
+    mxs = max(sc.values())
+    rows = [i for i in range(len(ptr) - 1) if ptr[i + 1] - ptr[i] >= 2]
+    up = []
+    for i in rows:
+        ps = list(range(ptr[i], ptr[i + 1]))
+        rel = [sc.get(nbr[p], 0.0) for p in ps]
+        if max(rel) > min(rel):
+            hi = max(ps, key=lambda p: sc.get(nbr[p], 0.0)); lo = min(ps, key=lambda p: sc.get(nbr[p], 0.0))
+            up.append(w2[hi] / w[hi] > w2[lo] / w[lo])
+    ok.append(("T20 AT：与问题更相关的邻居分到更大比例", bool(up) and all(up), str(up)))
+    rr = tree.residual_rel(m, "Which street did Alice move to, the boiler?")
+    ok.append(("T21 AR：源块已覆盖的问题词不算，补缺口的邻居得分更高", rr(0, 6) > rr(0, 2) and rr(0, 0) == 0.0,
+               f"{rr(0, 6):.3f} {rr(0, 2):.3f} {rr(0, 0):.3f}"))
     ma = mem({1: "assistant"})
     sa = ma.bm25(q)
     ga = tree.build(ma, SESS, types=("H", "E"), speakers=("Alice", "Bob"))
@@ -149,6 +171,30 @@ def mut_labels():
     tree.entities = lambda text, speakers=(), known=None, poss=False, labels=False: o(text, speakers, known, poss, False)
 
 
+def mut_attn_rowsum():
+    o = tree.attend
+    def a(g, sc, tau):
+        v = o(g, sc, tau)
+        w = v._csr[3]
+        for p in range(len(w)):
+            w[p] *= 1.1
+        return v
+    tree.attend = a
+
+
+def mut_attn_flip():
+    import math as _mm
+    tree._EXP = lambda x: _mm.exp(-x)
+
+
+def mut_res_full():
+    o = tree.residual_rel
+    def r(m, q):
+        f = o(m, q)
+        return lambda i, j: f(len(m.raw) + 5, j) if False else f(-1, j) if j < len(m.raw) else 0.0
+    tree.residual_rel = r
+
+
 def mut_noseg():
     tree.SEG_WIN = 0
 
@@ -158,7 +204,9 @@ MUT = {"M1 不缩放行和": (mut_rowcap, "T5"), "M2 虚节点进排序": (mut_r
        "M6 虚节点不缩行和": (mut_cap_real_only, "T11"),
        "M7 BF 不补位": (mut_bf_headonly, "T13"),
        "M8 不认回句首已知专名": (mut_noknown, "T14"), "M9 代词不识别": (mut_pron_any, "T15"),
-       "M10 代词跨会话继承": (mut_pron_cross, "T16"), "M11 不去块内标签": (mut_labels, "T17")}
+       "M10 代词跨会话继承": (mut_pron_cross, "T16"), "M11 不去块内标签": (mut_labels, "T17"),
+       "M12 AT 不保行和": (mut_attn_rowsum, "T19"), "M13 AT 方向反了": (mut_attn_flip, "T20"),
+       "M14 AR 不扣源块已覆盖词": (mut_res_full, "T21")}
 
 if __name__ == "__main__":
     if "--mutate" in sys.argv:
