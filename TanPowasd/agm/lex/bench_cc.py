@@ -96,6 +96,16 @@ def run(m, q, n):
             t1 = time.perf_counter()
             out[k] = dedup(tree.rank(m._tg[k], base), m.turn_of, n)
             TIMES[k] = TIMES.get(k, 0.0) + time.perf_counter() - t1
+    if "dist" in ARMS:  # PREREG_dist.md：白箱 PPMI 联想扩展 → 照常走 TE
+        import dist
+        if not dist.TABLE:
+            dist.load()
+        if "TE" not in m._tg:
+            m._tg["TE"] = tree.build(m, m._sess, speakers=m._spk, **tree.ARMS["TE"])
+        for k, cfg in dist.ARMS.items():
+            t1 = time.perf_counter()
+            out[k] = dedup(tree.rank(m._tg["TE"], dist.score(m, base, q, **cfg)), m.turn_of, n)
+            TIMES[k] = TIMES.get(k, 0.0) + time.perf_counter() - t1
     if "attn" in ARMS:  # PREREG_attn.md：零模型注意力
         for gk, cfg in (("TE", tree.ARMS["TE"]), ("CP", tree.ARMS4["CP"])):
             if gk not in m._tg:
