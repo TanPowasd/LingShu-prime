@@ -79,3 +79,36 @@ ALL 只在 n≤LIMIT 时补齐，检索集（n>1000）漏补。修正为补到 L
 27 格点 13 集宏平均：w=.25 九格 .5469（B、H 全部逐位相同 ⇒ 束搜索在 dev 上对任何集的主指标无影响），w=.5 九格 .5464，w=1 九格 .5407；te .5447，bm25 .5300。
 按规则选 **allW1B1H1**（w=.25、B=3、H=1；并列取小），.5469 > te .5447 ⇒ 上 test 一次。`allarm.SELECTED=(1,1,1)`，本节写定后提交，再跑 test。
 dev 上 perltqa ALL .977 vs te .979（3/12，p=.035）已显著倒退的苗头——test 若重现即按规则拒绝。
+
+## test 读数与结论（2026-10-18 11:52，跑一次；results/umb_all.md）
+| | te | bm25 | all |
+|---|---:|---:|---:|
+| 13 集宏平均 | .5557 | .5418 | .5558 |
+| 12 集（UMB）宏平均 | .5206 | .5055 | .5209 |
+
+逐集 all vs te（胜/负 p）：lme .815=.815（1/1）；locomo =；hive .512→.515（3/3）；scifact =；nfcorpus .295→.294（2/3）；arguana .427→.412（5/10 p=.30）；
+scidocs =；Ecom .441=.441（16/11）；Video .559→.567（15/10）；Medical .339→.350（18/4 **p=.0043**）；Du .703→.693（63/66 p=.86）；MMarco .558→.566（28/18）；
+**PerLTQA .977→.975（3/15，p=.0075）**。
+
+**结论：不采纳。** 宏平均只高 .0001，且 PerLTQA test 显著倒退（负多于胜、p<.05），触犯采纳规则第 3 条。TE 仍为默认。未过采纳 ⇒ 不查 KMB hold / TMD，reuse 账本未动。
+
+逐模块（dev 消融，描述性）：
+- AC 词通道是 ALL 唯一的主要来源：去掉它（all-ac）13 集宏平均 .547→.543；单开（te+ac）.548。中文检索集 Ecom/Video/Medical/MMarco 升，
+  但 PerLTQA 的轻微倒退也全部来自它（all-ac 在 PerLTQA = te）。推断：PerLTQA 单元很短、问句与金标共享角色名长词，词通道把含同名长词的错单元抬高。
+- MinHash 折叠：去掉它（all-mh）宏平均 .547→.548（反而升）；DuRetrieval 上 te+mh 0/7（p=.016）倒退、arguana 9/7、LME 0/1——在这些集近重复往往同为相关，折叠是净伤。
+- 束搜索：27 格 B、H 所有取值 13 集主指标逐位相同；全部 dev 只有约 9 题前 10 有变动。TE 扩散已把邻轮抬到 f_parent·覆盖比以上，束搜索的插入条件几乎从不成立。
+- 双时态/区间树：只在 LME/LoCoMo/PerLTQA 触发；LME te+bt 0/2，其他集不动。ACT-R：all-actr 与 all 主指标逐位相同。
+- 2Q/LRU、跳表、堆：未实现（不改排名，理由见上）。
+
+## 复现
+环境：`UMB_*`（同 README）+ `UMB_PERLTQA=<PerLTQA>/Dataset/zh`、`ALL_DICT=<jieba dict.txt>`、`DIST_TABLE`（同 te 臂）。
+```bash
+python -X utf8 ../all/test_all.py --mutate
+GRID=$(python -c "print(','.join(f'allW{i}B{j}H{k}' for i in (1,2,3) for j in (1,2,3) for k in (1,2,3)))")
+SETS=lme,locomo,hive,scifact,nfcorpus,arguana,scidocs,EcomRetrieval,VideoRetrieval,MedicalRetrieval,DuRetrieval,MMarcoRetrieval,perltqa
+python -X utf8 run_umb.py --arms te,bm25,all0,$GRID --split dev --sets $SETS --budget-secs 1000 --no-summary   # 重复到 13 集「全部已缓存」
+python -X utf8 run_umb.py --arms te,all,all-ac,all-bs,all-bt,all-actr,all-mh,te+ac,te+bs,te+bt,te+mh --split dev --sets $SETS --budget-secs 1000 --no-summary
+python -X utf8 run_umb.py --arms te,bm25,all --split test --sets $SETS --budget-secs 1000 --no-summary
+python -X utf8 ../all/report_all.py --split dev --arms te,bm25,all0,$GRID --select
+python -X utf8 ../all/report_all.py --split test --arms te,bm25,all
+```
