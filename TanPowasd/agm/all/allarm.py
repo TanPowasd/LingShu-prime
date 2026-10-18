@@ -15,7 +15,7 @@ import temporal as TP  # noqa: E402
 W_C = (0.25, 0.5, 1.0)        # 词通道权重候选
 B_C = (3, 5, 8)               # 束宽候选
 H_C = (1, 2, 3)               # 最大跳数候选
-SELECTED = None               # dev 选定后写成 (i, j, k)（1 起），见 PREREG_all.md；未选定时 all / all-* / te+* 拒跑
+SELECTED = (1, 1, 1)          # 2026-10-18 dev 选定 allW1B1H1（w=.25、B=3、H=1），见 PREREG_all.md；未选定时 all / all-* / te+* 拒跑
 LIMIT = 1000                  # 轮序只产出前 LIMIT 个（检索集指标只看前 1000；记忆集轮数 < LIMIT 时等于全序）
 _GRID = re.compile(r"^allW([123])B([123])H([123])$")
 _CJK = re.compile(r"[\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff]")
@@ -197,8 +197,8 @@ def ranks(m, q, n, arms, diag=None):
             o, late = MH.fold(o, lambda t: _sig(m, t))
             if diag is not None and late:
                 diag.setdefault(a, {})["mh"] = len(late)
-        if len(o) < n and n <= LIMIT:
+        if len(o) < lim:            # 同 bench_lex.dedup：未命中的轮按序号补齐（检索集补到 LIMIT 为止）
             s = set(o)
-            o = o + [t for t in range(n) if t not in s]
+            o = o + [t for t in range(n) if t not in s][:lim - len(o)]
         out[a] = o
     return out

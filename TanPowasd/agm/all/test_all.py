@@ -137,11 +137,26 @@ ZH = ["张小红: 我是化学制药工程师，在药厂工作。", "王丽: �
 def g6():
     AC._AC[0] = AC.AC(MINI)
     assert AL.is_arm("all0") and AL.is_arm("allW2B3H1") and AL.is_arm("all-mh") and AL.is_arm("te+bs") and not AL.is_arm("allW4B1H1")
+    sel = AL.SELECTED
+    AL.SELECTED = None
     try:
         AL.cfg("all")
         raise AssertionError("SELECTED=None 时 all 应拒跑")
     except RuntimeError:
         pass
+    finally:
+        AL.SELECTED = sel
+    assert AL.SELECTED == (1, 1, 1) and AL.cfg("all") == AL.cfg("allW1B1H1")      # PREREG_all dev 选定
+    assert AL.cfg("all-ac")["w"] == 0 and not AL.cfg("all-bt")["actr"] and AL.cfg("te+bs")["bs"] and not AL.cfg("te+bs")["mh"]
+    m = _te(EN, list(range(len(EN))))       # 无命中问句：未命中轮按序号补齐，同 te（dedup）
+    AL.prep(m, EN, None)
+    old = AL.LIMIT
+    AL.LIMIT = 5
+    try:
+        r = AL.ranks(m, "zzzz qqqq", len(EN), ["all0", "allW1B1H1"])
+        assert r["all0"] == _te_rank(m, "zzzz qqqq", len(EN))[:5] and len(r["allW1B1H1"]) == 5, r
+    finally:
+        AL.LIMIT = old
     for texts, qs in ((EN, ["Where does Caroline live now?", "support group feelings", "camping mountains"]),
                       (ZH, ["张小红现在住在哪里？", "化学制药工程师", "清华大学讲座"])):
         sess = [k // 4 for k in range(len(texts))]

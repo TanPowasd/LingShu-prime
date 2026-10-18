@@ -69,3 +69,13 @@ bm25 = UMB 既有 Okapi 臂。二者 dev 缓存已存在则复用（逐题缓存
 - 代码：`agm/all/`（ac.py / minhash.py / temporal.py / beam.py / allarm.py / perltqa.py / report_all.py / test_all.py）；`umb/run_umb.py` 接入 ALL 臂与 perltqa 集。
 - 守卫：`python -X utf8 agm/all/test_all.py --mutate`（G1–G7 + 14 个定点变异，每个模块关掉/弄坏都变红）。
 - 耗时口径：同一题所有 ALL 臂一次算出，耗时记在该题第一个 ALL 臂上，其余记 0。
+
+## 勘误（dev 读数后、选择前；不改预注册规则）
+首轮 dev 核对 all0≡te 失败（nfcorpus .924、Ecom .953、Video .954、Medical .996）。根因：问句命中块少于 10 时，te（bench_lex.dedup）把未命中轮按序号补齐，
+ALL 只在 n≤LIMIT 时补齐，检索集（n>1000）漏补。修正为补到 LIMIT 为止（allarm.ranks 末尾「未命中的轮按序号补齐」），守卫 G6 加「无命中问句」断言
+（回退修正 ⇒ 红，已手动核对）。只清掉受影响的 38 题（各 ALL 臂 top10 不足 10 者）重算，复核后 13 集 all0≡te 全部 1.000。
+
+## dev 选择（2026-10-18 11:50，results/all_dev_grid.md）
+27 格点 13 集宏平均：w=.25 九格 .5469（B、H 全部逐位相同 ⇒ 束搜索在 dev 上对任何集的主指标无影响），w=.5 九格 .5464，w=1 九格 .5407；te .5447，bm25 .5300。
+按规则选 **allW1B1H1**（w=.25、B=3、H=1；并列取小），.5469 > te .5447 ⇒ 上 test 一次。`allarm.SELECTED=(1,1,1)`，本节写定后提交，再跑 test。
+dev 上 perltqa ALL .977 vs te .979（3/12，p=.035）已显著倒退的苗头——test 若重现即按规则拒绝。
