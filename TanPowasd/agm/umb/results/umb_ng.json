@@ -1,0 +1,2071 @@
+{
+ "dev": {
+  "per_set": {
+   "lme": {
+    "status": "ok",
+    "n": 236,
+    "n_target": 236,
+    "metric": "r@10",
+    "kind": "memory",
+    "group": "mem",
+    "score": {
+     "bm25": 0.6937146892655367,
+     "te": 0.7895480225988701,
+     "ng": 0.7398305084745762
+    },
+    "ng_vs_te": {
+     "win": 18,
+     "loss": 43,
+     "tie": 175,
+     "p": 0.0018681010309752506
+    },
+    "ng_vs_bm25": {
+     "win": 42,
+     "loss": 28,
+     "tie": 166,
+     "p": 0.11960933562988493
+    },
+    "te_vs_bm25": {
+     "win": 47,
+     "loss": 6,
+     "tie": 183,
+     "p": 5.805322444984995e-09
+    },
+    "ng_meta": {
+     "ng": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 0,
+      "amb_q": 3,
+      "secs_per_q": 2.5545050847457627,
+      "index_stats_runs": [
+       {
+        "units": 1033,
+        "merged": 14,
+        "rejected": 0,
+        "nodes": 1019,
+        "multi_nodes": 10,
+        "foreign_hits": 0,
+        "indexes": 2
+       },
+       {
+        "units": 235151,
+        "merged": 1874,
+        "rejected": 0,
+        "nodes": 233277,
+        "multi_nodes": 1439,
+        "foreign_hits": 0,
+        "indexes": 477
+       }
+      ]
+     }
+    }
+   },
+   "locomo": {
+    "status": "ok",
+    "n": 257,
+    "n_target": 257,
+    "metric": "r@10",
+    "kind": "memory",
+    "group": "mem",
+    "score": {
+     "bm25": 0.5168250037899843,
+     "te": 0.612987855205754,
+     "ng": 0.6751503360452776
+    },
+    "ng_vs_te": {
+     "win": 38,
+     "loss": 19,
+     "tie": 200,
+     "p": 0.01634810389737615
+    },
+    "ng_vs_bm25": {
+     "win": 62,
+     "loss": 15,
+     "tie": 180,
+     "p": 6.083249930070788e-08
+    },
+    "te_vs_bm25": {
+     "win": 43,
+     "loss": 15,
+     "tie": 199,
+     "p": 0.0003069470155465659
+    },
+    "ng_meta": {
+     "ng": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 0,
+      "amb_q": 1,
+      "secs_per_q": 0.08742334630350194,
+      "index_stats_runs": [
+       {
+        "units": 1369,
+        "merged": 1,
+        "rejected": 0,
+        "nodes": 1368,
+        "multi_nodes": 1,
+        "foreign_hits": 0,
+        "indexes": 2
+       },
+       {
+        "units": 5882,
+        "merged": 4,
+        "rejected": 0,
+        "nodes": 5878,
+        "multi_nodes": 4,
+        "foreign_hits": 0,
+        "indexes": 10
+       }
+      ]
+     }
+    }
+   },
+   "hive": {
+    "status": "ok",
+    "n": 46,
+    "n_target": 46,
+    "metric": "r@10",
+    "kind": "memory",
+    "group": "mem",
+    "score": {
+     "bm25": 0.43849848467815217,
+     "te": 0.4266627358858816,
+     "ng": 0.48746303426610327
+    },
+    "ng_vs_te": {
+     "win": 17,
+     "loss": 8,
+     "tie": 21,
+     "p": 0.10775214433670044
+    },
+    "ng_vs_bm25": {
+     "win": 17,
+     "loss": 9,
+     "tie": 20,
+     "p": 0.16863754391670227
+    },
+    "te_vs_bm25": {
+     "win": 6,
+     "loss": 6,
+     "tie": 34,
+     "p": 1.0
+    },
+    "ng_meta": {
+     "ng": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 50,
+      "short_lists": 0,
+      "amb_q": 0,
+      "secs_per_q": 0.03406739130434783,
+      "index_stats_runs": [
+       {
+        "units": 303,
+        "merged": 0,
+        "rejected": 0,
+        "nodes": 303,
+        "multi_nodes": 0,
+        "foreign_hits": 0,
+        "indexes": 1
+       },
+       {
+        "units": 303,
+        "merged": 0,
+        "rejected": 0,
+        "nodes": 303,
+        "multi_nodes": 0,
+        "foreign_hits": 0,
+        "indexes": 1
+       }
+      ]
+     }
+    }
+   },
+   "scifact": {
+    "status": "ok",
+    "n": 145,
+    "n_target": 145,
+    "metric": "ndcg@10",
+    "kind": "retrieval",
+    "group": "en",
+    "score": {
+     "bm25": 0.6771525647077983,
+     "te": 0.6953858331185069,
+     "ng": 0.6844717820916129,
+     "ng_shuf": 0.6857677466595381
+    },
+    "ng_vs_te": {
+     "win": 17,
+     "loss": 18,
+     "tie": 110,
+     "p": 1.0
+    },
+    "ng_vs_bm25": {
+     "win": 22,
+     "loss": 14,
+     "tie": 109,
+     "p": 0.2429849540349096
+    },
+    "te_vs_bm25": {
+     "win": 21,
+     "loss": 15,
+     "tie": 109,
+     "p": 0.40503224614076316
+    },
+    "ngshuf_vs_te": {
+     "win": 16,
+     "loss": 17,
+     "tie": 112,
+     "p": 1.0
+    },
+    "ngshuf_vs_ng": {
+     "win": 12,
+     "loss": 13,
+     "tie": 120,
+     "p": 1.0
+    },
+    "ng_meta": {
+     "ng": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 0,
+      "amb_q": 0,
+      "secs_per_q": 0.06664413793103448,
+      "index_stats_runs": [
+       {
+        "units": 3982,
+        "merged": 0,
+        "rejected": 0,
+        "nodes": 3982,
+        "multi_nodes": 0,
+        "foreign_hits": 0,
+        "indexes": 1
+       },
+       {
+        "units": 7964,
+        "merged": 0,
+        "rejected": 0,
+        "nodes": 7964,
+        "multi_nodes": 0,
+        "foreign_hits": 0,
+        "indexes": 2
+       }
+      ]
+     },
+     "ng_shuf": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 0,
+      "amb_q": 0,
+      "secs_per_q": 0.06649586206896552,
+      "index_stats_runs": [
+       {
+        "units": 7964,
+        "merged": 0,
+        "rejected": 0,
+        "nodes": 7964,
+        "multi_nodes": 0,
+        "foreign_hits": 0,
+        "indexes": 2
+       }
+      ]
+     }
+    }
+   },
+   "nfcorpus": {
+    "status": "ok",
+    "n": 171,
+    "n_target": 171,
+    "metric": "ndcg@10",
+    "kind": "retrieval",
+    "group": "en",
+    "score": {
+     "bm25": 0.3271176111820134,
+     "te": 0.3408939036377725,
+     "ng": 0.3953294705649431,
+     "ng_shuf": 0.3458005104771818
+    },
+    "ng_vs_te": {
+     "win": 78,
+     "loss": 25,
+     "tie": 68,
+     "p": 1.609927176950882e-07
+    },
+    "ng_vs_bm25": {
+     "win": 78,
+     "loss": 28,
+     "tie": 65,
+     "p": 1.251224275151152e-06
+    },
+    "te_vs_bm25": {
+     "win": 46,
+     "loss": 37,
+     "tie": 88,
+     "p": 0.379999396411918
+    },
+    "ngshuf_vs_te": {
+     "win": 55,
+     "loss": 45,
+     "tie": 71,
+     "p": 0.36820161732669626
+    },
+    "ngshuf_vs_ng": {
+     "win": 32,
+     "loss": 72,
+     "tie": 67,
+     "p": 0.00010959860355569963
+    },
+    "ng_meta": {
+     "ng": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 5,
+      "amb_q": 20,
+      "secs_per_q": 0.026026315789473682,
+      "index_stats_runs": [
+       {
+        "units": 7266,
+        "merged": 82,
+        "rejected": 0,
+        "nodes": 7184,
+        "multi_nodes": 82,
+        "foreign_hits": 0,
+        "indexes": 2
+       }
+      ]
+     },
+     "ng_shuf": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 5,
+      "amb_q": 19,
+      "secs_per_q": 0.025778362573099414,
+      "index_stats_runs": [
+       {
+        "units": 7266,
+        "merged": 82,
+        "rejected": 0,
+        "nodes": 7184,
+        "multi_nodes": 82,
+        "foreign_hits": 0,
+        "indexes": 2
+       }
+      ]
+     }
+    }
+   },
+   "arguana": {
+    "status": "ok",
+    "n": 252,
+    "n_target": 252,
+    "metric": "ndcg@10",
+    "kind": "retrieval",
+    "group": "en",
+    "score": {
+     "bm25": 0.3452971285346159,
+     "te": 0.38552341972655324,
+     "ng": 0.5219857847615599,
+     "ng_shuf": 0.4286143814482667
+    },
+    "ng_vs_te": {
+     "win": 134,
+     "loss": 57,
+     "tie": 61,
+     "p": 2.4939226698423523e-08
+    },
+    "ng_vs_bm25": {
+     "win": 150,
+     "loss": 40,
+     "tie": 62,
+     "p": 3.586135686776738e-16
+    },
+    "te_vs_bm25": {
+     "win": 65,
+     "loss": 40,
+     "tie": 147,
+     "p": 0.01874091540825805
+    },
+    "ngshuf_vs_te": {
+     "win": 84,
+     "loss": 56,
+     "tie": 112,
+     "p": 0.022154955980559526
+    },
+    "ngshuf_vs_ng": {
+     "win": 59,
+     "loss": 114,
+     "tie": 79,
+     "p": 3.502537923663587e-05
+    },
+    "ng_meta": {
+     "ng": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 0,
+      "amb_q": 48,
+      "secs_per_q": 0.13749642857142855,
+      "index_stats_runs": [
+       {
+        "units": 11734,
+        "merged": 168,
+        "rejected": 0,
+        "nodes": 11566,
+        "multi_nodes": 168,
+        "foreign_hits": 0,
+        "indexes": 2
+       }
+      ]
+     },
+     "ng_shuf": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 0,
+      "amb_q": 41,
+      "secs_per_q": 0.1374154761904762,
+      "index_stats_runs": [
+       {
+        "units": 11734,
+        "merged": 168,
+        "rejected": 0,
+        "nodes": 11566,
+        "multi_nodes": 168,
+        "foreign_hits": 0,
+        "indexes": 2
+       }
+      ]
+     }
+    }
+   },
+   "scidocs": {
+    "status": "ok",
+    "n": 254,
+    "n_target": 254,
+    "metric": "ndcg@10",
+    "kind": "retrieval",
+    "group": "en",
+    "score": {
+     "bm25": 0.26679326135820935,
+     "te": 0.27338538534788986,
+     "ng": 0.36789981344282063,
+     "ng_shuf": 0.254995723979853
+    },
+    "ng_vs_te": {
+     "win": 149,
+     "loss": 34,
+     "tie": 71,
+     "p": 2.265080764721523e-18
+    },
+    "ng_vs_bm25": {
+     "win": 143,
+     "loss": 47,
+     "tie": 64,
+     "p": 1.825847246473062e-12
+    },
+    "te_vs_bm25": {
+     "win": 71,
+     "loss": 78,
+     "tie": 105,
+     "p": 0.6231944984411367
+    },
+    "ngshuf_vs_te": {
+     "win": 55,
+     "loss": 85,
+     "tie": 114,
+     "p": 0.013957334124842395
+    },
+    "ngshuf_vs_ng": {
+     "win": 25,
+     "loss": 148,
+     "tie": 81,
+     "p": 1.8659401207770104e-22
+    },
+    "ng_meta": {
+     "ng": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 0,
+      "amb_q": 0,
+      "secs_per_q": 0.0649007874015748,
+      "index_stats_runs": [
+       {
+        "units": 10208,
+        "merged": 16,
+        "rejected": 0,
+        "nodes": 10192,
+        "multi_nodes": 6,
+        "foreign_hits": 0,
+        "indexes": 2
+       }
+      ]
+     },
+     "ng_shuf": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 0,
+      "amb_q": 0,
+      "secs_per_q": 0.06431181102362205,
+      "index_stats_runs": [
+       {
+        "units": 10208,
+        "merged": 16,
+        "rejected": 0,
+        "nodes": 10192,
+        "multi_nodes": 6,
+        "foreign_hits": 0,
+        "indexes": 2
+       }
+      ]
+     }
+    }
+   },
+   "EcomRetrieval": {
+    "status": "ok",
+    "n": 257,
+    "n_target": 257,
+    "metric": "ndcg@10",
+    "kind": "retrieval",
+    "group": "zh",
+    "score": {
+     "bm25": 0.38370964721520034,
+     "te": 0.3820337923769713,
+     "ng": 0.3705434247719941,
+     "ng_shuf": 0.3720867493869299
+    },
+    "ng_vs_te": {
+     "win": 23,
+     "loss": 35,
+     "tie": 199,
+     "p": 0.14800580076020597
+    },
+    "ng_vs_bm25": {
+     "win": 21,
+     "loss": 36,
+     "tie": 200,
+     "p": 0.0627366803558285
+    },
+    "te_vs_bm25": {
+     "win": 6,
+     "loss": 14,
+     "tie": 237,
+     "p": 0.11531829833984375
+    },
+    "ngshuf_vs_te": {
+     "win": 26,
+     "loss": 35,
+     "tie": 196,
+     "p": 0.30567741986311836
+    },
+    "ngshuf_vs_ng": {
+     "win": 6,
+     "loss": 4,
+     "tie": 247,
+     "p": 0.75390625
+    },
+    "ng_meta": {
+     "ng": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 11,
+      "amb_q": 1,
+      "secs_per_q": 0.01618910505836576,
+      "index_stats_runs": [
+       {
+        "units": 201804,
+        "merged": 86,
+        "rejected": 0,
+        "nodes": 201718,
+        "multi_nodes": 86,
+        "foreign_hits": 0,
+        "indexes": 2
+       }
+      ]
+     },
+     "ng_shuf": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 11,
+      "amb_q": 1,
+      "secs_per_q": 0.01426887159533074,
+      "index_stats_runs": [
+       {
+        "units": 201804,
+        "merged": 86,
+        "rejected": 0,
+        "nodes": 201718,
+        "multi_nodes": 86,
+        "foreign_hits": 0,
+        "indexes": 2
+       }
+      ]
+     }
+    }
+   },
+   "VideoRetrieval": {
+    "status": "ok",
+    "n": 260,
+    "n_target": 260,
+    "metric": "ndcg@10",
+    "kind": "retrieval",
+    "group": "zh",
+    "score": {
+     "bm25": 0.6450401891337623,
+     "te": 0.6247727758135239,
+     "ng": 0.609805790442824,
+     "ng_shuf": 0.6089615127168968
+    },
+    "ng_vs_te": {
+     "win": 36,
+     "loss": 36,
+     "tie": 188,
+     "p": 1.0
+    },
+    "ng_vs_bm25": {
+     "win": 28,
+     "loss": 43,
+     "tie": 189,
+     "p": 0.09592363141082376
+    },
+    "te_vs_bm25": {
+     "win": 13,
+     "loss": 30,
+     "tie": 217,
+     "p": 0.0137181850586785
+    },
+    "ngshuf_vs_te": {
+     "win": 36,
+     "loss": 37,
+     "tie": 187,
+     "p": 1.0
+    },
+    "ngshuf_vs_ng": {
+     "win": 4,
+     "loss": 5,
+     "tie": 251,
+     "p": 1.0
+    },
+    "ng_meta": {
+     "ng": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 13,
+      "amb_q": 20,
+      "secs_per_q": 0.018510384615384616,
+      "index_stats_runs": [
+       {
+        "units": 201860,
+        "merged": 1078,
+        "rejected": 0,
+        "nodes": 200782,
+        "multi_nodes": 794,
+        "foreign_hits": 0,
+        "indexes": 2
+       }
+      ]
+     },
+     "ng_shuf": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 13,
+      "amb_q": 21,
+      "secs_per_q": 0.017965384615384616,
+      "index_stats_runs": [
+       {
+        "units": 201860,
+        "merged": 1078,
+        "rejected": 0,
+        "nodes": 200782,
+        "multi_nodes": 794,
+        "foreign_hits": 0,
+        "indexes": 2
+       }
+      ]
+     }
+    }
+   },
+   "MedicalRetrieval": {
+    "status": "ok",
+    "n": 227,
+    "n_target": 227,
+    "metric": "ndcg@10",
+    "kind": "retrieval",
+    "group": "zh",
+    "score": {
+     "bm25": 0.33040718997868773,
+     "te": 0.3222200386178179,
+     "ng": 0.3178804474441468,
+     "ng_shuf": 0.3179440372288241
+    },
+    "ng_vs_te": {
+     "win": 10,
+     "loss": 14,
+     "tie": 203,
+     "p": 0.5412561893463135
+    },
+    "ng_vs_bm25": {
+     "win": 7,
+     "loss": 20,
+     "tie": 200,
+     "p": 0.0191572904586792
+    },
+    "te_vs_bm25": {
+     "win": 9,
+     "loss": 16,
+     "tie": 202,
+     "p": 0.2295229434967041
+    },
+    "ngshuf_vs_te": {
+     "win": 10,
+     "loss": 14,
+     "tie": 203,
+     "p": 0.5412561893463135
+    },
+    "ngshuf_vs_ng": {
+     "win": 1,
+     "loss": 0,
+     "tie": 226,
+     "p": 1.0
+    },
+    "ng_meta": {
+     "ng": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 1,
+      "amb_q": 4,
+      "secs_per_q": 0.05055022026431718,
+      "index_stats_runs": [
+       {
+        "units": 98468,
+        "merged": 766,
+        "rejected": 0,
+        "nodes": 97702,
+        "multi_nodes": 646,
+        "foreign_hits": 0,
+        "indexes": 2
+       }
+      ]
+     },
+     "ng_shuf": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 1,
+      "amb_q": 5,
+      "secs_per_q": 0.046636123348017616,
+      "index_stats_runs": [
+       {
+        "units": 98468,
+        "merged": 766,
+        "rejected": 0,
+        "nodes": 97702,
+        "multi_nodes": 646,
+        "foreign_hits": 0,
+        "indexes": 2
+       }
+      ]
+     }
+    }
+   },
+   "DuRetrieval": {
+    "status": "ok",
+    "n": 233,
+    "n_target": 233,
+    "metric": "ndcg@10",
+    "kind": "retrieval",
+    "group": "zh",
+    "score": {
+     "bm25": 0.7401118230349545,
+     "te": 0.7226529380004066,
+     "ng": 0.6770681246865377,
+     "ng_shuf": 0.7102479882740601
+    },
+    "ng_vs_te": {
+     "win": 35,
+     "loss": 110,
+     "tie": 88,
+     "p": 3.187757024012109e-10
+    },
+    "ng_vs_bm25": {
+     "win": 23,
+     "loss": 126,
+     "tie": 84,
+     "p": 2.1205229688026993e-18
+    },
+    "te_vs_bm25": {
+     "win": 32,
+     "loss": 68,
+     "tie": 133,
+     "p": 0.00040877716742681523
+    },
+    "ngshuf_vs_te": {
+     "win": 54,
+     "loss": 65,
+     "tie": 114,
+     "p": 0.35935826390511105
+    },
+    "ngshuf_vs_ng": {
+     "win": 89,
+     "loss": 0,
+     "tie": 144,
+     "p": 3.2311742677852644e-27
+    },
+    "ng_meta": {
+     "ng": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 0,
+      "amb_q": 6,
+      "secs_per_q": 0.045118884120171676,
+      "index_stats_runs": [
+       {
+        "units": 35076,
+        "merged": 36,
+        "rejected": 0,
+        "nodes": 35040,
+        "multi_nodes": 36,
+        "foreign_hits": 0,
+        "indexes": 2
+       }
+      ]
+     },
+     "ng_shuf": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 0,
+      "amb_q": 7,
+      "secs_per_q": 0.04382918454935622,
+      "index_stats_runs": [
+       {
+        "units": 35076,
+        "merged": 36,
+        "rejected": 0,
+        "nodes": 35040,
+        "multi_nodes": 36,
+        "foreign_hits": 0,
+        "indexes": 2
+       }
+      ]
+     }
+    }
+   },
+   "MMarcoRetrieval": {
+    "status": "ok",
+    "n": 258,
+    "n_target": 258,
+    "metric": "ndcg@10",
+    "kind": "retrieval",
+    "group": "zh",
+    "score": {
+     "bm25": 0.5409023156939109,
+     "te": 0.5258211326431922,
+     "ng": 0.49924005331060467,
+     "ng_shuf": 0.5011780378067288
+    },
+    "ng_vs_te": {
+     "win": 25,
+     "loss": 32,
+     "tie": 201,
+     "p": 0.42704285650325524
+    },
+    "ng_vs_bm25": {
+     "win": 22,
+     "loss": 41,
+     "tie": 195,
+     "p": 0.022574972673257185
+    },
+    "te_vs_bm25": {
+     "win": 15,
+     "loss": 32,
+     "tie": 211,
+     "p": 0.01862383661500644
+    },
+    "ngshuf_vs_te": {
+     "win": 25,
+     "loss": 32,
+     "tie": 201,
+     "p": 0.42704285650325524
+    },
+    "ngshuf_vs_ng": {
+     "win": 1,
+     "loss": 0,
+     "tie": 257,
+     "p": 1.0
+    },
+    "ng_meta": {
+     "ng": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 0,
+      "amb_q": 16,
+      "secs_per_q": 0.03055,
+      "index_stats_runs": [
+       {
+        "units": 104782,
+        "merged": 663,
+        "rejected": 0,
+        "nodes": 104119,
+        "multi_nodes": 648,
+        "foreign_hits": 0,
+        "indexes": 2
+       }
+      ]
+     },
+     "ng_shuf": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 0,
+      "amb_q": 13,
+      "secs_per_q": 0.029931782945736434,
+      "index_stats_runs": [
+       {
+        "units": 104782,
+        "merged": 663,
+        "rejected": 0,
+        "nodes": 104119,
+        "multi_nodes": 648,
+        "foreign_hits": 0,
+        "indexes": 2
+       }
+      ]
+     }
+    }
+   },
+   "perltqa": {
+    "status": "ok",
+    "n": 3956,
+    "n_target": 3956,
+    "metric": "r@10",
+    "kind": "memory",
+    "group": "mem",
+    "score": {
+     "bm25": 0.9802831142568251,
+     "te": 0.9790192113245703,
+     "ng": 0.9772497472194136
+    },
+    "ng_vs_te": {
+     "win": 14,
+     "loss": 21,
+     "tie": 3921,
+     "p": 0.31050465907901525
+    },
+    "ng_vs_bm25": {
+     "win": 13,
+     "loss": 25,
+     "tie": 3918,
+     "p": 0.07295138851623051
+    },
+    "te_vs_bm25": {
+     "win": 6,
+     "loss": 11,
+     "tie": 3939,
+     "p": 0.332305908203125
+    },
+    "ng_meta": {
+     "ng": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 60,
+      "amb_q": 0,
+      "secs_per_q": 0.0038592012133468146,
+      "index_stats_runs": [
+       {
+        "units": 70,
+        "merged": 0,
+        "rejected": 0,
+        "nodes": 70,
+        "multi_nodes": 0,
+        "foreign_hits": 0,
+        "indexes": 1
+       },
+       {
+        "units": 2147,
+        "merged": 0,
+        "rejected": 0,
+        "nodes": 2147,
+        "multi_nodes": 0,
+        "foreign_hits": 0,
+        "indexes": 32
+       }
+      ]
+     }
+    }
+   }
+  },
+  "n_sets_ok": 12,
+  "macro12": {
+   "bm25": 0.49213082571440214,
+   "te": 0.5084906527477616,
+   "ng": 0.52888904752525,
+   "ng*": 0.510670047230353
+  },
+  "macro_group": {
+   "mem": {
+    "bm25": 0.549679392577891,
+    "te": 0.6097328712301686,
+    "ng": 0.6341479595953191,
+    "ng*": 0.6341479595953191
+   },
+   "en": {
+    "bm25": 0.40409014144565925,
+    "te": 0.4237971354576806,
+    "ng": 0.4924217127152341,
+    "ng*": 0.4287945906412099
+   },
+   "zh": {
+    "bm25": 0.5280342330113031,
+    "te": 0.5155001354903824,
+    "ng": 0.49490756813122144,
+    "ng*": 0.502083665082688
+   }
+  },
+  "macro13_with_perltqa": {
+   "bm25": 0.529681001756127,
+   "te": 0.5446851572536701,
+   "ng": 0.5633783321171089
+  },
+  "pooled_sign": {
+   "ng_vs_te": {
+    "win": 580,
+    "loss": 431,
+    "p": 3.121919135433128e-06
+   },
+   "ng_vs_bm25": {
+    "win": 615,
+    "loss": 447,
+    "p": 2.8247180843617645e-07
+   },
+   "te_vs_bm25": {
+    "win": 374,
+    "loss": 357,
+    "p": 0.5540264444591235
+   },
+   "ngstar_vs_te": {
+    "win": 434,
+    "loss": 456,
+    "p": 0.4815023754072488
+   }
+  },
+  "set_level_sign": {
+   "ng_vs_te": {
+    "win": 5,
+    "loss": 7,
+    "p": 0.7744140625
+   },
+   "ngstar_vs_te": {
+    "win": 4,
+    "loss": 8,
+    "p": 0.3876953125
+   }
+  }
+ },
+ "test": {
+  "per_set": {
+   "lme": {
+    "status": "ok",
+    "n": 243,
+    "n_target": 243,
+    "metric": "r@10",
+    "kind": "memory",
+    "group": "mem",
+    "score": {
+     "bm25": 0.755829903978052,
+     "te": 0.8154320987654321,
+     "ng": 0.7441015089163238
+    },
+    "ng_vs_te": {
+     "win": 14,
+     "loss": 47,
+     "tie": 182,
+     "p": 2.719187682281854e-05
+    },
+    "ng_vs_bm25": {
+     "win": 28,
+     "loss": 35,
+     "tie": 180,
+     "p": 0.4499625362902225
+    },
+    "te_vs_bm25": {
+     "win": 32,
+     "loss": 6,
+     "tie": 205,
+     "p": 2.4342560209333897e-05
+    },
+    "ng_meta": {
+     "ng": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 0,
+      "amb_q": 11,
+      "secs_per_q": 2.347110699588477,
+      "index_stats_runs": [
+       {
+        "units": 235151,
+        "merged": 1874,
+        "rejected": 0,
+        "nodes": 233277,
+        "multi_nodes": 1439,
+        "foreign_hits": 0,
+        "indexes": 477
+       }
+      ]
+     }
+    }
+   },
+   "locomo": {
+    "status": "ok",
+    "n": 243,
+    "n_target": 243,
+    "metric": "r@10",
+    "kind": "memory",
+    "group": "mem",
+    "score": {
+     "bm25": 0.513923182441701,
+     "te": 0.6169410150891632,
+     "ng": 0.7131001371742113
+    },
+    "ng_vs_te": {
+     "win": 37,
+     "loss": 6,
+     "tie": 200,
+     "p": 1.636124125070637e-06
+    },
+    "ng_vs_bm25": {
+     "win": 67,
+     "loss": 6,
+     "tie": 170,
+     "p": 3.947260651543665e-14
+    },
+    "te_vs_bm25": {
+     "win": 39,
+     "loss": 7,
+     "tie": 197,
+     "p": 1.831543272601266e-06
+    },
+    "ng_meta": {
+     "ng": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 0,
+      "amb_q": 0,
+      "secs_per_q": 0.007332510288065844,
+      "index_stats_runs": [
+       {
+        "units": 5882,
+        "merged": 4,
+        "rejected": 0,
+        "nodes": 5878,
+        "multi_nodes": 4,
+        "foreign_hits": 0,
+        "indexes": 10
+       }
+      ]
+     }
+    }
+   },
+   "hive": {
+    "status": "ok",
+    "n": 46,
+    "n_target": 46,
+    "metric": "r@10",
+    "kind": "memory",
+    "group": "mem",
+    "score": {
+     "bm25": 0.4913216011042098,
+     "te": 0.5123619737750172,
+     "ng": 0.5911404416839199
+    },
+    "ng_vs_te": {
+     "win": 16,
+     "loss": 4,
+     "tie": 26,
+     "p": 0.01181793212890625
+    },
+    "ng_vs_bm25": {
+     "win": 21,
+     "loss": 6,
+     "tie": 19,
+     "p": 0.005924612283706665
+    },
+    "te_vs_bm25": {
+     "win": 10,
+     "loss": 6,
+     "tie": 30,
+     "p": 0.454498291015625
+    },
+    "ng_meta": {
+     "ng": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 50,
+      "short_lists": 0,
+      "amb_q": 0,
+      "secs_per_q": 0.013747826086956521,
+      "index_stats_runs": [
+       {
+        "units": 303,
+        "merged": 0,
+        "rejected": 0,
+        "nodes": 303,
+        "multi_nodes": 0,
+        "foreign_hits": 0,
+        "indexes": 1
+       }
+      ]
+     }
+    }
+   },
+   "scifact": {
+    "status": "ok",
+    "n": 155,
+    "n_target": 155,
+    "metric": "ndcg@10",
+    "kind": "retrieval",
+    "group": "en",
+    "score": {
+     "bm25": 0.6879203366180764,
+     "te": 0.717238558310546,
+     "ng": 0.6936883261946123,
+     "ng_shuf": 0.6979061004671384
+    },
+    "ng_vs_te": {
+     "win": 14,
+     "loss": 26,
+     "tie": 115,
+     "p": 0.0806904677519924
+    },
+    "ng_vs_bm25": {
+     "win": 18,
+     "loss": 25,
+     "tie": 112,
+     "p": 0.3603776529357674
+    },
+    "te_vs_bm25": {
+     "win": 25,
+     "loss": 12,
+     "tie": 118,
+     "p": 0.04703102743951604
+    },
+    "ngshuf_vs_te": {
+     "win": 17,
+     "loss": 28,
+     "tie": 110,
+     "p": 0.1351564508456704
+    },
+    "ngshuf_vs_ng": {
+     "win": 17,
+     "loss": 16,
+     "tie": 122,
+     "p": 1.0
+    },
+    "ng_meta": {
+     "ng": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 0,
+      "amb_q": 0,
+      "secs_per_q": 0.07004193548387097,
+      "index_stats_runs": [
+       {
+        "units": 7964,
+        "merged": 0,
+        "rejected": 0,
+        "nodes": 7964,
+        "multi_nodes": 0,
+        "foreign_hits": 0,
+        "indexes": 2
+       }
+      ]
+     },
+     "ng_shuf": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 0,
+      "amb_q": 0,
+      "secs_per_q": 0.07022774193548388,
+      "index_stats_runs": [
+       {
+        "units": 7964,
+        "merged": 0,
+        "rejected": 0,
+        "nodes": 7964,
+        "multi_nodes": 0,
+        "foreign_hits": 0,
+        "indexes": 2
+       }
+      ]
+     }
+    }
+   },
+   "nfcorpus": {
+    "status": "ok",
+    "n": 152,
+    "n_target": 152,
+    "metric": "ndcg@10",
+    "kind": "retrieval",
+    "group": "en",
+    "score": {
+     "bm25": 0.28262445899794403,
+     "te": 0.29502855705033776,
+     "ng": 0.33826030539962426,
+     "ng_shuf": 0.2972796807584248
+    },
+    "ng_vs_te": {
+     "win": 52,
+     "loss": 23,
+     "tie": 77,
+     "p": 0.0010795155066662821
+    },
+    "ng_vs_bm25": {
+     "win": 55,
+     "loss": 23,
+     "tie": 74,
+     "p": 0.00037779201420676267
+    },
+    "te_vs_bm25": {
+     "win": 40,
+     "loss": 34,
+     "tie": 78,
+     "p": 0.5613807442989819
+    },
+    "ngshuf_vs_te": {
+     "win": 35,
+     "loss": 39,
+     "tie": 78,
+     "p": 0.72754708348947
+    },
+    "ngshuf_vs_ng": {
+     "win": 21,
+     "loss": 50,
+     "tie": 81,
+     "p": 0.0007667649897412907
+    },
+    "ng_meta": {
+     "ng": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 11,
+      "amb_q": 15,
+      "secs_per_q": 0.021007236842105263,
+      "index_stats_runs": [
+       {
+        "units": 7266,
+        "merged": 82,
+        "rejected": 0,
+        "nodes": 7184,
+        "multi_nodes": 82,
+        "foreign_hits": 0,
+        "indexes": 2
+       }
+      ]
+     },
+     "ng_shuf": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 11,
+      "amb_q": 20,
+      "secs_per_q": 0.021030921052631577,
+      "index_stats_runs": [
+       {
+        "units": 7266,
+        "merged": 82,
+        "rejected": 0,
+        "nodes": 7184,
+        "multi_nodes": 82,
+        "foreign_hits": 0,
+        "indexes": 2
+       }
+      ]
+     }
+    }
+   },
+   "arguana": {
+    "status": "ok",
+    "n": 248,
+    "n_target": 248,
+    "metric": "ndcg@10",
+    "kind": "retrieval",
+    "group": "en",
+    "score": {
+     "bm25": 0.41431353289026124,
+     "te": 0.42739337555285684,
+     "ng": 0.5602750193157114,
+     "ng_shuf": 0.4931482662718541
+    },
+    "ng_vs_te": {
+     "win": 125,
+     "loss": 52,
+     "tie": 71,
+     "p": 4.050380381964041e-08
+    },
+    "ng_vs_bm25": {
+     "win": 134,
+     "loss": 49,
+     "tie": 65,
+     "p": 2.5367286618294754e-10
+    },
+    "te_vs_bm25": {
+     "win": 58,
+     "loss": 44,
+     "tie": 146,
+     "p": 0.19778986306808324
+    },
+    "ngshuf_vs_te": {
+     "win": 83,
+     "loss": 50,
+     "tie": 115,
+     "p": 0.005325740283781569
+    },
+    "ngshuf_vs_ng": {
+     "win": 58,
+     "loss": 106,
+     "tie": 84,
+     "p": 0.0002207062450252361
+    },
+    "ng_meta": {
+     "ng": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 0,
+      "amb_q": 51,
+      "secs_per_q": 0.14320483870967743,
+      "index_stats_runs": [
+       {
+        "units": 11734,
+        "merged": 168,
+        "rejected": 0,
+        "nodes": 11566,
+        "multi_nodes": 168,
+        "foreign_hits": 0,
+        "indexes": 2
+       }
+      ]
+     },
+     "ng_shuf": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 0,
+      "amb_q": 51,
+      "secs_per_q": 0.1425366935483871,
+      "index_stats_runs": [
+       {
+        "units": 11734,
+        "merged": 168,
+        "rejected": 0,
+        "nodes": 11566,
+        "multi_nodes": 168,
+        "foreign_hits": 0,
+        "indexes": 2
+       }
+      ]
+     }
+    }
+   },
+   "scidocs": {
+    "status": "ok",
+    "n": 246,
+    "n_target": 246,
+    "metric": "ndcg@10",
+    "kind": "retrieval",
+    "group": "en",
+    "score": {
+     "bm25": 0.25412280033639506,
+     "te": 0.2628420258403998,
+     "ng": 0.36310149336870634,
+     "ng_shuf": 0.2454968936711007
+    },
+    "ng_vs_te": {
+     "win": 145,
+     "loss": 29,
+     "tie": 72,
+     "p": 9.388423957840486e-20
+    },
+    "ng_vs_bm25": {
+     "win": 148,
+     "loss": 28,
+     "tie": 70,
+     "p": 6.514690447346187e-21
+    },
+    "te_vs_bm25": {
+     "win": 70,
+     "loss": 71,
+     "tie": 105,
+     "p": 1.0
+    },
+    "ngshuf_vs_te": {
+     "win": 50,
+     "loss": 83,
+     "tie": 113,
+     "p": 0.005325740283781569
+    },
+    "ngshuf_vs_ng": {
+     "win": 22,
+     "loss": 147,
+     "tie": 77,
+     "p": 6.892766865026335e-24
+    },
+    "ng_meta": {
+     "ng": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 0,
+      "amb_q": 0,
+      "secs_per_q": 0.061838617886178865,
+      "index_stats_runs": [
+       {
+        "units": 10208,
+        "merged": 16,
+        "rejected": 0,
+        "nodes": 10192,
+        "multi_nodes": 6,
+        "foreign_hits": 0,
+        "indexes": 2
+       }
+      ]
+     },
+     "ng_shuf": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 0,
+      "amb_q": 0,
+      "secs_per_q": 0.06187154471544715,
+      "index_stats_runs": [
+       {
+        "units": 10208,
+        "merged": 16,
+        "rejected": 0,
+        "nodes": 10192,
+        "multi_nodes": 6,
+        "foreign_hits": 0,
+        "indexes": 2
+       }
+      ]
+     }
+    }
+   },
+   "EcomRetrieval": {
+    "status": "ok",
+    "n": 243,
+    "n_target": 243,
+    "metric": "ndcg@10",
+    "kind": "retrieval",
+    "group": "zh",
+    "score": {
+     "bm25": 0.45485129088578163,
+     "te": 0.4406233352164032,
+     "ng": 0.4328532937434009,
+     "ng_shuf": 0.43535703051173863
+    },
+    "ng_vs_te": {
+     "win": 35,
+     "loss": 31,
+     "tie": 177,
+     "p": 0.7122308826373508
+    },
+    "ng_vs_bm25": {
+     "win": 26,
+     "loss": 33,
+     "tie": 184,
+     "p": 0.4349928051221534
+    },
+    "te_vs_bm25": {
+     "win": 11,
+     "loss": 20,
+     "tie": 212,
+     "p": 0.14961278438568115
+    },
+    "ngshuf_vs_te": {
+     "win": 37,
+     "loss": 31,
+     "tie": 175,
+     "p": 0.5446122234192591
+    },
+    "ngshuf_vs_ng": {
+     "win": 5,
+     "loss": 2,
+     "tie": 236,
+     "p": 0.453125
+    },
+    "ng_meta": {
+     "ng": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 18,
+      "amb_q": 3,
+      "secs_per_q": 0.013627983539094649,
+      "index_stats_runs": [
+       {
+        "units": 201804,
+        "merged": 86,
+        "rejected": 0,
+        "nodes": 201718,
+        "multi_nodes": 86,
+        "foreign_hits": 0,
+        "indexes": 2
+       }
+      ]
+     },
+     "ng_shuf": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 18,
+      "amb_q": 3,
+      "secs_per_q": 0.013490534979423869,
+      "index_stats_runs": [
+       {
+        "units": 201804,
+        "merged": 86,
+        "rejected": 0,
+        "nodes": 201718,
+        "multi_nodes": 86,
+        "foreign_hits": 0,
+        "indexes": 2
+       }
+      ]
+     }
+    }
+   },
+   "VideoRetrieval": {
+    "status": "ok",
+    "n": 240,
+    "n_target": 240,
+    "metric": "ndcg@10",
+    "kind": "retrieval",
+    "group": "zh",
+    "score": {
+     "bm25": 0.5682581191904107,
+     "te": 0.5591844589382916,
+     "ng": 0.5345592106398982,
+     "ng_shuf": 0.5315281334954272
+    },
+    "ng_vs_te": {
+     "win": 27,
+     "loss": 28,
+     "tie": 185,
+     "p": 1.0
+    },
+    "ng_vs_bm25": {
+     "win": 26,
+     "loss": 32,
+     "tie": 182,
+     "p": 0.5118423084381689
+    },
+    "te_vs_bm25": {
+     "win": 10,
+     "loss": 13,
+     "tie": 217,
+     "p": 0.6776394844055176
+    },
+    "ngshuf_vs_te": {
+     "win": 27,
+     "loss": 29,
+     "tie": 184,
+     "p": 0.8938530948350217
+    },
+    "ngshuf_vs_ng": {
+     "win": 1,
+     "loss": 4,
+     "tie": 235,
+     "p": 0.375
+    },
+    "ng_meta": {
+     "ng": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 25,
+      "amb_q": 22,
+      "secs_per_q": 0.016129583333333333,
+      "index_stats_runs": [
+       {
+        "units": 201860,
+        "merged": 1078,
+        "rejected": 0,
+        "nodes": 200782,
+        "multi_nodes": 794,
+        "foreign_hits": 0,
+        "indexes": 2
+       }
+      ]
+     },
+     "ng_shuf": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 25,
+      "amb_q": 21,
+      "secs_per_q": 0.0156925,
+      "index_stats_runs": [
+       {
+        "units": 201860,
+        "merged": 1078,
+        "rejected": 0,
+        "nodes": 200782,
+        "multi_nodes": 794,
+        "foreign_hits": 0,
+        "indexes": 2
+       }
+      ]
+     }
+    }
+   },
+   "MedicalRetrieval": {
+    "status": "ok",
+    "n": 273,
+    "n_target": 273,
+    "metric": "ndcg@10",
+    "kind": "retrieval",
+    "group": "zh",
+    "score": {
+     "bm25": 0.3410959381914092,
+     "te": 0.3387046084545218,
+     "ng": 0.33286510561909083,
+     "ng_shuf": 0.3327813186089271
+    },
+    "ng_vs_te": {
+     "win": 16,
+     "loss": 18,
+     "tie": 239,
+     "p": 0.8641662404406816
+    },
+    "ng_vs_bm25": {
+     "win": 17,
+     "loss": 16,
+     "tie": 240,
+     "p": 1.0
+    },
+    "te_vs_bm25": {
+     "win": 10,
+     "loss": 11,
+     "tie": 252,
+     "p": 1.0
+    },
+    "ngshuf_vs_te": {
+     "win": 16,
+     "loss": 18,
+     "tie": 239,
+     "p": 0.8641662404406816
+    },
+    "ngshuf_vs_ng": {
+     "win": 0,
+     "loss": 1,
+     "tie": 272,
+     "p": 1.0
+    },
+    "ng_meta": {
+     "ng": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 1,
+      "amb_q": 10,
+      "secs_per_q": 0.047745054945054946,
+      "index_stats_runs": [
+       {
+        "units": 98468,
+        "merged": 766,
+        "rejected": 0,
+        "nodes": 97702,
+        "multi_nodes": 646,
+        "foreign_hits": 0,
+        "indexes": 2
+       }
+      ]
+     },
+     "ng_shuf": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 1,
+      "amb_q": 9,
+      "secs_per_q": 0.04470952380952381,
+      "index_stats_runs": [
+       {
+        "units": 98468,
+        "merged": 766,
+        "rejected": 0,
+        "nodes": 97702,
+        "multi_nodes": 646,
+        "foreign_hits": 0,
+        "indexes": 2
+       }
+      ]
+     }
+    }
+   },
+   "DuRetrieval": {
+    "status": "ok",
+    "n": 267,
+    "n_target": 267,
+    "metric": "ndcg@10",
+    "kind": "retrieval",
+    "group": "zh",
+    "score": {
+     "bm25": 0.7149032246095728,
+     "te": 0.7029141436076001,
+     "ng": 0.6609021544030703,
+     "ng_shuf": 0.6887530682504883
+    },
+    "ng_vs_te": {
+     "win": 44,
+     "loss": 126,
+     "tie": 97,
+     "p": 2.334495368478459e-10
+    },
+    "ng_vs_bm25": {
+     "win": 35,
+     "loss": 138,
+     "tie": 94,
+     "p": 1.1489247664502871e-15
+    },
+    "te_vs_bm25": {
+     "win": 47,
+     "loss": 67,
+     "tie": 153,
+     "p": 0.07469253007976608
+    },
+    "ngshuf_vs_te": {
+     "win": 60,
+     "loss": 86,
+     "tie": 121,
+     "p": 0.038179441579785256
+    },
+    "ngshuf_vs_ng": {
+     "win": 97,
+     "loss": 3,
+     "tie": 167,
+     "p": 2.630866896130179e-25
+    },
+    "ng_meta": {
+     "ng": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 2,
+      "amb_q": 6,
+      "secs_per_q": 0.04735917602996255,
+      "index_stats_runs": [
+       {
+        "units": 35076,
+        "merged": 36,
+        "rejected": 0,
+        "nodes": 35040,
+        "multi_nodes": 36,
+        "foreign_hits": 0,
+        "indexes": 2
+       }
+      ]
+     },
+     "ng_shuf": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 2,
+      "amb_q": 7,
+      "secs_per_q": 0.045634456928838954,
+      "index_stats_runs": [
+       {
+        "units": 35076,
+        "merged": 36,
+        "rejected": 0,
+        "nodes": 35040,
+        "multi_nodes": 36,
+        "foreign_hits": 0,
+        "indexes": 2
+       }
+      ]
+     }
+    }
+   },
+   "MMarcoRetrieval": {
+    "status": "ok",
+    "n": 242,
+    "n_target": 242,
+    "metric": "ndcg@10",
+    "kind": "retrieval",
+    "group": "zh",
+    "score": {
+     "bm25": 0.5867477703029937,
+     "te": 0.5582896575715739,
+     "ng": 0.5345238756760443,
+     "ng_shuf": 0.5381301011171682
+    },
+    "ng_vs_te": {
+     "win": 24,
+     "loss": 38,
+     "tie": 180,
+     "p": 0.09795444051950737
+    },
+    "ng_vs_bm25": {
+     "win": 15,
+     "loss": 47,
+     "tie": 180,
+     "p": 5.778372004920304e-05
+    },
+    "te_vs_bm25": {
+     "win": 10,
+     "loss": 36,
+     "tie": 196,
+     "p": 0.00015641720852954677
+    },
+    "ngshuf_vs_te": {
+     "win": 25,
+     "loss": 38,
+     "tie": 179,
+     "p": 0.1299179230225525
+    },
+    "ngshuf_vs_ng": {
+     "win": 3,
+     "loss": 0,
+     "tie": 239,
+     "p": 0.25
+    },
+    "ng_meta": {
+     "ng": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 0,
+      "amb_q": 18,
+      "secs_per_q": 0.029277272727272725,
+      "index_stats_runs": [
+       {
+        "units": 104782,
+        "merged": 663,
+        "rejected": 0,
+        "nodes": 104119,
+        "multi_nodes": 648,
+        "foreign_hits": 0,
+        "indexes": 2
+       }
+      ]
+     },
+     "ng_shuf": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 0,
+      "amb_q": 18,
+      "secs_per_q": 0.029387190082644628,
+      "index_stats_runs": [
+       {
+        "units": 104782,
+        "merged": 663,
+        "rejected": 0,
+        "nodes": 104119,
+        "multi_nodes": 648,
+        "foreign_hits": 0,
+        "indexes": 2
+       }
+      ]
+     }
+    }
+   },
+   "perltqa": {
+    "status": "ok",
+    "n": 4637,
+    "n_target": 4637,
+    "metric": "r@10",
+    "kind": "memory",
+    "group": "mem",
+    "score": {
+     "bm25": 0.9771403924951477,
+     "te": 0.9773560491697219,
+     "ng": 0.9771403924951477
+    },
+    "ng_vs_te": {
+     "win": 21,
+     "loss": 22,
+     "tie": 4594,
+     "p": 1.0
+    },
+    "ng_vs_bm25": {
+     "win": 19,
+     "loss": 19,
+     "tie": 4599,
+     "p": 1.0
+    },
+    "te_vs_bm25": {
+     "win": 10,
+     "loss": 9,
+     "tie": 4618,
+     "p": 1.0
+    },
+    "ng_meta": {
+     "ng": {
+      "head": "2521f7f415a449bd16aa04b436f7dc97ac635896",
+      "k": 10,
+      "short_lists": 78,
+      "amb_q": 0,
+      "secs_per_q": 0.003545956437351736,
+      "index_stats_runs": [
+       {
+        "units": 2147,
+        "merged": 0,
+        "rejected": 0,
+        "nodes": 2147,
+        "multi_nodes": 0,
+        "foreign_hits": 0,
+        "indexes": 32
+       }
+      ]
+     }
+    }
+   }
+  },
+  "n_sets_ok": 12,
+  "macro12": {
+   "bm25": 0.505492679962234,
+   "te": 0.5205794840143453,
+   "ng": 0.5416142393445512,
+   "ng*": 0.5257268900772268
+  },
+  "macro_group": {
+   "mem": {
+    "bm25": 0.587024895841321,
+    "te": 0.6482450292098708,
+    "ng": 0.6827806959248184,
+    "ng*": 0.6827806959248184
+   },
+   "en": {
+    "bm25": 0.4097452822106692,
+    "te": 0.4256256291885351,
+    "ng": 0.4888312860696636,
+    "ng*": 0.4334577352921295
+   },
+   "zh": {
+    "bm25": 0.5331712686360336,
+    "te": 0.5199432407576781,
+    "ng": 0.4991407280163009,
+    "ng*": 0.5053099303967499
+   }
+  },
+  "macro13_with_perltqa": {
+   "bm25": 0.5417732732339966,
+   "te": 0.5557161428724512,
+   "ng": 0.5751162511253664
+  },
+  "pooled_sign": {
+   "ng_vs_te": {
+    "win": 549,
+    "loss": 428,
+    "p": 0.00012121105719629416
+   },
+   "ng_vs_bm25": {
+    "win": 590,
+    "loss": 438,
+    "p": 2.38513826704208e-06
+   },
+   "te_vs_bm25": {
+    "win": 362,
+    "loss": 327,
+    "p": 0.1951812982127446
+   },
+   "ngstar_vs_te": {
+    "win": 417,
+    "loss": 459,
+    "p": 0.16593549621961473
+   }
+  },
+  "set_level_sign": {
+   "ng_vs_te": {
+    "win": 5,
+    "loss": 7,
+    "p": 0.7744140625
+   },
+   "ngstar_vs_te": {
+    "win": 4,
+    "loss": 8,
+    "p": 0.3876953125
+   }
+  }
+ }
+}

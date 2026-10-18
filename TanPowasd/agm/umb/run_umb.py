@@ -27,7 +27,9 @@ import build_umb as B  # noqa: E402
 sys.path[:0] = [str(AGM / d) for d in ("xbench", "bench", "lex", "zh", "tricue", "all")]
 import allarm as A  # noqa: E402  PREREG_all.md：ALL 合并臂（all0 / allW?B?H? / all / all-* / te+*，A.is_arm）
 RUNS = B.OUT / "runs"
-ARMS_OK = ("bm25", "zh", "ra_zh", "te", "dgc3a", "fm8b", "m0", "m1", "v2", "v3")
+ARMS_OK = ("bm25", "zh", "ra_zh", "te", "dgc3a", "fm8b", "m0", "m1", "v2", "v3", "ng", "ng_shuf")
+NG_ARMS = ("ng", "ng_shuf")   # ng_arm.py：外部对照 lingshu-ng 零模型默认召回（$UMB_NG）；ng_shuf = 检索集写入序按固定种子打乱（只检索集）
+NG_K = {"hive": 50}          # recall limit：r@10/nDCG@10 用 10；hive 取 8000 字预算需更长名单
 MG_ARMS = ("m0", "m1")
 VT_ARMS = ("v2", "v3")   # PREREG_vote.md：RRF(te, zh单[, bm25])，k=60   # PREREG_merge.md：ZhMemory 默认（TE 扩散 + QSTOP + 中文关 RM3）；m1 = 中文问句不扩散
 TE_ARMS = ("te", "dgc3a", "fm8b")   # 拉丁管线 Lex→RA→FD→TE（LEX_RM3=0），DGC3a=dist.ARMS2，FM8b=fdm.ARMS；PREREG_dist2/fdm 原实现
@@ -123,6 +125,20 @@ def run_one(name, arms, split, limit, budget):
     n_new = collections.Counter()
     if not any(need.values()):
         print(name, "全部已缓存"); return
+    ngs = {"units": 0, "merged": 0, "rejected": 0, "nodes": 0, "multi_nodes": 0, "foreign_hits": 0, "indexes": 0}
+    if any(a in NG_ARMS for a in arms):
+        if "ng_shuf" in arms and man["kind"] != "retrieval":
+            print(name, "ng_shuf 只用于检索集（记忆集写入序是真实先后），本集跳过该臂", flush=True)
+            arms = [a for a in arms if a != "ng_shuf"]; need.pop("ng_shuf", None)
+            caches = {k: v for k, v in caches.items() if k[1] != "ng_shuf"}
+            if not any(need.values()):
+                print(name, "全部已缓存"); return
+        import ng_arm as NG
+        ngm = NG.setup()
+        for (sp, a), c in caches.items():
+            if a in NG_ARMS:
+                c.d["meta"]["ng"] = {k: ngm[k] for k in ("head", "tracked_dirty", "clock", "lexical", "assoc", "dedup_threshold")}
+                c.d["meta"]["ng"]["k"] = NG_K.get(name, 10)
     cjk = zh.ZhMemory().cjk
     queries, qrels = ({}, {}) if name in EXTRA else (read_queries(name), read_qrels(name))
     TEN = lambda xs: any(a in TE_ARMS + VT_ARMS or A.is_arm(a) for a in xs)
@@ -229,7 +245,32 @@ def run_one(name, arms, split, limit, budget):
         zo = dedup(sorted(sc, key=lambda c: (-sc[c], c)), mt[1].turn_of, n)
         return rrf_([te_o, zo] + ([bm()] if a == "v3" else []))
 
-    def ranks(m, mt, texts, q, n, a):
+    ngc = {}
+
+    def ng_index(texts, order=None):
+        t0 = time.time()
+        x = NG.NgIndex(texts, order)
+        for k, v in x.stats.items():
+            ngs[k] = ngs.get(k, 0) + v
+        ngs["indexes"] += 1
+        return x, time.time() - t0
+
+    def ng_close(x):
+        ngs["foreign_hits"] += x.stats.get("foreign_hits", 0); x.close()
+
+    def ng_rank(x, q, row_extra):
+        o, nh, amb = x.rank(q, NG_K.get(name, 10))
+        row_extra.update(nh=nh, amb=amb)
+        return o
+
+    def ranks(m, mt, texts, q, n, a, ext=None):
+        if a == "ng":   # 记忆集：每个会话 / 题的单元表一个引擎（按 texts 对象复用）
+            if ngc.get("k") is not texts:
+                if ngc.get("x") is not None:
+                    ng_close(ngc["x"])
+                ngc["k"] = texts; ngc["x"], ngc["tb"] = ng_index(texts)
+                ext["tb"] = ngc["tb"]
+            return ng_rank(ngc["x"], q, ext)
         if A.is_arm(a):   # 同一题所有 ALL 臂一次算出（共享 Lex/TE 扩散）
             key = (id(mt[0]), q)
             if allc.get("k") != key:
@@ -245,6 +286,7 @@ def run_one(name, arms, split, limit, budget):
             return te_ranks(mt[0], q, n, (a,))[a]
         return zh_ranks(m, q, n, (a,))[a]
 
+    nh_amb = lambda e: {k: e[k] for k in ("nh", "amb") if k in e}
     t_idx = 0.0
     want = lambda q: [a for a in arms if not caches[(spl[q], a)].has(q)]
     if man["kind"] == "retrieval":
@@ -264,6 +306,15 @@ def run_one(name, arms, split, limit, budget):
               mg_build([t for _, t in docs]) if any(need.get(a) for a in MG_ARMS + VT_ARMS) else None)
         if ALLS and mt[0] is not None:
             A.prep(mt[0], [t for _, t in docs])
+        ngx = {}
+        for a in NG_ARMS:
+            if need.get(a):
+                order = None
+                if a == "ng_shuf":
+                    import random
+                    order = list(range(len(docs))); random.Random(f"umb-ng|{name}").shuffle(order)
+                ngx[a] = ng_index([t for _, t in docs], order)[0]
+                print(f"{name} ng index {a} {ngx[a].stats} {time.time()-ti:.1f}s", flush=True)
         for _, t in docs:
             if m is not None:
                 m._last_chunk = None          # 同 bench_ir：每篇文档独立
@@ -285,6 +336,8 @@ def run_one(name, arms, split, limit, budget):
                     r = [ids[d] for d in te_ranks(mt[0], text, len(ids), (a,))[a][:1000]]
                 elif a in MG_ARMS:
                     r = [ids[d] for d in mg_ranks(mt[1], text, len(ids), a)[:1000]]
+                elif a in NG_ARMS:
+                    ext = {}; r = [ids[d] for d in ng_rank(ngx[a], text, ext)[:1000]]
                 elif A.is_arm(a):
                     r = [ids[d] for d in ranks(None, mt, None, text, len(ids), a)[:1000]]
                 elif a in VT_ARMS:
@@ -294,6 +347,8 @@ def run_one(name, arms, split, limit, budget):
                     s = m.bm25(text); r = [ids[d] for d in BI.doc_order(m, m.rank_agm(s))[:1000]]
                 r = [d for d in r if d != q]       # BEIR 惯例（ArguAna）
                 row = BI.metrics(r, rel); row["top10"] = r[:10]
+                if a in NG_ARMS:
+                    row.update(ext)
                 rec(q, a, row, time.time() - t0)
             flush()
             if stop[0]:
@@ -314,12 +369,13 @@ def run_one(name, arms, split, limit, budget):
             ps = list(gq[q].values()); text = queries[q]["text"]
             for a in want(q):
                 t0 = time.time()
-                o = ranks(m, mt, texts, text, len(chunks), a)
+                ext = {}
+                o = ranks(m, mt, texts, text, len(chunks), a, ext)
                 row = {}
                 for b in (2000, 4000, 8000):
                     row[f"@{b}"] = sum(x in HR.take(o, chunks, b) for x in ps) / len(ps)
                 row["r@10"] = row["@8000"]            # bench_cc：hive 的 r@k 均记 8000 字预算下的证据完整率
-                row["top10"] = o[:10]
+                row["top10"] = o[:10]; row.update(nh_amb(ext))
                 rec(q, a, row, time.time() - t0)
             flush()
             if stop[0]:
@@ -347,8 +403,9 @@ def run_one(name, arms, split, limit, budget):
                 assert {it["ids"][g] for g in gold} == set(qrels[q]), q
                 for a in want(q):
                     t0 = time.time()
-                    o = ranks(m, mt, it["turns"], qa["question"], n, a)
-                    row = score(o, gold); row["top10"] = o[:10]
+                    ext = {}
+                    o = ranks(m, mt, it["turns"], qa["question"], n, a, ext)
+                    row = score(o, gold); row["top10"] = o[:10]; row.update(nh_amb(ext))
                     rec(q, a, row, time.time() - t0)
                 flush()
                 if stop[0]:
@@ -382,9 +439,10 @@ def run_one(name, arms, split, limit, budget):
                 tb = time.time() - ti; t_idx += tb
                 for a in w:
                     t0 = time.time()
-                    o = ranks(m, mt, texts, it["question"], len(texts), a)
-                    row = score(o, gold); row["top10"] = o[:10]
-                    rec(q, a, row, time.time() - t0 + (tb if a != "bm25" else 0))   # 记忆集每题建索引，计入该题耗时
+                    ext = {}
+                    o = ranks(m, mt, texts, it["question"], len(texts), a, ext)
+                    row = score(o, gold); row["top10"] = o[:10]; row.update(nh_amb(ext))
+                    rec(q, a, row, time.time() - t0 + (tb if a not in ("bm25", "ng") else 0))   # ng 自建引擎耗时已含在本次 ranks 内   # 记忆集每题建索引，计入该题耗时
                 del m, mt
                 flush()
                 if stop[0]:
@@ -411,19 +469,25 @@ def run_one(name, arms, split, limit, budget):
                 _, text, gold = byq[q]
                 for a in want(q):
                     t0 = time.time()
-                    o = ranks(m, mt, texts, text, n, a)
-                    row = score(o, gold); row["top10"] = o[:10]
+                    ext = {}
+                    o = ranks(m, mt, texts, text, n, a, ext)
+                    row = score(o, gold); row["top10"] = o[:10]; row.update(nh_amb(ext))
                     rec(q, a, row, time.time() - t0)
                 flush()
                 if stop[0]:
                     break
             if stop[0]:
                 break
+    if ngc.get("x") is not None:
+        ng_close(ngc["x"])
+    for x in (locals().get("ngx") or {}).values():
+        ng_close(x)
     flush(force=True)
     rss = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024
     for c in caches.values():
         c.d["meta"]["runs"].append({"at": time.strftime("%Y-%m-%d %H:%M:%S"), "n_new": n_new[c.d["meta"]["arm"]], "secs_total": round(time.time() - t_start, 1),
-                                    "secs_index": round(t_idx, 1), "maxrss_mb": round(rss), "limit": limit, "stopped_by_budget": stop[0]})
+                                    "secs_index": round(t_idx, 1), "maxrss_mb": round(rss), "limit": limit, "stopped_by_budget": stop[0],
+                                    **({"ng_stats": ngs} if c.d["meta"]["arm"] in NG_ARMS else {})})
         c.save()
     print(f"{name} done new={dict(n_new)} secs={time.time()-t_start:.1f} index={t_idx:.1f}s maxrss={rss:.0f}MB stop={stop[0]}", flush=True)
 
