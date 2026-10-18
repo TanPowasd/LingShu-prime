@@ -1,0 +1,331 @@
+# SPDX-License-Identifier: LicenseRef-TanPowasd-Proprietary
+# -*- coding: utf-8 -*-
+"""VSA 记忆（THEORY §2）：写入 = 规则抽角色 + 痕迹 Σ R⊗F + 词袋；查询 = 相似度检索 search / 解绑查询 query(role=?, given={...})。
+规则全部写死在下方 RULES_*，每个抽取结果带 (角色, 填充, 规则号, 原文片段)，可回溯；抽不到的角色不写，只留词袋。"""
+import datetime, math, re
+
+import numpy as np
+import scipy.sparse as sp
+
+import hdc as H
+import ri as RI
+from cleanup import Cleanup, DOUBT
+
+ROLES = ("SPEAKER", "TIME", "AGENT", "WITH", "ACTION", "PLACE", "ENTITY", "BAG")
+
+# ---------------------------------------------------------------- 分词（BM25 与 VSA 共用）
+STOP_EN = set("""a an the and or but if of to in on at for with by from as is are was were be been being am do does did done have has had
+i me my we our you your he him his she her it its they them their this that these those there here what which who whom whose when where why how
+so not no yes just very really too also than then can could would should will shall may might must about into over after before up down out
+s t ll ve re d m don didn doesn isn wasn aren weren haven hasn hadn won wouldn couldn shouldn oh yeah hey hi wow ok okay""".split())
+_TOK = re.compile(r"[a-z0-9]+(?:'[a-z]+)?|[\u3400-\u9fff]+")
+
+
+def tokens(text, stop=True):
+    out = []
+    for m in _TOK.finditer(text.lower()):
+        t = m.group(0)
+        if "\u3400" <= t[0] <= "\u9fff":
+            out += [t] if len(t) == 1 else [t[i:i + 2] for i in range(len(t) - 1)]   # 汉字二元组
+        else:
+            t = t.split("'")[0]
+            if not (stop and t in STOP_EN) and t:
+                out.append(t)
+    return out
+
+
+def is_zh(text):
+    return sum("\u3400" <= c <= "\u9fff" for c in text) > 0.2 * max(1, len(text.strip()))
+
+
+# ---------------------------------------------------------------- 时间规范化
+MONTHS = {m: i + 1 for i, m in enumerate(["january", "february", "march", "april", "may", "june", "july", "august", "september",
+                                          "october", "november", "december"])}
+MONTHS.update({k[:3]: v for k, v in list(MONTHS.items())})
+WEEKDAYS_EN = {d: i + 1 for i, d in enumerate(["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"])}
+WD_ZH = {"一": 1, "二": 2, "三": 3, "四": 4, "五": 5, "六": 6, "日": 7, "天": 7}
+
+
+def t_date(d):
+    return f"DATE:{d.isoformat()}"
+
+
+def parse_en_date(s):
+    """'8 May, 2023' / 'May 8, 2023' / '1:56 pm on 8 May, 2023' → date | None。"""
+    s = s.lower()
+    m = re.search(r"(\d{1,2})\s+([a-z]+),?\s+(\d{4})", s)
+    if m and m.group(2) in MONTHS:
+        return datetime.date(int(m.group(3)), MONTHS[m.group(2)], int(m.group(1)))
+    m = re.search(r"([a-z]+)\s+(\d{1,2}),?\s+(\d{4})", s)
+    if m and m.group(1) in MONTHS:
+        return datetime.date(int(m.group(3)), MONTHS[m.group(1)], int(m.group(2)))
+    return None
+
+
+# ---------------------------------------------------------------- 规则表（白箱，写死）
+# 动作闭集：(表面形式, 规范填充)。中文按最长匹配；英文整词。
+ACTIONS_ZH = ["爬山", "看电影", "打篮球", "打羽毛球", "吃火锅", "买书", "跑步", "游泳", "散步", "下棋", "唱歌", "画画", "钓鱼", "野餐",
+              "喝咖啡", "购物", "看展", "露营", "跳舞", "打乒乓球", "开会", "学习", "参加", "旅行", "做饭"]
+ACTIONS_EN = {"hiking": "hike", "hike": "hike", "hiked": "hike", "shopping": "shop", "bowling": "bowl", "swimming": "swim", "swam": "swim",
+              "sketching": "sketch", "fishing": "fish", "dancing": "dance", "jogging": "jog", "chess": "chess", "karaoke": "karaoke",
+              "picnic": "picnic", "camping": "camp", "camped": "camp", "painting": "paint", "painted": "paint", "running": "run", "ran": "run",
+              "skating": "skate", "cycling": "cycle", "climbing": "climb", "baking": "bake", "baked": "bake", "cooking": "cook",
+              "volunteering": "volunteer", "volunteered": "volunteer", "visited": "visit", "visit": "visit", "attended": "attend",
+              "concert": "concert", "race": "race", "adopted": "adopt", "bought": "buy", "read": "read", "reading": "read",
+              "studying": "study", "yoga": "yoga", "pottery": "pottery", "surfing": "surf", "travelled": "travel", "traveled": "travel",
+              "trip": "trip", "parade": "parade", "festival": "festival", "workshop": "workshop", "museum": None}
+PLACE_SUFFIX_ZH = "馆|园|院|场|店|湖|山|厅|站|校|楼|街|城|寺|塔|岛|村|室|中心|广场|市场|超市|酒吧|海边|河边"
+RE = {
+    "zh-PL-1": re.compile(r"(?:在|去了?|到)([\u4e00-\u9fff]{0,5}?(?:" + PLACE_SUFFIX_ZH + "))"),
+    "en-PL-1": re.compile(r"\b(?:at|to|in|into|near) the ([a-z]+(?: [a-z]+)?)\b"),
+    "zh-TM-wd": re.compile(r"(?:周|星期|礼拜)([一二三四五六日天])"),
+    "zh-TM-md": re.compile(r"(?:(\d{4})年)?(\d{1,2})月(\d{1,2})[日号]"),
+    "en-TM-wd": re.compile(r"\b(monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b"),
+    "en-TM-rel": re.compile(r"\b(yesterday|tomorrow|last (?:week|weekend|month|year|monday|tuesday|wednesday|thursday|friday|saturday|sunday)"
+                            r"|next (?:week|weekend|month|year))\b"),
+    "zh-TM-rel": re.compile(r"(昨天|前天|明天|上周末?|上个?月|去年|下个?月|明年)"),
+    "en-ENT-1": re.compile(r"(?<![.!?]\s)(?<!^)\b([A-Z][a-z]{2,}(?: [A-Z][a-z]{2,})*)\b"),
+    "zh-ENT-1": re.compile(r"《([^》]{1,20})》"),
+}
+PLACE_STOP_EN = {"morning", "evening", "afternoon", "end", "past", "moment", "future", "beginning", "world", "way", "same", "first", "last",
+                 "middle", "meantime", "area", "time", "day", "weekend", "week", "night", "other", "best", "most", "long", "least"}
+ENT_STOP_EN = set(w.capitalize() for w in STOP_EN) | {m.capitalize() for m in MONTHS} | {d.capitalize() for d in WEEKDAYS_EN} | {
+    "Thanks", "Thank", "Wow", "Hey", "Yeah", "Sure", "Sounds", "Great", "Glad", "Awesome", "Congrats", "Haha", "Image", "Lol", "Nice",
+    "Cool", "Good", "Love", "Well", "That", "This", "What", "It", "I"}
+
+
+def _rel_time(expr, base):
+    """相对时间 + 写入时基准日期 → 规范时间填充（LoCoMo 金标习惯：'The week before 9 June 2023'、'7 May 2023'、'2022'、'June 2023'）。"""
+    e = expr.lower()
+    if base is None:
+        return None
+    if e in ("yesterday", "昨天"):
+        return t_date(base - datetime.timedelta(days=1))
+    if e == "前天":
+        return t_date(base - datetime.timedelta(days=2))
+    if e in ("tomorrow", "明天"):
+        return t_date(base + datetime.timedelta(days=1))
+    if e in ("last week", "上周"):
+        return f"BEFORE:week:{base.isoformat()}"
+    if e in ("last weekend", "上周末"):
+        return f"BEFORE:weekend:{base.isoformat()}"
+    if e.startswith("last ") and e[5:] in WEEKDAYS_EN:
+        return f"BEFORE:{e[5:]}:{base.isoformat()}"
+    if e in ("last month", "上个月", "上月"):
+        y, m = (base.year, base.month - 1) if base.month > 1 else (base.year - 1, 12)
+        return f"MONTH:{y:04d}-{m:02d}"
+    if e in ("next month", "下个月", "下月"):
+        y, m = (base.year, base.month + 1) if base.month < 12 else (base.year + 1, 1)
+        return f"MONTH:{y:04d}-{m:02d}"
+    if e in ("last year", "去年"):
+        return f"YEAR:{base.year - 1}"
+    if e in ("next year", "明年"):
+        return f"YEAR:{base.year + 1}"
+    if e in ("next week",):
+        return f"AFTER:week:{base.isoformat()}"
+    if e in ("next weekend",):
+        return f"AFTER:weekend:{base.isoformat()}"
+    return None
+
+
+def extract_roles(text, persons=(), speaker=None, base_date=None, base_time=None, weekday=True):
+    """→ [(角色, 填充, 规则号, 原文片段)]。persons = 人名表（说话人 + 调用方给的名字），speaker = 说话人，
+    base_date = 写入时的日期（datetime.date，用于解析相对时间），base_time = 调用方直接给的时间填充（如会话日期、事件时间）。
+    weekday=False：不把文中星期/月日写成 TIME（PREREG_v1 §c 的 LoCoMo 口径：只认相对时间，否则会话日期）。"""
+    out = []
+    zh = is_zh(text)
+    low = text.lower()
+    if speaker:
+        out.append(("SPEAKER", speaker, "X-SPK", speaker))
+    # TIME：文中相对时间（需基准）> 文中星期/日期 > 调用方给的基准时间
+    tm = []
+    for m in RE["en-TM-rel"].finditer(low) if not zh else RE["zh-TM-rel"].finditer(text):
+        f = _rel_time(m.group(1), base_date)
+        if f:
+            tm.append(("TIME", f, "en-TM-rel" if not zh else "zh-TM-rel", m.group(0)))
+    if not weekday:
+        pass
+    elif zh:
+        for m in RE["zh-TM-md"].finditer(text):
+            y = int(m.group(1)) if m.group(1) else (base_date.year if base_date else None)
+            if y:
+                try:
+                    tm.append(("TIME", t_date(datetime.date(y, int(m.group(2)), int(m.group(3)))), "zh-TM-md", m.group(0)))
+                except ValueError:
+                    pass
+        for m in RE["zh-TM-wd"].finditer(text):
+            tm.append(("TIME", f"WD:{WD_ZH[m.group(1)]}", "zh-TM-wd", m.group(0)))
+    else:
+        for m in RE["en-TM-wd"].finditer(low):
+            if not re.search(r"last\s+$", low[:m.start()]):
+                tm.append(("TIME", f"WD:{WEEKDAYS_EN[m.group(1)]}", "en-TM-wd", m.group(0)))
+    if tm:
+        out += tm
+    elif base_time:
+        out.append(("TIME", base_time, "X-TIME", base_time))
+    # AGENT / WITH：人名表内的名字；紧跟在 和/跟/与/同/约了/with/and 之后的为 WITH，其余第一个为 AGENT
+    body = text.split(": ", 1)[1] if (speaker and ": " in text[:40]) else text    # 说话人前缀不参与人名匹配
+    hits = []
+    for p in persons:
+        for m in re.finditer(re.escape(p) if zh else r"\b" + re.escape(p) + r"\b", body):
+            hits.append((m.start(), p))
+    hits.sort()
+    agent = None
+    for pos, p in hits:
+        pre = body[max(0, pos - 4):pos]
+        if (zh and re.search(r"(和|跟|与|同|约了)$", pre)) or (not zh and re.search(r"\b(with|and|met)\s+$", body[max(0, pos - 6):pos], re.I)):
+            out.append(("WITH", p, "zh-WITH-1" if zh else "en-WITH-1", pre + p))
+        elif agent is None:
+            agent = p
+            out.append(("AGENT", p, "zh-AG-1" if zh else "en-AG-1", p))
+    if agent is None and speaker:
+        if (zh and body.lstrip().startswith(("我", "我们"))) or (not zh and re.match(r"\s*(i|i'm|i've|i'd|we|we're|we've)\b", body, re.I)):
+            out.append(("AGENT", speaker, "zh-AG-2" if zh else "en-AG-2", body.lstrip()[:3]))
+    # ACTION：闭集
+    if zh:
+        for a in sorted(ACTIONS_ZH, key=len, reverse=True):
+            i = text.find(a)
+            if i >= 0:
+                out.append(("ACTION", a, "zh-ACT-1", a)); break
+    else:
+        for m in re.finditer(r"[a-z]+", low):
+            f = ACTIONS_EN.get(m.group(0))
+            if f:
+                out.append(("ACTION", f, "en-ACT-1", m.group(0))); break
+    # PLACE
+    if zh:
+        m = RE["zh-PL-1"].search(text)
+        if m:
+            out.append(("PLACE", m.group(1), "zh-PL-1", m.group(0)))
+    else:
+        for m in RE["en-PL-1"].finditer(low):
+            w = m.group(1).split()
+            w = [x for x in w if x not in STOP_EN]
+            if w and w[0] not in PLACE_STOP_EN:
+                out.append(("PLACE", w[0] if len(w) == 1 or w[1] in PLACE_STOP_EN else " ".join(w), "en-PL-1", m.group(0))); break
+    # ENTITY
+    if zh:
+        for m in RE["zh-ENT-1"].finditer(text):
+            out.append(("ENTITY", m.group(1), "zh-ENT-1", m.group(0)))
+    else:
+        seen = set(persons)
+        for m in RE["en-ENT-1"].finditer(body):
+            e = m.group(1)
+            if e.split()[0] in ENT_STOP_EN or e in seen:
+                continue
+            seen.add(e)
+            out.append(("ENTITY", e, "en-ENT-1", e))
+    for r in out:
+        assert r[0] in ROLES and (r[2].startswith("X-") or r[3] and (r[3] in text or r[3].lower() in low or r[3] in str(text))), r   # I6 片段 ⊂ 原文
+    return out
+
+
+# ---------------------------------------------------------------- 记忆
+class Memory:
+    def __init__(self, space=None, beta=RI.BETA, window=RI.WINDOW):
+        self.space = space or H.Space()
+        self.ri = RI.RandomIndex(self.space, window=window, beta=beta)
+        self.texts, self.toks, self.roles = [], [], []
+        self._V = None
+        self._T = {}
+        self.codebooks = {}
+
+    # 写入
+    def write(self, text, roles=None, **kw):
+        """roles 为 None 时按规则抽取（kw 透传 extract_roles）；写入时增量更新 RI 共现计数。"""
+        tk = tokens(text)
+        self.texts.append(text); self.toks.append(tk)
+        rs = extract_roles(text, **kw) if roles is None else list(roles)
+        self.roles.append(rs)
+        for r, f, *_ in rs:
+            self.codebooks.setdefault(r, Cleanup(self.space)).add(f"F:{f}")     # 填充原子与角色无关（F:名字），角色只靠绑定区分
+        self.ri.add(tk)
+        self._V = None
+        return len(self.texts) - 1
+
+    def __len__(self):
+        return len(self.texts)
+
+    # 内容向量（相似度检索）
+    def idf(self):
+        N = len(self.texts)
+        df = np.zeros(len(self.ri.words), dtype=np.float64)
+        for tk in self.toks:
+            for w in set(tk):
+                df[self.ri.vocab[w]] += 1
+        return np.log1p(N / np.maximum(df, 1))
+
+    def _wmat(self, toks_list, idf):
+        rows, cols, vals = [], [], []
+        for r, tk in enumerate(toks_list):
+            c = {}
+            for w in tk:
+                i = self.ri.vocab.get(w)
+                if i is not None:                     # 库外词跳过（THEORY §3）
+                    c[i] = c.get(i, 0) + 1
+            for i, n in c.items():
+                rows.append(r); cols.append(i); vals.append((1 + math.log(n)) * idf[i])
+        return sp.csr_matrix((np.asarray(vals, dtype=np.float32), (rows, cols)), shape=(len(toks_list), len(self.ri.words)))
+
+    def vectors(self, queries=(), beta=None):
+        """→ (V 文本内容向量 N×D, Q 问句向量 M×D)，单次按块投影。"""
+        idf = self.idf()
+        W = self._wmat(self.toks, idf)
+        Wq = self._wmat([tokens(q) for q in queries], idf)
+        V, Q = self.ri.project([W, Wq], beta=beta)
+        return V, Q
+
+    def search_many(self, queries, beta=None):
+        """→ [每题对全部记忆的余弦分数数组]。"""
+        V, Q = self.vectors(queries, beta=beta)
+        vn = np.linalg.norm(V, axis=1); vn[vn == 0] = 1
+        out = []
+        for q in Q:
+            qn = np.linalg.norm(q)
+            out.append(np.zeros(len(V)) if qn == 0 else (V @ q) / (vn * qn))
+        return out
+
+    # 痕迹（解绑查询）
+    def trace(self, i):
+        """T_i = Σ R_r⊗F_f + Σ_{w∈词集} R_BAG⊗I_w（整数叠加）；项数 > K_MAX ⇒ CapacityError（I3）。"""
+        t = self._T.get(i)
+        if t is None:
+            items = [(f"ROLE:{r}", f"F:{f}") for r, f, *_ in self.roles[i]]
+            items += [("ROLE:BAG", w) for w in sorted(set(self.toks[i]))]          # 词袋用 RI 的索引向量 I_w
+            if len(items) > H.K_MAX:
+                raise H.CapacityError(f"痕迹 {i} 叠加 {len(items)} 项 > K_MAX={H.K_MAX}：需分块")
+            t = H.bundle(H.bind(self.space.vec(r), self.space.vec(f)) for r, f in items)
+            self._T[i] = t
+        return t
+
+    def probe(self, given):
+        return H.bundle(H.bind(self.space.vec(f"ROLE:{r}"), self.space.vec(f"F:{f}")) for r, f in given.items())
+
+    def decode(self, i, role):
+        """从第 i 条痕迹解绑 role 并清理 → (填充 | 存疑, 余弦, 边距, 原始最近填充)。"""
+        cb = self.codebooks.get(role)
+        if cb is None:
+            return DOUBT, 0.0, 0.0, None
+        y = H.unbind(self.trace(i), self.space.vec(f"ROLE:{role}"))
+        name, c, m, raw = cb.query(y)
+        return (name if name == DOUBT else name[2:]), c, m, raw[2:]
+
+    def query(self, role, given, order=None, max_try=None):
+        """解绑查询：按探针点积（= 命中 given 项数·D + 噪声，与痕迹长度无关）排序候选痕迹；
+        依次解绑目标角色，第一个清理边距 ≥ MARGIN_MIN 的即答案；全部存疑则返回存疑（不静默猜）。
+        order：可选外部给定的候选顺序（如检索分数），此时不用探针排序。"""
+        roles = (role,) if isinstance(role, str) else tuple(role)
+        match = None
+        if order is None:
+            P = self.probe(given).astype(np.float64)
+            dots = np.array([float(self.trace(i).astype(np.float64) @ P) for i in range(len(self))]) / self.space.dim
+            order = list(np.argsort(-dots, kind="stable"))
+            top = dots[order[0]] if order else 0.0
+            order = [i for i in order if dots[i] >= top - 0.5]        # 只在「命中 given 项数相同」的并列组内回退（期望差 1，噪声 σ≈√(gk/D)）
+            match = float(top)
+        for n, i in enumerate(order[:max_try] if max_try else order):
+            ans = [self.decode(i, r) for r in roles]
+            if all(a[0] != DOUBT for a in ans):
+                return {"trace": int(i), "rank": n, "match": match, "answer": {r: a[0] for r, a in zip(roles, ans)},
+                        "cos": {r: a[1] for r, a in zip(roles, ans)}, "margin": {r: a[2] for r, a in zip(roles, ans)}}
+        return {"trace": None, "match": match, "answer": {r: DOUBT for r in roles}}

@@ -1,0 +1,212 @@
+{
+ "prereg": "PREREG_v1.md §a",
+ "seed": "vsa-synth-v1",
+ "space": "vsa-v1",
+ "D": 10000,
+ "streams": 60,
+ "rows": {
+  "en/T1": {
+   "n": 1260,
+   "vsa": 0.9793650793650793,
+   "vsa_trace@1": 0.9793650793650793,
+   "bm25_top1": 0.8912698412698413,
+   "vsa_doubt": 0.020634920634920634,
+   "vsa_v1b": 1.0
+  },
+  "en/T2": {
+   "n": 944,
+   "vsa": 1.0,
+   "vsa_trace@1": 1.0,
+   "bm25_top1": 0.9438559322033898,
+   "vsa_doubt": 0.0,
+   "vsa_v1b": 1.0
+  },
+  "en/T3": {
+   "n": 1260,
+   "vsa": 0.9793650793650793,
+   "vsa_trace@1": 0.9793650793650793,
+   "bm25_top1": 0.8912698412698413,
+   "vsa_doubt": 0.01904761904761905,
+   "vsa_v1b": 0.996031746031746
+  },
+  "zh/T1": {
+   "n": 1260,
+   "vsa": 0.9626984126984127,
+   "vsa_trace@1": 0.9626984126984127,
+   "bm25_top1": 0.4515873015873016,
+   "vsa_doubt": 0.0373015873015873,
+   "vsa_v1b": 1.0
+  },
+  "zh/T2": {
+   "n": 927,
+   "vsa": 1.0,
+   "vsa_trace@1": 1.0,
+   "bm25_top1": 0.7346278317152104,
+   "vsa_doubt": 0.0,
+   "vsa_v1b": 1.0
+  },
+  "zh/T3": {
+   "n": 1260,
+   "vsa": 0.9626984126984127,
+   "vsa_trace@1": 0.9626984126984127,
+   "bm25_top1": 0.5198412698412699,
+   "vsa_doubt": 0.03650793650793651,
+   "vsa_v1b": 0.9992063492063492
+  },
+  "all": {
+   "n": 6911,
+   "vsa": 0.9788742584285921,
+   "vsa_trace@1": 0.9788742584285921,
+   "bm25_top1": 0.7295615685139633,
+   "vsa_doubt": 0.020691650991173493,
+   "vsa_v1b": 0.9991318188395312
+  }
+ },
+ "fail_examples": [
+  {
+   "q": "刘洋周五和谁去了哪？",
+   "gold": {
+    "PERSON": "张伟",
+    "PLACE": "公园"
+   },
+   "vsa": {
+    "PERSON": "存疑",
+    "PLACE": "存疑"
+   },
+   "trace": null,
+   "gold_sent": "周五，张伟和刘洋去公园下棋了。"
+  },
+  {
+   "q": "刘洋周五做了什么？",
+   "gold": {
+    "ACTION": "下棋"
+   },
+   "vsa": {
+    "ACTION": "存疑"
+   },
+   "trace": null,
+   "gold_sent": "周五，张伟和刘洋去公园下棋了。"
+  },
+  {
+   "q": "周杰周五和谁去了哪？",
+   "gold": {
+    "PERSON": "吴敏",
+    "PLACE": "美术馆"
+   },
+   "vsa": {
+    "PERSON": "存疑",
+    "PLACE": "存疑"
+   },
+   "trace": null,
+   "gold_sent": "周五吴敏约了周杰，一起到美术馆买书。"
+  },
+  {
+   "q": "周杰周五做了什么？",
+   "gold": {
+    "ACTION": "买书"
+   },
+   "vsa": {
+    "ACTION": "存疑"
+   },
+   "trace": null,
+   "gold_sent": "周五吴敏约了周杰，一起到美术馆买书。"
+  },
+  {
+   "q": "Who did Ivan go with on Wednesday, and where?",
+   "gold": {
+    "PERSON": "Frank",
+    "PLACE": "park"
+   },
+   "vsa": {
+    "PERSON": "存疑",
+    "PLACE": "存疑"
+   },
+   "trace": null,
+   "gold_sent": "Frank and Ivan went hiking near the park on Wednesday."
+  },
+  {
+   "q": "What did Ivan do on Wednesday?",
+   "gold": {
+    "ACTION": "hike"
+   },
+   "vsa": {
+    "ACTION": "存疑"
+   },
+   "trace": null,
+   "gold_sent": "Frank and Ivan went hiking near the park on Wednesday."
+  },
+  {
+   "q": "Who did Bob go with on Wednesday, and where?",
+   "gold": {
+    "PERSON": "Carol",
+    "PLACE": "gym"
+   },
+   "vsa": {
+    "PERSON": "存疑",
+    "PLACE": "存疑"
+   },
+   "trace": null,
+   "gold_sent": "On Wednesday, Carol went to the gym with Bob for jogging."
+  },
+  {
+   "q": "What did Bob do on Wednesday?",
+   "gold": {
+    "ACTION": "jog"
+   },
+   "vsa": {
+    "ACTION": "picnic"
+   },
+   "trace": "Bob wants to rest on Wednesday.",
+   "gold_sent": "On Wednesday, Carol went to the gym with Bob for jogging."
+  },
+  {
+   "q": "周杰周一和谁去了哪？",
+   "gold": {
+    "PERSON": "陈静",
+    "PLACE": "西湖"
+   },
+   "vsa": {
+    "PERSON": "存疑",
+    "PLACE": "存疑"
+   },
+   "trace": null,
+   "gold_sent": "陈静周一跟周杰在西湖跑步。"
+  },
+  {
+   "q": "周杰周一做了什么？",
+   "gold": {
+    "ACTION": "跑步"
+   },
+   "vsa": {
+    "ACTION": "存疑"
+   },
+   "trace": null,
+   "gold_sent": "陈静周一跟周杰在西湖跑步。"
+  },
+  {
+   "q": "孙丽周二和谁去了哪？",
+   "gold": {
+    "PERSON": "周杰",
+    "PLACE": "面包店"
+   },
+   "vsa": {
+    "PERSON": "存疑",
+    "PLACE": "存疑"
+   },
+   "trace": null,
+   "gold_sent": "周杰和孙丽周二去了面包店，买书。"
+  },
+  {
+   "q": "孙丽周二做了什么？",
+   "gold": {
+    "ACTION": "买书"
+   },
+   "vsa": {
+    "ACTION": "存疑"
+   },
+   "trace": null,
+   "gold_sent": "周杰和孙丽周二去了面包店，买书。"
+  }
+ ],
+ "secs": 95.0
+}
