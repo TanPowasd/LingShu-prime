@@ -26,7 +26,8 @@ sys.path.insert(0, str(UMB))
 import build_umb as B  # noqa: E402
 sys.path[:0] = [str(AGM / d) for d in ("xbench", "bench", "lex", "zh", "tricue")]
 RUNS = B.OUT / "runs"
-ARMS_OK = ("bm25", "zh", "ra_zh", "te", "dgc3a", "fm8b")
+ARMS_OK = ("bm25", "zh", "ra_zh", "te", "dgc3a", "fm8b", "m0", "m1")
+MG_ARMS = ("m0", "m1")   # PREREG_merge.md：ZhMemory 默认（TE 扩散 + QSTOP + 中文关 RM3）；m1 = 中文问句不扩散
 TE_ARMS = ("te", "dgc3a", "fm8b")   # 拉丁管线 Lex→RA→FD→TE（LEX_RM3=0），DGC3a=dist.ARMS2，FM8b=fdm.ARMS；PREREG_dist2/fdm 原实现
 MEM = ("lme", "locomo", "hive")
 SAVE_EVERY = 30.0
@@ -166,7 +167,15 @@ def run_one(name, arms, split, limit, budget):
         os.environ["LEX_RM3"] = "0"
         import bench_cc as BC
         BC.ARMS = ["role", "fd2", "tree", "dist", "dist2", "fdm"]
-        m = BC.build(texts, roles, sess if sess is not None else list(range(len(texts))))
+        if sess is None:   # 检索集：每篇文档独立（同 bench_ir：不连相邻文档的问答链边），各自一个会话号
+            import tm as TM
+            m = TM.TMMemory(lam=0.0, rm3=False)
+            for t in texts:
+                m._last_chunk = None
+                m.add_turn("user", t)
+            m._sess = list(range(len(texts))); m._spk = {t.split(": ", 1)[0] for t in texts if ": " in t[:40]}; m._tg = {}
+        else:
+            m = BC.build(texts, roles, sess)
         import tree as TR
         m._tg["TE"] = TR.build(m, m._sess, speakers=m._spk, **TR.ARMS["TE"])
         return m
@@ -184,11 +193,26 @@ def run_one(name, arms, split, limit, budget):
             out["fm8b"] = TR.rank(g, FM.score(m, base, q, **FM.ARMS["FM8b"]))
         return {k: dedup(v, m.turn_of, n) for k, v in out.items()}
 
+    def mg_build(texts, roles=None, sess=None):
+        m = zh.ZhMemory()
+        for i, t in enumerate(texts):
+            m._last_chunk = None if sess is None else getattr(m, "_last_chunk", None)
+            m.add_turn(roles[i] if roles else "user", t, session=(i if sess is None else sess[i]))
+        return m
+
+    def mg_ranks(m, q, n, a):
+        sc = m.bm25(q)
+        if a == "m1" and zh.is_zh(q):
+            return dedup(sorted(sc, key=lambda c: (-sc[c], c)), m.turn_of, n)
+        return dedup(m.rank_agm(sc), m.turn_of, n)
+
     def ranks(m, mt, texts, q, n, a):
+        if a in MG_ARMS:
+            return mg_ranks(mt[1], q, n, a)
         if a == "bm25":
             return okapi_rank(texts, q)
         if a in TE_ARMS:
-            return te_ranks(mt, q, n, (a,))[a]
+            return te_ranks(mt[0], q, n, (a,))[a]
         return zh_ranks(m, q, n, (a,))[a]
 
     t_idx = 0.0
@@ -206,7 +230,8 @@ def run_one(name, arms, split, limit, budget):
             m = new_zh()
         if need.get("bm25"):
             ok = BI.Okapi()
-        mt = te_build([t for _, t in docs]) if any(need.get(a) for a in TE_ARMS) else None
+        mt = (te_build([t for _, t in docs]) if any(need.get(a) for a in TE_ARMS) else None,
+              mg_build([t for _, t in docs]) if any(need.get(a) for a in MG_ARMS) else None)
         for _, t in docs:
             if m is not None:
                 m._last_chunk = None          # 同 bench_ir：每篇文档独立
@@ -225,7 +250,9 @@ def run_one(name, arms, split, limit, budget):
                 elif a == "zh":
                     s = m.bm25(text); r = [ids[d] for d in BI.doc_order(m, sorted(s, key=lambda c: -s[c]))[:1000]]
                 elif a in TE_ARMS:
-                    r = [ids[d] for d in te_ranks(mt, text, len(ids), (a,))[a][:1000]]
+                    r = [ids[d] for d in te_ranks(mt[0], text, len(ids), (a,))[a][:1000]]
+                elif a in MG_ARMS:
+                    r = [ids[d] for d in mg_ranks(mt[1], text, len(ids), a)[:1000]]
                 else:
                     s = m.bm25(text); r = [ids[d] for d in BI.doc_order(m, m.rank_agm(s))[:1000]]
                 r = [d for d in r if d != q]       # BEIR 惯例（ArguAna）
@@ -242,7 +269,7 @@ def run_one(name, arms, split, limit, budget):
         texts = [c["text"] for c in chunks]
         gq = json.loads((UMB / "hive" / "gold_quotes.json").read_text(encoding="utf-8"))
         m = zh_build(texts) if any(a in arms for a in ("zh", "ra_zh")) else None
-        mt = te_build(texts) if any(a in arms for a in TE_ARMS) else None
+        mt = (te_build(texts, None, list(range(len(texts)))) if any(a in arms for a in TE_ARMS) else None, mg_build(texts, None, list(range(len(texts)))) if any(a in arms for a in MG_ARMS) else None)
         t_idx = time.time() - ti
         for q in need_q:
             ps = list(gq[q].values()); text = queries[q]["text"]
@@ -269,7 +296,9 @@ def run_one(name, arms, split, limit, budget):
             ti = time.time()
             n = len(it["turns"]); idx = {d: i for i, d in enumerate(it["ids"])}
             m = zh_build(it["turns"]) if any(a in arms for a in ("zh", "ra_zh")) else None
-            mt = te_build(it["turns"], None, [int(str(d).split(":")[0].lstrip("D") or 0) for d in it["ids"]]) if any(a in arms for a in TE_ARMS) else None
+            ss = [int(str(d).split(":")[0].lstrip("D") or 0) for d in it["ids"]]
+            mt = (te_build(it["turns"], None, ss) if any(a in arms for a in TE_ARMS) else None,
+                  mg_build(it["turns"], None, ss) if any(a in arms for a in MG_ARMS) else None)
             t_idx += time.time() - ti
             for q in by[it["sid"]]:
                 qa = it["qa"][queries[q]["qi"]]
@@ -305,7 +334,8 @@ def run_one(name, arms, split, limit, budget):
                 w = want(q)
                 ti = time.time()
                 m = zh_build(texts) if any(a in w for a in ("zh", "ra_zh")) else None
-                mt = te_build(texts, roles, sids) if any(a in w for a in TE_ARMS) else None
+                mt = (te_build(texts, roles, sids) if any(a in w for a in TE_ARMS) else None,
+                      mg_build(texts, roles, sids) if any(a in w for a in MG_ARMS) else None)
                 tb = time.time() - ti; t_idx += tb
                 for a in w:
                     t0 = time.time()
