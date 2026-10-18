@@ -1,0 +1,41 @@
+lme 全部已缓存
+locomo 全部已缓存
+hive 全部已缓存
+scifact 全部已缓存
+nfcorpus 全部已缓存
+arguana index 5867 docs 11.1s maxrss 673MB
+arguana done new={'v2': 68, 'v3': 68} secs=110.0 index=11.1s maxrss=813MB stop=False
+scidocs index 5104 docs 9.6s maxrss 599MB
+scidocs done new={'v2': 254, 'v3': 254} secs=47.6 index=9.6s maxrss=740MB stop=False
+EcomRetrieval index 100902 docs 28.2s maxrss 2515MB
+EcomRetrieval done new={'v2': 257, 'v3': 257} secs=39.5 index=28.2s maxrss=2636MB stop=False
+VideoRetrieval index 100930 docs 20.2s maxrss 1706MB
+VideoRetrieval done new={'v2': 260, 'v3': 260} secs=37.7 index=20.2s maxrss=1828MB stop=False
+MedicalRetrieval index 49234 docs 37.3s maxrss 3577MB
+MedicalRetrieval done new={'v2': 227, 'v3': 227} secs=100.0 index=37.3s maxrss=3704MB stop=False
+DuRetrieval index 17538 docs 33.6s maxrss 3338MB
+DuRetrieval done new={'v2': 233, 'v3': 233} secs=44.7 index=33.6s maxrss=3476MB stop=False
+MMarcoRetrieval index 52391 docs 48.1s maxrss 3140MB
+MMarcoRetrieval done new={'v2': 258, 'v3': 258} secs=75.6 index=48.1s maxrss=3264MB stop=False
+# UMB v0.1 · split=dev
+
+| 集 | 组 | 指标 | 题数 | te | v2 | v3 | te vs bm25 胜/负/平 p | v2 vs bm25 胜/负/平 p | v3 vs bm25 胜/负/平 p |
+|---|---|---|---:|---:|---:|---:|---|---|
+| lme | mem | r@10 | 236 | 0.790 | 0.794 | 0.765 |  |
+| locomo | mem | r@10 | 257 | 0.613 | 0.563 | 0.544 |  |
+| hive | mem | r@10 | 46 | 0.427 | 0.444 | 0.446 |  |
+| scifact | en | ndcg@10 | 145 | 0.695 | 0.691 | 0.686 |  |
+| nfcorpus | en | ndcg@10 | 171 | 0.341 | 0.340 | 0.339 |  |
+| arguana | en | ndcg@10 | 252 | 0.386 | 0.389 | 0.381 |  |
+| scidocs | en | ndcg@10 | 254 | 0.273 | 0.274 | 0.277 |  |
+| EcomRetrieval | zh | ndcg@10 | 257 | 0.382 | 0.382 | 0.382 |  |
+| VideoRetrieval | zh | ndcg@10 | 260 | 0.625 | 0.625 | 0.628 |  |
+| MedicalRetrieval | zh | ndcg@10 | 227 | 0.322 | 0.326 | 0.327 |  |
+| DuRetrieval | zh | ndcg@10 | 233 | 0.723 | 0.742 | 0.740 |  |
+| MMarcoRetrieval | zh | ndcg@10 | 258 | 0.526 | 0.567 | 0.561 |  |
+
+宏平均（12 集等权）：te 0.508，v2 0.511，v3 0.506
+- mem：te 0.610，v2 0.600，v3 0.585
+- en：te 0.424，v2 0.423，v3 0.421
+- zh：te 0.516，v2 0.528，v3 0.528
+合并符号检验 vs bm25：

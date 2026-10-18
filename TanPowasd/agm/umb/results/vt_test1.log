@@ -1,0 +1,43 @@
+lme done new={'v2': 243} secs=173.6 index=163.7s maxrss=475MB stop=False
+locomo done new={'v2': 243} secs=4.1 index=1.5s maxrss=174MB stop=False
+hive done new={'v2': 46} secs=1.7 index=0.5s maxrss=194MB stop=False
+scifact index 3982 docs 7.9s maxrss 529MB
+scifact done new={'v2': 155} secs=19.1 index=7.9s maxrss=670MB stop=False
+nfcorpus index 3633 docs 8.5s maxrss 509MB
+nfcorpus done new={'v2': 152} secs=13.2 index=8.5s maxrss=651MB stop=False
+arguana index 5867 docs 8.3s maxrss 624MB
+arguana done new={'v2': 248} secs=201.0 index=8.3s maxrss=764MB stop=False
+scidocs index 5104 docs 7.9s maxrss 557MB
+scidocs done new={'v2': 246} secs=27.1 index=7.9s maxrss=697MB stop=False
+EcomRetrieval index 100902 docs 26.6s maxrss 2262MB
+EcomRetrieval done new={'v2': 243} secs=33.8 index=26.6s maxrss=2373MB stop=False
+VideoRetrieval index 100930 docs 16.2s maxrss 1515MB
+VideoRetrieval done new={'v2': 240} secs=22.7 index=16.2s maxrss=1637MB stop=False
+MedicalRetrieval index 49234 docs 35.4s maxrss 3242MB
+MedicalRetrieval done new={'v2': 273} secs=65.0 index=35.4s maxrss=3369MB stop=False
+DuRetrieval index 17538 docs 27.2s maxrss 3024MB
+DuRetrieval done new={'v2': 267} secs=35.0 index=27.2s maxrss=3162MB stop=False
+MMarcoRetrieval index 52391 docs 27.5s maxrss 2837MB
+MMarcoRetrieval done new={'v2': 242} secs=35.9 index=27.5s maxrss=2962MB stop=False
+# UMB v0.1 · split=test
+
+| 集 | 组 | 指标 | 题数 | te | v2 | te vs bm25 胜/负/平 p | v2 vs bm25 胜/负/平 p |
+|---|---|---|---:|---:|---:|---|
+| lme | mem | r@10 | 243 | 0.815 | 0.809 |  |
+| locomo | mem | r@10 | 243 | 0.617 | 0.537 |  |
+| hive | mem | r@10 | 46 | 0.512 | 0.527 |  |
+| scifact | en | ndcg@10 | 155 | 0.717 | 0.716 |  |
+| nfcorpus | en | ndcg@10 | 152 | 0.295 | 0.290 |  |
+| arguana | en | ndcg@10 | 248 | 0.427 | 0.427 |  |
+| scidocs | en | ndcg@10 | 246 | 0.263 | 0.261 |  |
+| EcomRetrieval | zh | ndcg@10 | 243 | 0.441 | 0.441 |  |
+| VideoRetrieval | zh | ndcg@10 | 240 | 0.559 | 0.559 |  |
+| MedicalRetrieval | zh | ndcg@10 | 273 | 0.339 | 0.340 |  |
+| DuRetrieval | zh | ndcg@10 | 267 | 0.703 | 0.714 |  |
+| MMarcoRetrieval | zh | ndcg@10 | 242 | 0.558 | 0.577 |  |
+
+宏平均（12 集等权）：te 0.521，v2 0.517
+- mem：te 0.648，v2 0.624
+- en：te 0.426，v2 0.424
+- zh：te 0.520，v2 0.526
+合并符号检验 vs bm25：
