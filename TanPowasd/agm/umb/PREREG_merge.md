@@ -20,7 +20,7 @@
 4. KMB hold / TMD 为英文，M0/M1 在英文上与 TE 逐位相同（G1）⇒ 不消耗 reuse 预算。
 
 ## 复现
-`bash /workspace/work/umb/te_run.sh` 同环境，`python -X utf8 run_umb.py --arms te,m0,m1 --split dev`，再 `--split test --arms te,<选中>`。
+`bash <工作目录>/te_run.sh` 同环境，`python -X utf8 run_umb.py --arms te,m0,m1 --split dev`，再 `--split test --arms te,<选中>`。
 dev 选择 m1（.516 > m0 .515 > te .508），2026-10-18 09:41
 
 ## 读数（UMB test，2026-10-18 09:55，跑一次）

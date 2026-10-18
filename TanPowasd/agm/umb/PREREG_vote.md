@@ -16,4 +16,4 @@
 dev 选择 V2（.511 > te .508 > V3 .506），2026-10-18 10:48；注意 LoCoMo dev .613→.563
 
 ## 判定（2026-10-18 10:59）
-test 宏平均 te .521 vs V2 .517；LoCoMo .617→.537、LME .815→.809 倒退 → **V2 拒绝，TE 保持默认**。中文 Du .703→.714、MMarco .558→.577、hive .512→.527 上升（描述性）。复跑：`bash /workspace/work/umb/te_run.sh --arms te,v2 --split test`
+test 宏平均 te .521 vs V2 .517；LoCoMo .617→.537、LME .815→.809 倒退 → **V2 拒绝，TE 保持默认**。中文 Du .703→.714、MMarco .558→.577、hive .512→.527 上升（描述性）。复跑：`bash <工作目录>/te_run.sh --arms te,v2 --split test`
