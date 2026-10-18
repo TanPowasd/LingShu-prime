@@ -11,7 +11,7 @@ import hdc as H
 import ri as RI
 from cleanup import Cleanup, DOUBT
 
-ROLES = ("SPEAKER", "TIME", "AGENT", "WITH", "ACTION", "PLACE", "ENTITY", "BAG")
+ROLES = ("SPEAKER", "TIME", "SESSION", "AGENT", "WITH", "ACTION", "PLACE", "ENTITY", "BAG")   # SESSION：阶段 2，会话日期单独成角色（PREREG_v2 §A）
 
 # ---------------------------------------------------------------- 分词（BM25 与 VSA 共用）
 STOP_EN = set("""a an the and or but if of to in on at for with by from as is are was were be been being am do does did done have has had
@@ -128,7 +128,172 @@ def _rel_time(expr, base):
     return None
 
 
-def extract_roles(text, persons=(), speaker=None, base_date=None, base_time=None, weekday=True):
+# ---------------------------------------------------------------- 阶段 2 时间规则（PREREG_v2 §A / §B，THEORY §7）
+_NUMW = {"a": 1, "an": 1, "one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10,
+         "a couple of": 2, "couple of": 2}
+_N = r"(\d{1,2}|a couple of|couple of|an?|one|two|three|four|five|six|seven|eight|nine|ten)"
+_WD = "monday|tuesday|wednesday|thursday|friday|saturday|sunday"
+_MONRE = "|".join(sorted(MONTHS, key=len, reverse=True))
+FUTURE_EN = re.compile(r"(\bwill\b|'ll\b|\bgoing to\b|\bgonna\b|\bplan(?:s|ning|ned)?\b|\bnext\b|\btomorrow\b)")
+RE2_EN = [   # (规则号, 正则)；同一轮取文中最先出现者（同位置取最长）
+    ("en-TM2-yday", re.compile(r"\b(yesterday|last night)\b")),
+    ("en-TM2-today", re.compile(r"\b(today|tonight|this (?:morning|afternoon|evening))\b")),
+    ("en-TM2-tmr", re.compile(r"\btomorrow\b")),
+    ("en-TM2-ndays", re.compile(r"\b" + _N + r" days? ago\b")),
+    ("en-TM2-fewdays", re.compile(r"\b(?:a )?few days ago\b")),
+    ("en-TM2-week", re.compile(r"\b(?:a week ago|last week|this past week)\b")),
+    ("en-TM2-nweeks", re.compile(r"\b" + _N + r" weeks ago\b")),
+    ("en-TM2-wkend", re.compile(r"\b(?:last weekend|this past weekend|over the weekend)\b")),
+    ("en-TM2-thiswkend", re.compile(r"\bthis weekend\b")),
+    ("en-TM2-lastwd", re.compile(r"\b(?:last|this past) (" + _WD + r")\b")),
+    ("en-TM2-nextwd", re.compile(r"\bnext (" + _WD + r")\b")),
+    ("en-TM2-onwd", re.compile(r"\bon (" + _WD + r")\b")),
+    ("en-TM2-nextwk", re.compile(r"\bnext (week|weekend)\b")),
+    ("en-TM2-month", re.compile(r"\b(last|this|next) month\b")),
+    ("en-TM2-nmonths", re.compile(r"\b" + _N + r" months? ago\b")),
+    ("en-TM2-year", re.compile(r"\b(last|this|next) year\b")),
+    ("en-TM2-nyears", re.compile(r"\b" + _N + r" years? ago\b")),
+    ("en-TM2-onth", re.compile(r"\bon the (\d{1,2})(?:st|nd|rd|th)\b")),
+    ("en-TM2-full", re.compile(r"\b(?:(\d{1,2})(?:st|nd|rd|th)? (" + _MONRE + r"),? (\d{4})|(" + _MONRE + r") (\d{1,2})(?:st|nd|rd|th)?,? (\d{4}))\b")),
+    ("en-TM2-inyear", re.compile(r"\b(?:in|since) ((?:19|20)\d{2})\b")),
+]
+RE2_ZH = [
+    ("X-TM2-iso", re.compile(r"(\d{4})-(\d{1,2})-(\d{1,2})")),
+    ("zh-TM2-ymd", re.compile(r"(\d{4})年(\d{1,2})月(\d{1,2})[日号]")),
+    ("zh-TM2-ym", re.compile(r"(\d{4})年(\d{1,2})月(?!\d)")),
+    ("zh-TM2-y", re.compile(r"(\d{4})年(?!\d)")),
+    ("zh-TM2-md", re.compile(r"(?<![\d年])(\d{1,2})月(\d{1,2})[日号]")),
+    ("zh-TM2-rel", re.compile(r"(昨天|前天|明天|上周末?|上个?月|去年|下个?月|明年)")),
+    ("zh-TM2-wd", re.compile(r"(?:周|星期|礼拜)([一二三四五六日天])")),
+]
+
+
+def _num(s):
+    s = s.strip()
+    return int(s) if s.isdigit() else _NUMW.get(s)
+
+
+def _mon_shift(y, m, k):
+    t = y * 12 + (m - 1) + k
+    return f"MONTH:{t // 12:04d}-{t % 12 + 1:02d}"
+
+
+def wd_before(b, wd):
+    """b 之前最近的星期 wd（1=周一…7=周日），严格早于 b。"""
+    d = (b.isoweekday() - wd) % 7 or 7
+    return b - datetime.timedelta(days=d)
+
+
+def wd_after(b, wd):
+    d = (wd - b.isoweekday()) % 7 or 7
+    return b + datetime.timedelta(days=d)
+
+
+def _fill_en(rule, m, b, low):
+    td = datetime.timedelta
+    g = m.groups()
+    if rule == "en-TM2-yday":
+        return t_date(b - td(days=1))
+    if rule == "en-TM2-today":
+        return t_date(b)
+    if rule == "en-TM2-tmr":
+        return t_date(b + td(days=1))
+    if rule == "en-TM2-ndays":
+        n = _num(g[0]); return t_date(b - td(days=n)) if n else None
+    if rule == "en-TM2-fewdays":
+        return f"FEWDAYS:{b.isoformat()}"
+    if rule == "en-TM2-week":
+        return f"BEFORE:week:{b.isoformat()}"
+    if rule == "en-TM2-nweeks":
+        n = _num(g[0])
+        return None if not n else (f"BEFORE:week:{b.isoformat()}" if n == 1 else f"BEFORE:{n}weeks:{b.isoformat()}")
+    if rule == "en-TM2-wkend":
+        return f"BEFORE:weekend:{b.isoformat()}"
+    if rule == "en-TM2-thiswkend":
+        return f"WEEKEND_OF:{b.isoformat()}"
+    if rule == "en-TM2-lastwd":
+        return t_date(wd_before(b, WEEKDAYS_EN[g[0]]))
+    if rule == "en-TM2-nextwd":
+        return t_date(wd_after(b, WEEKDAYS_EN[g[0]]))
+    if rule == "en-TM2-onwd":
+        return t_date((wd_after if FUTURE_EN.search(low) else wd_before)(b, WEEKDAYS_EN[g[0]]))
+    if rule == "en-TM2-nextwk":
+        return f"AFTER:{g[0]}:{b.isoformat()}"
+    if rule == "en-TM2-month":
+        return _mon_shift(b.year, b.month, {"last": -1, "this": 0, "next": 1}[g[0]])
+    if rule == "en-TM2-nmonths":
+        n = _num(g[0]); return _mon_shift(b.year, b.month, -n) if n else None
+    if rule == "en-TM2-year":
+        return f"YEAR:{b.year + {'last': -1, 'this': 0, 'next': 1}[g[0]]}"
+    if rule == "en-TM2-nyears":
+        n = _num(g[0]); return f"YEAR:{b.year - n}" if n else None
+    if rule == "en-TM2-onth":
+        n = int(g[0])
+        if not 1 <= n <= 31:
+            return None
+        fut = FUTURE_EN.search(low)
+        y, mo = b.year, b.month
+        if fut and n < b.day:
+            y, mo = (y, mo + 1) if mo < 12 else (y + 1, 1)
+        elif not fut and n > b.day:
+            y, mo = (y, mo - 1) if mo > 1 else (y - 1, 12)
+        try:
+            return t_date(datetime.date(y, mo, n))
+        except ValueError:
+            return None
+    if rule == "en-TM2-full":
+        d, mo, y = (g[0], g[1], g[2]) if g[0] else (g[4], g[3], g[5])
+        try:
+            return t_date(datetime.date(int(y), MONTHS[mo], int(d)))
+        except (ValueError, KeyError):
+            return None
+    if rule == "en-TM2-inyear":
+        return f"YEAR:{g[0]}"
+    return None
+
+
+def _fill_zh(rule, m, b):
+    g = m.groups()
+    try:
+        if rule in ("X-TM2-iso", "zh-TM2-ymd"):
+            return t_date(datetime.date(int(g[0]), int(g[1]), int(g[2])))
+        if rule == "zh-TM2-ym":
+            return f"MONTH:{int(g[0]):04d}-{int(g[1]):02d}" if 1 <= int(g[1]) <= 12 else None
+        if rule == "zh-TM2-y":
+            return f"YEAR:{g[0]}"
+        if rule == "zh-TM2-md":
+            return t_date(datetime.date(b.year, int(g[0]), int(g[1]))) if b else None
+    except ValueError:
+        return None
+    if rule == "zh-TM2-rel":
+        return _rel_time(g[0], b)
+    if rule == "zh-TM2-wd":
+        return f"WD:{WD_ZH[g[0]]}"
+    return None
+
+
+def extract_time_v2(text, base_date=None, lang=None):
+    """→ [] 或 [(TIME, 填充, 规则号, 原文片段)]：文中最先出现（同位置取最长）的可解析时间表达，至多一个（PREREG_v2 §A）。
+    英文相对表达需要 base_date；中文绝对日期不需要。lang="zh"/"en" 强制规则表（默认按 is_zh）。"""
+    zh = is_zh(text) if lang is None else lang == "zh"
+    low = text.lower()
+    best = None
+    for rule, rx in (RE2_ZH if zh else RE2_EN):
+        if not zh and base_date is None and rule not in ("en-TM2-full", "en-TM2-inyear"):
+            continue
+        for m in rx.finditer(text if zh else low):
+            f = _fill_zh(rule, m, base_date) if zh else _fill_en(rule, m, base_date, low)
+            if f is None:
+                continue
+            key = (m.start(), -(m.end() - m.start()))
+            if best is None or key < best[0]:
+                best = (key, ("TIME", f, rule, (text if zh else low)[m.start():m.end()]))
+            break                                  # 每条规则只看它的第一次出现
+    return [best[1]] if best else []
+
+
+def extract_roles(text, persons=(), speaker=None, base_date=None, base_time=None, weekday=True, time_rules="v1", session=None,
+                  prev=None):
     """→ [(角色, 填充, 规则号, 原文片段)]。persons = 人名表（说话人 + 调用方给的名字），speaker = 说话人，
     base_date = 写入时的日期（datetime.date，用于解析相对时间），base_time = 调用方直接给的时间填充（如会话日期、事件时间）。
     weekday=False：不把文中星期/月日写成 TIME（PREREG_v1 §c 的 LoCoMo 口径：只认相对时间，否则会话日期）。"""
@@ -137,9 +302,16 @@ def extract_roles(text, persons=(), speaker=None, base_date=None, base_time=None
     low = text.lower()
     if speaker:
         out.append(("SPEAKER", speaker, "X-SPK", speaker))
+    if session:
+        out.append(("SESSION", session, "X-SESSION", session))       # v2：会话日期单独成角色，不混入 TIME
     # TIME：文中相对时间（需基准）> 文中星期/日期 > 调用方给的基准时间
     tm = []
-    for m in RE["en-TM-rel"].finditer(low) if not zh else RE["zh-TM-rel"].finditer(text):
+    if time_rules == "v2":
+        tm = extract_time_v2(text, base_date)
+        weekday = False                                                # v2 规则已含星期/日期，下方 v1 分支跳过
+    elif time_rules != "v1":
+        raise ValueError(f"未知 time_rules={time_rules!r}")
+    for m in (() if time_rules == "v2" else RE["en-TM-rel"].finditer(low) if not zh else RE["zh-TM-rel"].finditer(text)):
         f = _rel_time(m.group(1), base_date)
         if f:
             tm.append(("TIME", f, "en-TM-rel" if not zh else "zh-TM-rel", m.group(0)))
@@ -181,6 +353,16 @@ def extract_roles(text, persons=(), speaker=None, base_date=None, base_time=None
     if agent is None and speaker:
         if (zh and body.lstrip().startswith(("我", "我们"))) or (not zh and re.match(r"\s*(i|i'm|i've|i'd|we|we're|we've)\b", body, re.I)):
             out.append(("AGENT", speaker, "zh-AG-2" if zh else "en-AG-2", body.lstrip()[:3]))
+            agent = speaker
+    # v2 指代/省略（PREREG_v2 §C）：无 AGENT 且句首为代词/省略主语 ⇒ AGENT := 紧邻上一句的 AGENT；句中无 TIME ⇒ 继承上一句 TIME
+    if agent is None and prev and prev.get("AGENT"):
+        st = body.lstrip()
+        mz = re.match(r"(他|她|和|跟|同|与)", st) if zh else re.match(r"(he|she|went|headed|met)\b", st, re.I)
+        if mz:
+            agent = prev["AGENT"]
+            out.append(("AGENT", agent, "zh-AG-3" if zh else "en-AG-3", mz.group(0)))
+            if not any(r[0] == "TIME" for r in out) and prev.get("TIME"):
+                out.append(("TIME", prev["TIME"], "X-TM-inh", prev["TIME"]))
     # ACTION：闭集
     if zh:
         for a in sorted(ACTIONS_ZH, key=len, reverse=True):

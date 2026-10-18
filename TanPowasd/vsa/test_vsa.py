@@ -4,7 +4,9 @@
   python -X utf8 test_vsa.py            # 守卫
   python -X utf8 test_vsa.py --mutate   # 定点变异自证：每条变异必须让对应守卫变红
 G1 绑定可逆(I1)  G2 叠加容量≈理论(I2)  G3 解绑取回 + 超 K_MAX 拒写(I3)  G4 RI 近义 > 随机、C=A·I(I4)
-G5 确定性/写入序无关(I5)  G6 规则抽取定例可回溯(I6)  G7 存疑不静默(I7)  G8 BM25 手算值  G9 组合查询端到端"""
+G5 确定性/写入序无关(I5)  G6 规则抽取定例可回溯(I6)  G7 存疑不静默(I7)  G8 BM25 手算值  G9 组合查询端到端
+阶段 2（PREREG_v2 §D，THEORY §7 I8–I12）：G10 v2 时间规则定例  G11 问句粒度粗化  G12 te 候选限制  G13 存疑 + SESSION 回退
+G14 合成 v2 指代/省略 + 多跳交集/链式  G15 J2 判定定例"""
 import os, sys
 if os.environ.get("PYTHONHASHSEED") != "0":
     os.environ["PYTHONHASHSEED"] = "0"
@@ -180,6 +182,110 @@ def g9():
 
 GUARDS = {"G1": g1, "G2": g2, "G3": g3, "G4": g4, "G5": g5, "G6": g6, "G7": g7, "G8": g8, "G9": g9}
 
+# ---------------------------------------------------------------- 阶段 2
+import datetime as _dt  # noqa: E402
+import real_v2 as RV  # noqa: E402
+import synth_v2 as S2  # noqa: E402
+
+
+def g10():
+    b = _dt.date(2023, 5, 19)                      # 周五
+    cases = [("Deb: my dad passed away two days ago.", "DATE:2023-05-17"), ("I bought it yesterday.", "DATE:2023-05-18"),
+             ("Last night was amazing.", "DATE:2023-05-18"), ("See you tomorrow!", "DATE:2023-05-20"), ("Checked out a show today.", "DATE:2023-05-19"),
+             ("I got a puppy two weeks ago.", "BEFORE:2weeks:2023-05-19"), ("a week ago it rained", "BEFORE:week:2023-05-19"),
+             ("I joined a group last week.", "BEFORE:week:2023-05-19"), ("this past weekend was wild", "BEFORE:weekend:2023-05-19"),
+             ("going there this weekend", "WEEKEND_OF:2023-05-19"), ("Last Friday I met vets.", "DATE:2023-05-12"),     # b 本身是周五 ⇒ 严格早于 b
+             ("last Monday was fun", "DATE:2023-05-15"), ("On Friday, I got news.", "DATE:2023-05-12"), ("I'll see you on Friday", "DATE:2023-05-26"),
+             ("next Tuesday then", "DATE:2023-05-23"), ("a few days ago", "FEWDAYS:2023-05-19"), ("talent show next month", "MONTH:2023-06"),
+             ("three months ago", "MONTH:2023-02"), ("Last year I visited Italy.", "YEAR:2022"), ("I met them on the 15th.", "DATE:2023-05-15"),
+             ("I bought it on the 27th.", "DATE:2023-04-27"), ("in 2021 I moved", "YEAR:2021"), ("May 7, 2022 was fun", "DATE:2022-05-07"),
+             ("next week maybe", "AFTER:week:2023-05-19"), ("yesterday, and also last week", "DATE:2023-05-18")]       # 最先出现者
+    for t, want in cases:
+        got = M.extract_time_v2(t, b)
+        assert len(got) == 1 and got[0][1] == want, ("I8 v2 时间规则", t, got, want)
+        assert got[0][3] in t.lower(), ("I6 片段 ⊂ 原文", t, got)
+    assert M.extract_time_v2("nothing temporal here", b) == []
+    for t, want in [("2022年3月15日 银行调整", "DATE:2022-03-15"), ("1975年 欣赏音乐", "YEAR:1975"), ("2019年5月 项目", "MONTH:2019-05"),
+                    ("2022-05-12 聚餐", "DATE:2022-05-12")]:
+        got = M.extract_time_v2(t, None, lang="zh")
+        assert got and got[0][1] == want, ("I8 中文日期", t, got, want)
+    r = M.extract_roles("Deb: we went yesterday.", persons=["Deb"], speaker="Deb", base_date=b, weekday=False, time_rules="v2", session="DATE:2023-05-19")
+    assert ("SESSION", "DATE:2023-05-19") in [x[:2] for x in r] and [x[1] for x in r if x[0] == "TIME"] == ["DATE:2023-05-18"], r
+    return "G10 ok"
+
+
+def g11():
+    G = RV.granularity
+    assert G("In what year did she move?", "DATE:2022-03-04") == "YEAR:2022"
+    assert G("Which month did he start?", "BEFORE:week:2023-07-03") == "MONTH:2023-06"
+    assert G("What year did they meet?", "MONTH:2021-11") == "YEAR:2021"
+    assert G("When did he start?", "DATE:2022-03-04") == "DATE:2022-03-04"
+    assert G("他们哪一年认识的？", "DATE:2010-05-01") == "YEAR:2010" and G("几月开始的？", "DATE:2010-05-01") == "MONTH:2010-05"
+    return "G11 ok"
+
+
+def _tmem():
+    m = M.Memory(H.Space("g12"))
+    b = _dt.date(2023, 5, 19)
+    for t in ["Ann: I love my garden.", "Ben: That sounds nice.", "Ann: The roses are blooming.", "Ann: I planted them two days ago."]:
+        m.write(t, persons=["Ann", "Ben"], speaker=t.split(":")[0], base_date=b, weekday=False, time_rules="v2", session="DATE:2023-05-19")
+    return m
+
+
+def g12():
+    m = _tmem()
+    top = [2, 0, 1]                                  # te 缓存的候选；含显式时间的第 3 轮不在其中
+    cand = RV.candidates(top, m, ["Ann"])
+    assert set(cand) <= set(top) and cand == [2, 0], ("I10 te 候选限制 + 说话人过滤", cand)
+    ans, tr, src = RV.answer_time(m, cand, 10)
+    assert (ans, tr, src) == ("DATE:2023-05-19", 2, "SESSION"), ("I10 候选外的轮不得被用", ans, tr, src)
+    ans, tr, src = RV.answer_time(m, RV.candidates([3, 2], m, ["Ann"]), 10)
+    assert (ans, tr, src) == ("DATE:2023-05-17", 3, "TIME"), ("显式时间优先", ans, tr, src)
+    return "G12 ok"
+
+
+def g13():
+    m = _tmem()
+    for i in range(3):
+        assert m.decode(i, "TIME")[0] == CL.DOUBT, ("I11 无显式时间的轮 TIME 解绑必须存疑", i, m.decode(i, "TIME"))
+        assert m.decode(i, "SESSION")[0] == "DATE:2023-05-19"
+    assert RV.answer_time(m, [1, 0], 10) == ("DATE:2023-05-19", 1, "SESSION")
+    assert RV.answer_time(m, [], 10) == (CL.DOUBT, None, None)
+    return "G13 ok"
+
+
+def g14():
+    for k in (0, 1):
+        lang, sents, events, names, rng = S2.gen_stream(k)
+        qs = S2.questions(lang, events, names, rng)
+        m = S2.write_stream(sents, names)
+        TM = np.stack([m.trace(i) for i in range(len(m))]).astype(np.float64)
+        n = 0
+        for qd in qs:
+            if qd["cls"] in ("C1", "C2") and qd["typ"] == "T1" or qd["cls"] == "C0-C3" and qd["typ"] in ("T4", "T5"):
+                assert S2.vsa_answer(m, lang, qd, names, "nondoubt", TM), ("I12 合成 v2", k, qd["q"], qd["gold"])
+                n += 1
+        assert n >= 20, n
+    return "G14 ok"
+
+
+def g15():
+    C, J = RV.canon_gold_v2, RV.judge2
+    assert C("The Friday before 20 May 2023") == "DATE:2023-05-19"
+    assert C("The week before 15April, 2022.") == "BEFORE:week:2022-04-15"
+    assert C("Januarty 5, 2024") == "DATE:2024-01-05" and C("in 2021") == "YEAR:2021" and C("on 9 April, 2023") == "DATE:2023-04-09"
+    assert C("Two weeks before 11 August 2023") == "BEFORE:2weeks:2023-08-11" and C("weekend before May 24, 2023") == "BEFORE:weekend:2023-05-24"
+    assert C("The weekend of 24June, 2022.") == "WEEKEND_OF:2022-06-24" and C("few days before November 22, 2023") == "FEWDAYS:2023-11-22"
+    assert C("13 August") == "MD:08-13" and C("Aug 15th") == "MD:08-15" and C("August") == "M:08" and C("approximately summer of 2022") is None
+    assert J("DATE:2023-05-19", "BEFORE:friday:2023-05-20") and J("MD:08-13", "DATE:2023-08-13") and not J("MONTH:2023-05", "DATE:2023-05-27")
+    assert J("M:08", "MONTH:2023-08") and not J(None, "DATE:2023-01-01") and not J("DATE:2023-01-01", CL.DOUBT)
+    assert RV.contained("MONTH:2023-05", "DATE:2023-05-27") and not RV.contained("DATE:2023-05-27", "MONTH:2023-05")
+    return "G15 ok"
+
+
+GUARDS.update({"G10": g10, "G11": g11, "G12": g12, "G13": g13, "G14": g14, "G15": g15})
+
+
 
 @contextlib.contextmanager
 def patch(obj, name, val):
@@ -189,6 +295,19 @@ def patch(obj, name, val):
         yield
     finally:
         setattr(obj, name, old)
+
+
+@contextlib.contextmanager
+def patch_item(d, key, val):
+    old = d[key]
+    d[key] = val
+    try:
+        yield
+    finally:
+        d[key] = old
+
+
+_orig_er, _orig_ws = M.extract_roles, S2.write_stream
 
 
 _ctr = [0]
@@ -220,6 +339,15 @@ MUTANTS = [
     ("G7", "存疑阈值关闭", lambda: patch(H, "MARGIN_MIN", -1.0)),
     ("G8", "BM25 去掉长度归一", lambda: patch(B.BM25, "__init__", (lambda init: (lambda self, texts, k1=0.9, b=0.4: init(self, texts, k1, 0.0)))(B.BM25.__init__))),
     ("G9", "探针忽略 given", lambda: patch(M.Memory, "probe", lambda self, given: np.zeros(H.D, dtype=np.int32))),
+    ("G10", "时间规范化关闭（v2 规则恒返回空）", lambda: patch(M, "extract_time_v2", lambda *a, **k: [])),
+    ("G10", "「之前最近星期」不严格早于基准", lambda: patch(M, "wd_before", lambda b, wd: b - _dt.timedelta(days=(b.isoweekday() - wd) % 7))),
+    ("G11", "问句粒度粗化关闭", lambda: patch_item(RV.CFG, "granularity", False)),
+    ("G12", "te 候选限制关闭（回退全库）", lambda: patch_item(RV.CFG, "te_restrict", False)),
+    ("G13", "存疑阈值关闭（时间解绑）", lambda: patch(H, "MARGIN_MIN", -1.0)),
+    ("G13", "SESSION 角色不写入", lambda: patch(M, "extract_roles", lambda *a, **k: _orig_er(*a, **{**k, "session": None}))),
+    ("G14", "指代/省略消解关闭", lambda: patch(S2, "write_stream", lambda s, n, coref=True: _orig_ws(s, n, coref=False))),
+    ("G14", "多跳不求交（求并）", lambda: patch_item(S2.CFG, "intersect", False)),
+    ("G15", "J2 不换算星期（预测侧）", lambda: patch(RV, "norm_pred", lambda p, weekday_to_date=True: p)),
 ]
 
 
