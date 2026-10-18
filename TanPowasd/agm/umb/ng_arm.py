@@ -17,13 +17,29 @@
   · 映射：perceive 返回 node_id；action=merged ⇒ 该单元并入已有节点，node→[单元序号...] 一对多（记 merged 数、涉及节点数）。
     召回结果展开为该节点全部单元（按写入序），同一单元不重复；ng 返回不足 n 时以未出现单元按写入序补尾（同 run_umb okapi_rank 口径）。
     每题记 nh（ng 实返节点数）与 amb（前 10 名中一对多节点数）。
-  · 题与题顺序执行，引擎在题间共享（ng 默认召回会写 flywheel/access 计数，组合分不读）。"""
+  · 题与题顺序执行，引擎在题间共享（ng 默认召回会写 flywheel/access 计数，组合分不读）。
+  · 消融变体（VARIANTS，臂名 ngv_<名>，只记忆集）：构造后经 ng 公开接口改配置——词级通路 MemoryEngine.set_lexical(**覆盖)
+    （compat 层同名 set_lexical_config 即委托此方法），中文联想 retriever.assoc = dataclasses.replace(…)（assoc.py 文件头登记的
+    配置入口）；不改 ng 代码。生效配置 repr 记入缓存 meta。"""
 import os, subprocess, sys
 
 CLOCK = 1767225600.0
 _OFF = ("LINGSHU_NG_EMBED_MODEL", "LINGSHU_NG_RERANK_MODEL", "LINGSHU_NG_RERANK_TOPN", "LINGSHU_NG_NEURAL",
         "LINGSHU_NG_CHAIN", "LINGSHU_NG_LEXICAL", "LINGSHU_NG_ASSOC")
 _loaded = {}
+#: 消融变体：名 → (词级覆盖, 联想覆盖)。默认值见 lingshu_ng/lexical.py LexicalConfig、assoc.py AssocConfig（ng 2521f7f）。
+VARIANTS = {
+    "ctx0": ({"ctx_beta": 0.0}, {}),                       # 关英文写入序上下文聚合（默认 β .8、span 3、decay .6）
+    "fill10": ({"ctx_fill": 10}, {}),                      # ng 自带可选项：前 10 名零分邻居也纳入聚合（描述性，非默认）
+    "co0": ({"co_w": 0.0}, {}),                            # 关 C1 词元共现扩散（默认 .3）
+    "hd0": ({"hd_n": 0}, {}),                              # 关 H2 头部精排（默认前 10 名 cov 精排）
+    "div0": ({"diversify": False}, {}),                    # 关 R2 长块相邻写入惩罚（词级通路）
+    "lexbase": ({"ctx_beta": 0.0, "co_w": 0.0, "hd_n": 0, "diversify": False}, {}),   # 以上四项全关：裸 BM25+SDM
+    "anc0": ({}, {"anchor_span": 0}),                      # 关中文 AX1 锚定局部展开（span 0 ⇒ 无邻居）
+    "lc0": ({}, {"lc_beta": 0.0}),                         # 关中文 LC 长预算邻接补全（limit > lc_head=15 才启用；hive k=50）
+    "ax0": ({}, {"enabled": False}),                       # 中文联想整体关（AX1/LC/TP/HD）
+    "both0": ({"ctx_beta": 0.0}, {"anchor_span": 0}),      # 英文上下文聚合 + 中文锚定展开同时关
+}
 
 
 def setup():
@@ -53,17 +69,33 @@ def setup():
     return _loaded
 
 
+def apply_variant(e, variant):
+    """→ (生效词级配置, 生效联想配置)；未知变体 ⇒ KeyError（不静默回退默认）。"""
+    import dataclasses
+    lex, ax = VARIANTS[variant]
+    lc = e.set_lexical(None, **lex) if lex else e.retriever.lexical
+    if ax:
+        e.retriever.assoc = dataclasses.replace(e.retriever.assoc, **ax)
+    for k, v in lex.items():
+        assert getattr(e.retriever.lexical, k) == v, (variant, k)
+    for k, v in ax.items():
+        assert getattr(e.retriever.assoc, k) == v, (variant, k)
+    return lc, e.retriever.assoc
+
+
 def _check(e):
     assert e.semantic is None and e.retriever.neural is None and e.chain is None, "ng 可选通路未关（零模型前提不成立）"
 
 
 class NgIndex:
-    def __init__(self, texts, order=None):
-        """texts：单元正文（下标 = 单元序号）；order：写入序（默认 0..n-1）。"""
+    def __init__(self, texts, order=None, variant=None):
+        """texts：单元正文（下标 = 单元序号）；order：写入序（默认 0..n-1）；variant：VARIANTS 键（None = ng 默认）。"""
         M = setup()
         self.n = len(texts)
         self.e = M["ME"](":memory:")
         _check(self.e)
+        if variant is not None:
+            apply_variant(self.e, variant)
         self.of = {}                     # node_id → [单元序号]
         self.stats = {"units": self.n, "merged": 0, "rejected": 0}
         for i in (range(self.n) if order is None else order):

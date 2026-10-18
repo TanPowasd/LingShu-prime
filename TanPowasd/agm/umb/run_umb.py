@@ -24,15 +24,19 @@ UMB = pathlib.Path(__file__).resolve().parent         # 冻结题表（入库）
 AGM = UMB.parent
 sys.path.insert(0, str(UMB))
 import build_umb as B  # noqa: E402
-sys.path[:0] = [str(AGM / d) for d in ("xbench", "bench", "lex", "zh", "tricue", "all")]
+sys.path[:0] = [str(AGM / d) for d in ("xbench", "bench", "lex", "zh", "tricue", "all", "nc")]
 import allarm as A  # noqa: E402  PREREG_all.md：ALL 合并臂（all0 / allW?B?H? / all / all-* / te+*，A.is_arm）
 RUNS = B.OUT / "runs"
+import ng_arm as _NGA  # noqa: E402  只读 VARIANTS 表（不导入 lingshu_ng，setup() 才导入）
+NGV = _NGA.VARIANTS
 ARMS_OK = ("bm25", "zh", "ra_zh", "te", "dgc3a", "fm8b", "m0", "m1", "v2", "v3", "ng", "ng_shuf")
 NG_ARMS = ("ng", "ng_shuf")   # ng_arm.py：外部对照 lingshu-ng 零模型默认召回（$UMB_NG）；ng_shuf = 检索集写入序按固定种子打乱（只检索集）
+IS_NG = lambda a: a in NG_ARMS or (a.startswith("ngv_") and a[4:] in NGV)   # ngv_<变体>：ng_arm.VARIANTS 消融（只记忆集）
 NG_K = {"hive": 50}          # recall limit：r@10/nDCG@10 用 10；hive 取 8000 字预算需更长名单
 MG_ARMS = ("m0", "m1")
 VT_ARMS = ("v2", "v3")   # PREREG_vote.md：RRF(te, zh单[, bm25])，k=60   # PREREG_merge.md：ZhMemory 默认（TE 扩散 + QSTOP + 中文关 RM3）；m1 = 中文问句不扩散
-TE_ARMS = ("te", "dgc3a", "fm8b")   # 拉丁管线 Lex→RA→FD→TE（LEX_RM3=0），DGC3a=dist.ARMS2，FM8b=fdm.ARMS；PREREG_dist2/fdm 原实现
+NC_ARMS = ("nc1", "nc2", "nc3")   # PREREG_nc.md：TE 最终分 + 写入序同组邻域聚合（agm/nc/nc.py CANDS）；组只在记忆集给出
+TE_ARMS = ("te", "dgc3a", "fm8b") + NC_ARMS   # 拉丁管线 Lex→RA→FD→TE（LEX_RM3=0），DGC3a=dist.ARMS2，FM8b=fdm.ARMS；PREREG_dist2/fdm 原实现
 MEM = ("lme", "locomo", "hive")
 EXTRA = {"perltqa": {"status": "ok", "kind": "memory", "sources": {}, "metric": "r@10", "group": "mem"}}   # PREREG_all.md：仓外数据 $UMB_PERLTQA
 SAVE_EVERY = 30.0
@@ -126,7 +130,8 @@ def run_one(name, arms, split, limit, budget):
     if not any(need.values()):
         print(name, "全部已缓存"); return
     ngs = {"units": 0, "merged": 0, "rejected": 0, "nodes": 0, "multi_nodes": 0, "foreign_hits": 0, "indexes": 0}
-    if any(a in NG_ARMS for a in arms):
+    if any(IS_NG(a) for a in arms):
+        assert man["kind"] == "memory" or not any(a.startswith("ngv_") for a in arms), "ngv_ 消融变体只用于记忆集"
         if "ng_shuf" in arms and man["kind"] != "retrieval":
             print(name, "ng_shuf 只用于检索集（记忆集写入序是真实先后），本集跳过该臂", flush=True)
             arms = [a for a in arms if a != "ng_shuf"]; need.pop("ng_shuf", None)
@@ -136,9 +141,12 @@ def run_one(name, arms, split, limit, budget):
         import ng_arm as NG
         ngm = NG.setup()
         for (sp, a), c in caches.items():
-            if a in NG_ARMS:
+            if IS_NG(a):
                 c.d["meta"]["ng"] = {k: ngm[k] for k in ("head", "tracked_dirty", "clock", "lexical", "assoc", "dedup_threshold")}
                 c.d["meta"]["ng"]["k"] = NG_K.get(name, 10)
+                if a.startswith("ngv_"):
+                    e0 = ngm["ME"](":memory:"); lc0, ax0 = NG.apply_variant(e0, a[4:]); e0.close()
+                    c.d["meta"]["ng"].update(variant=a[4:], lexical=repr(lc0), assoc=repr(ax0))
     cjk = zh.ZhMemory().cjk
     queries, qrels = ({}, {}) if name in EXTRA else (read_queries(name), read_qrels(name))
     TEN = lambda xs: any(a in TE_ARMS + VT_ARMS or A.is_arm(a) for a in xs)
@@ -189,7 +197,8 @@ def run_one(name, arms, split, limit, budget):
             out["ra_zh"] = dedup(m.rank_agm(sc), m.turn_of, n)
         return out
 
-    def te_build(texts, roles=None, sess=None):
+    def te_build(texts, roles=None, sess=None, grp=None):
+        """grp：每轮写入序组号（NC 用；None = 无真实先后 ⇒ NC 原样等于 TE）。"""
         os.environ["LEX_RM3"] = "0"
         import bench_cc as BC
         BC.ARMS = ["role", "fd2", "tree", "dist", "dist2", "fdm"]
@@ -204,6 +213,7 @@ def run_one(name, arms, split, limit, budget):
             m = BC.build(texts, roles, sess)
         import tree as TR
         m._tg["TE"] = TR.build(m, m._sess, speakers=m._spk, **TR.ARMS["TE"])
+        m._nc_grp = grp
         return m
 
     def te_ranks(m, q, n, which):
@@ -217,6 +227,12 @@ def run_one(name, arms, split, limit, budget):
             out["dgc3a"] = TR.rank(g, DI.score(m, base, q, **DI.ARMS2["DGC3a"]))
         if "fm8b" in which:
             out["fm8b"] = TR.rank(g, FM.score(m, base, q, **FM.ARMS["FM8b"]))
+        for a in NC_ARMS:
+            if a in which:
+                import nc as NC
+                # 组只在有真实先后的记忆集给出（PREREG_nc.md §2）；检索集 / PerLTQA 必为 None（显式断言，不静默）
+                assert (man["kind"] == "memory" and name != "perltqa") == (m._nc_grp is not None), (name, a)
+                out[a] = NC.rank(m, g, base, m._nc_grp, **NC.CANDS[a])
         return {k: dedup(v, m.turn_of, n) for k, v in out.items()}
 
     def mg_build(texts, roles=None, sess=None):
@@ -247,9 +263,9 @@ def run_one(name, arms, split, limit, budget):
 
     ngc = {}
 
-    def ng_index(texts, order=None):
+    def ng_index(texts, order=None, variant=None):
         t0 = time.time()
-        x = NG.NgIndex(texts, order)
+        x = NG.NgIndex(texts, order, variant)
         for k, v in x.stats.items():
             ngs[k] = ngs.get(k, 0) + v
         ngs["indexes"] += 1
@@ -264,13 +280,14 @@ def run_one(name, arms, split, limit, budget):
         return o
 
     def ranks(m, mt, texts, q, n, a, ext=None):
-        if a == "ng":   # 记忆集：每个会话 / 题的单元表一个引擎（按 texts 对象复用）
-            if ngc.get("k") is not texts:
-                if ngc.get("x") is not None:
-                    ng_close(ngc["x"])
-                ngc["k"] = texts; ngc["x"], ngc["tb"] = ng_index(texts)
-                ext["tb"] = ngc["tb"]
-            return ng_rank(ngc["x"], q, ext)
+        if a == "ng" or a.startswith("ngv_"):   # 记忆集：每个会话 / 题的单元表一个引擎（按 texts 对象复用；每臂各一）
+            c = ngc.setdefault(a, {})
+            if c.get("k") is not texts:
+                if c.get("x") is not None:
+                    ng_close(c["x"])
+                c["k"] = texts; c["x"], c["tb"] = ng_index(texts, None, a[4:] if a != "ng" else None)
+                ext["tb"] = c["tb"]
+            return ng_rank(c["x"], q, ext)
         if A.is_arm(a):   # 同一题所有 ALL 臂一次算出（共享 Lex/TE 扩散）
             key = (id(mt[0]), q)
             if allc.get("k") != key:
@@ -361,7 +378,8 @@ def run_one(name, arms, split, limit, budget):
         texts = [c["text"] for c in chunks]
         gq = json.loads((UMB / "hive" / "gold_quotes.json").read_text(encoding="utf-8"))
         m = zh_build(texts) if any(a in arms for a in ("zh", "ra_zh")) else None
-        mt = (te_build(texts, None, list(range(len(texts)))) if TEN(arms) else None, mg_build(texts, None, list(range(len(texts)))) if any(a in arms for a in MG_ARMS + VT_ARMS) else None)
+        cid = [c["cid"] for c in chunks]   # NC 组 = 章节（章内块按原文先后）
+        mt = (te_build(texts, None, list(range(len(texts))), cid) if TEN(arms) else None, mg_build(texts, None, list(range(len(texts)))) if any(a in arms for a in MG_ARMS + VT_ARMS) else None)
         if ALLS:
             A.prep(mt[0], texts)
         t_idx = time.time() - ti
@@ -392,7 +410,7 @@ def run_one(name, arms, split, limit, budget):
             n = len(it["turns"]); idx = {d: i for i, d in enumerate(it["ids"])}
             m = zh_build(it["turns"]) if any(a in arms for a in ("zh", "ra_zh")) else None
             ss = [int(str(d).split(":")[0].lstrip("D") or 0) for d in it["ids"]]
-            mt = (te_build(it["turns"], None, ss) if TEN(arms) else None,
+            mt = (te_build(it["turns"], None, ss, ss) if TEN(arms) else None,
                   mg_build(it["turns"], None, ss) if any(a in arms for a in MG_ARMS + VT_ARMS) else None)
             if ALLS:   # 时间 = 会话号 + 轮内先后（<0.1）
                 A.prep(mt[0], it["turns"], [s + i / (10.0 * n) for i, s in enumerate(ss)])
@@ -432,7 +450,7 @@ def run_one(name, arms, split, limit, budget):
                 w = want(q)
                 ti = time.time()
                 m = zh_build(texts) if any(a in w for a in ("zh", "ra_zh")) else None
-                mt = (te_build(texts, roles, sids) if TEN(w) else None,
+                mt = (te_build(texts, roles, sids, sids) if TEN(w) else None,
                       mg_build(texts, roles, sids) if any(a in w for a in MG_ARMS + VT_ARMS) else None)
                 if any(A.is_arm(a) for a in w):   # 时间 = 会话序号（推断：haystack 会话按时间先后排列）+ 轮内先后
                     A.prep(mt[0], texts, [s + i / (10.0 * len(texts)) for i, s in enumerate(sids)])
@@ -442,7 +460,7 @@ def run_one(name, arms, split, limit, budget):
                     ext = {}
                     o = ranks(m, mt, texts, it["question"], len(texts), a, ext)
                     row = score(o, gold); row["top10"] = o[:10]; row.update(nh_amb(ext))
-                    rec(q, a, row, time.time() - t0 + (tb if a not in ("bm25", "ng") else 0))   # ng 自建引擎耗时已含在本次 ranks 内   # 记忆集每题建索引，计入该题耗时
+                    rec(q, a, row, time.time() - t0 + (tb if not (a == "bm25" or IS_NG(a)) else 0))   # ng 自建引擎耗时已含在本次 ranks 内   # 记忆集每题建索引，计入该题耗时
                 del m, mt
                 flush()
                 if stop[0]:
@@ -478,8 +496,9 @@ def run_one(name, arms, split, limit, budget):
                     break
             if stop[0]:
                 break
-    if ngc.get("x") is not None:
-        ng_close(ngc["x"])
+    for c in ngc.values():
+        if c.get("x") is not None:
+            ng_close(c["x"])
     for x in (locals().get("ngx") or {}).values():
         ng_close(x)
     flush(force=True)
@@ -487,7 +506,7 @@ def run_one(name, arms, split, limit, budget):
     for c in caches.values():
         c.d["meta"]["runs"].append({"at": time.strftime("%Y-%m-%d %H:%M:%S"), "n_new": n_new[c.d["meta"]["arm"]], "secs_total": round(time.time() - t_start, 1),
                                     "secs_index": round(t_idx, 1), "maxrss_mb": round(rss), "limit": limit, "stopped_by_budget": stop[0],
-                                    **({"ng_stats": ngs} if c.d["meta"]["arm"] in NG_ARMS else {})})
+                                    **({"ng_stats": ngs} if IS_NG(c.d["meta"]["arm"]) else {})})
         c.save()
     print(f"{name} done new={dict(n_new)} secs={time.time()-t_start:.1f} index={t_idx:.1f}s maxrss={rss:.0f}MB stop={stop[0]}", flush=True)
 
@@ -564,7 +583,7 @@ def main():
     ap.add_argument("--store", default="compact", choices=["compact", "dict"], help="块打分器存储（结果逐位相同，compact 省内存）")
     a = ap.parse_args()
     arms = a.arms.split(",")
-    assert all(x in ARMS_OK or A.is_arm(x) for x in arms), arms
+    assert all(x in ARMS_OK or A.is_arm(x) or IS_NG(x) for x in arms), arms
     if a.one:
         global STORE
         STORE = a.store

@@ -8,7 +8,7 @@
 import argparse, hashlib, json, pathlib, sys, time
 
 HERE = pathlib.Path(__file__).resolve().parent
-sys.path[:0] = [str(HERE), str(HERE.parent / "bench"), str(HERE.parent / "confluence")]
+sys.path[:0] = [str(HERE), str(HERE.parent / "bench"), str(HERE.parent / "confluence"), str(HERE.parent / "nc")]
 import cc, lex, rq, tm, ax, ppr, role, fd, tree  # noqa: E402
 import os
 ARMS = os.environ.get('BENCH_ARMS', 'cc,rq,tm').split(',')
@@ -132,6 +132,16 @@ def run(m, q, n):
                 out[k] = dedup(tree.rank(m._tg[k], base), m.turn_of, n)
                 TIMES[k] = TIMES.get(k, 0.0) + time.perf_counter() - t1
         out["BF"] = tree.backfill(out["TE"], out["H2E"], 10)
+    if "nc" in ARMS:  # PREREG_nc.md：TE 最终分 + 写入序同组邻域聚合；组 m._nc_grp 只在 kmb/tmd 设置（其余 None ⇒ ≡ TE）
+        import nc as NC
+        if "TE" not in m._tg:
+            m._tg["TE"] = tree.build(m, m._sess, speakers=m._spk, **tree.ARMS["TE"])
+        if "TE" not in out:
+            out["TE"] = dedup(tree.rank(m._tg["TE"], base), m.turn_of, n)
+        for k, cfg in NC.CANDS.items():
+            t1 = time.perf_counter()
+            out[k.upper()] = dedup(NC.rank(m, m._tg["TE"], base, getattr(m, "_nc_grp", None), **cfg), m.turn_of, n)
+            TIMES[k.upper()] = TIMES.get(k.upper(), 0.0) + time.perf_counter() - t1
     res = rq.RQMemory.residual(m, q, base) if "rq" in ARMS else {}
     for mu in ((0.3, 0.5, 1.0) if "rq" in ARMS else ()):
         sc = rq.RQMemory.fuse(base, res, mu)
@@ -180,6 +190,7 @@ def main():
         src = LX.tmd(a.data) if a.dataset == "tmd" else LX.kmb(a.data, a.split)
         for sub, it in src:
             m = build(it["turns"], it["roles"], it["sess"])
+            m._nc_grp = it["sess"]   # PREREG_nc.md：KMB 年份段 / TMD 会话号 = 真实先后
             for q in it["qa"]:
                 r, s = run(m, q["question"], len(it["turns"]))
                 per.append({"qid": q["qid"], "type": q.get("type", sub), "s": s, "arms": {k: score(v, q["gold"]) for k, v in r.items()}})
