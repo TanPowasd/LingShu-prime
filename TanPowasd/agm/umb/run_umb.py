@@ -583,7 +583,7 @@ def main():
     ap.add_argument("--store", default="compact", choices=["compact", "dict"], help="块打分器存储（结果逐位相同，compact 省内存）")
     a = ap.parse_args()
     arms = a.arms.split(",")
-    assert all(x in ARMS_OK or A.is_arm(x) or IS_NG(x) for x in arms), arms
+    assert all(x in ARMS_OK or x in NC_ARMS or A.is_arm(x) or IS_NG(x) for x in arms), arms
     if a.one:
         global STORE
         STORE = a.store
