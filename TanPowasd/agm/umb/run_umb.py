@@ -26,7 +26,8 @@ sys.path.insert(0, str(UMB))
 import build_umb as B  # noqa: E402
 sys.path[:0] = [str(AGM / d) for d in ("xbench", "bench", "lex", "zh", "tricue")]
 RUNS = B.OUT / "runs"
-ARMS_OK = ("bm25", "zh", "ra_zh")
+ARMS_OK = ("bm25", "zh", "ra_zh", "te", "dgc3a", "fm8b")
+TE_ARMS = ("te", "dgc3a", "fm8b")   # 拉丁管线 Lex→RA→FD→TE（LEX_RM3=0），DGC3a=dist.ARMS2，FM8b=fdm.ARMS；PREREG_dist2/fdm 原实现
 MEM = ("lme", "locomo", "hive")
 SAVE_EVERY = 30.0
 STORE = "compact"   # 块打分器存储：compact = lex/compact.py 紧凑倒排（打分逐位相同，守卫 test_compact.py）；dict = 原 LexScorer
@@ -161,6 +162,35 @@ def run_one(name, arms, split, limit, budget):
             out["ra_zh"] = dedup(m.rank_agm(sc), m.turn_of, n)
         return out
 
+    def te_build(texts, roles=None, sess=None):
+        os.environ["LEX_RM3"] = "0"
+        import bench_cc as BC
+        BC.ARMS = ["role", "fd2", "tree", "dist", "dist2", "fdm"]
+        m = BC.build(texts, roles, sess if sess is not None else list(range(len(texts))))
+        import tree as TR
+        m._tg["TE"] = TR.build(m, m._sess, speakers=m._spk, **TR.ARMS["TE"])
+        return m
+
+    def te_ranks(m, q, n, which):
+        import lex as LX, tree as TR, dist as DI, fdm as FM
+        if not DI.TABLE:
+            DI.load()
+        base = LX.LexMemory.bm25(m, q); g = m._tg["TE"]; out = {}
+        if "te" in which:
+            out["te"] = TR.rank(g, base)
+        if "dgc3a" in which:
+            out["dgc3a"] = TR.rank(g, DI.score(m, base, q, **DI.ARMS2["DGC3a"]))
+        if "fm8b" in which:
+            out["fm8b"] = TR.rank(g, FM.score(m, base, q, **FM.ARMS["FM8b"]))
+        return {k: dedup(v, m.turn_of, n) for k, v in out.items()}
+
+    def ranks(m, mt, texts, q, n, a):
+        if a == "bm25":
+            return okapi_rank(texts, q)
+        if a in TE_ARMS:
+            return te_ranks(mt, q, n, (a,))[a]
+        return zh_ranks(m, q, n, (a,))[a]
+
     t_idx = 0.0
     want = lambda q: [a for a in arms if not caches[(spl[q], a)].has(q)]
     if man["kind"] == "retrieval":
@@ -176,6 +206,7 @@ def run_one(name, arms, split, limit, budget):
             m = new_zh()
         if need.get("bm25"):
             ok = BI.Okapi()
+        mt = te_build([t for _, t in docs]) if any(need.get(a) for a in TE_ARMS) else None
         for _, t in docs:
             if m is not None:
                 m._last_chunk = None          # 同 bench_ir：每篇文档独立
@@ -193,6 +224,8 @@ def run_one(name, arms, split, limit, budget):
                     r = [ids[d] for d, _ in sorted(ok.score(T.seq_tokens(text, cjk)).items(), key=lambda x: -x[1])[:1000]]
                 elif a == "zh":
                     s = m.bm25(text); r = [ids[d] for d in BI.doc_order(m, sorted(s, key=lambda c: -s[c]))[:1000]]
+                elif a in TE_ARMS:
+                    r = [ids[d] for d in te_ranks(mt, text, len(ids), (a,))[a][:1000]]
                 else:
                     s = m.bm25(text); r = [ids[d] for d in BI.doc_order(m, m.rank_agm(s))[:1000]]
                 r = [d for d in r if d != q]       # BEIR 惯例（ArguAna）
@@ -209,12 +242,13 @@ def run_one(name, arms, split, limit, budget):
         texts = [c["text"] for c in chunks]
         gq = json.loads((UMB / "hive" / "gold_quotes.json").read_text(encoding="utf-8"))
         m = zh_build(texts) if any(a in arms for a in ("zh", "ra_zh")) else None
+        mt = te_build(texts) if any(a in arms for a in TE_ARMS) else None
         t_idx = time.time() - ti
         for q in need_q:
             ps = list(gq[q].values()); text = queries[q]["text"]
             for a in want(q):
                 t0 = time.time()
-                o = okapi_rank(texts, text) if a == "bm25" else zh_ranks(m, text, len(chunks), (a,))[a]
+                o = ranks(m, mt, texts, text, len(chunks), a)
                 row = {}
                 for b in (2000, 4000, 8000):
                     row[f"@{b}"] = sum(x in HR.take(o, chunks, b) for x in ps) / len(ps)
@@ -235,6 +269,7 @@ def run_one(name, arms, split, limit, budget):
             ti = time.time()
             n = len(it["turns"]); idx = {d: i for i, d in enumerate(it["ids"])}
             m = zh_build(it["turns"]) if any(a in arms for a in ("zh", "ra_zh")) else None
+            mt = te_build(it["turns"], None, [int(str(d).split(":")[0].lstrip("D") or 0) for d in it["ids"]]) if any(a in arms for a in TE_ARMS) else None
             t_idx += time.time() - ti
             for q in by[it["sid"]]:
                 qa = it["qa"][queries[q]["qi"]]
@@ -242,7 +277,7 @@ def run_one(name, arms, split, limit, budget):
                 assert {it["ids"][g] for g in gold} == set(qrels[q]), q
                 for a in want(q):
                     t0 = time.time()
-                    o = okapi_rank(it["turns"], qa["question"]) if a == "bm25" else zh_ranks(m, qa["question"], n, (a,))[a]
+                    o = ranks(m, mt, it["turns"], qa["question"], n, a)
                     row = score(o, gold); row["top10"] = o[:10]
                     rec(q, a, row, time.time() - t0)
                 flush()
@@ -259,9 +294,10 @@ def run_one(name, arms, split, limit, budget):
             for q in by[fn]:
                 it = data[queries[q]["idx"]]
                 assert it["question_id"] == q
-                texts, gold = [], set()
-                for sess in it["haystack_sessions"]:       # 同 lme_zerokey
+                texts, gold, roles, sids = [], set(), [], []
+                for si, sess in enumerate(it["haystack_sessions"]):       # 同 lme_zerokey
                     for t in sess:
+                        roles.append(t["role"]); sids.append(si)
                         if t.get("has_answer"):
                             gold.add(len(texts))
                         texts.append(f"{t['role']}: {t['content']}")
@@ -269,13 +305,14 @@ def run_one(name, arms, split, limit, budget):
                 w = want(q)
                 ti = time.time()
                 m = zh_build(texts) if any(a in w for a in ("zh", "ra_zh")) else None
+                mt = te_build(texts, roles, sids) if any(a in w for a in TE_ARMS) else None
                 tb = time.time() - ti; t_idx += tb
                 for a in w:
                     t0 = time.time()
-                    o = okapi_rank(texts, it["question"]) if a == "bm25" else zh_ranks(m, it["question"], len(texts), (a,))[a]
+                    o = ranks(m, mt, texts, it["question"], len(texts), a)
                     row = score(o, gold); row["top10"] = o[:10]
                     rec(q, a, row, time.time() - t0 + (tb if a != "bm25" else 0))   # 记忆集每题建索引，计入该题耗时
-                del m
+                del m, mt
                 flush()
                 if stop[0]:
                     break
