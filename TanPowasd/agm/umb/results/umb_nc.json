@@ -252,5 +252,29 @@
    "n": 20,
    "top10_identical": true
   }
- }
+ },
+ "reuse": {
+  "kmb": {
+   "arm": "NC2",
+   "base": "TE",
+   "metric": "r@10",
+   "train": 0.016198,
+   "answer": 0.016198,
+   "over": false,
+   "left": 8,
+   "verdict": "提升"
+  },
+  "tmd": {
+   "arm": "NC2",
+   "base": "TE",
+   "metric": "r@10",
+   "train": 0.004808,
+   "answer": -0.073391,
+   "over": true,
+   "left": 7,
+   "verdict": "倒退"
+  }
+ },
+ "adopted": false,
+ "adopt_note": "PREREG_nc §4.3：tmd 答案 < 0 ⇒ 不采纳，不改默认"
 }
