@@ -24,13 +24,15 @@ UMB = pathlib.Path(__file__).resolve().parent         # 冻结题表（入库）
 AGM = UMB.parent
 sys.path.insert(0, str(UMB))
 import build_umb as B  # noqa: E402
-sys.path[:0] = [str(AGM / d) for d in ("xbench", "bench", "lex", "zh", "tricue")]
+sys.path[:0] = [str(AGM / d) for d in ("xbench", "bench", "lex", "zh", "tricue", "all")]
+import allarm as A  # noqa: E402  PREREG_all.md：ALL 合并臂（all0 / allW?B?H? / all / all-* / te+*，A.is_arm）
 RUNS = B.OUT / "runs"
 ARMS_OK = ("bm25", "zh", "ra_zh", "te", "dgc3a", "fm8b", "m0", "m1", "v2", "v3")
 MG_ARMS = ("m0", "m1")
 VT_ARMS = ("v2", "v3")   # PREREG_vote.md：RRF(te, zh单[, bm25])，k=60   # PREREG_merge.md：ZhMemory 默认（TE 扩散 + QSTOP + 中文关 RM3）；m1 = 中文问句不扩散
 TE_ARMS = ("te", "dgc3a", "fm8b")   # 拉丁管线 Lex→RA→FD→TE（LEX_RM3=0），DGC3a=dist.ARMS2，FM8b=fdm.ARMS；PREREG_dist2/fdm 原实现
 MEM = ("lme", "locomo", "hive")
+EXTRA = {"perltqa": {"status": "ok", "kind": "memory", "sources": {}, "metric": "r@10", "group": "mem"}}   # PREREG_all.md：仓外数据 $UMB_PERLTQA
 SAVE_EVERY = 30.0
 STORE = "compact"   # 块打分器存储：compact = lex/compact.py 紧凑倒排（打分逐位相同，守卫 test_compact.py）；dict = 原 LexScorer
 
@@ -48,6 +50,10 @@ def manifest():
 
 
 def qids_for(name, split, limit):
+    if name in EXTRA:
+        import perltqa as P
+        q = P.qids(split)
+        return q[:limit] if limit else q
     sp = json.loads((UMB / name / "split.json").read_text(encoding="utf-8"))
     q = sp[split]
     return q[:limit] if limit else q
@@ -97,7 +103,7 @@ def run_one(name, arms, split, limit, budget):
     from bench_lex import dedup
     from lme_zerokey import score
     t_start = time.time()
-    man = manifest()["sets"][name]
+    man = manifest()["sets"].get(name) or EXTRA[name]
     if man.get("status") != "ok":
         print(name, "存疑：manifest 状态", man.get("status")); return
     for p, s in man["sources"].items():                    # 源文件指纹核对（记忆集不复制语料）
@@ -118,7 +124,10 @@ def run_one(name, arms, split, limit, budget):
     if not any(need.values()):
         print(name, "全部已缓存"); return
     cjk = zh.ZhMemory().cjk
-    queries, qrels = read_queries(name), read_qrels(name)
+    queries, qrels = ({}, {}) if name in EXTRA else (read_queries(name), read_qrels(name))
+    TEN = lambda xs: any(a in TE_ARMS + VT_ARMS or A.is_arm(a) for a in xs)
+    ALLS = [a for a in arms if A.is_arm(a)]
+    allc = {}
     need_q = [q for sp in splits for q in todo[sp] if any(not caches[(sp, a)].has(q) for a in arms)]
     spl = {q: sp for sp in splits for q in todo[sp]}
     last = [time.time()]
@@ -221,6 +230,11 @@ def run_one(name, arms, split, limit, budget):
         return rrf_([te_o, zo] + ([bm()] if a == "v3" else []))
 
     def ranks(m, mt, texts, q, n, a):
+        if A.is_arm(a):   # 同一题所有 ALL 臂一次算出（共享 Lex/TE 扩散）
+            key = (id(mt[0]), q)
+            if allc.get("k") != key:
+                allc["k"], allc["v"] = key, A.ranks(mt[0], q, n, ALLS)
+            return allc["v"][a]
         if a in VT_ARMS:
             return vt_ranks(mt, q, n, a, lambda: okapi_rank(texts, q))
         if a in MG_ARMS:
@@ -246,8 +260,10 @@ def run_one(name, arms, split, limit, budget):
             m = new_zh()
         if need.get("bm25") or need.get("v3"):
             ok = BI.Okapi()
-        mt = (te_build([t for _, t in docs]) if any(need.get(a) for a in TE_ARMS + VT_ARMS) else None,
+        mt = (te_build([t for _, t in docs]) if TEN([a for a in arms if need.get(a)]) else None,
               mg_build([t for _, t in docs]) if any(need.get(a) for a in MG_ARMS + VT_ARMS) else None)
+        if ALLS and mt[0] is not None:
+            A.prep(mt[0], [t for _, t in docs])
         for _, t in docs:
             if m is not None:
                 m._last_chunk = None          # 同 bench_ir：每篇文档独立
@@ -269,6 +285,8 @@ def run_one(name, arms, split, limit, budget):
                     r = [ids[d] for d in te_ranks(mt[0], text, len(ids), (a,))[a][:1000]]
                 elif a in MG_ARMS:
                     r = [ids[d] for d in mg_ranks(mt[1], text, len(ids), a)[:1000]]
+                elif A.is_arm(a):
+                    r = [ids[d] for d in ranks(None, mt, None, text, len(ids), a)[:1000]]
                 elif a in VT_ARMS:
                     bmf = lambda: [d for d, _ in sorted(ok.score(T.seq_tokens(text, cjk)).items(), key=lambda x: -x[1])[:1000]]
                     r = [ids[d] for d in vt_ranks(mt, text, len(ids), a, bmf)[:1000]]
@@ -288,7 +306,9 @@ def run_one(name, arms, split, limit, budget):
         texts = [c["text"] for c in chunks]
         gq = json.loads((UMB / "hive" / "gold_quotes.json").read_text(encoding="utf-8"))
         m = zh_build(texts) if any(a in arms for a in ("zh", "ra_zh")) else None
-        mt = (te_build(texts, None, list(range(len(texts)))) if any(a in arms for a in TE_ARMS + VT_ARMS) else None, mg_build(texts, None, list(range(len(texts)))) if any(a in arms for a in MG_ARMS + VT_ARMS) else None)
+        mt = (te_build(texts, None, list(range(len(texts)))) if TEN(arms) else None, mg_build(texts, None, list(range(len(texts)))) if any(a in arms for a in MG_ARMS + VT_ARMS) else None)
+        if ALLS:
+            A.prep(mt[0], texts)
         t_idx = time.time() - ti
         for q in need_q:
             ps = list(gq[q].values()); text = queries[q]["text"]
@@ -316,8 +336,10 @@ def run_one(name, arms, split, limit, budget):
             n = len(it["turns"]); idx = {d: i for i, d in enumerate(it["ids"])}
             m = zh_build(it["turns"]) if any(a in arms for a in ("zh", "ra_zh")) else None
             ss = [int(str(d).split(":")[0].lstrip("D") or 0) for d in it["ids"]]
-            mt = (te_build(it["turns"], None, ss) if any(a in arms for a in TE_ARMS + VT_ARMS) else None,
+            mt = (te_build(it["turns"], None, ss) if TEN(arms) else None,
                   mg_build(it["turns"], None, ss) if any(a in arms for a in MG_ARMS + VT_ARMS) else None)
+            if ALLS:   # 时间 = 会话号 + 轮内先后（<0.1）
+                A.prep(mt[0], it["turns"], [s + i / (10.0 * n) for i, s in enumerate(ss)])
             t_idx += time.time() - ti
             for q in by[it["sid"]]:
                 qa = it["qa"][queries[q]["qi"]]
@@ -353,8 +375,10 @@ def run_one(name, arms, split, limit, budget):
                 w = want(q)
                 ti = time.time()
                 m = zh_build(texts) if any(a in w for a in ("zh", "ra_zh")) else None
-                mt = (te_build(texts, roles, sids) if any(a in w for a in TE_ARMS + VT_ARMS) else None,
+                mt = (te_build(texts, roles, sids) if TEN(w) else None,
                       mg_build(texts, roles, sids) if any(a in w for a in MG_ARMS + VT_ARMS) else None)
+                if any(A.is_arm(a) for a in w):   # 时间 = 会话序号（推断：haystack 会话按时间先后排列）+ 轮内先后
+                    A.prep(mt[0], texts, [s + i / (10.0 * len(texts)) for i, s in enumerate(sids)])
                 tb = time.time() - ti; t_idx += tb
                 for a in w:
                     t0 = time.time()
@@ -366,6 +390,33 @@ def run_one(name, arms, split, limit, budget):
                 if stop[0]:
                     break
             del data
+            if stop[0]:
+                break
+    elif name == "perltqa":   # PREREG_all.md：每角色一库，单元彼此独立（同检索集口径）
+        import perltqa as P
+        data, _ = P.load()
+        byq = {q: (nm, x, g) for nm in sorted(data) for q, x, g in data[nm]["qs"]}
+        by = collections.defaultdict(list)
+        for q in need_q:
+            by[byq[q][0]].append(q)
+        for nm in sorted(by):
+            d = data[nm]; texts = d["texts"]; n = len(texts)
+            ti = time.time()
+            m = zh_build(texts) if any(a in arms for a in ("zh", "ra_zh")) else None
+            mt = (te_build(texts) if TEN(arms) else None, mg_build(texts) if any(a in arms for a in MG_ARMS + VT_ARMS) else None)
+            if ALLS:
+                A.prep(mt[0], texts, d["times"])
+            t_idx += time.time() - ti
+            for q in by[nm]:
+                _, text, gold = byq[q]
+                for a in want(q):
+                    t0 = time.time()
+                    o = ranks(m, mt, texts, text, n, a)
+                    row = score(o, gold); row["top10"] = o[:10]
+                    rec(q, a, row, time.time() - t0)
+                flush()
+                if stop[0]:
+                    break
             if stop[0]:
                 break
     flush(force=True)
@@ -384,7 +435,7 @@ def summarize(arms, split, sets, limit):
     splits = ("dev", "test") if split == "all" else (split,)
     res, pooled = {}, collections.defaultdict(lambda: [0, 0])
     for name in sets:
-        info = man["sets"].get(name, {})
+        info = man["sets"].get(name) or EXTRA.get(name, {})
         if info.get("status") != "ok":
             res[name] = {"status": "存疑/缺失"}; continue
         met = info["metric"]
@@ -449,7 +500,7 @@ def main():
     ap.add_argument("--store", default="compact", choices=["compact", "dict"], help="块打分器存储（结果逐位相同，compact 省内存）")
     a = ap.parse_args()
     arms = a.arms.split(",")
-    assert all(x in ARMS_OK for x in arms), arms
+    assert all(x in ARMS_OK or A.is_arm(x) for x in arms), arms
     if a.one:
         global STORE
         STORE = a.store
