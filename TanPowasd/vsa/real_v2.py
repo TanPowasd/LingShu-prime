@@ -72,6 +72,53 @@ def answer_time_q(m, cand, k, question):
     return DOUBT, None, None
 
 
+def answer_time_q2(m, cand, k, question, audit=None):
+    """正文日期 BD2 作答（PREREG_body_date_v0.2 §1.4，X4）：m = Memory(body_date="v02").units()。沿 cand[:k] 扫描，单元解绑用 m.decode_q2（含 E2）；
+    候选 i 由子痕迹给出非存疑答案（来源 bd）而 L1 单元解绑存疑时，令 j = 其后第一个 L1 非存疑候选：j 存在且 ucos(i) < ucos(j) ⇒ i 视为存疑（否决，记审计）。
+    来源命名同 answer_time_q（TIME / TIME:bd / TIME:fallback / TIME:fallback_echo / SESSION）。answer_time / answer_time_q 不动。
+    audit（可选 dict）：填入 vetoed [(i, j, ucos_i, ucos_j)]、flagged {i: [(子痕迹号, J)]}、src。"""
+    C = M.CFG_BD2
+    bad = (DOUBT, "容量拒写")
+    l1 = {}
+
+    def l1_bad(i):
+        if i not in l1:
+            l1[i] = R1.decode_time(m, i)[0] in bad
+        return l1[i]
+    au = audit if audit is not None else {}
+    au.update({"vetoed": [], "flagged": {}, "src": None})
+    top = list(cand[:k])
+    for n, i in enumerate(top):
+        try:
+            a = m.decode_q2(i, "TIME", question)
+        except H.CapacityError:
+            continue
+        if a[5]["flagged"]:
+            au["flagged"][int(i)] = a[5]["flagged"]
+        if a[0] in bad:
+            continue
+        if C["x4"] and a[4] == "bd" and (l1_bad(i) or not C["x4_only_doubt"]):
+            j = next((x for x in top[n + 1:] if not l1_bad(x)), None)
+            if j is not None:
+                ci = m.m.ucos(i, question) if C["x4_ucos"] else a[5]["qcos"]
+                cj = m.m.ucos(j, question)
+                if (ci < cj) if C["x4_ge"] else (ci > cj):
+                    au["vetoed"].append((int(i), int(j), round(ci, 6), round(cj, 6)))
+                    continue
+        src = "TIME" if a[4] == "l1" else f"TIME:{a[4]}"
+        au["src"] = src
+        return a[0], i, src
+    if cand:
+        try:
+            a = m.decode(cand[0], "SESSION")
+        except H.CapacityError:
+            a = ("容量拒写",)
+        if a[0] not in bad:
+            au["src"] = "SESSION"
+            return a[0], cand[0], "SESSION"
+    return DOUBT, None, None
+
+
 GRAN_Q = [("YEAR", re.compile(r"\b(what|which|in what) year\b|哪一?年", re.I)),
           ("MONTH", re.compile(r"\b(what|which|in what) month\b|哪个月|哪月|几月", re.I))]
 

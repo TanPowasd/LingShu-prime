@@ -404,6 +404,30 @@ def extract_roles(text, persons=(), speaker=None, base_date=None, base_time=None
 
 # ---------------------------------------------------------------- 记忆
 CFG_BD = {"long_only": True, "index_sep": True, "one_time": True, "fallback": True, "use_q": True}   # 正文日期 BD 守卫变异改这里
+# 正文日期 BD2（PREREG_body_date_v0.2 §1）：E2 回声抑制 + X4 跨候选；常数照方案 v0.2，不调。守卫变异改这里
+CFG_BD2 = {"echo_tau": 0.5, "echo_qform": True, "echo_nodate": True, "echo_jaccard": True, "echo_fallback": True,
+           "x4": True, "x4_ge": True, "x4_ucos": True, "x4_only_doubt": True}
+_ECHO_SPK = re.compile(r"^[^\s:：]{1,16}[:：]\s*")
+_ECHO_KEEP = re.compile(r"[\u3400-\u9fffA-Za-z0-9]")
+ECHO_QFORM = re.compile(r"[？?]\s*$|[吗呢么]\s*[？?。！!]?\s*$")
+
+
+def echo_norm(s):
+    """§1.3：去句首说话人前缀（只去一次），只留汉字 / 拉丁字母 / 数字并小写。"""
+    return "".join(_ECHO_KEEP.findall(_ECHO_SPK.sub("", s, count=1))).lower()
+
+
+def echo_bigrams(s):
+    s = echo_norm(s)
+    return {s[i:i + 2] for i in range(len(s) - 1)} or ({s} if s else set())
+
+
+def echo_j(sent, q):
+    """回声度 J = 字符二元组 Jaccard(句, 问句) ∈ [0,1]；CFG_BD2["echo_jaccard"]=False（变异）⇒ 覆盖率 |句∩问|/|问|。"""
+    a, b = echo_bigrams(sent), echo_bigrams(q)
+    if not CFG_BD2["echo_jaccard"]:
+        return len(a & b) / len(b) if b else 0.0
+    return len(a & b) / len(a | b) if a | b else 0.0
 
 
 class Memory:
@@ -418,7 +442,7 @@ class Memory:
         self._V = None
         self._T = {}
         self.codebooks = {}
-        self.body_date = body_date                                # 正文日期 BD（PREREG_body_date §1），默认关
+        self.body_date = body_date                                # 正文日期：False（默认，L1）/ True（BD v0.1）/ "v02"（BD2，子痕迹同 v0.1）
         self.bd, self.bd_rows = {}, []                            # 单元号 → 子痕迹号表；子痕迹 = {unit, sent, toks, fill, rule, span, kind}
         self._BT, self._bdq = {}, {}
 
@@ -475,7 +499,7 @@ class Memory:
             pieces.append(cur)
             for pt in pieces:
                 self.bd.setdefault(u, []).append(len(self.bd_rows))
-                self.bd_rows.append({"unit": u, "sent": k, "toks": pt, "fill": tm[1], "rule": tm[2], "span": tm[3], "kind": kind})
+                self.bd_rows.append({"unit": u, "sent": k, "toks": pt, "fill": tm[1], "rule": tm[2], "span": tm[3], "kind": kind, "text": sent})
                 if not CFG_BD["index_sep"]:                   # 变异：子痕迹写进检索库
                     self.texts.append(text); self.toks.append(list(pt)); self.roles.append([tm]); self.unit_of.append(u)
                     self.chunks[u].append(len(self.texts) - 1); self.ri.add(pt)
@@ -539,6 +563,50 @@ class Memory:
                 return (*a, "bd")
             first = first or a
         return (*first, "bd")
+
+    def echo_flags(self, u, question):
+        """§1.3 E2：单元 u 各子痕迹 → (子痕迹号, J, 是否标记)。标记 ⇔ J ≥ τ 且问句形且无本句日期（类型 ∈ inherit / pre）。"""
+        out = []
+        for j in self.bd.get(u, []):
+            r = self.bd_rows[j]
+            J = echo_j(r["text"], question)
+            f = (J >= CFG_BD2["echo_tau"] and (not CFG_BD2["echo_qform"] or bool(ECHO_QFORM.search(r["text"])))
+                 and (not CFG_BD2["echo_nodate"] or r["kind"] in ("inherit", "pre")))
+            out.append((j, J, f))
+        return out
+
+    def decode_unit_q2(self, u, role, question, beta=None):
+        """BD2 单元解绑（PREREG_body_date_v0.2 §1.3）→ (填充 | 存疑, 余弦, 边距, 原始最近填充, 来源, 审计)。
+        来源：l1（无子痕迹或非 TIME）/ fallback（最大问句余弦 ≤ 0，先于 E2）/ fallback_echo（子痕迹全被 E2 标记，显式回退 decode_unit）/ bd。
+        审计 = {"flagged": [(子痕迹号, J)], "qcos": 选中子痕迹的问句余弦 | None}。"""
+        js = self.bd.get(u)
+        if role != "TIME" or not js:
+            return (*self.decode_unit(u, role), "l1", {"flagged": [], "qcos": None})
+        cs = self.bd_cos(u, question, beta)
+        if max(cs) <= 0:
+            return (*self.decode_unit(u, role), "fallback", {"flagged": [], "qcos": None})
+        fl = self.echo_flags(u, question)
+        flagged = [(j, round(J, 6)) for j, J, f in fl if f]
+        keep = [k for k, (_, _, f) in enumerate(fl) if not f]
+        if not keep:
+            if CFG_BD2["echo_fallback"]:
+                return (*self.decode_unit(u, role), "fallback_echo", {"flagged": flagged, "qcos": None})
+            keep = list(range(len(js)))                       # 变异：全标记时静默忽略标记
+        order = sorted(keep, key=lambda k: -cs[k])
+        first = None
+        for k in order:
+            a = self.bd_decode(js[k])
+            if a[0] != DOUBT:
+                return (*a, "bd", {"flagged": flagged, "qcos": float(cs[k])})
+            first = first or a
+        return (*first, "bd", {"flagged": flagged, "qcos": None})
+
+    def ucos(self, u, question, beta=None):
+        """X4 用：单元 u 各痕迹（块）对问句的 search_many 余弦最大值（同 idf / RI 投影；按 (问句, 痕迹数) 缓存）。"""
+        key = (question, beta, len(self.texts))
+        if getattr(self, "_uc_key", None) != key:
+            self._uc, self._uc_key = self.search_many([question], beta=beta)[0], key
+        return float(max(self._uc[t] for t in self.chunks[u]))
 
     @property
     def n_chunks(self):
@@ -674,3 +742,6 @@ class UnitView:
 
     def decode_q(self, i, role, question):
         return self.m.decode_unit_q(i, role, question)
+
+    def decode_q2(self, i, role, question):
+        return self.m.decode_unit_q2(i, role, question)

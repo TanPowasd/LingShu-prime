@@ -13,7 +13,8 @@ G19 段排序 → 成员轮展开与轮级金标对齐（θ→∞ ≡ S0）  G20
 Memory.write 默认 = L1：G25 短单元新默认 ≡ 旧路径逐位  G26 长单元不拒写、每块 ≤ K_MAX、可审计  G27 新默认 ≡ seg.segment_long L1（排序 / 解绑）
 G28 开关 chunk_long=False ≡ S0
 正文日期 BD（PREREG_body_date §7）：G29 每子痕迹恰一个 TIME 且 ≤ K_MAX（含单句超限切片）  G30 短单元 / 无多日期长单元 BD ≡ L1 逐位
-G31 检索索引逐位 ≡ L1  G32 锚点规则 B-iii 定例  G33 按问句余弦选子痕迹 + 显式回退  G34 确定性"""
+G31 检索索引逐位 ≡ L1  G32 锚点规则 B-iii 定例  G33 按问句余弦选子痕迹 + 显式回退  G34 确定性
+正文日期 BD2 = BD + X4 + E2（PREREG_body_date_v0.2 §6）：G35 X4 定例  G36 回声抑制定例 + 全标记显式回退  G37 范围（无子痕迹 ≡ L1、索引不变、v0.1 不变）  G38 审计 + 确定性"""
 import os, sys
 if os.environ.get("PYTHONHASHSEED") != "0":
     os.environ["PYTHONHASHSEED"] = "0"
@@ -793,6 +794,145 @@ def g34():
 GUARDS.update({"G29": g29, "G30": g30, "G31": g31, "G32": g32, "G33": g33, "G34": g34})
 
 
+# ---------------------------------------------------------------- 正文日期 BD2 = BD + X4 + E2（PREREG_body_date_v0.2 §6）：G35–G38
+def _pz(tag, n, who="苏沐晴"):
+    return "".join(f"\n{who}:" + " ".join(f"{tag}{k}x{j}" for j in range(12)) + "。" for k in range(n))
+
+
+def _x4_units():
+    """c0 长单元、每块多 TIME（L1 存疑），目标句 2019年5月6日 含 xqa xqb xqc；c1 短单元单日期（L1 非存疑）含 yya yyb；
+    c2 长单元、首块只有抬头一个日期（L1 非存疑）、末尾句中日期 2017年8月9日 含 zza zzb zzc；c3 无关短单元。PerLTQA 口径（句角色 = _zt）。"""
+    c0 = "".join(f"\n苏沐晴:{2000 + k}年{1 + k % 12}月{1 + k % 27}日，" + " ".join(f"dd{k}x{j}" for j in range(12)) + "。" for k in range(24))
+    c0 = "2026年3月1日 10:00:00" + c0 + "\n苏沐晴:记得 xqa xqb xqc 是在2019年5月6日 定下的。"
+    c1 = "2021年3月3日 09:00:00\n苏沐晴:今天 yya yyb yyc 搞定了。"
+    c2 = "2026年3月9日 10:00:00" + _pz("ee", 24) + "\n苏沐晴:另外 zza zzb zzc 要在2017年8月9日 前做完。"
+    c3 = "2022年6月6日 08:00:00\n苏沐晴:随便 kka kkb 聊聊。"
+    return [(t, _zt(t), _zt, None) for t in (c0, c1, c2, c3)]
+
+
+def _bd2mem(units, body_date="v02"):
+    m = M.Memory(H.Space("vsa-v1", cache_max=0), body_date=body_date)
+    for t, rs, fn, tf in units:
+        m.write(t, roles=rs, sent_roles=fn, time_fn=tf)
+    return m
+
+
+def g35():
+    m = _bd2mem(_x4_units())
+    v = m.units()
+    assert set(m.bd) == {0, 2}, ("两个多日期长单元有子痕迹", sorted(m.bd))
+    assert m.decode_unit(0, "TIME")[0] == M.DOUBT and m.decode_unit(1, "TIME")[0] != M.DOUBT and m.decode_unit(2, "TIME")[0] == "DATE:2026-03-09", \
+        ("前提：c0 L1 存疑、c1 / c2 L1 非存疑", [m.decode_unit(u, "TIME")[0] for u in range(3)])
+    # (a) 否决：c0 子痕迹给出 2019-05-06，但 ucos(c0) < ucos(c1) ⇒ 答 c1（L1 落点）
+    q = "xqa xqb xqc yya yyb"
+    a = m.decode_unit_q2(0, "TIME", q)
+    assert a[0] == "DATE:2019-05-06" and a[4] == "bd", ("前提：c0 内选中目标句", a[:5])
+    uc0, uc1 = m.ucos(0, q), m.ucos(1, q)
+    assert uc0 < uc1 < a[5]["qcos"], ("前提：ucos(c0) < ucos(c1) < 选中子痕迹 qcos（区分 ucos / qcos 变异）", uc0, uc1, a[5]["qcos"])
+    au = {}
+    assert RV.answer_time_q2(v, [0, 1], 10, q, au) == ("DATE:2021-03-03", 1, "TIME"), ("X4 否决 c0、答 c1", RV.answer_time_q2(v, [0, 1], 10, q))
+    assert au["vetoed"] and au["vetoed"][0][:2] == (0, 1), au
+    assert RV.answer_time_q(v, [0, 1], 10, q)[0] == "DATE:2019-05-06", "对照：v0.1 首个非存疑即答 c0"
+    # (b) 放行：ucos(c0) ≥ ucos(j) ⇒ 答 c0 的 BD 日期；无 j ⇒ 照 BD
+    q2 = "xqa xqb xqc 定下"
+    assert m.ucos(0, q2) >= m.ucos(3, q2), ("前提", m.ucos(0, q2), m.ucos(3, q2))
+    assert RV.answer_time_q2(v, [0, 3], 10, q2) == ("DATE:2019-05-06", 0, "TIME:bd")
+    assert RV.answer_time_q2(v, [0], 10, q) == ("DATE:2019-05-06", 0, "TIME:bd"), "无 L1 落点 ⇒ 照 BD"
+    # (c) c2 L1 非存疑 ⇒ X4 不介入（即使 ucos(c2) < ucos(c1)），≡ v0.1
+    q3 = "zza zzb yya yyb yyc"
+    assert m.decode_unit_q2(2, "TIME", q3)[0] == "DATE:2017-08-09" and m.ucos(2, q3) < m.ucos(1, q3), ("前提", m.ucos(2, q3), m.ucos(1, q3))
+    assert RV.answer_time_q2(v, [2, 1], 10, q3) == ("DATE:2017-08-09", 2, "TIME:bd") == RV.answer_time_q(v, [2, 1], 10, q3)
+    return f"G35 ok (ucos {uc0:.3f} < {uc1:.3f})"
+
+
+_EQ = "雾港这部纪录片的拍摄究竟是在哪一年？"
+
+
+def _echo_units():
+    """A：回声提问（问句形、无日期、J ≥ .5）+ 下一行用户回答（2019年）+ 填充；B：各变体（陈述句 / 带本句日期 / 覆盖率高但 J 低 / 泛问句）+ 填充。"""
+    A = ("2026年3月5日 10:00:00\nAI助手:请问雾港这部纪录片的拍摄究竟是在哪一年呢？\n苏沐晴:嗯，我们拍雾港是在2019年。" + _pz("ea", 22))
+    B = ("2026年4月2日 10:00:00\nAI助手:我想知道雾港这部纪录片的拍摄究竟是在哪一年。\nAI助手:雾港这部纪录片的拍摄究竟是在2018年吗？"
+         "\nAI助手:我一直很想知道，也想替很多观众问问，雾港这部纪录片的拍摄究竟是在哪一年呢？\nAI助手:这是什么时候的事呢？" + _pz("eb", 22))
+    return [(t, _zt(t), _zt, None) for t in (A, B)]
+
+
+def g36():
+    m = _bd2mem(_echo_units())
+    rows = lambda u: {m.bd_rows[j]["text"]: (round(J, 3), f) for j, J, f in m.echo_flags(u, _EQ)}
+    fa = rows(0)
+    echo = "AI助手:请问雾港这部纪录片的拍摄究竟是在哪一年呢？"
+    assert fa[echo][1] and fa[echo][0] >= 0.5, ("问句形 + 无本句日期 + J ≥ .5 ⇒ 标记", fa[echo])
+    assert sum(f for _, f in fa.values()) == 1, ("只标记回声句", [k for k, x in fa.items() if x[1]])
+    a = m.decode_unit_q2(0, "TIME", _EQ)
+    assert a[0] == "YEAR:2019" and a[4] == "bd" and a[5]["flagged"], ("跳过回声 ⇒ 选中回答句", a[:5], a[5])
+    assert m.decode_unit_q(0, "TIME", _EQ)[0] == "DATE:2026-03-05", "对照：v0.1 选中回声句、继承抬头日期"
+    fb = rows(1)
+    want = {"AI助手:我想知道雾港这部纪录片的拍摄究竟是在哪一年。": "陈述句（非问句形）⇒ 不标记",
+            "AI助手:雾港这部纪录片的拍摄究竟是在2018年吗？": "带本句日期 ⇒ 不标记",
+            "AI助手:我一直很想知道，也想替很多观众问问，雾港这部纪录片的拍摄究竟是在哪一年呢？": "覆盖率高但 J < .5 ⇒ 不标记",
+            "AI助手:这是什么时候的事呢？": "泛问句 J 低 ⇒ 不标记"}
+    for t, why in want.items():
+        assert t in fb and not fb[t][1], (why, t, fb.get(t))
+    assert fb["AI助手:我想知道雾港这部纪录片的拍摄究竟是在哪一年。"][0] >= 0.5 and fb["AI助手:雾港这部纪录片的拍摄究竟是在2018年吗？"][0] >= 0.5, \
+        ("前提：陈述 / 带日期变体的 J ≥ .5（只因问句形 / 本句日期条件不标记）", fb)
+    assert M.echo_j("苏沐晴:雾港拍摄", "雾港拍摄") == 1.0 and M.echo_norm("AI助手: Ab，c1") == "abc1", "规范化：去说话人前缀、只留字母数字汉字、小写"
+    # 结构不变量：启用单元至少有一条带本句日期的子痕迹（anchor / mid），E2 的 (iii) 使其永不被标记 ⇒ 全标记分支在规格下不可达（保留为显式回退）
+    for u in m.bd:
+        assert any(m.bd_rows[j]["kind"] in ("anchor", "mid") and not f for j, _, f in m.echo_flags(u, _EQ)), u
+    # 全标记分支：单实例注入「全部标记」⇒ 显式回退 decode_unit（来源 fallback_echo），不静默
+    m.echo_flags = lambda u, q, _m=m: [(j, 1.0, True) for j in _m.bd.get(u, [])]
+    x = m.decode_unit_q2(0, "TIME", _EQ)
+    assert x[4] == "fallback_echo" and x[:4] == m.decode_unit(0, "TIME")[:4] and len(x[5]["flagged"]) == len(m.bd[0]), ("全标记 ⇒ fallback_echo", x[4])
+    return "G36 ok"
+
+
+def g37():
+    units = _bd_units() + _x4_units()[:2] + _echo_units()
+    a, b, c = _bdmem(units, body_date="v02"), _bdmem(units, body_date=False), _bdmem(units, body_date=True)
+    qs = ["mkb1 mkb2 心脏彩超", "xqa xqb yya", _EQ, "sma1 smb2"]
+    assert _snap(a, qs) == _snap(b, qs) == _snap(c, qs), "检索索引逐位 ≡ L1（v02 / v0.1 / 关）"
+    assert a.rank_units(qs) == b.rank_units(qs)
+    nob = [u for u in range(len(units)) if u not in a.bd]
+    assert nob and set(a.bd) == set(c.bd)
+    for u in nob:
+        for r in ("TIME", "SESSION"):
+            for q in qs:
+                x = a.decode_unit_q2(u, r, q)
+                assert x[:4] == b.decode_unit(u, r)[:4] and x[4] == "l1", ("无子痕迹单元 BD2 ≡ L1", u, r, q)
+    for q in qs:
+        for cand in ([0, 2], [3, 4], [4, 2, 0], nob):
+            if all(u in nob for u in cand):
+                assert RV.answer_time_q2(a.units(), cand, 10, q) == RV.answer_time(b.units(), cand, 10), ("无子痕迹候选 BD2 ≡ answer_time", q, cand)
+        for u in a.bd:                                  # v0.1 行为不变：同一子痕迹上 decode_unit_q / answer_time_q 逐位相同
+            assert a.decode_unit_q(u, "TIME", q) == c.decode_unit_q(u, "TIME", q)
+        assert RV.answer_time_q(a.units(), sorted(a.bd), 10, q) == RV.answer_time_q(c.units(), sorted(c.bd), 10, q)
+    assert [{k: v for k, v in r.items()} for r in a.bd_rows] == c.bd_rows, "子痕迹 v02 ≡ v0.1"
+    return "G37 ok"
+
+
+def g38():
+    import json as _js
+
+    def run():
+        m = _bd2mem(_x4_units() + _echo_units())
+        v = m.units()
+        out = []
+        for q, cand in (("xqa xqb xqc yya yyb", [0, 1]), (_EQ, [4, 1]), ("zza zzb yya yyb yyc", [2, 1]), ("kka kkb", [3])):
+            au = {}
+            ans = RV.answer_time_q2(v, cand, 10, q, au)
+            assert set(au) == {"vetoed", "flagged", "src"} and au["src"] == ans[2], ("审计字段齐全", au)
+            out.append([list(ans), au])
+        return _js.dumps(out, ensure_ascii=False, sort_keys=True, default=str)
+    r1, r2 = run(), run()
+    assert r1 == r2, "I5：BD2 作答与审计同输入同输出（逐字节）"
+    o = _js.loads(r1)
+    assert o[0][1]["vetoed"] and o[1][1]["flagged"], ("审计记下否决与回声标记", o[0][1], o[1][1])
+    return "G38 ok"
+
+
+GUARDS.update({"G35": g35, "G36": g36, "G37": g37, "G38": g38})
+
+
 
 
 @contextlib.contextmanager
@@ -899,6 +1039,14 @@ MUTANTS += [
     ("G32", "BD：句首判定不去编号前缀", lambda: patch_item(SG.CFG_B, "lead_strip", False)),
     ("G33", "BD：选择忽略问句（按写入序）", lambda: patch_item(M.CFG_BD, "use_q", False)),
     ("G33", "BD：关掉余弦 ≤ 0 的显式回退", lambda: patch_item(M.CFG_BD, "fallback", False)),
+    ("G35", "BD2：去掉 X4（退回首个非存疑）", lambda: patch_item(M.CFG_BD2, "x4", False)),
+    ("G35", "BD2：X4 比较方向取反", lambda: patch_item(M.CFG_BD2, "x4_ge", False)),
+    ("G35", "BD2：X4 用子痕迹 qcos 代替单元 ucos", lambda: patch_item(M.CFG_BD2, "x4_ucos", False)),
+    ("G35", "BD2：X4 扩到 L1 非存疑候选", lambda: patch_item(M.CFG_BD2, "x4_only_doubt", False)),
+    ("G36", "BD2：回声去掉问句形条件", lambda: patch_item(M.CFG_BD2, "echo_qform", False)),
+    ("G36", "BD2：回声去掉无本句日期条件", lambda: patch_item(M.CFG_BD2, "echo_nodate", False)),
+    ("G36", "BD2：回声度用覆盖率代替 Jaccard", lambda: patch_item(M.CFG_BD2, "echo_jaccard", False)),
+    ("G36", "BD2：全标记时静默忽略标记（无 fallback_echo）", lambda: patch_item(M.CFG_BD2, "echo_fallback", False)),
     ("G28", "开关失效（chunk_long=False 被忽略）", lambda: patch(M.Memory, "write", lambda self, text, roles=None, chunk_long=None, sent_roles=None, **k: _orig_write(self, text, roles, True, sent_roles, **k))),
 ]
 
