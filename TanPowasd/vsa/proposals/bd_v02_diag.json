@@ -1,0 +1,3787 @@
+{
+ "note": "诊断 ≠ 判定：规则事后写成（看过 RESULTS_body_date 三类失败题），阈值网格只为看敏感度，不据此选值；保留集 crossproj-zh-bodydate 未打开。",
+ "sets": {
+  "perltqa": {
+   "n": 54,
+   "replicate_L1_BD": true,
+   "rules": {
+    "L1": {
+     "spec": {
+      "arm": "L1"
+     },
+     "correct": 18,
+     "vs_L1_win": [],
+     "vs_L1_loss": [],
+     "vs_BD_fix": [
+      "冯伟#events#191",
+      "徐佳#dialogues#145",
+      "韩刚#events#80"
+     ],
+     "vs_BD_hurt": [
+      "孙晓明#dialogues#149",
+      "龙美丽#events#47"
+     ],
+     "first_L1ok_now_wrong": [],
+     "mcn_vs_L1": {
+      "win": 0,
+      "loss": 0,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {}
+    },
+    "BD": {
+     "spec": {
+      "arm": "BD",
+      "cross": "first"
+     },
+     "correct": 17,
+     "vs_L1_win": [
+      "孙晓明#dialogues#149",
+      "龙美丽#events#47"
+     ],
+     "vs_L1_loss": [
+      "冯伟#events#191",
+      "徐佳#dialogues#145",
+      "韩刚#events#80"
+     ],
+     "vs_BD_fix": [],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [
+      "冯伟#events#191",
+      "韩刚#events#80"
+     ],
+     "mcn_vs_L1": {
+      "win": 2,
+      "loss": 3,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {
+      "冯伟#events#191": {
+       "L1": "DATE:2022-03-10",
+       "rule": "YEAR:2019",
+       "ok": false,
+       "src": "bd"
+      },
+      "孙晓明#dialogues#149": {
+       "L1": "DATE:2019-08-15",
+       "rule": "YEAR:2019",
+       "ok": true,
+       "src": "bd"
+      },
+      "徐佳#dialogues#145": {
+       "L1": "YEAR:2015",
+       "rule": "DATE:2020-11-10",
+       "ok": false,
+       "src": "bd"
+      },
+      "田洋#dialogues#210": {
+       "L1": "DATE:2021-06-12",
+       "rule": "DATE:2022-05-03",
+       "ok": false,
+       "src": "bd"
+      },
+      "许慧#dialogues#261": {
+       "L1": "DATE:2022-05-12",
+       "rule": "DATE:2019-05-06",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#dialogues#198": {
+       "L1": "DATE:2019-05-15",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#events#80": {
+       "L1": "DATE:2021-05-12",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      },
+      "龙美丽#events#47": {
+       "L1": "DATE:2019-06-15",
+       "rule": "YEAR:1503",
+       "ok": true,
+       "src": "bd"
+      }
+     }
+    },
+    "X1": {
+     "spec": {
+      "arm": "BD",
+      "cross": "X1"
+     },
+     "correct": 18,
+     "vs_L1_win": [],
+     "vs_L1_loss": [],
+     "vs_BD_fix": [
+      "冯伟#events#191",
+      "徐佳#dialogues#145",
+      "韩刚#events#80"
+     ],
+     "vs_BD_hurt": [
+      "孙晓明#dialogues#149",
+      "龙美丽#events#47"
+     ],
+     "first_L1ok_now_wrong": [],
+     "mcn_vs_L1": {
+      "win": 0,
+      "loss": 0,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {}
+    },
+    "X2(δ=0.02)": {
+     "spec": {
+      "arm": "BD",
+      "cross": "X2",
+      "delta": 0.02
+     },
+     "correct": 16,
+     "vs_L1_win": [
+      "龙美丽#events#47"
+     ],
+     "vs_L1_loss": [
+      "冯伟#events#191",
+      "徐佳#dialogues#145",
+      "韩刚#events#80"
+     ],
+     "vs_BD_fix": [],
+     "vs_BD_hurt": [
+      "孙晓明#dialogues#149"
+     ],
+     "first_L1ok_now_wrong": [
+      "冯伟#events#191",
+      "韩刚#events#80"
+     ],
+     "mcn_vs_L1": {
+      "win": 1,
+      "loss": 3,
+      "p": 0.625,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {
+      "冯伟#events#191": {
+       "L1": "DATE:2022-03-10",
+       "rule": "YEAR:2019",
+       "ok": false,
+       "src": "bd"
+      },
+      "徐佳#dialogues#145": {
+       "L1": "YEAR:2015",
+       "rule": "DATE:2020-11-10",
+       "ok": false,
+       "src": "bd"
+      },
+      "田洋#dialogues#210": {
+       "L1": "DATE:2021-06-12",
+       "rule": "DATE:2022-05-03",
+       "ok": false,
+       "src": "bd"
+      },
+      "许慧#dialogues#261": {
+       "L1": "DATE:2022-05-12",
+       "rule": "DATE:2019-05-06",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#dialogues#198": {
+       "L1": "DATE:2019-05-15",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#events#80": {
+       "L1": "DATE:2021-05-12",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      },
+      "龙美丽#events#47": {
+       "L1": "DATE:2019-06-15",
+       "rule": "YEAR:1503",
+       "ok": true,
+       "src": "bd"
+      }
+     }
+    },
+    "X2(δ=0.05)": {
+     "spec": {
+      "arm": "BD",
+      "cross": "X2",
+      "delta": 0.05
+     },
+     "correct": 17,
+     "vs_L1_win": [
+      "龙美丽#events#47"
+     ],
+     "vs_L1_loss": [
+      "徐佳#dialogues#145",
+      "韩刚#events#80"
+     ],
+     "vs_BD_fix": [
+      "冯伟#events#191"
+     ],
+     "vs_BD_hurt": [
+      "孙晓明#dialogues#149"
+     ],
+     "first_L1ok_now_wrong": [
+      "韩刚#events#80"
+     ],
+     "mcn_vs_L1": {
+      "win": 1,
+      "loss": 2,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {
+      "徐佳#dialogues#145": {
+       "L1": "YEAR:2015",
+       "rule": "DATE:2020-11-10",
+       "ok": false,
+       "src": "bd"
+      },
+      "田洋#dialogues#210": {
+       "L1": "DATE:2021-06-12",
+       "rule": "DATE:2022-05-03",
+       "ok": false,
+       "src": "bd"
+      },
+      "许慧#dialogues#261": {
+       "L1": "DATE:2022-05-12",
+       "rule": "DATE:2019-05-06",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#dialogues#198": {
+       "L1": "DATE:2019-05-15",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#events#80": {
+       "L1": "DATE:2021-05-12",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      },
+      "龙美丽#events#47": {
+       "L1": "DATE:2019-06-15",
+       "rule": "YEAR:1503",
+       "ok": true,
+       "src": "bd"
+      }
+     }
+    },
+    "X2(δ=0.1)": {
+     "spec": {
+      "arm": "BD",
+      "cross": "X2",
+      "delta": 0.1
+     },
+     "correct": 17,
+     "vs_L1_win": [
+      "龙美丽#events#47"
+     ],
+     "vs_L1_loss": [
+      "徐佳#dialogues#145",
+      "韩刚#events#80"
+     ],
+     "vs_BD_fix": [
+      "冯伟#events#191"
+     ],
+     "vs_BD_hurt": [
+      "孙晓明#dialogues#149"
+     ],
+     "first_L1ok_now_wrong": [
+      "韩刚#events#80"
+     ],
+     "mcn_vs_L1": {
+      "win": 1,
+      "loss": 2,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {
+      "徐佳#dialogues#145": {
+       "L1": "YEAR:2015",
+       "rule": "DATE:2020-11-10",
+       "ok": false,
+       "src": "bd"
+      },
+      "田洋#dialogues#210": {
+       "L1": "DATE:2021-06-12",
+       "rule": "DATE:2022-05-03",
+       "ok": false,
+       "src": "bd"
+      },
+      "许慧#dialogues#261": {
+       "L1": "DATE:2022-05-12",
+       "rule": "DATE:2019-05-06",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#dialogues#198": {
+       "L1": "DATE:2019-05-15",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#events#80": {
+       "L1": "DATE:2021-05-12",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      },
+      "龙美丽#events#47": {
+       "L1": "DATE:2019-06-15",
+       "rule": "YEAR:1503",
+       "ok": true,
+       "src": "bd"
+      }
+     }
+    },
+    "X3": {
+     "spec": {
+      "arm": "BD",
+      "cross": "X3"
+     },
+     "correct": 16,
+     "vs_L1_win": [
+      "孙晓明#dialogues#149",
+      "李华#events#116",
+      "龙美丽#events#47"
+     ],
+     "vs_L1_loss": [
+      "何峰#events#77",
+      "徐佳#dialogues#145",
+      "田洋#dialogues#261",
+      "田洋#events#138",
+      "韩刚#events#80"
+     ],
+     "vs_BD_fix": [
+      "冯伟#events#191",
+      "李华#events#116"
+     ],
+     "vs_BD_hurt": [
+      "何峰#events#77",
+      "田洋#dialogues#261",
+      "田洋#events#138"
+     ],
+     "first_L1ok_now_wrong": [
+      "何峰#events#77",
+      "田洋#dialogues#261",
+      "田洋#events#138",
+      "韩刚#events#80"
+     ],
+     "mcn_vs_L1": {
+      "win": 3,
+      "loss": 5,
+      "p": 0.7265625,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {
+      "何峰#events#64": {
+       "L1": "DATE:2022-09-01",
+       "rule": "DATE:2021-09-16",
+       "ok": false,
+       "src": "l1"
+      },
+      "何峰#events#77": {
+       "L1": "YEAR:1975",
+       "rule": "DATE:2021-07-01",
+       "ok": false,
+       "src": "l1"
+      },
+      "孙晓明#dialogues#149": {
+       "L1": "DATE:2019-08-15",
+       "rule": "YEAR:2019",
+       "ok": true,
+       "src": "bd"
+      },
+      "孙晓明#events#59": {
+       "L1": "DATE:2019-08-15",
+       "rule": "YEAR:2020",
+       "ok": false,
+       "src": "bd"
+      },
+      "张小红#events#71": {
+       "L1": "DATE:2022-05-15",
+       "rule": "DATE:2022-05-12",
+       "ok": false,
+       "src": "l1"
+      },
+      "张小红#events#94": {
+       "L1": "DATE:2022-06-15",
+       "rule": "DATE:2023-06-08",
+       "ok": false,
+       "src": "bd"
+      },
+      "徐佳#dialogues#130": {
+       "L1": "DATE:2023-05-12",
+       "rule": "DATE:2022-05-12",
+       "ok": false,
+       "src": "l1"
+      },
+      "徐佳#dialogues#145": {
+       "L1": "YEAR:2015",
+       "rule": "DATE:2020-11-10",
+       "ok": false,
+       "src": "bd"
+      },
+      "李华#dialogues#184": {
+       "L1": "DATE:2022-10-15",
+       "rule": "DATE:2022-03-15",
+       "ok": false,
+       "src": "bd"
+      },
+      "李华#events#116": {
+       "L1": "DATE:2022-05-12",
+       "rule": "DATE:2022-06-15",
+       "ok": true,
+       "src": "l1"
+      },
+      "田洋#dialogues#210": {
+       "L1": "DATE:2021-06-12",
+       "rule": "DATE:2022-05-03",
+       "ok": false,
+       "src": "bd"
+      },
+      "田洋#dialogues#261": {
+       "L1": "DATE:2022-07-05",
+       "rule": "DATE:2022-06-15",
+       "ok": false,
+       "src": "l1"
+      },
+      "田洋#events#138": {
+       "L1": "YEAR:2019",
+       "rule": "DATE:2021-08-01",
+       "ok": false,
+       "src": "bd"
+      },
+      "许慧#dialogues#261": {
+       "L1": "DATE:2022-05-12",
+       "rule": "DATE:2019-05-06",
+       "ok": false,
+       "src": "bd"
+      },
+      "许慧#events#175": {
+       "L1": "DATE:2022-06-01",
+       "rule": "DATE:2019-05-06",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#dialogues#198": {
+       "L1": "DATE:2019-05-15",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#dialogues#237": {
+       "L1": "YEAR:2021",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#events#80": {
+       "L1": "DATE:2021-05-12",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      },
+      "龙美丽#events#169": {
+       "L1": "DATE:2022-05-10",
+       "rule": "DATE:2022-06-15",
+       "ok": false,
+       "src": "l1"
+      },
+      "龙美丽#events#47": {
+       "L1": "DATE:2019-06-15",
+       "rule": "YEAR:1503",
+       "ok": true,
+       "src": "bd"
+      }
+     }
+    },
+    "E1-J≥0.3": {
+     "spec": {
+      "arm": "BD",
+      "cross": "first",
+      "echo": [
+       "J",
+       0.3,
+       false,
+       false
+      ],
+      "echo_mode": "skip"
+     },
+     "correct": 18,
+     "vs_L1_win": [
+      "孙晓明#dialogues#149",
+      "龙美丽#events#47"
+     ],
+     "vs_L1_loss": [
+      "冯伟#events#191",
+      "韩刚#events#80"
+     ],
+     "vs_BD_fix": [
+      "徐佳#dialogues#145"
+     ],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [
+      "冯伟#events#191",
+      "韩刚#events#80"
+     ],
+     "mcn_vs_L1": {
+      "win": 2,
+      "loss": 2,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {
+      "冯伟#events#191": {
+       "L1": "DATE:2022-03-10",
+       "rule": "YEAR:2019",
+       "ok": false,
+       "src": "bd"
+      },
+      "孙晓明#dialogues#149": {
+       "L1": "DATE:2019-08-15",
+       "rule": "YEAR:2019",
+       "ok": true,
+       "src": "bd"
+      },
+      "田洋#dialogues#210": {
+       "L1": "DATE:2021-06-12",
+       "rule": "DATE:2022-05-03",
+       "ok": false,
+       "src": "bd"
+      },
+      "许慧#dialogues#261": {
+       "L1": "DATE:2022-05-12",
+       "rule": "DATE:2019-05-08",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#dialogues#198": {
+       "L1": "DATE:2019-05-15",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#events#80": {
+       "L1": "DATE:2021-05-12",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      },
+      "龙美丽#events#47": {
+       "L1": "DATE:2019-06-15",
+       "rule": "YEAR:1503",
+       "ok": true,
+       "src": "bd"
+      }
+     }
+    },
+    "E1-J≥0.4": {
+     "spec": {
+      "arm": "BD",
+      "cross": "first",
+      "echo": [
+       "J",
+       0.4,
+       false,
+       false
+      ],
+      "echo_mode": "skip"
+     },
+     "correct": 18,
+     "vs_L1_win": [
+      "孙晓明#dialogues#149",
+      "龙美丽#events#47"
+     ],
+     "vs_L1_loss": [
+      "冯伟#events#191",
+      "韩刚#events#80"
+     ],
+     "vs_BD_fix": [
+      "徐佳#dialogues#145"
+     ],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [
+      "冯伟#events#191",
+      "韩刚#events#80"
+     ],
+     "mcn_vs_L1": {
+      "win": 2,
+      "loss": 2,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {
+      "冯伟#events#191": {
+       "L1": "DATE:2022-03-10",
+       "rule": "YEAR:2019",
+       "ok": false,
+       "src": "bd"
+      },
+      "孙晓明#dialogues#149": {
+       "L1": "DATE:2019-08-15",
+       "rule": "YEAR:2019",
+       "ok": true,
+       "src": "bd"
+      },
+      "田洋#dialogues#210": {
+       "L1": "DATE:2021-06-12",
+       "rule": "DATE:2022-05-03",
+       "ok": false,
+       "src": "bd"
+      },
+      "许慧#dialogues#261": {
+       "L1": "DATE:2022-05-12",
+       "rule": "DATE:2019-05-08",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#dialogues#198": {
+       "L1": "DATE:2019-05-15",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#events#80": {
+       "L1": "DATE:2021-05-12",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      },
+      "龙美丽#events#47": {
+       "L1": "DATE:2019-06-15",
+       "rule": "YEAR:1503",
+       "ok": true,
+       "src": "bd"
+      }
+     }
+    },
+    "E1-J≥0.5": {
+     "spec": {
+      "arm": "BD",
+      "cross": "first",
+      "echo": [
+       "J",
+       0.5,
+       false,
+       false
+      ],
+      "echo_mode": "skip"
+     },
+     "correct": 18,
+     "vs_L1_win": [
+      "孙晓明#dialogues#149",
+      "龙美丽#events#47"
+     ],
+     "vs_L1_loss": [
+      "冯伟#events#191",
+      "韩刚#events#80"
+     ],
+     "vs_BD_fix": [
+      "徐佳#dialogues#145"
+     ],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [
+      "冯伟#events#191",
+      "韩刚#events#80"
+     ],
+     "mcn_vs_L1": {
+      "win": 2,
+      "loss": 2,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {
+      "冯伟#events#191": {
+       "L1": "DATE:2022-03-10",
+       "rule": "YEAR:2019",
+       "ok": false,
+       "src": "bd"
+      },
+      "孙晓明#dialogues#149": {
+       "L1": "DATE:2019-08-15",
+       "rule": "YEAR:2019",
+       "ok": true,
+       "src": "bd"
+      },
+      "田洋#dialogues#210": {
+       "L1": "DATE:2021-06-12",
+       "rule": "DATE:2022-05-03",
+       "ok": false,
+       "src": "bd"
+      },
+      "许慧#dialogues#261": {
+       "L1": "DATE:2022-05-12",
+       "rule": "DATE:2019-05-08",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#dialogues#198": {
+       "L1": "DATE:2019-05-15",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#events#80": {
+       "L1": "DATE:2021-05-12",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      },
+      "龙美丽#events#47": {
+       "L1": "DATE:2019-06-15",
+       "rule": "YEAR:1503",
+       "ok": true,
+       "src": "bd"
+      }
+     }
+    },
+    "E1-J≥0.6": {
+     "spec": {
+      "arm": "BD",
+      "cross": "first",
+      "echo": [
+       "J",
+       0.6,
+       false,
+       false
+      ],
+      "echo_mode": "skip"
+     },
+     "correct": 17,
+     "vs_L1_win": [
+      "孙晓明#dialogues#149",
+      "龙美丽#events#47"
+     ],
+     "vs_L1_loss": [
+      "冯伟#events#191",
+      "徐佳#dialogues#145",
+      "韩刚#events#80"
+     ],
+     "vs_BD_fix": [],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [
+      "冯伟#events#191",
+      "韩刚#events#80"
+     ],
+     "mcn_vs_L1": {
+      "win": 2,
+      "loss": 3,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {
+      "冯伟#events#191": {
+       "L1": "DATE:2022-03-10",
+       "rule": "YEAR:2019",
+       "ok": false,
+       "src": "bd"
+      },
+      "孙晓明#dialogues#149": {
+       "L1": "DATE:2019-08-15",
+       "rule": "YEAR:2019",
+       "ok": true,
+       "src": "bd"
+      },
+      "徐佳#dialogues#145": {
+       "L1": "YEAR:2015",
+       "rule": "DATE:2020-11-10",
+       "ok": false,
+       "src": "bd"
+      },
+      "田洋#dialogues#210": {
+       "L1": "DATE:2021-06-12",
+       "rule": "DATE:2022-05-03",
+       "ok": false,
+       "src": "bd"
+      },
+      "许慧#dialogues#261": {
+       "L1": "DATE:2022-05-12",
+       "rule": "DATE:2019-05-08",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#dialogues#198": {
+       "L1": "DATE:2019-05-15",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#events#80": {
+       "L1": "DATE:2021-05-12",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      },
+      "龙美丽#events#47": {
+       "L1": "DATE:2019-06-15",
+       "rule": "YEAR:1503",
+       "ok": true,
+       "src": "bd"
+      }
+     }
+    },
+    "E2-J≥0.5+问句形+无本句日期": {
+     "spec": {
+      "arm": "BD",
+      "cross": "first",
+      "echo": [
+       "J",
+       0.5,
+       true,
+       true
+      ],
+      "echo_mode": "skip"
+     },
+     "correct": 18,
+     "vs_L1_win": [
+      "孙晓明#dialogues#149",
+      "龙美丽#events#47"
+     ],
+     "vs_L1_loss": [
+      "冯伟#events#191",
+      "韩刚#events#80"
+     ],
+     "vs_BD_fix": [
+      "徐佳#dialogues#145"
+     ],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [
+      "冯伟#events#191",
+      "韩刚#events#80"
+     ],
+     "mcn_vs_L1": {
+      "win": 2,
+      "loss": 2,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {
+      "冯伟#events#191": {
+       "L1": "DATE:2022-03-10",
+       "rule": "YEAR:2019",
+       "ok": false,
+       "src": "bd"
+      },
+      "孙晓明#dialogues#149": {
+       "L1": "DATE:2019-08-15",
+       "rule": "YEAR:2019",
+       "ok": true,
+       "src": "bd"
+      },
+      "田洋#dialogues#210": {
+       "L1": "DATE:2021-06-12",
+       "rule": "DATE:2022-05-03",
+       "ok": false,
+       "src": "bd"
+      },
+      "许慧#dialogues#261": {
+       "L1": "DATE:2022-05-12",
+       "rule": "DATE:2019-05-08",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#dialogues#198": {
+       "L1": "DATE:2019-05-15",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#events#80": {
+       "L1": "DATE:2021-05-12",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      },
+      "龙美丽#events#47": {
+       "L1": "DATE:2019-06-15",
+       "rule": "YEAR:1503",
+       "ok": true,
+       "src": "bd"
+      }
+     }
+    },
+    "E3-J≥0.5+问句形→下一句": {
+     "spec": {
+      "arm": "BD",
+      "cross": "first",
+      "echo": [
+       "J",
+       0.5,
+       true,
+       true
+      ],
+      "echo_mode": "next"
+     },
+     "correct": 18,
+     "vs_L1_win": [
+      "孙晓明#dialogues#149",
+      "龙美丽#events#47"
+     ],
+     "vs_L1_loss": [
+      "冯伟#events#191",
+      "韩刚#events#80"
+     ],
+     "vs_BD_fix": [
+      "徐佳#dialogues#145"
+     ],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [
+      "冯伟#events#191",
+      "韩刚#events#80"
+     ],
+     "mcn_vs_L1": {
+      "win": 2,
+      "loss": 2,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {
+      "冯伟#events#191": {
+       "L1": "DATE:2022-03-10",
+       "rule": "YEAR:2019",
+       "ok": false,
+       "src": "bd"
+      },
+      "孙晓明#dialogues#149": {
+       "L1": "DATE:2019-08-15",
+       "rule": "YEAR:2019",
+       "ok": true,
+       "src": "bd"
+      },
+      "田洋#dialogues#210": {
+       "L1": "DATE:2021-06-12",
+       "rule": "DATE:2022-05-03",
+       "ok": false,
+       "src": "bd"
+      },
+      "许慧#dialogues#261": {
+       "L1": "DATE:2022-05-12",
+       "rule": "DATE:2019-05-07",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#dialogues#198": {
+       "L1": "DATE:2019-05-15",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#events#80": {
+       "L1": "DATE:2021-05-12",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      },
+      "龙美丽#events#47": {
+       "L1": "DATE:2019-06-15",
+       "rule": "YEAR:1503",
+       "ok": true,
+       "src": "bd"
+      }
+     }
+    },
+    "E1-C≥0.3": {
+     "spec": {
+      "arm": "BD",
+      "cross": "first",
+      "echo": [
+       "C",
+       0.3,
+       false,
+       false
+      ],
+      "echo_mode": "skip"
+     },
+     "correct": 17,
+     "vs_L1_win": [
+      "孙晓明#dialogues#149",
+      "田洋#dialogues#210"
+     ],
+     "vs_L1_loss": [
+      "冯伟#events#191",
+      "徐佳#dialogues#145",
+      "韩刚#events#80"
+     ],
+     "vs_BD_fix": [
+      "田洋#dialogues#210"
+     ],
+     "vs_BD_hurt": [
+      "龙美丽#events#47"
+     ],
+     "first_L1ok_now_wrong": [
+      "冯伟#events#191",
+      "韩刚#events#80"
+     ],
+     "mcn_vs_L1": {
+      "win": 2,
+      "loss": 3,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {
+      "冯伟#events#191": {
+       "L1": "DATE:2022-03-10",
+       "rule": "YEAR:2019",
+       "ok": false,
+       "src": "bd"
+      },
+      "孙晓明#dialogues#149": {
+       "L1": "DATE:2019-08-15",
+       "rule": "YEAR:2019",
+       "ok": true,
+       "src": "bd"
+      },
+      "徐佳#dialogues#145": {
+       "L1": "YEAR:2015",
+       "rule": "DATE:2020-11-10",
+       "ok": false,
+       "src": "bd"
+      },
+      "田洋#dialogues#210": {
+       "L1": "DATE:2021-06-12",
+       "rule": "DATE:2022-05-02",
+       "ok": true,
+       "src": "bd"
+      },
+      "许慧#dialogues#261": {
+       "L1": "DATE:2022-05-12",
+       "rule": "DATE:2019-05-08",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#dialogues#198": {
+       "L1": "DATE:2019-05-15",
+       "rule": "DATE:2022-01-15",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#events#80": {
+       "L1": "DATE:2021-05-12",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      }
+     }
+    },
+    "E1-C≥0.4": {
+     "spec": {
+      "arm": "BD",
+      "cross": "first",
+      "echo": [
+       "C",
+       0.4,
+       false,
+       false
+      ],
+      "echo_mode": "skip"
+     },
+     "correct": 17,
+     "vs_L1_win": [
+      "孙晓明#dialogues#149"
+     ],
+     "vs_L1_loss": [
+      "冯伟#events#191",
+      "韩刚#events#80"
+     ],
+     "vs_BD_fix": [
+      "徐佳#dialogues#145"
+     ],
+     "vs_BD_hurt": [
+      "龙美丽#events#47"
+     ],
+     "first_L1ok_now_wrong": [
+      "冯伟#events#191",
+      "韩刚#events#80"
+     ],
+     "mcn_vs_L1": {
+      "win": 1,
+      "loss": 2,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {
+      "冯伟#events#191": {
+       "L1": "DATE:2022-03-10",
+       "rule": "YEAR:2019",
+       "ok": false,
+       "src": "bd"
+      },
+      "孙晓明#dialogues#149": {
+       "L1": "DATE:2019-08-15",
+       "rule": "YEAR:2019",
+       "ok": true,
+       "src": "bd"
+      },
+      "田洋#dialogues#210": {
+       "L1": "DATE:2021-06-12",
+       "rule": "DATE:2022-05-03",
+       "ok": false,
+       "src": "bd"
+      },
+      "许慧#dialogues#261": {
+       "L1": "DATE:2022-05-12",
+       "rule": "DATE:2019-05-08",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#dialogues#198": {
+       "L1": "DATE:2019-05-15",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#events#80": {
+       "L1": "DATE:2021-05-12",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      }
+     }
+    },
+    "E1-C≥0.5": {
+     "spec": {
+      "arm": "BD",
+      "cross": "first",
+      "echo": [
+       "C",
+       0.5,
+       false,
+       false
+      ],
+      "echo_mode": "skip"
+     },
+     "correct": 17,
+     "vs_L1_win": [
+      "孙晓明#dialogues#149"
+     ],
+     "vs_L1_loss": [
+      "冯伟#events#191",
+      "韩刚#events#80"
+     ],
+     "vs_BD_fix": [
+      "徐佳#dialogues#145"
+     ],
+     "vs_BD_hurt": [
+      "龙美丽#events#47"
+     ],
+     "first_L1ok_now_wrong": [
+      "冯伟#events#191",
+      "韩刚#events#80"
+     ],
+     "mcn_vs_L1": {
+      "win": 1,
+      "loss": 2,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {
+      "冯伟#events#191": {
+       "L1": "DATE:2022-03-10",
+       "rule": "YEAR:2019",
+       "ok": false,
+       "src": "bd"
+      },
+      "孙晓明#dialogues#149": {
+       "L1": "DATE:2019-08-15",
+       "rule": "YEAR:2019",
+       "ok": true,
+       "src": "bd"
+      },
+      "田洋#dialogues#210": {
+       "L1": "DATE:2021-06-12",
+       "rule": "DATE:2022-05-03",
+       "ok": false,
+       "src": "bd"
+      },
+      "许慧#dialogues#261": {
+       "L1": "DATE:2022-05-12",
+       "rule": "DATE:2019-05-08",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#dialogues#198": {
+       "L1": "DATE:2019-05-15",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#events#80": {
+       "L1": "DATE:2021-05-12",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      }
+     }
+    },
+    "E1-C≥0.6": {
+     "spec": {
+      "arm": "BD",
+      "cross": "first",
+      "echo": [
+       "C",
+       0.6,
+       false,
+       false
+      ],
+      "echo_mode": "skip"
+     },
+     "correct": 18,
+     "vs_L1_win": [
+      "孙晓明#dialogues#149",
+      "龙美丽#events#47"
+     ],
+     "vs_L1_loss": [
+      "冯伟#events#191",
+      "韩刚#events#80"
+     ],
+     "vs_BD_fix": [
+      "徐佳#dialogues#145"
+     ],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [
+      "冯伟#events#191",
+      "韩刚#events#80"
+     ],
+     "mcn_vs_L1": {
+      "win": 2,
+      "loss": 2,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {
+      "冯伟#events#191": {
+       "L1": "DATE:2022-03-10",
+       "rule": "YEAR:2019",
+       "ok": false,
+       "src": "bd"
+      },
+      "孙晓明#dialogues#149": {
+       "L1": "DATE:2019-08-15",
+       "rule": "YEAR:2019",
+       "ok": true,
+       "src": "bd"
+      },
+      "田洋#dialogues#210": {
+       "L1": "DATE:2021-06-12",
+       "rule": "DATE:2022-05-03",
+       "ok": false,
+       "src": "bd"
+      },
+      "许慧#dialogues#261": {
+       "L1": "DATE:2022-05-12",
+       "rule": "DATE:2019-05-08",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#dialogues#198": {
+       "L1": "DATE:2019-05-15",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#events#80": {
+       "L1": "DATE:2021-05-12",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      },
+      "龙美丽#events#47": {
+       "L1": "DATE:2019-06-15",
+       "rule": "YEAR:1503",
+       "ok": true,
+       "src": "bd"
+      }
+     }
+    },
+    "E2-C≥0.5+问句形+无本句日期": {
+     "spec": {
+      "arm": "BD",
+      "cross": "first",
+      "echo": [
+       "C",
+       0.5,
+       true,
+       true
+      ],
+      "echo_mode": "skip"
+     },
+     "correct": 18,
+     "vs_L1_win": [
+      "孙晓明#dialogues#149",
+      "龙美丽#events#47"
+     ],
+     "vs_L1_loss": [
+      "冯伟#events#191",
+      "韩刚#events#80"
+     ],
+     "vs_BD_fix": [
+      "徐佳#dialogues#145"
+     ],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [
+      "冯伟#events#191",
+      "韩刚#events#80"
+     ],
+     "mcn_vs_L1": {
+      "win": 2,
+      "loss": 2,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {
+      "冯伟#events#191": {
+       "L1": "DATE:2022-03-10",
+       "rule": "YEAR:2019",
+       "ok": false,
+       "src": "bd"
+      },
+      "孙晓明#dialogues#149": {
+       "L1": "DATE:2019-08-15",
+       "rule": "YEAR:2019",
+       "ok": true,
+       "src": "bd"
+      },
+      "田洋#dialogues#210": {
+       "L1": "DATE:2021-06-12",
+       "rule": "DATE:2022-05-03",
+       "ok": false,
+       "src": "bd"
+      },
+      "许慧#dialogues#261": {
+       "L1": "DATE:2022-05-12",
+       "rule": "DATE:2019-05-08",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#dialogues#198": {
+       "L1": "DATE:2019-05-15",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#events#80": {
+       "L1": "DATE:2021-05-12",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      },
+      "龙美丽#events#47": {
+       "L1": "DATE:2019-06-15",
+       "rule": "YEAR:1503",
+       "ok": true,
+       "src": "bd"
+      }
+     }
+    },
+    "E3-C≥0.5+问句形→下一句": {
+     "spec": {
+      "arm": "BD",
+      "cross": "first",
+      "echo": [
+       "C",
+       0.5,
+       true,
+       true
+      ],
+      "echo_mode": "next"
+     },
+     "correct": 18,
+     "vs_L1_win": [
+      "孙晓明#dialogues#149",
+      "龙美丽#events#47"
+     ],
+     "vs_L1_loss": [
+      "冯伟#events#191",
+      "韩刚#events#80"
+     ],
+     "vs_BD_fix": [
+      "徐佳#dialogues#145"
+     ],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [
+      "冯伟#events#191",
+      "韩刚#events#80"
+     ],
+     "mcn_vs_L1": {
+      "win": 2,
+      "loss": 2,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {
+      "冯伟#events#191": {
+       "L1": "DATE:2022-03-10",
+       "rule": "YEAR:2019",
+       "ok": false,
+       "src": "bd"
+      },
+      "孙晓明#dialogues#149": {
+       "L1": "DATE:2019-08-15",
+       "rule": "YEAR:2019",
+       "ok": true,
+       "src": "bd"
+      },
+      "田洋#dialogues#210": {
+       "L1": "DATE:2021-06-12",
+       "rule": "DATE:2012-03-15",
+       "ok": false,
+       "src": "bd"
+      },
+      "许慧#dialogues#261": {
+       "L1": "DATE:2022-05-12",
+       "rule": "DATE:2019-05-07",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#dialogues#198": {
+       "L1": "DATE:2019-05-15",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#events#80": {
+       "L1": "DATE:2021-05-12",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      },
+      "龙美丽#events#47": {
+       "L1": "DATE:2019-06-15",
+       "rule": "YEAR:1503",
+       "ok": true,
+       "src": "bd"
+      }
+     }
+    },
+    "X4": {
+     "spec": {
+      "arm": "BD",
+      "cross": "X4"
+     },
+     "correct": 19,
+     "vs_L1_win": [
+      "孙晓明#dialogues#149",
+      "龙美丽#events#47"
+     ],
+     "vs_L1_loss": [
+      "徐佳#dialogues#145"
+     ],
+     "vs_BD_fix": [
+      "冯伟#events#191",
+      "韩刚#events#80"
+     ],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [],
+     "mcn_vs_L1": {
+      "win": 2,
+      "loss": 1,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {
+      "孙晓明#dialogues#149": {
+       "L1": "DATE:2019-08-15",
+       "rule": "YEAR:2019",
+       "ok": true,
+       "src": "bd"
+      },
+      "徐佳#dialogues#145": {
+       "L1": "YEAR:2015",
+       "rule": "DATE:2020-11-10",
+       "ok": false,
+       "src": "bd"
+      },
+      "田洋#dialogues#210": {
+       "L1": "DATE:2021-06-12",
+       "rule": "DATE:2022-05-03",
+       "ok": false,
+       "src": "bd"
+      },
+      "许慧#dialogues#261": {
+       "L1": "DATE:2022-05-12",
+       "rule": "DATE:2019-05-06",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#dialogues#198": {
+       "L1": "DATE:2019-05-15",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      },
+      "龙美丽#events#47": {
+       "L1": "DATE:2019-06-15",
+       "rule": "YEAR:1503",
+       "ok": true,
+       "src": "bd"
+      }
+     }
+    },
+    "E4-问句形+无本句日期(无相似度门槛)": {
+     "spec": {
+      "arm": "BD",
+      "cross": "first",
+      "echo": [
+       "Q",
+       0.0,
+       true,
+       true
+      ],
+      "echo_mode": "skip"
+     },
+     "correct": 18,
+     "vs_L1_win": [
+      "孙晓明#dialogues#149",
+      "龙美丽#events#47"
+     ],
+     "vs_L1_loss": [
+      "冯伟#events#191",
+      "韩刚#events#80"
+     ],
+     "vs_BD_fix": [
+      "徐佳#dialogues#145"
+     ],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [
+      "冯伟#events#191",
+      "韩刚#events#80"
+     ],
+     "mcn_vs_L1": {
+      "win": 2,
+      "loss": 2,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {
+      "冯伟#events#191": {
+       "L1": "DATE:2022-03-10",
+       "rule": "YEAR:2020",
+       "ok": false,
+       "src": "bd"
+      },
+      "孙晓明#dialogues#149": {
+       "L1": "DATE:2019-08-15",
+       "rule": "YEAR:2019",
+       "ok": true,
+       "src": "bd"
+      },
+      "田洋#dialogues#210": {
+       "L1": "DATE:2021-06-12",
+       "rule": "DATE:2022-05-03",
+       "ok": false,
+       "src": "bd"
+      },
+      "许慧#dialogues#261": {
+       "L1": "DATE:2022-05-12",
+       "rule": "DATE:2019-05-08",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#dialogues#198": {
+       "L1": "DATE:2019-05-15",
+       "rule": "DATE:2022-02-22",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#events#80": {
+       "L1": "DATE:2021-05-12",
+       "rule": "DATE:2022-01-15",
+       "ok": false,
+       "src": "bd"
+      },
+      "龙美丽#events#47": {
+       "L1": "DATE:2019-06-15",
+       "rule": "YEAR:1503",
+       "ok": true,
+       "src": "bd"
+      }
+     }
+    },
+    "X4+E2-J": {
+     "spec": {
+      "arm": "BD",
+      "cross": "X4",
+      "echo": [
+       "J",
+       0.5,
+       true,
+       true
+      ],
+      "echo_mode": "skip"
+     },
+     "correct": 20,
+     "vs_L1_win": [
+      "孙晓明#dialogues#149",
+      "龙美丽#events#47"
+     ],
+     "vs_L1_loss": [],
+     "vs_BD_fix": [
+      "冯伟#events#191",
+      "徐佳#dialogues#145",
+      "韩刚#events#80"
+     ],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [],
+     "mcn_vs_L1": {
+      "win": 2,
+      "loss": 0,
+      "p": 0.5,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {
+      "孙晓明#dialogues#149": {
+       "L1": "DATE:2019-08-15",
+       "rule": "YEAR:2019",
+       "ok": true,
+       "src": "bd"
+      },
+      "田洋#dialogues#210": {
+       "L1": "DATE:2021-06-12",
+       "rule": "DATE:2022-05-03",
+       "ok": false,
+       "src": "bd"
+      },
+      "许慧#dialogues#261": {
+       "L1": "DATE:2022-05-12",
+       "rule": "DATE:2019-05-08",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#dialogues#198": {
+       "L1": "DATE:2019-05-15",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      },
+      "龙美丽#events#47": {
+       "L1": "DATE:2019-06-15",
+       "rule": "YEAR:1503",
+       "ok": true,
+       "src": "bd"
+      }
+     }
+    },
+    "X4+E3-J": {
+     "spec": {
+      "arm": "BD",
+      "cross": "X4",
+      "echo": [
+       "J",
+       0.5,
+       true,
+       true
+      ],
+      "echo_mode": "next"
+     },
+     "correct": 20,
+     "vs_L1_win": [
+      "孙晓明#dialogues#149",
+      "龙美丽#events#47"
+     ],
+     "vs_L1_loss": [],
+     "vs_BD_fix": [
+      "冯伟#events#191",
+      "徐佳#dialogues#145",
+      "韩刚#events#80"
+     ],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [],
+     "mcn_vs_L1": {
+      "win": 2,
+      "loss": 0,
+      "p": 0.5,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {
+      "孙晓明#dialogues#149": {
+       "L1": "DATE:2019-08-15",
+       "rule": "YEAR:2019",
+       "ok": true,
+       "src": "bd"
+      },
+      "田洋#dialogues#210": {
+       "L1": "DATE:2021-06-12",
+       "rule": "DATE:2022-05-03",
+       "ok": false,
+       "src": "bd"
+      },
+      "许慧#dialogues#261": {
+       "L1": "DATE:2022-05-12",
+       "rule": "DATE:2019-05-07",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#dialogues#198": {
+       "L1": "DATE:2019-05-15",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      },
+      "龙美丽#events#47": {
+       "L1": "DATE:2019-06-15",
+       "rule": "YEAR:1503",
+       "ok": true,
+       "src": "bd"
+      }
+     }
+    },
+    "X4+E4": {
+     "spec": {
+      "arm": "BD",
+      "cross": "X4",
+      "echo": [
+       "Q",
+       0.0,
+       true,
+       true
+      ],
+      "echo_mode": "skip"
+     },
+     "correct": 20,
+     "vs_L1_win": [
+      "孙晓明#dialogues#149",
+      "龙美丽#events#47"
+     ],
+     "vs_L1_loss": [],
+     "vs_BD_fix": [
+      "冯伟#events#191",
+      "徐佳#dialogues#145",
+      "韩刚#events#80"
+     ],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [],
+     "mcn_vs_L1": {
+      "win": 2,
+      "loss": 0,
+      "p": 0.5,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {
+      "孙晓明#dialogues#149": {
+       "L1": "DATE:2019-08-15",
+       "rule": "YEAR:2019",
+       "ok": true,
+       "src": "bd"
+      },
+      "田洋#dialogues#210": {
+       "L1": "DATE:2021-06-12",
+       "rule": "DATE:2022-05-03",
+       "ok": false,
+       "src": "bd"
+      },
+      "许慧#dialogues#261": {
+       "L1": "DATE:2022-05-12",
+       "rule": "DATE:2019-05-08",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#dialogues#198": {
+       "L1": "DATE:2019-05-15",
+       "rule": "DATE:2022-02-22",
+       "ok": false,
+       "src": "bd"
+      },
+      "龙美丽#events#47": {
+       "L1": "DATE:2019-06-15",
+       "rule": "YEAR:1503",
+       "ok": true,
+       "src": "bd"
+      }
+     }
+    },
+    "X1+E2-J": {
+     "spec": {
+      "arm": "BD",
+      "cross": "X1",
+      "echo": [
+       "J",
+       0.5,
+       true,
+       true
+      ],
+      "echo_mode": "skip"
+     },
+     "correct": 18,
+     "vs_L1_win": [],
+     "vs_L1_loss": [],
+     "vs_BD_fix": [
+      "冯伟#events#191",
+      "徐佳#dialogues#145",
+      "韩刚#events#80"
+     ],
+     "vs_BD_hurt": [
+      "孙晓明#dialogues#149",
+      "龙美丽#events#47"
+     ],
+     "first_L1ok_now_wrong": [],
+     "mcn_vs_L1": {
+      "win": 0,
+      "loss": 0,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {}
+    },
+    "X1+E3-J": {
+     "spec": {
+      "arm": "BD",
+      "cross": "X1",
+      "echo": [
+       "J",
+       0.5,
+       true,
+       true
+      ],
+      "echo_mode": "next"
+     },
+     "correct": 18,
+     "vs_L1_win": [],
+     "vs_L1_loss": [],
+     "vs_BD_fix": [
+      "冯伟#events#191",
+      "徐佳#dialogues#145",
+      "韩刚#events#80"
+     ],
+     "vs_BD_hurt": [
+      "孙晓明#dialogues#149",
+      "龙美丽#events#47"
+     ],
+     "first_L1ok_now_wrong": [],
+     "mcn_vs_L1": {
+      "win": 0,
+      "loss": 0,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {}
+    },
+    "X2(δ=0.05)+E2-J": {
+     "spec": {
+      "arm": "BD",
+      "cross": "X2",
+      "delta": 0.05,
+      "echo": [
+       "J",
+       0.5,
+       true,
+       true
+      ],
+      "echo_mode": "skip"
+     },
+     "correct": 18,
+     "vs_L1_win": [
+      "龙美丽#events#47"
+     ],
+     "vs_L1_loss": [
+      "韩刚#events#80"
+     ],
+     "vs_BD_fix": [
+      "冯伟#events#191",
+      "徐佳#dialogues#145"
+     ],
+     "vs_BD_hurt": [
+      "孙晓明#dialogues#149"
+     ],
+     "first_L1ok_now_wrong": [
+      "韩刚#events#80"
+     ],
+     "mcn_vs_L1": {
+      "win": 1,
+      "loss": 1,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {
+      "田洋#dialogues#210": {
+       "L1": "DATE:2021-06-12",
+       "rule": "DATE:2022-05-03",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#dialogues#198": {
+       "L1": "DATE:2019-05-15",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      },
+      "韩刚#events#80": {
+       "L1": "DATE:2021-05-12",
+       "rule": "DATE:2022-01-17",
+       "ok": false,
+       "src": "bd"
+      },
+      "龙美丽#events#47": {
+       "L1": "DATE:2019-06-15",
+       "rule": "YEAR:1503",
+       "ok": true,
+       "src": "bd"
+      }
+     }
+    }
+   },
+   "l1_formal": {
+    "by_cls_key": {
+     "body|skip_via_interference": 1,
+     "first|rank1": 15,
+     "first|skip_via_interference": 2
+    },
+    "lists": {
+     "rank1": [
+      "何峰#dialogues#223",
+      "何峰#events#77",
+      "何峰#events#92",
+      "冯伟#events#108",
+      "冯伟#events#126",
+      "冯伟#events#89",
+      "孙晓明#events#98",
+      "徐佳#events#101",
+      "王明#events#41",
+      "田洋#dialogues#261",
+      "田洋#events#138",
+      "许慧#events#166",
+      "许慧#events#62",
+      "龙美丽#dialogues#187",
+      "龙美丽#events#66"
+     ],
+     "skip_via_interference": [
+      "冯伟#events#191",
+      "徐佳#dialogues#145",
+      "韩刚#events#80"
+     ]
+    }
+   },
+   "echo_scan": [
+    {
+     "q": "何峰#events#50",
+     "rank": 1,
+     "is_gold": false,
+     "top_qcos": 0.246,
+     "top_J": 0.071,
+     "top_C": 0.182,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "AI助手:听起来很有意思啊，你们是在什么地方交流的呢？",
+     "max_J": 0.071,
+     "max_J_text": "AI助手:听起来很有意思啊，你们是在什么地方交流的呢？"
+    },
+    {
+     "q": "何峰#events#64",
+     "rank": 2,
+     "is_gold": false,
+     "top_qcos": 0.142,
+     "top_J": 0.062,
+     "top_C": 0.083,
+     "top_isq": false,
+     "top_kind": "inherit",
+     "top_text": "AI助手:你好，何峰先生。",
+     "max_J": 0.062,
+     "max_J_text": "AI助手:你好，何峰先生。"
+    },
+    {
+     "q": "何峰#events#77",
+     "rank": 9,
+     "is_gold": false,
+     "top_qcos": 0.072,
+     "top_J": 0.018,
+     "top_C": 0.036,
+     "top_isq": false,
+     "top_kind": "inherit",
+     "top_text": "AI助手:这真是一个好主意，再次与朋友讨论喜欢的事物永远是一件令人愉快的事情。",
+     "max_J": 0.018,
+     "max_J_text": "AI助手:这真是一个好主意，再次与朋友讨论喜欢的事物永远是一件令人愉快的事情。"
+    },
+    {
+     "q": "冯伟#events#108",
+     "rank": 9,
+     "is_gold": false,
+     "top_qcos": 0.068,
+     "top_J": 0.059,
+     "top_C": 0.067,
+     "top_isq": false,
+     "top_kind": "inherit",
+     "top_text": "AI助手:你好，冯伟。",
+     "max_J": 0.059,
+     "max_J_text": "AI助手:你好，冯伟。"
+    },
+    {
+     "q": "冯伟#events#126",
+     "rank": 1,
+     "is_gold": false,
+     "top_qcos": 0.538,
+     "top_J": 0.25,
+     "top_C": 0.421,
+     "top_isq": false,
+     "top_kind": "inherit",
+     "top_text": "冯伟:我和赵刚开始了一项关于气候变化的重要研究项目。",
+     "max_J": 0.25,
+     "max_J_text": "冯伟:我和赵刚开始了一项关于气候变化的重要研究项目。"
+    },
+    {
+     "q": "冯伟#events#126",
+     "rank": 4,
+     "is_gold": false,
+     "top_qcos": 0.152,
+     "top_J": 0.064,
+     "top_C": 0.158,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "我们知道您是气候变化研究专家，请问对于未来的环保方向，您有什么建议吗？",
+     "max_J": 0.064,
+     "max_J_text": "我们知道您是气候变化研究专家，请问对于未来的环保方向，您有什么建议吗？"
+    },
+    {
+     "q": "冯伟#events#126",
+     "rank": 5,
+     "is_gold": false,
+     "top_qcos": 0.186,
+     "top_J": 0.091,
+     "top_C": 0.211,
+     "top_isq": false,
+     "top_kind": "inherit",
+     "top_text": "冯伟:嗨，AI助手，最近我在忙我的博士研究项目，还在思考如何应对气候变化。",
+     "max_J": 0.091,
+     "max_J_text": "冯伟:嗨，AI助手，最近我在忙我的博士研究项目，还在思考如何应对气候变化。"
+    },
+    {
+     "q": "冯伟#events#126",
+     "rank": 6,
+     "is_gold": false,
+     "top_qcos": 0.164,
+     "top_J": 0.058,
+     "top_C": 0.158,
+     "top_isq": false,
+     "top_kind": "inherit",
+     "top_text": "冯伟:在现场我们主要是和赵刚合作，根据各自的专业知识和能力，共同推动着整个项目的进展。",
+     "max_J": 0.058,
+     "max_J_text": "冯伟:在现场我们主要是和赵刚合作，根据各自的专业知识和能力，共同推动着整个项目的进展。"
+    },
+    {
+     "q": "冯伟#events#191",
+     "rank": 0,
+     "is_gold": false,
+     "top_qcos": 0.163,
+     "top_J": 0.049,
+     "top_C": 0.167,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "我们知道您是气候变化研究专家，请问对于未来的环保方向，您有什么建议吗？",
+     "max_J": 0.049,
+     "max_J_text": "冯伟:AI可以帮助我们进行环境监测和预测，识别环境污染和生态恢复等方面的需求，同时也可以支持节能减排和资源管理等环保活动。"
+    },
+    {
+     "q": "冯伟#events#191",
+     "rank": 7,
+     "is_gold": false,
+     "top_qcos": 0.115,
+     "top_J": 0.025,
+     "top_C": 0.083,
+     "top_isq": false,
+     "top_kind": "inherit",
+     "top_text": "冯伟:是的，我们之间的合作不仅是在学术上相互促进，还建立起了深厚的友谊。",
+     "max_J": 0.029,
+     "max_J_text": "相互的默契和信任，也成为了这个研究项目顺利进行的关键。"
+    },
+    {
+     "q": "冯伟#events#89",
+     "rank": 1,
+     "is_gold": false,
+     "top_qcos": 0.132,
+     "top_J": 0.087,
+     "top_C": 0.182,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "你们如何协作完成这个研究项目的？",
+     "max_J": 0.087,
+     "max_J_text": "你们如何协作完成这个研究项目的？"
+    },
+    {
+     "q": "刘亮#events#38",
+     "rank": 1,
+     "is_gold": false,
+     "top_qcos": 0.234,
+     "top_J": 0.114,
+     "top_C": 0.267,
+     "top_isq": false,
+     "top_kind": "inherit",
+     "top_text": "刘明计划在他下个月的生日时购买，并邀请你一起品尝美食。",
+     "max_J": 0.114,
+     "max_J_text": "刘明计划在他下个月的生日时购买，并邀请你一起品尝美食。"
+    },
+    {
+     "q": "刘亮#events#38",
+     "rank": 6,
+     "is_gold": false,
+     "top_qcos": 0.089,
+     "top_J": 0.048,
+     "top_C": 0.067,
+     "top_isq": false,
+     "top_kind": "inherit",
+     "top_text": "刘亮:是啊，我听刘明说过。",
+     "max_J": 0.048,
+     "max_J_text": "刘亮:是啊，我听刘明说过。"
+    },
+    {
+     "q": "刘亮#events#38",
+     "rank": 8,
+     "is_gold": false,
+     "top_qcos": 0.085,
+     "top_J": 0.018,
+     "top_C": 0.067,
+     "top_isq": false,
+     "top_kind": "anchor",
+     "top_text": "2022年5月15日 学习《人工智能导论》课程：刘明是刘亮的弟弟，他是一名工程师，喜欢音乐和旅行。",
+     "max_J": 0.029,
+     "max_J_text": "通过学习edX平台上的《人工智能导论》课程，刘明不仅提升了自己的技能和知识水平，还为教育和学习领域的创新和发展做出了积极的贡献。"
+    },
+    {
+     "q": "周婷#dialogues#149",
+     "rank": 3,
+     "is_gold": false,
+     "top_qcos": 0.098,
+     "top_J": 0.029,
+     "top_C": 0.1,
+     "top_isq": false,
+     "top_kind": "inherit",
+     "top_text": "虽然我们在旅行的时候只是短暂地谈了一下，但我一直很感兴趣。",
+     "max_J": 0.048,
+     "max_J_text": "AI助手:你好周婷，很高兴又和你对话了。"
+    },
+    {
+     "q": "周婷#dialogues#149",
+     "rank": 8,
+     "is_gold": false,
+     "top_qcos": 0.151,
+     "top_J": 0.059,
+     "top_C": 0.1,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "AI助手:你们还有什么计划吗？",
+     "max_J": 0.059,
+     "max_J_text": "AI助手:你们还有什么计划吗？"
+    },
+    {
+     "q": "周婷#dialogues#149",
+     "rank": 9,
+     "is_gold": false,
+     "top_qcos": 0.075,
+     "top_J": 0.037,
+     "top_C": 0.1,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "有没有什么值得我关注的新产品或创新实践？",
+     "max_J": 0.037,
+     "max_J_text": "有没有什么值得我关注的新产品或创新实践？"
+    },
+    {
+     "q": "周婷#dialogues#151",
+     "rank": 2,
+     "is_gold": false,
+     "top_qcos": 0.107,
+     "top_J": 0.07,
+     "top_C": 0.143,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "另外，我现在工作的酒店需要提高一下销售额，您有什么建议吗？",
+     "max_J": 0.07,
+     "max_J_text": "另外，我现在工作的酒店需要提高一下销售额，您有什么建议吗？"
+    },
+    {
+     "q": "周婷#dialogues#151",
+     "rank": 3,
+     "is_gold": false,
+     "top_qcos": 0.144,
+     "top_J": 0.114,
+     "top_C": 0.19,
+     "top_isq": false,
+     "top_kind": "inherit",
+     "top_text": "他也是行业内一个非常出色的酒店管理专家。",
+     "max_J": 0.114,
+     "max_J_text": "他也是行业内一个非常出色的酒店管理专家。"
+    },
+    {
+     "q": "孙晓明#dialogues#149",
+     "rank": 0,
+     "is_gold": true,
+     "top_qcos": 0.328,
+     "top_J": 0.065,
+     "top_C": 0.25,
+     "top_isq": false,
+     "top_kind": "mid",
+     "top_text": "AI助手:是啊，之前你和你女朋友去观测过伽马座流星雨吧，记得是在2019年的8月15日，在一个远离城市光污染的地方观测的。",
+     "max_J": 0.111,
+     "max_J_text": "孙晓明:最近天气好像很适合观测流星雨啊。"
+    },
+    {
+     "q": "孙晓明#events#47",
+     "rank": 8,
+     "is_gold": false,
+     "top_qcos": 0.203,
+     "top_J": 0.061,
+     "top_C": 0.133,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "AI助手:您好，孙晓明，您可以告诉我今天发生了什么事情吗？",
+     "max_J": 0.061,
+     "max_J_text": "AI助手:您好，孙晓明，您可以告诉我今天发生了什么事情吗？"
+    },
+    {
+     "q": "孙晓明#events#55",
+     "rank": 1,
+     "is_gold": false,
+     "top_qcos": 0.429,
+     "top_J": 0.104,
+     "top_C": 0.292,
+     "top_isq": false,
+     "top_kind": "mid",
+     "top_text": "AI助手:是啊，之前你和你女朋友去观测过伽马座流星雨吧，记得是在2019年的8月15日，在一个远离城市光污染的地方观测的。",
+     "max_J": 0.125,
+     "max_J_text": "AI助手:你和张莉一起去观测流星雨，应该是非常浪漫吧，之后你们是否加深了感情。"
+    },
+    {
+     "q": "孙晓明#events#55",
+     "rank": 4,
+     "is_gold": false,
+     "top_qcos": 0.125,
+     "top_J": 0.089,
+     "top_C": 0.167,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "AI助手:孙晓明，你记得去年的春天，你和张莉来到了一个美丽的庭院吗？",
+     "max_J": 0.089,
+     "max_J_text": "AI助手:孙晓明，你记得去年的春天，你和张莉来到了一个美丽的庭院吗？"
+    },
+    {
+     "q": "孙晓明#events#59",
+     "rank": 3,
+     "is_gold": false,
+     "top_qcos": 0.135,
+     "top_J": 0.048,
+     "top_C": 0.143,
+     "top_isq": false,
+     "top_kind": "inherit",
+     "top_text": "AI助手:你和张莉一起去观测流星雨，应该是非常浪漫吧，之后你们是否加深了感情。",
+     "max_J": 0.048,
+     "max_J_text": "AI助手:你和张莉一起去观测流星雨，应该是非常浪漫吧，之后你们是否加深了感情。"
+    },
+    {
+     "q": "孙晓明#events#59",
+     "rank": 4,
+     "is_gold": false,
+     "top_qcos": 0.228,
+     "top_J": 0.114,
+     "top_C": 0.286,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "AI助手:孙晓明，你记得去年的春天，你和张莉来到了一个美丽的庭院吗？",
+     "max_J": 0.114,
+     "max_J_text": "AI助手:孙晓明，你记得去年的春天，你和张莉来到了一个美丽的庭院吗？"
+    },
+    {
+     "q": "孙晓明#events#59",
+     "rank": 9,
+     "is_gold": false,
+     "top_qcos": 0.179,
+     "top_J": 0.0,
+     "top_C": 0.0,
+     "top_isq": false,
+     "top_kind": "inherit",
+     "top_text": "孙晓明:是的。",
+     "max_J": 0.097,
+     "max_J_text": "AI助手:您好，孙晓明，您可以告诉我今天发生了什么事情吗？"
+    },
+    {
+     "q": "张小红#events#71",
+     "rank": 7,
+     "is_gold": false,
+     "top_qcos": 0.146,
+     "top_J": 0.065,
+     "top_C": 0.125,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "AI助手:其实我还想知道，您现在的财务目标是什么？",
+     "max_J": 0.065,
+     "max_J_text": "AI助手:其实我还想知道，您现在的财务目标是什么？"
+    },
+    {
+     "q": "张小红#events#94",
+     "rank": 5,
+     "is_gold": false,
+     "top_qcos": 0.076,
+     "top_J": 0.018,
+     "top_C": 0.034,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "现在距离那次谈话已经一年多了，想问问您现在理财方面的情况如何了？",
+     "max_J": 0.018,
+     "max_J_text": "现在距离那次谈话已经一年多了，想问问您现在理财方面的情况如何了？"
+    },
+    {
+     "q": "徐佳#dialogues#130",
+     "rank": 7,
+     "is_gold": false,
+     "top_qcos": 0.116,
+     "top_J": 0.041,
+     "top_C": 0.133,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "AI助手:你好徐佳，听说你计划和王婷一起拍摄一部关于北京烤鸭的短片，这个计划进展得怎么样了？",
+     "max_J": 0.045,
+     "max_J_text": "有遇到过什么问题吗？"
+    },
+    {
+     "q": "徐佳#dialogues#145",
+     "rank": 0,
+     "is_gold": true,
+     "top_qcos": 0.802,
+     "top_J": 0.567,
+     "top_C": 0.895,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "AI助手:您好，徐佳，我想问一下您与张阳合作拍摄的《时间之舞》是在哪一年拍摄的呢？",
+     "max_J": 0.567,
+     "max_J_text": "AI助手:您好，徐佳，我想问一下您与张阳合作拍摄的《时间之舞》是在哪一年拍摄的呢？"
+    },
+    {
+     "q": "徐佳#dialogues#145",
+     "rank": 3,
+     "is_gold": false,
+     "top_qcos": 0.227,
+     "top_J": 0.091,
+     "top_C": 0.263,
+     "top_isq": false,
+     "top_kind": "anchor",
+     "top_text": "2022年3月15日 合作拍摄电影和电视剧：徐佳和王伟是一对默契度很高的合作伙伴，经常一起拍摄电影和电视剧。",
+     "max_J": 0.091,
+     "max_J_text": "2022年3月15日 合作拍摄电影和电视剧：徐佳和王伟是一对默契度很高的合作伙伴，经常一起拍摄电影和电视剧。"
+    },
+    {
+     "q": "徐佳#dialogues#145",
+     "rank": 7,
+     "is_gold": false,
+     "top_qcos": 0.13,
+     "top_J": 0.033,
+     "top_C": 0.158,
+     "top_isq": false,
+     "top_kind": "inherit",
+     "top_text": "徐佳:为了实现高效的电影制作过程，我们需要时刻注重工作时间和效率的平衡，我通常会事先准备好相关的道具、布置好场景和确定拍摄的场地、争取用较少的镜头达到丰富情感的",
+     "max_J": 0.033,
+     "max_J_text": "徐佳:为了实现高效的电影制作过程，我们需要时刻注重工作时间和效率的平衡，我通常会事先准备好相关的道具、布置好场景和确定拍摄的场地、争取用较少的镜头达到丰富情感的"
+    },
+    {
+     "q": "李华#dialogues#184",
+     "rank": 1,
+     "is_gold": false,
+     "top_qcos": 0.302,
+     "top_J": 0.125,
+     "top_C": 0.286,
+     "top_isq": false,
+     "top_kind": "inherit",
+     "top_text": "李华:我在整理刚参加的艺术展览的作品，感觉非常有成就感。",
+     "max_J": 0.125,
+     "max_J_text": "李华:我在整理刚参加的艺术展览的作品，感觉非常有成就感。"
+    },
+    {
+     "q": "李华#dialogues#184",
+     "rank": 6,
+     "is_gold": false,
+     "top_qcos": 0.231,
+     "top_J": 0.091,
+     "top_C": 0.143,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "你会参加他的画廊展览吗？",
+     "max_J": 0.103,
+     "max_J_text": "AI助手:那你对这次展览的作品和反响有什么感受呢？"
+    },
+    {
+     "q": "李华#dialogues#184",
+     "rank": 7,
+     "is_gold": false,
+     "top_qcos": 0.128,
+     "top_J": 0.031,
+     "top_C": 0.143,
+     "top_isq": false,
+     "top_kind": "inherit",
+     "top_text": "晚上在塞纳河畔漫步的时候，我也向她表达了我的深深爱意，并送给她一幅我亲自绘制的画作，画中展现了我们在巴黎的美好时光。",
+     "max_J": 0.031,
+     "max_J_text": "在巴黎的时尚设计工作室，王莉给了我不少创意。"
+    },
+    {
+     "q": "李华#events#116",
+     "rank": 9,
+     "is_gold": false,
+     "top_qcos": 0.22,
+     "top_J": 0.1,
+     "top_C": 0.2,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "AI助手:那你对这次展览的作品和反响有什么感受呢？",
+     "max_J": 0.103,
+     "max_J_text": "这次当代艺术展览对你的作品的反响如何？"
+    },
+    {
+     "q": "王明#events#41",
+     "rank": 1,
+     "is_gold": false,
+     "top_qcos": 0.405,
+     "top_J": 0.083,
+     "top_C": 0.214,
+     "top_isq": true,
+     "top_kind": "mid",
+     "top_text": "AI助手:2010年5月15日，你和你的室友李明去黄山拍照了，对吧？",
+     "max_J": 0.083,
+     "max_J_text": "AI助手:2010年5月15日，你和你的室友李明去黄山拍照了，对吧？"
+    },
+    {
+     "q": "王明#events#41",
+     "rank": 7,
+     "is_gold": false,
+     "top_qcos": 0.161,
+     "top_J": 0.048,
+     "top_C": 0.071,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "AI助手:当然可以，什么问题呢？",
+     "max_J": 0.048,
+     "max_J_text": "AI助手:当然可以，什么问题呢？"
+    },
+    {
+     "q": "王明#events#41",
+     "rank": 9,
+     "is_gold": false,
+     "top_qcos": 0.12,
+     "top_J": 0.024,
+     "top_C": 0.071,
+     "top_isq": false,
+     "top_kind": "inherit",
+     "top_text": "王明:哦，你说的是我们去的鼎鼎火锅总店吧，那时候真的是一次难忘的用餐体验！",
+     "max_J": 0.026,
+     "max_J_text": "AI助手:那你和你的室友一起度过的这一顿火锅晚餐留给你什么感触呢？"
+    },
+    {
+     "q": "田洋#dialogues#210",
+     "rank": 0,
+     "is_gold": true,
+     "top_qcos": 0.632,
+     "top_J": 0.476,
+     "top_C": 0.667,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "AI助手:田洋，还记得那次农业工程实习的时间吗？",
+     "max_J": 0.476,
+     "max_J_text": "AI助手:田洋，还记得那次农业工程实习的时间吗？"
+    },
+    {
+     "q": "田洋#dialogues#210",
+     "rank": 4,
+     "is_gold": false,
+     "top_qcos": 0.105,
+     "top_J": 0.024,
+     "top_C": 0.067,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "您对于我们之前在研究方向和实验上遇到的问题有什么新的见解吗？",
+     "max_J": 0.059,
+     "max_J_text": "田洋:我认为在未来，随着农业工程技术的不断更新，生物物联网和机器学习等应用必然会越来越广泛。"
+    },
+    {
+     "q": "田洋#dialogues#210",
+     "rank": 5,
+     "is_gold": false,
+     "top_qcos": 0.287,
+     "top_J": 0.087,
+     "top_C": 0.133,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "田洋:你好，请问这里是什么地方？",
+     "max_J": 0.087,
+     "max_J_text": "田洋:你好，请问这里是什么地方？"
+    },
+    {
+     "q": "田洋#dialogues#210",
+     "rank": 8,
+     "is_gold": false,
+     "top_qcos": 0.148,
+     "top_J": 0.031,
+     "top_C": 0.067,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "您对这个研究项目的经验有什么想分享的吗？",
+     "max_J": 0.088,
+     "max_J_text": "通过这个项目，我对农业工程有了更深入的认识和了解。"
+    },
+    {
+     "q": "田洋#dialogues#220",
+     "rank": 2,
+     "is_gold": false,
+     "top_qcos": 0.118,
+     "top_J": 0.043,
+     "top_C": 0.1,
+     "top_isq": false,
+     "top_kind": "inherit",
+     "top_text": "我们从中掌握到了很多宝贵的经验和技能，也建立了很好的团队合作关系。",
+     "max_J": 0.043,
+     "max_J_text": "我们从中掌握到了很多宝贵的经验和技能，也建立了很好的团队合作关系。"
+    },
+    {
+     "q": "田洋#dialogues#220",
+     "rank": 8,
+     "is_gold": false,
+     "top_qcos": 0.135,
+     "top_J": 0.048,
+     "top_C": 0.1,
+     "top_isq": false,
+     "top_kind": "inherit",
+     "top_text": "AI助手:听说你在刘教授的指导下完成了很多农业工程方面的研究。",
+     "max_J": 0.048,
+     "max_J_text": "AI助手:听说你在刘教授的指导下完成了很多农业工程方面的研究。"
+    },
+    {
+     "q": "田洋#events#138",
+     "rank": 2,
+     "is_gold": false,
+     "top_qcos": 0.338,
+     "top_J": 0.13,
+     "top_C": 0.429,
+     "top_isq": false,
+     "top_kind": "inherit",
+     "top_text": "在这个过程中，他提供了许多有价值的指导和支持，帮助我逐渐成长为一名优秀的农业工程师。",
+     "max_J": 0.13,
+     "max_J_text": "在这个过程中，他提供了许多有价值的指导和支持，帮助我逐渐成长为一名优秀的农业工程师。"
+    },
+    {
+     "q": "田洋#events#138",
+     "rank": 5,
+     "is_gold": false,
+     "top_qcos": 0.177,
+     "top_J": 0.057,
+     "top_C": 0.143,
+     "top_isq": false,
+     "top_kind": "inherit",
+     "top_text": "所有这些元素的结合让这个系列成为一个杰出的艺术品。",
+     "max_J": 0.057,
+     "max_J_text": "所有这些元素的结合让这个系列成为一个杰出的艺术品。"
+    },
+    {
+     "q": "田洋#events#55",
+     "rank": 6,
+     "is_gold": false,
+     "top_qcos": 0.162,
+     "top_J": 0.045,
+     "top_C": 0.067,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "观影活动是在哪里呢？",
+     "max_J": 0.045,
+     "max_J_text": "观影活动是在哪里呢？"
+    },
+    {
+     "q": "田洋#events#55",
+     "rank": 8,
+     "is_gold": false,
+     "top_qcos": 0.13,
+     "top_J": 0.017,
+     "top_C": 0.067,
+     "top_isq": false,
+     "top_kind": "inherit",
+     "top_text": "但是我的父亲田中国总是在我身边给予鼓励和支持，为我提供许多有用的建议和意见，帮助我克服困难，走向成功。",
+     "max_J": 0.053,
+     "max_J_text": "AI助手:你好，田洋先生。"
+    },
+    {
+     "q": "秦梦#events#158",
+     "rank": 6,
+     "is_gold": false,
+     "top_qcos": 0.136,
+     "top_J": 0.065,
+     "top_C": 0.143,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "那么您目前有什么新的生态设计项目在进行吗？",
+     "max_J": 0.065,
+     "max_J_text": "那么您目前有什么新的生态设计项目在进行吗？"
+    },
+    {
+     "q": "许慧#dialogues#247",
+     "rank": 4,
+     "is_gold": false,
+     "top_qcos": 0.281,
+     "top_J": 0.13,
+     "top_C": 0.176,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "AI助手:你们是什么时候认识的？",
+     "max_J": 0.13,
+     "max_J_text": "AI助手:你们是什么时候认识的？"
+    },
+    {
+     "q": "许慧#dialogues#247",
+     "rank": 6,
+     "is_gold": false,
+     "top_qcos": 0.109,
+     "top_J": 0.026,
+     "top_C": 0.118,
+     "top_isq": false,
+     "top_kind": "inherit",
+     "top_text": "许慧:是的，那时候的我是在专业领域发挥出最大的价值，但与张宇的交流和接触让我更深刻地意识到一个学术专家还需要与人沟通、分享思想、增进情感上的交流。",
+     "max_J": 0.029,
+     "max_J_text": "那么，在北京旅游的时候拍的照片都保留了吗？"
+    },
+    {
+     "q": "许慧#dialogues#247",
+     "rank": 9,
+     "is_gold": false,
+     "top_qcos": 0.173,
+     "top_J": 0.069,
+     "top_C": 0.118,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "那时候您发现了什么有趣的内容呢？",
+     "max_J": 0.069,
+     "max_J_text": "那时候您发现了什么有趣的内容呢？"
+    },
+    {
+     "q": "许慧#dialogues#261",
+     "rank": 0,
+     "is_gold": true,
+     "top_qcos": 0.964,
+     "top_J": 0.8,
+     "top_C": 0.889,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "AI助手:你们是什么时候认识的？",
+     "max_J": 0.8,
+     "max_J_text": "AI助手:你们是什么时候认识的？"
+    },
+    {
+     "q": "许慧#dialogues#261",
+     "rank": 6,
+     "is_gold": false,
+     "top_qcos": 0.256,
+     "top_J": 0.095,
+     "top_C": 0.222,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "那时候您发现了什么有趣的内容呢？",
+     "max_J": 0.095,
+     "max_J_text": "那时候您发现了什么有趣的内容呢？"
+    },
+    {
+     "q": "许慧#dialogues#261",
+     "rank": 9,
+     "is_gold": false,
+     "top_qcos": 0.106,
+     "top_J": 0.038,
+     "top_C": 0.111,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "那么，在北京旅游的时候拍的照片都保留了吗？",
+     "max_J": 0.038,
+     "max_J_text": "那么，在北京旅游的时候拍的照片都保留了吗？"
+    },
+    {
+     "q": "许慧#events#175",
+     "rank": 2,
+     "is_gold": false,
+     "top_qcos": 0.326,
+     "top_J": 0.174,
+     "top_C": 0.222,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "AI助手:你们是什么时候认识的？",
+     "max_J": 0.174,
+     "max_J_text": "AI助手:你们是什么时候认识的？"
+    },
+    {
+     "q": "许慧#events#175",
+     "rank": 5,
+     "is_gold": false,
+     "top_qcos": 0.137,
+     "top_J": 0.059,
+     "top_C": 0.111,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "那么，在北京旅游的时候拍的照片都保留了吗？",
+     "max_J": 0.059,
+     "max_J_text": "那么，在北京旅游的时候拍的照片都保留了吗？"
+    },
+    {
+     "q": "许慧#events#175",
+     "rank": 7,
+     "is_gold": false,
+     "top_qcos": 0.15,
+     "top_J": 0.067,
+     "top_C": 0.111,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "那时候您发现了什么有趣的内容呢？",
+     "max_J": 0.067,
+     "max_J_text": "那时候您发现了什么有趣的内容呢？"
+    },
+    {
+     "q": "许慧#events#206",
+     "rank": 2,
+     "is_gold": false,
+     "top_qcos": 0.217,
+     "top_J": 0.13,
+     "top_C": 0.176,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "AI助手:你们是什么时候认识的？",
+     "max_J": 0.13,
+     "max_J_text": "AI助手:你们是什么时候认识的？"
+    },
+    {
+     "q": "许慧#events#206",
+     "rank": 4,
+     "is_gold": false,
+     "top_qcos": 0.118,
+     "top_J": 0.069,
+     "top_C": 0.118,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "那时候您发现了什么有趣的内容呢？",
+     "max_J": 0.069,
+     "max_J_text": "那时候您发现了什么有趣的内容呢？"
+    },
+    {
+     "q": "许慧#events#206",
+     "rank": 6,
+     "is_gold": false,
+     "top_qcos": 0.066,
+     "top_J": 0.029,
+     "top_C": 0.059,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "那么，在北京旅游的时候拍的照片都保留了吗？",
+     "max_J": 0.029,
+     "max_J_text": "那么，在北京旅游的时候拍的照片都保留了吗？"
+    },
+    {
+     "q": "许慧#events#62",
+     "rank": 2,
+     "is_gold": false,
+     "top_qcos": 0.252,
+     "top_J": 0.111,
+     "top_C": 0.143,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "AI助手:你们是什么时候认识的？",
+     "max_J": 0.111,
+     "max_J_text": "AI助手:你们是什么时候认识的？"
+    },
+    {
+     "q": "许慧#events#62",
+     "rank": 6,
+     "is_gold": false,
+     "top_qcos": 0.069,
+     "top_J": 0.015,
+     "top_C": 0.048,
+     "top_isq": false,
+     "top_kind": "inherit",
+     "top_text": "我们开始分享各自感兴趣的内容和互动体验，相互支持鼓励和学术上的探讨，一步步萌芽出了一个非常特别的关系。",
+     "max_J": 0.026,
+     "max_J_text": "那么，在北京旅游的时候拍的照片都保留了吗？"
+    },
+    {
+     "q": "许慧#events#62",
+     "rank": 8,
+     "is_gold": false,
+     "top_qcos": 0.156,
+     "top_J": 0.061,
+     "top_C": 0.095,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "那时候您发现了什么有趣的内容呢？",
+     "max_J": 0.061,
+     "max_J_text": "那时候您发现了什么有趣的内容呢？"
+    },
+    {
+     "q": "韩刚#dialogues#165",
+     "rank": 6,
+     "is_gold": false,
+     "top_qcos": 0.176,
+     "top_J": 0.05,
+     "top_C": 0.059,
+     "top_isq": false,
+     "top_kind": "inherit",
+     "top_text": "AI助手:您好，韩先生。",
+     "max_J": 0.05,
+     "max_J_text": "AI助手:您好，韩先生。"
+    },
+    {
+     "q": "韩刚#dialogues#198",
+     "rank": 0,
+     "is_gold": false,
+     "top_qcos": 0.586,
+     "top_J": 0.211,
+     "top_C": 0.308,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "活动的时间是什么时候呢？",
+     "max_J": 0.211,
+     "max_J_text": "活动的时间是什么时候呢？"
+    },
+    {
+     "q": "韩刚#dialogues#198",
+     "rank": 1,
+     "is_gold": true,
+     "top_qcos": 0.255,
+     "top_J": 0.08,
+     "top_C": 0.154,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "AI助手:当然，您感兴趣的是什么方面的理论？",
+     "max_J": 0.133,
+     "max_J_text": "韩刚:AI助手，你记得我们上次一起去欣赏《星夜》的时候吗？"
+    },
+    {
+     "q": "韩刚#dialogues#237",
+     "rank": 1,
+     "is_gold": false,
+     "top_qcos": 0.386,
+     "top_J": 0.15,
+     "top_C": 0.231,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "活动的时间是什么时候呢？",
+     "max_J": 0.15,
+     "max_J_text": "活动的时间是什么时候呢？"
+    },
+    {
+     "q": "韩刚#dialogues#237",
+     "rank": 5,
+     "is_gold": false,
+     "top_qcos": 0.088,
+     "top_J": 0.034,
+     "top_C": 0.077,
+     "top_isq": false,
+     "top_kind": "inherit",
+     "top_text": "韩刚:是的，我正在计划去参加明年更多的音乐会。",
+     "max_J": 0.034,
+     "max_J_text": "韩刚:是的，我正在计划去参加明年更多的音乐会。"
+    },
+    {
+     "q": "韩刚#dialogues#237",
+     "rank": 8,
+     "is_gold": false,
+     "top_qcos": 0.164,
+     "top_J": 0.03,
+     "top_C": 0.077,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "韩刚:AI助手，你记得我们上次一起去欣赏《星夜》的时候吗？",
+     "max_J": 0.038,
+     "max_J_text": "AI助手:当然，您感兴趣的是什么方面的理论？"
+    },
+    {
+     "q": "韩刚#events#80",
+     "rank": 0,
+     "is_gold": false,
+     "top_qcos": 0.415,
+     "top_J": 0.182,
+     "top_C": 0.25,
+     "top_isq": true,
+     "top_kind": "inherit",
+     "top_text": "活动的时间是什么时候呢？",
+     "max_J": 0.182,
+     "max_J_text": "活动的时间是什么时候呢？"
+    },
+    {
+     "q": "龙美丽#dialogues#187",
+     "rank": 1,
+     "is_gold": false,
+     "top_qcos": 0.312,
+     "top_J": 0.059,
+     "top_C": 0.3,
+     "top_isq": false,
+     "top_kind": "anchor",
+     "top_text": "2019年6月15日 参观卢浮宫：龙美丽和龙华一起参观卢浮宫，他们来到了法国巴黎欣赏达·芬奇的杰作《蒙娜丽莎》。",
+     "max_J": 0.073,
+     "max_J_text": "龙美丽和龙华在卢浮宫度过了愉快的时光，这次参观也加深了他们之间的家庭关系。"
+    },
+    {
+     "q": "龙美丽#dialogues#187",
+     "rank": 5,
+     "is_gold": false,
+     "top_qcos": 0.088,
+     "top_J": 0.0,
+     "top_C": 0.0,
+     "top_isq": false,
+     "top_kind": "inherit",
+     "top_text": "龙美丽:是的，没错！",
+     "max_J": 0.048,
+     "max_J_text": "龙美丽:对啊，我特别喜欢他们的千层面。"
+    },
+    {
+     "q": "龙美丽#dialogues#187",
+     "rank": 6,
+     "is_gold": false,
+     "top_qcos": 0.071,
+     "top_J": 0.016,
+     "top_C": 0.1,
+     "top_isq": false,
+     "top_kind": "inherit",
+     "top_text": "龙美丽:我平常注意饮食卫生，运动习惯不错，就是办公室的工作比较忙，很多时候要坐一整天，所以想请教下怎样缓解久坐所带来的影响。",
+     "max_J": 0.016,
+     "max_J_text": "龙美丽:我平常注意饮食卫生，运动习惯不错，就是办公室的工作比较忙，很多时候要坐一整天，所以想请教下怎样缓解久坐所带来的影响。"
+    },
+    {
+     "q": "龙美丽#dialogues#217",
+     "rank": 1,
+     "is_gold": false,
+     "top_qcos": 0.11,
+     "top_J": 0.0,
+     "top_C": 0.0,
+     "top_isq": false,
+     "top_kind": "inherit",
+     "top_text": "龙美丽:是的，没错！",
+     "max_J": 0.057,
+     "max_J_text": "2022-03-16 10:15:23 AI助手:龙美丽，您好！"
+    },
+    {
+     "q": "龙美丽#dialogues#217",
+     "rank": 7,
+     "is_gold": false,
+     "top_qcos": 0.075,
+     "top_J": 0.0,
+     "top_C": 0.0,
+     "top_isq": false,
+     "top_kind": "inherit",
+     "top_text": "龙美丽:好呀！",
+     "max_J": 0.041,
+     "max_J_text": "AI助手:你好，龙美丽，长期坐办公室确实容易导致身体不适，我建议您多做些身体上的放松和活动。"
+    },
+    {
+     "q": "龙美丽#events#149",
+     "rank": 7,
+     "is_gold": false,
+     "top_qcos": 0.177,
+     "top_J": 0.075,
+     "top_C": 0.214,
+     "top_isq": false,
+     "top_kind": "inherit",
+     "top_text": "他们开始交谈，王先生向龙美丽表达了他对运动医学领域的兴趣和好奇。",
+     "max_J": 0.075,
+     "max_J_text": "他们开始交谈，王先生向龙美丽表达了他对运动医学领域的兴趣和好奇。"
+    },
+    {
+     "q": "龙美丽#events#149",
+     "rank": 9,
+     "is_gold": false,
+     "top_qcos": 0.132,
+     "top_J": 0.0,
+     "top_C": 0.0,
+     "top_isq": false,
+     "top_kind": "inherit",
+     "top_text": "龙美丽:好呀！",
+     "max_J": 0.043,
+     "max_J_text": "AI助手:你好，龙美丽，长期坐办公室确实容易导致身体不适，我建议您多做些身体上的放松和活动。"
+    },
+    {
+     "q": "龙美丽#events#169",
+     "rank": 7,
+     "is_gold": false,
+     "top_qcos": 0.311,
+     "top_J": 0.108,
+     "top_C": 0.25,
+     "top_isq": false,
+     "top_kind": "inherit",
+     "top_text": "对了，之前我和刘明在社区里举行了一次健康活动，效果挺不错。",
+     "max_J": 0.138,
+     "max_J_text": "你有没有参与过社区健康推广方面的活动？"
+    },
+    {
+     "q": "龙美丽#events#47",
+     "rank": 0,
+     "is_gold": true,
+     "top_qcos": 0.445,
+     "top_J": 0.146,
+     "top_C": 0.545,
+     "top_isq": false,
+     "top_kind": "mid",
+     "top_text": "龙美丽指出，《蒙娜丽莎》是在1503年至1506年之间绘制的一幅肖像画，以油画技法呈现。",
+     "max_J": 0.146,
+     "max_J_text": "龙美丽指出，《蒙娜丽莎》是在1503年至1506年之间绘制的一幅肖像画，以油画技法呈现。"
+    },
+    {
+     "q": "龙美丽#events#47",
+     "rank": 5,
+     "is_gold": false,
+     "top_qcos": 0.066,
+     "top_J": 0.016,
+     "top_C": 0.091,
+     "top_isq": false,
+     "top_kind": "inherit",
+     "top_text": "龙美丽:我平常注意饮食卫生，运动习惯不错，就是办公室的工作比较忙，很多时候要坐一整天，所以想请教下怎样缓解久坐所带来的影响。",
+     "max_J": 0.016,
+     "max_J_text": "龙美丽:我平常注意饮食卫生，运动习惯不错，就是办公室的工作比较忙，很多时候要坐一整天，所以想请教下怎样缓解久坐所带来的影响。"
+    },
+    {
+     "q": "龙美丽#events#66",
+     "rank": 2,
+     "is_gold": false,
+     "top_qcos": 0.193,
+     "top_J": 0.068,
+     "top_C": 0.211,
+     "top_isq": false,
+     "top_kind": "mid",
+     "top_text": "回忆起来，您曾经和张阳在2022年3月15日一起使用Foursquare应用程序寻找附近餐馆。",
+     "max_J": 0.068,
+     "max_J_text": "回忆起来，您曾经和张阳在2022年3月15日一起使用Foursquare应用程序寻找附近餐馆。"
+    },
+    {
+     "q": "龙美丽#events#82",
+     "rank": 8,
+     "is_gold": false,
+     "top_qcos": 0.083,
+     "top_J": 0.064,
+     "top_C": 0.214,
+     "top_isq": false,
+     "top_kind": "mid",
+     "top_text": "龙美丽指出，《蒙娜丽莎》是在1503年至1506年之间绘制的一幅肖像画，以油画技法呈现。",
+     "max_J": 0.067,
+     "max_J_text": "龙美丽和龙华在卢浮宫度过了愉快的时光，这次参观也加深了他们之间的家庭关系。"
+    }
+   ],
+   "echo_flag_counts_qxsub": {
+    "total": 1551,
+    "E4 问句形+无本句日期": 328,
+    "E2 J≥0.5+问句形+无本句日期": 2,
+    "E1 J≥0.5": 2,
+    "E1 C≥0.5": 4
+   }
+  },
+  "locomo": {
+   "n": 50,
+   "replicate_L1_BD": true,
+   "rules": {
+    "L1": {
+     "spec": {
+      "arm": "L1"
+     },
+     "correct": 28,
+     "vs_L1_win": [],
+     "vs_L1_loss": [],
+     "vs_BD_fix": [],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [],
+     "mcn_vs_L1": {
+      "win": 0,
+      "loss": 0,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {}
+    },
+    "BD": {
+     "spec": {
+      "arm": "BD",
+      "cross": "first"
+     },
+     "correct": 28,
+     "vs_L1_win": [],
+     "vs_L1_loss": [],
+     "vs_BD_fix": [],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [],
+     "mcn_vs_L1": {
+      "win": 0,
+      "loss": 0,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {}
+    },
+    "X1": {
+     "spec": {
+      "arm": "BD",
+      "cross": "X1"
+     },
+     "correct": 28,
+     "vs_L1_win": [],
+     "vs_L1_loss": [],
+     "vs_BD_fix": [],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [],
+     "mcn_vs_L1": {
+      "win": 0,
+      "loss": 0,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {}
+    },
+    "X2(δ=0.02)": {
+     "spec": {
+      "arm": "BD",
+      "cross": "X2",
+      "delta": 0.02
+     },
+     "correct": 28,
+     "vs_L1_win": [],
+     "vs_L1_loss": [],
+     "vs_BD_fix": [],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [],
+     "mcn_vs_L1": {
+      "win": 0,
+      "loss": 0,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {}
+    },
+    "X2(δ=0.05)": {
+     "spec": {
+      "arm": "BD",
+      "cross": "X2",
+      "delta": 0.05
+     },
+     "correct": 28,
+     "vs_L1_win": [],
+     "vs_L1_loss": [],
+     "vs_BD_fix": [],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [],
+     "mcn_vs_L1": {
+      "win": 0,
+      "loss": 0,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {}
+    },
+    "X2(δ=0.1)": {
+     "spec": {
+      "arm": "BD",
+      "cross": "X2",
+      "delta": 0.1
+     },
+     "correct": 28,
+     "vs_L1_win": [],
+     "vs_L1_loss": [],
+     "vs_BD_fix": [],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [],
+     "mcn_vs_L1": {
+      "win": 0,
+      "loss": 0,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {}
+    },
+    "X3": {
+     "spec": {
+      "arm": "BD",
+      "cross": "X3"
+     },
+     "correct": 29,
+     "vs_L1_win": [
+      "conv-47_21"
+     ],
+     "vs_L1_loss": [],
+     "vs_BD_fix": [
+      "conv-47_21"
+     ],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [],
+     "mcn_vs_L1": {
+      "win": 1,
+      "loss": 0,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {
+      "conv-47_21": {
+       "L1": "BEFORE:week:2022-10-13",
+       "rule": "DATE:2022-05-07",
+       "ok": true,
+       "src": "l1"
+      },
+      "conv-47_41": {
+       "L1": "DATE:2022-09-03",
+       "rule": "DATE:2022-09-11",
+       "ok": false,
+       "src": "l1"
+      },
+      "conv-50_52": {
+       "L1": "BEFORE:week:2023-05-31",
+       "rule": "DATE:2023-08-02",
+       "ok": false,
+       "src": "l1"
+      }
+     }
+    },
+    "E1-J≥0.3": {
+     "spec": {
+      "arm": "BD",
+      "cross": "first",
+      "echo": [
+       "J",
+       0.3,
+       false,
+       false
+      ],
+      "echo_mode": "skip"
+     },
+     "correct": 28,
+     "vs_L1_win": [],
+     "vs_L1_loss": [],
+     "vs_BD_fix": [],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [],
+     "mcn_vs_L1": {
+      "win": 0,
+      "loss": 0,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {}
+    },
+    "E1-J≥0.4": {
+     "spec": {
+      "arm": "BD",
+      "cross": "first",
+      "echo": [
+       "J",
+       0.4,
+       false,
+       false
+      ],
+      "echo_mode": "skip"
+     },
+     "correct": 28,
+     "vs_L1_win": [],
+     "vs_L1_loss": [],
+     "vs_BD_fix": [],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [],
+     "mcn_vs_L1": {
+      "win": 0,
+      "loss": 0,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {}
+    },
+    "E1-J≥0.5": {
+     "spec": {
+      "arm": "BD",
+      "cross": "first",
+      "echo": [
+       "J",
+       0.5,
+       false,
+       false
+      ],
+      "echo_mode": "skip"
+     },
+     "correct": 28,
+     "vs_L1_win": [],
+     "vs_L1_loss": [],
+     "vs_BD_fix": [],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [],
+     "mcn_vs_L1": {
+      "win": 0,
+      "loss": 0,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {}
+    },
+    "E1-J≥0.6": {
+     "spec": {
+      "arm": "BD",
+      "cross": "first",
+      "echo": [
+       "J",
+       0.6,
+       false,
+       false
+      ],
+      "echo_mode": "skip"
+     },
+     "correct": 28,
+     "vs_L1_win": [],
+     "vs_L1_loss": [],
+     "vs_BD_fix": [],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [],
+     "mcn_vs_L1": {
+      "win": 0,
+      "loss": 0,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {}
+    },
+    "E2-J≥0.5+问句形+无本句日期": {
+     "spec": {
+      "arm": "BD",
+      "cross": "first",
+      "echo": [
+       "J",
+       0.5,
+       true,
+       true
+      ],
+      "echo_mode": "skip"
+     },
+     "correct": 28,
+     "vs_L1_win": [],
+     "vs_L1_loss": [],
+     "vs_BD_fix": [],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [],
+     "mcn_vs_L1": {
+      "win": 0,
+      "loss": 0,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {}
+    },
+    "E3-J≥0.5+问句形→下一句": {
+     "spec": {
+      "arm": "BD",
+      "cross": "first",
+      "echo": [
+       "J",
+       0.5,
+       true,
+       true
+      ],
+      "echo_mode": "next"
+     },
+     "correct": 28,
+     "vs_L1_win": [],
+     "vs_L1_loss": [],
+     "vs_BD_fix": [],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [],
+     "mcn_vs_L1": {
+      "win": 0,
+      "loss": 0,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {}
+    },
+    "E1-C≥0.3": {
+     "spec": {
+      "arm": "BD",
+      "cross": "first",
+      "echo": [
+       "C",
+       0.3,
+       false,
+       false
+      ],
+      "echo_mode": "skip"
+     },
+     "correct": 28,
+     "vs_L1_win": [],
+     "vs_L1_loss": [],
+     "vs_BD_fix": [],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [],
+     "mcn_vs_L1": {
+      "win": 0,
+      "loss": 0,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {}
+    },
+    "E1-C≥0.4": {
+     "spec": {
+      "arm": "BD",
+      "cross": "first",
+      "echo": [
+       "C",
+       0.4,
+       false,
+       false
+      ],
+      "echo_mode": "skip"
+     },
+     "correct": 28,
+     "vs_L1_win": [],
+     "vs_L1_loss": [],
+     "vs_BD_fix": [],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [],
+     "mcn_vs_L1": {
+      "win": 0,
+      "loss": 0,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {}
+    },
+    "E1-C≥0.5": {
+     "spec": {
+      "arm": "BD",
+      "cross": "first",
+      "echo": [
+       "C",
+       0.5,
+       false,
+       false
+      ],
+      "echo_mode": "skip"
+     },
+     "correct": 28,
+     "vs_L1_win": [],
+     "vs_L1_loss": [],
+     "vs_BD_fix": [],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [],
+     "mcn_vs_L1": {
+      "win": 0,
+      "loss": 0,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {}
+    },
+    "E1-C≥0.6": {
+     "spec": {
+      "arm": "BD",
+      "cross": "first",
+      "echo": [
+       "C",
+       0.6,
+       false,
+       false
+      ],
+      "echo_mode": "skip"
+     },
+     "correct": 28,
+     "vs_L1_win": [],
+     "vs_L1_loss": [],
+     "vs_BD_fix": [],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [],
+     "mcn_vs_L1": {
+      "win": 0,
+      "loss": 0,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {}
+    },
+    "E2-C≥0.5+问句形+无本句日期": {
+     "spec": {
+      "arm": "BD",
+      "cross": "first",
+      "echo": [
+       "C",
+       0.5,
+       true,
+       true
+      ],
+      "echo_mode": "skip"
+     },
+     "correct": 28,
+     "vs_L1_win": [],
+     "vs_L1_loss": [],
+     "vs_BD_fix": [],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [],
+     "mcn_vs_L1": {
+      "win": 0,
+      "loss": 0,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {}
+    },
+    "E3-C≥0.5+问句形→下一句": {
+     "spec": {
+      "arm": "BD",
+      "cross": "first",
+      "echo": [
+       "C",
+       0.5,
+       true,
+       true
+      ],
+      "echo_mode": "next"
+     },
+     "correct": 28,
+     "vs_L1_win": [],
+     "vs_L1_loss": [],
+     "vs_BD_fix": [],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [],
+     "mcn_vs_L1": {
+      "win": 0,
+      "loss": 0,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {}
+    },
+    "X4": {
+     "spec": {
+      "arm": "BD",
+      "cross": "X4"
+     },
+     "correct": 28,
+     "vs_L1_win": [],
+     "vs_L1_loss": [],
+     "vs_BD_fix": [],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [],
+     "mcn_vs_L1": {
+      "win": 0,
+      "loss": 0,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {}
+    },
+    "E4-问句形+无本句日期(无相似度门槛)": {
+     "spec": {
+      "arm": "BD",
+      "cross": "first",
+      "echo": [
+       "Q",
+       0.0,
+       true,
+       true
+      ],
+      "echo_mode": "skip"
+     },
+     "correct": 28,
+     "vs_L1_win": [],
+     "vs_L1_loss": [],
+     "vs_BD_fix": [],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [],
+     "mcn_vs_L1": {
+      "win": 0,
+      "loss": 0,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {}
+    },
+    "X4+E2-J": {
+     "spec": {
+      "arm": "BD",
+      "cross": "X4",
+      "echo": [
+       "J",
+       0.5,
+       true,
+       true
+      ],
+      "echo_mode": "skip"
+     },
+     "correct": 28,
+     "vs_L1_win": [],
+     "vs_L1_loss": [],
+     "vs_BD_fix": [],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [],
+     "mcn_vs_L1": {
+      "win": 0,
+      "loss": 0,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {}
+    },
+    "X4+E3-J": {
+     "spec": {
+      "arm": "BD",
+      "cross": "X4",
+      "echo": [
+       "J",
+       0.5,
+       true,
+       true
+      ],
+      "echo_mode": "next"
+     },
+     "correct": 28,
+     "vs_L1_win": [],
+     "vs_L1_loss": [],
+     "vs_BD_fix": [],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [],
+     "mcn_vs_L1": {
+      "win": 0,
+      "loss": 0,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {}
+    },
+    "X4+E4": {
+     "spec": {
+      "arm": "BD",
+      "cross": "X4",
+      "echo": [
+       "Q",
+       0.0,
+       true,
+       true
+      ],
+      "echo_mode": "skip"
+     },
+     "correct": 28,
+     "vs_L1_win": [],
+     "vs_L1_loss": [],
+     "vs_BD_fix": [],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [],
+     "mcn_vs_L1": {
+      "win": 0,
+      "loss": 0,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {}
+    },
+    "X1+E2-J": {
+     "spec": {
+      "arm": "BD",
+      "cross": "X1",
+      "echo": [
+       "J",
+       0.5,
+       true,
+       true
+      ],
+      "echo_mode": "skip"
+     },
+     "correct": 28,
+     "vs_L1_win": [],
+     "vs_L1_loss": [],
+     "vs_BD_fix": [],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [],
+     "mcn_vs_L1": {
+      "win": 0,
+      "loss": 0,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {}
+    },
+    "X1+E3-J": {
+     "spec": {
+      "arm": "BD",
+      "cross": "X1",
+      "echo": [
+       "J",
+       0.5,
+       true,
+       true
+      ],
+      "echo_mode": "next"
+     },
+     "correct": 28,
+     "vs_L1_win": [],
+     "vs_L1_loss": [],
+     "vs_BD_fix": [],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [],
+     "mcn_vs_L1": {
+      "win": 0,
+      "loss": 0,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {}
+    },
+    "X2(δ=0.05)+E2-J": {
+     "spec": {
+      "arm": "BD",
+      "cross": "X2",
+      "delta": 0.05,
+      "echo": [
+       "J",
+       0.5,
+       true,
+       true
+      ],
+      "echo_mode": "skip"
+     },
+     "correct": 28,
+     "vs_L1_win": [],
+     "vs_L1_loss": [],
+     "vs_BD_fix": [],
+     "vs_BD_hurt": [],
+     "first_L1ok_now_wrong": [],
+     "mcn_vs_L1": {
+      "win": 0,
+      "loss": 0,
+      "p": 1.0,
+      "verdict": "无显著差异"
+     },
+     "changed_vs_L1": {}
+    }
+   },
+   "l1_formal": {
+    "by_cls_key": {
+     "-|rank1": 20,
+     "-|skip_via_no_time": 8
+    },
+    "lists": {
+     "rank1": [
+      "conv-26_21",
+      "conv-26_36",
+      "conv-26_44",
+      "conv-26_63",
+      "conv-26_74",
+      "conv-26_80",
+      "conv-30_30",
+      "conv-30_38",
+      "conv-41_4",
+      "conv-41_53",
+      "conv-42_33",
+      "conv-42_37",
+      "conv-42_38",
+      "conv-42_39",
+      "conv-43_33",
+      "conv-43_91",
+      "conv-47_57",
+      "conv-47_63",
+      "conv-48_3",
+      "conv-49_9"
+     ],
+     "skip_via_no_time": [
+      "conv-41_58",
+      "conv-42_29",
+      "conv-44_16",
+      "conv-47_13",
+      "conv-47_46",
+      "conv-47_55",
+      "conv-48_9",
+      "conv-50_34"
+     ]
+    }
+   },
+   "echo_scan": [],
+   "echo_flag_counts_qxsub": {}
+  }
+ }
+}
