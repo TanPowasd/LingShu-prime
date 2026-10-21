@@ -1,0 +1,81 @@
+{
+ "what": "Memory.write 默认 = L1 的实现等价核对（非新读数）",
+ "sets": {
+  "locomo": {
+   "E1_n": 257,
+   "E1_eq": 257,
+   "E2_n": 50,
+   "E2_eq": 50,
+   "diff": [],
+   "stat": {
+    "units": 10,
+    "order_L1_eq": 10,
+    "order_S0_eq": 10,
+    "chunks_eq": 10,
+    "n_long": 0,
+    "n_chunks": 0
+   }
+  },
+  "hive": {
+   "E1_n": 46,
+   "E1_eq": 46,
+   "E2_n": 0,
+   "E2_eq": 0,
+   "diff": [],
+   "stat": {
+    "units": 1,
+    "order_L1_eq": 1,
+    "order_S0_eq": 1,
+    "chunks_eq": 1,
+    "n_long": 0,
+    "n_chunks": 0
+   }
+  },
+  "perltqa": {
+   "E1_n": 3956,
+   "E1_eq": 3956,
+   "E2_n": 54,
+   "E2_eq": 54,
+   "diff": [],
+   "stat": {
+    "units": 16,
+    "order_L1_eq": 16,
+    "order_S0_eq": 16,
+    "chunks_eq": 16,
+    "n_long": 346,
+    "n_chunks": 709
+   }
+  },
+  "crossproj": {
+   "E1_n": 41,
+   "E1_eq": 41,
+   "E2_n": 0,
+   "E2_eq": 0,
+   "diff": [],
+   "stat": {
+    "units": 1,
+    "order_L1_eq": 1,
+    "order_S0_eq": 1,
+    "chunks_eq": 1,
+    "n_long": 0,
+    "n_chunks": 0
+   }
+  },
+  "crossproj-zh-long": {
+   "E1_n": 200,
+   "E1_eq": 200,
+   "E2_n": 80,
+   "E2_eq": 80,
+   "diff": [],
+   "stat": {
+    "units": 2,
+    "order_L1_eq": 2,
+    "order_S0_eq": 2,
+    "chunks_eq": 2,
+    "n_long": 184,
+    "n_chunks": 368
+   }
+  }
+ },
+ "all_equal": true
+}

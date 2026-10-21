@@ -41,13 +41,14 @@ E1 胜负分布（描述性，读数后）：胜 10 = fact_long 7、update_lates
 - 本集比真实对话更「长」：92 个长文档全部超 K_MAX，而 LoCoMo / hive / crossproj-zh 这类短轮语料里 L1 ≡ S0（dev 已证逐题全等）。所以 L1 改成默认，在短轮语料上不改变任何结果，只在有长单元时起作用。
 - 局限：(c) 类（长文档正文里的日期）两臂都 0/20——L1 解决的是「拒写」，不是「每单元只有一个 TIME」；那是 v2 时间规则的边界，另需方案（needs-owner-decision）。
 - 模板中文规整、语义组合有不自然处，绝对分数（E1 .91/.95）不可与 crossproj-zh 或真实集横比。
-- 默认写入改为 L1 只改了文档口径；`memory.Memory.write` 仍是逐单元写入（超 K_MAX 抛 CapacityError），L1 路径在 `seg.segment_long`，读数脚本用 `long_real.rank_unit` 接入。是否把 L1 并入 `Memory.write` 的默认代码路径另行决定（推断：需要新守卫，不在本次范围）。
+- 代码默认（2026-10-21 后续提交）：`memory.Memory.write` 默认已改为 L1（`chunk_long=True`，内部调用 `seg.make_elems` + `seg.segment_long`，与读数口径同一实现）；>K_MAX 单元切块写入、共享单元号、`Memory.n_chunks` 记录每单元块数；`Memory(chunk_long=False)` 复现旧路径 S0。新守卫 G25–G28（定点变异 7 条）全绿 / 全红。实现等价核对（`default_check.py` → `results/default_check.md`，不重开判定）：dev 四集与本集上，新默认排序 ≡ L1、开关关闭 ≡ S0，E1 / E2 逐题与已提交缓存相同（本集 E1 200/200、E2 80/80）。
 
 ## 复跑
 ```bash
 cd <仓根>/TanPowasd/datasets/crossproj-zh-long && python3 gen.py && sha256sum release/crossproj_zh_long_hold.json   # 应为 db2c6ffd…f22f
 cd <仓根>/TanPowasd/vsa
-python -X utf8 test_vsa.py && python -X utf8 test_vsa.py --mutate      # G1–G24 全绿；31/31 变红
+python -X utf8 test_vsa.py && python -X utf8 test_vsa.py --mutate      # 当时 G1–G24 全绿、31/31 变红；现 G1–G28 全绿、38/38 变红
 python -X utf8 long_hold.py --check                                    # 结构校验（长单元 92，无错误）
 python -X utf8 long_hold.py --run      # 只跑一次：已有 results/long_hold.json 或 $VSA_OUT/runs/hold/long_crossproj_long.json 即拒跑；复核需先移走二者（约 1 分钟）
+python -X utf8 default_check.py --hold-long $VSA_OUT/runs/hold/long_crossproj_long.json   # 默认写入 L1 的实现等价核对（只读该缓存，不写 results/long_hold.*）
 ```

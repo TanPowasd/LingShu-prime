@@ -404,26 +404,51 @@ def extract_roles(text, persons=(), speaker=None, base_date=None, base_time=None
 
 # ---------------------------------------------------------------- 记忆
 class Memory:
-    def __init__(self, space=None, beta=RI.BETA, window=RI.WINDOW):
+    def __init__(self, space=None, beta=RI.BETA, window=RI.WINDOW, chunk_long=True):
+        """chunk_long=True（默认，2026-10-21 起 = L1，RESULTS_long_hold.md）：叠加项 > K_MAX 的单元按 seg.segment_long 切块写入；
+        chunk_long=False = 旧路径 S0（逐单元一条痕迹，超 K_MAX 在 trace 时抛 CapacityError），只用于复现历史读数。"""
         self.space = space or H.Space()
         self.ri = RI.RandomIndex(self.space, window=window, beta=beta)
-        self.texts, self.toks, self.roles = [], [], []
+        self.texts, self.toks, self.roles = [], [], []          # 按痕迹（短单元 = 1 条，长单元 = 每块 1 条）
+        self.chunk_long = chunk_long
+        self.unit_of, self.chunks, self.unit_texts = [], [], []  # 审计：痕迹 → 单元号；单元 → 其痕迹号表（块数 = len）；单元原文
         self._V = None
         self._T = {}
         self.codebooks = {}
 
     # 写入
-    def write(self, text, roles=None, **kw):
-        """roles 为 None 时按规则抽取（kw 透传 extract_roles）；写入时增量更新 RI 共现计数。"""
+    def write(self, text, roles=None, chunk_long=None, sent_roles=None, **kw):
+        """roles 为 None 时按规则抽取（kw 透传 extract_roles）；写入时增量更新 RI 共现计数。→ 单元号。
+        chunk_long（None = 用构造参数）：True ⇒ L1，与 seg.segment_long 同一实现：≤K_MAX 的单元逐位同旧路径（一条痕迹），
+        >K_MAX 的单元按 seg.make_elems 元素写入序贪心装成 ≤K_MAX 的块，每块一条痕迹、共享单元号（不再拒写）。
+        sent_roles：可选「句 → 角色」函数；给出时长单元先切句、每句角色 = sent_roles(句)（PerLTQA 口径，seg_real.run_perltqa）；
+        不给时长单元元素 = make_elems(单元, 原文, roles)（LoCoMo / hive / crossproj 口径）。chunk_long=False ⇒ 旧路径 S0。"""
         tk = tokens(text)
-        self.texts.append(text); self.toks.append(tk)
         rs = extract_roles(text, **kw) if roles is None else list(roles)
-        self.roles.append(rs)
-        for r, f, *_ in rs:
-            self.codebooks.setdefault(r, Cleanup(self.space)).add(f"F:{f}")     # 填充原子与角色无关（F:名字），角色只靠绑定区分
-        self.ri.add(tk)
+        u = len(self.unit_texts)
+        cl = self.chunk_long if chunk_long is None else chunk_long
+        if cl:
+            import seg as SG                                   # 延迟导入：seg 依赖本模块
+            es, _ = (SG.make_elems(0, text, None, None, 0, sentence_split=True, role_fn=sent_roles) if sent_roles
+                     else SG.make_elems(0, text, rs, None, 0))
+            _, _, _, rows, _ = SG.segment_long([(tk, rs)], es)
+        else:
+            rows = [(tk, rs)]
+        self.unit_texts.append(text); self.chunks.append([])
+        for ctk, crs in rows:
+            self.texts.append(text); self.toks.append(list(ctk) if cl else ctk)
+            self.roles.append(list(crs) if cl else crs)
+            self.unit_of.append(u); self.chunks[u].append(len(self.texts) - 1)
+            for r, f, *_ in self.roles[-1]:
+                self.codebooks.setdefault(r, Cleanup(self.space)).add(f"F:{f}")     # 填充原子与角色无关（F:名字），角色只靠绑定区分
+            self.ri.add(self.toks[-1])
         self._V = None
-        return len(self.texts) - 1
+        return u
+
+    @property
+    def n_chunks(self):
+        """审计：每单元块数（1 = 未切）。"""
+        return [len(c) for c in self.chunks]
 
     def __len__(self):
         return len(self.texts)
@@ -480,6 +505,33 @@ class Memory:
             self._T[i] = t
         return t
 
+    def rank_units(self, queries, beta=None):
+        """→ 每题的单元完整排序（L1 展开口径 ≡ seg.expand(段=块, expand_chunks)）：痕迹按余弦降序（稳定），按单元号去重保序。
+        无切块时（全短单元或 chunk_long=False）≡ S0 的 argsort(-分数, stable)。"""
+        out = []
+        for s in self.search_many(queries, beta=beta):
+            seen, o = set(), []
+            for t in np.argsort(-np.asarray(s), kind="stable"):
+                v = self.unit_of[t]
+                if v not in seen:
+                    seen.add(v); o.append(v)
+            out.append(o)
+        return out
+
+    def decode_unit(self, u, role):
+        """单元级解绑（≡ seg.SegView.decode）：按写入序逐块解绑，取第一个非存疑；全存疑返回首块结果。旧路径下超 K_MAX 照旧抛 CapacityError。"""
+        first = None
+        for t in self.chunks[u]:
+            a = self.decode(t, role)
+            if a[0] != DOUBT:
+                return a
+            first = first or a
+        return first or (DOUBT, 0.0, 0.0, None)
+
+    def units(self):
+        """单元级视图（texts / len / decode 按单元号），供 real_v2.answer_time 等按单元下标作答的口径使用。"""
+        return UnitView(self)
+
     def probe(self, given):
         return H.bundle(H.bind(self.space.vec(f"ROLE:{r}"), self.space.vec(f"F:{f}")) for r, f in given.items())
 
@@ -511,3 +563,16 @@ class Memory:
                 return {"trace": int(i), "rank": n, "match": match, "answer": {r: a[0] for r, a in zip(roles, ans)},
                         "cos": {r: a[1] for r, a in zip(roles, ans)}, "margin": {r: a[2] for r, a in zip(roles, ans)}}
         return {"trace": None, "match": match, "answer": {r: DOUBT for r in roles}}
+
+
+class UnitView:
+    """Memory 的单元级视图：下标 = 单元号（长单元的多块共享）。"""
+
+    def __init__(self, m):
+        self.m, self.texts = m, m.unit_texts
+
+    def __len__(self):
+        return len(self.texts)
+
+    def decode(self, i, role):
+        return self.m.decode_unit(i, role)

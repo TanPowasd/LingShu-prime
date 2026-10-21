@@ -132,7 +132,7 @@ def run_locomo(c, budget, t0):
             continue
         conv = raw[sid]
         spk = [conv["speaker_a"], conv["speaker_b"]]
-        m = M.Memory(H.Space("vsa-v1", cache_max=0))
+        m = M.Memory(H.Space("vsa-v1", cache_max=0), chunk_long=False)   # 历史读数口径 S0（逐单元下标）
         for t, did in zip(it["turns"], it["ids"]):
             d = M.parse_en_date(conv[f"session_{int(did.split(':')[0].lstrip('D'))}_date_time"])
             s = t.split(": ", 1)[0] if ": " in t[:40] else None
@@ -182,7 +182,7 @@ def run_hive(c, budget, t0):
         for line in f:
             o = json.loads(line); qs[o["_id"]] = o["text"]
     dev = json.loads((UMB / "hive" / "split.json").read_text(encoding="utf-8"))["dev"]
-    m = M.Memory(H.Space("vsa-v1", cache_max=0))
+    m = M.Memory(H.Space("vsa-v1", cache_max=0), chunk_long=False)   # 历史读数口径 S0（逐单元下标）
     for t in texts:
         m.write(t, roles=[])                    # 检索只用内容向量，不抽角色、不建痕迹
     bm = B.BM25(texts)
@@ -202,7 +202,7 @@ def run_perltqa(c, budget, t0):
         if P.split_of(nm) != "dev" or nm in c.d["done_units"] or not data[nm]["qs"]:
             continue
         d = data[nm]
-        m = M.Memory(H.Space("vsa-v1", cache_max=0))
+        m = M.Memory(H.Space("vsa-v1", cache_max=0), chunk_long=False)   # 历史读数口径 S0（逐单元下标）
         for t in d["texts"]:
             m.write(t, roles=[])
         bm = B.BM25(d["texts"])

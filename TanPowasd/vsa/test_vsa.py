@@ -9,7 +9,9 @@ G5 确定性/写入序无关(I5)  G6 规则抽取定例可回溯(I6)  G7 存疑�
 G14 合成 v2 指代/省略 + 多跳交集/链式  G15 J2 判定定例
 事件切分（PREREG_seg §7）：G16 段叠加项 ≤ K_MAX + 单元素强制切片不丢项  G17 θ→0 ≡ S1  G18 θ→∞ 每轮一段 + 段内 μ 手算定例
 G19 段排序 → 成员轮展开与轮级金标对齐（θ→∞ ≡ S0）  G20 确定性
-长单元分块 L1（PREREG_long §7）：G21 短单元 ≡ S0（含恰为 K_MAX）  G22 块 ≤ K_MAX / 不跨单元 / 不丢项 / 贪心极大  G23 块展开  G24 确定性"""
+长单元分块 L1（PREREG_long §7）：G21 短单元 ≡ S0（含恰为 K_MAX）  G22 块 ≤ K_MAX / 不跨单元 / 不丢项 / 贪心极大  G23 块展开  G24 确定性
+Memory.write 默认 = L1：G25 短单元新默认 ≡ 旧路径逐位  G26 长单元不拒写、每块 ≤ K_MAX、可审计  G27 新默认 ≡ seg.segment_long L1（排序 / 解绑）
+G28 开关 chunk_long=False ≡ S0"""
 import os, sys
 if os.environ.get("PYTHONHASHSEED") != "0":
     os.environ["PYTHONHASHSEED"] = "0"
@@ -78,7 +80,7 @@ def g3():
             doubt += got == CL.DOUBT
     # k=156：argmax 错误率上界 (N−1)Q(√(D/(2k−1))) ≈ 1e−6；存疑（边距<2σ）是正确余弦自身 ±σ 波动所致，理论约 0.2%/次，放宽到 ≤5%
     assert doubt <= 0.05 * len(truth) * len(roles), ("I3 存疑率过高", doubt)
-    big = M.Memory(H.Space("g3"))
+    big = M.Memory(H.Space("g3"), chunk_long=False)       # I3 是痕迹级不变量：钉旧路径 S0 写入（新默认 L1 会切块，见 G26）
     big.write(" ".join(f"w{i}" for i in range(H.k_max() + 5)), roles=[])          # 用理论函数取项数，memory 用常量 K_MAX 判拒
     try:
         big.trace(0)
@@ -525,6 +527,147 @@ GUARDS.update({"G21": g21, "G22": g22, "G23": g23, "G24": g24})
 
 
 
+# ---------------------------------------------------------------- Memory.write 默认 = L1（G25–G28）
+def _wmem(units, chunk_long=None):
+    """units = [(原文, 角色, 句角色函数 | None)] → Memory（与 seg.memory_from 同一空间种子与缓存口径）。chunk_long=None ⇒ 不传，测构造默认。"""
+    m = M.Memory(H.Space("vsa-v1", cache_max=0), **({} if chunk_long is None else {"chunk_long": chunk_long}))
+    ret = [m.write(t, roles=rs, sent_roles=fn) for t, rs, fn in units]
+    return m, ret
+
+
+def _snap(m, qs):
+    """可比快照：痕迹级全部状态 + 检索分数 + 痕迹向量。"""
+    cb = {r: list(c.names) for r, c in m.codebooks.items()}
+    return (m.texts, m.toks, m.roles, list(m.codebooks), cb, dict(m.ri.vocab), sorted(m.ri.cooc.items()),
+            [x.tolist() for x in m.search_many(qs, beta=0.5)], [m.trace(i).tolist() for i in range(len(m))])
+
+
+def _en_long(n_sent, tag):
+    return "Ann: " + " ".join(f"On {['Monday', 'Friday'][k % 2]} " + " ".join(f"{tag}{k}x{j}" for j in range(12)) + "." for k in range(n_sent))
+
+
+def _en_roles(t):
+    return M.extract_roles(t, persons=["Ann", "Ben"], speaker="Ann", base_date=_dt.date(2023, 5, 19), weekday=False, time_rules="v2",
+                           session="DATE:2023-05-19")
+
+
+def _short_units():
+    zh = [(t, _zt(t), _zt) for t in [_zh_unit(3, f"g{u}y") + f" 共有 beta{u % 3}" for u in range(6)] + [_exact_kmax_text()]]
+    en = [(t, _en_roles(t), None) for t in ["Ann: I went hiking with Ben yesterday at the lake.", "Ben: Ann visited the museum last Friday.",
+                                             _en_long(3, "hh")]]
+    return zh + en
+
+
+def g25():
+    units = _short_units()
+    qs = ["g2y1x3 beta0", "hiking lake Ben", "em3 ek1", "hh1x2"]
+    a, ra = _wmem(units)                                     # 新默认（L1）
+    b, rb = _wmem(units, chunk_long=False)                   # 旧路径（S0）
+    assert ra == rb == list(range(len(units))), ("短单元单元号须 = 痕迹号", ra, rb)
+    assert a.n_chunks == [1] * len(units), ("短单元（含恰为 K_MAX）不得切块", a.n_chunks)
+    assert _snap(a, qs) == _snap(b, qs), "短单元库：新默认与旧路径的痕迹 / 码本 / RI / 分数 / 痕迹向量须逐位相同"
+    assert a.rank_units(qs) == b.rank_units(qs) == [list(np.argsort(-x, kind="stable")) for x in b.search_many(qs)], "短单元库排序须 ≡ S0"
+    for i in range(len(units)):
+        for r in ("TIME", "SESSION", "AGENT"):
+            assert a.units().decode(i, r)[:3] == b.decode(i, r)[:3], ("短单元解绑须逐位相同", i, r)
+    return "G25 ok"
+
+
+def g26():
+    long_zh, long_en = _zh_unit(60, "lz"), _en_long(40, "le")
+    half = H.K_MAX // 2
+    edge = " ".join(f"bd{j}" for j in range(half)) + "。" + " ".join(f"be{j}" for j in range(H.K_MAX + 1 - half)) + "。"   # 两句并集恰 K_MAX+1
+    units = [(_zh_unit(2, "s1"), _zt(_zh_unit(2, "s1")), _zt), (long_zh, _zt(long_zh), _zt), (long_en, _en_roles(long_en), None), (edge, _zt(edge), _zt)]
+    m, ret = _wmem(units)
+    assert ret == [0, 1, 2, 3] and m.n_chunks[0] == 1 and min(m.n_chunks[1:]) >= 2, ("长单元须切 ≥2 块、短单元 1 块，单元号连续", ret, m.n_chunks)
+    assert m.n_chunks[3] == 2, ("并集恰 K_MAX+1 的两句须分两块", m.n_chunks[3])
+    for u, ch in enumerate(m.chunks):
+        assert ch == list(range(ch[0], ch[0] + len(ch))) and all(m.unit_of[t] == u for t in ch), ("块按写入序连续、共享单元号", u, ch)
+        assert all(m.texts[t] == units[u][0] for t in ch) and m.unit_texts[u] == units[u][0], "每块可回溯到单元原文"
+    assert sorted(m.unit_of) == m.unit_of and len(m.unit_of) == len(m) == sum(m.n_chunks)
+    for t in range(len(m)):
+        k = len(SG.items_of(m.toks[t], m.roles[t]))
+        assert k <= H.K_MAX, ("任何块叠加项 ≤ K_MAX", t, k)
+        m.trace(t)                                            # 不再拒写（超 K_MAX 会抛 CapacityError）
+    for u in (1, 2, 3):
+        whole = SG.items_of(M.tokens(units[u][0]), [])
+        assert set().union(*[SG.items_of(m.toks[t], []) for t in m.chunks[u]]) == whole, ("块并集不丢词", u)
+    old, _ = _wmem(units, chunk_long=False)
+    for u in (1, 2, 3):
+        try:
+            old.trace(u)
+        except H.CapacityError:
+            continue
+        raise AssertionError(("旧路径长单元须拒写（对照）", u))
+    m2 = M.Memory(H.Space("vsa-v1", cache_max=0))
+    m2.write(long_zh, roles=_zt(long_zh), sent_roles=_zt, chunk_long=False)       # 逐次开关覆盖构造默认
+    assert m2.n_chunks == [1] and len(m2) == 1
+    return f"G26 ok (块数 {m.n_chunks})"
+
+
+def _l1_ref(units):
+    """参照：long_real.rank_unit 的 L1 口径（seg.make_elems → segment_long → memory_from → expand / SegView）。"""
+    pay, els = [], []
+    for u, (t, rs, fn) in enumerate(units):
+        pay.append((M.tokens(t), list(rs)))
+        es, _ = (SG.make_elems(u, t, None, None, u, sentence_split=True, role_fn=fn) if fn else SG.make_elems(u, t, rs, None, u))
+        els += es
+    el2, segs, why, rows, nl = SG.segment_long(pay, els)
+    return pay, el2, segs, why, rows, nl
+
+
+def _mixed_units():
+    tail = _zh_unit(40, "kk", dates=False) + "2021年3月4日，" + " ".join(f"kt{j}" for j in range(12)) + "。"   # 日期只在末块
+    lz = _zh_unit(45, "mz")
+    le = _en_long(40, "me")
+    return [u for u in _short_units()[:4]] + [(lz, _zt(lz), _zt), (tail, _zt(tail), _zt)] + _short_units()[7:9] + [(le, _en_roles(le), None)]
+
+
+def g27():
+    units = _mixed_units()
+    pay, el2, segs, why, rows, nl = _l1_ref(units)
+    assert nl == 3, nl
+    m, _ = _wmem(units)
+    assert [(m.toks[t], m.roles[t]) for t in range(len(m))] == [(list(a), list(b)) for a, b in rows], "写入载荷须 ≡ segment_long 段载荷"
+    ml, m0 = SG.memory_from(rows), SG.memory_from(pay)
+    last = [w for w in rows[[k for k, w in enumerate(why) if w in ("chunk", "kmax") and el2[segs[k][0]].owner == 5][-1]][0] if w.startswith("kk39x")]
+    qs = [" ".join(last) + " g1y0x1 g1y0x2", "mz44x3 mz44x4 mz44x5", "me39x1 me39x2 Ann", "beta1 g4y2x0", "kt3 kt4"]
+    ref = [SG.expand(b, SG.expand_segs(segs, why), el2, a, len(units)) for a, b in zip(m0.search_many(qs, beta=0.5), ml.search_many(qs, beta=0.5))]
+    got = m.rank_units(qs, beta=0.5)
+    assert got == ref, ("新默认排序须 ≡ L1 展开", got, ref)
+    assert got[0][0] == 5 and got[1][0] == 4, ("末块 / 末段命中须把对应长单元排第一", got[0][:3], got[1][:3])
+    v, w = m.units(), SG.SegView(ml, segs, el2, [t for t, _, _ in units])
+    for i in range(len(units)):
+        for r in ("TIME", "SESSION"):
+            assert v.decode(i, r)[:3] == w.decode(i, r)[:3], ("单元解绑须 ≡ SegView", i, r)
+    assert v.decode(5, "TIME")[0] == "DATE:2021-03-04", ("日期只在末块的长单元须解出末块日期", v.decode(5, "TIME"))
+    assert len(v) == len(units) and v.texts == [t for t, _, _ in units]
+    return "G27 ok"
+
+
+def g28():
+    units = _mixed_units()
+    pay = [(M.tokens(t), list(rs)) for t, rs, _ in units]
+    m, ret = _wmem(units, chunk_long=False)
+    m0 = SG.memory_from(pay)
+    qs = ["mz44x3 mz44x4", "beta1 g4y2x0", "me39x1 Ann"]
+    assert ret == list(range(len(units))) and m.n_chunks == [1] * len(units) and len(m) == len(units)
+    assert [x.tolist() for x in m.search_many(qs, beta=0.5)] == [x.tolist() for x in m0.search_many(qs, beta=0.5)], "开关关闭：分数须逐位 ≡ S0"
+    assert m.rank_units(qs, beta=0.5) == [list(np.argsort(-x, kind="stable")) for x in m0.search_many(qs, beta=0.5)], "开关关闭：排序须 ≡ S0"
+    rej = []
+    for i in range(len(units)):
+        try:
+            m.units().decode(i, "TIME")
+        except H.CapacityError:
+            rej.append(i)
+    assert rej == [i for i, p in enumerate(pay) if SG.n_items(p) > H.K_MAX] == [4, 5, 8], ("开关关闭：长单元照旧拒写", rej)
+    return "G28 ok"
+
+
+GUARDS.update({"G25": g25, "G26": g26, "G27": g27, "G28": g28})
+
+
+
 @contextlib.contextmanager
 def patch(obj, name, val):
     old = getattr(obj, name)
@@ -596,6 +739,32 @@ MUTANTS = [
     ("G22", "长单元分块：块阈值 off-by-one（允许 K_MAX+1）", lambda: patch_item(SG.CFG_L, "chunk_gt", False)),
     ("G22", "长单元分块：关掉 K_MAX 切块（长单元整条一块）", lambda: patch_item(SG.CFG_L, "chunk_cut", False)),
     ("G23", "长单元分块：关掉块展开（长单元只由首块代表）", lambda: patch_item(SG.CFG_L, "expand_chunks", False)),
+]
+
+
+_orig_init, _orig_write, _orig_decode = M.Memory.__init__, M.Memory.write, M.Memory.decode
+
+
+def _rank_first_chunk(self, queries, beta=None):          # 变异：块展开丢失（长单元只由首块代表）
+    out = []
+    for s in self.search_many(queries, beta=beta):
+        seen, o = set(), []
+        for t in np.argsort(-np.asarray(s), kind="stable"):
+            v = self.unit_of[t]
+            if t == self.chunks[v][0] and v not in seen:
+                seen.add(v); o.append(v)
+        out.append(o)
+    return out
+
+
+MUTANTS += [
+    ("G26", "Memory 默认：关掉切块（构造默认回到旧路径）", lambda: patch(M.Memory, "__init__", lambda self, *a, **k: _orig_init(self, *a, **{"chunk_long": False, **k}))),
+    ("G27", "Memory 默认：关掉切块（构造默认回到旧路径）", lambda: patch(M.Memory, "__init__", lambda self, *a, **k: _orig_init(self, *a, **{"chunk_long": False, **k}))),
+    ("G25", "Memory 默认：短单元也切（走块路径）", lambda: patch_item(SG.CFG_L, "short_whole", False)),
+    ("G26", "Memory 默认：块阈值 off-by-one（允许 K_MAX+1）", lambda: patch_item(SG.CFG_L, "chunk_gt", False)),
+    ("G27", "Memory 默认：块展开丢失（排序只看首块）", lambda: patch(M.Memory, "rank_units", _rank_first_chunk)),
+    ("G27", "Memory 默认：单元解绑只看首块", lambda: patch(M.Memory, "decode_unit", lambda self, u, role: self.decode(self.chunks[u][0], role))),
+    ("G28", "开关失效（chunk_long=False 被忽略）", lambda: patch(M.Memory, "write", lambda self, text, roles=None, chunk_long=None, sent_roles=None, **k: _orig_write(self, text, roles, True, sent_roles, **k))),
 ]
 
 

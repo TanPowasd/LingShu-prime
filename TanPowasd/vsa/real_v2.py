@@ -240,7 +240,7 @@ def sha(p):
 
 
 def build_mem(it, conv, spk, rules):
-    m = M.Memory(H.Space("vsa-v1"))
+    m = M.Memory(H.Space("vsa-v1"), chunk_long=False)   # 历史读数口径 S0（逐单元下标）
     for t, did in zip(it["turns"], it["ids"]):
         d = M.parse_en_date(conv[f"session_{int(did.split(':')[0].lstrip('D'))}_date_time"])
         s = t.split(": ", 1)[0] if ": " in t[:40] else None
@@ -341,7 +341,7 @@ def run_perltqa():
         ql = [(q, x, g) for q, x, g in d["qs"] if ZH_TIME_Q.search(x)]
         if not ql:
             continue
-        m = M.Memory(H.Space("vsa-v1"))
+        m = M.Memory(H.Space("vsa-v1"), chunk_long=False)   # 历史读数口径 S0（逐单元下标）
         for t in d["texts"]:
             m.write(t, roles=M.extract_time_v2(t, None, lang="zh"))       # 只写 TIME（PREREG_v2 §B）
         for q, x, g in ql:
