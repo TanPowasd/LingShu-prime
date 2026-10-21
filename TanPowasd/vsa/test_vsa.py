@@ -11,7 +11,9 @@ G14 合成 v2 指代/省略 + 多跳交集/链式  G15 J2 判定定例
 G19 段排序 → 成员轮展开与轮级金标对齐（θ→∞ ≡ S0）  G20 确定性
 长单元分块 L1（PREREG_long §7）：G21 短单元 ≡ S0（含恰为 K_MAX）  G22 块 ≤ K_MAX / 不跨单元 / 不丢项 / 贪心极大  G23 块展开  G24 确定性
 Memory.write 默认 = L1：G25 短单元新默认 ≡ 旧路径逐位  G26 长单元不拒写、每块 ≤ K_MAX、可审计  G27 新默认 ≡ seg.segment_long L1（排序 / 解绑）
-G28 开关 chunk_long=False ≡ S0"""
+G28 开关 chunk_long=False ≡ S0
+正文日期 BD（PREREG_body_date §7）：G29 每子痕迹恰一个 TIME 且 ≤ K_MAX（含单句超限切片）  G30 短单元 / 无多日期长单元 BD ≡ L1 逐位
+G31 检索索引逐位 ≡ L1  G32 锚点规则 B-iii 定例  G33 按问句余弦选子痕迹 + 显式回退  G34 确定性"""
 import os, sys
 if os.environ.get("PYTHONHASHSEED") != "0":
     os.environ["PYTHONHASHSEED"] = "0"
@@ -667,6 +669,131 @@ def g28():
 GUARDS.update({"G25": g25, "G26": g26, "G27": g27, "G28": g28})
 
 
+# ---------------------------------------------------------------- 正文日期 BD（PREREG_body_date §7）：G29–G34
+_BDB = _dt.date(2026, 4, 5)
+
+
+def _bdfn(s):
+    return M.extract_time_v2(s, _BDB, lang="zh")
+
+
+def _bd_pad(tag, n):
+    return "".join(f"\n{k + 6}. " + " ".join(f"{tag}{k}x{j}" for j in range(12)) + "。" for k in range(n))
+
+
+def _bd_doc(tag="", n_pad=22, body=True):
+    """表头式长文档：抬头 4月3日；条目 1 事实 / 2 句中日期 4月18日 / 3 无日期（应回到抬头）/ 4 句首日期 4月20日 / 5 无日期（应继承 4月20日）+ 填充。"""
+    t = "林予安: 这是4月3日的会诊纪要，帮我收好：\n1. 降脂药的经办人落定为蒋博文 mka1 mka2 mka3。"
+    t += ("\n2. 心脏彩超的第二轮评审定在4月18日 mkb1 mkb2 mkb3。" if body else "\n2. 心脏彩超的第二轮评审 mkb1 mkb2 mkb3。")
+    t += "\n3. 血压计没人提出异议 mkc1 mkc2 mkc3。"
+    t += ("\n4. 4月20日：支架复查开工 mkd1 mkd2 mkd3。" if body else "\n4. 支架复查开工 mkd1 mkd2 mkd3。")
+    t += "\n5. 运动处方继续推进 mke1 mke2 mke3。" + _bd_pad("pd" + tag, n_pad)
+    return t
+
+
+def _bd_unit(t):
+    return (t, [("SESSION", "DATE:2026-04-05", "X-SESSION", "DATE:2026-04-05")] + _bdfn(t), None, _bdfn)
+
+
+def _bdmem(units, body_date=True):
+    m = M.Memory(H.Space("vsa-v1", cache_max=0), body_date=body_date)
+    for t, rs, fn, tf in units:
+        m.write(t, roles=rs, sent_roles=fn, time_fn=tf)
+    return m
+
+
+def _bd_units():
+    short_multi = "林予安: 4月3日 sma1 sma2 开了会。4月9日 smb1 smb2 要交材料。"               # 短单元、两个日期：BD 不得介入
+    one_date = _bd_doc("o", body=False)                                                       # 长单元、只有抬头一个日期：不启用
+    no_date = _bd_pad("nd", 24)
+    return [_bd_unit(short_multi), _bd_unit(_bd_doc("a")), _bd_unit(one_date), _bd_unit(no_date), _bd_unit("林予安: 今天 hello 记一下 mkz1。")]
+
+
+def g29():
+    big = "林予安: 这是4月3日的纪要：\n1. 某事定在4月18日 " + " ".join(f"bg{j}" for j in range(300)) + "。" + _bd_pad("pz", 3)
+    m = _bdmem([_bd_unit(_bd_doc("a")), _bd_unit(big)])
+    assert set(m.bd) == {0, 1}, ("两个多日期长单元都须有子痕迹", sorted(m.bd))
+    for j, r in enumerate(m.bd_rows):
+        it = m.bd_items(j)
+        assert sum(x[0] == "ROLE:TIME" for x in it) == 1, ("每条子痕迹恰一个 TIME", j, [x for x in it if x[0] == "ROLE:TIME"])
+        assert len(it) <= H.K_MAX, ("子痕迹 ≤ K_MAX", j, len(it))
+        m.bd_trace(j)
+    sent = [r for r in m.bd_rows if r["unit"] == 1 and r["sent"] == 1]
+    assert len(sent) >= 2 and {r["fill"] for r in sent} == {"DATE:2026-04-18"}, ("单句超限须切片且每片带同一个 TIME", len(sent))
+    assert set().union(*[set(r["toks"]) for r in sent]) == set(M.tokens(SG.bd_sents(big)[1])), "切片不丢词"
+    assert [r["sent"] for r in m.bd_rows if r["unit"] == 0] == list(range(len(SG.bd_sents(_bd_doc("a"))))), "长单元每句一条子痕迹"
+    return f"G29 ok (子痕迹 {len(m.bd_rows)})"
+
+
+def g30():
+    units = _bd_units()
+    a, b = _bdmem(units), _bdmem(units, body_date=False)
+    assert set(a.bd) == {1}, ("只有多日期长单元产生子痕迹（短单元 / 单日期长单元 / 无日期长单元不产生）", sorted(a.bd))
+    qs = ["sma1 smb1 smb2 要交材料", "mkb1 mkb2 心脏彩超", "mkd1 mkd2", "nd3x1 nd3x2", "mkz1 hello"]
+    for u in (0, 2, 3, 4):
+        for r in ("TIME", "SESSION"):
+            for q in qs:
+                x = a.decode_unit_q(u, r, q)
+                assert x[:4] == b.decode_unit(u, r)[:4] and x[4] == "l1", ("无子痕迹单元 BD 解绑须逐位 ≡ L1", u, r, q, x)
+    for q in qs:
+        for cand in ([0, 1], [2, 0], [3, 4], [4, 2, 0]):
+            assert RV.answer_time_q(a.units(), cand, 10, q) == RV.answer_time(b.units(), cand, 10), ("无子痕迹候选 BD 作答须 ≡ answer_time", q, cand)
+    return "G30 ok"
+
+
+def g31():
+    units = _bd_units()
+    a, b = _bdmem(units), _bdmem(units, body_date=False)
+    qs = ["mkb1 mkb2 心脏彩超", "sma1 smb2", "nd5x3 pda7x2"]
+    assert _snap(a, qs) == _snap(b, qs), "检索索引（痕迹 / 码本 / RI / 分数 / 痕迹向量）须逐位 ≡ L1"
+    assert a.rank_units(qs) == b.rank_units(qs) and a.n_chunks == b.n_chunks and a.unit_of == b.unit_of
+    assert len(a.bd_rows) > 0
+    return "G31 ok"
+
+
+def g32():
+    rows = SG.time_anchor_blocks(_bd_doc("a", n_pad=2), _bdfn, True)
+    got = [(k, f) for _, (_, f, *_), k in rows][:6]
+    want = [("anchor", "DATE:2026-04-03"), ("inherit", "DATE:2026-04-03"), ("mid", "DATE:2026-04-18"), ("inherit", "DATE:2026-04-03"),
+            ("anchor", "DATE:2026-04-20"), ("inherit", "DATE:2026-04-20")]
+    assert got == want, ("B-iii：抬头日期 = 初始锚点；句中日期只管本句；句首日期（含编号前缀）开新锚点、后文继承", got)
+    log = "记录如下：\n3月5日：上午 aa1。下午 aa2 的验收定在3月20日。aa3 继续。\n12. 3月6日：bb1。bb2。"
+    r2 = [(k, f) for _, (_, f, *_), k in SG.time_anchor_blocks(log, _bdfn, True)]
+    assert r2 == [("pre", "DATE:2026-03-05"), ("anchor", "DATE:2026-03-05"), ("mid", "DATE:2026-03-20"), ("inherit", "DATE:2026-03-05"),
+                  ("anchor", "DATE:2026-03-06"), ("inherit", "DATE:2026-03-06")], ("日志式：首日期前的句取首日期；编号「12.」后的日期是句首", r2)
+    assert SG.bd_sents("1. 甲。\n2. 乙。") == ["1. 甲。", "2. 乙。"], "纯编号碎片并入下一句"
+    assert SG.time_anchor_blocks("4月3日：甲。乙。丙。", _bdfn, True) == [], "单日期单元不启用"
+    return "G32 ok"
+
+
+def g33():
+    m = _bdmem(_bd_units())
+    v = m.units()
+    cases = [("心脏彩超的第二轮评审 mkb1 mkb2 mkb3", "2026-04-18"), ("血压计 mkc1 mkc2 mkc3", "2026-04-03"),
+             ("运动处方 mke1 mke2 mke3", "2026-04-20"), ("降脂药 mka1 mka2 mka3", "2026-04-03"), ("支架复查 mkd1 mkd2 mkd3", "2026-04-20")]
+    for q, d in cases:
+        x = m.decode_unit_q(1, "TIME", q)
+        assert x[0] == f"DATE:{d}" and x[4] == "bd", ("问句贴近哪句就答哪句的 TIME", q, x)
+        assert RV.answer_time_q(v, [1], 10, q) == (f"DATE:{d}", 1, "TIME:bd")
+    x = m.decode_unit_q(1, "TIME", "完全不在词表 qqqq")
+    assert x[4] == "fallback" and x[:4] == m.decode_unit(1, "TIME")[:4], ("问句与全部子痕迹余弦 ≤ 0 ⇒ 显式回退 decode_unit", x)
+    assert m.decode_unit(1, "TIME")[0] == "DATE:2026-04-03", "L1 对照：单元级只解出抬头日期"
+    return "G33 ok"
+
+
+def g34():
+    def run():
+        m = _bdmem(_bd_units())
+        return ([(r["unit"], r["sent"], r["fill"], r["kind"], r["toks"]) for r in m.bd_rows], [round(c, 12) for c in m.bd_cos(1, "mkb1 血压计")],
+                [m.decode_unit_q(1, "TIME", q)[0] for q in ("mkb1", "mke2", "mka3")], m.bd_trace(3).tolist())
+    assert run() == run(), "I5：BD 子痕迹 / 余弦 / 解绑 / 痕迹向量同种子同输出"
+    return "G34 ok"
+
+
+GUARDS.update({"G29": g29, "G30": g30, "G31": g31, "G32": g32, "G33": g33, "G34": g34})
+
+
+
 
 @contextlib.contextmanager
 def patch(obj, name, val):
@@ -764,6 +891,14 @@ MUTANTS += [
     ("G26", "Memory 默认：块阈值 off-by-one（允许 K_MAX+1）", lambda: patch_item(SG.CFG_L, "chunk_gt", False)),
     ("G27", "Memory 默认：块展开丢失（排序只看首块）", lambda: patch(M.Memory, "rank_units", _rank_first_chunk)),
     ("G27", "Memory 默认：单元解绑只看首块", lambda: patch(M.Memory, "decode_unit", lambda self, u, role: self.decode(self.chunks[u][0], role))),
+    ("G29", "BD：子痕迹并入单元全部 TIME", lambda: patch_item(M.CFG_BD, "one_time", False)),
+    ("G30", "BD：范围泄漏到短单元", lambda: patch_item(M.CFG_BD, "long_only", False)),
+    ("G30", "BD：去掉启用条件（单日期长单元也写子痕迹）", lambda: patch_item(SG.CFG_B, "need_multi", False)),
+    ("G31", "BD：子痕迹写进检索库", lambda: patch_item(M.CFG_BD, "index_sep", False)),
+    ("G32", "BD：句中日期当锚点（B-ii 行为）", lambda: patch_item(SG.CFG_B, "mid_only_self", False)),
+    ("G32", "BD：句首判定不去编号前缀", lambda: patch_item(SG.CFG_B, "lead_strip", False)),
+    ("G33", "BD：选择忽略问句（按写入序）", lambda: patch_item(M.CFG_BD, "use_q", False)),
+    ("G33", "BD：关掉余弦 ≤ 0 的显式回退", lambda: patch_item(M.CFG_BD, "fallback", False)),
     ("G28", "开关失效（chunk_long=False 被忽略）", lambda: patch(M.Memory, "write", lambda self, text, roles=None, chunk_long=None, sent_roles=None, **k: _orig_write(self, text, roles, True, sent_roles, **k))),
 ]
 

@@ -294,3 +294,56 @@ def expand_segs(segs, why):
     if CFG_L["expand_chunks"]:
         return segs
     return [s if w in ("unit", "chunk") else [] for s, w in zip(segs, why)]
+
+
+# ---------------------------------------------------------------- 正文日期 BD（PREREG_body_date §1）：长单元的时间锚点子痕迹（只用于解绑，不进检索）
+CFG_B = {"mid_only_self": True, "lead_strip": True, "need_multi": True}   # 守卫变异改这里
+_LEAD = re.compile(r"^(?:[^\s:：]{1,16}: )?(?:\(?\d{1,3}[.、．)）]\s*)?")     # 句首可选「说话人: 」与编号
+_WORDY = re.compile(r"[\u3400-\u9fffA-Za-z]")
+
+
+def bd_sents(text):
+    """§1.2：split_sents 后把纯编号碎片（无汉字、无拉丁字母，如「12.」）以一个空格并入下一句；末尾碎片并入上一句。"""
+    out, carry = [], ""
+    for x in split_sents(text):
+        if not _WORDY.search(x):
+            carry = f"{carry} {x}".strip(); continue
+        out.append(f"{carry} {x}" if carry else x); carry = ""
+    if carry:
+        if out:
+            out[-1] = f"{out[-1]} {carry}"
+        else:
+            out.append(carry)
+    return out
+
+
+def is_head_date(sent, span, zh):
+    """§1.5：去掉可选「说话人: 」与编号前缀后，日期片段起点 = 0 ⇒ 句首日期。span 取自 extract_time_v2（中文原文 / 英文小写）。"""
+    body = sent if zh else sent.lower()
+    lead = _LEAD.match(body).end() if CFG_B["lead_strip"] else 0
+    return body.find(span) == lead
+
+
+def time_anchor_blocks(text, time_fn, zh):
+    """§1.3–§1.5 锚点规则 B-iii：→ [(句, TIME 项, 类型)]，类型 ∈ anchor（开新锚点）/ mid（句中日期只管本句）/ inherit（继承当前锚点）/
+    pre（单元首个日期之前的句，取单元首个日期）。各句不同日期 < 2 ⇒ []（不启用，单元解绑 ≡ L1）。time_fn(句) → [] 或 [TIME 项]。"""
+    rows, A = [], None
+    for s in bd_sents(text):
+        tm = time_fn(s)
+        tm = tuple(tm[0]) if tm else None
+        if tm is not None:
+            if A is None or is_head_date(s, tm[3], zh) or not CFG_B["mid_only_self"]:
+                A = tm; rows.append([s, tm, "anchor"])
+            else:
+                rows.append([s, tm, "mid"])
+        else:
+            rows.append([s, A, "inherit" if A else "pre"])
+    first = next((r[1] for r in rows if r[1] is not None), None)
+    if first is None:
+        return []
+    for r in rows:
+        if r[1] is None:
+            r[1] = first
+    if CFG_B["need_multi"] and len({r[1][1] for r in rows}) < 2:
+        return []
+    return [tuple(r) for r in rows]

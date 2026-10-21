@@ -52,6 +52,26 @@ def answer_time(m, cand, k):
     return DOUBT, None, None
 
 
+def answer_time_q(m, cand, k, question):
+    """正文日期 BD 作答（PREREG_body_date §1.8）：同 answer_time，只把单元 TIME 解绑换成带问句的 m.decode_q（Memory.units() 视图）。
+    来源：无子痕迹 ⇒ "TIME"（≡ answer_time）；子痕迹 ⇒ "TIME:bd"；最大余弦 ≤ 0 的显式回退 ⇒ "TIME:fallback"。answer_time 不动。"""
+    for i in cand[:k]:
+        try:
+            a = m.decode_q(i, "TIME", question)
+        except H.CapacityError:
+            a = ("容量拒写",) * 5
+        if a[0] not in (DOUBT, "容量拒写"):
+            return a[0], i, "TIME" if a[4] == "l1" else f"TIME:{a[4]}"
+    if cand:
+        try:
+            a = m.decode(cand[0], "SESSION")
+        except H.CapacityError:
+            a = ("容量拒写",)
+        if a[0] not in (DOUBT, "容量拒写"):
+            return a[0], cand[0], "SESSION"
+    return DOUBT, None, None
+
+
 GRAN_Q = [("YEAR", re.compile(r"\b(what|which|in what) year\b|哪一?年", re.I)),
           ("MONTH", re.compile(r"\b(what|which|in what) month\b|哪个月|哪月|几月", re.I))]
 

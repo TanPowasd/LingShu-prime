@@ -403,8 +403,11 @@ def extract_roles(text, persons=(), speaker=None, base_date=None, base_time=None
 
 
 # ---------------------------------------------------------------- 记忆
+CFG_BD = {"long_only": True, "index_sep": True, "one_time": True, "fallback": True, "use_q": True}   # 正文日期 BD 守卫变异改这里
+
+
 class Memory:
-    def __init__(self, space=None, beta=RI.BETA, window=RI.WINDOW, chunk_long=True):
+    def __init__(self, space=None, beta=RI.BETA, window=RI.WINDOW, chunk_long=True, body_date=False):
         """chunk_long=True（默认，2026-10-21 起 = L1，RESULTS_long_hold.md）：叠加项 > K_MAX 的单元按 seg.segment_long 切块写入；
         chunk_long=False = 旧路径 S0（逐单元一条痕迹，超 K_MAX 在 trace 时抛 CapacityError），只用于复现历史读数。"""
         self.space = space or H.Space()
@@ -415,14 +418,19 @@ class Memory:
         self._V = None
         self._T = {}
         self.codebooks = {}
+        self.body_date = body_date                                # 正文日期 BD（PREREG_body_date §1），默认关
+        self.bd, self.bd_rows = {}, []                            # 单元号 → 子痕迹号表；子痕迹 = {unit, sent, toks, fill, rule, span, kind}
+        self._BT, self._bdq = {}, {}
 
     # 写入
-    def write(self, text, roles=None, chunk_long=None, sent_roles=None, **kw):
+    def write(self, text, roles=None, chunk_long=None, sent_roles=None, body_date=None, time_fn=None, **kw):
         """roles 为 None 时按规则抽取（kw 透传 extract_roles）；写入时增量更新 RI 共现计数。→ 单元号。
         chunk_long（None = 用构造参数）：True ⇒ L1，与 seg.segment_long 同一实现：≤K_MAX 的单元逐位同旧路径（一条痕迹），
         >K_MAX 的单元按 seg.make_elems 元素写入序贪心装成 ≤K_MAX 的块，每块一条痕迹、共享单元号（不再拒写）。
         sent_roles：可选「句 → 角色」函数；给出时长单元先切句、每句角色 = sent_roles(句)（PerLTQA 口径，seg_real.run_perltqa）；
-        不给时长单元元素 = make_elems(单元, 原文, roles)（LoCoMo / hive / crossproj 口径）。chunk_long=False ⇒ 旧路径 S0。"""
+        不给时长单元元素 = make_elems(单元, 原文, roles)（LoCoMo / hive / crossproj 口径）。chunk_long=False ⇒ 旧路径 S0。
+        body_date（None = 用构造参数）：True ⇒ 另写正文日期子痕迹（PREREG_body_date §1，只对长单元、只供 decode_unit_q）；检索索引不变。
+        time_fn：句 → [] 或 [TIME 项]；不给时 = sent_roles 的 TIME 项（给了 sent_roles）或 extract_time_v2(句, kw["base_date"], 单元语言)。"""
         tk = tokens(text)
         rs = extract_roles(text, **kw) if roles is None else list(roles)
         u = len(self.unit_texts)
@@ -443,7 +451,94 @@ class Memory:
                 self.codebooks.setdefault(r, Cleanup(self.space)).add(f"F:{f}")     # 填充原子与角色无关（F:名字），角色只靠绑定区分
             self.ri.add(self.toks[-1])
         self._V = None
+        if self.body_date if body_date is None else body_date:
+            self._write_bd(u, text, tk, rs, sent_roles, time_fn, kw.get("base_date"))
         return u
+
+    def _write_bd(self, u, text, tk, rs, sent_roles, time_fn, base_date):
+        """§1.1–§1.6：只对长单元（整单元载荷 > K_MAX，同 seg.is_long）写每句一条子痕迹，每条恰一个 TIME、≤ K_MAX；不碰检索索引。"""
+        import seg as SG
+        if CFG_BD["long_only"] and SG.n_items((tk, rs)) <= H.K_MAX:
+            return
+        zh = is_zh(text)
+        if time_fn is None:
+            time_fn = ((lambda s: [r for r in sent_roles(s) if r[0] == "TIME"][:1]) if sent_roles
+                       else (lambda s: extract_time_v2(s, base_date, lang="zh" if zh else "en")))
+        rows = SG.time_anchor_blocks(text, time_fn, zh)
+        for k, (sent, tm, kind) in enumerate(rows):
+            stk = tokens(sent)
+            pieces, cur = [], []
+            for w in stk:                                     # 单句项数 > K_MAX ⇒ 按词序切片，每片带同一个 TIME（1 + 不同词 ≤ K_MAX）
+                if w not in cur and len(set(cur)) + 2 > H.K_MAX:
+                    pieces.append(cur); cur = []
+                cur.append(w)
+            pieces.append(cur)
+            for pt in pieces:
+                self.bd.setdefault(u, []).append(len(self.bd_rows))
+                self.bd_rows.append({"unit": u, "sent": k, "toks": pt, "fill": tm[1], "rule": tm[2], "span": tm[3], "kind": kind})
+                if not CFG_BD["index_sep"]:                   # 变异：子痕迹写进检索库
+                    self.texts.append(text); self.toks.append(list(pt)); self.roles.append([tm]); self.unit_of.append(u)
+                    self.chunks[u].append(len(self.texts) - 1); self.ri.add(pt)
+        self._bdq = {}
+
+    def bd_items(self, j):
+        """子痕迹 j 的叠加项：一个 ROLE:TIME⊗F:填充 + 本句词袋（同 Memory.trace 编码）。"""
+        r = self.bd_rows[j]
+        fills = [r["fill"]] if CFG_BD["one_time"] else sorted({x["fill"] for x in self.bd_rows if x["unit"] == r["unit"]})
+        return [("ROLE:TIME", f"F:{f}") for f in fills] + [("ROLE:BAG", w) for w in sorted(set(r["toks"]))]
+
+    def bd_trace(self, j):
+        t = self._BT.get(j)
+        if t is None:
+            items = self.bd_items(j)
+            if len(items) > H.K_MAX:
+                raise H.CapacityError(f"子痕迹 {j} 叠加 {len(items)} 项 > K_MAX={H.K_MAX}")
+            t = H.bundle(H.bind(self.space.vec(r), self.space.vec(f)) for r, f in items)
+            self._BT[j] = t
+        return t
+
+    def bd_codebook(self):
+        """子痕迹清理码本 = L1 的 TIME 码本名（同序）∪ 子痕迹填充；L1 码本本身不变。"""
+        names = list(self.codebooks["TIME"].names) if "TIME" in self.codebooks else []
+        key = (len(names), len(self.bd_rows))
+        if getattr(self, "_bdcb_key", None) != key:
+            self._bdcb = Cleanup(self.space, names + [f"F:{r['fill']}" for r in self.bd_rows])
+            self._bdcb_key = key
+        return self._bdcb
+
+    def bd_decode(self, j):
+        name, c, m, raw = self.bd_codebook().query(H.unbind(self.bd_trace(j), self.space.vec("ROLE:TIME")))
+        return (name if name == DOUBT else name[2:]), c, m, raw[2:]
+
+    def bd_cos(self, u, question, beta=None):
+        """§1.7：问句内容向量 · 单元 u 各子痕迹内容向量的余弦（同 vectors 的 idf + RI 投影）。"""
+        key = (question, beta, len(self.texts), len(self.bd_rows))
+        if key not in self._bdq:
+            idf = self.idf()
+            Vs, Q = self.ri.project([self._wmat([r["toks"] for r in self.bd_rows], idf), self._wmat([tokens(question)], idf)], beta=beta)
+            q = Q[0]; qn = float(np.linalg.norm(q))
+            vn = np.linalg.norm(Vs, axis=1); vn[vn == 0] = 1
+            self._bdq = {key: np.zeros(len(Vs)) if qn == 0 else (Vs @ q) / (vn * qn)}
+        c = self._bdq[key]
+        return [float(c[j]) for j in self.bd[u]]
+
+    def decode_unit_q(self, u, role, question, beta=None):
+        """带问句的单元解绑 → (填充 | 存疑, 余弦, 边距, 原始最近填充, 来源)。来源：l1（无子痕迹或非 TIME，≡ decode_unit）/
+        bd（子痕迹按问句余弦降序，取第一个非存疑；全存疑 ⇒ 存疑）/ fallback（最大余弦 ≤ 0，显式回退 decode_unit）。"""
+        js = self.bd.get(u)
+        if role != "TIME" or not js:
+            return (*self.decode_unit(u, role), "l1")
+        cs = self.bd_cos(u, question, beta)
+        if CFG_BD["fallback"] and max(cs) <= 0:
+            return (*self.decode_unit(u, role), "fallback")
+        order = sorted(range(len(js)), key=lambda k: -cs[k]) if CFG_BD["use_q"] else list(range(len(js)))
+        first = None
+        for k in order:
+            a = self.bd_decode(js[k])
+            if a[0] != DOUBT:
+                return (*a, "bd")
+            first = first or a
+        return (*first, "bd")
 
     @property
     def n_chunks(self):
@@ -576,3 +671,6 @@ class UnitView:
 
     def decode(self, i, role):
         return self.m.decode_unit(i, role)
+
+    def decode_q(self, i, role, question):
+        return self.m.decode_unit_q(i, role, question)
