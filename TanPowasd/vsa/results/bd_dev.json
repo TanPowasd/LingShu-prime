@@ -1,0 +1,343 @@
+{
+ "prereg": "PREREG_body_date.md §2",
+ "E1": {
+  "locomo": {
+   "n": 257,
+   "mean": {
+    "L1": 0.5041715094244278,
+    "BD": 0.5041715094244278
+   },
+   "BD_vs_L1": {
+    "win": 0,
+    "loss": 0,
+    "tie": 257,
+    "p": 1.0,
+    "verdict": "无显著差异"
+   },
+   "identical": true
+  },
+  "hive": {
+   "n": 46,
+   "mean": {
+    "L1": 0.455142257571925,
+    "BD": 0.455142257571925
+   },
+   "BD_vs_L1": {
+    "win": 0,
+    "loss": 0,
+    "tie": 46,
+    "p": 1.0,
+    "verdict": "无显著差异"
+   },
+   "identical": true
+  },
+  "perltqa": {
+   "n": 3956,
+   "mean": {
+    "L1": 0.9737108190091001,
+    "BD": 0.9737108190091001
+   },
+   "BD_vs_L1": {
+    "win": 0,
+    "loss": 0,
+    "tie": 3956,
+    "p": 1.0,
+    "verdict": "无显著差异"
+   },
+   "identical": true
+  },
+  "crossproj": {
+   "n": 41,
+   "mean": {
+    "L1": 0.6463414634146342,
+    "BD": 0.6463414634146342
+   },
+   "BD_vs_L1": {
+    "win": 0,
+    "loss": 0,
+    "tie": 41,
+    "p": 1.0,
+    "verdict": "无显著差异"
+   },
+   "identical": true
+  }
+ },
+ "E2": {
+  "locomo": {
+   "n": 50,
+   "acc": {
+    "L1": 0.56,
+    "BD": 0.56
+   },
+   "BD_vs_L1": {
+    "win": 0,
+    "loss": 0,
+    "p": 1.0,
+    "verdict": "无显著差异"
+   },
+   "identical_pred": true,
+   "src_BD": {
+    "TIME": 45,
+    "SESSION": 5
+   },
+   "changed": []
+  },
+  "perltqa": {
+   "n": 54,
+   "acc": {
+    "L1": 0.3333333333333333,
+    "BD": 0.3148148148148148
+   },
+   "BD_vs_L1": {
+    "win": 2,
+    "loss": 3,
+    "p": 1.0,
+    "verdict": "无显著差异"
+   },
+   "identical_pred": false,
+   "src_BD": {
+    "TIME": 46,
+    "TIME:bd": 8
+   },
+   "changed": [
+    {
+     "q": "冯伟#events#191",
+     "cls": "first",
+     "gold": "DATE:2022-03-10",
+     "L1": {
+      "pred": "DATE:2022-03-10",
+      "src": "TIME",
+      "trace": 40,
+      "ok": true
+     },
+     "BD": {
+      "pred": "YEAR:2019",
+      "src": "TIME:bd",
+      "trace": 64,
+      "ok": false
+     }
+    },
+    {
+     "q": "孙晓明#dialogues#149",
+     "cls": "body",
+     "gold": "YEAR:2019",
+     "L1": {
+      "pred": "DATE:2019-08-15",
+      "src": "TIME",
+      "trace": 28,
+      "ok": false
+     },
+     "BD": {
+      "pred": "YEAR:2019",
+      "src": "TIME:bd",
+      "trace": 51,
+      "ok": true
+     }
+    },
+    {
+     "q": "徐佳#dialogues#145",
+     "cls": "body",
+     "gold": "YEAR:2015",
+     "L1": {
+      "pred": "YEAR:2015",
+      "src": "TIME",
+      "trace": 29,
+      "ok": true
+     },
+     "BD": {
+      "pred": "YEAR:2020",
+      "src": "TIME:bd",
+      "trace": 51,
+      "ok": false
+     }
+    },
+    {
+     "q": "田洋#dialogues#210",
+     "cls": "first",
+     "gold": "DATE:2022-05-02",
+     "L1": {
+      "pred": "DATE:2021-06-12",
+      "src": "TIME",
+      "trace": 53,
+      "ok": false
+     },
+     "BD": {
+      "pred": "DATE:2022-05-03",
+      "src": "TIME:bd",
+      "trace": 51,
+      "ok": false
+     }
+    },
+    {
+     "q": "许慧#dialogues#261",
+     "cls": "uncanon",
+     "gold": null,
+     "L1": {
+      "pred": "DATE:2022-05-12",
+      "src": "TIME",
+      "trace": 47,
+      "ok": false
+     },
+     "BD": {
+      "pred": "DATE:2019-05-06",
+      "src": "TIME:bd",
+      "trace": 51,
+      "ok": false
+     }
+    },
+    {
+     "q": "韩刚#dialogues#198",
+     "cls": "body",
+     "gold": "DATE:2019-05-10",
+     "L1": {
+      "pred": "DATE:2019-05-15",
+      "src": "TIME",
+      "trace": 52,
+      "ok": false
+     },
+     "BD": {
+      "pred": "DATE:2022-01-17",
+      "src": "TIME:bd",
+      "trace": 55,
+      "ok": false
+     }
+    },
+    {
+     "q": "韩刚#events#80",
+     "cls": "first",
+     "gold": "DATE:2021-05-12",
+     "L1": {
+      "pred": "DATE:2021-05-12",
+      "src": "TIME",
+      "trace": 32,
+      "ok": true
+     },
+     "BD": {
+      "pred": "DATE:2022-01-17",
+      "src": "TIME:bd",
+      "trace": 55,
+      "ok": false
+     }
+    },
+    {
+     "q": "龙美丽#events#47",
+     "cls": "body",
+     "gold": "YEAR:1503",
+     "L1": {
+      "pred": "DATE:2019-06-15",
+      "src": "TIME",
+      "trace": 47,
+      "ok": false
+     },
+     "BD": {
+      "pred": "YEAR:1503",
+      "src": "TIME:bd",
+      "trace": 23,
+      "ok": true
+     }
+    }
+   ],
+   "by_cls": {
+    "first": {
+     "n": 20,
+     "L1": 17,
+     "BD": 15,
+     "L1_ok_BD_wrong": [
+      "冯伟#events#191",
+      "韩刚#events#80"
+     ]
+    },
+    "uncanon": {
+     "n": 26,
+     "L1": 0,
+     "BD": 0,
+     "L1_ok_BD_wrong": []
+    },
+    "absent": {
+     "n": 4,
+     "L1": 0,
+     "BD": 0,
+     "L1_ok_BD_wrong": []
+    },
+    "body": {
+     "n": 4,
+     "L1": 1,
+     "BD": 2,
+     "L1_ok_BD_wrong": [
+      "徐佳#dialogues#145"
+     ]
+    }
+   }
+  }
+ },
+ "E3": {
+  "locomo": {
+   "n_units": 5882,
+   "n_long": 0,
+   "bd_units": 0,
+   "bd_rows": 0,
+   "bd_max_items": 0,
+   "bd_kinds": {}
+  },
+  "hive": {
+   "n_units": 303,
+   "n_long": 0,
+   "bd_units": 0,
+   "bd_rows": 0,
+   "bd_max_items": 0,
+   "bd_kinds": {}
+  },
+  "perltqa": {
+   "n_units": 1042,
+   "n_long": 346,
+   "bd_units": 63,
+   "bd_rows": 1167,
+   "bd_max_items": 130,
+   "bd_kinds": {
+    "anchor": 159,
+    "inherit": 978,
+    "mid": 30
+   }
+  },
+  "crossproj": {
+   "n_units": 652,
+   "n_long": 0,
+   "bd_units": 0,
+   "bd_rows": 0,
+   "bd_max_items": 0,
+   "bd_kinds": {}
+  }
+ },
+ "check_vs_committed_L1": {
+  "locomo": {
+   "E1": true,
+   "E2": true
+  },
+  "hive": {
+   "E1": true,
+   "E2": true
+  },
+  "perltqa": {
+   "E1": true,
+   "E2": true
+  },
+  "crossproj": {
+   "E1": true,
+   "E2": true
+  }
+ },
+ "gate": {
+  "regress": [],
+  "E1_identical_all": true,
+  "perltqa_first": {
+   "n": 20,
+   "L1": 17,
+   "BD": 15
+  },
+  "perltqa_first_L1ok_BDwrong": [
+   "冯伟#events#191",
+   "韩刚#events#80"
+  ],
+  "pass": false
+ }
+}
