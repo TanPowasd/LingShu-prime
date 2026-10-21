@@ -12,7 +12,7 @@
 | `ri.py` | Random Indexing（写入时增量共现计数 A，C = A·I，按 1000 维一块投影） |
 | `memory.py` | 分词、规则抽角色（中英文，规则号 + 原文片段可回溯）、`Memory.write/search_many/trace/decode/query` |
 | `bm25.py` | 自写 Okapi BM25（k1=0.9 b=0.4） |
-| `test_vsa.py` | 守卫 G1–G20 + `--mutate` 定点变异（26 条，全部须变红） |
+| `test_vsa.py` | 守卫 G1–G24 + `--mutate` 定点变异（31 条，全部须变红） |
 | `synth.py` | 合成组合查询基准 + `--capacity` 容量曲线 |
 | `real.py` | 真实集 dev 描述性检索（LoCoMo / hive / PerLTQA）+ LoCoMo 时间解绑 |
 | `PREREG_v2.md` | 阶段 2 预注册（读数前写定）：te 召回 + VSA 解绑、时间规则 v2、PerLTQA 中文旁证、合成 v2（噪声 + 多跳） |
@@ -23,6 +23,8 @@
 | `seg.py` | 事件切分：断层判据 o_t<θ·μ_t / 日期 / 场景 / K_MAX 强制切、S1 固定长度、段痕迹、段排序→成员轮展开、段痕迹解绑 |
 | `seg_real.py` | 事件切分真实集读数（E1/E2/E3、§4 选臂；§5 保留集入口带只跑一次的拒跑保护） |
 | `RESULTS_seg.md` | 事件切分读数与结论（dev 无增益：PerLTQA 显著倒退 ⇒ 未碰保留集） |
+| `PREREG_long.md` | 长单元分块 L1 预注册（只切超 K_MAX 的单元；读数前提交）；`long_count.py` 保留集超限单元计数 |
+| `long_real.py` | L1 真实集 dev 读数（复用 seg_real 口径；`seg.segment_long`） |
 | `results/` | 读数（汇总 json/md；不含任何数据） |
 
 ## 复跑

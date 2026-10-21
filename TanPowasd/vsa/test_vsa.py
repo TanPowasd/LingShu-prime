@@ -8,7 +8,8 @@ G5 确定性/写入序无关(I5)  G6 规则抽取定例可回溯(I6)  G7 存疑�
 阶段 2（PREREG_v2 §D，THEORY §7 I8–I12）：G10 v2 时间规则定例  G11 问句粒度粗化  G12 te 候选限制  G13 存疑 + SESSION 回退
 G14 合成 v2 指代/省略 + 多跳交集/链式  G15 J2 判定定例
 事件切分（PREREG_seg §7）：G16 段叠加项 ≤ K_MAX + 单元素强制切片不丢项  G17 θ→0 ≡ S1  G18 θ→∞ 每轮一段 + 段内 μ 手算定例
-G19 段排序 → 成员轮展开与轮级金标对齐（θ→∞ ≡ S0）  G20 确定性"""
+G19 段排序 → 成员轮展开与轮级金标对齐（θ→∞ ≡ S0）  G20 确定性
+长单元分块 L1（PREREG_long §7）：G21 短单元 ≡ S0（含恰为 K_MAX）  G22 块 ≤ K_MAX / 不跨单元 / 不丢项 / 贪心极大  G23 块展开  G24 确定性"""
 import os, sys
 if os.environ.get("PYTHONHASHSEED") != "0":
     os.environ["PYTHONHASHSEED"] = "0"
@@ -403,6 +404,127 @@ GUARDS.update({"G16": g16, "G17": g17, "G18": g18, "G19": g19, "G20": g20})
 
 
 
+# ---------------------------------------------------------------- 长单元分块 L1（PREREG_long §7）：G21–G24
+def _zh_unit(n_sent, tag, dates=True):
+    """一个中文单元：n_sent 句，每句 12 个新词（tag 区分）+ 句首日期。"""
+    return "".join((f"2020年{1 + k % 12}月{1 + k % 28}日，" if dates else "") + " ".join(f"{tag}{k}x{j}" for j in range(12)) + "。" for k in range(n_sent))
+
+
+def _zt(s):
+    return M.extract_time_v2(s, None, lang="zh")
+
+
+def _l1_build(texts):
+    pay, els = [], []
+    for u, t in enumerate(texts):
+        pay.append((M.tokens(t), _zt(t)))
+        es, _ = SG.make_elems(u, t, None, None, u, sentence_split=True, role_fn=_zt)
+        els += es
+    return pay, els
+
+
+def _exact_kmax_text():
+    """恰好 K_MAX 项的两句单元（两句各有日期 ⇒ 走块路径会多出第二个 TIME，载荷与 S0 不同）。"""
+    head = "2020年1月1日，" + " ".join(f"ek{j}" for j in range(5)) + "。2021年2月2日，"
+    base = len(SG.items_of(M.tokens(head), _zt(head)))
+    t = head + " ".join(f"em{j}" for j in range(H.K_MAX - base - 0)) + "。"
+    while len(SG.items_of(M.tokens(t), _zt(t))) > H.K_MAX:
+        t = t[: t.rfind(" ")] + "。"
+    assert len(SG.items_of(M.tokens(t), _zt(t))) == H.K_MAX, len(SG.items_of(M.tokens(t), _zt(t)))
+    return t
+
+
+def g21():
+    # (a) 全短单元库：载荷、分数、排序、解绑 ≡ S0
+    texts = [_zh_unit(3, f"a{u}y") + f" 共有 alpha{u % 3}" for u in range(12)] + [_exact_kmax_text()]
+    pay, els = _l1_build(texts)
+    assert not any(SG.is_long(p) for p in pay)
+    el2, segs, why, rows, nl = SG.segment_long(pay, els)
+    assert nl == 0 and segs == [[u] for u in range(len(texts))] and rows == [(list(a), list(b)) for a, b in pay], "全短库载荷须 ≡ S0"
+    m0, ml = SG.memory_from(pay), SG.memory_from(rows)
+    qs = ["a3y1x2 alpha0", "a7y0x5", "em3 ek1"]
+    for a, b in zip(m0.search_many(qs, beta=0.5), ml.search_many(qs, beta=0.5)):
+        assert np.array_equal(a, b), "全短库分数须逐位相等"
+        assert list(np.argsort(-a, kind="stable")) == SG.expand(b, SG.expand_segs(segs, why), el2, a, len(texts)), "全短库排序须 ≡ S0"
+    v = SG.SegView(ml, segs, el2, texts)
+    for i in range(len(texts)):
+        assert v.decode(i, "TIME")[0] == m0.decode(i, "TIME")[0], ("短单元解绑须 ≡ S0", i)
+    # (b) 混合库：短单元行逐位 ≡ S0，恰一条痕迹
+    texts2 = texts + [_zh_unit(40, "lng")]
+    pay2, els2 = _l1_build(texts2)
+    assert SG.is_long(pay2[-1])
+    el3, segs2, why2, rows2, nl2 = SG.segment_long(pay2, els2)
+    assert nl2 == 1
+    for u in range(len(texts)):
+        mine = [k for k, s in enumerate(segs2) if any(el3[t].owner == u for t in s)]
+        assert len(mine) == 1 and why2[mine[0]] == "unit" and rows2[mine[0]] == (list(pay2[u][0]), list(pay2[u][1])), ("混合库短单元须 ≡ S0", u)
+    return "G21 ok"
+
+
+def g22():
+    long_t = _zh_unit(60, "bbb")
+    texts = [_zh_unit(2, "sss"), long_t, _zh_unit(2, "ttt")]
+    pay, els = _l1_build(texts)
+    el2, segs, why, rows, nl = SG.segment_long(pay, els)
+    ch = [s for s, w in zip(segs, why) if w in ("chunk", "kmax") and el2[s[0]].owner == 1]
+    assert nl == 1 and len(ch) >= 2, ("长单元须切成 ≥2 块", len(ch))
+    assert all(len({el2[t].owner for t in s}) == 1 for s in segs), "块不得跨单元"
+    flat = [t for s in ch for t in s]
+    assert flat == list(range(flat[0], flat[0] + len(flat))), "块成员按写入序连续"
+    assert all(SG.n_items(r) <= H.K_MAX for r in rows), ("任何块 ≤ K_MAX", max(SG.n_items(r) for r in rows))
+    lone = [e for e in els if e.owner == 1]
+    assert set().union(*[el2[t].items for s in ch for t in s]) == set().union(*[e.items for e in lone]), "块并集 = 单元全部元素项"
+    for a, b in zip(ch, ch[1:]):
+        cur = set().union(*[el2[t].items for t in a])
+        assert len(cur | el2[b[0]].items) > H.K_MAX, "贪心极大：块 ∪ 下一块首元素须 > K_MAX"
+    # 边界定例：两元素并集恰为 K_MAX ⇒ 同块；再多 1 项 ⇒ 另起
+    e = lambda o, ws: SG.Elem(o, ws, [], None, o)
+    half = H.K_MAX // 2
+    A = [f"p{j}" for j in range(half)]; B = [f"q{j}" for j in range(H.K_MAX - half)]
+    big = (list(range(300)), [])
+    _, s1, _, r1, _ = SG.segment_long([big], [e(0, A), e(0, B)])
+    assert s1 == [[0, 1]] and SG.n_items(r1[0]) == H.K_MAX, ("恰装到 K_MAX 须同块", s1)
+    _, s2, _, _, _ = SG.segment_long([big], [e(0, A), e(0, B + ["r0"])])
+    assert s2 == [[0], [1]], ("K_MAX+1 须另起一块", s2)
+    return "G22 ok"
+
+
+def g23():
+    texts = [_zh_unit(3, f"c{u}y", dates=False) for u in range(8)] + [_zh_unit(40, "ddd", dates=False)]
+    pay, els = _l1_build(texts)
+    el2, segs, why, rows, nl = SG.segment_long(pay, els)
+    ch = [k for k, w in enumerate(why) if w in ("chunk", "kmax")]
+    assert nl == 1 and len(ch) >= 2
+    ml, m0 = SG.memory_from(rows), SG.memory_from(pay)
+    last = rows[ch[-1]][0]
+    q = " ".join(w for w in last if w.startswith("ddd39x")) + " c3y0x1 c3y0x2 c3y1x3"   # 末块独有词 12 个 + 短单元 3 的词 3 个
+    a, = m0.search_many([q], beta=0.5); b, = ml.search_many([q], beta=0.5)
+    o = SG.expand(b, SG.expand_segs(segs, why), el2, a, len(texts))
+    assert sorted(o) == list(range(len(texts))), "展开后每单元恰出现一次"
+    assert o[:2] == [8, 3], ("主要命中末块的查询须把长单元排第一、短单元 3 第二", o[:3])
+    hand = [SG.Elem(u, [f"h{k}"], [], None, u) for k, u in enumerate([0, 1, 1, 1, 2])]   # 手算：单元 1 的三块共享单元号
+    o2 = SG.expand([0.1, 0.9, 0.3, 0.5], [[0], [1], [2, 3], [4]], hand, [0.5, 0.4, 0.3], 3)
+    assert o2 == [1, 2, 0], ("多块共享单元号须去重保序", o2)
+    return "G23 ok"
+
+
+def g24():
+    def run():
+        texts = [_zh_unit(3, f"e{u}y") for u in range(6)] + [_zh_unit(35, "fff")]
+        pay, els = _l1_build(texts)
+        el2, segs, why, rows, _ = SG.segment_long(pay, els)
+        m = SG.memory_from(rows)
+        sc = m.search_many(["fff30x1 e2y0x0", "e5y1x3"], beta=0.5)
+        own = [float(u % 5) for u in range(len(texts))]
+        return segs, why, [x.round(12).tolist() for x in sc], [SG.expand(x, segs, el2, own, len(texts)) for x in sc]
+    assert run() == run(), "I5 同种子同输出（块划分 / 分数 / 展开）"
+    return "G24 ok"
+
+
+GUARDS.update({"G21": g21, "G22": g22, "G23": g23, "G24": g24})
+
+
+
 @contextlib.contextmanager
 def patch(obj, name, val):
     old = getattr(obj, name)
@@ -469,6 +591,11 @@ MUTANTS = [
     ("G18", "事件切分：μ 改成全局均值", lambda: patch_item(SG.CFG, "mu_local", False)),
     ("G16", "事件切分：K_MAX 强制切关闭", lambda: patch_item(SG.CFG, "kmax_cut", False)),
     ("G19", "事件切分：段内展开改成随机序", lambda: patch_item(SG.CFG, "expand_sorted", False)),
+    ("G21", "长单元分块：短单元也切（走块路径）", lambda: patch_item(SG.CFG_L, "short_whole", False)),
+    ("G21", "长单元分块：单元阈值 off-by-one（≥K_MAX 即算长）", lambda: patch_item(SG.CFG_L, "unit_gt", False)),
+    ("G22", "长单元分块：块阈值 off-by-one（允许 K_MAX+1）", lambda: patch_item(SG.CFG_L, "chunk_gt", False)),
+    ("G22", "长单元分块：关掉 K_MAX 切块（长单元整条一块）", lambda: patch_item(SG.CFG_L, "chunk_cut", False)),
+    ("G23", "长单元分块：关掉块展开（长单元只由首块代表）", lambda: patch_item(SG.CFG_L, "expand_chunks", False)),
 ]
 
 

@@ -249,3 +249,48 @@ def describe(segs, reasons, payload, elems, forced_pieces):
             "len_p50": q(.5), "len_p90": q(.9), "len_max": lens[-1] if lens else 0,
             "kmax_cuts": sum("kmax" in r for r in reasons), "gap_cuts": sum("gap" in r for r in reasons),
             "forced_pieces": forced_pieces, "max_items": max((n_items(p) for p in payload), default=0)}
+
+
+# ---------------------------------------------------------------- 长单元分块 L1（PREREG_long §1）：只切超 K_MAX 的单元
+CFG_L = {"short_whole": True, "unit_gt": True, "chunk_cut": True, "chunk_gt": True, "expand_chunks": True}   # 守卫变异改这里
+
+
+def is_long(row):
+    """单元是否超 K_MAX（严格 >：S0 在恰为 K_MAX 时不拒写）。"""
+    k = n_items(row)
+    return k > H.K_MAX if CFG_L["unit_gt"] else k >= H.K_MAX
+
+
+def segment_long(pay, elems):
+    """pay[u] = 单元 u 的 S0 载荷 (词序列, 角色)；elems = 各单元的 S1 输入元素（带 owner）。
+    → (元素列表, 段, 段原因, 段载荷, 长单元数)。短单元 = 一个元素一段，载荷 = pay[u] 原样；长单元 = 其元素按写入序贪心装块（块 ≤ K_MAX，不跨单元）。"""
+    by = {}
+    for e in elems:
+        by.setdefault(e.owner, []).append(e)
+    lim = H.K_MAX if CFG_L["chunk_gt"] else H.K_MAX + 1
+    out, segs, why, rows, n_long = [], [], [], [], 0
+    for u, row in enumerate(pay):
+        long_ = is_long(row) if CFG_L["short_whole"] else bool(by.get(u))     # 变异：短单元也走块路径
+        if not long_:
+            out.append(Elem(u, row[0], row[1], None, u))
+            segs.append([len(out) - 1]); why.append("unit"); rows.append((list(row[0]), list(row[1])))
+            continue
+        n_long += 1
+        cur, first, mine = set(), True, []
+        for e in by.get(u, []):
+            out.append(e); t = len(out) - 1
+            if first or (CFG_L["chunk_cut"] and len(cur | e.items) > lim):
+                mine.append([t]); why.append("chunk" if first else "kmax"); cur = set(e.items)
+            else:
+                mine[-1].append(t); cur |= e.items
+            first = False
+        segs += mine
+        rows += seg_payload(out, mine)
+    return out, segs, why, rows, n_long
+
+
+def expand_segs(segs, why):
+    """供展开用的段表；CFG_L["expand_chunks"]=False（变异）⇒ 长单元只由首块代表（其余块成员不参与展开）。"""
+    if CFG_L["expand_chunks"]:
+        return segs
+    return [s if w in ("unit", "chunk") else [] for s, w in zip(segs, why)]
