@@ -6,7 +6,9 @@
 G1 绑定可逆(I1)  G2 叠加容量≈理论(I2)  G3 解绑取回 + 超 K_MAX 拒写(I3)  G4 RI 近义 > 随机、C=A·I(I4)
 G5 确定性/写入序无关(I5)  G6 规则抽取定例可回溯(I6)  G7 存疑不静默(I7)  G8 BM25 手算值  G9 组合查询端到端
 阶段 2（PREREG_v2 §D，THEORY §7 I8–I12）：G10 v2 时间规则定例  G11 问句粒度粗化  G12 te 候选限制  G13 存疑 + SESSION 回退
-G14 合成 v2 指代/省略 + 多跳交集/链式  G15 J2 判定定例"""
+G14 合成 v2 指代/省略 + 多跳交集/链式  G15 J2 判定定例
+事件切分（PREREG_seg §7）：G16 段叠加项 ≤ K_MAX + 单元素强制切片不丢项  G17 θ→0 ≡ S1  G18 θ→∞ 每轮一段 + 段内 μ 手算定例
+G19 段排序 → 成员轮展开与轮级金标对齐（θ→∞ ≡ S0）  G20 确定性"""
 import os, sys
 if os.environ.get("PYTHONHASHSEED") != "0":
     os.environ["PYTHONHASHSEED"] = "0"
@@ -286,6 +288,120 @@ def g15():
 GUARDS.update({"G10": g10, "G11": g11, "G12": g12, "G13": g13, "G14": g14, "G15": g15})
 
 
+# ---------------------------------------------------------------- 事件切分写入（PREREG_seg §7）：G16–G20
+import seg as SG  # noqa: E402
+
+
+def _stream(n=40, shared=6, fresh=12, sess_every=None, seed=0):
+    """合成句流：每元素 shared 个与上一元素共享的词 + fresh 个新词（保证相邻 o>0）；sess_every 个元素换一次会话（日期 + 场景同时变）。"""
+    els, prev = [], [f"s0_{j}" for j in range(shared)]
+    for t in range(n):
+        cur = prev[-shared:] if t else prev
+        new = [f"n{seed}_{t}_{j}" for j in range(fresh)]
+        toks = cur + new
+        prev = new[:shared] + new
+        d = (t // sess_every) if sess_every else 0
+        els.append(SG.Elem(t, toks, [("SESSION", f"DATE:2023-01-{d + 1:02d}", "X", "x")], d, d))
+    return els
+
+
+def g16():
+    els = _stream(n=60, shared=8, fresh=30)            # 话题连续（无断层），不切 K_MAX 就会超限
+    for th in (0.0, 0.3, 0.5, 0.7):
+        segs, why = SG.segment(els, th)
+        pay = SG.seg_payload(els, segs)
+        assert max(SG.n_items(p) for p in pay) <= H.K_MAX, ("I3 段叠加项 ≤ K_MAX", th, max(SG.n_items(p) for p in pay))
+        assert any("kmax" in w for w in why), ("应出现 K_MAX 强制切", th, why)
+        m = SG.memory_from(pay)
+        for i in range(len(m)):
+            m.trace(i)                                    # 不得抛 CapacityError
+    segs, _ = SG.segment_fixed(els)
+    assert max(SG.n_items(p) for p in SG.seg_payload(els, segs)) <= H.K_MAX
+    big = " ".join(f"w{i}" for i in range(500)) + ". " + " ".join(f"v{i}" for i in range(60))
+    rs = [("TIME", "DATE:2020-01-01", "X", "x")]
+    pe, forced = SG.make_elems(7, big, rs, None, 0)
+    assert forced == len(pe) - 1 >= 2 and all(len(e.items) <= H.K_MAX for e in pe), ("单元素超限须强制切片", forced, [len(e.items) for e in pe])
+    assert set().union(*[e.items for e in pe]) == SG.items_of(M.tokens(big), rs), "强制切片不得丢项"
+    assert all(e.owner == 7 for e in pe) and pe[0].roles == rs and all(not e.roles for e in pe[1:])
+    return "G16 ok"
+
+
+def g17():
+    els = _stream(n=50, shared=2, fresh=25, sess_every=7)
+    els[20].date = "other"                               # 日期变而场景不变（只有日期判据能切在这里）
+    s0, w0 = SG.segment(els, 0.0)
+    s1, w1 = SG.segment_fixed(els)
+    assert s0 == s1, ("θ→0 须退化为 S1", s0, s1)
+    starts = {s[0] for s in s1}
+    assert {7, 14, 20, 21, 28, 35, 42} <= starts, ("S1 须在会话 / 日期变化处切", sorted(starts))
+    assert all(("date" in w or "scene" in w or "kmax" in w) for w in w0[1:]), w0
+    assert not any("gap" in w for w in w0), "θ=0 不得因断层而切"
+    return "G17 ok"
+
+
+def g18():
+    els = _stream(n=30, shared=3, fresh=9)               # 相邻 o>0 ⇒ μ>0
+    segs, why = SG.segment(els, float("inf"))
+    assert segs == [[t] for t in range(len(els))], ("θ→∞ 须每轮一段", segs)
+    assert all("gap" in w for w in why[1:]), why
+    # 手算定例（θ=0.5，m=5，段内 μ；段首无段内 o 时用句流最近 ≤5 个 o）：o1..o6=0.6，o7..o18=0.1
+    os_ = [0.0] + [0.6] * 6 + [0.1] * 12
+    n = len(os_)
+    segs, why = SG.segment_core(os_, [0] * n, [0] * n, [set()] * n, 0.5)
+    # t=7：μ=.6 ⇒ .1<.3 切；t=8：句流[.6×4,.1]=.5 ⇒ 切；t=9：.4 ⇒ 切；t=10：.3 ⇒ .1<.15 切；t=11：.2 ⇒ .1<.1 否 ⇒ 并；此后段内 μ=.1 ⇒ 并
+    assert segs == [[0, 1, 2, 3, 4, 5, 6], [7], [8], [9], [10, 11, 12, 13, 14, 15, 16, 17, 18]], ("段内 μ 手算定例", segs)
+    return "G18 ok"
+
+
+def g19():
+    from lme_zerokey import score
+    # 手算定例：段 [[0,1,2],[3,4]] 分 [.9,.5]，单轮分 [.1,.8,.3,.9,.2] ⇒ 展开 [1,2,0,3,4]
+    els = [SG.Elem(i, [f"w{i}"], [], 0, 0) for i in range(5)]
+    o = SG.expand([0.9, 0.5], [[0, 1, 2], [3, 4]], els, [0.1, 0.8, 0.3, 0.9, 0.2], 5)
+    assert o == [1, 2, 0, 3, 4], ("段内按单轮分展开", o)
+    els8 = [SG.Elem(i, [f"w{i}"], [], 0, 0) for i in range(8)]                 # 8 成员一段：随机序碰巧对的概率 1/8!
+    o8 = SG.expand([1.0], [list(range(8))], els8, [0.3, 0.9, 0.1, 0.7, 0.5, 0.8, 0.2, 0.6], 8)
+    assert o8 == [1, 5, 3, 7, 4, 0, 6, 2], ("段内按单轮分展开（8 成员）", o8)
+    # 一个源单元多元素（PerLTQA 切句）：去重保序，每个源单元恰出现一次
+    els2 = [SG.Elem(u, [f"x{k}"], [], 0, u) for k, u in enumerate([0, 0, 1, 1, 1, 2])]
+    o2 = SG.expand([0.2, 0.9, 0.5], [[0, 1], [2, 3, 4], [5]], els2, [0.5, 0.4, 0.3, 0.0], 4)
+    assert o2 == [1, 2, 0, 3], ("源单元去重 + 空单元垫底", o2)
+    # θ→∞（单轮段）时展开序 ≡ S0 轮序，r@10 逐题相等
+    texts = [f"anchor t{i} alpha{i % 3} beta{i % 5} gamma{i % 7}" for i in range(30)]   # 共享词 anchor ⇒ 相邻 o>0、μ>0
+    els3 = [SG.Elem(i, M.tokens(t), [], 0, 0) for i, t in enumerate(texts)]
+    m0 = M.Memory(H.Space("vsa-v1", cache_max=0))
+    for t in texts:
+        m0.write(t, roles=[])
+    qs = ["alpha1 beta2", "gamma3 alpha0", "beta4"]
+    s0 = m0.search_many(qs, beta=0.5)
+    segs, _ = SG.segment(els3, float("inf"))
+    assert segs == [[t] for t in range(30)]
+    ms = SG.memory_from(SG.seg_payload(els3, segs))
+    ss = ms.search_many(qs, beta=0.5)
+    for q, a, b in zip(qs, s0, ss):
+        o0 = list(np.argsort(-a, kind="stable")); os_ = SG.expand(b, segs, els3, a, 30)
+        assert o0 == os_, ("θ→∞ 展开须 ≡ S0", q)
+        for gold in ({1, 7}, {3}, {29, 0}):
+            assert score(o0, gold)["r@10"] == score(os_, gold)["r@10"]
+    return "G19 ok"
+
+
+def g20():
+    def run():
+        els = _stream(n=40, shared=3, fresh=10, sess_every=13, seed=1)
+        segs, why = SG.segment(els, 0.5)
+        m = SG.memory_from(SG.seg_payload(els, segs))
+        sc = m.search_many(["n1_5_0 n1_6_1", "n1_30_2"], beta=0.5)
+        own = [float(len(e.toks) % 7) for e in els]
+        return segs, why, [x.round(12).tolist() for x in sc], [SG.expand(x, segs, els, own, len(els)) for x in sc], m.trace(0).tolist()
+    a, b = run(), run()
+    assert a == b, "I5 同种子同输出（切分 / 段向量 / 展开 / 痕迹）"
+    return "G20 ok"
+
+
+GUARDS.update({"G16": g16, "G17": g17, "G18": g18, "G19": g19, "G20": g20})
+
+
 
 @contextlib.contextmanager
 def patch(obj, name, val):
@@ -348,6 +464,11 @@ MUTANTS = [
     ("G14", "指代/省略消解关闭", lambda: patch(S2, "write_stream", lambda s, n, coref=True: _orig_ws(s, n, coref=False))),
     ("G14", "多跳不求交（求并）", lambda: patch_item(S2.CFG, "intersect", False)),
     ("G15", "J2 不换算星期（预测侧）", lambda: patch(RV, "norm_pred", lambda p, weekday_to_date=True: p)),
+    ("G18", "事件切分：关断层判据", lambda: patch_item(SG.CFG, "gap", False)),
+    ("G17", "事件切分：关会话日期判据", lambda: patch_item(SG.CFG, "date", False)),
+    ("G18", "事件切分：μ 改成全局均值", lambda: patch_item(SG.CFG, "mu_local", False)),
+    ("G16", "事件切分：K_MAX 强制切关闭", lambda: patch_item(SG.CFG, "kmax_cut", False)),
+    ("G19", "事件切分：段内展开改成随机序", lambda: patch_item(SG.CFG, "expand_sorted", False)),
 ]
 
 
