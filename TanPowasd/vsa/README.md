@@ -25,6 +25,7 @@
 | `RESULTS_seg.md` | 事件切分读数与结论（dev 无增益：PerLTQA 显著倒退 ⇒ 未碰保留集） |
 | `PREREG_long.md` | 长单元分块 L1 预注册（只切超 K_MAX 的单元；读数前提交）；`long_count.py` 保留集超限单元计数 |
 | `long_real.py` | L1 真实集 dev 读数（复用 seg_real 口径；`seg.segment_long`） |
+| `RESULTS_long.md` | L1 读数与结论（dev 合格：PerLTQA E2 .148→.333 p=.002、无倒退；保留集无法确认 ⇒ 维持 S0） |
 | `results/` | 读数（汇总 json/md；不含任何数据） |
 
 ## 复跑
