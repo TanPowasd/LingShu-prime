@@ -1,0 +1,22 @@
+{
+ "per_set": {
+  "dialog": {
+   "E1_identical": true,
+   "dE2": 0.3194444444444444,
+   "first_no_drop": false,
+   "E2_up": true,
+   "no_drop": true
+  },
+  "bodydate": {
+   "E1_identical": true,
+   "dE2": 0.3933333333333333,
+   "first_no_drop": true,
+   "E2_up": true,
+   "no_drop": true
+  }
+ },
+ "all_no_drop": true,
+ "all_first_no_drop": false,
+ "any_up": true,
+ "pass": false
+}

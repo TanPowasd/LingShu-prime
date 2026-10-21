@@ -1,0 +1,137 @@
+{
+ "prereg": "PREREG_body_date_v0.2.md §3.2",
+ "set": "crossproj-zh-bodydate",
+ "sha256": "1ee094411472e1cbf70a5d06a2d08d0f27c27cf1b84d5305ad9bae6b8a302e2f",
+ "secs": "分段",
+ "E1": {
+  "n": 210,
+  "mean": {
+   "L1": 0.9761904761904762,
+   "BD2": 0.9761904761904762
+  },
+  "identical": true,
+  "agg_scorepy": {
+   "L1": {
+    "all@5": 0.9048,
+    "r@5": 0.9048,
+    "all@10": 0.9762,
+    "r@10": 0.9762,
+    "n": 210
+   },
+   "BD2": {
+    "all@5": 0.9048,
+    "r@5": 0.9048,
+    "all@10": 0.9762,
+    "r@10": 0.9762,
+    "n": 210
+   }
+  }
+ },
+ "E2": {
+  "n": 150,
+  "acc": {
+   "L1": 0.44666666666666666,
+   "BD2": 0.84
+  },
+  "BD2_vs_L1": {
+   "win": 59,
+   "loss": 0,
+   "p": 3.469446951953614e-18,
+   "verdict": "显著提升"
+  },
+  "by_type": {
+   "a": {
+    "n": 30,
+    "L1": 30,
+    "BD2": 30,
+    "L1_ok_BD2_wrong": [],
+    "src_BD2": {
+     "TIME": 30
+    },
+    "BD2_vs_L1": {
+     "win": 0,
+     "loss": 0,
+     "p": 1.0,
+     "verdict": "无显著差异"
+    }
+   },
+   "b": {
+    "n": 40,
+    "L1": 30,
+    "BD2": 30,
+    "L1_ok_BD2_wrong": [],
+    "src_BD2": {
+     "TIME:bd": 40
+    },
+    "BD2_vs_L1": {
+     "win": 0,
+     "loss": 0,
+     "p": 1.0,
+     "verdict": "无显著差异"
+    }
+   },
+   "d": {
+    "n": 30,
+    "L1": 7,
+    "BD2": 25,
+    "L1_ok_BD2_wrong": [],
+    "src_BD2": {
+     "TIME:bd": 30
+    },
+    "BD2_vs_L1": {
+     "win": 18,
+     "loss": 0,
+     "p": 7.62939453125e-06,
+     "verdict": "显著提升"
+    }
+   },
+   "c": {
+    "n": 50,
+    "L1": 0,
+    "BD2": 41,
+    "L1_ok_BD2_wrong": [],
+    "src_BD2": {
+     "TIME:bd": 50
+    },
+    "BD2_vs_L1": {
+     "win": 41,
+     "loss": 0,
+     "p": 9.094947017729282e-13,
+     "verdict": "显著提升"
+    }
+   }
+  },
+  "first_n": 77,
+  "first_L1": 67,
+  "first_BD2": 67,
+  "first_L1ok_BD2wrong": [],
+  "x4_vetoes": 1,
+  "e2_flagged": 0,
+  "te10_hit": 150,
+  "first_by_cat": {
+   "b": 40,
+   "a": 30,
+   "d": 7
+  }
+ },
+ "E3": {
+  "n_units": 534,
+  "n_long": 90,
+  "bd_units": 90,
+  "bd_rows": 2762,
+  "bd_kinds": {
+   "pre": 30,
+   "anchor": 231,
+   "inherit": 2273,
+   "mid": 228
+  },
+  "bd_max_items": 24
+ },
+ "verdict": {
+  "E1_identical": true,
+  "dE2": 0.3933333333333333,
+  "first_no_drop": true,
+  "E2_up": true,
+  "no_drop": true
+ }
+}

@@ -3,7 +3,8 @@
 零 LLM、零 API、零训练神经网络、确定性（固定种子）。
 **默认写入 = L1**（2026-10-21 起，`PREREG_long.md` §1：短单元逐单元原样写入，只把叠加项数 > K_MAX=221 的单元按写入序装成 ≤ K_MAX 的块；`seg.segment_long`）。依据 `RESULTS_long_hold.md`；短轮语料上 L1 ≡ S0。
 代码默认已接入（2026-10-21）：`memory.Memory.write` 默认 `chunk_long=True` 走 `seg.segment_long`（≤K_MAX 单元逐位同旧路径；>K_MAX 单元切块、共享单元号、不再拒写，块数见 `Memory.n_chunks`）；单元级排序 `Memory.rank_units`、单元级解绑 `Memory.units()`。`Memory(chunk_long=False)` 或 `write(..., chunk_long=False)` 回到旧路径 S0（超 K_MAX 在 `trace` 抛 `CapacityError`），`real.py` / `real_v2.py` 已显式钉 S0 以复现历史读数。等价核对见 `results/default_check.md`。
-**正文日期边界（2026-10-22，`RESULTS_body_date.md`，选项 D）**：每个长单元在单元级解绑时只解出首个日期（L1 首块 TIME；首块多 TIME 时常为存疑），问长文档正文里的约定 / 截止日期会被确定性地答成首个日期或存疑。正文日期 BD（时间锚点子痕迹，`Memory(body_date=True)` + `real_v2.answer_time_q`）已实现为可选开关，**默认关**：dev 未过 `PREREG_body_date.md` §2 门槛（PerLTQA first 类 2 题由对变错），保留集 crossproj-zh-bodydate 未运行。
+**正文日期边界（2026-10-22，`RESULTS_body_date.md`，选项 D）**：每个长单元在单元级解绑时只解出首个日期（L1 首块 TIME；首块多 TIME 时常为存疑），问长文档正文里的约定 / 截止日期会被确定性地答成首个日期或存疑。正文日期 BD（时间锚点子痕迹，`Memory(body_date=True)` + `real_v2.answer_time_q`）已实现为可选开关，**默认关**：dev 未过 `PREREG_body_date.md` §2 门槛（PerLTQA first 类 2 题由对变错）。
+**正文日期 v0.2（2026-10-22，`RESULTS_body_date_v0.2.md`）**：BD2 = BD + X4（跨候选：L1 存疑候选需 ucos ≥ L1 落点才可抢答）+ E2（跳过与问句近同文、问句形、无本句日期的回声提问句），可选开关 `Memory(body_date="v02")` + `real_v2.answer_time_q2`，**默认仍关、维持 L1**：两个同源合成保留集 E2 大幅显著上升（crossproj-zh-dialog .368→.688 47/1；crossproj-zh-bodydate .447→.840 59/0），但严格读法「首日期类逐题不降」在 dialog 上 1 题（`dg050`）由对变错 ⇒ 按 `PREREG_body_date_v0.2.md` §4 未通过。失败机制 = B-iii 锚点漂移（对话话轮中的句首日期被当作新锚点，后续无日期事实句继承之），属 BD 核心、非 X4 / E2；修补需另出方案。
 与 `agm/` 无代码依赖；评测时只读 import `agm/umb`、`agm/bench`、`agm/all`
 的数据加载与指标函数。依赖 numpy、scipy。
 
@@ -16,7 +17,7 @@
 | `ri.py` | Random Indexing（写入时增量共现计数 A，C = A·I，按 1000 维一块投影） |
 | `memory.py` | 分词、规则抽角色（中英文，规则号 + 原文片段可回溯）、`Memory.write/search_many/trace/decode/query`；默认写入 L1（`chunk_long`、`n_chunks`、`rank_units`、`decode_unit`/`units()`） |
 | `bm25.py` | 自写 Okapi BM25（k1=0.9 b=0.4） |
-| `test_vsa.py` | 守卫 G1–G34 + `--mutate` 定点变异（46 条，全部须变红）；G25–G28 = `Memory.write` 默认 L1；G29–G34 = 正文日期 BD |
+| `test_vsa.py` | 守卫 G1–G38 + `--mutate` 定点变异（54 条，全部须变红）；G25–G28 = `Memory.write` 默认 L1；G29–G34 = 正文日期 BD；G35–G38 = BD2（X4 / E2） |
 | `synth.py` | 合成组合查询基准 + `--capacity` 容量曲线 |
 | `real.py` | 真实集 dev 描述性检索（LoCoMo / hive / PerLTQA）+ LoCoMo 时间解绑 |
 | `PREREG_v2.md` | 阶段 2 预注册（读数前写定）：te 召回 + VSA 解绑、时间规则 v2、PerLTQA 中文旁证、合成 v2（噪声 + 多跳） |
@@ -36,8 +37,13 @@
 | `default_check.py` | `Memory.write` 默认 L1 的实现等价核对（dev 四集 + crossproj-zh-long：新默认 ≡ 已提交 L1、开关关闭 ≡ S0，逐题；非新读数） |
 | `PREREG_body_date.md` | 正文日期 BD 预注册（选项 B / 锚点 B-iii / 仅长单元；新保留集 crossproj-zh-bodydate 规格；读数前提交） |
 | `bd_real.py` | BD dev 读数（L1 vs BD，E1 逐位断言、E2、PerLTQA 分型逐题） |
-| `bd_hold.py` | crossproj-zh-bodydate 结构校验 / 冻结 / 只跑一次入口（按 dev 门槛未运行） |
+| `bd_hold.py` | crossproj-zh-bodydate 结构校验 / 冻结 / BD v0.1 只跑一次入口（按 dev 门槛未运行；该集已由 `bd2_hold.py` 以 BD2 臂消耗） |
 | `RESULTS_body_date.md` | BD 读数与判定：dev 不合格（first 类逐题倒退 2 题，机制 = 原 L1 靠多 TIME 干扰存疑落到证据单元）⇒ 维持 L1，默认 `body_date=False` |
+| `PREREG_body_date_v0.2.md` | 正文日期 BD2 = BD + X4 + E2 预注册（两保留集各一次、首日期类严格逐题不降；实现与读数前提交） |
+| `dialog_hold.py` | 对话体新保留集 crossproj-zh-dialog 结构校验 / 冻结（PerLTQA 口径） |
+| `bd2_real.py` | BD2 dev 读数（L1 vs BD2；实现 ≡ 诊断模拟器 X4+E2-J 逐题核对） |
+| `bd2_hold.py` | BD2 两保留集只跑一次（dialog；bodydate 分段）+ `--decide` 判定 |
+| `RESULTS_body_date_v0.2.md` | BD2 读数与判定：两保留集 E2 显著上升，但 dialog 首日期类 1 题倒退 ⇒ 未通过，维持 L1 |
 | `results/` | 读数（汇总 json/md；不含任何数据） |
 
 ## 复跑
