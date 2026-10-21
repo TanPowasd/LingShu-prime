@@ -1,5 +1,8 @@
 # VSA 长单元分块 L1 · 读数与结论（按 PREREG_long v0.1）
 
+> **更新（2026-10-21，见 `RESULTS_long_hold.md`）**：在新造保留集 crossproj-zh-long（sha256 db2c6ffd…f22f，独立性有限、存疑）上只跑一次，
+> E1 .910→.950（10/2 p=.039）、E2 .375→.650（22/0 p=4.8e−7），按 §6 采纳规则 **L1 通过 ⇒ VSA 默认写入改为 L1**。下文「维持 S0」是当时（保留集确认前）的判定，保留作记录。
+
 日期：2026-10-21。零 LLM、零 API key、零训练、确定性（空间种子 `vsa-v1`，PYTHONHASHSEED=0）。SPDX: LicenseRef-TanPowasd-Proprietary
 提交顺序：预注册 + 保留集计数（f50e406）→ 实现 + 守卫（3761b4c，读数前）→ dev 读数（50a4e86）→ 本文件。
 原始汇总：`results/long_dev.*`、`results/long_count.json`。逐题缓存写 `$VSA_OUT/runs/dev/long_*.json`（不入库）。
@@ -37,6 +40,7 @@ S1 对而 L1 错 1 题（S1 .352 vs L1 .333）。推断：差异来自短单元�
 
 ## 判定
 - **dev 合格，但保留集确认无法完成** ⇒ 按 §6「没有保留集证据不采纳」：**VSA 默认写入维持 S0**，L1 暂不采纳。
+- **后续（2026-10-21）**：新造保留集 crossproj-zh-long 上 L1 通过（`RESULTS_long_hold.md`）⇒ **VSA 默认写入改为 L1**；KMB / TMD 仍未问（reuse 阈值状态缺失，未重抽）。
 - 待用户决定（needs-owner-decision）：a 接受重抽 reuse 阈值（结果中标明削弱了稀疏向量技术「两次超阈之间阈值不变」的前提），对 KMB / TMD 各问一次 L1 vs S0；
   b 不在这两集确认，L1 维持「dev 合格、未确认」。
 - 存疑：即使选 a，KMB 只有 3 条长单元，差异几乎全来自库级统计（idf 文档数、RI 共现窗口、码本）的微小变化（推断），能给出的证据很弱；

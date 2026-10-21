@@ -1,6 +1,8 @@
 # TanPowasd/vsa —— 超维计算 / 向量符号架构（VSA/HDC）记忆 · 阶段 1–2
 
-零 LLM、零 API、零训练神经网络、确定性（固定种子）。与 `agm/` 无代码依赖；评测时只读 import `agm/umb`、`agm/bench`、`agm/all`
+零 LLM、零 API、零训练神经网络、确定性（固定种子）。
+**默认写入 = L1**（2026-10-21 起，`PREREG_long.md` §1：短单元逐单元原样写入，只把叠加项数 > K_MAX=221 的单元按写入序装成 ≤ K_MAX 的块；`seg.segment_long`）。依据 `RESULTS_long_hold.md`；短轮语料上 L1 ≡ S0。
+与 `agm/` 无代码依赖；评测时只读 import `agm/umb`、`agm/bench`、`agm/all`
 的数据加载与指标函数。依赖 numpy、scipy。
 
 | 文件 | 内容 |
@@ -25,7 +27,10 @@
 | `RESULTS_seg.md` | 事件切分读数与结论（dev 无增益：PerLTQA 显著倒退 ⇒ 未碰保留集） |
 | `PREREG_long.md` | 长单元分块 L1 预注册（只切超 K_MAX 的单元；读数前提交）；`long_count.py` 保留集超限单元计数 |
 | `long_real.py` | L1 真实集 dev 读数（复用 seg_real 口径；`seg.segment_long`） |
-| `RESULTS_long.md` | L1 读数与结论（dev 合格：PerLTQA E2 .148→.333 p=.002、无倒退；保留集无法确认 ⇒ 维持 S0） |
+| `RESULTS_long.md` | L1 读数与结论（dev 合格：PerLTQA E2 .148→.333 p=.002、无倒退） |
+| `PREREG_long_hold.md` | L1 新造保留集确认预注册（crossproj-zh-long；读数前提交） |
+| `long_hold.py` | 新造保留集结构校验 / 冻结 / S0 vs L1 只跑一次 |
+| `RESULTS_long_hold.md` | 保留集确认：E1 .910→.950（10/2 p=.039）、E2 .375→.650（22/0 p<.001）⇒ **L1 通过，VSA 默认写入 = L1** |
 | `results/` | 读数（汇总 json/md；不含任何数据） |
 
 ## 复跑
