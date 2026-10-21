@@ -48,7 +48,7 @@ def make_elems(owner, text, roles, date, scene, sentence_split=False, role_fn=No
     """一个源单元（轮 / 块 / 长单元）→ 若干元素。sentence_split=True（PerLTQA）先切句，每句 roles = role_fn(句)。
     任一元素自身叠加项 > K_MAX ⇒ 按句贪心装片；单句仍超 ⇒ 按词序切片（角色只挂在第一片）。返回 (元素列表, 强制切片数)。"""
     if sentence_split:
-        parts = [(s, role_fn(s) if role_fn else []) for s in split_sents(text)] or [(text, roles)]
+        parts = [(s, role_fn(s) if role_fn else []) for s in split_sents(text)] or [(text, roles or [])]
     else:
         parts = [(text, roles)]
     out, forced = [], 0

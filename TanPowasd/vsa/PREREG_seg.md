@@ -84,3 +84,7 @@ S1 是关键对照：S2 只有胜过 S1 才说明「按断层切」有用，而�
   11. **§6 读法**：crossproj hold 的 Δ = mean(S2*) − mean(S0)（直接读数）；KMB / TMD 的 Δ = reuse.py 返回的 answer（其阈值机制给出）。「不降」= Δ ≥ 0，「上升」= Δ > 0（严格按符号，不另设等价带）。
   12. **reuse.py 用法**：臂名 `VSA-SEG-<S2*>`、基线 `VSA-S0`；KMB 训练侧 = KMB dev 半（md5%2，与 NC 同），TMD = 同一文件 md5 分半。reuse.py 追加账本 `agm/lex/results/reuse_ledger.jsonl` 是该工具自身机制（不改 agm/ 代码），按 NC 先例随结果提交。
      **存疑**：NC 时的秘密阈值状态文件（默认 `~/.reuse_state.json`）在当前沙箱不存在，本次查询将重抽带噪阈值 T̂（削弱稀疏向量技术「两次超阈之间阈值不变」的前提）；状态文件改放仓外持久路径（`REUSE_STATE`，不入库、不打开）。
+- 2026-10-21（读数阶段，实现 bug）：`seg.py: make_elems` 在 PerLTQA 空文本单元上回退 `(text, roles=None)` 抛 TypeError，perltqa 首轮崩溃（崩溃前未汇总、未查看任何读数）；
+  修为 `roles or []` 后 perltqa 全部重跑。该改动只走 `sentence_split` 的空文本分支，LoCoMo / hive / crossproj 读数不受影响；修后 G1–G20 全绿、--mutate 26/26 变红。
+- 2026-10-21（读数后核对，不改任何规则）：S0 逐题复现前序读数——E1 与阶段 1 vsa 臂 LoCoMo 257/257、hive 46/46、PerLTQA 3956/3956 逐题相等；
+  E2 与阶段 2 A3（LoCoMo 50/50）、te10（PerLTQA 54/54）预测逐题相同。§0 的「347 个超 K_MAX」是阶段 2 按「词袋+1」估的，按实际痕迹项数为 **346**（一单元恰 221 个词且无 TIME）。
