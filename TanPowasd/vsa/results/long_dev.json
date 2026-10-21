@@ -1,0 +1,160 @@
+{
+ "prereg": "PREREG_long.md",
+ "E1": {
+  "locomo": {
+   "n": 257,
+   "mean": {
+    "S0": 0.5041715094244278,
+    "L1": 0.5041715094244278
+   },
+   "L1_vs_S0": {
+    "win": 0,
+    "loss": 0,
+    "tie": 257,
+    "p": 1.0,
+    "verdict": "无显著差异"
+   },
+   "identical": true
+  },
+  "hive": {
+   "n": 46,
+   "mean": {
+    "S0": 0.455142257571925,
+    "L1": 0.455142257571925
+   },
+   "L1_vs_S0": {
+    "win": 0,
+    "loss": 0,
+    "tie": 46,
+    "p": 1.0,
+    "verdict": "无显著差异"
+   },
+   "identical": true
+  },
+  "perltqa": {
+   "n": 3956,
+   "mean": {
+    "S0": 0.9737108190091001,
+    "L1": 0.9737108190091001
+   },
+   "L1_vs_S0": {
+    "win": 9,
+    "loss": 9,
+    "tie": 3938,
+    "p": 1.0,
+    "verdict": "无显著差异"
+   },
+   "identical": false
+  },
+  "crossproj": {
+   "n": 41,
+   "mean": {
+    "S0": 0.6463414634146342,
+    "L1": 0.6463414634146342
+   },
+   "L1_vs_S0": {
+    "win": 0,
+    "loss": 0,
+    "tie": 41,
+    "p": 1.0,
+    "verdict": "无显著差异"
+   },
+   "identical": true
+  }
+ },
+ "E2": {
+  "locomo": {
+   "n": 50,
+   "acc": {
+    "S0": 0.56,
+    "L1": 0.56
+   },
+   "L1_vs_S0": {
+    "win": 0,
+    "loss": 0,
+    "p": 1.0,
+    "verdict": "无显著差异"
+   },
+   "identical_pred": true
+  },
+  "perltqa": {
+   "n": 54,
+   "acc": {
+    "S0": 0.14814814814814814,
+    "L1": 0.3333333333333333
+   },
+   "L1_vs_S0": {
+    "win": 10,
+    "loss": 0,
+    "p": 0.001953125,
+    "verdict": "显著提升"
+   },
+   "identical_pred": false
+  }
+ },
+ "E3": {
+  "locomo": {
+   "S0": {
+    "n_units": 5882,
+    "n_rejected": 0,
+    "max_items": 52
+   },
+   "L1": {
+    "n_long": 0,
+    "n_traces": 5882,
+    "n_chunks": 0,
+    "max_items": 52,
+    "n_rejected": 0
+   }
+  },
+  "hive": {
+   "S0": {
+    "n_units": 303,
+    "n_rejected": 0,
+    "max_items": 174
+   },
+   "L1": {
+    "n_long": 0,
+    "n_traces": 303,
+    "n_chunks": 0,
+    "max_items": 174,
+    "n_rejected": 0
+   }
+  },
+  "perltqa": {
+   "S0": {
+    "n_units": 1042,
+    "n_rejected": 346,
+    "max_items": 535
+   },
+   "L1": {
+    "n_long": 346,
+    "n_traces": 1405,
+    "n_chunks": 709,
+    "max_items": 221,
+    "n_rejected": 0
+   }
+  },
+  "crossproj": {
+   "S0": {
+    "n_units": 652,
+    "n_rejected": 0,
+    "max_items": 110
+   },
+   "L1": {
+    "n_long": 0,
+    "n_traces": 652,
+    "n_chunks": 0,
+    "max_items": 110,
+    "n_rejected": 0
+   }
+  }
+ },
+ "gate": {
+  "regress": [],
+  "up": [
+   "E2:perltqa"
+  ],
+  "pass": true
+ }
+}
