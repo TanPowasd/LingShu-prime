@@ -1,0 +1,19 @@
+{
+ "K_MAX": 221,
+ "crossproj_hold": {
+  "sha256": "5373589bdc4af59fe4cab384d1875dbfa2e93af870cc61dd7e6740b93700a565",
+  "n_units": 652,
+  "n_over_kmax": 0,
+  "max_items": 110
+ },
+ "kmb_hold": {
+  "n_units": 27062,
+  "n_over_kmax": 3,
+  "max_items": 229
+ },
+ "tmd": {
+  "n_units": 7463,
+  "n_over_kmax": 48,
+  "max_items": 382
+ }
+}
