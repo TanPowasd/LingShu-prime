@@ -89,6 +89,13 @@ def kind_of(d):
     return "overview" if "overview" in t or "directory" in t else ("file_summary" if "summary" in t else "other")
 
 
+def _durable_write(p, text):
+    tmp = p.with_suffix(".tmp")
+    with open(tmp, "w", encoding="utf-8") as f:
+        f.write(text); f.flush(); os.fsync(f.fileno())
+    tmp.replace(p)
+
+
 class Meter:
     def __init__(self, a):
         self.mode, self.cap = a.mode, a.cap
@@ -96,6 +103,11 @@ class Meter:
         self.state_p = self.dir / "meter_state.json"
         self.state = json.loads(self.state_p.read_text()) if self.state_p.exists() else \
             {"upstream_attempts": 0, "upstream_ok": 0, "prompt_tokens": 0, "completion_tokens": 0, "reasoning_tokens": 0}
+        if a.carry:   # 显式结转此前已发生但记录丢失的上游尝试（保守上界），计入硬上限
+            self.state["upstream_attempts"] = max(self.state["upstream_attempts"], 0) + a.carry
+            self.state.setdefault("carried_unrecorded_attempts", 0)
+            self.state["carried_unrecorded_attempts"] += a.carry
+            self.save()
         self.run = {"mode": a.mode, "requests": 0, "cache_hits": 0, "cache_miss_err": 0, "refused_cap": 0, "zero_refused": 0}
         self.lock = threading.Lock()
         self.sem = threading.Semaphore(a.conc)
@@ -103,12 +115,12 @@ class Meter:
         self.inflight = {}
         self.exhausted = None
 
-    def save(self):
-        self.state_p.write_text(json.dumps(self.state, indent=1))
+    def save(self):   # fsync：沙箱重启时网络盘上未落盘的写会丢（2026-10-24 实测丢过一次），计数必须先落盘再上游
+        _durable_write(self.state_p, json.dumps(self.state, indent=1))
 
     def log(self, row):
         with open(self.dir / "calls.jsonl", "a", encoding="utf-8") as f:
-            f.write(json.dumps(row, ensure_ascii=False) + "\n")
+            f.write(json.dumps(row, ensure_ascii=False) + "\n"); f.flush(); os.fsync(f.fileno())
 
     def upstream(self, d):
         body = dict(d); body["model"] = MODEL; body.pop("stream", None); body.pop("stream_options", None)
@@ -201,7 +213,7 @@ class Meter:
             raise RuntimeError("concurrent duplicate failed")
         try:
             resp = self.upstream(d)
-            tmp = p.with_suffix(".tmp"); tmp.write_text(json.dumps(resp, ensure_ascii=False)); tmp.replace(p)
+            _durable_write(p, json.dumps(resp, ensure_ascii=False))
             return resp
         finally:
             with self.lock:
@@ -468,6 +480,7 @@ def main():
     e = sp.add_parser("embed"); e.add_argument("--port", type=int, default=8611); e.add_argument("--hf", default=os.environ.get("HF_HOME", ""))
     m = sp.add_parser("meter"); m.add_argument("--port", type=int, required=True); m.add_argument("--mode", choices=["live", "cache", "zero"], required=True)
     m.add_argument("--cap", type=int, default=0); m.add_argument("--cache", required=True)
+    m.add_argument("--carry", type=int, default=0, help="结转记录丢失的上游尝试数（保守上界）")
     m.add_argument("--conc", type=int, default=2); m.add_argument("--min-gap", type=float, default=5.0)
     c = sp.add_parser("conf"); c.add_argument("--arm", choices=list(ARMS), required=True); c.add_argument("--root", required=True)
     c.add_argument("--embed-port", type=int, default=8611)
