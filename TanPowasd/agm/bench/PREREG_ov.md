@@ -102,3 +102,12 @@
 PYTHONUTF8=1 python -X utf8 agm/bench/ov_bench.py locomo --split dev --arm ov-l-s --out <json>   # 脚本待写，读数前提交
 BENCH_ARMS=role,fd2,tree LEX_RM3=0 PYTHONUTF8=1 python -X utf8 agm/lex/bench_cc.py locomo --split dev --out <json>
 ```
+
+## 8. DEVIATIONS（运行前登记，2026-10-24，任何 LoCoMo 读数与任何 key 调用之前；第 0–7 节原文不改）
+用户 2026-10-23 23:36「先不要可选」：只批准 OV-L/s · LoCoMo dev 一次（硬上限 1 250）；可选臂（+search、hive、LME 会话粒度）不跑。零 key 臂 OV-E、OV-L/c、TE 同表一并跑。
+- **D1 每轮文件扩展名 `.txt` → `.log`（内容逐字不变，目录结构不变）。** 零 key 探针（计量代理 cache-only 模式，4 轮合成语料，0 次上游）实测：`.txt` 走 OV `TextParser`，每个文件被包成「同名目录 + `.md`」（URI 形如 `<sid>/s1/D1_1/D1_1.md`），语义层对**每轮目录**也调 1 次 overview ⇒ LoCoMo dev ≈ 1 058 文件摘要 + 1 058 轮目录 + 50 会话 + 2 根 + ≤2 ≈ **2 170 次，超过批准的 1 250**；且摘要提示词变成 `semantic.document_summary`。`.log` 属 OV `ADDITIONAL_TEXT_EXTENSIONS`，走 direct 写入，URI 为 `<sid>/s<k>/<dia>.log`，探针计得 4 文件摘要（`semantic.file_summary`，即第 4.1 节引用的提示词）+ 4 目录概览（2 会话 + 根 + 父）＝ 第 4.1 节推导的形态。依据：`openviking/parse/parsers/directory.py:_merge_parser_result`（`flatten_single_output=not split_content and preserve_structure`，REST `add_resource` 不暴露 `split_content`）、`openviking/parse/parsers/constants.py:ADDITIONAL_TEXT_EXTENSIONS`、`semantic_processor.py:_detect_file_type`。L2 过滤规则相应改为「URI 以 `.log` 结尾」。
+- **D2 嵌入权重为 fastembed 默认的量化 ONNX**（`Qdrant/bge-small-en-v1.5-onnx-Q`，`model_optimized.onnx` 66 MB，384 维），不是第 1 节写的 133 MB fp32 ONNX；沙箱里只有这份缓存。数值与 fp32 的差异**存疑**；所有 OV 臂同一权重，臂间可比不受影响。查询不加 bge 检索前缀（OV `provider=openai` 默认无 `query_param`，按第 5 节「OV 一侧不调参」）。
+- **D3 运行时安装位置**：仓外 `/workspace/work/ovlib` 位于网络文件系统，`openviking-server` 冷启动导入（lark_oapi 等数千小文件）> 10 min 未完成 ⇒ 在本机盘重装同版本 `pip install --target /tmp/ovlib openviking==0.5.1.1`（主轮子 26.8 MB cp310-abi3 manylinux_2_31 aarch64，依赖按 2026-10-23 解析）。第 5 节说「轮子哈希与本文记录不符则停」，但本文未记录哈希 ⇒ 无从比对，**存疑**。OV 数据目录也放本机盘（仓外，不入仓）。
+- **D4 端点路径**：v0.5.1.1 的 find 是 `POST /api/v1/search/find`（第 2 节简写为 `POST find`），参数照第 2 节（`query`、`target_uri`、`limit=50`，不传 `level`）。
+- **D5 OV-L/c 的执行方式**：OV-L/c 在独立数据目录重新写入，VLM 指向计量代理 cache-only 模式（复用 OV-L/s 写下的 prompt→响应缓存；未命中即报错并计数，不上游）。若未命中数 > 0，按第 3 节先查原因，OV-L/c 读数标注存疑。
+- 计量代理节流：并发 ≤2、相邻请求间隔 ≥5 s；上游尝试（含失败与重试）全部计入硬上限。
