@@ -417,7 +417,8 @@ def cmd_run(a):
                 lim *= 2
             ms = (time.time() - t0) * 1000
             st["per"][q["qid"]] = {"qid": q["qid"], "type": q["type"], "ms": ms, "limit": lim, "n_rec": len(recs), "n_dir": ndir,
-                                   "n_unmapped": nunk, "rank": rank[:50], "gold": q["gold"], "s": score(rank, q["gold"])}
+                                   "n_unmapped": nunk, "rank": rank[:50], "gold": q["gold"], "s": score(rank, q["gold"]),
+                                   "raw": [[x.get("uri", "").replace(root, "", 1), x.get("level"), round(x.get("score") or 0, 5)] for x in recs]}
         stp.write_text(json.dumps(st, ensure_ascii=False))
         print(it["sid"], "queried", len(st["per"]), flush=True)
     per = [st["per"][q["qid"]] for it in items for q in it["qs"]]
@@ -437,13 +438,35 @@ def sign_p(w, l):
     return min(1.0, p)
 
 
+def dir_expand(raw, fmap):
+    """附加报告（PREREG_ov §3，不作主读数）：按分数序遍历；文件记录照常；会话目录记录（/s<k>/ 下的 .overview/.abstract 或目录本身）
+    命中时，把本次返回里该会话的文件记录按其自身分数插在此处。根/父目录记录忽略。只用 find 已返回的记录（推断：近似）。"""
+    out, seen = [], set()
+    files = [(u, sc) for u, lv, sc in raw if u.endswith(".log")]
+    for u, lv, sc in sorted(raw, key=lambda x: -x[2]):
+        if u.endswith(".log"):
+            group = [u]
+        else:
+            m = re.match(r"^/(s\d+)(/|$)", u)
+            if not m:
+                continue
+            group = [f for f, _ in sorted(files, key=lambda x: -x[1]) if f.startswith(f"/{m.group(1)}/")]
+        for f in group:
+            t = fmap.get(f.rsplit("/", 1)[-1])
+            if t is not None and t not in seen:
+                seen.add(t); out.append(t)
+    return out
+
+
 def cmd_agg(a):
     te = json.load(open(a.te, encoding="utf-8"))
     te_per = {p["qid"]: p["arms"]["TE"] for p in te["per"]}
     rows, out = [], {"te_n": len(te_per), "arms": {}}
     means = lambda xs, k: sum(x[k] for x in xs) / len(xs)
     tv = list(te_per.values())
-    rows.append(("TE", len(tv), means(tv, "r@5"), means(tv, "r@10"), means(tv, "r@25"), "—", "—", te["meta"].get("rank_secs")))
+    te_ms = (te["meta"].get("rank_secs") or {}).get("TE")
+    te_ms = f"{te_ms * 1000 / len(tv):.1f}（仅 TE 树排序段累计；见正文）" if te_ms is not None else "存疑"
+    rows.append(("TE", len(tv), means(tv, "r@5"), means(tv, "r@10"), means(tv, "r@25"), "—", "—", te_ms))
     arms = {}
     for spec in a.arm_json:
         name, p = spec.split("=", 1)
@@ -461,6 +484,14 @@ def cmd_agg(a):
                              "ingest_secs_total": sum(d["meta"]["ingest_secs"].values()), "ingest_secs": d["meta"]["ingest_secs"],
                              "mean_dir_records": sum(x["n_dir"] for x in per) / len(per), "unmapped": sum(x["n_unmapped"] for x in per),
                              "short_rank(<25)": sum(len(x["rank"]) < 25 for x in per)}
+    import extract as X
+    fmaps = {it["sid"]: {fname(d): i for i, d in enumerate(it["ids"])} for it in X.items("dev")}
+    for name, d in arms.items():
+        if all("raw" in x for x in d["per"]):
+            ex = [score(dir_expand(x["raw"], fmaps[x["qid"].rsplit("_", 1)[0]]), x["gold"]) for x in d["per"]]
+            w = sum(e["r@10"] > te_per[x["qid"]]["r@10"] for e, x in zip(ex, d["per"]))
+            l = sum(e["r@10"] < te_per[x["qid"]]["r@10"] for e, x in zip(ex, d["per"]))
+            out["arms"][name]["dir_expand"] = {k: means(ex, k) for k in ("r@5", "r@10", "r@25")} | {"win_vs_TE": w, "loss_vs_TE": l, "sign_p": sign_p(w, l)}
     if "OV-L/c" in arms and "OV-E" in arms:
         A = {x["qid"]: x["rank"] for x in arms["OV-L/c"]["per"]}; B = {x["qid"]: x["rank"] for x in arms["OV-E"]["per"]}
         same50 = sum(A[q] == B[q] for q in A); same10 = sum(A[q][:10] == B[q][:10] for q in A)
