@@ -1,0 +1,356 @@
+{
+ "prereg": "agm/bench/PREREG_ov.md（27e19b8，§8 DEVIATIONS D1–D5）",
+ "status": "OV-L/s 写入不完整（存疑）：conv-47 缺 76 个文件摘要 + 33 个目录概览；conv-30 完整",
+ "arm_files": {
+  "OV-E": "<仓外>/ov_runs/out/ov_e.json",
+  "OV-L/s": "<仓外>/ov_runs/out/ov_l_s_replay.json（cache-only 重放，0 次上游）",
+  "OV-L/c": "<仓外>/ov_runs/out/ov_l_c.json（cache-only，0 次上游）"
+ },
+ "full_231": {
+  "te_n": 231,
+  "only_sid": [],
+  "arms": {
+   "OV-E": {
+    "n": 231,
+    "r@5": 0.5026695526695526,
+    "r@10": 0.6029581529581529,
+    "r@25": 0.7241702741702741,
+    "hit@10": 0.6536796536796536,
+    "win_vs_TE": 28,
+    "loss_vs_TE": 37,
+    "sign_p": 0.3210841356849956,
+    "ms_per_q": 62.98088820981773,
+    "ingest_secs_total": 81.32436466217041,
+    "ingest_secs": {
+     "conv-30": 30.8080632686615,
+     "conv-47": 50.51630139350891
+    },
+    "mean_dir_records": 0.0,
+    "unmapped": 0,
+    "short_rank(<25)": 0
+   },
+   "OV-L/s": {
+    "n": 231,
+    "r@5": 0.45202020202020204,
+    "r@10": 0.5556998556998557,
+    "r@25": 0.6981240981240981,
+    "hit@10": 0.6103896103896104,
+    "win_vs_TE": 33,
+    "loss_vs_TE": 52,
+    "sign_p": 0.05025089533529144,
+    "ms_per_q": 20.40439663511334,
+    "ingest_secs_total": 354.6357412338257,
+    "ingest_secs": {
+     "conv-30": 49.69355654716492,
+     "conv-47": 304.94218468666077
+    },
+    "mean_dir_records": 1.8095238095238095,
+    "unmapped": 0,
+    "short_rank(<25)": 1,
+    "dir_expand": {
+     "r@5": 0.44711399711399713,
+     "r@10": 0.5542568542568542,
+     "r@25": 0.692929292929293,
+     "win_vs_TE": 34,
+     "loss_vs_TE": 53,
+     "sign_p": 0.05300311301096222
+    }
+   },
+   "OV-L/c": {
+    "n": 231,
+    "r@5": 0.45202020202020204,
+    "r@10": 0.5556998556998557,
+    "r@25": 0.6981240981240981,
+    "hit@10": 0.6103896103896104,
+    "win_vs_TE": 33,
+    "loss_vs_TE": 52,
+    "sign_p": 0.05025089533529144,
+    "ms_per_q": 20.23788138385459,
+    "ingest_secs_total": 286.8240420818329,
+    "ingest_secs": {
+     "conv-30": 28.013269901275635,
+     "conv-47": 258.81077218055725
+    },
+    "mean_dir_records": 1.8095238095238095,
+    "unmapped": 0,
+    "short_rank(<25)": 1,
+    "dir_expand": {
+     "r@5": 0.44711399711399713,
+     "r@10": 0.5542568542568542,
+     "r@25": 0.692929292929293,
+     "win_vs_TE": 34,
+     "loss_vs_TE": 53,
+     "sign_p": 0.05300311301096222
+    }
+   }
+  },
+  "selfcheck_OVLc_vs_OVE": {
+   "identical_rank50": 0,
+   "identical_top10": 0,
+   "n": 231
+  },
+  "te_meta": {
+   "dataset": "locomo",
+   "split": "dev",
+   "n": 231,
+   "rank_secs": {
+    "R1": 0.06933029700007864,
+    "R2": 0.06337922599989554,
+    "D15": 0.46629056399996216,
+    "F05": 0.3494265999999442,
+    "F1": 0.3444054769999241,
+    "F2": 0.34310797799999193,
+    "DF1": 0.4667295629999444,
+    "TH": 1.0436752319998845,
+    "TE": 0.5442371929999723,
+    "THE": 1.3565042779998748
+   },
+   "fd_stats": {
+    "steps≤35": 713,
+    "steps≤30": 554,
+    "steps≤45": 68,
+    "steps≤50": 20,
+    "steps≤40": 306,
+    "steps≤25": 158,
+    "steps≤55": 9,
+    "steps≤95": 3,
+    "steps≤110": 5,
+    "steps≤60": 3,
+    "steps≤90": 2,
+    "steps≤75": 3,
+    "steps≤85": 2,
+    "steps≤65": 2
+   }
+  }
+ },
+ "subset_conv-30_complete": {
+  "te_n": 81,
+  "only_sid": [
+   "conv-30"
+  ],
+  "arms": {
+   "OV-E": {
+    "n": 81,
+    "r@5": 0.4695473251028806,
+    "r@10": 0.597119341563786,
+    "r@25": 0.751440329218107,
+    "hit@10": 0.6419753086419753,
+    "win_vs_TE": 9,
+    "loss_vs_TE": 16,
+    "sign_p": 0.2295229434967041,
+    "ms_per_q": 62.61201846746751,
+    "ingest_secs_total": 81.32436466217041,
+    "ingest_secs": {
+     "conv-30": 30.8080632686615,
+     "conv-47": 50.51630139350891
+    },
+    "mean_dir_records": 0.0,
+    "unmapped": 0,
+    "short_rank(<25)": 0
+   },
+   "OV-L/s": {
+    "n": 81,
+    "r@5": 0.44341563786008226,
+    "r@10": 0.5611111111111111,
+    "r@25": 0.7018518518518518,
+    "hit@10": 0.6049382716049383,
+    "win_vs_TE": 8,
+    "loss_vs_TE": 18,
+    "sign_p": 0.07551869750022888,
+    "ms_per_q": 20.28595076666938,
+    "ingest_secs_total": 354.6357412338257,
+    "ingest_secs": {
+     "conv-30": 49.69355654716492,
+     "conv-47": 304.94218468666077
+    },
+    "mean_dir_records": 5.160493827160494,
+    "unmapped": 0,
+    "short_rank(<25)": 1,
+    "dir_expand": {
+     "r@5": 0.4294238683127572,
+     "r@10": 0.5569958847736626,
+     "r@25": 0.687037037037037,
+     "win_vs_TE": 9,
+     "loss_vs_TE": 19,
+     "sign_p": 0.08715855330228806
+    }
+   },
+   "OV-L/c": {
+    "n": 81,
+    "r@5": 0.44341563786008226,
+    "r@10": 0.5611111111111111,
+    "r@25": 0.7018518518518518,
+    "hit@10": 0.6049382716049383,
+    "win_vs_TE": 8,
+    "loss_vs_TE": 18,
+    "sign_p": 0.07551869750022888,
+    "ms_per_q": 19.09139421251085,
+    "ingest_secs_total": 286.8240420818329,
+    "ingest_secs": {
+     "conv-30": 28.013269901275635,
+     "conv-47": 258.81077218055725
+    },
+    "mean_dir_records": 5.160493827160494,
+    "unmapped": 0,
+    "short_rank(<25)": 1,
+    "dir_expand": {
+     "r@5": 0.4294238683127572,
+     "r@10": 0.5569958847736626,
+     "r@25": 0.687037037037037,
+     "win_vs_TE": 9,
+     "loss_vs_TE": 19,
+     "sign_p": 0.08715855330228806
+    }
+   }
+  },
+  "selfcheck_OVLc_vs_OVE": {
+   "identical_rank50": 0,
+   "identical_top10": 0,
+   "n": 81
+  }
+ },
+ "subset_conv-47_incomplete": {
+  "te_n": 150,
+  "only_sid": [
+   "conv-47"
+  ],
+  "arms": {
+   "OV-E": {
+    "n": 150,
+    "r@5": 0.5205555555555555,
+    "r@10": 0.6061111111111112,
+    "r@25": 0.7094444444444444,
+    "hit@10": 0.66,
+    "win_vs_TE": 19,
+    "loss_vs_TE": 21,
+    "sign_p": 0.8746293123804207,
+    "ms_per_q": 63.18007787068685,
+    "ingest_secs_total": 81.32436466217041,
+    "ingest_secs": {
+     "conv-30": 30.8080632686615,
+     "conv-47": 50.51630139350891
+    },
+    "mean_dir_records": 0.0,
+    "unmapped": 0,
+    "short_rank(<25)": 0
+   },
+   "OV-L/s": {
+    "n": 150,
+    "r@5": 0.45666666666666667,
+    "r@10": 0.5527777777777778,
+    "r@25": 0.6961111111111111,
+    "hit@10": 0.6133333333333333,
+    "win_vs_TE": 25,
+    "loss_vs_TE": 34,
+    "sign_p": 0.2975952082844287,
+    "ms_per_q": 20.46835740407308,
+    "ingest_secs_total": 354.6357412338257,
+    "ingest_secs": {
+     "conv-30": 49.69355654716492,
+     "conv-47": 304.94218468666077
+    },
+    "mean_dir_records": 0.0,
+    "unmapped": 0,
+    "short_rank(<25)": 0,
+    "dir_expand": {
+     "r@5": 0.45666666666666667,
+     "r@10": 0.5527777777777778,
+     "r@25": 0.6961111111111111,
+     "win_vs_TE": 25,
+     "loss_vs_TE": 34,
+     "sign_p": 0.2975952082844287
+    }
+   },
+   "OV-L/c": {
+    "n": 150,
+    "r@5": 0.45666666666666667,
+    "r@10": 0.5527777777777778,
+    "r@25": 0.6961111111111111,
+    "hit@10": 0.6133333333333333,
+    "win_vs_TE": 25,
+    "loss_vs_TE": 34,
+    "sign_p": 0.2975952082844287,
+    "ms_per_q": 20.856984456380207,
+    "ingest_secs_total": 286.8240420818329,
+    "ingest_secs": {
+     "conv-30": 28.013269901275635,
+     "conv-47": 258.81077218055725
+    },
+    "mean_dir_records": 0.0,
+    "unmapped": 0,
+    "short_rank(<25)": 0,
+    "dir_expand": {
+     "r@5": 0.45666666666666667,
+     "r@10": 0.5527777777777778,
+     "r@25": 0.6961111111111111,
+     "win_vs_TE": 25,
+     "loss_vs_TE": 34,
+     "sign_p": 0.2975952082844287
+    }
+   }
+  },
+  "selfcheck_OVLc_vs_OVE": {
+   "identical_rank50": 0,
+   "identical_top10": 0,
+   "n": 150
+  }
+ },
+ "selfcheck_OVLs_vs_OVLc": {
+  "identical_rank50": 231,
+  "identical_raw": 231,
+  "n": 231
+ },
+ "cache_replay": {
+  "OV-L/s": {
+   "requests": 1439,
+   "cache_hits": 1003,
+   "cache_miss_err": 436,
+   "unique_missing_prompts": 109,
+   "missing_by_kind": {
+    "file_summary": 76,
+    "overview": 33
+   },
+   "conv-30_missing": 0
+  },
+  "OV-L/c": {
+   "requests": 1439,
+   "cache_hits": 1003,
+   "cache_miss_err": 436,
+   "unique_missing_prompts": 109
+  }
+ },
+ "llm_ledger": {
+  "model": "cline-pass/deepseek-v4.1-flash",
+  "cap": 1250,
+  "cap_reached": false,
+  "last_observed_before_restart3": {
+   "upstream_attempts_incl_carry": 1169,
+   "upstream_ok": 1104,
+   "prompt_tokens": 382665,
+   "completion_tokens": 1075211,
+   "reasoning_tokens_within_completion": 883411
+  },
+  "carried_unrecorded": {
+   "restart1": 41,
+   "restart2": 18,
+   "restart3_upper_bound": 137,
+   "total": 196
+  },
+  "upper_bound_attempts": 1205,
+  "unobserved_window_tokens": "存疑（重启前 ≤180 s，≤36 次尝试的 token 未记录）",
+  "on_disk_ledger_after_restart3": {
+   "upstream_attempts": 1205,
+   "upstream_ok": 1003,
+   "note": "ok/token 计数回退到 02:27:52 快照，以 last_observed 为准"
+  },
+  "prereg_estimate": {
+   "calls": "1110–1112",
+   "prompt_tokens": "≈0.61M",
+   "completion_tokens": "≈0.21M"
+  }
+ },
+ "embed_runtime": {
+  "OV-E": "首轮 fastembed（版本存疑，未记录）",
+  "OV-L/s, OV-L/c": "fastembed 0.9.0 + onnxruntime 1.31.0（重启后重装 /tmp/fe），同一份量化 bge-small ONNX 缓存，HF_HUB_OFFLINE=1"
+ }
+}

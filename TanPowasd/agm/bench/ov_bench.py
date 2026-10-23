@@ -461,7 +461,10 @@ def dir_expand(raw, fmap):
 def cmd_agg(a):
     te = json.load(open(a.te, encoding="utf-8"))
     te_per = {p["qid"]: p["arms"]["TE"] for p in te["per"]}
-    rows, out = [], {"te_n": len(te_per), "arms": {}}
+    sids = set(a.only_sid or [])   # 子集读数（如 OV-L/s 写入不完整时只报写入完整的对话）；空 = 全部
+    keep = (lambda q: q.rsplit("_", 1)[0] in sids) if sids else (lambda q: True)
+    te_per = {q: v for q, v in te_per.items() if keep(q)}
+    rows, out = [], {"te_n": len(te_per), "only_sid": sorted(sids), "arms": {}}
     means = lambda xs, k: sum(x[k] for x in xs) / len(xs)
     tv = list(te_per.values())
     te_ms = (te["meta"].get("rank_secs") or {}).get("TE")
@@ -471,6 +474,7 @@ def cmd_agg(a):
     for spec in a.arm_json:
         name, p = spec.split("=", 1)
         arms[name] = json.load(open(p, encoding="utf-8"))
+        arms[name]["per"] = [x for x in arms[name]["per"] if keep(x["qid"])]
     for name, d in arms.items():
         per = d["per"]
         assert {x["qid"] for x in per} == set(te_per), f"{name}: qid set differs from TE"
@@ -519,6 +523,7 @@ def main():
     r.add_argument("--split", default="dev"); r.add_argument("--out", required=True); r.add_argument("--ingest-only", action="store_true")
     g = sp.add_parser("agg"); g.add_argument("--te", required=True); g.add_argument("--arm-json", nargs="+", required=True)
     g.add_argument("--out", required=True); g.add_argument("--out-json", required=True)
+    g.add_argument("--only-sid", nargs="*", help="只统计这些对话的题（qid 前缀），如 conv-30")
     a = ap.parse_args()
     {"embed": cmd_embed, "meter": cmd_meter, "conf": cmd_conf, "run": cmd_run, "agg": cmd_agg}[a.cmd](a)
 
