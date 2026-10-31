@@ -34,3 +34,15 @@ LoCoMo dev 88 条零重叠漏检里，约 25 条是类别↔实例（cities→Ro
 
 ## 复跑
 `NLTK_DATA=<wordnet> BENCH_ARMS=role,cat LEX_RM3=0 PYTHONUTF8=1 python -X utf8 bench_cc.py <数据集> ...`（数据路径同 PREREG_dist2 hold.sh）。
+
+## dev 结论（2026-10-31 21:1x，读数后追加）
+| 臂 | LME dev 162 | LoCoMo dev 231 | MemBench dev 3353 | KMB dev 1050 | 宏平均 r@10 |
+|---|---:|---:|---:|---:|---:|
+| TE | .7952 | .6549 | .7279 | .5619 | .68499 |
+| CW | .7921 | .6553 | .7279 | .5638 | .68477 |
+| **CF** | .7910 | **.6621** | .7301 | .5605 | **.685940** |
+| CWF | .7910 | .6582 | .7312 | .5634 | .685938 |
+| CWF4 | .7910 | .6354 | .7165 | .5581 | .67527 |
+胜/负 vs TE（CF）：LME 2/3，LoCoMo 5/2，MemBench 133/140，KMB 1/3。
+**按第 1 条：C* = CF（宏平均 .68594 > TE .68499），进入保留。** 警示（描述性，不改判定）：CF 在 LME dev 与 KMB dev 低于 TE，按第 3 条在检查集上倒退的风险高。
+WordNet 单独（CW）宏平均低于 TE；FCA 自挖是唯一的增益来源（LoCoMo +.007）。
