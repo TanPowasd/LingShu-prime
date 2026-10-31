@@ -106,6 +106,16 @@ def run(m, q, n):
             t1 = time.perf_counter()
             out[k] = dedup(tree.rank(m._tg["TE"], dist.score(m, base, q, **cfg)), m.turn_of, n)
             TIMES[k] = TIMES.get(k, 0.0) + time.perf_counter() - t1
+    if "cat" in ARMS:  # PREREG_cat.md：类别题门控的类别→实例通道（WN / FCA）→ 照常走 TE；非类别题 ≡ TE
+        import cat
+        if "TE" not in m._tg:
+            m._tg["TE"] = tree.build(m, m._sess, speakers=m._spk, **tree.ARMS["TE"])
+        if "TE" not in out:
+            out["TE"] = dedup(tree.rank(m._tg["TE"], base), m.turn_of, n)
+        for k, cfg in cat.ARMS.items():
+            t1 = time.perf_counter()
+            out[k] = dedup(tree.rank(m._tg["TE"], cat.score(m, base, q, **cfg)), m.turn_of, n)
+            TIMES[k] = TIMES.get(k, 0.0) + time.perf_counter() - t1
     if "fdm" in ARMS:  # PREREG_fdm.md：MRF 全依赖（不相邻词对的无序窗口）→ 照常走 TE
         import fdm
         if "TE" not in m._tg:
